@@ -6,6 +6,8 @@ const els = {
   searchInput: $('searchInput'), typeFilter: $('typeFilter'), yearFilter: $('yearFilter'),
   favoriteFilter: $('favoriteFilter'), sortSelect: $('sortSelect'), tagFilters: $('tagFilters'),
   resultCount: $('resultCount'), emptyState: $('emptyState'), clearFilters: $('clearFilters'),
+  searchToggle: $('searchToggle'), filterToggle: $('filterToggle'), filterCount: $('filterCount'),
+  searchPanel: $('searchPanel'), filterPanel: $('filterPanel'),
   readerContent: $('readerContent'), readerAside: $('readerAside'), backButton: $('backButton'),
   guideDialog: $('guideDialog'), openGuide: $('openGuide')
 };
@@ -120,7 +122,8 @@ function populateFilters() {
     const btn = e.target.closest('[data-tag]'); if (!btn) return;
     const tag = btn.dataset.tag;
     state.activeTags.has(tag) ? state.activeTags.delete(tag) : state.activeTags.add(tag);
-    btn.classList.toggle('is-active'); renderLibrary();
+    btn.classList.toggle('is-active');
+    renderLibrary();
   });
 }
 
@@ -148,6 +151,20 @@ function filteredEssays() {
   return rows;
 }
 
+function activeFilterCount() {
+  return Number(Boolean(els.typeFilter.value)) + Number(Boolean(els.yearFilter.value)) + Number(Number(els.favoriteFilter.value) > 0) + state.activeTags.size;
+}
+
+function syncToolbarState() {
+  const hasSearch = Boolean(els.searchInput.value.trim());
+  const count = activeFilterCount();
+  els.searchToggle.classList.toggle('is-active', hasSearch);
+  els.filterToggle.classList.toggle('is-active', count > 0);
+  els.filterCount.hidden = count === 0;
+  els.filterCount.textContent = count || '';
+  els.clearFilters.hidden = !hasSearch && count === 0;
+}
+
 function renderLibrary() {
   const rows = filteredEssays();
   els.resultCount.textContent = `${rows.length} / ${state.essays.length} essays`;
@@ -165,12 +182,42 @@ function renderLibrary() {
         <span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span>
       </div>
     </article>`).join('');
+  syncToolbarState();
+}
+
+function setPanel(panelName, open) {
+  const target = panelName === 'search' ? els.searchPanel : els.filterPanel;
+  const toggle = panelName === 'search' ? els.searchToggle : els.filterToggle;
+  const otherPanel = panelName === 'search' ? els.filterPanel : els.searchPanel;
+  const otherToggle = panelName === 'search' ? els.filterToggle : els.searchToggle;
+
+  target.hidden = !open;
+  toggle.setAttribute('aria-expanded', String(open));
+  if (open) {
+    otherPanel.hidden = true;
+    otherToggle.setAttribute('aria-expanded', 'false');
+  }
+}
+
+function closeToolPanels() {
+  els.searchPanel.hidden = true;
+  els.filterPanel.hidden = true;
+  els.searchToggle.setAttribute('aria-expanded', 'false');
+  els.filterToggle.setAttribute('aria-expanded', 'false');
+}
+
+function openSearch() {
+  showLibrary();
+  setPanel('search', true);
+  requestAnimationFrame(() => els.searchInput.focus());
 }
 
 function openEssay(id) { location.hash = `#/essay/${encodeURIComponent(id)}`; }
 
 function showReader(essay) {
-  els.libraryView.hidden = true; els.readerView.hidden = false;
+  closeToolPanels();
+  els.libraryView.hidden = true;
+  els.readerView.hidden = false;
   const contentHtml = renderMarkdown(essay.body);
   els.readerContent.innerHTML = contentHtml;
   const headings = [...els.readerContent.querySelectorAll('h2')];
@@ -185,14 +232,17 @@ function showReader(essay) {
     </dl>
     <nav aria-label="目次">${headings.map(h=>`<a href="#${h.id}" data-anchor="${h.id}">${h.textContent}</a>`).join('')}</nav>`;
   els.readerAside.querySelectorAll('[data-anchor]').forEach(a => a.addEventListener('click', ev => {
-    ev.preventDefault(); document.getElementById(a.dataset.anchor)?.scrollIntoView({behavior:'smooth', block:'start'});
+    ev.preventDefault();
+    document.getElementById(a.dataset.anchor)?.scrollIntoView({behavior:'smooth', block:'start'});
   }));
   document.title = `${essay.title} | My Essays`;
   window.scrollTo(0,0);
 }
 
 function showLibrary() {
-  els.readerView.hidden = true; els.libraryView.hidden = false; document.title = 'My Essays';
+  els.readerView.hidden = true;
+  els.libraryView.hidden = false;
+  document.title = 'My Essays';
 }
 
 function route() {
@@ -210,20 +260,47 @@ function route() {
   els.sortSelect.addEventListener(eventName, renderLibrary);
 });
 
+els.searchToggle.addEventListener('click', () => {
+  const open = els.searchPanel.hidden;
+  setPanel('search', open);
+  if (open) requestAnimationFrame(() => els.searchInput.focus());
+});
+els.filterToggle.addEventListener('click', () => setPanel('filter', els.filterPanel.hidden));
 els.essayGrid.addEventListener('click', e => { const card=e.target.closest('[data-id]'); if(card) openEssay(card.dataset.id); });
 els.essayGrid.addEventListener('keydown', e => { const card=e.target.closest('[data-id]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openEssay(card.dataset.id); }});
 els.backButton.addEventListener('click', () => { location.hash = '#/'; });
 els.clearFilters.addEventListener('click', () => {
-  els.searchInput.value=''; els.typeFilter.value=''; els.yearFilter.value=''; els.favoriteFilter.value='0'; els.sortSelect.value='created-desc';
-  state.activeTags.clear(); document.querySelectorAll('.tag-chip').forEach(b=>b.classList.remove('is-active')); renderLibrary();
+  els.searchInput.value='';
+  els.typeFilter.value='';
+  els.yearFilter.value='';
+  els.favoriteFilter.value='0';
+  els.sortSelect.value='created-desc';
+  state.activeTags.clear();
+  document.querySelectorAll('.tag-chip').forEach(b=>b.classList.remove('is-active'));
+  closeToolPanels();
+  renderLibrary();
 });
 els.openGuide.addEventListener('click', () => els.guideDialog.showModal());
 window.addEventListener('hashchange', route);
 window.addEventListener('keydown', e => {
-  if (e.key==='/' && document.activeElement?.tagName !== 'INPUT') { e.preventDefault(); showLibrary(); els.searchInput.focus(); }
-  if (e.key==='Escape' && !els.readerView.hidden) location.hash='#/';
+  const editing = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);
+  if (e.key==='/' && !editing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    e.preventDefault();
+    if (!els.readerView.hidden) location.hash = '#/';
+    openSearch();
+    return;
+  }
+  if (e.key==='Escape') {
+    if (!els.searchPanel.hidden || !els.filterPanel.hidden) {
+      closeToolPanels();
+      els.searchToggle.focus();
+    } else if (!els.readerView.hidden) {
+      location.hash='#/';
+    }
+  }
 });
 
 loadEssays().catch(err => {
-  console.error(err); els.essayGrid.innerHTML = `<p class="empty-state">読み込みに失敗した。${escapeHtml(err.message)}</p>`;
+  console.error(err);
+  els.essayGrid.innerHTML = `<p class="empty-state">読み込みに失敗した。${escapeHtml(err.message)}</p>`;
 });
