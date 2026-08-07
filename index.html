@@ -21,30 +21,26 @@
     <section id="libraryView" class="library-shell">
       <div class="hero">
         <p class="eyebrow">ESSAY / PAPER LIBRARY</p>
-        <h1>考えたことを、<br>消えない形にする。</h1>
-        <p class="hero-copy">論文・エッセイ・レビューを、日付・種類・タグ・お気に入り度で横断検索する個人アーカイブ。</p>
+        <h1>考えたことを、消えない形にする。</h1>
+        <p class="hero-copy">論文・エッセイ・レビューをためて、必要なときに探し出す個人アーカイブ。</p>
       </div>
 
       <div class="library-toolbar" aria-label="ライブラリ操作">
         <p id="resultCount" class="library-count" aria-live="polite"></p>
         <div class="toolbar-actions">
-          <button id="searchToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="searchPanel">
-            <span aria-hidden="true">⌕</span><span>検索</span>
-          </button>
+          <div id="searchControl" class="search-control">
+            <button id="searchToggle" class="compact-button search-trigger" type="button" aria-expanded="false" aria-controls="searchInput">
+              <span aria-hidden="true">⌕</span><span class="search-trigger-label">検索</span>
+            </button>
+            <input id="searchInput" class="inline-search-input" type="search" placeholder="タイトル・本文・タグを検索" autocomplete="off" tabindex="-1">
+            <kbd class="search-shortcut">/</kbd>
+          </div>
           <button id="filterToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="filterPanel">
             <span>絞り込み</span><span id="filterCount" class="filter-count" hidden></span>
           </button>
           <button id="clearFilters" class="quiet-button" type="button" hidden>条件をクリア</button>
         </div>
       </div>
-
-      <section id="searchPanel" class="tool-panel search-panel" aria-label="検索" hidden>
-        <label class="search-box">
-          <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" placeholder="タイトル・本文・タグを検索" autocomplete="off">
-          <kbd>/</kbd>
-        </label>
-      </section>
 
       <section id="filterPanel" class="tool-panel filter-panel" aria-label="絞り込み" hidden>
         <div class="filters">
