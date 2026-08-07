@@ -3,13 +3,13 @@ const state = { essays: [], tags: new Set(), activeTags: new Set() };
 const $ = (id) => document.getElementById(id);
 const els = {
   libraryView: $('libraryView'), readerView: $('readerView'), essayGrid: $('essayGrid'),
-  searchInput: $('searchInput'), typeFilter: $('typeFilter'), yearFilter: $('yearFilter'),
-  favoriteFilter: $('favoriteFilter'), sortSelect: $('sortSelect'), tagFilters: $('tagFilters'),
-  resultCount: $('resultCount'), emptyState: $('emptyState'), clearFilters: $('clearFilters'),
-  searchToggle: $('searchToggle'), filterToggle: $('filterToggle'), filterCount: $('filterCount'),
-  searchPanel: $('searchPanel'), filterPanel: $('filterPanel'),
-  readerContent: $('readerContent'), readerAside: $('readerAside'), backButton: $('backButton'),
-  guideDialog: $('guideDialog'), openGuide: $('openGuide')
+  searchInput: $('searchInput'), searchControl: $('searchControl'), searchToggle: $('searchToggle'),
+  typeFilter: $('typeFilter'), yearFilter: $('yearFilter'), favoriteFilter: $('favoriteFilter'),
+  sortSelect: $('sortSelect'), tagFilters: $('tagFilters'), resultCount: $('resultCount'),
+  emptyState: $('emptyState'), clearFilters: $('clearFilters'), filterToggle: $('filterToggle'),
+  filterCount: $('filterCount'), filterPanel: $('filterPanel'), readerContent: $('readerContent'),
+  readerAside: $('readerAside'), backButton: $('backButton'), guideDialog: $('guideDialog'),
+  openGuide: $('openGuide')
 };
 
 function parseFrontMatter(text) {
@@ -158,7 +158,7 @@ function activeFilterCount() {
 function syncToolbarState() {
   const hasSearch = Boolean(els.searchInput.value.trim());
   const count = activeFilterCount();
-  els.searchToggle.classList.toggle('is-active', hasSearch);
+  els.searchToggle.classList.toggle('is-active', hasSearch && !els.searchControl.classList.contains('is-open'));
   els.filterToggle.classList.toggle('is-active', count > 0);
   els.filterCount.hidden = count === 0;
   els.filterCount.textContent = count || '';
@@ -174,42 +174,40 @@ function renderLibrary() {
       <div class="card-top"><span class="type-badge">${escapeHtml(e.type || 'Essay')}</span><span>${formatDate(e.created)}</span></div>
       <div>
         <h2>${escapeHtml(e.title)}</h2>
-        <h3>${escapeHtml(e.subtitle || '')}</h3>
         <p class="card-abstract">${escapeHtml(e.abstract || '')}</p>
       </div>
-      <div class="card-footer">
-        <div class="card-tags">${(e.tags||[]).slice(0,5).map(t=>`<span>#${escapeHtml(t)}</span>`).join('')}</div>
-        <span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span>
-      </div>
+      <div class="card-footer"><span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span></div>
     </article>`).join('');
   syncToolbarState();
 }
 
-function setPanel(panelName, open) {
-  const target = panelName === 'search' ? els.searchPanel : els.filterPanel;
-  const toggle = panelName === 'search' ? els.searchToggle : els.filterToggle;
-  const otherPanel = panelName === 'search' ? els.filterPanel : els.searchPanel;
-  const otherToggle = panelName === 'search' ? els.filterToggle : els.searchToggle;
-
-  target.hidden = !open;
-  toggle.setAttribute('aria-expanded', String(open));
+function setSearchOpen(open) {
+  els.searchControl.classList.toggle('is-open', open);
+  els.searchToggle.setAttribute('aria-expanded', String(open));
+  els.searchInput.tabIndex = open ? 0 : -1;
   if (open) {
-    otherPanel.hidden = true;
-    otherToggle.setAttribute('aria-expanded', 'false');
+    els.filterPanel.hidden = true;
+    els.filterToggle.setAttribute('aria-expanded', 'false');
+    requestAnimationFrame(() => els.searchInput.focus());
   }
+  syncToolbarState();
+}
+
+function setFilterOpen(open) {
+  els.filterPanel.hidden = !open;
+  els.filterToggle.setAttribute('aria-expanded', String(open));
+  if (open) setSearchOpen(false);
 }
 
 function closeToolPanels() {
-  els.searchPanel.hidden = true;
+  setSearchOpen(false);
   els.filterPanel.hidden = true;
-  els.searchToggle.setAttribute('aria-expanded', 'false');
   els.filterToggle.setAttribute('aria-expanded', 'false');
 }
 
 function openSearch() {
   showLibrary();
-  setPanel('search', true);
-  requestAnimationFrame(() => els.searchInput.focus());
+  setSearchOpen(true);
 }
 
 function openEssay(id) { location.hash = `#/essay/${encodeURIComponent(id)}`; }
@@ -218,8 +216,7 @@ function showReader(essay) {
   closeToolPanels();
   els.libraryView.hidden = true;
   els.readerView.hidden = false;
-  const contentHtml = renderMarkdown(essay.body);
-  els.readerContent.innerHTML = contentHtml;
+  els.readerContent.innerHTML = renderMarkdown(essay.body);
   const headings = [...els.readerContent.querySelectorAll('h2')];
   els.readerAside.innerHTML = `
     <dl class="meta-block">
@@ -232,8 +229,7 @@ function showReader(essay) {
     </dl>
     <nav aria-label="目次">${headings.map(h=>`<a href="#${h.id}" data-anchor="${h.id}">${h.textContent}</a>`).join('')}</nav>`;
   els.readerAside.querySelectorAll('[data-anchor]').forEach(a => a.addEventListener('click', ev => {
-    ev.preventDefault();
-    document.getElementById(a.dataset.anchor)?.scrollIntoView({behavior:'smooth', block:'start'});
+    ev.preventDefault(); document.getElementById(a.dataset.anchor)?.scrollIntoView({behavior:'smooth', block:'start'});
   }));
   document.title = `${essay.title} | My Essays`;
   window.scrollTo(0,0);
@@ -260,25 +256,15 @@ function route() {
   els.sortSelect.addEventListener(eventName, renderLibrary);
 });
 
-els.searchToggle.addEventListener('click', () => {
-  const open = els.searchPanel.hidden;
-  setPanel('search', open);
-  if (open) requestAnimationFrame(() => els.searchInput.focus());
-});
-els.filterToggle.addEventListener('click', () => setPanel('filter', els.filterPanel.hidden));
+els.searchToggle.addEventListener('click', () => setSearchOpen(!els.searchControl.classList.contains('is-open')));
+els.filterToggle.addEventListener('click', () => setFilterOpen(els.filterPanel.hidden));
 els.essayGrid.addEventListener('click', e => { const card=e.target.closest('[data-id]'); if(card) openEssay(card.dataset.id); });
 els.essayGrid.addEventListener('keydown', e => { const card=e.target.closest('[data-id]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openEssay(card.dataset.id); }});
 els.backButton.addEventListener('click', () => { location.hash = '#/'; });
 els.clearFilters.addEventListener('click', () => {
-  els.searchInput.value='';
-  els.typeFilter.value='';
-  els.yearFilter.value='';
-  els.favoriteFilter.value='0';
-  els.sortSelect.value='created-desc';
-  state.activeTags.clear();
-  document.querySelectorAll('.tag-chip').forEach(b=>b.classList.remove('is-active'));
-  closeToolPanels();
-  renderLibrary();
+  els.searchInput.value=''; els.typeFilter.value=''; els.yearFilter.value=''; els.favoriteFilter.value='0'; els.sortSelect.value='created-desc';
+  state.activeTags.clear(); document.querySelectorAll('.tag-chip').forEach(b=>b.classList.remove('is-active'));
+  closeToolPanels(); renderLibrary();
 });
 els.openGuide.addEventListener('click', () => els.guideDialog.showModal());
 window.addEventListener('hashchange', route);
@@ -291,7 +277,7 @@ window.addEventListener('keydown', e => {
     return;
   }
   if (e.key==='Escape') {
-    if (!els.searchPanel.hidden || !els.filterPanel.hidden) {
+    if (els.searchControl.classList.contains('is-open') || !els.filterPanel.hidden) {
       closeToolPanels();
       els.searchToggle.focus();
     } else if (!els.readerView.hidden) {
