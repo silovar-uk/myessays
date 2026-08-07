@@ -25,11 +25,28 @@
         <p class="hero-copy">論文・エッセイ・レビューを、日付・種類・タグ・お気に入り度で横断検索する個人アーカイブ。</p>
       </div>
 
-      <section class="control-panel" aria-label="検索と絞り込み">
+      <div class="library-toolbar" aria-label="ライブラリ操作">
+        <p id="resultCount" class="library-count" aria-live="polite"></p>
+        <div class="toolbar-actions">
+          <button id="searchToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="searchPanel">
+            <span aria-hidden="true">⌕</span><span>検索</span>
+          </button>
+          <button id="filterToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="filterPanel">
+            <span>絞り込み</span><span id="filterCount" class="filter-count" hidden></span>
+          </button>
+          <button id="clearFilters" class="quiet-button" type="button" hidden>条件をクリア</button>
+        </div>
+      </div>
+
+      <section id="searchPanel" class="tool-panel search-panel" aria-label="検索" hidden>
         <label class="search-box">
           <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" placeholder="タイトル・本文・タグを検索  / でフォーカス" autocomplete="off">
+          <input id="searchInput" type="search" placeholder="タイトル・本文・タグを検索" autocomplete="off">
+          <kbd>/</kbd>
         </label>
+      </section>
+
+      <section id="filterPanel" class="tool-panel filter-panel" aria-label="絞り込み" hidden>
         <div class="filters">
           <label>種類<select id="typeFilter"><option value="">すべて</option></select></label>
           <label>作成年<select id="yearFilter"><option value="">すべて</option></select></label>
@@ -39,10 +56,6 @@
         <div id="tagFilters" class="tag-filters" aria-label="タグ"></div>
       </section>
 
-      <div class="library-meta">
-        <p id="resultCount" aria-live="polite"></p>
-        <button id="clearFilters" class="text-button" type="button">条件をクリア</button>
-      </div>
       <section id="essayGrid" class="essay-grid" aria-live="polite"></section>
       <p id="emptyState" class="empty-state" hidden>条件に合う論考がない。検索語かフィルターを少しゆるめてみて。</p>
     </section>
