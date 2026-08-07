@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1ea">
+  <title>My Essays</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-wrap">
+      <a class="brand" href="#/" aria-label="My Essays トップへ">My Essays</a>
+      <span class="brand-note">thinking archive</span>
+    </div>
+    <button id="openGuide" class="ghost-button" type="button">＋ 論考を追加するには</button>
+  </header>
+
+  <main>
+    <section id="libraryView" class="library-shell">
+      <div class="hero">
+        <p class="eyebrow">ESSAY / PAPER LIBRARY</p>
+        <h1>考えたことを、<br>消えない形にする。</h1>
+        <p class="hero-copy">論文・エッセイ・レビューを、日付・種類・タグ・お気に入り度で横断検索する個人アーカイブ。</p>
+      </div>
+
+      <section class="control-panel" aria-label="検索と絞り込み">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="タイトル・本文・タグを検索  / でフォーカス" autocomplete="off">
+        </label>
+        <div class="filters">
+          <label>種類<select id="typeFilter"><option value="">すべて</option></select></label>
+          <label>作成年<select id="yearFilter"><option value="">すべて</option></select></label>
+          <label>お気に入り<select id="favoriteFilter"><option value="0">すべて</option><option value="5">★★★★★</option><option value="4">★★★★以上</option><option value="3">★★★以上</option></select></label>
+          <label>並び順<select id="sortSelect"><option value="created-desc">新しい順</option><option value="updated-desc">更新順</option><option value="favorite-desc">お気に入り順</option><option value="title-asc">タイトル順</option></select></label>
+        </div>
+        <div id="tagFilters" class="tag-filters" aria-label="タグ"></div>
+      </section>
+
+      <div class="library-meta">
+        <p id="resultCount" aria-live="polite"></p>
+        <button id="clearFilters" class="text-button" type="button">条件をクリア</button>
+      </div>
+      <section id="essayGrid" class="essay-grid" aria-live="polite"></section>
+      <p id="emptyState" class="empty-state" hidden>条件に合う論考がない。検索語かフィルターを少しゆるめてみて。</p>
+    </section>
+
+    <article id="readerView" class="reader-shell" hidden>
+      <button id="backButton" class="back-button" type="button">← Library</button>
+      <div class="reader-layout">
+        <aside id="readerAside" class="reader-aside"></aside>
+        <div id="readerContent" class="reader-content"></div>
+      </div>
+    </article>
+  </main>
+
+  <dialog id="guideDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">ADD A NEW ESSAY</p>
+          <h2>1本追加するときの流れ</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="閉じる">×</button>
+      </div>
+      <ol>
+        <li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li>
+        <li><code>essays/YYYY-MM-DD-slug.md</code> として保存する。</li>
+        <li><code>data/index.json</code> の <code>essays</code> にパスを1行追加する。</li>
+        <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
+      </ol>
+      <p class="dialog-note">本文も検索対象。favorite は1〜5、grow は「あとで育てたい度」1〜5を想定。</p>
+    </form>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
