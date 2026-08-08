@@ -2,6 +2,7 @@
   const readerView = document.getElementById('readerView');
   const readerContent = document.getElementById('readerContent');
   const essayGrid = document.getElementById('essayGrid');
+  const randomEssay = document.getElementById('randomEssay');
   const noteTab = document.getElementById('noteTab');
   const noteTextarea = document.getElementById('noteTextarea');
   const clearNote = document.getElementById('clearNote');
@@ -10,6 +11,9 @@
   if (!readerView || !readerContent || !noteTab || !noteTextarea) return;
 
   const NOTE_PREFIX = 'myessays:reading-note:';
+  const POSITION_PREFIX = 'myessays:reading-position:';
+  let lastRestoredId = '';
+  let savePositionRaf = 0;
 
   const track = document.createElement('div');
   track.className = 'reading-progress-track';
@@ -21,6 +25,11 @@
 
   function isReaderVisible() {
     return !readerView.hidden;
+  }
+
+  function currentEssayId() {
+    const match = location.hash.match(/^#\/essay\/(.+)$/);
+    return match ? decodeURIComponent(match[1]) : '';
   }
 
   function updateProgress() {
@@ -75,23 +84,81 @@
     });
   }
 
+  function saveReadingPosition() {
+    if (!isReaderVisible()) return;
+    const id = currentEssayId();
+    if (!id) return;
+    try {
+      localStorage.setItem(`${POSITION_PREFIX}${id}`, String(Math.max(0, Math.round(window.scrollY))));
+    } catch {}
+  }
+
+  function queueSaveReadingPosition() {
+    if (savePositionRaf) return;
+    savePositionRaf = requestAnimationFrame(() => {
+      savePositionRaf = 0;
+      saveReadingPosition();
+    });
+  }
+
+  function restoreReadingPosition() {
+    if (!isReaderVisible()) return;
+    const id = currentEssayId();
+    if (!id || lastRestoredId === id) return;
+
+    let stored = 0;
+    try { stored = Number(localStorage.getItem(`${POSITION_PREFIX}${id}`) || 0); }
+    catch { stored = 0; }
+
+    lastRestoredId = id;
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const target = Math.min(Math.max(0, stored), maxScroll);
+    window.scrollTo({ top: target, behavior: 'auto' });
+    updateProgress();
+  }
+
+  function visibleEssayIds() {
+    if (!essayGrid) return [];
+    const ids = [...essayGrid.querySelectorAll('[data-id]')]
+      .map(card => card.dataset.id)
+      .filter(Boolean);
+    return [...new Set(ids)];
+  }
+
+  function openRandomEssay() {
+    const ids = visibleEssayIds();
+    if (!ids.length) return;
+    const id = ids[Math.floor(Math.random() * ids.length)];
+    location.hash = `#/essay/${encodeURIComponent(id)}`;
+  }
+
   function syncSoon() {
     requestAnimationFrame(() => {
       updateProgress();
       updateMemoDot();
       updateLibraryNoteMarks();
+      restoreReadingPosition();
     });
   }
 
+  randomEssay?.addEventListener('click', openRandomEssay);
   noteTextarea.addEventListener('input', () => {
     updateMemoDot();
     updateLibraryNoteMarks();
   });
   clearNote?.addEventListener('click', () => setTimeout(syncSoon, 0));
   quoteToNote?.addEventListener('click', () => setTimeout(syncSoon, 0));
-  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('scroll', () => {
+    updateProgress();
+    queueSaveReadingPosition();
+  }, { passive: true });
   window.addEventListener('resize', updateProgress);
-  window.addEventListener('hashchange', syncSoon);
+  window.addEventListener('pagehide', saveReadingPosition);
+  window.addEventListener('hashchange', () => {
+    const id = currentEssayId();
+    if (!id) lastRestoredId = '';
+    syncSoon();
+  });
   window.addEventListener('storage', event => {
     if (event.key?.startsWith(NOTE_PREFIX)) updateLibraryNoteMarks();
   });
@@ -105,7 +172,8 @@
   }
 
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) syncSoon();
+    if (document.hidden) saveReadingPosition();
+    else syncSoon();
   });
 
   setTimeout(syncSoon, 0);
