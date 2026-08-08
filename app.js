@@ -88,10 +88,31 @@ function renderMarkdown(md) {
   return html.join('\n');
 }
 
+function readingMetrics(md='') {
+  const clean = md
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`]+`/g, ' ')
+    .replace(/https?:\/\/\S+/g, ' ')
+    .replace(/[#>*_\[\]()]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const charCount = clean.replace(/\s/g, '').length;
+  const japaneseChars = (clean.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー々〆ヶ]/gu) || []).length;
+  const englishWords = (clean.match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g) || []).length;
+  const minutes = Math.max(1, Math.ceil((japaneseChars / 500) + (englishWords / 200)));
+  return { charCount, minutes };
+}
+
 function normalizeEssay(path, text) {
   const { meta, body } = parseFrontMatter(text);
   const plain = body.replace(/[#>*_`\[\]()]/g,' ').replace(/https?:\/\/\S+/g,' ');
-  return { ...meta, path, body, searchText: [meta.title, meta.subtitle, meta.abstract, ...(meta.tags||[]), ...(meta.keywords||[]), plain].join(' ').toLowerCase() };
+  return {
+    ...meta,
+    path,
+    body,
+    metrics: readingMetrics(body),
+    searchText: [meta.title, meta.subtitle, meta.abstract, ...(meta.tags||[]), ...(meta.keywords||[]), plain].join(' ').toLowerCase()
+  };
 }
 
 async function loadEssays() {
@@ -129,6 +150,7 @@ function populateFilters() {
 
 function stars(n=0) { return '★'.repeat(Number(n)||0) + '☆'.repeat(Math.max(0,5-(Number(n)||0))); }
 function formatDate(d='') { if (!d) return ''; const [y,m,day] = d.split('-'); return `${y}.${m}.${day}`; }
+function tagsHtml(tags=[], limit=5) { return tags.slice(0,limit).map(t=>`<span>#${escapeHtml(t)}</span>`).join(''); }
 
 function filteredEssays() {
   const q = els.searchInput.value.trim().toLowerCase();
@@ -151,6 +173,14 @@ function filteredEssays() {
   return rows;
 }
 
+function featuredEssayIds() {
+  const newest = [...state.essays].sort((a,b)=>String(b.created||'').localeCompare(String(a.created||''))).slice(0,2);
+  const favorites = [...state.essays]
+    .filter(e => Number(e.favorite || 0) >= 4)
+    .sort((a,b)=>(Number(b.favorite)||0)-(Number(a.favorite)||0) || String(b.created||'').localeCompare(String(a.created||'')));
+  return new Set([...newest, ...favorites].filter((e,i,arr)=>arr.findIndex(x=>x.id===e.id)===i).slice(0,4).map(e=>e.id));
+}
+
 function activeFilterCount() {
   return Number(Boolean(els.typeFilter.value)) + Number(Boolean(els.yearFilter.value)) + Number(Number(els.favoriteFilter.value) > 0) + state.activeTags.size;
 }
@@ -165,19 +195,54 @@ function syncToolbarState() {
   els.clearFilters.hidden = !hasSearch && count === 0;
 }
 
+function renderFeaturedCard(e) {
+  return `
+    <article class="featured-card" data-id="${escapeHtml(e.id)}" tabindex="0" role="link" aria-label="${escapeHtml(e.title)}を読む">
+      <div class="featured-meta"><span>${escapeHtml(e.type || 'Essay')}</span><span>${formatDate(e.created)}</span></div>
+      <h2>${escapeHtml(e.title)}</h2>
+      <p class="featured-abstract">${escapeHtml(e.abstract || '')}</p>
+      <div class="featured-footer">
+        <div class="mini-tags">${tagsHtml(e.tags, 5)}</div>
+        <span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span>
+      </div>
+    </article>`;
+}
+
+function renderArchiveRow(e) {
+  return `
+    <article class="archive-row" data-id="${escapeHtml(e.id)}" tabindex="0" role="link" aria-label="${escapeHtml(e.title)}を読む">
+      <div class="archive-date">${formatDate(e.created)}</div>
+      <div class="archive-main">
+        <h2>${escapeHtml(e.title)}</h2>
+        <div class="mini-tags">${tagsHtml(e.tags, 6)}</div>
+      </div>
+      <div class="archive-side">
+        <span class="archive-type">${escapeHtml(e.type || 'Essay')}</span>
+        <span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span>
+      </div>
+    </article>`;
+}
+
 function renderLibrary() {
   const rows = filteredEssays();
+  const featuredIds = featuredEssayIds();
+  const featured = rows.filter(e => featuredIds.has(e.id));
+  const archive = rows.filter(e => !featuredIds.has(e.id));
   els.resultCount.textContent = `${rows.length} / ${state.essays.length} essays`;
   els.emptyState.hidden = rows.length > 0;
-  els.essayGrid.innerHTML = rows.map(e => `
-    <article class="essay-card" data-id="${escapeHtml(e.id)}" tabindex="0" role="link" aria-label="${escapeHtml(e.title)}を読む">
-      <div class="card-top"><span class="type-badge">${escapeHtml(e.type || 'Essay')}</span><span>${formatDate(e.created)}</span></div>
-      <div>
-        <h2>${escapeHtml(e.title)}</h2>
-        <p class="card-abstract">${escapeHtml(e.abstract || '')}</p>
-      </div>
-      <div class="card-footer"><span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span></div>
-    </article>`).join('');
+
+  const featuredHtml = featured.length ? `
+    <section class="library-section">
+      <div class="section-heading"><strong>Featured</strong><span>最新・お気に入り</span></div>
+      <div class="featured-grid">${featured.map(renderFeaturedCard).join('')}</div>
+    </section>` : '';
+  const archiveHtml = archive.length ? `
+    <section class="library-section archive-section">
+      <div class="section-heading"><strong>Archive</strong><span>${archive.length} essays</span></div>
+      <div class="archive-list">${archive.map(renderArchiveRow).join('')}</div>
+    </section>` : '';
+
+  els.essayGrid.innerHTML = featuredHtml + archiveHtml;
   syncToolbarState();
 }
 
@@ -212,17 +277,42 @@ function openSearch() {
 
 function openEssay(id) { location.hash = `#/essay/${encodeURIComponent(id)}`; }
 
+function markAcademicSections() {
+  const headings = [...els.readerContent.querySelectorAll('h2, h3')];
+  headings.forEach(h => {
+    const label = h.textContent.trim();
+    const isReferences = /^(参考文献|references|bibliography)$/i.test(label);
+    const isNotes = /^(注|脚注|notes|footnotes)$/i.test(label);
+    if (!isReferences && !isNotes) return;
+    h.classList.add(isReferences ? 'references-heading' : 'notes-heading');
+    let node = h.nextElementSibling;
+    while (node && !/^H[1-3]$/.test(node.tagName)) {
+      node.classList.add(isReferences ? 'reference-block' : 'notes-block');
+      node = node.nextElementSibling;
+    }
+  });
+}
+
 function showReader(essay) {
   closeToolPanels();
   els.libraryView.hidden = true;
   els.readerView.hidden = false;
-  els.readerContent.innerHTML = renderMarkdown(essay.body);
+  const metrics = essay.metrics || readingMetrics(essay.body);
+  els.readerContent.innerHTML = `
+    <div class="reading-stats" title="読了目安は日本語500字/分・英語200語/分で概算">
+      <span>${metrics.charCount.toLocaleString('ja-JP')}文字</span>
+      <span aria-hidden="true">·</span>
+      <span>読了 約${metrics.minutes}分</span>
+    </div>
+    ${renderMarkdown(essay.body)}`;
+  markAcademicSections();
   const headings = [...els.readerContent.querySelectorAll('h2')];
   els.readerAside.innerHTML = `
     <dl class="meta-block">
       <dt>Type</dt><dd>${escapeHtml(essay.type || '')}</dd>
       <dt>Created</dt><dd>${formatDate(essay.created)}</dd>
       <dt>Updated</dt><dd>${formatDate(essay.updated)}</dd>
+      <dt>Length</dt><dd>${metrics.charCount.toLocaleString('ja-JP')}文字 / 約${metrics.minutes}分</dd>
       <dt>Favorite</dt><dd class="stars">${stars(essay.favorite)}</dd>
       <dt>Grow</dt><dd>${essay.grow || 0}/5</dd>
       <dt>Tags</dt><dd>${(essay.tags||[]).map(t=>`#${escapeHtml(t)}`).join(' ')}</dd>
