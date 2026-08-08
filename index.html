@@ -62,6 +62,32 @@
         <aside id="readerAside" class="reader-aside"></aside>
         <div id="readerContent" class="reader-content"></div>
       </div>
+
+      <button id="noteTab" class="note-tab" type="button" aria-expanded="false" aria-controls="notePanel">
+        <span>メモ</span><kbd>M</kbd>
+      </button>
+      <aside id="notePanel" class="note-panel" aria-label="読書メモ" aria-hidden="true">
+        <div class="note-panel-head">
+          <div>
+            <p class="note-kicker">LOCAL READING NOTE</p>
+            <h2>読書メモ</h2>
+          </div>
+          <button id="closeNote" class="note-close" type="button" aria-label="メモを閉じる">×</button>
+        </div>
+        <p class="note-local">この端末のブラウザにのみ自動保存</p>
+        <textarea id="noteTextarea" class="note-textarea" placeholder="気づき、疑問、あとで考えたいこと…" spellcheck="true"></textarea>
+        <div class="note-footer">
+          <span id="noteStatus" class="note-status" aria-live="polite">保存済み</span>
+          <div class="note-actions">
+            <button id="clearNote" class="note-action note-action-danger" type="button">全削除</button>
+            <button id="copyNote" class="note-action note-action-primary" type="button">全文コピー</button>
+          </div>
+        </div>
+      </aside>
+
+      <div id="quoteMenu" class="quote-menu" role="menu" hidden>
+        <button id="quoteToNote" type="button" role="menuitem">“ ” メモに引用</button>
+      </div>
     </article>
   </main>
 
