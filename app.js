@@ -1,4 +1,10 @@
-const state = { essays: [], tags: new Set(), activeTags: new Set() };
+const state = {
+  essays: [],
+  tags: new Set(),
+  activeTags: new Set(),
+  currentEssay: null,
+  pendingQuote: ''
+};
 
 const $ = (id) => document.getElementById(id);
 const els = {
@@ -9,8 +15,12 @@ const els = {
   emptyState: $('emptyState'), clearFilters: $('clearFilters'), filterToggle: $('filterToggle'),
   filterCount: $('filterCount'), filterPanel: $('filterPanel'), readerContent: $('readerContent'),
   readerAside: $('readerAside'), backButton: $('backButton'), guideDialog: $('guideDialog'),
-  openGuide: $('openGuide')
+  openGuide: $('openGuide'), noteTab: $('noteTab'), notePanel: $('notePanel'), closeNote: $('closeNote'),
+  noteTextarea: $('noteTextarea'), noteStatus: $('noteStatus'), copyNote: $('copyNote'),
+  clearNote: $('clearNote'), quoteMenu: $('quoteMenu'), quoteToNote: $('quoteToNote')
 };
+
+const NOTE_PREFIX = 'myessays:reading-note:';
 
 function parseFrontMatter(text) {
   const match = text.match(/^---\n([\s\S]*?)\n---\n?/);
@@ -293,26 +303,111 @@ function markAcademicSections() {
   });
 }
 
+function noteKey(essay=state.currentEssay) {
+  return essay?.id ? `${NOTE_PREFIX}${essay.id}` : '';
+}
+
+function loadCurrentNote() {
+  const key = noteKey();
+  let value = '';
+  if (key) {
+    try { value = localStorage.getItem(key) || ''; }
+    catch { value = ''; }
+  }
+  els.noteTextarea.value = value;
+  els.noteStatus.textContent = value ? '保存済み' : 'メモなし';
+}
+
+function saveCurrentNote() {
+  const key = noteKey();
+  if (!key) return;
+  try {
+    if (els.noteTextarea.value) localStorage.setItem(key, els.noteTextarea.value);
+    else localStorage.removeItem(key);
+    els.noteStatus.textContent = els.noteTextarea.value ? '保存済み' : 'メモなし';
+  } catch {
+    els.noteStatus.textContent = '保存できませんでした';
+  }
+}
+
+function setNoteOpen(open, { focus=false } = {}) {
+  if (!state.currentEssay) return;
+  els.readerView.classList.toggle('note-is-open', open);
+  els.notePanel.classList.toggle('is-open', open);
+  els.notePanel.setAttribute('aria-hidden', String(!open));
+  els.noteTab.setAttribute('aria-expanded', String(open));
+  hideQuoteMenu();
+  if (open && focus) {
+    requestAnimationFrame(() => {
+      els.noteTextarea.focus();
+      els.noteTextarea.setSelectionRange(els.noteTextarea.value.length, els.noteTextarea.value.length);
+    });
+  }
+}
+
+function toggleNote() {
+  const opening = !els.notePanel.classList.contains('is-open');
+  setNoteOpen(opening, { focus: opening });
+}
+
+function appendQuoteToNote(text) {
+  const clean = String(text || '').trim();
+  if (!clean) return;
+  const quoted = clean.split(/\n+/).map(line => `> ${line.trim()}`).join('\n');
+  const current = els.noteTextarea.value.trimEnd();
+  els.noteTextarea.value = `${current}${current ? '\n\n' : ''}${quoted}\n`;
+  saveCurrentNote();
+  setNoteOpen(true, { focus:true });
+  els.noteStatus.textContent = '引用を追加・保存済み';
+}
+
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const helper = document.createElement('textarea');
+  helper.value = text;
+  helper.style.position = 'fixed';
+  helper.style.opacity = '0';
+  document.body.appendChild(helper);
+  helper.select();
+  document.execCommand('copy');
+  helper.remove();
+}
+
+function hideQuoteMenu() {
+  els.quoteMenu.hidden = true;
+  state.pendingQuote = '';
+}
+
+function selectionInsideReader() {
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed || !selection.rangeCount) return '';
+  const range = selection.getRangeAt(0);
+  let node = range.commonAncestorContainer;
+  if (node.nodeType === Node.TEXT_NODE) node = node.parentNode;
+  if (!node || !els.readerContent.contains(node)) return '';
+  return selection.toString().trim();
+}
+
 function showReader(essay) {
   closeToolPanels();
+  state.currentEssay = essay;
+  setNoteOpen(false);
   els.libraryView.hidden = true;
   els.readerView.hidden = false;
-  const metrics = essay.metrics || readingMetrics(essay.body);
-  els.readerContent.innerHTML = `
-    <div class="reading-stats" title="読了目安は日本語500字/分・英語200語/分で概算">
-      <span>${metrics.charCount.toLocaleString('ja-JP')}文字</span>
-      <span aria-hidden="true">·</span>
-      <span>読了 約${metrics.minutes}分</span>
-    </div>
-    ${renderMarkdown(essay.body)}`;
+  els.readerContent.innerHTML = renderMarkdown(essay.body);
+  els.readerContent.insertAdjacentHTML('afterbegin', `<div class="reading-stats"><span>${essay.metrics.charCount.toLocaleString('ja-JP')}文字</span><span>·</span><span>読了 約${essay.metrics.minutes}分</span></div>`);
   markAcademicSections();
+
   const headings = [...els.readerContent.querySelectorAll('h2')];
   els.readerAside.innerHTML = `
     <dl class="meta-block">
       <dt>Type</dt><dd>${escapeHtml(essay.type || '')}</dd>
       <dt>Created</dt><dd>${formatDate(essay.created)}</dd>
       <dt>Updated</dt><dd>${formatDate(essay.updated)}</dd>
-      <dt>Length</dt><dd>${metrics.charCount.toLocaleString('ja-JP')}文字 / 約${metrics.minutes}分</dd>
+      <dt>Length</dt><dd>${essay.metrics.charCount.toLocaleString('ja-JP')}文字 · 約${essay.metrics.minutes}分</dd>
       <dt>Favorite</dt><dd class="stars">${stars(essay.favorite)}</dd>
       <dt>Grow</dt><dd>${essay.grow || 0}/5</dd>
       <dt>Tags</dt><dd>${(essay.tags||[]).map(t=>`#${escapeHtml(t)}`).join(' ')}</dd>
@@ -321,11 +416,15 @@ function showReader(essay) {
   els.readerAside.querySelectorAll('[data-anchor]').forEach(a => a.addEventListener('click', ev => {
     ev.preventDefault(); document.getElementById(a.dataset.anchor)?.scrollIntoView({behavior:'smooth', block:'start'});
   }));
+  loadCurrentNote();
   document.title = `${essay.title} | My Essays`;
   window.scrollTo(0,0);
 }
 
 function showLibrary() {
+  if (state.currentEssay) setNoteOpen(false);
+  hideQuoteMenu();
+  state.currentEssay = null;
   els.readerView.hidden = true;
   els.libraryView.hidden = false;
   document.title = 'My Essays';
@@ -357,22 +456,71 @@ els.clearFilters.addEventListener('click', () => {
   closeToolPanels(); renderLibrary();
 });
 els.openGuide.addEventListener('click', () => els.guideDialog.showModal());
+
+els.noteTab.addEventListener('click', toggleNote);
+els.closeNote.addEventListener('click', () => setNoteOpen(false));
+els.noteTextarea.addEventListener('input', saveCurrentNote);
+els.copyNote.addEventListener('click', async () => {
+  const text = els.noteTextarea.value;
+  if (!text.trim()) { els.noteStatus.textContent = 'メモは空です'; return; }
+  try {
+    await copyText(text);
+    els.noteStatus.textContent = 'コピーしました';
+  } catch {
+    els.noteStatus.textContent = 'コピーできませんでした';
+  }
+});
+els.clearNote.addEventListener('click', () => {
+  if (!els.noteTextarea.value) return;
+  if (!window.confirm('この論文の読書メモをすべて削除しますか？')) return;
+  els.noteTextarea.value = '';
+  saveCurrentNote();
+  els.noteStatus.textContent = '削除しました';
+});
+
+els.readerContent.addEventListener('contextmenu', e => {
+  const selected = selectionInsideReader();
+  if (!selected) { hideQuoteMenu(); return; }
+  e.preventDefault();
+  state.pendingQuote = selected;
+  els.quoteMenu.hidden = false;
+  const menuWidth = 150;
+  const menuHeight = 44;
+  const left = Math.min(e.clientX, window.innerWidth - menuWidth - 12);
+  const top = Math.min(e.clientY, window.innerHeight - menuHeight - 12);
+  els.quoteMenu.style.left = `${Math.max(12,left)}px`;
+  els.quoteMenu.style.top = `${Math.max(12,top)}px`;
+});
+els.quoteToNote.addEventListener('click', () => appendQuoteToNote(state.pendingQuote));
+document.addEventListener('pointerdown', e => {
+  if (!els.quoteMenu.hidden && !els.quoteMenu.contains(e.target)) hideQuoteMenu();
+});
+window.addEventListener('scroll', hideQuoteMenu, { passive:true });
+window.addEventListener('resize', hideQuoteMenu);
 window.addEventListener('hashchange', route);
 window.addEventListener('keydown', e => {
-  const editing = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);
+  const editing = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
+
   if (e.key==='/' && !editing && !e.metaKey && !e.ctrlKey && !e.altKey) {
     e.preventDefault();
     if (!els.readerView.hidden) location.hash = '#/';
     openSearch();
     return;
   }
+
+  if (e.key.toLowerCase()==='m' && !editing && !els.readerView.hidden && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    e.preventDefault();
+    toggleNote();
+    return;
+  }
+
   if (e.key==='Escape') {
+    if (!els.quoteMenu.hidden) { hideQuoteMenu(); return; }
+    if (els.notePanel.classList.contains('is-open')) { setNoteOpen(false); els.noteTab.focus(); return; }
     if (els.searchControl.classList.contains('is-open') || !els.filterPanel.hidden) {
-      closeToolPanels();
-      els.searchToggle.focus();
-    } else if (!els.readerView.hidden) {
-      location.hash='#/';
+      closeToolPanels(); els.searchToggle.focus(); return;
     }
+    if (!els.readerView.hidden) location.hash='#/';
   }
 });
 
