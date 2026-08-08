@@ -3,6 +3,8 @@
   const readerContent = document.getElementById('readerContent');
   const noteTab = document.getElementById('noteTab');
   const noteTextarea = document.getElementById('noteTextarea');
+  const clearNote = document.getElementById('clearNote');
+  const quoteToNote = document.getElementById('quoteToNote');
 
   if (!readerView || !readerContent || !noteTab || !noteTextarea) return;
 
@@ -39,36 +41,26 @@
     noteTab.classList.toggle('has-note', Boolean(noteTextarea.value.trim()));
   }
 
+  function syncSoon() {
+    requestAnimationFrame(() => {
+      updateProgress();
+      updateMemoDot();
+    });
+  }
+
   noteTextarea.addEventListener('input', updateMemoDot);
+  clearNote?.addEventListener('click', () => setTimeout(updateMemoDot, 0));
+  quoteToNote?.addEventListener('click', () => setTimeout(updateMemoDot, 0));
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('resize', updateProgress);
-  window.addEventListener('hashchange', () => {
-    requestAnimationFrame(() => {
-      updateProgress();
-      updateMemoDot();
-    });
-  });
+  window.addEventListener('hashchange', syncSoon);
 
-  const readerObserver = new MutationObserver(() => {
-    requestAnimationFrame(() => {
-      updateProgress();
-      updateMemoDot();
-    });
-  });
+  const readerObserver = new MutationObserver(syncSoon);
   readerObserver.observe(readerView, { attributes: true, attributeFilter: ['hidden'] });
 
-  const textareaObserver = new MutationObserver(updateMemoDot);
-  textareaObserver.observe(noteTextarea, { attributes: true });
-
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      updateProgress();
-      updateMemoDot();
-    }
+    if (!document.hidden) syncSoon();
   });
 
-  setTimeout(() => {
-    updateProgress();
-    updateMemoDot();
-  }, 0);
+  setTimeout(syncSoon, 0);
 })();
