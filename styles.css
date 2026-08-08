@@ -18,7 +18,7 @@ button, select { cursor: pointer; }
 a { color: inherit; }
 .site-header { position: sticky; top: 0; z-index: 20; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px clamp(20px,4vw,64px); border-bottom:1px solid rgba(213,207,194,.75); backdrop-filter: blur(16px); background: rgba(244,241,234,.82); }
 .brand-wrap { display:flex; align-items:baseline; gap:12px; }
-.brand { text-decoration:none; font: 800 20px/1 Georgia, serif; letter-spacing:-.02em; }
+.brand { text-decoration:none; font:800 20px/1 Georgia, serif; letter-spacing:-.02em; }
 .brand-note { color:var(--muted); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
 .ghost-button,.back-button { border:1px solid var(--line); background:transparent; padding:9px 12px; border-radius:999px; color:var(--ink); }
 .ghost-button:hover,.back-button:hover { background:#fff8; }
@@ -55,37 +55,61 @@ a { color: inherit; }
 .tag-filters { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
 .tag-chip { border:1px solid var(--line); border-radius:999px; padding:5px 8px; background:transparent; color:var(--muted); font-size:11px; }
 .tag-chip.is-active { background:var(--ink); border-color:var(--ink); color:var(--paper); }
-.essay-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin-top:14px; }
-.essay-card { display:grid; grid-template-rows:auto 1fr auto; min-height:218px; padding:20px; border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.34); transition:transform .18s ease, background .18s ease, box-shadow .18s ease; cursor:pointer; }
-.essay-card:hover { transform:translateY(-2px); background:rgba(255,255,255,.66); box-shadow:var(--shadow); }
-.card-top { display:flex; justify-content:space-between; gap:18px; color:var(--muted); font-size:11px; }
-.type-badge { color:var(--accent); font-weight:750; }
-.essay-card h2 { margin:20px 0 10px; font:700 24px/1.18 Georgia,"Yu Mincho",serif; letter-spacing:-.025em; }
-.card-abstract { display:-webkit-box; margin:0; overflow:hidden; color:#55514b; font-size:12px; line-height:1.75; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
-.card-footer { align-self:end; display:flex; justify-content:flex-end; align-items:center; margin-top:18px; }
-.stars { color:var(--accent); letter-spacing:.07em; white-space:nowrap; font-size:12px; }
+.essay-grid { margin-top:14px; }
+.library-section + .library-section { margin-top:34px; }
+.section-heading { display:flex; align-items:baseline; gap:10px; margin:0 2px 10px; }
+.section-heading strong { font:700 12px/1 Georgia,serif; letter-spacing:.04em; }
+.section-heading span { color:var(--muted); font-size:10px; }
+.featured-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.featured-card { display:grid; min-height:250px; padding:22px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.38); transition:transform .18s ease, background .18s ease, box-shadow .18s ease; cursor:pointer; }
+.featured-card:hover { transform:translateY(-2px); background:rgba(255,255,255,.68); box-shadow:var(--shadow); }
+.featured-meta { display:flex; justify-content:space-between; gap:16px; color:var(--muted); font-size:10px; }
+.featured-meta span:first-child { color:var(--accent); font-weight:750; }
+.featured-card h2 { margin:26px 0 11px; font:700 clamp(24px,3vw,32px)/1.12 Georgia,"Yu Mincho",serif; letter-spacing:-.03em; }
+.featured-abstract { display:-webkit-box; margin:0; overflow:hidden; color:#55514b; font-size:12px; line-height:1.75; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
+.featured-footer { align-self:end; display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-top:22px; }
+.mini-tags { display:flex; flex-wrap:wrap; gap:5px 7px; min-width:0; }
+.mini-tags span { color:#8a857c; font-size:10px; line-height:1.35; }
+.stars { color:var(--accent); letter-spacing:.06em; white-space:nowrap; font-size:11px; }
+.archive-list { border-top:1px solid var(--line); }
+.archive-row { display:grid; grid-template-columns:96px minmax(0,1fr) auto; align-items:center; gap:18px; min-height:92px; padding:14px 4px; border-bottom:1px solid var(--line); cursor:pointer; transition:background .15s ease; }
+.archive-row:hover { background:rgba(255,255,255,.34); }
+.archive-date { color:var(--muted); font-size:10px; font-variant-numeric:tabular-nums; }
+.archive-main { min-width:0; }
+.archive-main h2 { margin:0 0 7px; font:700 20px/1.25 Georgia,"Yu Mincho",serif; letter-spacing:-.02em; }
+.archive-side { display:grid; justify-items:end; gap:7px; min-width:120px; }
+.archive-type { color:var(--muted); font-size:10px; }
 .empty-state { padding:48px 20px; text-align:center; color:var(--muted); }
-.reader-shell { width:min(1240px, calc(100% - 40px)); margin:0 auto; padding:36px 0 100px; }
-.back-button { margin-bottom:28px; }
-.reader-layout { display:grid; grid-template-columns:240px minmax(0,780px); gap:56px; justify-content:center; }
-.reader-aside { position:sticky; top:96px; align-self:start; max-height:calc(100vh - 120px); overflow:auto; padding-right:12px; color:var(--muted); }
-.reader-aside .meta-block { padding:0 0 18px; margin-bottom:18px; border-bottom:1px solid var(--line); }
-.reader-aside dt { font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
-.reader-aside dd { margin:4px 0 12px; color:var(--ink); font-size:12px; line-height:1.6; }
-.reader-aside nav a { display:block; padding:5px 0; color:var(--muted); text-decoration:none; font-size:12px; line-height:1.45; }
-.reader-aside nav a:hover { color:var(--accent); }
-.reader-content { min-width:0; }
-.reader-content h1 { margin:0 0 12px; font:700 clamp(38px,6vw,68px)/1.02 Georgia,"Yu Mincho",serif; letter-spacing:-.045em; }
-.reader-content h2 { margin:58px 0 18px; padding-top:10px; font:700 28px/1.35 Georgia,"Yu Mincho",serif; }
-.reader-content h3 { margin:32px 0 12px; font-size:18px; }
-.reader-content p,.reader-content li { font-family:Georgia,"Yu Mincho",serif; font-size:16px; line-height:2.05; }
-.reader-content ul,.reader-content ol { padding-left:1.5em; }
-.reader-content blockquote { margin:28px 0; padding:18px 22px; border-left:4px solid var(--accent); background:#fff6; }
-.reader-content blockquote p { margin:0; font-size:18px; }
-.reader-content hr { border:0; border-top:1px solid var(--line); margin:48px 0; }
+.reader-shell { width:min(1060px, calc(100% - 40px)); margin:0 auto; padding:34px 0 110px; }
+.back-button { margin-bottom:30px; }
+.reader-layout { display:grid; grid-template-columns:210px minmax(0,680px); gap:56px; align-items:start; justify-content:center; }
+.reader-aside { position:sticky; top:92px; align-self:start; max-height:calc(100vh - 116px); overflow:auto; padding:2px 14px 8px 0; color:var(--muted); }
+.reader-aside .meta-block { padding:0 0 18px; margin:0 0 18px; border-bottom:1px solid var(--line); }
+.reader-aside dt { margin-top:12px; font-size:9px; letter-spacing:.11em; text-transform:uppercase; }
+.reader-aside dt:first-child { margin-top:0; }
+.reader-aside dd { margin:4px 0 0; color:var(--ink); font-size:11px; line-height:1.55; }
+.reader-aside nav::before { content:'Contents'; display:block; margin-bottom:8px; color:var(--ink); font:700 10px/1 Georgia,serif; letter-spacing:.08em; }
+.reader-aside nav a { display:block; padding:5px 0 5px 9px; border-left:1px solid var(--line); color:var(--muted); text-decoration:none; font-size:11px; line-height:1.4; }
+.reader-aside nav a:hover { border-left-color:var(--accent); color:var(--ink); }
+.reader-content { min-width:0; width:100%; max-width:680px; }
+.reading-stats { display:flex; align-items:center; gap:8px; margin:2px 0 16px; color:var(--muted); font-size:10px; letter-spacing:.03em; }
+.reader-content h1 { max-width:660px; margin:0 0 16px; font:700 clamp(36px,5vw,54px)/1.08 Georgia,"Yu Mincho",serif; letter-spacing:-.038em; }
+.reader-content h2 { margin:64px 0 20px; padding-top:8px; border-top:1px solid transparent; font:700 25px/1.4 Georgia,"Yu Mincho",serif; letter-spacing:-.015em; scroll-margin-top:90px; }
+.reader-content h3 { margin:38px 0 13px; font-size:17px; line-height:1.5; scroll-margin-top:90px; }
+.reader-content p,.reader-content li { font-family:Georgia,"Yu Mincho",serif; font-size:16px; line-height:2.08; }
+.reader-content p { margin:0 0 1.35em; }
+.reader-content ul,.reader-content ol { padding-left:1.55em; margin:0 0 1.5em; }
+.reader-content li + li { margin-top:.35em; }
+.reader-content blockquote { margin:34px 0; padding:18px 22px; border-left:3px solid var(--accent); background:rgba(255,255,255,.42); }
+.reader-content blockquote p { margin:0; color:#3e3b36; font-size:17px; line-height:1.95; }
+.reader-content hr { border:0; border-top:1px solid var(--line); margin:52px 0; }
 .reader-content strong { font-weight:800; }
 .reader-content a { color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px; overflow-wrap:anywhere; }
-.reader-content code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em; background:var(--paper-2); padding:.15em .35em; border-radius:4px; }
+.reader-content code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.88em; background:var(--paper-2); padding:.15em .35em; border-radius:4px; }
+.reader-content .references-heading,.reader-content .notes-heading { margin-top:76px; padding-top:24px; border-top:1px solid var(--ink); font-size:21px; }
+.reader-content .reference-block,.reader-content .notes-block { color:#4f4b45; font-family:Inter,"Hiragino Sans","Yu Gothic UI",sans-serif; font-size:12px; line-height:1.75; }
+.reader-content ol.reference-block,.reader-content ul.reference-block,.reader-content ol.notes-block,.reader-content ul.notes-block { padding-left:1.4em; }
+.reader-content .reference-block li,.reader-content .notes-block li { font-family:inherit; font-size:12px; line-height:1.75; }
 dialog { width:min(620px,calc(100% - 32px)); border:1px solid var(--line); border-radius:20px; padding:0; background:var(--paper); color:var(--ink); box-shadow:0 30px 90px #0003; }
 dialog::backdrop { background:#17171766; backdrop-filter:blur(4px); }
 .dialog-card { padding:26px; }
@@ -100,10 +124,16 @@ dialog::backdrop { background:#17171766; backdrop-filter:blur(4px); }
   .library-shell { width:min(100% - 24px,1180px); padding-top:34px; }
   .hero { margin-bottom:22px; }
   .filters { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .reader-shell { width:min(100% - 24px,1240px); }
+  .featured-grid { grid-template-columns:1fr; }
+  .archive-row { grid-template-columns:78px minmax(0,1fr); gap:12px; }
+  .archive-side { grid-column:2; display:flex; justify-content:flex-start; align-items:center; gap:10px; min-width:0; }
+  .reader-shell { width:min(100% - 24px,1060px); }
   .reader-layout { grid-template-columns:1fr; gap:18px; }
-  .reader-aside { position:static; max-height:none; border-bottom:1px solid var(--line); padding-bottom:12px; }
+  .reader-aside { position:static; max-height:none; border-bottom:1px solid var(--line); padding:0 0 14px; }
+  .reader-aside .meta-block { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px 18px; border-bottom:0; margin-bottom:0; padding-bottom:8px; }
+  .reader-aside dt { margin-top:0; }
   .reader-aside nav { display:none; }
+  .reader-content { max-width:680px; margin:0 auto; }
 }
 @media (max-width: 620px) {
   .site-header { padding:14px 12px; }
@@ -116,8 +146,13 @@ dialog::backdrop { background:#17171766; backdrop-filter:blur(4px); }
   .search-shortcut { display:none !important; }
   .filters { grid-template-columns:1fr; }
   .filter-panel { padding:12px; }
-  .essay-grid { grid-template-columns:1fr; }
-  .essay-card { min-height:190px; padding:18px; }
+  .featured-card { min-height:220px; padding:18px; }
+  .archive-row { grid-template-columns:1fr; gap:5px; padding:15px 2px; }
+  .archive-date { order:1; }
+  .archive-main { order:2; }
+  .archive-side { grid-column:auto; order:3; }
+  .reader-aside .meta-block { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .reader-content p,.reader-content li { font-size:15px; line-height:2; }
 }
 @media (max-width: 430px) {
   .hero h1 { font-size:32px; }
@@ -126,4 +161,6 @@ dialog::backdrop { background:#17171766; backdrop-filter:blur(4px); }
   .search-control.is-open { position:absolute; left:12px; right:12px; width:auto; z-index:5; background:var(--paper); }
   .search-control.is-open + .compact-button,
   .search-control.is-open ~ .quiet-button { visibility:hidden; }
+  .featured-card h2 { font-size:26px; }
+  .reader-content h1 { font-size:34px; }
 }
