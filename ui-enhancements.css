@@ -64,6 +64,25 @@
   padding: 1px 3px;
 }
 
+/* A tiny local-note cue inside the existing tag line. */
+.library-note-mark {
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  color:var(--muted) !important;
+  font-size:9px !important;
+  line-height:1;
+  opacity:.72;
+}
+.library-note-mark::after {
+  content:'';
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--accent);
+  opacity:.8;
+}
+
 /* Featured should feel important because of scale/space, not decoration. */
 .featured-card {
   min-height: 232px;
