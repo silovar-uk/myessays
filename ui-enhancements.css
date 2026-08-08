@@ -20,6 +20,19 @@
   transition: width .05s linear;
 }
 
+/* Random discovery is a secondary action, not a hero feature. */
+.random-essay-button {
+  color: var(--muted);
+}
+.random-essay-button > span:first-child {
+  font-size: 14px;
+  line-height: 1;
+  opacity: .72;
+}
+.random-essay-button:hover > span:first-child {
+  opacity: 1;
+}
+
 /* Memo: present, but deliberately quiet. */
 .note-tab {
   top: 50%;
@@ -111,5 +124,15 @@
   .note-tab {
     width: auto;
     min-height: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .random-essay-button span:last-child {
+    display:none;
+  }
+  .random-essay-button {
+    padding-left:7px;
+    padding-right:7px;
   }
 }
