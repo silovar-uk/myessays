@@ -33,17 +33,17 @@
   opacity: 1;
 }
 
-/* Memo: present, but deliberately quiet. */
+/* Memo: a very small edge affordance while reading. */
 .note-tab {
   top: 50%;
-  width: 30px;
-  min-height: 82px;
-  padding: 9px 5px;
-  gap: 5px;
-  border-radius: 9px 0 0 9px;
-  background: rgba(244,241,234,.9);
-  box-shadow: 0 5px 18px rgba(39,32,24,.045);
-  letter-spacing: .04em;
+  width: 27px;
+  min-height: 54px;
+  padding: 6px 4px;
+  gap: 3px;
+  border-radius: 8px 0 0 8px;
+  background: rgba(244,241,234,.88);
+  box-shadow: 0 4px 14px rgba(39,32,24,.04);
+  letter-spacing: 0;
 }
 .note-tab > span:first-child {
   font-size: 0;
@@ -51,16 +51,16 @@
 .note-tab > span:first-child::before {
   content: '✎';
   display: block;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   writing-mode: horizontal-tb;
 }
 .note-tab::after {
   content: '';
   display: block;
-  width: 5px;
-  height: 5px;
-  margin-top: 2px;
+  width: 4px;
+  height: 4px;
+  margin-top: 1px;
   border-radius: 50%;
   background: var(--accent);
   opacity: 0;
@@ -72,9 +72,9 @@
   transform: scale(1);
 }
 .note-tab kbd {
-  opacity: .65;
-  font-size: 8px;
-  padding: 1px 3px;
+  opacity: .58;
+  font-size: 7px;
+  padding: 1px 2px;
 }
 
 /* A tiny local-note cue inside the existing tag line. */
