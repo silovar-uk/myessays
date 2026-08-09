@@ -127,6 +127,49 @@
   }
 }
 
+/* On phones, the memo is a small scratchpad rather than a full-height sheet. */
+@media (max-width: 620px) {
+  .note-panel {
+    height: clamp(250px, 42dvh, 360px);
+    padding: 13px 14px 11px;
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -12px 34px rgba(39,32,24,.11);
+  }
+  .note-panel-head {
+    align-items:center;
+  }
+  .note-kicker,
+  .note-local {
+    display:none;
+  }
+  .note-panel h2 {
+    font-size:18px;
+    line-height:1.2;
+  }
+  .note-close {
+    width:28px;
+    height:28px;
+    font-size:17px;
+  }
+  .note-textarea {
+    min-height:0;
+    margin-top:10px;
+    padding:10px 11px;
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.65;
+    overflow:auto;
+  }
+  .note-footer {
+    gap:8px;
+    padding-top:8px;
+  }
+  .note-action {
+    padding:6px 9px;
+    font-size:9px;
+  }
+}
+
 @media (max-width: 520px) {
   .random-essay-button span:last-child {
     display:none;
