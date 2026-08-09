@@ -95,6 +95,7 @@
     if (action === 'memo') addToMemo(text);
     else openExternal(action, text);
     hideSelectionTools();
+    quoteMenu.hidden = true;
   }
 
   function positionTools(rect) {
@@ -158,10 +159,10 @@
     });
   }
 
-  toolBar.addEventListener('pointerdown', e => e.preventDefault());
-  toolBar.addEventListener('click', e => {
+  toolBar.addEventListener('pointerdown', e => {
     const button = e.target.closest('[data-selection-action]');
     if (!button) return;
+    e.preventDefault();
     runAction(button.dataset.selectionAction);
   });
 
@@ -183,7 +184,12 @@
   document.addEventListener('selectionchange', () => {
     if (readerView.hidden) return;
     const data = selectionData();
-    if (!data) hideSelectionTools({ clear:true });
+    if (!data) {
+      hideSelectionTools({ clear: quoteMenu.hidden });
+      return;
+    }
+    selectedText = data.text;
+    if (matchMedia('(max-width: 620px)').matches) scheduleSelectionTools(260);
   });
 
   document.addEventListener('pointerdown', e => {
