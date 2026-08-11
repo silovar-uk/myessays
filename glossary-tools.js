@@ -13,7 +13,7 @@
     tab.hidden = true;
     tab.setAttribute('aria-expanded', 'false');
     tab.setAttribute('aria-controls', 'glossaryPanel');
-    tab.innerHTML = '<span>用語</span><span id="glossaryCount" class="glossary-count"></span>';
+    tab.innerHTML = '<span class="glossary-tab-label">用語</span><span id="glossaryCount" class="glossary-count"></span>';
 
     const panel = document.createElement('aside');
     panel.id = 'glossaryPanel';
@@ -28,13 +28,27 @@
         </div>
         <button id="glossaryClose" class="glossary-close" type="button" aria-label="用語メモを閉じる">×</button>
       </div>
-      <p class="glossary-intro">本文の流れを止めず、必要な言葉だけ横で確認する。</p>
-      <div id="glossaryTermList" class="glossary-term-list"></div>
-      <div id="glossaryDetail" class="glossary-detail" hidden></div>`;
+      <div id="glossaryDetail" class="glossary-detail"></div>
+      <div class="glossary-index-wrap">
+        <button id="glossaryIndexToggle" class="glossary-index-toggle" type="button" aria-expanded="false">
+          <span>この記事の用語</span><span aria-hidden="true">⌄</span>
+        </button>
+        <div id="glossaryTermList" class="glossary-term-list" hidden></div>
+      </div>`;
 
     document.body.append(tab, panel);
-    tab.addEventListener('click', () => setOpen(!panel.classList.contains('is-open')));
+    tab.addEventListener('click', () => {
+      const opening = !panel.classList.contains('is-open');
+      setOpen(opening);
+      if (opening && !state.selected) renderEmptyDetail();
+    });
     panel.querySelector('#glossaryClose').addEventListener('click', () => setOpen(false));
+    panel.querySelector('#glossaryIndexToggle').addEventListener('click', e => {
+      const list = panel.querySelector('#glossaryTermList');
+      const open = list.hidden;
+      list.hidden = !open;
+      e.currentTarget.setAttribute('aria-expanded', String(open));
+    });
     panel.addEventListener('click', e => {
       const btn = e.target.closest('[data-glossary-term]');
       if (!btn) return;
@@ -64,32 +78,65 @@
     list.innerHTML = terms.map(term => `<button type="button" class="glossary-list-item" data-glossary-term="${esc(term)}">${esc(term)}</button>`).join('');
   }
 
+  function renderEmptyDetail() {
+    const detail = document.getElementById('glossaryDetail');
+    if (!detail) return;
+    detail.innerHTML = `
+      <div class="glossary-empty">
+        <span class="glossary-empty-mark">Aa</span>
+        <p>本文の点線がついた用語を押すと、意味と「この論考での読み方」をここで確認できる。</p>
+      </div>`;
+  }
+
+  function relatedHtml(item, currentTerm) {
+    const related = Array.isArray(item.related) ? item.related : [];
+    const available = related.filter(term => term !== currentTerm && state.currentTerms[term]);
+    if (!available.length) return '';
+    return `
+      <section class="glossary-related">
+        <h4>関連して読む</h4>
+        <div class="glossary-related-list">
+          ${available.map(term => `<button type="button" data-glossary-term="${esc(term)}">${esc(term)}<span aria-hidden="true">→</span></button>`).join('')}
+        </div>
+      </section>`;
+  }
+
   function showTerm(term) {
     const item = state.currentTerms[term];
     if (!item) return;
     state.selected = term;
+
+    document.querySelectorAll('.glossary-mark.is-active').forEach(el => el.classList.remove('is-active'));
+    document.querySelectorAll('.glossary-mark').forEach(el => {
+      if (el.dataset.glossaryTerm === term) el.classList.add('is-active');
+    });
+    document.querySelectorAll('.glossary-list-item.is-active').forEach(el => el.classList.remove('is-active'));
+    document.querySelectorAll('.glossary-list-item').forEach(el => {
+      if (el.dataset.glossaryTerm === term) el.classList.add('is-active');
+    });
+
     const detail = document.getElementById('glossaryDetail');
-    detail.hidden = false;
     detail.innerHTML = `
       <div class="glossary-detail-head">
         <p class="glossary-label">TERM</p>
         <h3>${esc(term)}</h3>
       </div>
-      <section>
-        <h4>まず一言で</h4>
-        <p>${esc(item.summary || '')}</p>
+      <section class="glossary-quick">
+        <p class="glossary-section-label">まず一言で</p>
+        <p class="glossary-summary">${esc(item.summary || '')}</p>
       </section>
-      <section>
-        <h4>この論考では</h4>
+      <section class="glossary-context">
+        <p class="glossary-section-label">この論考では</p>
         <p>${esc(item.context || '')}</p>
       </section>
-      <section>
-        <h4>分析するときの見るポイント</h4>
-        <p>${esc(item.watch || '')}</p>
-      </section>
-      ${item.source ? `<a class="glossary-source" href="${esc(item.source)}" target="_blank" rel="noopener">出典を見る ↗<span>${esc(item.sourceLabel || '')}</span></a>` : ''}`;
+      ${relatedHtml(item, term)}
+      ${item.watch ? `<details class="glossary-more"><summary>分析するときの見るポイント</summary><p>${esc(item.watch)}</p></details>` : ''}
+      ${item.source ? `<a class="glossary-source" href="${esc(item.source)}" target="_blank" rel="noopener"><span>出典</span><strong>${esc(item.sourceLabel || '参照先を見る')}</strong><i aria-hidden="true">↗</i></a>` : ''}`;
+
     setOpen(true);
-    requestAnimationFrame(() => detail.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+    document.getElementById('glossaryTermList').hidden = true;
+    document.getElementById('glossaryIndexToggle').setAttribute('aria-expanded', 'false');
+    requestAnimationFrame(() => detail.scrollTo?.({ top: 0, behavior: 'smooth' }));
   }
 
   function eligibleTextNode(node, reader) {
@@ -116,7 +163,8 @@
       button.type = 'button';
       button.className = 'glossary-mark';
       button.dataset.glossaryTerm = term;
-      button.setAttribute('aria-label', `${term}の補足を開く`);
+      button.setAttribute('aria-label', `${term}の用語メモを開く`);
+      button.setAttribute('title', '用語メモを見る');
       button.textContent = term;
       frag.append(button);
       if (after) frag.append(document.createTextNode(after));
@@ -132,10 +180,9 @@
     const essayId = match ? decodeURIComponent(match[1]) : '';
     const reader = document.getElementById('readerContent');
     const tab = document.getElementById('glossaryTab');
-    const panel = document.getElementById('glossaryPanel');
     if (!essayId || !reader) {
       if (tab) tab.hidden = true;
-      if (panel) setOpen(false);
+      setOpen(false);
       return;
     }
 
@@ -157,9 +204,8 @@
       btn.addEventListener('click', () => showTerm(btn.dataset.glossaryTerm));
     });
     renderList();
-    const detail = document.getElementById('glossaryDetail');
-    detail.hidden = true;
-    detail.innerHTML = '';
+    renderEmptyDetail();
+    setOpen(false);
   }
 
   let scheduled = false;
