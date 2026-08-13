@@ -29,18 +29,19 @@
   toolBar.className = 'selection-tools';
   toolBar.hidden = true;
   toolBar.setAttribute('role', 'toolbar');
-  toolBar.setAttribute('aria-label', '選択した英文の操作');
+  toolBar.setAttribute('aria-label', '選択した文章の操作');
   toolBar.innerHTML = `
     <button type="button" data-selection-action="google"><span aria-hidden="true">⌕</span><span>Google</span></button>
-    <button type="button" data-selection-action="dictionary"><span aria-hidden="true">Aa</span><span>辞書</span></button>
-    <button type="button" data-selection-action="translate"><span aria-hidden="true">文</span><span>翻訳</span></button>
+    <button type="button" data-selection-action="dictionary" data-english-only><span aria-hidden="true">Aa</span><span>辞書</span></button>
+    <button type="button" data-selection-action="translate" data-english-only><span aria-hidden="true">文</span><span>翻訳</span></button>
     <button type="button" data-selection-action="memo"><span aria-hidden="true">✎</span><span>メモ</span></button>`;
   document.body.appendChild(toolBar);
 
-  function addContextAction(action, icon, label) {
+  function addContextAction(action, icon, label, { englishOnly = false } = {}) {
     const button = document.createElement('button');
     button.type = 'button';
     button.dataset.selectionAction = action;
+    if (englishOnly) button.dataset.englishOnly = '';
     button.className = 'selection-context-action';
     button.setAttribute('role', 'menuitem');
     button.innerHTML = `<span aria-hidden="true">${icon}</span> ${label}`;
@@ -50,8 +51,8 @@
 
   const contextButtons = [
     addContextAction('google', '⌕', 'Googleで検索'),
-    addContextAction('dictionary', 'Aa', '英辞郎で調べる'),
-    addContextAction('translate', '文', '日本語に翻訳')
+    addContextAction('dictionary', 'Aa', '英辞郎で調べる', { englishOnly: true }),
+    addContextAction('translate', '文', '日本語に翻訳', { englishOnly: true })
   ];
 
   function selectionData() {
@@ -59,7 +60,7 @@
     if (!selection || selection.isCollapsed || !selection.rangeCount) return null;
 
     const text = selection.toString().trim();
-    if (!text || !/[A-Za-z]/.test(text)) return null;
+    if (!text) return null;
 
     const range = selection.getRangeAt(0);
     let node = range.commonAncestorContainer;
@@ -68,6 +69,20 @@
 
     const rect = range.getBoundingClientRect();
     return { text, rect };
+  }
+
+  function hasEnglishText(text) {
+    return /[A-Za-z]/.test(text);
+  }
+
+  function syncActionVisibility(text) {
+    const showEnglishTools = hasEnglishText(text);
+    toolBar.querySelectorAll('[data-english-only]').forEach(button => {
+      button.hidden = !showEnglishTools;
+    });
+    contextButtons.forEach(button => {
+      button.hidden = button.hasAttribute('data-english-only') && !showEnglishTools;
+    });
   }
 
   function openExternal(action, text) {
@@ -126,6 +141,7 @@
       return;
     }
     selectedText = data.text;
+    syncActionVisibility(data.text);
     toolBar.hidden = false;
     positionTools(data.rect);
   }
@@ -145,8 +161,9 @@
   function syncContextButtons() {
     const data = selectionData();
     selectedText = data?.text || '';
-    const isEnglishSelection = Boolean(selectedText);
-    contextButtons.forEach(button => { button.hidden = !isEnglishSelection; });
+    const hasSelection = Boolean(selectedText);
+    contextButtons.forEach(button => { button.hidden = !hasSelection; });
+    if (hasSelection) syncActionVisibility(selectedText);
     hideSelectionTools();
 
     requestAnimationFrame(() => {
