@@ -12,6 +12,14 @@
   let selectedText = '';
   let selectionTimer = 0;
 
+  function hasEnglishText(text) {
+    return /[A-Za-z]/.test(text);
+  }
+
+  function hasJapaneseText(text) {
+    return /[\u3040-\u30ff\u3400-\u9fff]/.test(text);
+  }
+
   const providers = {
     google(text) {
       return `https://www.google.com/search?q=${encodeURIComponent(text)}`;
@@ -20,7 +28,14 @@
       return `https://eow.alc.co.jp/search?q=${encodeURIComponent(text)}`;
     },
     translate(text) {
-      return `https://translate.google.com/?sl=en&tl=ja&text=${encodeURIComponent(text)}&op=translate`;
+      const isJapanese = hasJapaneseText(text);
+      const source = isJapanese ? 'ja' : 'en';
+      const target = isJapanese ? 'en' : 'ja';
+      return `https://translate.google.com/?sl=${source}&tl=${target}&text=${encodeURIComponent(text)}&op=translate`;
+    },
+    wikipedia(text) {
+      const lang = hasJapaneseText(text) ? 'ja' : 'en';
+      return `https://${lang}.wikipedia.org/w/index.php?search=${encodeURIComponent(text)}`;
     }
   };
 
@@ -32,27 +47,30 @@
   toolBar.setAttribute('aria-label', '選択した文章の操作');
   toolBar.innerHTML = `
     <button type="button" data-selection-action="google"><span aria-hidden="true">⌕</span><span>Google</span></button>
+    <button type="button" data-selection-action="wikipedia"><span aria-hidden="true">W</span><span>Wiki</span></button>
     <button type="button" data-selection-action="dictionary" data-english-only><span aria-hidden="true">Aa</span><span>辞書</span></button>
-    <button type="button" data-selection-action="translate" data-english-only><span aria-hidden="true">文</span><span>翻訳</span></button>
+    <button type="button" data-selection-action="translate"><span aria-hidden="true">文</span><span data-translate-label>翻訳</span></button>
     <button type="button" data-selection-action="memo"><span aria-hidden="true">✎</span><span>メモ</span></button>`;
   document.body.appendChild(toolBar);
 
-  function addContextAction(action, icon, label, { englishOnly = false } = {}) {
+  function addContextAction(action, icon, label, { englishOnly = false, dynamicLabel = false } = {}) {
     const button = document.createElement('button');
     button.type = 'button';
     button.dataset.selectionAction = action;
     if (englishOnly) button.dataset.englishOnly = '';
+    if (dynamicLabel) button.dataset.dynamicLabel = '';
     button.className = 'selection-context-action';
     button.setAttribute('role', 'menuitem');
-    button.innerHTML = `<span aria-hidden="true">${icon}</span> ${label}`;
+    button.innerHTML = `<span aria-hidden="true">${icon}</span> <span class="selection-context-label">${label}</span>`;
     quoteMenu.insertBefore(button, quoteToNote);
     return button;
   }
 
   const contextButtons = [
     addContextAction('google', '⌕', 'Googleで検索'),
+    addContextAction('wikipedia', 'W', 'Wikipediaで調べる'),
     addContextAction('dictionary', 'Aa', '英辞郎で調べる', { englishOnly: true }),
-    addContextAction('translate', '文', '日本語に翻訳', { englishOnly: true })
+    addContextAction('translate', '文', '翻訳', { dynamicLabel: true })
   ];
 
   function selectionData() {
@@ -71,17 +89,28 @@
     return { text, rect };
   }
 
-  function hasEnglishText(text) {
-    return /[A-Za-z]/.test(text);
-  }
-
   function syncActionVisibility(text) {
     const showEnglishTools = hasEnglishText(text);
+    const translateLabel = hasJapaneseText(text) ? '英訳' : '和訳';
+
     toolBar.querySelectorAll('[data-english-only]').forEach(button => {
       button.hidden = !showEnglishTools;
     });
+
+    const toolbarTranslateLabel = toolBar.querySelector('[data-translate-label]');
+    if (toolbarTranslateLabel) toolbarTranslateLabel.textContent = translateLabel;
+
     contextButtons.forEach(button => {
-      button.hidden = button.hasAttribute('data-english-only') && !showEnglishTools;
+      if (button.hasAttribute('data-english-only')) {
+        button.hidden = !showEnglishTools;
+      } else {
+        button.hidden = false;
+      }
+
+      if (button.dataset.selectionAction === 'translate') {
+        const label = button.querySelector('.selection-context-label');
+        if (label) label.textContent = `${translateLabel}する`;
+      }
     });
   }
 
@@ -121,7 +150,7 @@
     }
 
     toolBar.hidden = false;
-    const width = Math.min(toolBar.offsetWidth || 290, window.innerWidth - 24);
+    const width = Math.min(toolBar.offsetWidth || 360, window.innerWidth - 24);
     const height = toolBar.offsetHeight || 42;
     let left = rect.left + (rect.width / 2) - (width / 2);
     let top = rect.top - height - 10;
