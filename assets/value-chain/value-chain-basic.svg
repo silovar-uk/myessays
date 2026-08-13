@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">ポーターの基本バリューチェーン</title>
+  <desc id="desc">4つの支援活動が5つの主活動を横断し、最終的にマージンへつながる構造。</desc>
+  <rect width="900" height="700" fill="#fbf8f1"/>
+  <style>
+    text { font-family: "Noto Sans JP", Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif; fill:#171717; }
+    .kicker { font-size:24px; font-weight:700; letter-spacing:.08em; fill:#b43e31; }
+    .label { font-size:31px; font-weight:700; }
+    .small { font-size:24px; font-weight:600; fill:#554f47; }
+    .inverse { fill:#fbf8f1; }
+    .primary { fill:#e8eef0; stroke:#2e5266; stroke-width:2; }
+    .support { fill:#f1e3df; stroke:#b43e31; stroke-width:2; }
+  </style>
+
+  <text class="kicker" x="48" y="48">SUPPORT ACTIVITIES｜支援活動</text>
+
+  <rect class="support" x="48" y="72" width="786" height="70" rx="10"/>
+  <text class="label" x="82" y="118">全社インフラ</text>
+
+  <rect class="support" x="48" y="156" width="786" height="70" rx="10"/>
+  <text class="label" x="82" y="202">人的資源管理</text>
+
+  <rect class="support" x="48" y="240" width="786" height="70" rx="10"/>
+  <text class="label" x="82" y="286">技術開発</text>
+
+  <rect class="support" x="48" y="324" width="786" height="70" rx="10"/>
+  <text class="label" x="82" y="370">調達</text>
+
+  <text class="kicker" x="48" y="444">PRIMARY ACTIVITIES｜主活動</text>
+
+  <rect class="primary" x="48" y="470" width="140" height="154" rx="10"/>
+  <text class="label" text-anchor="middle" x="118" y="535">受入</text>
+  <text class="label" text-anchor="middle" x="118" y="575">物流</text>
+
+  <rect class="primary" x="200" y="470" width="140" height="154" rx="10"/>
+  <text class="label" text-anchor="middle" x="270" y="535">生産・</text>
+  <text class="label" text-anchor="middle" x="270" y="575">運営</text>
+
+  <rect class="primary" x="352" y="470" width="140" height="154" rx="10"/>
+  <text class="label" text-anchor="middle" x="422" y="535">出荷</text>
+  <text class="label" text-anchor="middle" x="422" y="575">物流</text>
+
+  <rect class="primary" x="504" y="470" width="140" height="154" rx="10"/>
+  <text class="small" text-anchor="middle" x="574" y="528">マーケ</text>
+  <text class="small" text-anchor="middle" x="574" y="563">ティング</text>
+  <text class="small" text-anchor="middle" x="574" y="598">・販売</text>
+
+  <rect class="primary" x="656" y="470" width="140" height="154" rx="10"/>
+  <text class="label" text-anchor="middle" x="726" y="558">サービス</text>
+
+  <path d="M808 470 L860 547 L808 624 Z" fill="#b43e31"/>
+  <text class="inverse" x="830" y="547" text-anchor="middle" transform="rotate(90 830 547)" font-size="19" font-weight="700">マージン</text>
+
+  <text class="small" x="48" y="670">重要なのは箱の名称ではなく、各活動のコスト・価値・連結</text>
+</svg>

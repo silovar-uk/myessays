@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1320" role="img" aria-labelledby="title desc">
+  <title id="title">製造業、小売、プロスポーツのバリューチェーン比較</title>
+  <desc id="desc">3業界について、顧客価値、主要活動、重要な連結、見るべき指標を同じ軸で比較する。</desc>
+  <rect width="760" height="1320" fill="#fbf8f1"/>
+  <style>
+    text { font-family: "Noto Sans JP", Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif; fill:#171717; }
+    .industry { font-size:34px; font-weight:800; }
+    .axis { font-size:22px; font-weight:800; letter-spacing:.06em; fill:#b43e31; }
+    .value { font-size:28px; font-weight:700; }
+    .body { font-size:24px; font-weight:500; fill:#554f47; }
+    .panel { fill:#f7f2e9; stroke:#c9c0b3; stroke-width:2; }
+    .rule { stroke:#d5cfc2; stroke-width:2; }
+  </style>
+
+  <text x="54" y="60" font-size="25" font-weight="700" fill="#2e5266">同じ9つの箱を当てるのではなく、価値の生まれ方から切る</text>
+
+  <g transform="translate(44 94)">
+    <rect class="panel" width="672" height="360" rx="18"/>
+    <rect width="672" height="72" rx="18" fill="#e8eef0"/>
+    <rect y="54" width="672" height="18" fill="#e8eef0"/>
+    <text class="industry" x="28" y="48">製造業｜自動車</text>
+    <text class="axis" x="28" y="112">顧客価値</text><text class="value" x="180" y="112">品質・納期・コスト</text>
+    <line class="rule" x1="28" y1="138" x2="644" y2="138"/>
+    <text class="axis" x="28" y="180">主要活動</text>
+    <text class="body" x="180" y="180">需要・生産計画 → 部品供給 → 組立 → 品質</text>
+    <line class="rule" x1="28" y1="206" x2="644" y2="206"/>
+    <text class="axis" x="28" y="248">重要な連結</text>
+    <text class="body" x="180" y="248">JIT × 自働化 × 現場改善</text>
+    <line class="rule" x1="28" y1="274" x2="644" y2="274"/>
+    <text class="axis" x="28" y="316">指標</text>
+    <text class="body" x="180" y="316">リードタイム・在庫・不良率・原価</text>
+  </g>
+
+  <g transform="translate(44 480)">
+    <rect class="panel" width="672" height="360" rx="18"/>
+    <rect width="672" height="72" rx="18" fill="#f1e3df"/>
+    <rect y="54" width="672" height="18" fill="#f1e3df"/>
+    <text class="industry" x="28" y="48">小売｜家具</text>
+    <text class="axis" x="28" y="112">顧客価値</text><text class="value" x="180" y="112">デザイン・機能・低価格</text>
+    <line class="rule" x1="28" y1="138" x2="644" y2="138"/>
+    <text class="axis" x="28" y="180">主要活動</text>
+    <text class="body" x="180" y="180">価格起点設計 → 調達 → 梱包 → 物流 → 販売</text>
+    <line class="rule" x1="28" y1="206" x2="644" y2="206"/>
+    <text class="axis" x="28" y="248">重要な連結</text>
+    <text class="body" x="180" y="248">設計が物流効率と顧客参加を変える</text>
+    <line class="rule" x1="28" y1="274" x2="644" y2="274"/>
+    <text class="axis" x="28" y="316">指標</text>
+    <text class="body" x="180" y="316">原価・梱包容積・在庫回転・購買率</text>
+  </g>
+
+  <g transform="translate(44 866)">
+    <rect class="panel" width="672" height="400" rx="18"/>
+    <rect width="672" height="72" rx="18" fill="#e5ece8"/>
+    <rect y="54" width="672" height="18" fill="#e5ece8"/>
+    <text class="industry" x="28" y="48">プロスポーツ｜クラブ</text>
+    <text class="axis" x="28" y="112">顧客価値</text><text class="value" x="180" y="112">試合・観戦体験・地域との関係</text>
+    <line class="rule" x1="28" y1="138" x2="644" y2="138"/>
+    <text class="axis" x="28" y="180">主要活動</text>
+    <text class="body" x="180" y="180">獲得 → 観戦 → CRM → 再来場 → 事業価値</text>
+    <line class="rule" x1="28" y1="206" x2="644" y2="206"/>
+    <text class="axis" x="28" y="248">重要な連結</text>
+    <text class="body" x="180" y="248">To-C成長 → To-B価値 → 競技への投資</text>
+    <line class="rule" x1="28" y1="274" x2="644" y2="274"/>
+    <text class="axis" x="28" y="316">指標</text>
+    <text class="body" x="180" y="316">新規・再来場・稼働率・顧客単価</text>
+    <text class="body" x="180" y="352">スポンサー価値・有料視聴・競技投資</text>
+  </g>
+</svg>

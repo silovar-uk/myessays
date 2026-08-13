@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 980" role="img" aria-labelledby="title desc">
+  <title id="title">JリーグのTo-Cマーケティングから競技投資へつながる価値循環</title>
+  <desc id="desc">露出と獲得から初回来場、観戦体験とデータ、再来場、ファン基盤、スポンサー・放送価値、競技投資へ進み、体験へ戻る循環。</desc>
+  <rect width="760" height="980" fill="#fbf8f1"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#b43e31"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: "Noto Sans JP", Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif; fill:#171717; }
+    .step { fill:#f7f2e9; stroke:#c9c0b3; stroke-width:2; }
+    .head { font-size:29px; font-weight:800; }
+    .body { font-size:22px; font-weight:500; fill:#554f47; }
+    .arrow { stroke:#b43e31; stroke-width:4; fill:none; marker-end:url(#arrow); }
+  </style>
+
+  <text x="380" y="56" text-anchor="middle" font-size="25" font-weight="700" fill="#2e5266">一試合の販売ではなく、活動間の循環として捉える</text>
+
+  <g transform="translate(82 92)">
+    <rect class="step" width="596" height="88" rx="16"/>
+    <text class="head" x="298" y="38" text-anchor="middle">1　ターゲット設定・露出・獲得</text>
+    <text class="body" x="298" y="68" text-anchor="middle">招待をsamplingとして設計し、最初の接点をつくる</text>
+  </g>
+  <path class="arrow" d="M380 184 L380 222"/>
+
+  <g transform="translate(82 232)">
+    <rect class="step" width="596" height="88" rx="16"/>
+    <text class="head" x="298" y="38" text-anchor="middle">2　初回来場・観戦体験</text>
+    <text class="body" x="298" y="68" text-anchor="middle">試合、会場運営、接客、演出を一つの体験にする</text>
+  </g>
+  <path class="arrow" d="M380 324 L380 362"/>
+
+  <g transform="translate(82 372)">
+    <rect class="step" width="596" height="88" rx="16"/>
+    <text class="head" x="298" y="38" text-anchor="middle">3　ID・行動データ・CRM</text>
+    <text class="body" x="298" y="68" text-anchor="middle">接点を次の案内と改善へつなげる</text>
+  </g>
+  <path class="arrow" d="M380 464 L380 502"/>
+
+  <g transform="translate(82 512)">
+    <rect class="step" width="596" height="88" rx="16"/>
+    <text class="head" x="298" y="38" text-anchor="middle">4　再来場・定着・ファン基盤</text>
+    <text class="body" x="298" y="68" text-anchor="middle">単発の動員を継続的な関係へ変える</text>
+  </g>
+  <path class="arrow" d="M380 604 L380 642"/>
+
+  <g transform="translate(82 652)">
+    <rect width="596" height="88" rx="16" fill="#f1e3df" stroke="#b43e31" stroke-width="2"/>
+    <text class="head" x="298" y="38" text-anchor="middle">5　スポンサー・放送価値の向上</text>
+    <text class="body" x="298" y="68" text-anchor="middle">規模だけでなく属性、接触、熱量を価値化する</text>
+  </g>
+  <path class="arrow" d="M380 744 L380 782"/>
+
+  <g transform="translate(82 792)">
+    <rect width="596" height="88" rx="16" fill="#e5ece8" stroke="#536b5c" stroke-width="2"/>
+    <text class="head" x="298" y="38" text-anchor="middle">6　競技・育成・施設・体験へ再投資</text>
+    <text class="body" x="298" y="68" text-anchor="middle">価値の源泉を強め、次の獲得と体験へ戻す</text>
+  </g>
+
+  <path d="M686 836 C740 836 740 276 686 276" fill="none" stroke="#b43e31" stroke-width="4" marker-end="url(#arrow)"/>
+  <text class="body" x="718" y="560" text-anchor="middle" transform="rotate(90 718 560)">活動が循環して価値を増幅</text>
+
+  <text x="380" y="938" text-anchor="middle" font-size="21" font-weight="600" fill="#6d6a63">J.LEAGUE SEASON REVIEW 2025の説明をもとに整理</text>
+</svg>

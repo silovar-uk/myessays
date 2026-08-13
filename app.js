@@ -57,6 +57,25 @@ function inlineMarkdown(text='') {
   return out;
 }
 
+function safeImageSource(value='') {
+  const source = String(value).trim();
+  if (/^https:\/\//i.test(source)) return source;
+  if (/^(?:\.\.?\/)?assets\/[A-Za-z0-9_./-]+$/i.test(source)) return source;
+  return '';
+}
+
+function splitTableRow(line='') {
+  let value = String(line).trim();
+  if (value.startsWith('|')) value = value.slice(1);
+  if (value.endsWith('|')) value = value.slice(0, -1);
+  return value.split('|').map(cell => cell.trim());
+}
+
+function isTableSeparator(line='') {
+  const cells = splitTableRow(line);
+  return cells.length > 0 && cells.every(cell => /^:?-{3,}:?$/.test(cell));
+}
+
 function slugifyHeading(text) {
   return text.toLowerCase().replace(/[\s　]+/g,'-').replace(/[^\p{L}\p{N}\-]/gu,'').slice(0,80) || 'section';
 }
@@ -70,9 +89,45 @@ function renderMarkdown(md) {
   const flushQuote = () => { if (blockquote.length) { html.push(`<blockquote><p>${inlineMarkdown(blockquote.join(' '))}</p></blockquote>`); blockquote = []; } };
   const flush = () => { flushParagraph(); flushList(); flushQuote(); };
 
-  for (const raw of lines) {
+  for (let i = 0; i < lines.length; i += 1) {
+    const raw = lines[i];
     const line = raw.trimEnd();
     if (!line.trim()) { flush(); continue; }
+
+    const image = line.trim().match(/^!\[([^\]]*)\]\((\S+?)(?:\s+"([^"]+)")?\)$/);
+    if (image) {
+      flush();
+      const source = safeImageSource(image[2]);
+      if (source) {
+        const caption = image[3] ? `<figcaption>${inlineMarkdown(image[3])}</figcaption>` : '';
+        html.push(`<figure class="essay-figure"><img src="${escapeHtml(source)}" alt="${escapeHtml(image[1])}" loading="lazy" decoding="async">${caption}</figure>`);
+      } else {
+        paragraph.push(line.trim());
+      }
+      continue;
+    }
+
+    if (line.includes('|') && isTableSeparator(lines[i + 1] || '')) {
+      flush();
+      const headers = splitTableRow(line);
+      const rows = [];
+      i += 2;
+      while (i < lines.length && lines[i].trim() && lines[i].includes('|')) {
+        const cells = splitTableRow(lines[i]);
+        rows.push(headers.map((_, index) => cells[index] || ''));
+        i += 1;
+      }
+      i -= 1;
+      html.push(`
+        <div class="essay-table-wrap">
+          <table class="essay-table">
+            <thead><tr>${headers.map(cell => `<th scope="col">${inlineMarkdown(cell)}</th>`).join('')}</tr></thead>
+            <tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${inlineMarkdown(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
+          </table>
+        </div>`);
+      continue;
+    }
+
     if (/^---+$/.test(line.trim())) { flush(); html.push('<hr>'); continue; }
     const h = line.match(/^(#{1,4})\s+(.+)$/);
     if (h) {

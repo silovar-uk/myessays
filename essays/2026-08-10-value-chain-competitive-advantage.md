@@ -1,19 +1,19 @@
 ---
 id: value-chain-competitive-advantage
-title: "バリューチェーンは「業務一覧」ではない"
+title: "バリューチェーン分析は「業務一覧」ではない"
 subtitle: "競争優位を活動まで分解し、戦略から打ち手までつなぐための実践入門"
 created: "2026-08-10"
-updated: "2026-08-10"
+updated: "2026-08-13"
 type: "Learning Paper"
 status: "完成"
-tags: ["経営戦略", "バリューチェーン", "コンサルティング", "競争優位", "Michael Porter", "戦略分析"]
-keywords: ["value chain", "competitive advantage", "Michael Porter", "activity system", "value system", "cost leadership", "differentiation", "strategy consulting"]
+tags: ["経営戦略", "バリューチェーン", "コンサルティング", "競争優位", "プロスポーツ", "業界比較", "戦略分析"]
+keywords: ["value chain", "competitive advantage", "Michael Porter", "activity system", "value system", "value shop", "value network", "J.LEAGUE", "cost leadership", "differentiation", "strategy consulting"]
 favorite: 5
 grow: 5
-abstract: "バリューチェーンは、企業の業務を上流から下流へ並べるための図ではない。企業を戦略的に重要な「活動」へ分解し、どの活動が相対的な低コストや差別化を生み、活動同士の結びつきがどのように模倣困難な競争優位を形成するのかを読むための分析装置である。本稿はポーターの原典的な問題意識から、主活動・支援活動、コストと差別化、linkage、fit、value systemを基礎から整理し、IKEA、Inditex、Toyota、Amazon、Appleを通じて実際の読み方を示す。最後に、コンサルティング実務でバリューチェーンを診断から提案へつなげる手順、質問、典型的な失敗まで体系化する。"
+abstract: "バリューチェーン分析は、業務を上流から下流へ並べる作業ではない。企業を戦略的に重要な活動へ分解し、相対コストと顧客価値、活動間の連結から競争優位の構造を診断する。本稿はポーターの基本モデルを図解し、Toyota、IKEA、プロスポーツクラブなど複数業界を比較。分析手順、記入テンプレート、KPIへの変換、value shop・value networkを含む限界と読み替えまで、企画・経営実務で使える形に整理する。"
 ---
 
-# バリューチェーンは「業務一覧」ではない
+# バリューチェーン分析は「業務一覧」ではない
 ## 競争優位を活動まで分解し、戦略から打ち手までつなぐための実践入門
 
 ### 要旨
@@ -48,6 +48,12 @@ Harvard Business SchoolのInstitute for Strategy and Competitivenessも、バリ
 結論を先に言えば、バリューチェーンとは企業の仕事の「流れ」を描くものではない。
 
 > **戦略を、観察可能な活動の構造へ翻訳するための地図である。**
+
+本稿は、次の三段階で進む。
+
+1. **基礎をつかむ**――value、主活動・支援活動、コスト、差別化を整理する
+2. **業界差を読む**――製造、小売、デジタル、プロスポーツで活動の切り方を比べる
+3. **実務へ落とす**――分析手順、質問、ワークシート、打ち手、KPIまでつなぐ
 
 ---
 
@@ -147,6 +153,8 @@ R&Dだけを指さない。製品技術、業務プロセス、情報システ�
 
 4. **Firm Infrastructure（全社インフラ）**  
 経営管理、財務、法務、計画、品質管理、ガバナンスなど、企業全体を成立させる基盤。
+
+![ポーターの基本バリューチェーン。4つの支援活動が5つの主活動を横断し、マージンへつながる。](assets/value-chain/value-chain-basic.svg "図1　ポーターの基本モデル。箱の名称は出発点であり、分析対象は各活動のコスト・価値・連結である。")
 
 初心者の段階では、この9分類を覚えてよい。
 
@@ -449,7 +457,73 @@ Appleは現在のSupply Chainページで、Design and Source、Make、Package a
 
 むしろ、**その活動を誰が担い、どのようなガバナンスで接続するかという戦略的設計変数**である。
 
-## 13. Value ChainからValue Systemへ――会社の境界を越える
+## 13. 複数業界を比較する――同じ9つの箱を当てない
+
+バリューチェーン分析を実践で使うとき、最も危険なのは、Porterの5つの主活動をどの企業にもそのまま貼り付けることである。
+
+製造業では、原材料から製品へ変換する流れが見えやすい。小売では、商品企画、調達、店舗・EC、在庫、顧客接点が価値を左右する。プロスポーツでは、試合という中核コンテンツだけでなく、集客、観戦体験、データ、再来場、スポンサー、放送、地域との関係が循環する。
+
+したがって、共通化すべきなのは活動名ではない。
+
+- 誰に、どの価値を提供するのか
+- どの活動が、その価値とコストを左右するのか
+- どの活動間の連結が、競合との差を生むのか
+- その仮説を、どの指標で確かめるのか
+
+という**分析軸**である。
+
+![製造業、小売、プロスポーツを、顧客価値、主要活動、重要な連結、指標の4軸で比較した図。](assets/value-chain/value-chain-industry-comparison.svg "図2　製造業・小売・プロスポーツの比較。業界ごとに活動名は変わるが、価値・活動・連結・指標の順で読む方法は共通する。")
+
+### 13.1 製造業――流れが見えるからこそ、工程単体で終わらせない
+
+Toyotaの公式説明では、Toyota Production Systemは、異常時に止めて不良の流出を防ぐ**自働化**と、必要なものを必要なときに必要な量だけ作る**Just-in-Time**を二本柱とする。狙いは、無駄を減らし、リードタイムを短縮し、顧客へ高品質な車を速く低コストで届けることである。
+
+ここで「組立工程が優れている」とだけ読むと浅い。
+
+需要情報、部品供給、生産の同期、異常検知、品質の作り込み、問題解決、日々の改善がつながることで、在庫、納期、品質、原価が同時に動く。製造業の分析では、工程別の費用だけでなく、**一工程の設計が前後工程へ及ぼす影響**を見る必要がある。
+
+[Toyota Motor Corporation「Toyota Production System」](https://global.toyota/en/company/vision-and-philosophy/production-system/)
+
+### 13.2 小売――商品設計が、物流と顧客行動まで変える
+
+IKEAの公式なvalue chain説明は、低価格を最後の値下げで実現するのではなく、商品開発の最初から設計する考え方を示している。form、function、quality、sustainability、low priceを同時に追求し、デザイナー、エンジニア、商品開発、調達などが連携する。
+
+flatpackも、単なる梱包方法ではない。
+
+商品形状、梱包容積、保管、輸送、店舗、持ち帰り、顧客による組立までをつなぐ活動設計である。小売のバリューチェーンでは、「販売部」「物流部」のような部署名より、**商品企画が在庫と物流と購買体験をどう変えるか**を追う方が強い。
+
+[IKEA Global「The IKEA value chain」](https://www.ikea.com/global/en/our-business/how-we-work/the-ikea-value-chain/)
+
+### 13.3 プロスポーツ――一試合の販売ではなく、価値循環として見る
+
+プロスポーツクラブには、複数の顧客と価値が同時に存在する。
+
+- 観客・ファンには、試合、会場体験、所属感、コミュニティ
+- スポンサーには、認知、接点、共創、社会的価値
+- 放送・配信事業者には、視聴されるコンテンツ
+- 地域には、交流、誇り、経済・社会への波及
+
+しかも試合は在庫できず、対戦相手、審判、観客、スタジアム運営など多くの主体と共同で成立する。よって「仕入→製造→販売」という一方向の鎖だけでは、重要な因果を落としやすい。
+
+J.LEAGUE SEASON REVIEW 2025は、To-Cマーケティングを起点に、初回来場者がリピーター・固定客となってファン基盤が拡大し、入場者増がスポンサーや放送などTo-B活動の価値を高め、それが競技領域への積極投資につながる循環を説明している。また、招待施策を単なる無料配布ではなく新規ファン獲得の**sampling**と位置づけ、2025年は約14.6万件の新規JリーグIDを獲得し、初回来場者の再来場率が30％を超えたとしている。
+
+下図は、この公式説明を本稿が活動循環として再構成したものである。
+
+![Jリーグクラブにおける、獲得、初回来場、観戦体験、CRM、再来場、スポンサー・放送価値、競技投資の循環。](assets/value-chain/jleague-value-cycle.svg "図3　JリーグのTo-CマーケティングからTo-B価値、競技投資へつながる循環。本稿による再構成。")
+
+[J.LEAGUE SEASON REVIEW 2025「To-C marketing initiatives」](https://aboutj.jleague.jp/seasonreview2025/en/topics/attendances/)
+
+ここから実務上の重要な示唆が出る。
+
+たとえば「来場促進」のKPIを販売枚数だけに置くと、初回体験、ID化、再来場、スポンサー価値への連結が消える。反対に、「招待→初回来場→体験→再来場→ファン基盤→To-B価値→再投資」という因果を置けば、各部署の施策を一つの価値循環として評価できる。
+
+バリューチェーン分析の目的は、すべてを一直線に並べることではない。
+
+> **価値が増幅する連結と、途中で価値が失われる切れ目を見つけること。**
+
+業界が変わっても、この目的は変わらない。
+
+## 14. Value ChainからValue Systemへ――会社の境界を越える
 
 Porterの議論では、一企業のvalue chainは、より大きな**value system**の一部である。
 
@@ -477,7 +551,7 @@ Porterの議論では、一企業のvalue chainは、より大きな**value syst
 
 この問いは、outsourcing、vertical integration、partnership、platform strategyにもつながっていく。
 
-## 14. Five Forcesとバリューチェーンは、何が違うのか
+## 15. Five Forcesとバリューチェーンは、何が違うのか
 
 戦略を学ぶと、PorterのFive ForcesとValue Chainが同時期に出てきて混乱しやすい。
 
@@ -513,11 +587,11 @@ Porterの議論では、一企業のvalue chainは、より大きな**value syst
 
 業界構造と企業活動を往復することが、戦略分析になる。
 
-## 15. Supply Chain、Business Model、業務プロセスとの違い
+## 16. Supply Chain、Business Model、業務プロセスとの違い
 
 バリューチェーンは、周辺概念と混同されやすい。
 
-### 15.1 Supply Chainとの違い
+### 16.1 Supply Chainとの違い
 
 Supply Chainは、原材料、製造、在庫、物流、流通など、モノ・情報・資金が企業間を流れる構造を扱うことが多い。
 
@@ -527,7 +601,7 @@ Value Chainはもっと戦略的な問いを置く。
 
 Supply Chainが**flowを管理する概念**だとすれば、Value Chainは**advantageを診断するレンズ**と理解するとよい。
 
-### 15.2 Business Modelとの違い
+### 16.2 Business Modelとの違い
 
 Business Modelは、誰に、何を提供し、どう届け、どう収益化するかという事業全体の設計を表す。
 
@@ -535,7 +609,7 @@ Value Chainは、そのbusiness modelを**どの活動の組み合わせで実�
 
 同じサブスクリプションモデルでも、顧客獲得、オンボーディング、コンテンツ制作、推薦、決済、解約防止の活動設計が違えば競争力は変わる。
 
-### 15.3 業務プロセス図との違い
+### 16.3 業務プロセス図との違い
 
 業務プロセス図は、「誰が何をどの順番で処理するか」を可視化する。
 
@@ -545,7 +619,7 @@ Value Chainは、「どの活動が競争上重要で、何がコストや差別
 
 だからバリューチェーン図を詳細な業務フローへしすぎても、戦略分析から離れてしまう。
 
-### 15.4 Resource-Based Viewとの違い
+### 16.4 Resource-Based Viewとの違い
 
 Resource-Based Viewは、企業が持つ資源や能力、とくに価値があり、希少で、模倣困難なものへ注目する。
 
@@ -555,11 +629,13 @@ Value Chainは、それらの能力が**実際のどの活動で、どう成果�
 
 両者は競合するフレームというより、接続して使える。
 
-## 16. コンサル実務では、どう分析するのか――10ステップ
+## 17. コンサル実務では、どう分析するのか――10ステップ
 
 ここからは実務へ落とす。
 
 白紙から企業のバリューチェーンを分析するとき、次の順序が使いやすい。
+
+![分析単位、顧客価値、活動分解、ドライバー比較、連結、打ち手とKPIへ進むバリューチェーン分析の6段階。](assets/value-chain/value-chain-analysis-flow.svg "図4　バリューチェーン分析の実務フロー。活動を先に並べず、分析単位と顧客価値から始める。")
 
 ### Step 1. 分析単位を決める
 
@@ -668,7 +744,21 @@ Porterの主活動・支援活動を補助線として使い、10〜20程度の�
 
 **他活動への副作用と、戦略全体とのfitまで評価する。**
 
-## 17. インタビューで使える質問――「何をしていますか」だけでは足りない
+### 実務用ワークシート
+
+分析会議では、最初から美しい図を作らなくてよい。まず、次の表を活動ごとに埋める。
+
+| 活動 | 顧客価値への影響 | コスト・資本 | 競合差 | 前後の連結 | 根拠 | 打ち手・KPI |
+| --- | --- | --- | --- | --- | --- | --- |
+| 例：初回来場後のCRM | 次回来場の理由をつくる | 配信・分析工数 | セグメント精度 | 観戦体験→再来場 | ID、開封、再来場データ | 配信改善／再来場率 |
+| 記入欄 |  |  |  |  |  |  |
+| 記入欄 |  |  |  |  |  |  |
+
+この表で重要なのは「課題」欄を作らないことである。
+
+課題から始めると、「人が足りない」「システムが古い」「認知が弱い」といった部門内の不満が並びやすい。先に顧客価値、経済性、競合差、連結を書くことで、**なぜ経営上の課題なのか**を明らかにする。
+
+## 18. インタビューで使える質問――「何をしていますか」だけでは足りない
 
 現場ヒアリングで「業務内容を教えてください」と聞くと、作業一覧は集まる。
 
@@ -708,7 +798,7 @@ Porterの主活動・支援活動を補助線として使い、10〜20程度の�
 
 Harvard Business SchoolのPorter解説では、戦略は何をするかだけでなく、**何をしないかを選ぶこと**を必要とする。すべての顧客へ、最高品質、最速、最低価格、最大品揃え、最高接客を同時に提供しようとすると、活動システムに矛盾が生じやすい。
 
-## 18. バリューチェーン分析の典型的な失敗
+## 19. バリューチェーン分析の典型的な失敗
 
 ### 失敗1. 一般論の図を描いて終わる
 
@@ -772,7 +862,23 @@ Operational Effectivenessは必要だが、それだけではstrategyではな�
 
 **戦略的に重要な活動と、その相互依存を理解すること**である。
 
-## 19. デジタル企業ではどう読み替えるか
+### 失敗11. すべての事業を「chain」で説明する
+
+StabellとFjeldstadは1998年、価値創造の構造を一つに決めず、三つの型として整理した。
+
+- **Value Chain**――投入物を段階的に変換する。製造業などのlong-linked technologyと相性がよい
+- **Value Shop**――個別の顧客問題を診断し、解決策を選び、実行・評価する。医療や専門サービスなどで使いやすい
+- **Value Network**――顧客同士、利用者と供給者などの接続を仲介する。通信、金融、プラットフォームなどで使いやすい
+
+これはPorterの枠組みを否定する議論ではない。
+
+「左から右へ並べると重要な因果が消える事業では、価値創造の別の形を選べ」という補助線である。
+
+プロスポーツクラブでも、試合運営はchainとして描きやすい。一方、選手強化や個別課題の解決はshop的であり、ファン、スポンサー、地域、メディアをつなぐ活動はnetwork的である。分析対象によって型を使い分けた方が、無理に一枚へ押し込むより実態へ近づく。
+
+[Stabell & Fjeldstad（1998）“Configuring value for competitive advantage”](https://doi.org/10.1002/(SICI)1097-0266(199805)19:5%3C413::AID-SMJ946%3E3.0.CO;2-C)
+
+## 20. デジタル企業ではどう読み替えるか
 
 SaaSを考えてみよう。
 
@@ -805,35 +911,35 @@ SaaSを考えてみよう。
 
 **顧客価値と競争優位を生む活動へ分解する**という原理を残せばよい。
 
-## 20. 分析から提案へ――打ち手はどこから生まれるのか
+## 21. 分析から提案へ――打ち手はどこから生まれるのか
 
 優れたバリューチェーン分析は、問題発見で終わらない。
 
 提案は、大きく六つの方向から考えられる。
 
-### 20.1 Eliminate――価値を生まない活動をなくす
+### 21.1 Eliminate――価値を生まない活動をなくす
 
 顧客価値にも品質にも法令対応にも寄与せず、単に歴史的経緯で残っている承認、転記、帳票、在庫、会議を削る。
 
-### 20.2 Redesign――活動そのものを作り直す
+### 21.2 Redesign――活動そのものを作り直す
 
 セルフサービス化、自動化、標準化、モジュール化などで活動の経済性を変える。
 
-### 20.3 Relocate――活動の場所を変える
+### 21.3 Relocate――活動の場所を変える
 
 nearshore、offshore、店舗からセンターへ、センターから顧客へなど、活動の実施地点を変える。
 
-### 20.4 Reboundary――企業境界を引き直す
+### 21.4 Reboundary――企業境界を引き直す
 
 内製・外注、共同開発、パートナー活用などを再設計する。
 
-### 20.5 Relink――活動間の接続を変える
+### 21.5 Relink――活動間の接続を変える
 
 最も見落とされやすい。
 
 需要情報を早く上流へ戻す、品質情報を設計へ返す、販売データを在庫配置へ直接つなぐなど、情報と意思決定のlinkageを変える。
 
-### 20.6 Reposition――Value Propositionそのものを変える
+### 21.6 Reposition――Value Propositionそのものを変える
 
 最後は活動改善ではなく、誰にどの価値を提供するかを変える。
 
@@ -841,7 +947,7 @@ nearshore、offshore、店舗からセンターへ、センターから顧客へ
 
 ここまで来ると、バリューチェーン分析は「現状業務整理」ではなく、strategy designになる。
 
-## 21. 一枚のスライドにするなら何を書くべきか
+## 22. 一枚のスライドにするなら何を書くべきか
 
 コンサルティングの成果物としてvalue chainを一枚にまとめるなら、箱を並べるだけでは弱い。
 
@@ -869,7 +975,7 @@ nearshore、offshore、店舗からセンターへ、センターから顧客へ
 
 その一文が書けないなら、まだ図は完成していない。
 
-## 22. ケース面接なら、5分でどう使うか
+## 23. ケース面接なら、5分でどう使うか
 
 短時間で企業や業界の課題を考える場合、精緻なvalue chainを作る時間はない。
 
@@ -898,7 +1004,7 @@ nearshore、offshore、店舗からセンターへ、センターから顧客へ
 
 この使い方なら、value chainはMECEな箱を作るためではなく、**仮説を置く場所を決める地図**になる。
 
-## 23. さらに一段深く――「良い活動」と「戦略的活動」を区別する
+## 24. さらに一段深く――「良い活動」と「戦略的活動」を区別する
 
 ここまで来ると、重要な区別ができるようになる。
 
@@ -922,7 +1028,7 @@ nearshore、offshore、店舗からセンターへ、センターから顧客へ
 
 この視点を持てるようになると、9分類は背景へ退き、**自社固有のactivity architecture**が前に出てくる。
 
-## 24. バリューチェーンの最終形は「鎖」ではなく「戦略の因果モデル」である
+## 25. バリューチェーンの最終形は「鎖」ではなく「戦略の因果モデル」である
 
 バリューチェーンという名称のせいで、私たちは左から右へ並ぶ鎖を想像する。
 
@@ -950,7 +1056,7 @@ Amazonなら、selection、inventory placement、forecasting、fulfillment、del
 
 これこそ、バリューチェーンをコンサルティングで使う大きな意味である。
 
-## 25. 結論――企業を見るとき、「何を持っているか」より「何をどうしているか」を見る
+## 26. 結論――企業を見るとき、「何を持っているか」より「何をどうしているか」を見る
 
 バリューチェーンを学び始めると、まず9つの箱を覚える。
 
@@ -1029,6 +1135,9 @@ Amazonなら、selection、inventory placement、forecasting、fulfillment、del
 - Harvard Business School, Institute for Strategy and Competitiveness, “Operational Effectiveness vs. Strategy.”  
 [Operational Effectiveness vs. Strategy](https://www.isc.hbs.edu/strategy/business-strategy/Pages/operational-effectiveness-vs-strategy.aspx)
 
+- Charles B. Stabell and Øystein D. Fjeldstad, “Configuring Value for Competitive Advantage: On Chains, Shops, and Networks,” *Strategic Management Journal*, 19(5), 1998.
+[Wiley Online Library](https://doi.org/10.1002/(SICI)1097-0266(199805)19:5%3C413::AID-SMJ946%3E3.0.CO;2-C)
+
 - IKEA, “The story about the IKEA value chain.”  
 [IKEA Global: The IKEA value chain](https://www.ikea.com/global/en/our-business/how-we-work/the-ikea-value-chain/)
 
@@ -1043,6 +1152,12 @@ Amazonなら、selection、inventory placement、forecasting、fulfillment、del
 
 - Toyota Motor Corporation, “Toyota Production System.”  
 [Toyota: Toyota Production System](https://global.toyota/en/company/vision-and-philosophy/production-system/)
+
+- J.LEAGUE, “To-C marketing initiatives contribute to new record for total yearly attendance,” *J.LEAGUE SEASON REVIEW 2025*.
+[J.LEAGUE SEASON REVIEW 2025](https://aboutj.jleague.jp/seasonreview2025/en/topics/attendances/)
+
+- J.LEAGUE, *J.LEAGUE CLUB MANAGEMENT GUIDE 2025*.
+[J.LEAGUE CLUB MANAGEMENT GUIDE 2025（PDF）](https://aboutj.jleague.jp/corporate/assets/pdf/en/MANAGEMENT_CHECKLIST_2025_WEBSITE_ENG.pdf)
 
 - Amazon, “Amazon、お客様の利便性向上につながる迅速な配送を強化,” 2025.  
 [Amazon Press Center](https://press.aboutamazon.com/jp/news/fulfillment-and-delivery/2025/6/speed-initiative-2025)
