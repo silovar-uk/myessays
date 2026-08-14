@@ -1,0 +1,109 @@
+.reader-end-navigation {
+  margin: 78px 0 8px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+
+.reader-end-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reader-end-link {
+  display: flex;
+  min-width: 0;
+  min-height: 118px;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.36);
+  color: var(--ink) !important;
+  text-decoration: none !important;
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.reader-end-link:hover {
+  transform: translateY(-2px);
+  border-color: #b9b1a4;
+  background: rgba(255,255,255,.68);
+}
+
+.reader-end-link--next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.reader-end-link--empty {
+  border-style: dashed;
+  background: transparent;
+  opacity: .38;
+  pointer-events: none;
+}
+
+.reader-nav-label {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.reader-end-link strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font: 700 15px/1.55 Georgia, "Yu Mincho", serif;
+  letter-spacing: -.01em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.reader-top-link {
+  display: flex;
+  width: max-content;
+  margin: 18px auto 0;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted) !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-decoration: none !important;
+  transition: background .16s ease, color .16s ease;
+}
+
+.reader-top-link:hover {
+  background: rgba(255,255,255,.62);
+  color: var(--ink) !important;
+}
+
+@media (max-width: 620px) {
+  .reader-end-navigation {
+    margin-top: 58px;
+    padding-top: 22px;
+  }
+
+  .reader-end-links {
+    gap: 8px;
+  }
+
+  .reader-end-link {
+    min-height: 108px;
+    padding: 13px 12px;
+  }
+
+  .reader-end-link strong {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .reader-nav-label {
+    font-size: 9px;
+  }
+}
