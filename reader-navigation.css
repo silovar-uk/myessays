@@ -1,8 +1,123 @@
 .reader-end-navigation {
   margin: 78px 0 8px;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+
+.reader-related {
+  margin-bottom: 48px;
+  padding-top: 30px;
+  border-top: 1px solid var(--ink);
+}
+
+.reader-related-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.reader-related-kicker {
+  margin: 0 0 7px !important;
+  color: var(--accent);
+  font: 800 9px/1 Inter, "Hiragino Sans", sans-serif !important;
+  letter-spacing: .18em;
+}
+
+.reader-related-heading h2 {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font: 700 25px/1.25 Georgia, "Yu Mincho", serif !important;
+  letter-spacing: -.02em;
+}
+
+.reader-related-note {
+  max-width: 245px;
+  margin: 0 !important;
+  color: var(--muted);
+  font: 10px/1.65 Inter, "Hiragino Sans", sans-serif !important;
+  text-align: right;
+}
+
+.reader-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 26px;
+  row-gap: 10px;
+}
+
+.reader-related-item {
+  display: flex;
+  min-width: 0;
+  min-height: 172px;
+  flex-direction: column;
+  padding: 14px 2px 18px;
+  border-top: 1px solid var(--line);
+  color: var(--ink) !important;
+  text-decoration: none !important;
+  transition: border-color .16s ease, transform .16s ease;
+}
+
+.reader-related-item:hover {
+  border-top-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.reader-related-item-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.reader-related-number {
+  color: var(--accent);
+  font: 800 10px/1 Inter, "Hiragino Sans", sans-serif;
+  letter-spacing: .12em;
+}
+
+.reader-related-meta {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-related-item h3 {
+  display: -webkit-box;
+  margin: 0 !important;
+  overflow: hidden;
+  font: 700 20px/1.48 Georgia, "Yu Mincho", serif !important;
+  letter-spacing: -.018em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.reader-related-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.reader-related-tag {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #7e2d24;
+  font-size: 9px;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.reader-sequence-navigation {
   padding-top: 28px;
   border-top: 1px solid var(--line);
-  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
 }
 
 .reader-end-links {
@@ -86,6 +201,48 @@
 @media (max-width: 620px) {
   .reader-end-navigation {
     margin-top: 58px;
+  }
+
+  .reader-related {
+    margin-bottom: 38px;
+    padding-top: 24px;
+  }
+
+  .reader-related-heading {
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .reader-related-heading h2 {
+    font-size: 22px !important;
+  }
+
+  .reader-related-note {
+    max-width: none;
+    margin-top: 8px !important;
+    text-align: left;
+  }
+
+  .reader-related-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .reader-related-item {
+    min-height: 145px;
+    padding: 13px 2px 16px;
+  }
+
+  .reader-related-item h3 {
+    font-size: 17px !important;
+    -webkit-line-clamp: 2;
+  }
+
+  .reader-related-tags {
+    padding-top: 14px;
+  }
+
+  .reader-sequence-navigation {
     padding-top: 22px;
   }
 
