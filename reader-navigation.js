@@ -1,21 +1,12 @@
 (() => {
+  'use strict';
+
   const navSelector = '.reader-end-navigation';
 
   function escapeNavigationHtml(value = '') {
     return String(value).replace(/[&<>'"]/g, char => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      "'": '&#39;',
-      '"': '&quot;'
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[char]));
-  }
-
-  function getCurrentEssayId() {
-    const match = location.hash.match(/^#\/essay\/(.+)$/);
-    if (!match) return '';
-    try { return decodeURIComponent(match[1]); }
-    catch { return match[1]; }
   }
 
   function getVisibleEssayOrder() {
@@ -28,8 +19,11 @@
   }
 
   function getAllEssays() {
-    if (typeof state !== 'undefined' && Array.isArray(state.essays)) return state.essays;
-    return [];
+    try {
+      return typeof state !== 'undefined' && Array.isArray(state.essays) ? state.essays : [];
+    } catch {
+      return [];
+    }
   }
 
   function formatNavigationDate(value = '') {
@@ -39,14 +33,10 @@
   }
 
   function essayLink(essay, direction) {
-    if (!essay) {
-      return `<div class="reader-end-link reader-end-link--empty" aria-hidden="true"></div>`;
-    }
-
-    const isPrevious = direction === 'previous';
-    const label = isPrevious ? '← 前の記事' : '次の記事 →';
-    const directionClass = isPrevious ? 'reader-end-link--previous' : 'reader-end-link--next';
-
+    if (!essay) return '<div class="reader-end-link reader-end-link--empty" aria-hidden="true"></div>';
+    const previous = direction === 'previous';
+    const label = previous ? '← 前の記事' : '次の記事 →';
+    const directionClass = previous ? 'reader-end-link--previous' : 'reader-end-link--next';
     return `
       <a class="reader-end-link ${directionClass}" href="#/essay/${encodeURIComponent(essay.id)}">
         <span class="reader-nav-label">${label}</span>
@@ -60,16 +50,16 @@
 
     return getAllEssays()
       .filter(essay => essay.id !== currentEssay.id)
-      .map(essay => {
-        const sharedTags = [...new Set((essay.tags || []).filter(tag => currentTags.has(tag)))];
-        return { essay, sharedTags };
-      })
+      .map(essay => ({
+        essay,
+        sharedTags: [...new Set((essay.tags || []).filter(tag => currentTags.has(tag)))]
+      }))
       .filter(item => item.sharedTags.length > 0)
       .sort((a, b) => {
-        const sharedTagDiff = b.sharedTags.length - a.sharedTags.length;
-        if (sharedTagDiff) return sharedTagDiff;
-        const createdDiff = String(b.essay.created || '').localeCompare(String(a.essay.created || ''));
-        if (createdDiff) return createdDiff;
+        const shared = b.sharedTags.length - a.sharedTags.length;
+        if (shared) return shared;
+        const created = String(b.essay.created || '').localeCompare(String(a.essay.created || ''));
+        if (created) return created;
         return String(a.essay.title || '').localeCompare(String(b.essay.title || ''), 'ja');
       })
       .slice(0, 4);
@@ -77,17 +67,12 @@
 
   function relatedCard(item, index) {
     const { essay, sharedTags } = item;
-    const type = essay.type || 'Essay';
-    const date = formatNavigationDate(essay.created);
-    const meta = [type, date].filter(Boolean).join(' · ');
-    const tags = sharedTags
-      .map(tag => `<span class="reader-related-tag">#${escapeNavigationHtml(tag)}</span>`)
-      .join('');
-
+    const meta = [essay.type || 'Essay', formatNavigationDate(essay.created)].filter(Boolean).join(' · ');
+    const tags = sharedTags.map(tag => `<span class="reader-related-tag">#${escapeNavigationHtml(tag)}</span>`).join('');
     return `
       <a class="reader-related-item" href="#/essay/${encodeURIComponent(essay.id)}">
         <div class="reader-related-item-top">
-          <span class="reader-related-number">0${index + 1}</span>
+          <span class="reader-related-number">${String(index + 1).padStart(2, '0')}</span>
           <span class="reader-related-meta">${escapeNavigationHtml(meta)}</span>
         </div>
         <h3>${escapeNavigationHtml(essay.title || '')}</h3>
@@ -98,7 +83,6 @@
   function relatedSection(currentEssay) {
     const items = relatedEssays(currentEssay);
     if (!items.length) return '';
-
     return `
       <section class="reader-related" aria-labelledby="readerRelatedTitle">
         <div class="reader-related-heading">
@@ -108,37 +92,34 @@
           </div>
           <p class="reader-related-note">共通タグが多い順。並んだ場合は新しい記事を優先。</p>
         </div>
-        <div class="reader-related-grid">
-          ${items.map(relatedCard).join('')}
-        </div>
+        <div class="reader-related-grid">${items.map(relatedCard).join('')}</div>
       </section>`;
   }
 
-  function renderReaderEndNavigation() {
-    const readerView = document.getElementById('readerView');
-    const readerContent = document.getElementById('readerContent');
-    if (!readerView || !readerContent || readerView.hidden) return;
+  function renderReaderEndNavigation(context) {
+    const root = context?.root || document.getElementById('readerContent');
+    const currentEssay = context?.essay || null;
+    if (!root || !currentEssay) return;
 
-    const currentId = getCurrentEssayId();
-    const essays = getVisibleEssayOrder();
-    const allEssays = getAllEssays();
-    const currentEssay = allEssays.find(essay => essay.id === currentId);
-    const currentIndex = essays.findIndex(essay => essay.id === currentId);
-    const existing = readerContent.querySelector(navSelector);
+    root.querySelector(navSelector)?.remove();
 
-    if (!currentId || currentIndex === -1 || !currentEssay) {
-      existing?.remove();
-      return;
+    const visible = getVisibleEssayOrder();
+    let currentIndex = visible.findIndex(essay => essay.id === currentEssay.id);
+    let order = visible;
+
+    // When a filter removes the current card from the hidden Library DOM,
+    // fall back to the complete archive so navigation never disappears.
+    if (currentIndex === -1) {
+      order = getAllEssays().map(essay => ({ id: essay.id, title: essay.title || '' }));
+      currentIndex = order.findIndex(essay => essay.id === currentEssay.id);
     }
+    if (currentIndex === -1) return;
 
-    if (existing?.dataset.essayId === currentId) return;
-    existing?.remove();
-
-    const previous = currentIndex > 0 ? essays[currentIndex - 1] : null;
-    const next = currentIndex < essays.length - 1 ? essays[currentIndex + 1] : null;
+    const previous = currentIndex > 0 ? order[currentIndex - 1] : null;
+    const next = currentIndex < order.length - 1 ? order[currentIndex + 1] : null;
     const nav = document.createElement('div');
     nav.className = 'reader-end-navigation';
-    nav.dataset.essayId = currentId;
+    nav.dataset.essayId = currentEssay.id;
     nav.innerHTML = `
       ${relatedSection(currentEssay)}
       <nav class="reader-sequence-navigation" aria-label="前後の記事">
@@ -148,31 +129,26 @@
         </div>
         <a class="reader-top-link" href="#/">↑ TOPへ戻る</a>
       </nav>`;
-
-    readerContent.appendChild(nav);
+    root.appendChild(nav);
   }
 
-  // Public hook for the main reader render. Keeping the observer below as a
-  // fallback makes this resilient to script timing and future DOM changes.
-  window.MyEssaysReaderNavigation = Object.freeze({
-    render: renderReaderEndNavigation
-  });
+  window.MyEssaysReaderNavigation = Object.freeze({ render: renderReaderEndNavigation });
 
-  const readerContent = document.getElementById('readerContent');
-  if (readerContent) {
-    const observer = new MutationObserver(() => {
-      if (!readerContent.querySelector(navSelector)) {
-        requestAnimationFrame(renderReaderEndNavigation);
-      }
+  function init() {
+    if (window.MyEssaysReaderRuntime?.register) {
+      window.MyEssaysReaderRuntime.register('navigation', renderReaderEndNavigation, { priority: 90 });
+      return;
+    }
+
+    document.addEventListener('myessays:reader-rendered', () => {
+      const id = location.hash.match(/^#\/essay\/(.+)$/)?.[1];
+      const root = document.getElementById('readerContent');
+      if (!id || !root) return;
+      const decoded = decodeURIComponent(id);
+      const essay = getAllEssays().find(item => item.id === decoded);
+      if (essay) renderReaderEndNavigation({ root, essay });
     });
-    observer.observe(readerContent, { childList: true });
   }
 
-  document.addEventListener('myessays:reader-rendered', renderReaderEndNavigation);
-  window.addEventListener('hashchange', () => requestAnimationFrame(renderReaderEndNavigation));
-  window.addEventListener('load', () => requestAnimationFrame(renderReaderEndNavigation));
-  window.addEventListener('pageshow', () => requestAnimationFrame(renderReaderEndNavigation));
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) requestAnimationFrame(renderReaderEndNavigation);
-  });
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();
