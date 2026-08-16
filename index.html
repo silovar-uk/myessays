@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="glossary-tools.css?v=20260816-1856">
   <link rel="stylesheet" href="reader-navigation.css?v=20260816-1856">
   <link rel="stylesheet" href="reader-reflections.css?v=20260816-1928">
-  <link rel="stylesheet" href="reader-content.css?v=20260816-1838">
+  <link rel="stylesheet" href="reader-content.css?v=20260816-1931">
 </head>
 <body>
   <header class="site-header">
@@ -117,7 +117,7 @@
         <li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li>
         <li><code>essays/YYYY-MM-DD-slug.md</code> として保存する。</li>
         <li><code>data/index.json</code> の <code>essays</code> にパスを1行追加する。</li>
-        <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。コードブロックは <code>```js</code>、<code>```bash</code>、<code>```text</code> のように言語を指定できる。</li>
+        <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。MyEssaysでは、本文中で入力した1行改行も編集意図として表示へ反映する。コードブロックは <code>```js</code>、<code>```bash</code>、<code>```text</code> のように言語を指定できる。</li>
         <li>用語補足を付ける場合は <code>data/glossaries/記事ID.json</code> を追加する。<code>label</code> と <code>match</code> を分けると、正式な導入表記を優先して装飾できる。</li>
         <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
       </ol>
@@ -129,7 +129,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="app.js?v=20260816-1415" defer></script>
-  <script src="markdown-engine.js?v=20260816-1838" defer></script>
+  <script src="markdown-engine.js?v=20260816-1931" defer></script>
 
   <!-- Reader lifecycle -->
   <script src="reader-runtime.js?v=20260816-1856" defer></script>
