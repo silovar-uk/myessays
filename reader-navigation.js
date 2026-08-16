@@ -152,6 +152,12 @@
     readerContent.appendChild(nav);
   }
 
+  // Public hook for the main reader render. Keeping the observer below as a
+  // fallback makes this resilient to script timing and future DOM changes.
+  window.MyEssaysReaderNavigation = Object.freeze({
+    render: renderReaderEndNavigation
+  });
+
   const readerContent = document.getElementById('readerContent');
   if (readerContent) {
     const observer = new MutationObserver(() => {
@@ -162,6 +168,11 @@
     observer.observe(readerContent, { childList: true });
   }
 
+  document.addEventListener('myessays:reader-rendered', renderReaderEndNavigation);
   window.addEventListener('hashchange', () => requestAnimationFrame(renderReaderEndNavigation));
   window.addEventListener('load', () => requestAnimationFrame(renderReaderEndNavigation));
+  window.addEventListener('pageshow', () => requestAnimationFrame(renderReaderEndNavigation));
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) requestAnimationFrame(renderReaderEndNavigation);
+  });
 })();

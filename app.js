@@ -474,6 +474,13 @@ function showReader(essay) {
   loadCurrentNote();
   document.title = `${essay.title} | My Essays`;
   window.scrollTo(0,0);
+
+  // Reader navigation used to rely only on a MutationObserver. Mobile Safari
+  // may postpone that callback while the page is loading or restored from the
+  // back-forward cache, leaving the related section absent until another DOM
+  // change happens. Render it explicitly once the article DOM is complete.
+  window.MyEssaysReaderNavigation?.render();
+  document.dispatchEvent(new CustomEvent('myessays:reader-rendered'));
 }
 
 function showLibrary() {
