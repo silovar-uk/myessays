@@ -24,12 +24,24 @@
   letter-spacing: .18em;
 }
 
+.reader-reflections-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
 .reader-reflections-heading h2 {
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
   font: 700 25px/1.25 Georgia, "Yu Mincho", serif !important;
   letter-spacing: -.02em;
+}
+
+.reflection-heading-count {
+  color: var(--accent);
+  font: 800 10px/1 Inter, "Hiragino Sans", sans-serif;
+  letter-spacing: .05em;
 }
 
 .reader-reflections-local {
@@ -45,6 +57,7 @@
   border-radius: 15px;
   background: rgba(255,255,255,.42);
   box-shadow: 0 1px 0 rgba(35,30,24,.03);
+  transition: border-color .14s ease, box-shadow .14s ease, background .14s ease;
 }
 
 .reflection-composer-input,
@@ -52,7 +65,8 @@
   display: block;
   width: 100%;
   min-height: 106px;
-  resize: vertical;
+  max-height: 320px;
+  resize: none;
   padding: 4px 3px 10px;
   border: 0;
   outline: 0;
@@ -69,28 +83,52 @@
 
 .reflection-composer:focus-within {
   border-color: #a89e90;
+  background: rgba(255,255,255,.54);
   box-shadow: 0 0 0 3px rgba(128,70,59,.07);
 }
 
 .reflection-composer-footer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
   padding-top: 10px;
   border-top: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
 }
 
-.reflection-composer-hint {
+.reflection-composer-meta {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 10px;
+}
+
+.reflection-composer-hint,
+.reflection-draft-status {
   color: var(--muted);
   font-size: 10px;
   line-height: 1.5;
 }
 
+.reflection-draft-status[data-tone="error"] {
+  color: #9b443c;
+}
+
+.reflection-composer-hint kbd,
+.reflection-edit-hint kbd {
+  padding: 1px 4px;
+  border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
+  border-radius: 4px;
+  background: rgba(255,255,255,.32);
+  color: inherit;
+  font: inherit;
+}
+
 .reflection-add-button {
   flex: 0 0 auto;
-  min-height: 34px;
-  padding: 7px 13px;
+  min-height: 36px;
+  padding: 8px 14px;
   border: 1px solid var(--ink);
   border-radius: 999px;
   background: var(--ink);
@@ -112,16 +150,9 @@
 .reflection-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 18px;
-  margin: 17px 0 10px;
-}
-
-.reflection-count {
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .03em;
+  margin: 15px 0 8px;
 }
 
 .reflection-copy-actions {
@@ -132,23 +163,33 @@
 }
 
 .reflection-copy-actions button,
-.reflection-card-action {
-  min-height: 29px;
-  padding: 6px 9px;
+.reflection-card-action,
+.reflection-expand-button,
+.reflection-undo button {
+  min-height: 32px;
+  padding: 7px 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255,255,255,.34);
   color: var(--muted);
   font: 700 10px/1 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
-  transition: border-color .14s ease, color .14s ease, background .14s ease;
+  transition: border-color .14s ease, color .14s ease, background .14s ease, transform .14s ease;
 }
 
 .reflection-copy-actions button:hover,
-.reflection-card-action:hover {
+.reflection-card-action:hover,
+.reflection-expand-button:hover,
+.reflection-undo button:hover {
   border-color: #aaa194;
   background: rgba(255,255,255,.7);
   color: var(--ink);
+}
+
+.reflection-copy-actions button.is-copied,
+.reflection-card-action.is-copied {
+  border-color: #9aae9a;
+  color: #526c54;
 }
 
 .reflection-status {
@@ -167,6 +208,33 @@
   color: #9b443c;
 }
 
+.reflection-undo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 10px;
+  padding: 9px 10px 9px 13px;
+  border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+  border-radius: 11px;
+  background: rgba(35,30,24,.92);
+  color: #f8f4ec;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.reflection-undo[hidden] {
+  display: none;
+}
+
+.reflection-undo button {
+  min-height: 30px;
+  border-color: rgba(255,255,255,.24);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+
 .reflection-list {
   display: grid;
   gap: 9px;
@@ -179,6 +247,12 @@
   border-radius: 13px;
   background: rgba(255,255,255,.28);
   box-shadow: 0 1px 0 rgba(35,30,24,.025);
+  animation: reflection-card-in .16s ease-out both;
+}
+
+@keyframes reflection-card-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .reflection-card-head {
@@ -207,10 +281,36 @@
 
 .reflection-card-text {
   margin: 0 !important;
+  padding: 2px 3px;
+  border-radius: 6px;
   color: var(--ink);
   font: 500 14px/1.82 Inter, "Hiragino Sans", "Yu Gothic", sans-serif !important;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  cursor: text;
+  transition: background .14s ease;
+}
+
+.reflection-card-text:hover {
+  background: rgba(255,255,255,.34);
+}
+
+.reflection-card-text:focus-visible,
+.reflection-copy-actions button:focus-visible,
+.reflection-card-action:focus-visible,
+.reflection-expand-button:focus-visible,
+.reflection-add-button:focus-visible,
+.reflection-undo button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 75%, transparent);
+  outline-offset: 2px;
+}
+
+.reflection-expand-button {
+  min-height: 28px;
+  margin-top: 7px;
+  padding: 5px 8px;
+  border-color: transparent;
+  background: transparent;
 }
 
 .reflection-card-actions {
@@ -220,41 +320,36 @@
   margin-top: 12px;
 }
 
-.reflection-card-action--primary {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--paper, #f8f4ec);
-}
-
-.reflection-card-action--primary:hover {
-  background: var(--ink);
-  color: var(--paper, #f8f4ec);
-  opacity: .86;
-}
-
 .reflection-card-action--danger {
+  margin-left: 3px;
   color: #955048;
 }
 
 .reflection-edit-area {
   margin-top: -2px;
-  padding: 10px 11px;
+  padding: 10px 11px 8px;
   border: 1px solid #a89e90;
   border-radius: 10px;
   background: rgba(255,255,255,.52);
+  box-shadow: 0 0 0 3px rgba(128,70,59,.05);
 }
 
 .reflection-edit-textarea {
   min-height: 92px;
+  max-height: 320px;
   padding: 0 1px 8px;
 }
 
-.reflection-edit-actions {
+.reflection-edit-hint {
   display: flex;
-  justify-content: flex-end;
-  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding-top: 8px;
   border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
 }
 
 @media (max-width: 620px) {
@@ -285,8 +380,10 @@
     border-radius: 13px;
   }
 
-  .reflection-composer-input {
-    min-height: 96px;
+  .reflection-composer-input,
+  .reflection-edit-textarea {
+    min-height: 120px;
+    max-height: 260px;
     font-size: 16px;
     line-height: 1.75;
   }
@@ -296,24 +393,45 @@
     gap: 10px;
   }
 
-  .reflection-composer-hint {
-    max-width: 180px;
+  .reflection-composer-meta {
+    display: grid;
+    gap: 2px;
+  }
+
+  .reflection-composer-hint,
+  .reflection-draft-status {
     font-size: 9px;
   }
 
+  .reflection-add-button {
+    min-width: 62px;
+    min-height: 44px;
+    padding: 10px 14px;
+  }
+
   .reflection-toolbar {
-    display: block;
-    margin-top: 14px;
+    justify-content: flex-start;
+    margin-top: 13px;
   }
 
   .reflection-copy-actions {
     justify-content: flex-start;
-    margin-top: 9px;
+  }
+
+  .reflection-copy-actions button,
+  .reflection-card-action,
+  .reflection-undo button {
+    min-height: 42px;
+    padding: 9px 12px;
   }
 
   .reflection-status {
-    margin-top: 5px !important;
+    margin-top: 4px !important;
     text-align: left;
+  }
+
+  .reflection-undo {
+    padding: 8px 8px 8px 12px;
   }
 
   .reflection-card {
@@ -328,5 +446,31 @@
 
   .reflection-card-actions {
     justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .reflection-card-action--danger {
+    margin-left: auto;
+  }
+
+  .reflection-edit-hint {
+    display: block;
+  }
+
+  .reflection-edit-hint span + span {
+    display: block;
+    margin-top: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reflection-card,
+  .reflection-composer,
+  .reflection-add-button,
+  .reflection-card-action,
+  .reflection-copy-actions button,
+  .reflection-expand-button {
+    animation: none !important;
+    transition: none !important;
   }
 }
