@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="glossary-tools.css?v=20260813-1353">
   <link rel="stylesheet" href="reader-navigation.css?v=20260816-1415">
   <link rel="stylesheet" href="reader-reflections.css?v=20260816-1648">
+  <link rel="stylesheet" href="reader-content.css?v=20260816-1838">
 </head>
 <body>
   <header class="site-header">
@@ -116,6 +117,7 @@
         <li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li>
         <li><code>essays/YYYY-MM-DD-slug.md</code> として保存する。</li>
         <li><code>data/index.json</code> の <code>essays</code> にパスを1行追加する。</li>
+        <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。コードブロックは <code>```js</code>、<code>```bash</code>、<code>```text</code> のように言語を指定できる。</li>
         <li>必要なら <code>data/glossary.json</code> に用語メモを追加する。本文の最初の登場箇所から横で補足できる。</li>
         <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
       </ol>
@@ -124,7 +126,10 @@
   </dialog>
 
   <script src="glossary-tools.js?v=20260813-1353" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="app.js?v=20260816-1415" defer></script>
+  <script src="markdown-engine.js?v=20260816-1838" defer></script>
   <script src="reader-navigation.js?v=20260816-1415" defer></script>
   <script src="reader-reflections.js?v=20260816-1648" defer></script>
   <script src="ui-enhancements.js?v=20260813-1353" defer></script>
