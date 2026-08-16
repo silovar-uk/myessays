@@ -1,8 +1,33 @@
 .reader-reflections {
-  margin: 70px 0 0;
-  padding-top: 30px;
-  border-top: 1px solid var(--ink);
+  --reflection-pop: #146cff;
+  --reflection-pop-deep: #0b53cc;
+  --reflection-pop-soft: #e8f1ff;
+  --reflection-spark: #f3c934;
+  position: relative;
+  margin: 70px -24px 0;
+  padding: 34px 24px 26px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--reflection-pop) 22%, var(--line));
+  border-top: 4px solid var(--reflection-pop);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(243,201,52,.22) 0 42px, transparent 43px),
+    linear-gradient(145deg, rgba(232,241,255,.92) 0%, rgba(255,255,255,.44) 44%, rgba(244,241,234,.74) 100%);
+  box-shadow: 0 18px 48px rgba(20,108,255,.08);
   font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+
+.reader-reflections::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 27px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--reflection-spark);
+  box-shadow: 0 0 0 6px rgba(243,201,52,.13);
+  pointer-events: none;
 }
 
 .reader-reflections + .reader-end-navigation {
@@ -10,54 +35,93 @@
 }
 
 .reader-reflections-heading {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 28px;
   margin-bottom: 20px;
+  padding-right: 30px;
 }
 
 .reader-reflections-kicker {
-  margin: 0 0 7px !important;
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin: 0 0 10px !important;
+  padding: 6px 9px 5px;
+  border-radius: 999px;
+  background: var(--reflection-pop);
+  color: #fff;
   font: 800 9px/1 Inter, "Hiragino Sans", sans-serif !important;
   letter-spacing: .18em;
+  box-shadow: 0 6px 18px rgba(20,108,255,.18);
 }
 
 .reader-reflections-title-row {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 11px;
 }
 
 .reader-reflections-heading h2 {
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  font: 700 25px/1.25 Georgia, "Yu Mincho", serif !important;
-  letter-spacing: -.02em;
+  color: #172640;
+  font: 700 27px/1.25 Georgia, "Yu Mincho", serif !important;
+  letter-spacing: -.025em;
 }
 
 .reflection-heading-count {
-  color: var(--accent);
-  font: 800 10px/1 Inter, "Hiragino Sans", sans-serif;
-  letter-spacing: .05em;
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--reflection-pop);
+  color: #fff;
+  font: 850 10px/1 Inter, "Hiragino Sans", sans-serif;
+  letter-spacing: .03em;
+  box-shadow: 0 5px 14px rgba(20,108,255,.18);
 }
 
 .reader-reflections-local {
-  margin: 0 !important;
-  color: var(--muted);
-  font: 10px/1.5 Inter, "Hiragino Sans", sans-serif !important;
+  margin: 0 0 2px !important;
+  color: #60708a;
+  font: 700 10px/1.5 Inter, "Hiragino Sans", sans-serif !important;
   letter-spacing: .02em;
 }
 
+.reader-reflections-local::before {
+  content: '●';
+  margin-right: 6px;
+  color: var(--reflection-pop);
+  font-size: 7px;
+  vertical-align: 1px;
+}
+
 .reflection-composer {
-  padding: 15px;
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  background: rgba(255,255,255,.42);
-  box-shadow: 0 1px 0 rgba(35,30,24,.03);
-  transition: border-color .14s ease, box-shadow .14s ease, background .14s ease;
+  position: relative;
+  padding: 18px 17px 15px;
+  border: 1.5px solid color-mix(in srgb, var(--reflection-pop) 58%, white);
+  border-radius: 17px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 30px rgba(20,108,255,.08), inset 0 1px 0 rgba(255,255,255,.8);
+  transition: border-color .14s ease, box-shadow .14s ease, background .14s ease, transform .14s ease;
+}
+
+.reflection-composer::before {
+  content: 'ひとことからでOK。いま残ったものを、そのまま。';
+  display: block;
+  margin: 0 0 11px;
+  color: var(--reflection-pop-deep);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: .01em;
 }
 
 .reflection-composer-input,
@@ -78,13 +142,14 @@
 
 .reflection-composer-input::placeholder,
 .reflection-edit-textarea::placeholder {
-  color: color-mix(in srgb, var(--muted) 72%, transparent);
+  color: #7f8ca1;
 }
 
 .reflection-composer:focus-within {
-  border-color: #a89e90;
-  background: rgba(255,255,255,.54);
-  box-shadow: 0 0 0 3px rgba(128,70,59,.07);
+  border-color: var(--reflection-pop);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 0 0 4px rgba(20,108,255,.11), 0 16px 38px rgba(20,108,255,.11);
+  transform: translateY(-1px);
 }
 
 .reflection-composer-footer {
@@ -93,7 +158,7 @@
   justify-content: space-between;
   gap: 16px;
   padding-top: 10px;
-  border-top: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--reflection-pop) 14%, var(--line));
 }
 
 .reflection-composer-meta {
@@ -106,7 +171,7 @@
 
 .reflection-composer-hint,
 .reflection-draft-status {
-  color: var(--muted);
+  color: #718097;
   font-size: 10px;
   line-height: 1.5;
 }
@@ -118,32 +183,39 @@
 .reflection-composer-hint kbd,
 .reflection-edit-hint kbd {
   padding: 1px 4px;
-  border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--reflection-pop) 18%, var(--line));
   border-radius: 4px;
-  background: rgba(255,255,255,.32);
+  background: rgba(232,241,255,.72);
   color: inherit;
   font: inherit;
 }
 
 .reflection-add-button {
   flex: 0 0 auto;
-  min-height: 36px;
-  padding: 8px 14px;
-  border: 1px solid var(--ink);
+  min-height: 38px;
+  padding: 9px 16px;
+  border: 1px solid var(--reflection-pop);
   border-radius: 999px;
-  background: var(--ink);
-  color: var(--paper, #f8f4ec);
-  font: 750 11px/1 Inter, "Hiragino Sans", sans-serif;
+  background: var(--reflection-pop);
+  color: #fff;
+  font: 800 11px/1 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
-  transition: transform .14s ease, opacity .14s ease, background .14s ease;
+  box-shadow: 0 7px 18px rgba(20,108,255,.2);
+  transition: transform .14s ease, opacity .14s ease, background .14s ease, box-shadow .14s ease;
 }
 
 .reflection-add-button:hover:not(:disabled) {
   transform: translateY(-1px);
+  background: var(--reflection-pop-deep);
+  box-shadow: 0 10px 22px rgba(20,108,255,.24);
 }
 
 .reflection-add-button:disabled {
-  opacity: .28;
+  border-color: #bfd3f4;
+  background: #d8e6fb;
+  color: #7890b3;
+  box-shadow: none;
+  opacity: 1;
   cursor: default;
 }
 
@@ -170,7 +242,7 @@
   padding: 7px 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255,255,255,.34);
+  background: rgba(255,255,255,.52);
   color: var(--muted);
   font: 700 10px/1 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
@@ -181,8 +253,8 @@
 .reflection-card-action:hover,
 .reflection-expand-button:hover,
 .reflection-undo button:hover {
-  border-color: #aaa194;
-  background: rgba(255,255,255,.7);
+  border-color: #94b7ec;
+  background: rgba(255,255,255,.86);
   color: var(--ink);
 }
 
@@ -201,7 +273,7 @@
 }
 
 .reflection-status[data-tone="success"] {
-  color: #526c54;
+  color: var(--reflection-pop-deep);
 }
 
 .reflection-status[data-tone="error"] {
@@ -243,9 +315,9 @@
 .reflection-card {
   position: relative;
   padding: 15px 16px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--reflection-pop) 10%, var(--line));
   border-radius: 13px;
-  background: rgba(255,255,255,.28);
+  background: rgba(255,255,255,.48);
   box-shadow: 0 1px 0 rgba(35,30,24,.025);
   animation: reflection-card-in .16s ease-out both;
 }
@@ -274,7 +346,7 @@
 }
 
 .reflection-card-marker {
-  color: color-mix(in srgb, var(--muted) 55%, transparent);
+  color: color-mix(in srgb, var(--reflection-pop) 58%, var(--muted));
   font: 800 9px/1 Inter, sans-serif;
   letter-spacing: .12em;
 }
@@ -292,7 +364,7 @@
 }
 
 .reflection-card-text:hover {
-  background: rgba(255,255,255,.34);
+  background: rgba(232,241,255,.5);
 }
 
 .reflection-card-text:focus-visible,
@@ -301,7 +373,7 @@
 .reflection-expand-button:focus-visible,
 .reflection-add-button:focus-visible,
 .reflection-undo button:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--accent) 75%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--reflection-pop) 78%, transparent);
   outline-offset: 2px;
 }
 
@@ -328,10 +400,10 @@
 .reflection-edit-area {
   margin-top: -2px;
   padding: 10px 11px 8px;
-  border: 1px solid #a89e90;
+  border: 1px solid color-mix(in srgb, var(--reflection-pop) 58%, #a89e90);
   border-radius: 10px;
-  background: rgba(255,255,255,.52);
-  box-shadow: 0 0 0 3px rgba(128,70,59,.05);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 0 0 3px rgba(20,108,255,.07);
 }
 
 .reflection-edit-textarea {
@@ -354,8 +426,14 @@
 
 @media (max-width: 620px) {
   .reader-reflections {
-    margin-top: 56px;
-    padding-top: 24px;
+    margin: 56px -12px 0;
+    padding: 26px 13px 20px;
+    border-radius: 18px;
+  }
+
+  .reader-reflections::after {
+    top: 19px;
+    right: 18px;
   }
 
   .reader-reflections + .reader-end-navigation {
@@ -365,19 +443,25 @@
   .reader-reflections-heading {
     display: block;
     margin-bottom: 17px;
+    padding-right: 24px;
   }
 
   .reader-reflections-heading h2 {
-    font-size: 22px !important;
+    font-size: 23px !important;
   }
 
   .reader-reflections-local {
-    margin-top: 8px !important;
+    margin-top: 9px !important;
   }
 
   .reflection-composer {
-    padding: 13px;
-    border-radius: 13px;
+    padding: 15px 13px 13px;
+    border-radius: 14px;
+  }
+
+  .reflection-composer::before {
+    margin-bottom: 9px;
+    font-size: 10px;
   }
 
   .reflection-composer-input,
