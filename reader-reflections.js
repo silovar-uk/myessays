@@ -142,11 +142,21 @@
     });
   }
 
-  function render() {
-    const view=document.getElementById('readerView'),content=document.getElementById('readerContent');if(!view||!content||view.hidden)return;
-    const essay=essayNow(),old=content.querySelector(ROOT);if(!essay){old?.remove();return;}if(old?.dataset.essayId===essay.id){refresh(old,essay);return;}saveActiveDraft?.();old?.remove();const root=build(essay),nav=content.querySelector('.reader-end-navigation');nav?content.insertBefore(root,nav):content.append(root);
+  function render(context) {
+    const view=context?.view||document.getElementById('readerView'),content=context?.root||document.getElementById('readerContent');if(!view||!content||view.hidden)return;
+    const essay=context?.essay||essayNow(),old=content.querySelector(ROOT);if(!essay){old?.remove();return;}if(old?.dataset.essayId===essay.id){refresh(old,essay);return;}saveActiveDraft?.();old?.remove();const root=build(essay),nav=content.querySelector('.reader-end-navigation');nav?content.insertBefore(root,nav):content.append(root);
   }
 
   window.MyEssaysReaderReflections=Object.freeze({render,readEntries,readDraft,plainCopy,detailedCopy,formatRelativeDateTime:relativeTime});
-  document.addEventListener('myessays:reader-rendered',render);window.addEventListener('hashchange',()=>requestAnimationFrame(render));window.addEventListener('pageshow',()=>requestAnimationFrame(render));window.addEventListener('pagehide',()=>saveActiveDraft?.());document.addEventListener('visibilitychange',()=>document.hidden?saveActiveDraft?.():updateTimes(document.querySelector(ROOT)));window.addEventListener('storage',e=>{if(e.key?.startsWith(ENTRY_KEY)||e.key?.startsWith(DRAFT_KEY))requestAnimationFrame(render);});setInterval(()=>updateTimes(document.querySelector(ROOT)),60000);
+
+  if(window.MyEssaysReaderRuntime?.register){
+    window.MyEssaysReaderRuntime.register('reflections',render,{priority:80});
+  }else{
+    document.addEventListener('myessays:reader-rendered',()=>render());
+  }
+
+  window.addEventListener('pagehide',()=>saveActiveDraft?.());
+  document.addEventListener('visibilitychange',()=>document.hidden?saveActiveDraft?.():updateTimes(document.querySelector(ROOT)));
+  window.addEventListener('storage',e=>{if(e.key?.startsWith(ENTRY_KEY)||e.key?.startsWith(DRAFT_KEY))requestAnimationFrame(()=>render(window.MyEssaysReaderRuntime?.getContext?.()));});
+  setInterval(()=>updateTimes(document.querySelector(ROOT)),60000);
 })();
