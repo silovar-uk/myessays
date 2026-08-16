@@ -7,14 +7,14 @@
   <title>My Essays</title>
   <link rel="icon" type="image/png" sizes="180x180" href="/myessays/apple-touch-icon.png?v=20260814">
   <link rel="apple-touch-icon" sizes="180x180" href="/myessays/apple-touch-icon.png?v=20260814">
-
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
   <link rel="stylesheet" href="styles.css?v=20260813-1353">
   <link rel="stylesheet" href="ui-enhancements.css?v=20260813-1353">
-  <link rel="stylesheet" href="source-links.css?v=20260813-1353">
+  <link rel="stylesheet" href="source-links.css?v=20260816-1856">
   <link rel="stylesheet" href="selection-tools.css?v=20260813-1353">
-  <link rel="stylesheet" href="glossary-tools.css?v=20260813-1353">
-  <link rel="stylesheet" href="reader-navigation.css?v=20260816-1415">
+  <link rel="stylesheet" href="glossary-tools.css?v=20260816-1856">
+  <link rel="stylesheet" href="reader-navigation.css?v=20260816-1856">
   <link rel="stylesheet" href="reader-reflections.css?v=20260816-1648">
   <link rel="stylesheet" href="reader-content.css?v=20260816-1838">
 </head>
@@ -118,23 +118,29 @@
         <li><code>essays/YYYY-MM-DD-slug.md</code> として保存する。</li>
         <li><code>data/index.json</code> の <code>essays</code> にパスを1行追加する。</li>
         <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。コードブロックは <code>```js</code>、<code>```bash</code>、<code>```text</code> のように言語を指定できる。</li>
-        <li>必要なら <code>data/glossary.json</code> に用語メモを追加する。本文の最初の登場箇所から横で補足できる。</li>
+        <li>用語補足を付ける場合は <code>data/glossaries/記事ID.json</code> を追加する。<code>label</code> と <code>match</code> を分けると、正式な導入表記を優先して装飾できる。</li>
         <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
       </ol>
-      <p class="dialog-note">本文も検索対象。favorite は1〜5、grow は「あとで育てたい度」1〜5を想定。</p>
+      <p class="dialog-note">本文も検索対象。favorite は1〜5、grow は「あとで育てたい度」1〜5を想定。旧 <code>data/glossary.json</code> は互換用として読み込める。</p>
     </form>
   </dialog>
 
-  <script src="glossary-tools.js?v=20260813-1353" defer></script>
+  <!-- Content engine -->
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="app.js?v=20260816-1415" defer></script>
   <script src="markdown-engine.js?v=20260816-1838" defer></script>
-  <script src="reader-navigation.js?v=20260816-1415" defer></script>
+
+  <!-- Reader lifecycle -->
+  <script src="reader-runtime.js?v=20260816-1856" defer></script>
+
+  <!-- Reader plugins: runtime controls execution order -->
+  <script src="glossary-tools.js?v=20260816-1856" defer></script>
+  <script src="source-links.js?v=20260816-1856" defer></script>
+  <script src="reader-navigation.js?v=20260816-1856" defer></script>
   <script src="reader-reflections.js?v=20260816-1648" defer></script>
-  <script src="ui-enhancements.js?v=20260813-1353" defer></script>
-  <script src="source-links.js?v=20260813-1353" defer></script>
   <script src="selection-note-bridge.js?v=20260813-1353" defer></script>
   <script src="selection-tools.js?v=20260813-1353" defer></script>
+  <script src="ui-enhancements.js?v=20260813-1353" defer></script>
 </body>
 </html>
