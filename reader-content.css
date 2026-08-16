@@ -1,0 +1,282 @@
+/* Reader content system: semantic Markdown blocks, not article-specific fixes. */
+.reader-layout {
+  grid-template-columns: 210px minmax(0, 700px);
+}
+
+.reader-content {
+  max-width: 700px;
+}
+
+.reader-content h4 {
+  margin: 30px 0 10px;
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: .01em;
+  scroll-margin-top: 90px;
+}
+
+.reader-content p,
+.reader-content li {
+  text-wrap: pretty;
+}
+
+.reader-content :not(pre) > code {
+  padding: .16em .4em;
+  border: 1px solid rgba(213, 207, 194, .85);
+  border-radius: 5px;
+  background: rgba(236, 231, 220, .78);
+  font-size: .86em;
+  overflow-wrap: anywhere;
+}
+
+.reader-content del {
+  color: var(--muted);
+  text-decoration-thickness: 1px;
+}
+
+.reader-content mark {
+  padding: 0 .12em;
+  background: #eadf9e;
+  color: inherit;
+}
+
+.reader-content blockquote {
+  position: relative;
+  margin: 34px 0;
+  padding: 20px 24px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: rgba(255, 255, 255, .44);
+}
+
+.reader-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.reader-content blockquote.callout-english {
+  padding: 14px 18px;
+  border-left-width: 2px;
+  background: rgba(234, 208, 203, .28);
+}
+
+.reader-content blockquote.callout-english p {
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.code-block {
+  margin: 30px 0 38px;
+  overflow: hidden;
+  border: 1px solid #33312c;
+  border-radius: 12px;
+  background: #201f1c;
+  box-shadow: 0 12px 32px rgba(39, 32, 24, .08);
+}
+
+.code-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  background: rgba(255, 255, 255, .035);
+  color: #c8c2b8;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+}
+
+.code-language {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.code-copy {
+  min-height: 28px;
+  border: 0;
+  border-radius: 7px;
+  padding: 4px 9px;
+  background: transparent;
+  color: #c8c2b8;
+  font-size: 10px;
+}
+
+.code-copy:hover,
+.code-copy:focus-visible {
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  outline: none;
+}
+
+.reader-content .code-block-pre {
+  margin: 0;
+  overflow: auto;
+  padding: 18px 20px 20px;
+  tab-size: 2;
+  white-space: pre;
+  overscroll-behavior-inline: contain;
+}
+
+.reader-content .code-block-code {
+  display: block;
+  min-width: max-content;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #eee9df;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12.5px;
+  line-height: 1.72;
+}
+
+.reader-content .essay-table-wrap {
+  width: 100%;
+  margin: 30px 0 40px;
+  overflow-x: auto;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: thin;
+  overscroll-behavior-inline: contain;
+}
+
+.reader-content .essay-table-wrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.reader-content .essay-table {
+  width: 100%;
+  min-width: 620px;
+}
+
+.reader-content .essay-table th,
+.reader-content .essay-table td {
+  min-width: 9rem;
+}
+
+.reader-content .essay-table th:first-child,
+.reader-content .essay-table td:first-child {
+  min-width: 7rem;
+}
+
+.reader-content .essay-figure {
+  margin: 40px 0 46px;
+}
+
+.reader-content .essay-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reader-content .footnote-ref {
+  margin-left: .08em;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: .68em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+.reader-content .footnote-ref a {
+  text-decoration: none;
+}
+
+.reader-content .footnotes {
+  margin-top: 76px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ink);
+}
+
+.reader-content .footnotes-title {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  font-size: 20px;
+}
+
+.reader-content .footnotes ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.reader-content .footnotes li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 9px 0;
+  border-top: 1px solid rgba(213, 207, 194, .7);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.reader-content .footnote-number {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.reader-content .footnote-body p {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.reader-content .footnote-backref {
+  margin-left: .35em;
+  text-decoration: none;
+}
+
+.reader-content .task-list-item {
+  list-style: none;
+}
+
+.reader-content input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  margin: 0 .55em 0 -1.35em;
+  accent-color: var(--accent);
+  vertical-align: -.12em;
+}
+
+@media (max-width: 820px) {
+  .reader-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .reader-content,
+  .reader-content h1 {
+    max-width: none;
+  }
+
+  .reader-content .code-block-pre {
+    padding: 16px 16px 18px;
+  }
+
+  .reader-content .code-block-code {
+    font-size: 12px;
+  }
+
+  .reader-content .essay-table {
+    min-width: 560px;
+  }
+}
+
+@media (max-width: 520px) {
+  .code-block {
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 10px;
+  }
+
+  .reader-content blockquote {
+    margin-left: -4px;
+    margin-right: -4px;
+    padding: 16px 18px;
+  }
+}
