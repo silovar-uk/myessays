@@ -9,18 +9,19 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 test('reader runtime is loaded before reader plugins', () => {
   const html = read('index.html');
   const runtime = html.indexOf('reader-runtime.js');
-  const glossary = html.indexOf('glossary-tools.js');
-  const sources = html.indexOf('source-links.js');
-  const navigation = html.indexOf('reader-navigation.js');
+  const plugins = [
+    'glossary-tools.js',
+    'source-links.js',
+    'reader-navigation.js',
+    'reader-reflections.js'
+  ];
 
   assert.ok(runtime > -1, 'reader runtime should be loaded');
-  assert.ok(runtime < glossary, 'runtime should load before glossary');
-  assert.ok(runtime < sources, 'runtime should load before source links');
-  assert.ok(runtime < navigation, 'runtime should load before navigation');
+  plugins.forEach(file => assert.ok(runtime < html.indexOf(file), `runtime should load before ${file}`));
 });
 
-test('reader plugins use the central runtime instead of DOM observers', () => {
-  for (const file of ['glossary-tools.js', 'source-links.js', 'reader-navigation.js']) {
+test('reader DOM plugins use the central runtime instead of DOM observers', () => {
+  for (const file of ['glossary-tools.js', 'source-links.js', 'reader-navigation.js', 'reader-reflections.js']) {
     const source = read(file);
     assert.match(source, /MyEssaysReaderRuntime\.register/);
     assert.doesNotMatch(source, /new MutationObserver/);
@@ -39,4 +40,11 @@ test('Node.js glossary prefers the formal libuv introduction', () => {
   assert.equal(libuv.label, 'libuv（リブユー・ブイ）');
   assert.equal(libuv.match[0], 'libuv（リブユー・ブイ）');
   assert.equal(libuv.match[1], 'libuv');
+});
+
+test('reader plugin priorities keep content annotations before end matter', () => {
+  assert.match(read('glossary-tools.js'), /priority:\s*20/);
+  assert.match(read('source-links.js'), /priority:\s*40/);
+  assert.match(read('reader-reflections.js'), /priority:80/);
+  assert.match(read('reader-navigation.js'), /priority:\s*90/);
 });
