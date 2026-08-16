@@ -1,13 +1,10 @@
 (() => {
-  const readerContent = document.getElementById('readerContent');
-  if (!readerContent) return;
+  'use strict';
 
-  let scheduled = false;
+  const escapeRegExp = (value = '') => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-  const escapeRegExp = (value='') => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-  function referenceHeading() {
-    return [...readerContent.querySelectorAll('h2, h3')].find(h => /^(参考文献|references|bibliography)$/i.test(h.textContent.trim()));
+  function referenceHeading(root) {
+    return [...root.querySelectorAll('h2, h3')].find(heading => /^(参考文献|references|bibliography)$/i.test(heading.textContent.trim()));
   }
 
   function referenceElements(heading) {
@@ -50,8 +47,8 @@
     const childNodes = [...row.childNodes];
     const yearPattern = new RegExp(`\\(${escapeRegExp(source.year)}\\)\\.\\s*`, 'i');
 
-    for (let i = 0; i < childNodes.length; i++) {
-      const node = childNodes[i];
+    for (let index = 0; index < childNodes.length; index += 1) {
+      const node = childNodes[index];
       if (node.nodeType !== Node.TEXT_NODE) continue;
       const value = node.nodeValue || '';
       const match = value.match(yearPattern);
@@ -59,7 +56,6 @@
 
       const titleStart = (match.index || 0) + match[0].length;
       const afterYear = value.slice(titleStart);
-
       if (afterYear.trim()) {
         const trailing = afterYear.match(/^(.*?\.)(\s*)$/s);
         const titleText = trailing ? trailing[1].replace(/\.$/, '') : afterYear.trim().replace(/\.$/, '');
@@ -71,7 +67,7 @@
           link.className = 'reference-title-link';
           link.href = source.href;
           link.target = '_blank';
-          link.rel = 'noopener';
+          link.rel = 'noopener noreferrer';
           link.textContent = titleText;
           node.parentNode.insertBefore(document.createTextNode(before), node);
           node.parentNode.insertBefore(link, node);
@@ -81,13 +77,13 @@
         }
       }
 
-      const nextMeaningful = childNodes.slice(i + 1).find(n => n.nodeType !== Node.TEXT_NODE || (n.nodeValue || '').trim());
+      const nextMeaningful = childNodes.slice(index + 1).find(candidate => candidate.nodeType !== Node.TEXT_NODE || (candidate.nodeValue || '').trim());
       if (nextMeaningful?.nodeType === Node.ELEMENT_NODE && nextMeaningful.tagName === 'EM') {
         const link = document.createElement('a');
         link.className = 'reference-title-link';
         link.href = source.href;
         link.target = '_blank';
-        link.rel = 'noopener';
+        link.rel = 'noopener noreferrer';
         nextMeaningful.parentNode.insertBefore(link, nextMeaningful);
         link.appendChild(nextMeaningful);
         return;
@@ -101,17 +97,17 @@
     anchor.dataset.sourceCompact = 'true';
     anchor.classList.add('reference-source-link');
     anchor.target = '_blank';
-    anchor.rel = 'noopener';
+    anchor.rel = 'noopener noreferrer';
     anchor.textContent = '↗ 引用元';
     anchor.setAttribute('aria-label', `${source.label} の引用元を別タブで開く`);
   }
 
-  function textNodesBeforeReferences(heading) {
-    const walker = document.createTreeWalker(readerContent, NodeFilter.SHOW_TEXT, {
+  function textNodesBeforeReferences(root, heading) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         const parent = node.parentElement;
         if (!parent) return NodeFilter.FILTER_REJECT;
-        if (parent.closest('a, code, .reading-stats')) return NodeFilter.FILTER_REJECT;
+        if (parent.closest('a, code, button, .reading-stats, .reader-end-navigation, .reader-reflections')) return NodeFilter.FILTER_REJECT;
         if (heading && (heading === parent || heading.compareDocumentPosition(parent) & Node.DOCUMENT_POSITION_FOLLOWING)) {
           return NodeFilter.FILTER_REJECT;
         }
@@ -123,22 +119,22 @@
     return nodes;
   }
 
-  function insertCitationLinks(sources, heading) {
-    const nodes = textNodesBeforeReferences(heading);
+  function insertCitationLinks(root, sources, heading) {
+    const nodes = textNodesBeforeReferences(root, heading);
 
     nodes.forEach(node => {
       const original = node.nodeValue || '';
+      const lower = original.toLocaleLowerCase();
       const insertions = [];
 
       sources.forEach(source => {
-        const lower = original.toLocaleLowerCase();
         const surname = source.surname.toLocaleLowerCase();
+        const year = source.year.toLocaleLowerCase();
         let from = 0;
         while (from < original.length) {
-          const yearIndex = lower.indexOf(source.year.toLocaleLowerCase(), from);
+          const yearIndex = lower.indexOf(year, from);
           if (yearIndex === -1) break;
-          const lookBehindStart = Math.max(0, yearIndex - 100);
-          const context = lower.slice(lookBehindStart, yearIndex);
+          const context = lower.slice(Math.max(0, yearIndex - 100), yearIndex);
           if (context.includes(surname)) {
             let at = yearIndex + source.year.length;
             if (original[at] === ')' || original[at] === '）') at += 1;
@@ -149,12 +145,14 @@
       });
 
       if (!insertions.length) return;
-
       const unique = [];
       const seen = new Set();
-      insertions.sort((a,b) => a.at - b.at).forEach(item => {
+      insertions.sort((a, b) => a.at - b.at).forEach(item => {
         const key = `${item.at}|${item.source.href}`;
-        if (!seen.has(key)) { seen.add(key); unique.push(item); }
+        if (!seen.has(key)) {
+          seen.add(key);
+          unique.push(item);
+        }
       });
 
       const fragment = document.createDocumentFragment();
@@ -165,7 +163,7 @@
         link.className = 'citation-source-link';
         link.href = source.href;
         link.target = '_blank';
-        link.rel = 'noopener';
+        link.rel = 'noopener noreferrer';
         link.textContent = '↗';
         link.title = `${source.label} の引用元`;
         link.setAttribute('aria-label', `${source.label} の引用元を別タブで開く`);
@@ -177,12 +175,11 @@
     });
   }
 
-  function enhanceSourceLinks() {
-    if (!readerContent.children.length) return;
-    if (readerContent.dataset.sourceLinksDone === 'true') return;
-
-    const heading = referenceHeading();
+  function enhanceSourceLinks(context) {
+    const root = context.root;
+    const heading = referenceHeading(root);
     if (!heading) return;
+
     const sources = referenceElements(heading).map(sourceFromReference).filter(Boolean);
     if (!sources.length) return;
 
@@ -190,35 +187,20 @@
       wrapReferenceTitle(source);
       compactReferenceUrl(source);
     });
-    insertCitationLinks(sources, heading);
-    readerContent.dataset.sourceLinksDone = 'true';
+    insertCitationLinks(root, sources, heading);
   }
 
-  function scheduleEnhance() {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(() => {
-      scheduled = false;
-      enhanceSourceLinks();
+  function init() {
+    if (window.MyEssaysReaderRuntime?.register) {
+      window.MyEssaysReaderRuntime.register('source-links', enhanceSourceLinks, { priority: 40 });
+      return;
+    }
+
+    document.addEventListener('myessays:reader-rendered', () => {
+      const root = document.getElementById('readerContent');
+      if (root) enhanceSourceLinks({ root });
     });
   }
 
-  const observer = new MutationObserver(() => {
-    if (!readerContent.children.length) {
-      delete readerContent.dataset.sourceLinksDone;
-      return;
-    }
-    if (!readerContent.querySelector('.reference-source-link')) {
-      delete readerContent.dataset.sourceLinksDone;
-    }
-    scheduleEnhance();
-  });
-  observer.observe(readerContent, { childList: true, subtree: false });
-
-  window.addEventListener('hashchange', () => {
-    delete readerContent.dataset.sourceLinksDone;
-    scheduleEnhance();
-  });
-
-  scheduleEnhance();
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();
