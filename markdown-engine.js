@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const ENGINE_VERSION = '2026.08.16';
+  const ENGINE_VERSION = '2026.08.16.2';
   const legacyRender = typeof window.renderMarkdown === 'function' ? window.renderMarkdown : null;
 
   function escapeHtml(value = '') {
@@ -286,7 +286,10 @@
       const footnotes = collectFootnotes(source);
       const parsed = window.marked.parse(footnotes.markdown, {
         gfm: true,
-        breaks: false,
+        // MyEssays treats an author-entered newline as editorial intent. This
+        // keeps examples, verse-like passages and deliberate Japanese rhythm
+        // visible without requiring article-specific <br> tags.
+        breaks: true,
         pedantic: false
       });
       const withFootnotes = `${parsed}${renderFootnotes(footnotes)}`;
