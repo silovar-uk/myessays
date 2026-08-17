@@ -3,14 +3,14 @@ id: akatsuki-japan-players-beginners-guide
 title: "167cmと205cmが、同じ日本代表で戦っている"
 subtitle: "10人の物語から入る、男子バスケ日本代表観戦入門"
 created: "2026-08-16"
-updated: "2026-08-16"
+updated: "2026-08-17"
 type: "Practical Paper"
 status: "完成"
 tags: ["バスケットボール", "男子日本代表", "AKATSUKI JAPAN", "選手", "観戦入門", "八村塁", "河村勇輝", "渡邊雄太", "ジョシュ・ホーキンソン", "富樫勇樹", "比江島慎", "馬場雄大", "富永啓生", "吉井裕鷹", "齋藤拓実"]
 keywords: ["Japan men's national basketball team", "Akatsuki Japan", "Rui Hachimura", "Yuki Kawamura", "Yuta Watanabe", "Josh Hawkinson", "Yuki Togashi", "Makoto Hiejima", "Yudai Baba", "Keisei Tominaga", "Hirotaka Yoshii", "Takumi Saito"]
 favorite: 5
 grow: 5
-abstract: "男子バスケ日本代表を、戦術やポジションの暗記ではなく『人』から見るための入門。205cmの八村塁、172cmの河村勇輝、167cmの富樫勇樹、何でも背負う渡邊雄太、帰化して代表の土台となったジョシュ・ホーキンソン、勝負所で火がつく比江島慎など10人を、経歴・役割・プレースタイル・代表での物語から紹介する。最後に、初心者が一試合で何を見ればよいかまで落とし込む。"
+abstract: "男子バスケ日本代表を、戦術やポジションの暗記ではなく『人』から見るための入門。205cmの八村塁、172cmの河村勇輝、167cmの富樫勇樹、何でも背負う渡邊雄太、帰化して代表の土台となったジョシュ・ホーキンソン、勝負所で火がつく比江島慎など10人を、所属クラブ・経歴・役割・プレースタイル・代表での物語から紹介する。最後に、初心者が一試合で何を見ればよいかまで落とし込む。"
 ---
 
 # 167cmと205cmが、同じ日本代表で戦っている
@@ -50,13 +50,25 @@ NBAで6シーズンを生き延びたあと、日本へ戻ってきた渡邊雄�
 
 本稿では、ポジションの暗記より先に、男子日本代表を代表する10人を「この人は何者なのか」「出てきたら何を見るのか」で紹介する。
 
-なお、代表メンバーは大会ごとに変わる。2026年夏は53名の候補選手から各大会のロスターが編成されており、本稿執筆時点の2026年8月16日には、8月27日から始まるW杯アジア予選Window4の最終ロスターはまだ固定されていない。したがって、ここで扱う10人は「次戦の確定12人」ではなく、**いまの男子日本代表を理解するために知っておきたい10人**である。
+> **Simple English:** A player's club tells you what kind of basketball world he lives in every week.
+
+もう一つ、初心者にとって便利な入口がある。
+
+**普段、どのクラブでプレーしているか。**
+
+代表では同じユニフォームを着ていても、NBAで戦う選手、B.LEAGUE PREMIERで主力を担う選手、NBAの契約を勝ち取る競争の途中にいる選手が一緒になる。所属先を知ると、「この選手は普段どんな環境で、何を任されているのか」が少し見えやすくなり、代表での役割との違いも楽しめる。
+
+そこで本稿では、各選手について**2026年8月17日時点の所属・契約状況**も添える。
+
+なお、代表メンバーは大会ごとに変わる。2026年夏は53名の候補選手から各大会のロスターが編成されており、本稿更新時点の2026年8月17日には、8月27日から始まるW杯アジア予選Window4の最終ロスターはまだ固定されていない。したがって、ここで扱う10人は「次戦の確定12人」ではなく、**いまの男子日本代表を理解するために知っておきたい10人**である。
 
 ---
 
 ## 1. 八村塁――日本代表に「世界基準の個」を持ち込む人
 
 > **Simple English:** Rui Hachimura can create a shot even when the defense is ready for him.
+
+**所属：LAクリッパーズ（NBA）**
 
 八村塁を見るとき、最初に覚えるべき数字は得点ではない。
 
@@ -94,13 +106,16 @@ NBAで6シーズンを生き延びたあと、日本へ戻ってきた渡邊雄�
 
 参考：  
 https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/teams/japan/206395-rui-hachimura  
-https://www.fiba.basketball/en/news/who-made-it-to-japans-all-time-all-star-five
+https://www.fiba.basketball/en/news/who-made-it-to-japans-all-time-all-star-five  
+https://www.nba.com/news/rui-hachimura-free-agency-2026
 
 ---
 
 ## 2. 河村勇輝――「小さい選手」ではなく、相手から時間を奪う選手
 
 > **Simple English:** Yuki Kawamura is dangerous because he makes decisions before the defense can settle.
+
+**所属・契約状況：2026-27シーズンのNBA契約先は未定。2025-26シーズンはシカゴ・ブルズと2-way契約を結び、2026年夏はインディアナ・ペイサーズのサマーリーグ・ロスターでプレーした。**
 
 河村勇輝は172cm。
 
@@ -132,6 +147,8 @@ https://www.fiba.basketball/en/news/who-made-it-to-japans-all-time-all-star-five
 
 河村を見ていると、バスケで「時間」が武器になることが分かる。
 
+そして現在の所属状況そのものも、河村のキャリアの現在地をよく表している。NBAではサマーリーグ参加と本契約は同じ意味ではない。どこかのチーム名だけを覚えるより、**NBAに定着するための競争を続けている選手**として見た方が正確である。
+
 ### 観戦するときの一言
 
 **「今、自分で行く？　誰かに出す？」**
@@ -140,13 +157,18 @@ https://www.fiba.basketball/en/news/who-made-it-to-japans-all-time-all-star-five
 
 参考：  
 https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/teams/japan/249570-yuki-kawamura  
-https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/news/yuki-kawamura-japans-next-great-xs-sized-guard-from-yuki-togashi
+https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/news/yuki-kawamura-japans-next-great-xs-sized-guard-from-yuki-togashi  
+https://www.nba.com/bulls/news/bulls-sign-yuki-kawamura-to-two-way-contract-2  
+https://www.nba.com/news/2026-free-agency-options-and-qualifying-offers  
+https://www.nba.com/summer-league/2026/las-vegas/team/1610612754/pacers
 
 ---
 
 ## 3. 渡邊雄太――スターなのに、「ボールを持っていない時間」がいちばん面白い
 
 > **Simple English:** Yuta Watanabe shows that a star can change a game without touching the ball.
+
+**所属：千葉ジェッツ（B.LEAGUE PREMIER）**
 
 渡邊雄太は、説明が難しい。
 
@@ -182,13 +204,16 @@ https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2
 
 参考：  
 https://www.fiba.basketball/en/news/who-made-it-to-japans-all-time-all-star-five  
-https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan
+https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan  
+https://chibajets.jp/news/detail/id=26888
 
 ---
 
 ## 4. ジョシュ・ホーキンソン――「帰化選手」という説明では、もう足りない
 
 > **Simple English:** Josh Hawkinson is not a guest in Japan's basketball story. He is one of its central characters.
+
+**所属：東京サンロッカーズ（B.LEAGUE PREMIER）**
 
 ジョシュ・ホーキンソンはアメリカ生まれで、2023年に日本国籍を取得した。
 
@@ -224,6 +249,8 @@ https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-quali
 
 ホーキンソンは、日本代表の床を支えている。
 
+なお、所属クラブは2026-27シーズンから「サンロッカーズ渋谷」ではなく**東京サンロッカーズ**。クラブ名とホームタウンが変わるタイミングにいることも、今季を見るうえでは覚えておきたい。
+
 ### 観戦するときの一言
 
 **「またホーキンソンがリバウンド取った？」**
@@ -232,13 +259,17 @@ https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-quali
 
 参考：  
 https://www.fiba.basketball/en/news/who-made-it-to-japans-all-time-all-star-five  
-https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan
+https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan  
+https://www.sunrockers.jp/news/detail/id=22693  
+https://www.sunrockers.jp/news/detail/id=22785
 
 ---
 
 ## 5. 富樫勇樹――167cmが先に道を作ったから、172cmの河村が「例外」に見えない
 
 > **Simple English:** Before Kawamura became a global story, Togashi had already shown that a very small guard could lead Japan.
+
+**所属：千葉ジェッツ（B.LEAGUE PREMIER）**
 
 河村勇輝の172cmに驚いたあと、富樫勇樹の身長を見るともう一度驚く。
 
@@ -270,6 +301,8 @@ FIBAは河村を紹介する記事で、二人を「XS-sized guards」と並べ�
 
 むしろ二人がいることで、日本代表には「身長が足りないからこのポジションは無理」という常識に、二世代分の反例が存在することになる。
 
+渡邊雄太と同じ千葉ジェッツでプレーしている点も、代表を見るうえでは小さな補助線になる。代表だけでなくクラブでも二人の関係性を追えるからだ。
+
 ### 観戦するときの一言
 
 **「そこから打つん？」**
@@ -277,13 +310,16 @@ FIBAは河村を紹介する記事で、二人を「XS-sized guards」と並べ�
 富樫の3ポイントは、この感想が出たらだいたい正しく見られている。
 
 参考：  
-https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/news/yuki-kawamura-japans-next-great-xs-sized-guard-from-yuki-togashi
+https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/news/yuki-kawamura-japans-next-great-xs-sized-guard-from-yuki-togashi  
+https://chibajets.jp/news/detail/id=26774
 
 ---
 
 ## 6. 比江島慎――残り時間が減るほど、存在感が増すベテラン
 
 > **Simple English:** Makoto Hiejima has a strange habit: he becomes most visible when Japan is in trouble.
+
+**所属：宇都宮ブレックス（B.LEAGUE PREMIER）**
 
 比江島慎を初めて見る人は、最初の10分では強烈な印象を受けないかもしれない。
 
@@ -326,13 +362,16 @@ https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2
 参考：  
 https://www.fiba.basketball/en/news/basketballworldcup-2023-news-jpn-ven-game-report  
 https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/208182/players/181087-makoto-hiejima  
-https://japanbasketball.jp/japan/87230
+https://japanbasketball.jp/japan/87230  
+https://www.utsunomiyabrex.com/news/detail/id=26526
 
 ---
 
 ## 7. 馬場雄大――守備から攻撃へ変わる「0.5秒」を見る選手
 
 > **Simple English:** Baba is most exciting in the moment when defense suddenly becomes attack.
+
+**所属：長崎ヴェルカ（B.LEAGUE PREMIER）**
 
 馬場雄大を楽しむには、セットされた攻撃だけを見ない方がいい。
 
@@ -364,13 +403,16 @@ https://japanbasketball.jp/japan/87230
 
 参考：  
 https://www.fiba.basketball/en/players/220445-yudai-baba  
-https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan
+https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan  
+https://www.velca.jp/news/
 
 ---
 
 ## 8. 富永啓生――「入るから打つ」ではなく、「打つから守備が変わる」
 
 > **Simple English:** Tominaga's shot matters even before the ball goes in.
+
+**所属：レバンガ北海道（B.LEAGUE PREMIER）**
 
 富永啓生の役割は、初心者にも分かりやすい。
 
@@ -407,13 +449,16 @@ https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-quali
 本人ではなく、富永を守っている相手を見ると、シューターの怖さが分かる。
 
 参考：  
-https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/208182/players/249566-keisei-tominaga
+https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/208182/players/249566-keisei-tominaga  
+https://www.levanga.com/news/detail/id=22242
 
 ---
 
 ## 9. 吉井裕鷹――名前が実況に出ない時間ほど、仕事をしている
 
 > **Simple English:** Some players help the team most when the highlight camera ignores them.
+
+**所属：茨城ロボッツ（B.LEAGUE PREMIER）**
 
 吉井裕鷹は196cm。
 
@@ -443,6 +488,8 @@ https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/208182/play
 
 吉井はその入口になる。
 
+2026-27シーズンからは三遠ネオフェニックスを離れ、茨城ロボッツへ移籍した。代表で見慣れた選手がクラブでは新しい役割をどう作るのか、という見方もできる。
+
 ### 観戦するときの一言
 
 **「吉井、今誰を守ってる？」**
@@ -450,13 +497,16 @@ https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/208182/play
 相手の一番危険な選手と一緒に画面へ映っていたら、だいたい理由がある。
 
 参考：  
-https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/teams/japan/319315-hirotaka-yoshii
+https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2024/teams/japan/319315-hirotaka-yoshii  
+https://www.ibarakirobots.win/news/20260612_01_team/
 
 ---
 
 ## 10. 齋藤拓実――代表には、スターの間をつなぐ人がいる
 
 > **Simple English:** Saito keeps the offense organized so other players can be dangerous.
+
+**所属：名古屋ダイヤモンドドルフィンズ（B.LEAGUE PREMIER）**
 
 齋藤拓実も172cmのポイントガードである。
 
@@ -489,7 +539,8 @@ https://www.fiba.basketball/en/events/mens-olympic-basketball-tournament-paris-2
 シュートを打った人ではなく、その一つ前の選択を見る。
 
 参考：  
-https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan/258324-takumi-saito
+https://www.fiba.basketball/en/events/fiba-basketball-world-cup-2027-asian-qualifiers/teams/japan/258324-takumi-saito  
+https://nagoya-dolphins.jp/news/detail/id=20821
 
 ---
 
@@ -527,6 +578,14 @@ PG、SG、SF、PF、C。
 **この人が入ると、試合の何が変わるのか。**
 
 そこから見る方がずっと楽しい。
+
+ここにもう一つだけ、「普段どこでプレーしているか」を重ねる。
+
+同じ千葉ジェッツの渡邊と富樫。NBAのLAクリッパーズで戦う八村。国内クラブを移ったばかりの吉井。NBAの契約競争を続ける河村。
+
+代表のユニフォームだけを見ていると全員が一列に並んで見えるが、所属クラブまで見ると、**10人が普段は別々のバスケットボールを生きていて、代表期間だけ一つのチームになる**ことが分かる。
+
+その「寄せ集めなのに、一つになる」感じも代表戦の面白さである。
 
 ---
 
@@ -646,9 +705,9 @@ PG、SG、SF、PF、C。
 
 完成した黄金時代を後追いするのではない。
 
-八村はどこまで代表で中心になるのか。
+八村は新しいNBAの所属先で何を身につけ、それを代表へどう持ち込むのか。
 
-河村は世界で得た経験をどう持ち帰るのか。
+河村はNBAの契約競争で得た経験をどう持ち帰るのか。
 
 渡邊や比江島の世代から、次の世代へ何が渡されるのか。
 
@@ -656,7 +715,7 @@ PG、SG、SF、PF、C。
 
 富永は「シューター」以上の存在になっていくのか。
 
-吉井や齋藤のような選手が、どんな大会で不可欠になるのか。
+吉井や齋藤のような選手が、クラブでの役割を代表でどう変換するのか。
 
 そして、まだこの10人の中にいない誰かが、突然代表の顔になる可能性もある。
 
@@ -675,6 +734,8 @@ PG、SG、SF、PF、C。
 知らない10人が走っていた場所に、知っている一人がいる。
 
 そして、その一人を見ているうちに、パスの先にいる二人目を覚える。
+
+代表で気になった選手を、次は所属クラブで追ってみる。そのクラブで見慣れた選手が、また代表で違う役割を担う。
 
 バスケットボールは、たぶんそうやって見えるようになっていく。
 
@@ -699,4 +760,4 @@ PG、SG、SF、PF、C。
 - FIBA Basketball World Cup 2023 — Japan vs Venezuela  
   https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/208182/games/100782-JPN-VEN
 
-※選手の所属、代表招集状況、予選成績は変動する。本稿の時点情報は2026年8月16日基準。
+※選手の所属、代表招集状況、予選成績は変動する。本稿の時点情報は2026年8月17日基準。
