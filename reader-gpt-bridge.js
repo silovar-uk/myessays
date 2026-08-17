@@ -123,14 +123,14 @@ ${notes.text}${omittedNote}
 
     const prompt = buildPrompt(essay, entries);
     const url = `https://chatgpt.com/?prompt=${encodeURIComponent(prompt)}`;
-    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, '_blank', 'noopener,noreferrer');
 
     const status = root.querySelector('[data-reflection-status]');
     if (status) {
-      status.textContent = opened ? 'ChatGPTにメモを渡しました' : 'ChatGPTを開けませんでした';
-      status.dataset.tone = opened ? 'success' : 'error';
+      status.textContent = 'ChatGPTにメモを渡しました';
+      status.dataset.tone = 'success';
       setTimeout(() => {
-        if (status.textContent === 'ChatGPTにメモを渡しました' || status.textContent === 'ChatGPTを開けませんでした') {
+        if (status.textContent === 'ChatGPTにメモを渡しました') {
           status.textContent = '';
           status.dataset.tone = '';
         }
