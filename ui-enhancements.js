@@ -15,6 +15,11 @@
   let lastRestoredId = '';
   let savePositionRaf = 0;
 
+  // Route-specific scroll behavior is handled by MyEssays itself:
+  // the library always starts at the top, while article positions are restored
+  // from localStorage below. Disable the browser's competing history restoration.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   const track = document.createElement('div');
   track.className = 'reading-progress-track';
   track.setAttribute('aria-hidden', 'true');
@@ -30,6 +35,11 @@
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
     return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  function resetLibraryPosition() {
+    if (currentEssayId()) return;
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }
 
   function updateProgress() {
@@ -154,13 +164,29 @@
   }, { passive: true });
   window.addEventListener('resize', updateProgress);
   window.addEventListener('pagehide', saveReadingPosition);
+  window.addEventListener('pageshow', () => {
+    if (currentEssayId()) syncSoon();
+    else resetLibraryPosition();
+  });
   window.addEventListener('hashchange', () => {
     const id = currentEssayId();
-    if (!id) lastRestoredId = '';
+    if (!id) {
+      lastRestoredId = '';
+      resetLibraryPosition();
+      return;
+    }
     syncSoon();
   });
   window.addEventListener('storage', event => {
     if (event.key?.startsWith(NOTE_PREFIX)) updateLibraryNoteMarks();
+  });
+
+  // Clicking the brand while already on #/ does not fire hashchange, so make
+  // the same "TOP means top" rule apply there as well.
+  document.addEventListener('click', event => {
+    const topLink = event.target.closest?.('a[href="#/"]');
+    if (!topLink || currentEssayId()) return;
+    requestAnimationFrame(resetLibraryPosition);
   });
 
   const readerObserver = new MutationObserver(syncSoon);
@@ -173,8 +199,10 @@
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) saveReadingPosition();
-    else syncSoon();
+    else if (currentEssayId()) syncSoon();
+    else resetLibraryPosition();
   });
 
+  if (!currentEssayId()) resetLibraryPosition();
   setTimeout(syncSoon, 0);
 })();
