@@ -11,11 +11,11 @@
   min-height: 34px;
   margin-left: auto;
   padding: 7px 12px;
-  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+  border: 1px solid color-mix(in srgb, var(--reflection-pop, var(--accent)) 42%, var(--line));
   border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 9%, transparent);
-  color: var(--accent);
-  font: 750 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  background: color-mix(in srgb, var(--reflection-pop, var(--accent)) 10%, transparent);
+  color: var(--reflection-pop-deep, var(--accent));
+  font: 800 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   letter-spacing: .02em;
   cursor: pointer;
   transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
@@ -23,13 +23,13 @@
 
 .reflection-gpt-button:hover {
   transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
-  box-shadow: 0 8px 22px rgba(39, 32, 24, .08);
+  border-color: color-mix(in srgb, var(--reflection-pop, var(--accent)) 68%, var(--line));
+  background: color-mix(in srgb, var(--reflection-pop, var(--accent)) 15%, transparent);
+  box-shadow: 0 8px 22px rgba(20, 108, 255, .12);
 }
 
 .reflection-gpt-button:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--reflection-pop, var(--accent));
   outline-offset: 3px;
 }
 
@@ -39,10 +39,11 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: var(--accent);
-  color: var(--paper);
+  background: var(--reflection-pop, var(--accent));
+  color: #fff;
   font-size: 10px;
   line-height: 1;
+  box-shadow: 0 4px 12px rgba(20, 108, 255, .2);
 }
 
 @media (max-width: 620px) {
