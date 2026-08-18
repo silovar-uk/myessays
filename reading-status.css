@@ -61,15 +61,15 @@
 
 .featured-card.reading-unread,
 .archive-row.reading-unread {
-  background: linear-gradient(102deg, rgba(116, 151, 176, .14) 0%, rgba(255, 255, 255, .28) 48%, rgba(255, 255, 255, .08) 100%);
+  background: linear-gradient(102deg, rgba(116, 151, 176, .16) 0%, rgba(255, 255, 255, .30) 48%, rgba(255, 255, 255, .08) 100%);
 }
 .featured-card.reading-opened,
 .archive-row.reading-opened {
-  background: linear-gradient(102deg, rgba(196, 164, 86, .14) 0%, rgba(255, 251, 235, .29) 50%, rgba(255, 255, 255, .08) 100%);
+  background: linear-gradient(102deg, rgba(196, 164, 86, .16) 0%, rgba(255, 251, 235, .31) 50%, rgba(255, 255, 255, .08) 100%);
 }
 .featured-card.reading-completed,
 .archive-row.reading-completed {
-  background: linear-gradient(102deg, rgba(180, 62, 49, .13) 0%, rgba(255, 246, 243, .28) 50%, rgba(255, 255, 255, .08) 100%);
+  background: linear-gradient(102deg, rgba(180, 62, 49, .15) 0%, rgba(255, 246, 243, .30) 50%, rgba(255, 255, 255, .08) 100%);
 }
 
 .featured-card.has-reading-note::after,
@@ -80,56 +80,85 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: min(34%, 250px);
+  width: min(38%, 280px);
   pointer-events: none;
-  background: linear-gradient(270deg, rgba(91, 137, 169, .20) 0%, rgba(91, 137, 169, .10) 38%, rgba(91, 137, 169, 0) 100%);
+  background: linear-gradient(270deg, rgba(91, 137, 169, .30) 0%, rgba(91, 137, 169, .16) 35%, rgba(91, 137, 169, 0) 100%);
+  box-shadow: inset -3px 0 rgba(83, 127, 158, .34);
+}
+
+.reading-memo-chip {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 18px;
+  padding: 2px 6px;
+  border: 1px solid rgba(91, 137, 169, .24);
+  border-radius: 999px;
+  background: rgba(232, 241, 247, .74);
+  color: #527b98 !important;
+  font-size: 9px !important;
+  font-weight: 750;
+  letter-spacing: .02em;
+  white-space: nowrap;
 }
 
 .featured-card.reading-unread:hover,
 .archive-row.reading-unread:hover {
-  background: linear-gradient(102deg, rgba(116, 151, 176, .19) 0%, rgba(255, 255, 255, .48) 52%, rgba(255, 255, 255, .17) 100%);
+  background: linear-gradient(102deg, rgba(116, 151, 176, .20) 0%, rgba(255, 255, 255, .48) 52%, rgba(255, 255, 255, .17) 100%);
 }
 .featured-card.reading-opened:hover,
 .archive-row.reading-opened:hover {
-  background: linear-gradient(102deg, rgba(196, 164, 86, .19) 0%, rgba(255, 252, 239, .50) 52%, rgba(255, 255, 255, .17) 100%);
+  background: linear-gradient(102deg, rgba(196, 164, 86, .20) 0%, rgba(255, 252, 239, .50) 52%, rgba(255, 255, 255, .17) 100%);
 }
 .featured-card.reading-completed:hover,
 .archive-row.reading-completed:hover {
-  background: linear-gradient(102deg, rgba(180, 62, 49, .18) 0%, rgba(255, 247, 245, .49) 52%, rgba(255, 255, 255, .17) 100%);
+  background: linear-gradient(102deg, rgba(180, 62, 49, .19) 0%, rgba(255, 247, 245, .49) 52%, rgba(255, 255, 255, .17) 100%);
 }
 
 .reading-complete-button {
-  width: 100%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  margin: -2px 0 18px;
-  padding: 8px 10px;
+  min-height: 38px;
+  margin: 0 0 24px;
+  padding: 9px 13px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, .34);
+  background: rgba(255, 255, 255, .46);
   color: var(--muted);
   font-size: 11px;
-  transition: background .16s ease, border-color .16s ease, color .16s ease;
+  box-shadow: 0 6px 20px rgba(39, 32, 24, .04);
+  transition: background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease;
 }
 .reading-complete-button:hover {
-  background: rgba(255, 255, 255, .68);
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, .76);
   color: var(--ink);
 }
+.reading-complete-button small {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 400;
+}
 .reading-complete-button.is-completed {
-  border-color: rgba(180, 62, 49, .28);
-  background: linear-gradient(105deg, rgba(180, 62, 49, .13), rgba(255, 255, 255, .42));
+  border-color: rgba(180, 62, 49, .30);
+  background: linear-gradient(105deg, rgba(180, 62, 49, .15), rgba(255, 255, 255, .48));
   color: #8f4138;
 }
 
 @media (max-width: 720px) {
   .reading-status-tabs {
     margin-top: 8px;
-    margin-right: -20px;
-    padding-right: 20px;
+    margin-right: -12px;
+    padding-right: 12px;
   }
   .reading-status-tab { min-height: 30px; padding: 6px 9px; }
   .featured-card.has-reading-note::after,
-  .archive-row.has-reading-note::after { width: 42%; }
+  .archive-row.has-reading-note::after { width: 48%; }
+  .reading-complete-button {
+    width: 100%;
+    min-height: 44px;
+    margin: -2px 0 24px;
+    font-size: 12px;
+  }
 }
