@@ -1,12 +1,15 @@
 (() => {
   'use strict';
 
-  const NOTE_PREFIX = 'myessays:reading-note:';
+  const LEGACY_NOTE_PREFIX = 'myessays:reading-note:';
+  const REFLECTION_ENTRY_PREFIX = 'myessays:reader-reflections:v1:';
+  const REFLECTION_DRAFT_PREFIX = 'myessays:reader-reflections:draft:v1:';
   const READING_PREFIX = 'myessays:reading-state:';
   const FILTERS = ['all', 'unread', 'opened', 'completed', 'memo'];
   let activeFilter = 'all';
   let librarySyncQueued = false;
   let readerSyncQueued = false;
+  let reflectionSyncTimer = 0;
 
   function safeGet(key) {
     try { return localStorage.getItem(key); }
@@ -22,13 +25,59 @@
     }
   }
 
-  function memoFor(id) {
+  function legacyNoteFor(id) {
     if (!id) return '';
-    return String(safeGet(`${NOTE_PREFIX}${id}`) || '').trim();
+    return String(safeGet(`${LEGACY_NOTE_PREFIX}${id}`) || '').trim();
+  }
+
+  function reflectionEntries(id) {
+    if (!id) return [];
+    try {
+      const value = JSON.parse(safeGet(`${REFLECTION_ENTRY_PREFIX}${id}`) || '[]');
+      if (!Array.isArray(value)) return [];
+      return value
+        .map(entry => {
+          if (!entry || typeof entry !== 'object') return null;
+          const text = String(entry.text || '').trim();
+          if (!text) return null;
+          return {
+            text,
+            createdAt: String(entry.createdAt || ''),
+            updatedAt: String(entry.updatedAt || entry.createdAt || '')
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => String(b.updatedAt || b.createdAt).localeCompare(String(a.updatedAt || a.createdAt)));
+    } catch {
+      return [];
+    }
+  }
+
+  function reflectionDraftFor(id) {
+    if (!id) return '';
+    try {
+      const value = JSON.parse(safeGet(`${REFLECTION_DRAFT_PREFIX}${id}`) || '{}');
+      return String(value?.text || '').trim();
+    } catch {
+      return '';
+    }
+  }
+
+  function memoInfo(id) {
+    const draft = reflectionDraftFor(id);
+    if (draft) return { text: draft, source: 'after-reading-draft' };
+
+    const entries = reflectionEntries(id);
+    if (entries.length) return { text: entries[0].text, source: 'after-reading' };
+
+    const legacy = legacyNoteFor(id);
+    if (legacy) return { text: legacy, source: 'legacy-note' };
+
+    return { text: '', source: '' };
   }
 
   function memoPreview(id) {
-    const memo = memoFor(id).replace(/\s+/g, ' ').trim();
+    const memo = memoInfo(id).text.replace(/\s+/g, ' ').trim();
     if (!memo) return '';
     return memo.length > 78 ? `${memo.slice(0, 78)}…` : memo;
   }
@@ -53,7 +102,7 @@
   function progressFor(id) {
     const reading = readState(id);
     if (reading.completedAt) return 'completed';
-    if (reading.openedAt || memoFor(id)) return 'opened';
+    if (reading.openedAt || memoInfo(id).text) return 'opened';
     return 'unread';
   }
 
@@ -65,9 +114,13 @@
   }
 
   function currentEssay() {
+    const id = currentEssayId();
+    if (!id) return null;
     try {
-      if (typeof state === 'undefined' || !state) return null;
-      return state.currentEssay || state.essays?.find(item => item.id === currentEssayId()) || null;
+      if (typeof state !== 'undefined' && state.currentEssay?.id === id) return state.currentEssay;
+      return typeof state !== 'undefined' && Array.isArray(state.essays)
+        ? state.essays.find(essay => essay.id === id) || null
+        : null;
     } catch {
       return null;
     }
@@ -100,9 +153,7 @@
     const helper = document.createElement('textarea');
     helper.value = text;
     helper.setAttribute('readonly', '');
-    helper.style.position = 'fixed';
-    helper.style.opacity = '0';
-    helper.style.pointerEvents = 'none';
+    helper.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
     document.body.appendChild(helper);
     helper.select();
     const ok = document.execCommand('copy');
@@ -112,15 +163,17 @@
 
   function articleCopyText() {
     const essay = currentEssay();
-    if (essay) {
-      return [essay.title || '', essay.body || ''].filter(Boolean).join('\n\n').trim();
-    }
-
-    const content = document.getElementById('readerContent');
-    if (!content) return '';
-    const clone = content.cloneNode(true);
-    clone.querySelectorAll('.reading-stats, .reader-copy-button, .reading-complete-button, .reader-end-navigation').forEach(node => node.remove());
-    return String(clone.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
+    if (!essay) return '';
+    const body = String(essay.body || '').trim();
+    if (!body) return String(essay.title || '').trim();
+    try {
+      if (typeof renderMarkdown === 'function') {
+        const holder = document.createElement('div');
+        holder.innerHTML = renderMarkdown(body);
+        return String(holder.innerText || holder.textContent || '').trim();
+      }
+    } catch {}
+    return body;
   }
 
   function ensureTabs() {
@@ -159,18 +212,19 @@
   }
 
   function syncMemoPreview(card, id) {
+    const info = memoInfo(id);
     const memo = memoPreview(id);
     let preview = card.querySelector('.reading-memo-preview');
 
     if (!memo) {
-      if (preview) preview.remove();
+      preview?.remove();
       return;
     }
 
     if (!preview) {
       preview = document.createElement('p');
       preview.className = 'reading-memo-preview';
-      preview.setAttribute('aria-label', '読書メモ');
+      preview.setAttribute('aria-label', '読後メモ');
       if (card.classList.contains('featured-card')) {
         const footer = card.querySelector('.featured-footer');
         footer ? footer.insertAdjacentElement('beforebegin', preview) : card.appendChild(preview);
@@ -180,15 +234,15 @@
       }
     }
 
+    preview.dataset.memoSource = info.source;
     const text = `✎ ${memo}`;
     if (preview.textContent !== text) preview.textContent = text;
-    const fullMemo = memoFor(id);
-    if (preview.title !== fullMemo) preview.title = fullMemo;
+    if (preview.title !== info.text) preview.title = info.text;
   }
 
   function matchesFilter(id) {
     if (activeFilter === 'all') return true;
-    if (activeFilter === 'memo') return Boolean(memoFor(id));
+    if (activeFilter === 'memo') return Boolean(memoInfo(id).text);
     return progressFor(id) === activeFilter;
   }
 
@@ -197,7 +251,7 @@
     if (!id) return false;
 
     const progress = progressFor(id);
-    const hasMemo = Boolean(memoFor(id));
+    const hasMemo = Boolean(memoInfo(id).text);
 
     card.classList.remove('reading-unread', 'reading-opened', 'reading-completed', 'has-reading-note');
     card.classList.add(`reading-${progress}`);
@@ -256,9 +310,8 @@
   }
 
   function ensureCopyButton() {
-    const id = currentEssayId();
     const content = document.getElementById('readerContent');
-    if (!id || !content || !content.children.length) return null;
+    if (!content || !currentEssayId()) return null;
 
     let button = content.querySelector('.reader-copy-button');
     if (!button) {
@@ -318,9 +371,11 @@
       });
     }
 
+    const reflections = content.querySelector('.reader-reflections');
     const endNavigation = content.querySelector('.reader-end-navigation');
-    if (endNavigation) {
-      if (button.nextElementSibling !== endNavigation) endNavigation.insertAdjacentElement('beforebegin', button);
+    const anchor = reflections || endNavigation;
+    if (anchor) {
+      if (button.nextElementSibling !== anchor) anchor.insertAdjacentElement('beforebegin', button);
     } else if (button !== content.lastElementChild) {
       content.appendChild(button);
     }
@@ -362,26 +417,43 @@
     else scheduleLibrarySync();
   }
 
+  function scheduleReflectionReconcile() {
+    clearTimeout(reflectionSyncTimer);
+    reflectionSyncTimer = window.setTimeout(() => {
+      scheduleLibrarySync();
+      scheduleReaderSync();
+    }, 650);
+  }
+
   function init() {
     ensureTabs();
 
     const grid = document.getElementById('essayGrid');
-    if (grid) {
-      new MutationObserver(scheduleLibrarySync).observe(grid, { childList: true });
-    }
+    if (grid) new MutationObserver(scheduleLibrarySync).observe(grid, { childList: true });
 
     const readerContent = document.getElementById('readerContent');
-    if (readerContent) {
-      new MutationObserver(scheduleReaderSync).observe(readerContent, { childList: true });
-    }
+    if (readerContent) new MutationObserver(scheduleReaderSync).observe(readerContent, { childList: true });
 
-    const note = document.getElementById('noteTextarea');
-    if (note) {
-      ['input', 'change', 'blur', 'compositionend'].forEach(name => note.addEventListener(name, scheduleLibrarySync));
-    }
+    document.addEventListener('input', event => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.matches('#noteTextarea, .reflection-composer-input, .reflection-edit-textarea')) {
+        scheduleReflectionReconcile();
+      }
+    }, true);
+
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest('.reflection-add-button, [data-action="delete"], [data-undo]')) {
+        window.setTimeout(scheduleLibrarySync, 40);
+        window.setTimeout(scheduleLibrarySync, 520);
+      }
+    }, true);
 
     document.addEventListener('myessays:reader-rendered', scheduleReaderSync);
     document.addEventListener('myessays:reader-ready', scheduleReaderSync);
+    document.addEventListener('myessays:reader-language-changed', scheduleReaderSync);
     window.addEventListener('hashchange', syncForCurrentRoute);
     window.addEventListener('pageshow', syncForCurrentRoute);
     window.addEventListener('focus', syncForCurrentRoute);
@@ -389,7 +461,13 @@
       if (!document.hidden) syncForCurrentRoute();
     });
     window.addEventListener('storage', event => {
-      if (event.key?.startsWith(NOTE_PREFIX) || event.key?.startsWith(READING_PREFIX)) syncForCurrentRoute();
+      const key = event.key || '';
+      if (
+        key.startsWith(LEGACY_NOTE_PREFIX) ||
+        key.startsWith(REFLECTION_ENTRY_PREFIX) ||
+        key.startsWith(REFLECTION_DRAFT_PREFIX) ||
+        key.startsWith(READING_PREFIX)
+      ) syncForCurrentRoute();
     });
 
     const randomEssay = document.getElementById('randomEssay');
@@ -405,10 +483,6 @@
       location.hash = `#/essay/${encodeURIComponent(id)}`;
     }, { capture: true });
 
-    // Mobile Safari can restore a hash route from its page cache without
-    // replaying every expected lifecycle event. A very light reconciliation
-    // while the Library is visible makes the UI converge to localStorage even
-    // in that case. DOM is only changed when values actually differ.
     window.setInterval(() => {
       if (document.hidden) return;
       const library = document.getElementById('libraryView');
@@ -418,9 +492,6 @@
     syncForCurrentRoute();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
 })();
