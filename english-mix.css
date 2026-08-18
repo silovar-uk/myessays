@@ -1,0 +1,58 @@
+.reader-language-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -14px 0 24px;
+  padding: 8px 10px 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.32);
+}
+
+.reader-language-switch-label {
+  color: var(--muted);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.reader-language-switch-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(213,207,194,.38);
+}
+
+.reader-language-switch button {
+  min-height: 28px;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.reader-language-switch button.is-active {
+  background: rgba(255,255,255,.88);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(39,32,24,.07);
+}
+
+@media (max-width: 620px) {
+  .reader-language-switch {
+    margin-top: -12px;
+    padding: 8px 9px;
+  }
+  .reader-language-switch-label { font-size: 7.5px; }
+  .reader-language-switch button {
+    min-height: 30px;
+    padding: 6px 9px;
+    font-size: 9.5px;
+  }
+}
