@@ -101,7 +101,9 @@
         tab.classList.toggle('is-active', active);
         tab.setAttribute('aria-pressed', String(active));
       });
-      decorateLibrary();
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect) sortSelect.dispatchEvent(new Event('change'));
+      else decorateLibrary();
     });
   }
 
@@ -215,6 +217,19 @@
 
     const note = document.getElementById('noteTextarea');
     note?.addEventListener('input', scheduleDecorate);
+
+    const randomEssay = document.getElementById('randomEssay');
+    randomEssay?.addEventListener('click', (event) => {
+      if (activeFilter === 'all') return;
+      const visibleIds = [...document.querySelectorAll('#essayGrid [data-id]:not([hidden])')]
+        .map((card) => card.dataset.id)
+        .filter(Boolean);
+      if (!visibleIds.length) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const id = visibleIds[Math.floor(Math.random() * visibleIds.length)];
+      location.hash = `#/essay/${encodeURIComponent(id)}`;
+    }, { capture: true });
 
     syncReaderState();
     scheduleDecorate();
