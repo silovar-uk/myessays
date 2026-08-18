@@ -107,6 +107,23 @@
     });
   }
 
+  function syncMemoChip(card, memo) {
+    const tags = card.querySelector('.mini-tags');
+    if (!tags) return;
+
+    let chip = tags.querySelector('.reading-memo-chip');
+    if (memo && !chip) {
+      chip = document.createElement('span');
+      chip.className = 'reading-memo-chip';
+      chip.textContent = '✎ メモ';
+      chip.title = '読書メモあり';
+      chip.setAttribute('aria-label', '読書メモあり');
+      tags.prepend(chip);
+    } else if (!memo && chip) {
+      chip.remove();
+    }
+  }
+
   function decorateCard(card) {
     const id = card.dataset.id;
     if (!id) return false;
@@ -118,6 +135,7 @@
     card.classList.toggle('has-reading-note', memo);
     card.dataset.readingStatus = progress;
     card.dataset.hasReadingNote = String(memo);
+    syncMemoChip(card, memo);
 
     const visible = matchesFilter(id);
     card.hidden = !visible;
@@ -165,17 +183,16 @@
     });
   }
 
-  function syncCompleteButton() {
+  function ensureCompleteButton() {
     const id = currentEssayId();
-    const aside = document.getElementById('readerAside');
-    if (!id || !aside) return;
+    const content = document.getElementById('readerContent');
+    if (!id || !content || !content.children.length) return null;
 
-    let button = aside.querySelector('.reading-complete-button');
+    let button = content.querySelector('.reading-complete-button');
     if (!button) {
       button = document.createElement('button');
       button.type = 'button';
       button.className = 'reading-complete-button';
-      aside.querySelector('.meta-block')?.insertAdjacentElement('afterend', button);
       button.addEventListener('click', () => {
         const targetId = currentEssayId();
         if (!targetId) return;
@@ -183,13 +200,27 @@
         syncCompleteButton();
         scheduleDecorate();
       });
+
+      const title = content.querySelector('h1');
+      const stats = content.querySelector('.reading-stats');
+      const anchor = title || stats || content.firstElementChild;
+      anchor?.insertAdjacentElement('afterend', button);
     }
+    return button;
+  }
+
+  function syncCompleteButton() {
+    const id = currentEssayId();
+    if (!id) return;
+
+    const button = ensureCompleteButton();
+    if (!button) return;
 
     const completed = progressFor(id) === 'completed';
     button.classList.toggle('is-completed', completed);
     button.setAttribute('aria-pressed', String(completed));
     button.innerHTML = completed
-      ? '<span aria-hidden="true">✓</span><span>読了済み</span>'
+      ? '<span aria-hidden="true">✓</span><span>読了済み</span><small>もう一度押すと解除</small>'
       : '<span aria-hidden="true">○</span><span>読了にする</span>';
     button.title = completed ? 'もう一度押すと読了を解除' : 'この記事を読み終わったとして記録';
   }
@@ -209,14 +240,32 @@
       new MutationObserver(scheduleDecorate).observe(grid, { childList: true, subtree: true });
     }
 
+    const readerContent = document.getElementById('readerContent');
+    if (readerContent) {
+      new MutationObserver(() => {
+        if (currentEssayId()) requestAnimationFrame(syncReaderState);
+      }).observe(readerContent, { childList: true });
+    }
+
     document.addEventListener('myessays:reader-rendered', syncReaderState);
+    document.addEventListener('myessays:reader-ready', syncReaderState);
+
+    if (window.MyEssaysReaderRuntime?.register) {
+      window.MyEssaysReaderRuntime.register('reading-status', () => syncReaderState(), { priority: 220 });
+    }
+
     window.addEventListener('hashchange', () => {
-      if (currentEssayId()) syncReaderState();
+      if (currentEssayId()) requestAnimationFrame(syncReaderState);
       else scheduleDecorate();
     });
 
+    window.addEventListener('pageshow', () => {
+      if (currentEssayId()) requestAnimationFrame(syncReaderState);
+      scheduleDecorate();
+    });
+
     const note = document.getElementById('noteTextarea');
-    note?.addEventListener('input', scheduleDecorate);
+    note?.addEventListener('input', () => requestAnimationFrame(scheduleDecorate));
 
     const randomEssay = document.getElementById('randomEssay');
     randomEssay?.addEventListener('click', (event) => {
@@ -230,6 +279,13 @@
       const id = visibleIds[Math.floor(Math.random() * visibleIds.length)];
       location.hash = `#/essay/${encodeURIComponent(id)}`;
     }, { capture: true });
+
+    window.addEventListener('storage', (event) => {
+      if (event.key?.startsWith(NOTE_PREFIX) || event.key?.startsWith(READING_PREFIX)) {
+        scheduleDecorate();
+        if (currentEssayId()) syncCompleteButton();
+      }
+    });
 
     syncReaderState();
     scheduleDecorate();
