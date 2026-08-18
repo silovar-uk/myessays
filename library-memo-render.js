@@ -50,4 +50,26 @@
       return html;
     };
   }
+
+  function isLibraryRoute() {
+    return !/^#\/essay\//.test(location.hash || '');
+  }
+
+  function refreshLibraryFromStorage() {
+    if (!isLibraryRoute()) return;
+    if (typeof renderLibrary !== 'function') return;
+    try {
+      if (typeof state !== 'undefined' && Array.isArray(state.essays) && state.essays.length) {
+        renderLibrary();
+      }
+    } catch {}
+  }
+
+  // The Library DOM stays mounted while reading an essay. Re-render it after
+  // returning so memo previews are rebuilt from the latest localStorage values.
+  window.addEventListener('hashchange', () => requestAnimationFrame(refreshLibraryFromStorage));
+  window.addEventListener('pageshow', () => requestAnimationFrame(refreshLibraryFromStorage));
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) requestAnimationFrame(refreshLibraryFromStorage);
+  });
 })();
