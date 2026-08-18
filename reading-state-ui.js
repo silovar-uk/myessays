@@ -64,6 +64,15 @@
     catch { return match[1]; }
   }
 
+  function currentEssay() {
+    try {
+      if (typeof state === 'undefined' || !state) return null;
+      return state.currentEssay || state.essays?.find(item => item.id === currentEssayId()) || null;
+    } catch {
+      return null;
+    }
+  }
+
   function markOpened(id) {
     if (!id) return;
     const reading = readState(id);
@@ -81,6 +90,37 @@
     } else {
       writeState(id, { ...reading, openedAt, completedAt: new Date().toISOString() });
     }
+  }
+
+  async function copyText(text) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const helper = document.createElement('textarea');
+    helper.value = text;
+    helper.setAttribute('readonly', '');
+    helper.style.position = 'fixed';
+    helper.style.opacity = '0';
+    helper.style.pointerEvents = 'none';
+    document.body.appendChild(helper);
+    helper.select();
+    const ok = document.execCommand('copy');
+    helper.remove();
+    if (!ok) throw new Error('copy failed');
+  }
+
+  function articleCopyText() {
+    const essay = currentEssay();
+    if (essay) {
+      return [essay.title || '', essay.body || ''].filter(Boolean).join('\n\n').trim();
+    }
+
+    const content = document.getElementById('readerContent');
+    if (!content) return '';
+    const clone = content.cloneNode(true);
+    clone.querySelectorAll('.reading-stats, .reader-copy-button, .reading-complete-button, .reader-end-navigation').forEach(node => node.remove());
+    return String(clone.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
   }
 
   function ensureTabs() {
@@ -215,6 +255,50 @@
     requestAnimationFrame(syncLibrary);
   }
 
+  function ensureCopyButton() {
+    const id = currentEssayId();
+    const content = document.getElementById('readerContent');
+    if (!id || !content || !content.children.length) return null;
+
+    let button = content.querySelector('.reader-copy-button');
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'reader-copy-button';
+      button.innerHTML = '<span aria-hidden="true">⧉</span><span>全文コピー</span>';
+      button.addEventListener('click', async () => {
+        const text = articleCopyText();
+        if (!text) return;
+        const original = button.innerHTML;
+        try {
+          await copyText(text);
+          button.classList.add('is-copied');
+          button.innerHTML = '<span aria-hidden="true">✓</span><span>コピーしました</span>';
+          window.setTimeout(() => {
+            if (!button.isConnected) return;
+            button.classList.remove('is-copied');
+            button.innerHTML = original;
+          }, 1400);
+        } catch {
+          button.innerHTML = '<span aria-hidden="true">×</span><span>コピーできませんでした</span>';
+          window.setTimeout(() => {
+            if (!button.isConnected) return;
+            button.innerHTML = original;
+          }, 1600);
+        }
+      });
+    }
+
+    const stats = content.querySelector('.reading-stats');
+    if (stats) {
+      if (stats.nextElementSibling !== button) stats.insertAdjacentElement('afterend', button);
+    } else if (content.firstElementChild !== button) {
+      content.insertAdjacentElement('afterbegin', button);
+    }
+
+    return button;
+  }
+
   function ensureCompleteButton() {
     const id = currentEssayId();
     const content = document.getElementById('readerContent');
@@ -250,6 +334,7 @@
     if (!id) return;
 
     markOpened(id);
+    ensureCopyButton();
     const button = ensureCompleteButton();
     if (!button) return;
 
