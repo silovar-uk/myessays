@@ -34,7 +34,13 @@
     return safeStorageSet(`${READING_PREFIX}${id}`, JSON.stringify(next));
   };
 
-  const hasMemo = (id) => Boolean((safeStorageGet(`${NOTE_PREFIX}${id}`) || '').trim());
+  const memoFor = (id) => (safeStorageGet(`${NOTE_PREFIX}${id}`) || '').trim();
+  const hasMemo = (id) => Boolean(memoFor(id));
+  const memoPreview = (id) => {
+    const memo = memoFor(id).replace(/\s+/g, ' ').trim();
+    if (!memo) return '';
+    return memo.length > 78 ? `${memo.slice(0, 78)}…` : memo;
+  };
 
   const progressFor = (id) => {
     const reading = readState(id);
@@ -107,21 +113,33 @@
     });
   }
 
-  function syncMemoChip(card, memo) {
-    const tags = card.querySelector('.mini-tags');
-    if (!tags) return;
+  function syncMemoPreview(card, id) {
+    const memo = memoPreview(id);
+    let preview = card.querySelector('.reading-memo-preview');
 
-    let chip = tags.querySelector('.reading-memo-chip');
-    if (memo && !chip) {
-      chip = document.createElement('span');
-      chip.className = 'reading-memo-chip';
-      chip.textContent = '✎ メモ';
-      chip.title = '読書メモあり';
-      chip.setAttribute('aria-label', '読書メモあり');
-      tags.prepend(chip);
-    } else if (!memo && chip) {
-      chip.remove();
+    if (!memo) {
+      preview?.remove();
+      return;
     }
+
+    if (!preview) {
+      preview = document.createElement('p');
+      preview.className = 'reading-memo-preview';
+      preview.setAttribute('aria-label', '読書メモ');
+
+      if (card.classList.contains('featured-card')) {
+        const footer = card.querySelector('.featured-footer');
+        if (footer) footer.insertAdjacentElement('beforebegin', preview);
+        else card.appendChild(preview);
+      } else {
+        const main = card.querySelector('.archive-main');
+        if (main) main.appendChild(preview);
+        else card.appendChild(preview);
+      }
+    }
+
+    preview.textContent = `✎ ${memo}`;
+    preview.title = memoFor(id);
   }
 
   function decorateCard(card) {
@@ -135,7 +153,7 @@
     card.classList.toggle('has-reading-note', memo);
     card.dataset.readingStatus = progress;
     card.dataset.hasReadingNote = String(memo);
-    syncMemoChip(card, memo);
+    syncMemoPreview(card, id);
 
     const visible = matchesFilter(id);
     card.hidden = !visible;
@@ -200,12 +218,17 @@
         syncCompleteButton();
         scheduleDecorate();
       });
-
-      const title = content.querySelector('h1');
-      const stats = content.querySelector('.reading-stats');
-      const anchor = title || stats || content.firstElementChild;
-      anchor?.insertAdjacentElement('afterend', button);
     }
+
+    const endNavigation = content.querySelector('.reader-end-navigation');
+    if (endNavigation) {
+      if (button.nextElementSibling !== endNavigation) {
+        endNavigation.insertAdjacentElement('beforebegin', button);
+      }
+    } else if (button.parentElement !== content || button !== content.lastElementChild) {
+      content.appendChild(button);
+    }
+
     return button;
   }
 
@@ -220,8 +243,8 @@
     button.classList.toggle('is-completed', completed);
     button.setAttribute('aria-pressed', String(completed));
     button.innerHTML = completed
-      ? '<span aria-hidden="true">✓</span><span>読了済み</span><small>もう一度押すと解除</small>'
-      : '<span aria-hidden="true">○</span><span>読了にする</span>';
+      ? '<span class="reading-complete-icon" aria-hidden="true">✓</span><span class="reading-complete-label">読了済み</span><small>もう一度押すと解除</small>'
+      : '<span class="reading-complete-icon" aria-hidden="true">○</span><span class="reading-complete-label">読了にする</span><small>この記事を読み終えたら</small>';
     button.title = completed ? 'もう一度押すと読了を解除' : 'この記事を読み終わったとして記録';
   }
 
