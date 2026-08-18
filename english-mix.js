@@ -98,46 +98,61 @@
 
   async function ensureLanguageSwitch() {
     const id = currentEssayId();
-    const content = document.getElementById('readerContent');
-    if (!id || !content || !content.children.length) return;
+    const reader = document.getElementById('readerView');
+    const backButton = document.getElementById('backButton');
+    if (!id || !reader || !backButton) return;
 
     const index = await mixIndex();
-    if (!index?.mixes?.[id]) {
-      content.querySelector('.reader-language-switch')?.remove();
-      return;
-    }
+    const hasMix = Boolean(index?.mixes?.[id]);
 
-    let switcher = content.querySelector('.reader-language-switch');
+    document.getElementById('readerContent')
+      ?.querySelector('.reader-language-switch')
+      ?.remove();
+
+    let switcher = reader.querySelector(':scope > .reader-language-switch');
     if (!switcher) {
       switcher = document.createElement('div');
       switcher.className = 'reader-language-switch';
       switcher.setAttribute('role', 'group');
       switcher.setAttribute('aria-label', '表示言語');
       switcher.innerHTML = `
-        <span class="reader-language-switch-label">READING MODE</span>
+        <div class="reader-language-switch-copy">
+          <span class="reader-language-switch-label">READING MODE</span>
+          <span class="reader-language-switch-note">表示を切り替え</span>
+        </div>
         <div class="reader-language-switch-buttons">
           <button type="button" data-reader-language="ja" aria-pressed="true">日本語</button>
           <button type="button" data-reader-language="mix" aria-pressed="false">English Mix</button>
         </div>`;
       switcher.addEventListener('click', event => {
         const button = event.target.closest('[data-reader-language]');
-        if (!button) return;
+        if (!button || button.disabled) return;
         const next = button.dataset.readerLanguage;
         if (!['ja', 'mix'].includes(next) || next === currentRenderedMode()) return;
         switchLanguage(next);
       });
     }
 
-    const copyButton = content.querySelector('.reader-copy-button');
-    const stats = content.querySelector('.reading-stats');
-    const anchor = copyButton || stats;
-    if (anchor) {
-      if (anchor.nextElementSibling !== switcher) anchor.insertAdjacentElement('afterend', switcher);
-    } else if (content.firstElementChild !== switcher) {
-      content.prepend(switcher);
+    if (backButton.nextElementSibling !== switcher) {
+      backButton.insertAdjacentElement('afterend', switcher);
     }
 
-    const desired = modeByEssay.get(id) || currentRenderedMode();
+    const mixButton = switcher.querySelector('[data-reader-language="mix"]');
+    if (mixButton) {
+      mixButton.disabled = !hasMix;
+      mixButton.textContent = hasMix ? 'English Mix' : 'English Mix（未作成）';
+      mixButton.setAttribute('aria-disabled', String(!hasMix));
+      mixButton.title = hasMix
+        ? '日本語と英語を混ぜた読み方に切り替える'
+        : 'この記事のEnglish Mix版はまだありません';
+    }
+    switcher.classList.toggle('is-mix-unavailable', !hasMix);
+
+    if (!hasMix) {
+      modeByEssay.set(id, 'ja');
+    }
+
+    const desired = hasMix ? (modeByEssay.get(id) || currentRenderedMode()) : 'ja';
     updateSwitch(switcher, desired);
   }
 
