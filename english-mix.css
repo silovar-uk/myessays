@@ -2,57 +2,116 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin: -14px 0 24px;
-  padding: 8px 10px 8px 12px;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0 20px;
+  padding: 11px 12px 11px 14px;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  background: rgba(255,255,255,.32);
+  border-radius: 14px;
+  background: rgba(255,255,255,.68);
+  box-shadow: 0 6px 20px rgba(39,32,24,.045);
+}
+
+.reader-language-switch-copy {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
 }
 
 .reader-language-switch-label {
-  color: var(--muted);
-  font-size: 8px;
-  font-weight: 800;
+  color: var(--ink);
+  font-size: 9px;
+  font-weight: 850;
   letter-spacing: .13em;
+  white-space: nowrap;
+}
+
+.reader-language-switch-note {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
 }
 
 .reader-language-switch-buttons {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  flex-shrink: 0;
+  gap: 4px;
   padding: 3px;
   border-radius: 999px;
-  background: rgba(213,207,194,.38);
+  background: rgba(213,207,194,.42);
 }
 
 .reader-language-switch button {
-  min-height: 28px;
-  padding: 5px 9px;
+  min-height: 32px;
+  padding: 6px 11px;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font-size: 10px;
-  font-weight: 650;
-  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+
+.reader-language-switch button:hover:not(:disabled):not(.is-active) {
+  background: rgba(255,255,255,.48);
+  color: var(--ink);
 }
 
 .reader-language-switch button.is-active {
-  background: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.96);
   color: var(--ink);
-  box-shadow: 0 2px 8px rgba(39,32,24,.07);
+  box-shadow: 0 2px 8px rgba(39,32,24,.08);
+}
+
+.reader-language-switch button:disabled {
+  background: rgba(188,184,176,.22);
+  color: rgba(94,88,80,.46);
+  cursor: not-allowed;
+  opacity: .78;
+}
+
+.reader-language-switch.is-mix-unavailable .reader-language-switch-buttons {
+  background: rgba(205,202,196,.30);
 }
 
 @media (max-width: 620px) {
   .reader-language-switch {
-    margin-top: -12px;
-    padding: 8px 9px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0 16px;
+    padding: 10px;
   }
-  .reader-language-switch-label { font-size: 7.5px; }
+
+  .reader-language-switch-copy {
+    justify-content: space-between;
+  }
+
+  .reader-language-switch-label {
+    font-size: 8.5px;
+  }
+
+  .reader-language-switch-note {
+    font-size: 9px;
+  }
+
+  .reader-language-switch-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .reader-language-switch button {
-    min-height: 30px;
-    padding: 6px 9px;
-    font-size: 9.5px;
+    width: 100%;
+    min-height: 34px;
+    padding: 7px 8px;
+    font-size: 10px;
   }
 }
