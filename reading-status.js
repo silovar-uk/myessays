@@ -138,8 +138,10 @@
       }
     }
 
-    preview.textContent = `✎ ${memo}`;
-    preview.title = memoFor(id);
+    const previewText = `✎ ${memo}`;
+    const fullMemo = memoFor(id);
+    if (preview.textContent !== previewText) preview.textContent = previewText;
+    if (preview.title !== fullMemo) preview.title = fullMemo;
   }
 
   function decorateCard(card) {
@@ -240,11 +242,16 @@
     if (!button) return;
 
     const completed = progressFor(id) === 'completed';
+    const nextState = completed ? 'completed' : 'open';
     button.classList.toggle('is-completed', completed);
     button.setAttribute('aria-pressed', String(completed));
-    button.innerHTML = completed
-      ? '<span class="reading-complete-icon" aria-hidden="true">✓</span><span class="reading-complete-label">読了済み</span><small>もう一度押すと解除</small>'
-      : '<span class="reading-complete-icon" aria-hidden="true">○</span><span class="reading-complete-label">読了にする</span><small>この記事を読み終えたら</small>';
+
+    if (button.dataset.completionState !== nextState) {
+      button.dataset.completionState = nextState;
+      button.innerHTML = completed
+        ? '<span class="reading-complete-icon" aria-hidden="true">✓</span><span class="reading-complete-label">読了済み</span><small>もう一度押すと解除</small>'
+        : '<span class="reading-complete-icon" aria-hidden="true">○</span><span class="reading-complete-label">読了にする</span><small>この記事を読み終えたら</small>';
+    }
     button.title = completed ? 'もう一度押すと読了を解除' : 'この記事を読み終わったとして記録';
   }
 
