@@ -19,7 +19,8 @@
   <link rel="stylesheet" href="reader-reflections.css?v=20260816-1928">
   <link rel="stylesheet" href="reader-gpt-bridge.css?v=20260817-1017">
   <link rel="stylesheet" href="reader-content.css?v=20260816-1931">
-  <link rel="stylesheet" href="reading-status.css?v=20260818-2202">
+  <link rel="stylesheet" href="reading-status.css?v=20260818-2210">
+  <link rel="stylesheet" href="english-mix.css?v=20260818-2210">
 </head>
 <body>
   <header class="site-header">
@@ -118,13 +119,14 @@
       </div>
       <ol>
         <li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li>
-        <li><code>essays/YYYY-MM-DD-slug.md</code> として保存する。</li>
-        <li><code>data/index.json</code> の <code>essays</code> にパスを1行追加する。</li>
+        <li>日本語版を <code>essays/YYYY-MM-DD-slug.md</code> として保存する。</li>
+        <li>English Mix版も作る場合は、同じ記事IDで <code>english-mix/記事ID.md</code> を作る。文単位で日本語と英語を交互にし、英語比率40〜50%を基本とする。</li>
+        <li><code>data/index.json</code> の <code>essays</code> に日本語版のパスを1行追加する。Mix版は <code>data/mix-index.json</code> に記事IDとパスを追加する。</li>
         <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。MyEssaysでは、本文中で入力した1行改行も編集意図として表示へ反映する。コードブロックは <code>```js</code>、<code>```bash</code>、<code>```text</code> のように言語を指定できる。</li>
         <li>用語補足を付ける場合は <code>data/glossaries/記事ID.json</code> を追加する。<code>label</code> と <code>match</code> を分けると、正式な導入表記を優先して装飾できる。</li>
         <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
       </ol>
-      <p class="dialog-note">本文も検索対象。favorite は1〜5、grow は「あとで育てたい度」1〜5を想定。旧 <code>data/glossary.json</code> は互換用として読み込める。</p>
+      <p class="dialog-note">日本語版を正本とし、English Mix版は同じ記事の派生表示として扱う。読了状態・After Reading・ブラウザ内メモは記事ID単位で共有される。</p>
     </form>
   </dialog>
 
@@ -147,6 +149,7 @@
   <script src="selection-note-bridge.js?v=20260813-1353" defer></script>
   <script src="selection-tools.js?v=20260813-1353" defer></script>
   <script src="ui-enhancements.js?v=20260817-1040" defer></script>
-  <script src="reading-state-ui.js?v=20260818-2202" defer></script>
+  <script src="reading-state-ui.js?v=20260818-2210" defer></script>
+  <script src="english-mix.js?v=20260818-2210" defer></script>
 </body>
 </html>
