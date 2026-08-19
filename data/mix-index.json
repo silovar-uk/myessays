@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "claude-delegation-horizon-opus-fable": "english-mix/claude-delegation-horizon-opus-fable.md",
     "how-to-read-fx-news-causal-chains": "english-mix/how-to-read-fx-news-causal-chains.md",
     "commentary-as-technology-of-noticing": "english-mix/commentary-as-technology-of-noticing.md",
     "os-world-under-the-city": "english-mix/os-world-under-the-city.md"
