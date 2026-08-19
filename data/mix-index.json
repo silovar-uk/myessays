@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "reading-disengagement-loss-of-recoverability": "english-mix/reading-disengagement-loss-of-recoverability.md",
     "sato-teru-eight-category-dominance": "english-mix/sato-teru-eight-category-dominance.md",
     "claude-delegation-horizon-opus-fable": "english-mix/claude-delegation-horizon-opus-fable.md",
     "how-to-read-fx-news-causal-chains": "english-mix/how-to-read-fx-news-causal-chains.md",
