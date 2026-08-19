@@ -174,7 +174,10 @@ Standards of Coherenceとは、読者がある読書状況で「どの種類の�
 
 という反復の中で生まれると考える方が自然である。
 
-また、理解が苦手な読者についても、「矛盾そのものを全く検知できない」とは限らない。coherence breakをオンラインでは検出していても、それを十分な心的表象へ統合できない場合があることが報告されている。ここでも、**破綻を検知することと、破綻から回復することは別の能力**として考える必要がある。
+また、理解が苦手な読者についても、「矛盾そのものを全く検知できない」とは限らない。8〜11歳のgood comprehendersとpoor comprehendersを比較した研究では、読書中のcoherence break検知には群差が見られなくても、読了後に不整合を報告する成績ではpoor comprehendersが劣った。研究者らは、困難の一部を初期検知ではなく、情報を一貫したmental representationへ符号化する過程に位置づけている。  
+[Helder, van Leijenhorst & van den Broek, 2016](https://doi.org/10.1016/j.lindif.2016.02.008)
+
+ここでも、**破綻を検知することと、破綻から回復して一貫した表象へ組み込むことは別の問題**として考える必要がある。
 
 ---
 
@@ -473,7 +476,7 @@ Schurerらのnetworked hypertext研究も近いが、操作対象はリンク構
 「ある難度を超えると全員が突然ポキッと折れる」という普遍的閾値を示す証拠はない。
 
 mind wanderingが文章難度とともにほぼ線形に増える結果も報告されており、topic interestなどとの相互作用もある。  
-[Kahmann et al., 2021/2022](https://doi.org/10.1007/s00426-021-01483-9)
+[Kahmann et al., 2022](https://doi.org/10.1007/s00426-021-01483-9)
 
 また、2023年のメタ分析でも、text difficultyやtext interestなどの候補がmind wanderingと読解の関係を有意にmoderateするとは確認されなかった。  
 [Bonifacci et al., 2023](https://doi.org/10.3758/s13423-022-02141-w)
@@ -647,6 +650,8 @@ mind wanderingが文章難度とともにほぼ線形に増える結果も報告
   https://doi.org/10.1080/01638539309544830
 - Linderholm, T., Everson, M. G., van den Broek, P., Mischinski, M., Crittenden, A., & Samuels, J. (2000). “Effects of Causal Text Revisions on More- and Less-Skilled Readers’ Comprehension of Easy and Difficult Texts.” *Cognition and Instruction, 18*(4), 525–556.  
   https://doi.org/10.1207/S1532690XCI1804_4
+- Helder, A., van Leijenhorst, L., & van den Broek, P. (2016). “Coherence monitoring by good and poor comprehenders in elementary school: Comparing offline and online measures.” *Learning and Individual Differences, 48*, 17–23.  
+  https://doi.org/10.1016/j.lindif.2016.02.008
 - van den Broek, P., Bohn-Gettler, C., Kendeou, P., Carlson, S., & White, M. J. (2011). “When a reader meets a text: The role of standards of coherence in reading comprehension.” In *Text Relevance and Learning from Text*.  
   https://experts.umn.edu/en/publications/when-a-reader-meets-a-text-the-role-of-standards-of-coherence-in--2/
 - Mills, C., Bosch, N., Graesser, A., & D’Mello, S. (2014). “To Quit or Not to Quit: Predicting Future Behavioral Disengagement from Reading Patterns.” *Intelligent Tutoring Systems 2014*, 19–28.  
@@ -669,5 +674,5 @@ mind wanderingが文章難度とともにほぼ線形に増える結果も報告
   https://doi.org/10.1037/a0035098
 - Undorf, M., & Ackerman, R. (2017). “The puzzle of study time allocation for the most challenging items.” *Psychonomic Bulletin & Review, 24*(6), 2003–2011.  
   https://doi.org/10.3758/s13423-017-1261-4
-- Kahmann, R., Droop, M., & Lazonder, A. W. (2022). “Mind wandering increases linearly with text difficulty.” *Psychological Research*.  
+- Kahmann, R., Ozuer, Y., Zedelius, C. M., & Bijleveld, E. (2022). “Mind wandering increases linearly with text difficulty.” *Psychological Research, 86*, 284–293.  
   https://doi.org/10.1007/s00426-021-01483-9
