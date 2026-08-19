@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "minto-pyramid-thinking-structure-ai": "english-mix/minto-pyramid-thinking-structure-ai.md",
     "goodharts-law-proxy-target-design": "english-mix/goodharts-law-proxy-target-design.md",
     "reading-disengagement-loss-of-recoverability": "english-mix/reading-disengagement-loss-of-recoverability.md",
     "sato-teru-eight-category-dominance": "english-mix/sato-teru-eight-category-dominance.md",
