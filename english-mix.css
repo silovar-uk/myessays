@@ -1,65 +1,68 @@
 .reader-language-switch {
+  position: fixed;
+  z-index: 32;
+  right: 8px;
+  top: calc(39% - 66px);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 10px 0 20px;
-  padding: 11px 12px 11px 14px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  margin: 0;
+  padding: 6px;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255,255,255,.68);
-  box-shadow: 0 6px 20px rgba(39,32,24,.045);
+  border-radius: 12px;
+  background: rgba(244,241,234,.95);
+  box-shadow: 0 8px 28px rgba(39,32,24,.07);
+  backdrop-filter: blur(10px);
+  transition: right .2s ease, opacity .14s ease, transform .14s ease;
 }
 
-.reader-language-switch-copy {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  min-width: 0;
+.reader-language-switch[hidden] {
+  display: none !important;
 }
 
 .reader-language-switch-label {
-  color: var(--ink);
-  font-size: 9px;
-  font-weight: 850;
-  letter-spacing: .13em;
-  white-space: nowrap;
-}
-
-.reader-language-switch-note {
+  align-self: flex-start;
+  padding-left: 4px;
   color: var(--muted);
-  font-size: 10px;
-  white-space: nowrap;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  line-height: 1;
 }
 
 .reader-language-switch-buttons {
   display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 4px;
-  padding: 3px;
+  align-items: stretch;
+  gap: 2px;
+  padding: 2px;
   border-radius: 999px;
   background: rgba(213,207,194,.42);
 }
 
 .reader-language-switch button {
-  min-height: 32px;
-  padding: 6px 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 26px;
+  padding: 4px 8px;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 700;
+  line-height: 1.15;
   white-space: nowrap;
   cursor: pointer;
   transition: background .15s ease, color .15s ease, box-shadow .15s ease, opacity .15s ease;
 }
 
 .reader-language-switch button:hover:not(:disabled):not(.is-active) {
-  background: rgba(255,255,255,.48);
+  background: rgba(255,255,255,.54);
   color: var(--ink);
 }
 
@@ -70,48 +73,69 @@
 }
 
 .reader-language-switch button:disabled {
-  background: rgba(188,184,176,.22);
-  color: rgba(94,88,80,.46);
+  background: rgba(188,184,176,.18);
+  color: rgba(94,88,80,.43);
   cursor: not-allowed;
   opacity: .78;
+}
+
+.reader-language-unavailable {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 999px;
+  background: rgba(160,156,149,.14);
+  color: rgba(94,88,80,.5);
+  font-size: 7px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.reader-language-unavailable[hidden] {
+  display: none !important;
 }
 
 .reader-language-switch.is-mix-unavailable .reader-language-switch-buttons {
   background: rgba(205,202,196,.30);
 }
 
-@media (max-width: 620px) {
-  .reader-language-switch {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 8px;
-    margin: 8px 0 16px;
-    padding: 10px;
-  }
+body.glossary-is-open .reader-language-switch {
+  right: 372px;
+}
 
-  .reader-language-switch-copy {
-    justify-content: space-between;
+@media (max-width: 1120px) and (min-width: 761px) {
+  body.glossary-is-open .reader-language-switch {
+    opacity: 0;
+    pointer-events: none;
+    right: 8px;
+  }
+}
+
+@media (max-width: 760px) {
+  .reader-language-switch {
+    top: auto;
+    right: 8px;
+    bottom: 146px;
+    padding: 5px;
+    border-radius: 11px;
   }
 
   .reader-language-switch-label {
-    font-size: 8.5px;
-  }
-
-  .reader-language-switch-note {
-    font-size: 9px;
-  }
-
-  .reader-language-switch-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-    box-sizing: border-box;
+    font-size: 7px;
   }
 
   .reader-language-switch button {
-    width: 100%;
-    min-height: 34px;
-    padding: 7px 8px;
-    font-size: 10px;
+    min-height: 27px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+
+  .reader-language-unavailable {
+    display: none;
+  }
+
+  body.glossary-is-open .reader-language-switch {
+    opacity: 0;
+    pointer-events: none;
+    right: 8px;
   }
 }
