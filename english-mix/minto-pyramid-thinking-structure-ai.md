@@ -50,7 +50,7 @@ But the deeper question comes before writing.
 
 ## 1. ミントが解こうとしたのは「文章」の問題ではなかった
 
-Barbara Minto joined McKinsey & Company in 1963 and later worked in London. McKinsey describes her as the firm’s first female MBA professional hire.
+Barbara Minto joined McKinsey & Company in 1963, worked in Cleveland, and later moved to London. McKinsey describes her as the firm’s first female MBA professional hire.
 
 彼女が目をつけたのは、コンサルタントが書く報告書だった。
 
@@ -139,9 +139,9 @@ Collect facts. Group similar things. Notice differences. Look for relationships.
 
 **Thinking is not only collecting information. It is creating meaning above information.**
 
-考えるとは、情報を増やすことだけではない。
+情報の上に、新しい意味の層をつくる。
 
-It means building a new layer of meaning on top of information.
+**This move—climbing one level above the facts—is close to the core of the Pyramid Principle.**
 
 ---
 
@@ -153,7 +153,7 @@ Mutually Exclusive, Collectively Exhaustive。
 
 重複なく、全体として漏れなく分ける。
 
-In McKinsey’s retrospective, Minto says she coined the abbreviation and applied it to groups of ideas, while also joking that the underlying logic goes back to Aristotle.
+In McKinsey’s retrospective, Minto says she coined the abbreviation and applied it to groups of ideas, while also noting that the underlying logic goes back to Aristotle.
 
 MECEは便利だ。
 
