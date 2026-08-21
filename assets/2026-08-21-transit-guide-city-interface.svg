@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">与野から表参道までの50分を分解した経路図</title>
+  <desc id="desc">与野10時52分発、浦和、渋谷を経由し、表参道11時42分着。乗車39分と乗換・待ち時間11分で構成される。</desc>
+  <rect width="1200" height="680" rx="32" fill="#f7f7f5"/>
+  <text x="72" y="82" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" font-weight="700" fill="#202124">10:52 → 11:42</text>
+  <text x="72" y="120" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" fill="#6b6f76">50分を、移動と「つなぎ目」に分けて見る</text>
+
+  <line x1="128" y1="270" x2="1072" y2="270" stroke="#d7d9dd" stroke-width="10" stroke-linecap="round"/>
+  <line x1="128" y1="270" x2="330" y2="270" stroke="#3167d5" stroke-width="10" stroke-linecap="round"/>
+  <line x1="330" y1="270" x2="454" y2="270" stroke="#b9bdc5" stroke-width="10" stroke-linecap="round" stroke-dasharray="12 14"/>
+  <line x1="454" y1="270" x2="850" y2="270" stroke="#3167d5" stroke-width="10" stroke-linecap="round"/>
+  <line x1="850" y1="270" x2="982" y2="270" stroke="#b9bdc5" stroke-width="10" stroke-linecap="round" stroke-dasharray="12 14"/>
+  <line x1="982" y1="270" x2="1072" y2="270" stroke="#3167d5" stroke-width="10" stroke-linecap="round"/>
+
+  <g fill="#ffffff" stroke="#202124" stroke-width="4">
+    <circle cx="128" cy="270" r="17"/>
+    <circle cx="330" cy="270" r="17"/>
+    <circle cx="850" cy="270" r="17"/>
+    <circle cx="1072" cy="270" r="17"/>
+  </g>
+
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="#202124">
+    <text x="128" y="220" text-anchor="middle" font-size="27" font-weight="700">与野</text>
+    <text x="128" y="324" text-anchor="middle" font-size="20">10:52</text>
+
+    <text x="330" y="220" text-anchor="middle" font-size="27" font-weight="700">浦和</text>
+    <text x="330" y="324" text-anchor="middle" font-size="20">10:58 / 11:03</text>
+
+    <text x="850" y="220" text-anchor="middle" font-size="27" font-weight="700">渋谷</text>
+    <text x="850" y="324" text-anchor="middle" font-size="20">11:34 / 11:40</text>
+
+    <text x="1072" y="220" text-anchor="middle" font-size="27" font-weight="700">表参道</text>
+    <text x="1072" y="324" text-anchor="middle" font-size="20">11:42</text>
+  </g>
+
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="228" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#3167d5">乗車 6分</text>
+    <text x="392" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#6b6f76">待ち 5分</text>
+    <text x="652" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#3167d5">乗車 31分</text>
+    <text x="916" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#6b6f76">乗換 6分</text>
+    <text x="1027" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#3167d5">乗車 2分</text>
+  </g>
+
+  <rect x="72" y="472" width="1056" height="126" rx="22" fill="#ffffff" stroke="#dedfe2"/>
+  <text x="104" y="520" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="19" font-weight="700" fill="#202124">39分</text>
+  <text x="168" y="520" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="19" fill="#5f6368">電車に乗っている時間</text>
+  <text x="104" y="558" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="19" font-weight="700" fill="#202124">11分</text>
+  <text x="168" y="558" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="19" fill="#5f6368">待つ・歩く・列車同士をつなぐ時間</text>
+  <text x="735" y="544" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#202124">50分 = 移動 + coordination</text>
+</svg>
