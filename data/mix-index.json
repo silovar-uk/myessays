@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "tenmou-kaikai-justice": "english-mix/tenmou-kaikai-justice.md",
     "minto-pyramid-thinking-structure-ai": "english-mix/minto-pyramid-thinking-structure-ai.md",
     "chopin-four-scherzos-life-transformation": "english-mix/chopin-four-scherzos-life-transformation.md",
     "goodharts-law-proxy-target-design": "english-mix/goodharts-law-proxy-target-design.md",
