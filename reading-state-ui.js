@@ -134,15 +134,16 @@
   }
 
   function toggleCompleted(id) {
-    if (!id) return;
+    if (!id) return false;
     const reading = readState(id);
     const openedAt = reading.openedAt || new Date().toISOString();
     if (reading.completedAt) {
       const { completedAt, ...rest } = reading;
       writeState(id, { ...rest, openedAt });
-    } else {
-      writeState(id, { ...reading, openedAt, completedAt: new Date().toISOString() });
+      return false;
     }
+    writeState(id, { ...reading, openedAt, completedAt: new Date().toISOString() });
+    return true;
   }
 
   async function copyText(text) {
@@ -352,22 +353,56 @@
     return button;
   }
 
-  function ensureCompleteButton() {
+  function revealCompletionZone(zone) {
+    if (!zone || zone.dataset.revealReady === 'true') return;
+    zone.dataset.revealReady = 'true';
+
+    if (!('IntersectionObserver' in window)) {
+      zone.classList.add('is-visible');
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      const entry = entries[0];
+      if (!entry?.isIntersecting) return;
+      zone.classList.add('is-visible');
+      observer.disconnect();
+    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+
+    observer.observe(zone);
+  }
+
+  function ensureCompletionZone() {
     const id = currentEssayId();
     const content = document.getElementById('readerContent');
     if (!id || !content || !content.children.length) return null;
 
-    let button = content.querySelector('.reading-complete-button');
-    if (!button) {
-      button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'reading-complete-button';
-      button.addEventListener('click', () => {
+    let zone = content.querySelector('.reading-completion-zone');
+    if (!zone) {
+      zone = document.createElement('section');
+      zone.className = 'reading-completion-zone';
+      zone.setAttribute('aria-label', '読了を記録');
+      zone.innerHTML = `
+        <div class="reading-completion-divider" aria-hidden="true"><span></span><i>◦</i><span></span></div>
+        <p class="reading-completion-kicker">END OF ESSAY</p>
+        <h2 class="reading-completion-title">ここで、ひと区切り。</h2>
+        <p class="reading-completion-message">読み終えた記録を残して、次の一本へ。</p>
+        <button type="button" class="reading-complete-button" aria-pressed="false"></button>
+        <p class="reading-completion-status" aria-live="polite" aria-atomic="true"></p>`;
+
+      const button = zone.querySelector('.reading-complete-button');
+      button?.addEventListener('click', () => {
         const target = currentEssayId();
         if (!target) return;
-        toggleCompleted(target);
-        syncReader();
+        const completed = toggleCompleted(target);
+        syncReader({ announce: true });
         scheduleLibrarySync();
+
+        if (completed) {
+          zone.classList.remove('just-completed');
+          requestAnimationFrame(() => zone.classList.add('just-completed'));
+          window.setTimeout(() => zone.classList.remove('just-completed'), 680);
+        }
       });
     }
 
@@ -375,35 +410,53 @@
     const endNavigation = content.querySelector('.reader-end-navigation');
     const anchor = reflections || endNavigation;
     if (anchor) {
-      if (button.nextElementSibling !== anchor) anchor.insertAdjacentElement('beforebegin', button);
-    } else if (button !== content.lastElementChild) {
-      content.appendChild(button);
+      if (zone.nextElementSibling !== anchor) anchor.insertAdjacentElement('beforebegin', zone);
+    } else if (zone !== content.lastElementChild) {
+      content.appendChild(zone);
     }
 
-    return button;
+    revealCompletionZone(zone);
+    return zone;
   }
 
-  function syncReader() {
-    readerSyncQueued = false;
+  function syncCompletionZone(options = {}) {
     const id = currentEssayId();
     if (!id) return;
 
-    markOpened(id);
-    ensureCopyButton();
-    const button = ensureCompleteButton();
-    if (!button) return;
+    const zone = ensureCompletionZone();
+    const button = zone?.querySelector('.reading-complete-button');
+    const status = zone?.querySelector('.reading-completion-status');
+    if (!zone || !button) return;
 
     const completed = progressFor(id) === 'completed';
     const stateName = completed ? 'completed' : 'open';
+    zone.classList.toggle('is-completed', completed);
     button.classList.toggle('is-completed', completed);
     button.setAttribute('aria-pressed', String(completed));
 
     if (button.dataset.completionState !== stateName) {
       button.dataset.completionState = stateName;
       button.innerHTML = completed
-        ? '<span class="reading-complete-icon" aria-hidden="true">✓</span><span class="reading-complete-label">読了済み</span><small>もう一度押すと解除</small>'
-        : '<span class="reading-complete-icon" aria-hidden="true">○</span><span class="reading-complete-label">読了にする</span><small>この記事を読み終えたら</small>';
+        ? '<span class="reading-complete-icon" aria-hidden="true">✓</span><span class="reading-complete-copy"><strong class="reading-complete-label">読了しました</strong><small>記録済み · もう一度押すと解除</small></span>'
+        : '<span class="reading-complete-icon" aria-hidden="true">○</span><span class="reading-complete-copy"><strong class="reading-complete-label">読了を記録する</strong><small>読み終えた記事として保存</small></span>';
     }
+
+    button.title = completed ? 'もう一度押すと読了を解除' : 'この記事を読み終えた記録を残す';
+    if (status) {
+      status.textContent = options.announce
+        ? (completed ? '読了を記録しました。' : '読了記録を解除しました。')
+        : '';
+    }
+  }
+
+  function syncReader(options = {}) {
+    readerSyncQueued = false;
+    const id = currentEssayId();
+    if (!id) return;
+
+    markOpened(id);
+    ensureCopyButton();
+    syncCompletionZone(options);
   }
 
   function scheduleReaderSync() {
