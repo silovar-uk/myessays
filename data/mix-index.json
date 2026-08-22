@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "hanfeizi-fa-bu-e-gui-rules-systems": "english-mix/hanfeizi-fa-bu-e-gui-rules-systems.md",
     "laozi-shangshan-ruoshui-water-noncontention": "english-mix/laozi-shangshan-ruoshui-water-noncontention.md",
     "tenmou-kaikai-justice": "english-mix/tenmou-kaikai-justice.md",
     "minto-pyramid-thinking-structure-ai": "english-mix/minto-pyramid-thinking-structure-ai.md",
