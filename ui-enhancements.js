@@ -7,6 +7,7 @@
   const noteTextarea = document.getElementById('noteTextarea');
   const clearNote = document.getElementById('clearNote');
   const quoteToNote = document.getElementById('quoteToNote');
+  const siteHeader = document.querySelector('.site-header');
 
   if (!readerView || !readerContent || !noteTab || !noteTextarea) return;
 
@@ -35,6 +36,10 @@
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
     return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  function updateHeaderMode() {
+    siteHeader?.classList.toggle('is-library-view', !isReaderVisible());
   }
 
   function resetLibraryPosition() {
@@ -144,6 +149,7 @@
 
   function syncSoon() {
     requestAnimationFrame(() => {
+      updateHeaderMode();
       updateProgress();
       updateMemoDot();
       updateLibraryNoteMarks();
@@ -173,6 +179,7 @@
     if (!id) {
       lastRestoredId = '';
       resetLibraryPosition();
+      syncSoon();
       return;
     }
     syncSoon();
@@ -200,9 +207,13 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) saveReadingPosition();
     else if (currentEssayId()) syncSoon();
-    else resetLibraryPosition();
+    else {
+      resetLibraryPosition();
+      syncSoon();
+    }
   });
 
+  updateHeaderMode();
   if (!currentEssayId()) resetLibraryPosition();
   setTimeout(syncSoon, 0);
 })();
