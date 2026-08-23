@@ -1,6 +1,8 @@
 {
   "version": 1,
   "mixes": {
+    "mencius-compassion-sprout": "english-mix/mencius-compassion-sprout.md",
+    "zhuangzi-well-frog-limited-perspective": "english-mix/zhuangzi-well-frog-limited-perspective.md",
     "hanfeizi-fa-bu-e-gui-rules-systems": "english-mix/hanfeizi-fa-bu-e-gui-rules-systems.md",
     "confucius-harmony-without-sameness": "english-mix/confucius-harmony-without-sameness.md",
     "laozi-shangshan-ruoshui-water-noncontention": "english-mix/laozi-shangshan-ruoshui-water-noncontention.md",
