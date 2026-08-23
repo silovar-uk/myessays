@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "tsunku-ism-results-and-conditions": "english-mix/tsunku-ism-results-and-conditions.md",
     "simplicity-isnt-minimalism": "english-mix/simplicity-isnt-minimalism.md",
     "expected-sokuon-motor-cue": "english-mix/expected-sokuon-motor-cue.md",
     "bic-camera-history-bic-not-big": "english-mix/bic-camera-history-bic-not-big.md",
