@@ -215,3 +215,28 @@
     padding-right:7px;
   }
 }
+
+/* Library mode: make the archive landing state unmistakable from Reader mode. */
+.site-header {
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.site-header.is-library-view {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom-color: rgba(244,241,234,.18);
+}
+.site-header.is-library-view .brand-note {
+  color: rgba(244,241,234,.58);
+}
+.site-header.is-library-view .ghost-button {
+  color: var(--paper);
+  border-color: rgba(244,241,234,.34);
+}
+.site-header.is-library-view .ghost-button:hover {
+  background: rgba(244,241,234,.12);
+}
+.site-header.is-library-view .brand:focus-visible,
+.site-header.is-library-view .ghost-button:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 3px;
+}
