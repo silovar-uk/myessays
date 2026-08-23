@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "kyoki-joyful-surprise": "english-mix/kyoki-joyful-surprise.md",
     "utsunomiya-takasaki-shonan-shinjuku-ueno-tokyo": "english-mix/utsunomiya-takasaki-shonan-shinjuku-ueno-tokyo.md",
     "mencius-compassion-sprout": "english-mix/mencius-compassion-sprout.md",
     "zhuangzi-well-frog-limited-perspective": "english-mix/zhuangzi-well-frog-limited-perspective.md",
