@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "urawa-machida-progress-not-points": "english-mix/urawa-machida-progress-not-points.md",
     "india-pale-ale-history-hops-craft-beer": "english-mix/india-pale-ale-history-hops-craft-beer.md",
     "seriousness-carries-fear": "english-mix/seriousness-carries-fear.md",
     "tsunku-ism-results-and-conditions": "english-mix/tsunku-ism-results-and-conditions.md",
