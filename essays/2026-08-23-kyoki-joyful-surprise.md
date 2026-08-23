@@ -1,20 +1,20 @@
 ---
 id: kyoki-joyful-surprise
 title: "驚喜をつくる"
-subtitle: "人を喜ばせるために、少しだけ期待を超える"
+subtitle: "人を喜ばせるために、少しだけ期待を超える / A little beyond expectation"
 created: "2026-08-23"
 updated: "2026-08-23"
 type: "Learning Essay"
 status: "完成"
 tags: ["驚喜", "コミュニケーション", "体験設計", "サービス", "仕事", "人間関係"]
-keywords: ["驚喜", "joyful surprise", "customer delight", "surprise", "kindness", "期待", "体験設計", "delight"]
+keywords: ["驚喜", "joyful surprise", "pleasant surprise", "customer delight", "surprise", "kindness", "期待", "体験設計", "delight"]
 favorite: 5
 grow: 5
 abstract: "『驚喜』という言葉を、自分が大切にしたい行動原則として捉え直す。驚かせること自体を目的にするのではなく、相手をよく見たうえで期待を少しだけ越え、思わず嬉しくなる瞬間をつくる。辞書にある本来の意味、customer delight研究、親切の効果を過小評価しやすいという心理学研究を手がかりに、仕事や日常で再現できる『驚喜』の条件と、やりすぎないための境界線を考える。"
 ---
 
 # 驚喜をつくる
-## 人を喜ばせるために、少しだけ期待を超える
+## 人を喜ばせるために、少しだけ期待を超える / A little beyond expectation
 
 ## 要旨
 
@@ -36,9 +36,13 @@ abstract: "『驚喜』という言葉を、自分が大切にしたい行動原
 
 > **驚かせることを目的にしない。喜ばせるために、期待を少しだけ超える。**
 
+**Don’t surprise for attention. Surprise for joy.**
+
 これが、自分にとっての驚喜である。
 
 ## 1. 「満足」と「驚喜」は少し違う
+
+**Satisfaction meets expectations. Delight bends them in a good way.**
 
 頼んだものが、頼んだ通りに出てくる。
 
@@ -70,7 +74,11 @@ abstract: "『驚喜』という言葉を、自分が大切にしたい行動原
 
 驚喜は、絶対量ではなく相対差で生まれる。
 
+**It’s not about how much. It’s about the gap between expected and received.**
+
 ## 2. 驚かせるのではなく、「見ていた」と伝える
+
+**A good surprise says, “I noticed you.”**
 
 では、何をすれば人は驚喜するのか。
 
@@ -112,6 +120,8 @@ abstract: "『驚喜』という言葉を、自分が大切にしたい行動原
 
 ## 3. 小さな親切は、やる側が思うより大きい
 
+**Small kindness lands bigger than we think.**
+
 驚喜について考えていて、かなり好きな研究を見つけた。
 
 Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行為を受けた人の喜びをどのくらい正確に予想できるかを調べた。
@@ -140,7 +150,11 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 「こんな小さなことでは意味がない」と切り捨てないことなのかもしれない。
 
+**A little good can go a long way.**
+
 ## 4. 驚喜には「余白」がいる
+
+**Today’s delight can become tomorrow’s expectation.**
 
 ただし、ここには難しい問題もある。
 
@@ -168,7 +182,11 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 驚喜は「施策」よりも、「構え」に近い。
 
+**Don’t standardize the surprise. Standardize the attention.**
+
 ## 5. 「期待を超える」は、盛ることではない
+
+**More is not better. More fitting is better.**
 
 ビジネスではよく「期待を超える」という言葉を使う。
 
@@ -206,11 +224,15 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 大事なのは「どれだけやったか」ではなく、「どれだけ相手に合っていたか」である。
 
+**Not more effort. Better aim.**
+
 ## 6. 驚喜をつくる三つの条件
 
 ここまでを、自分なりに三つに整理してみる。
 
 ### 1. まず期待を満たす
+
+**Trust comes first.**
 
 驚喜は、基本品質の代わりにはならない。
 
@@ -220,11 +242,15 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 ### 2. 相手を具体的に見る
 
+**See the person, not the average person.**
+
 「人が喜ぶこと」ではなく、「この人が喜ぶこと」を考える。
 
 驚喜は一般論より解像度から生まれる。
 
 ### 3. 一段だけ超える
+
+**One step beyond is enough.**
 
 三段も四段も超えなくていい。
 
@@ -236,11 +262,15 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 > **信頼できる基本 + 相手への解像度 + 小さな予想外 = 驚喜**
 
+> **Reliable basics + personal attention + a small positive surprise = Kyoki**
+
 もちろん厳密な式ではない。
 
 でも、判断するときのメモとしては使える気がする。
 
 ## 7. 仕事にも、日常にも持ち込みたい
+
+**A good surprise can be quiet.**
 
 驚喜は、接客業だけの話ではない。
 
@@ -264,7 +294,11 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 演出されたサプライズより、「自分のことを少し考えてくれていた」という発見の方が、長く残ることがある。
 
+**Quiet care often lasts longer than loud surprise.**
+
 ## 8. 自分が「すごい」と思われるためではない
+
+**If I become the hero, it stops being Kyoki.**
 
 最後に、一番気をつけたいことがある。
 
@@ -286,9 +320,13 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 
 > **驚喜は、相手の喜びを主役にした驚きである。**
 
+> **The surprise is secondary. Their joy is the point.**
+
 この線だけは外したくない。
 
 ## 9. 「驚喜」を自分の判断基準にする
+
+**What is one small thing they wouldn’t expect, but would genuinely appreciate?**
 
 これから何かをつくるとき、最後に一度だけ問いを置いてみたい。
 
@@ -315,6 +353,8 @@ Amit KumarとNicholas Epleyは、日常的な親切をした人が、その行�
 自分の仕事や人との関わりに、そういう余白を残しておきたい。
 
 **驚かせたいのではない。喜ばせたい。その喜びが、少しだけ予想外であってほしい。**
+
+**A little beyond expected. A little closer to joy.**
 
 それが、いま自分が大事にしたい「驚喜」である。
 
