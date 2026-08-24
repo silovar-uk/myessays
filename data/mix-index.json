@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "matsuura-aya-history-solo-persona": "english-mix/matsuura-aya-history-solo-persona.md",
     "minimoni-history-format-ip": "english-mix/minimoni-history-format-ip.md",
     "melon-kinenbi-history-live-community": "english-mix/melon-kinenbi-history-live-community.md",
     "country-musume-country-girls-history-brand-redefinition": "english-mix/country-musume-country-girls-history-brand-redefinition.md",
