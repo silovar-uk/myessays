@@ -3,8 +3,10 @@
 
   const SERIES_ROUTE = /^#\/series(?:\/(.+))?$/;
   const READING_PREFIX = 'myessays:reading-state:';
+  const LEGACY_METADATA_URL = 'data/series-legacy.json';
   const ROOT_ID = 'seriesView';
   const TOOLBAR_BUTTON_ID = 'seriesLibraryButton';
+  let legacyArticles = Object.create(null);
   let refreshQueued = false;
 
   function escapeHtml(value = '') {
@@ -13,12 +15,41 @@
     }[char]));
   }
 
-  function allEssays() {
+  async function loadLegacyMetadata() {
+    try {
+      const response = await fetch(LEGACY_METADATA_URL, { cache: 'no-store' });
+      if (!response.ok) return;
+      const data = await response.json();
+      if (data?.articles && typeof data.articles === 'object') legacyArticles = data.articles;
+    } catch (error) {
+      console.warn('[MyEssaysSeries] legacy metadata unavailable', error);
+    }
+  }
+
+  function rawEssays() {
     try {
       return typeof state !== 'undefined' && Array.isArray(state.essays) ? state.essays : [];
     } catch {
       return [];
     }
+  }
+
+  function effectiveEssay(essay) {
+    if (!essay?.id) return essay;
+    const legacy = legacyArticles[essay.id];
+    if (!legacy) return essay;
+    // Explicit front matter always wins. The migration layer only fills old gaps.
+    const merged = { ...legacy, ...essay };
+    if (!String(essay.series || '').trim() && legacy.series) merged.series = legacy.series;
+    if ((essay.seriesOrder === undefined || essay.seriesOrder === null || essay.seriesOrder === '') && legacy.seriesOrder !== undefined) {
+      merged.seriesOrder = legacy.seriesOrder;
+    }
+    if (!String(essay.seriesId || '').trim() && legacy.seriesId) merged.seriesId = legacy.seriesId;
+    return merged;
+  }
+
+  function allEssays() {
+    return rawEssays().map(effectiveEssay);
   }
 
   function safeLocalGet(key) {
@@ -101,6 +132,11 @@
       used.set(slug, series.name);
       return { ...series, slug };
     });
+  }
+
+  function seriesForEssayId(id) {
+    if (!id) return null;
+    return buildSeries().find(series => series.items.some(item => item.id === id)) || null;
   }
 
   function statsFor(series) {
@@ -221,6 +257,11 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
+  function displayOrder(item, index) {
+    if (!Number.isFinite(Number(item.seriesOrder))) return String(index + 1).padStart(2, '0');
+    return String(Number(item.seriesOrder)).padStart(2, '0');
+  }
+
   function renderSeriesHub(series) {
     const root = ensureRoot();
     if (!root) return;
@@ -232,12 +273,9 @@
     const next = continueItem(series);
     const rows = series.items.map((item, index) => {
       const status = readingStatus(item.id);
-      const order = Number.isFinite(Number(item.seriesOrder))
-        ? String(Number(item.seriesOrder)).padStart(2, '0')
-        : String(index + 1).padStart(2, '0');
       return `
         <a class="series-essay-row is-${status}" href="${essayUrl(item)}">
-          <span class="series-essay-number">${order}</span>
+          <span class="series-essay-number">${displayOrder(item, index)}</span>
           <div class="series-essay-copy">
             <h2>${escapeHtml(item.title || '')}</h2>
             <p>${escapeHtml(shortText(item.abstract || item.subtitle || '', 132))}</p>
@@ -319,18 +357,44 @@
     link.hidden = seriesList.length === 0;
   }
 
-  function findSeriesForEssay(essay) {
-    if (!essay?.series) return null;
-    return buildSeries().find(series => series.name === essay.series) || null;
+  function seriesNavLink(item, direction) {
+    if (!item) return '<div class="reader-end-link reader-end-link--empty" aria-hidden="true"></div>';
+    const previous = direction === 'previous';
+    return `
+      <a class="reader-end-link ${previous ? 'reader-end-link--previous' : 'reader-end-link--next'}" href="${essayUrl(item)}">
+        <span class="reader-nav-label">${previous ? '← シリーズ前へ' : 'シリーズ次へ →'}</span>
+        <strong>${escapeHtml(item.title || '')}</strong>
+      </a>`;
+  }
+
+  function ensureLegacySequence(root, rawEssay, series, index) {
+    if (String(rawEssay.series || '').trim()) return;
+    const sequence = root.querySelector('.reader-sequence-navigation');
+    if (!sequence) return;
+    const links = sequence.querySelector('.reader-end-links');
+    if (!links) return;
+
+    sequence.setAttribute('aria-label', 'シリーズ前後の記事');
+    links.innerHTML = `
+      ${seriesNavLink(index > 0 ? series.items[index - 1] : null, 'previous')}
+      ${seriesNavLink(index < series.items.length - 1 ? series.items[index + 1] : null, 'next')}`;
+
+    if (!sequence.querySelector('.reader-series-sequence-meta')) {
+      const meta = document.createElement('div');
+      meta.className = 'reader-series-sequence-meta';
+      meta.innerHTML = `<p class="reader-related-kicker">SERIES</p><p class="reader-related-note">${escapeHtml(series.name)} · ${index + 1}/${series.items.length}</p>`;
+      links.insertAdjacentElement('beforebegin', meta);
+    }
   }
 
   function renderReaderContext(context) {
-    const { root, essay } = context || {};
-    if (!root || !essay) return;
+    const { root, essay: rawEssay } = context || {};
+    if (!root || !rawEssay) return;
     root.querySelector('.reader-series-context')?.remove();
     root.querySelector('.reader-series-hub-link')?.remove();
 
-    const series = findSeriesForEssay(essay);
+    const essay = effectiveEssay(rawEssay);
+    const series = seriesForEssayId(essay.id);
     if (!series) return;
     const index = series.items.findIndex(item => item.id === essay.id);
     if (index < 0) return;
@@ -348,6 +412,8 @@
     const firstHeading = root.querySelector('h1');
     if (firstHeading) firstHeading.insertAdjacentElement('beforebegin', contextBar);
     else root.insertAdjacentElement('afterbegin', contextBar);
+
+    ensureLegacySequence(root, rawEssay, series, index);
 
     const sequence = root.querySelector('.reader-sequence-navigation');
     if (sequence) {
@@ -390,11 +456,12 @@
     observer.observe(grid, { childList: true, subtree: true });
   }
 
-  function init() {
+  async function init() {
     ensureRoot();
     ensureLibraryEntry();
     registerReaderPlugin();
     observeLibrary();
+    await loadLegacyMetadata();
     scheduleRefresh();
     window.addEventListener('hashchange', () => requestAnimationFrame(renderRoute));
     window.addEventListener('pageshow', () => scheduleRefresh());
@@ -405,6 +472,7 @@
 
   window.MyEssaysSeries = Object.freeze({
     getAll: buildSeries,
+    getForEssay: seriesForEssayId,
     renderRoute,
     slugFor: name => buildSeries().find(series => series.name === name)?.slug || baseSeriesSlug(name)
   });
