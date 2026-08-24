@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -12,7 +12,7 @@
       "canonical": "essays/2026-08-24-morning-musume-history-renewal-system.md",
       "englishMix": "english-mix/morning-musume-history-renewal-system.md",
       "centralQuestion": "創設メンバーが一人もいなくなった後も、なぜ同じ名前で30年近く続けられたのか",
-      "thesis": "モーニング娘。は特定メンバーの集合ではなく、加入・卒業・リーダー継承・楽曲再演・年号表記によって同じ物語を更新する制度になった。",
+      "thesis": "加入・卒業・リーダー継承・楽曲再演・年号表記によって、特定メンバーではなく更新手続きそのものをグループの制度にした。",
       "survivalModel": "system_survives",
       "status": "complete"
     },
@@ -22,9 +22,8 @@
       "canonical": "essays/2026-08-24-taiyo-ciscomoon-history-compressed-legacy.md",
       "englishMix": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md",
       "centralQuestion": "実力派4人組は、なぜ1年半の活動でも25年以上ハロプロ史に残り続けたのか",
-      "thesis": "更新可能な組織としては短命だったが、異なる専門性を持つ4人の化学反応と高密度な約20曲が後輩へ継承され、制度ではなくレパートリーが長期的に生き残った。",
+      "thesis": "固定4人の化学反応と高密度な作品群が後輩へ歌い継がれ、組織ではなくレパートリーが長期的に生き残った。",
       "survivalModel": "repertoire_survives",
-      "keyContrast": "モーニング娘。が人を替えて制度を残したのに対し、太陽とシスコムーンは4人の固定的な化学反応が終わった後も作品が残った。",
       "status": "complete"
     },
     {
@@ -32,10 +31,9 @@
       "essayId": "country-musume-country-girls-history-brand-redefinition",
       "canonical": "essays/2026-08-24-country-musume-country-girls-history-brand-redefinition.md",
       "englishMix": "english-mix/country-musume-country-girls-history-brand-redefinition.md",
-      "centralQuestion": "同じ名前の系譜は、なぜ北海道の半農半芸から都市型アイドル、さらに兼任中心の活動へ何度も作り替えられたのか",
-      "thesis": "メンバー、活動場所、運営方式が途切れても『カントリー』という名前を閉じず、里田まいと旧曲を橋にして時代ごとに別の意味を入れ直した。継続したのは固定形ではなく再起動可能性だった。",
+      "centralQuestion": "同じ名前の系譜は、なぜ半農半芸から都市型アイドル、兼任中心の活動へ何度も作り替えられたのか",
+      "thesis": "メンバー・場所・運営方式が断絶しても『カントリー』という名前を閉じず、旧曲と里田まいを橋にしてブランドの意味を入れ替え続けた。",
       "survivalModel": "brand_survives_by_redefinition",
-      "keyContrast": "モーニング娘。は連続運転する制度、太陽とシスコムーンは解散後も残る作品、カントリーは空白期間を許容しながら再定義できるブランド名を残した。",
       "status": "complete"
     },
     {
@@ -43,11 +41,9 @@
       "essayId": "melon-kinenbi-history-live-community",
       "canonical": "essays/2026-08-24-melon-kinenbi-history-live-community.md",
       "englishMix": "english-mix/melon-kinenbi-history-live-community.md",
-      "centralQuestion": "メンバーチェンジをせず約10年活動した4人組は、なぜハロプロの中で独自のライブ文化を作り、解散15年後にも再集結できたのか",
-      "thesis": "固定4人のままライブハウス、Melon Lounge、ロックシーンへ環境を変え続け、観客との共有文法と所属感を蓄積した。解散後もそのライブ共同体が残り、2025–26年の期間限定再結成を支えた。",
+      "centralQuestion": "メンバーチェンジをせず約10年活動した4人組は、なぜ独自のライブ文化を作れたのか",
+      "thesis": "固定4人のままライブハウスやロックシーンへ環境を変え、観客との共有文法・所属感を蓄積したことで、解散後にも再集合できる共同体を残した。",
       "survivalModel": "community_survives",
-      "keyContrast": "メンバーを替えて制度を継ぐのではなく、人を固定したまま観客との関係を深くし、解散後も再集合できる共同体を残した。",
-      "reunionNote": "2025–26年の25周年再結成は大谷雅恵の意思を尊重した3人体制。完全復元ではなく現在の条件で共同体を再起動した事例として扱う。",
       "status": "complete"
     },
     {
@@ -55,11 +51,9 @@
       "essayId": "minimoni-history-format-ip",
       "canonical": "essays/2026-08-24-minimoni-history-format-ip.md",
       "englishMix": "english-mix/minimoni-history-format-ip.md",
-      "centralQuestion": "身長150cm以下という小さな企画ユニットは、なぜハロプロを子ども市場・アニメ・映画・商品へ拡張できたのか",
-      "thesis": "ミニモニ。は特定メンバーだけでなく、色、4人編成、ゲーム、真似できる身体動作、キャラクター、小道具を組み合わせた可搬性の高いフォーマットを作った。2004年に正史の連続運転を封印した後も、新ミニモニ。、世代横断再演、25周年商品として再利用できた。",
+      "centralQuestion": "身長150cm以下という企画は、なぜ子ども市場・アニメ・映画・商品へ拡張できたのか",
+      "thesis": "色、4人編成、ゲーム、身体動作、キャラクター、小道具を組み合わせた可搬性の高いフォーマットが、正史停止後も別キャスト・別媒体へ再利用された。",
       "survivalModel": "format_survives_as_ip",
-      "keyContrast": "モーニング娘。が制度を連続運転したのに対し、ミニモニ。は正史を止めてもフォーマットの文法を別キャスト・別媒体へ再レンダリングできた。",
-      "archiveNote": "2025年の25周年商品ではCDだけでなく、ミニモニ。テレフォン、コンパクト、カメラ、ミニモちゃん等の小道具・キャラクター記号が再商品化された。",
       "status": "complete"
     },
     {
@@ -67,11 +61,9 @@
       "essayId": "matsuura-aya-history-solo-persona",
       "canonical": "essays/2026-08-24-matsuura-aya-history-solo-persona.md",
       "englishMix": "english-mix/matsuura-aya-history-solo-persona.md",
-      "centralQuestion": "グループ全盛のハロプロで、なぜ一人のソロアイドルが巨大な独立ブランドとして成立し、長い活動休止後も同じ名前で再接続できたのか",
-      "thesis": "歌・表情・テレビ・CM・ライブを一人の身体へ集中させて『あやや』という強い人格ブランドを作り、その後は過去のアイドル像を否定せず、歌唱・作家・活動頻度を変えることで同じ本人が自分自身を再解釈し続けた。",
+      "centralQuestion": "グループ全盛のハロプロで、なぜ一人のソロアイドルが巨大な独立ブランドになれたのか",
+      "thesis": "歌・表情・テレビ・CM・ライブを一人へ集約した強い人格ブランドを作り、年齢・歌唱・作家・活動頻度を変えながら同じ本人が過去を再解釈し続けた。",
       "survivalModel": "persona_survives_by_reinterpretation",
-      "keyContrast": "グループのように役割を後輩へ渡せない代わりに、同じ本人が年齢・歌い方・活動量を変えながら過去のレパートリーと現在を接続する。",
-      "archiveNote": "2024–25年の7インチ復刻と2026年デビュー25周年WEB CMは、全盛期の活動量を再現せずとも本人と歌声だけで過去のブランド記憶を現在へ再接続できる例。",
       "status": "complete"
     },
     {
@@ -79,11 +71,9 @@
       "essayId": "berryz-kobo-history-shared-time",
       "canonical": "essays/2026-08-24-berryz-kobo-history-shared-time.md",
       "englishMix": "english-mix/berryz-kobo-history-shared-time.md",
-      "centralQuestion": "同じキッズ世代が長く一緒に成長したグループは、なぜメンバー交代より『時間の共有』を資産にできたのか",
-      "thesis": "当初はメンバー交代も想定されたが、石村舞波卒業後は7人を固定し、同じ人たちが小学生から大人へ変わる過程そのものをコンテンツ化した。過去曲が年齢とともに別の意味を持ち、活動停止後も一部メンバーのライブから7人時代全体の記憶を再起動できる。",
+      "centralQuestion": "同じキッズ世代が長く一緒に成長したグループは、なぜ『時間の共有』を資産にできたのか",
+      "thesis": "石村舞波卒業後の7人を長く固定し、同じ人たちが子どもから大人へ変わる過程そのものをコンテンツ化した。",
       "survivalModel": "shared_time_survives",
-      "keyContrast": "モーニング娘。が構成員を替えて物語を更新したのに対し、Berryz工房は構成員を固定し、同じ人間の成長によって物語を更新した。",
-      "reunionNote": "2024、2025、2026年のBerryz工房名義ライブは須藤茉麻・夏焼雅・熊井友理奈の3人体制。7人完全再結成ではなく、部分的な再集合から11年間の共有記憶を呼び起こす事例として扱う。",
       "status": "complete"
     },
     {
@@ -91,11 +81,9 @@
       "essayId": "cute-history-performance-standard",
       "canonical": "essays/2026-08-24-cute-history-performance-standard.md",
       "englishMix": "english-mix/cute-history-performance-standard.md",
-      "centralQuestion": "Berryz工房に先に名前が与えられた後、共通名を持たなかった側から始まったグループは、なぜハロプロ屈指のパフォーマンス集団へ変われたのか",
-      "thesis": "結成時の比較軸ではなく、インディーズ、離脱後の5人体制、技能分化、難度の高い楽曲、ライブ経験を通じて『歌・ダンス・ステージ精度』という自分たちに有利な評価軸を作った。解散後も℃-ute曲が現役グループの力量を示す課題曲として再演され、パフォーマンス基準そのものが残っている。",
+      "centralQuestion": "共通名を持たなかった側から始まったグループは、なぜハロプロ屈指のパフォーマンス集団へ変われたのか",
+      "thesis": "人数減少後の5人体制で技能差を可視化し、歌・ダンス・ライブ精度という自分たちの評価軸を作り、解散後も課題曲として基準を残した。",
       "survivalModel": "performance_standard_survives",
-      "keyContrast": "Berryz工房が固定コホートの共有時間を資産にしたのに対し、℃-uteは人数減少後の少人数編成で技能差を可視化し、グループ全体をパフォーマンスの物差しへ変えた。",
-      "archiveNote": "2023年ハロプロ25周年公演ではBEYOOOOONDSが『Kiss me 愛してる』、つばきファクトリーが『大きな愛でもてなして』、モーニング娘。'23が『Danceでバコーン！』を再演。解散後も℃-ute楽曲が現役メンバーのパフォーマンスを見せる素材として機能している。",
       "status": "complete"
     },
     {
@@ -103,11 +91,9 @@
       "essayId": "buono-history-autonomous-side-project",
       "canonical": "essays/2026-08-24-buono-history-autonomous-side-project.md",
       "englishMix": "english-mix/buono-history-autonomous-side-project.md",
-      "centralQuestion": "Berryz工房と℃-uteから人材を借りたタイアップユニットは、なぜ親グループの説明なしでも成立する独立したロック・アイドルブランドへ成長できたのか",
-      "thesis": "『しゅごキャラ！』という外部目的から始まりながら、専用レパートリー、Dolceとの生バンド環境、3人の歌唱配置、単独ライブ、海外公演、『初恋サイダー』という独立した入口を積み上げ、出身組織では代替できない音楽人格を作った。",
+      "centralQuestion": "親グループから人材を借りたタイアップユニットは、なぜ独立したロック・アイドルブランドになれたのか",
+      "thesis": "専用レパートリー、生バンド環境、3人の歌唱配置、単独ライブ、海外公演を蓄積し、親グループの説明なしでも成立する音楽人格を作った。",
       "survivalModel": "autonomous_side_project_survives",
-      "keyContrast": "Berryz工房と℃-uteがそれぞれ本体として人と時間を蓄積したのに対し、Buono!は両組織から借りた人材の組み合わせ自体を新しい本体へ変えた。",
-      "archiveNote": "2025年のサブスク解禁ではBuono!がBerryz工房・℃-uteとは別のアーティスト名で並び、『初恋サイダー』もカバーやSNSを通じて再注目された。活動終了後も親グループの予備知識なしで発見できる独立カタログになっている。",
       "status": "complete"
     },
     {
@@ -115,11 +101,9 @@
       "essayId": "smileage-angerme-history-renewal-capacity",
       "canonical": "essays/2026-08-24-smileage-angerme-history-renewal-capacity.md",
       "englishMix": "english-mix/smileage-angerme-history-renewal-capacity.md",
-      "centralQuestion": "4人のスマイレージとして始まったグループは、なぜ改名・増員・卒業・制作体制変更を繰り返しながら、別物になり続けること自体を強みにできたのか",
-      "thesis": "成功した現行形を聖域化せず、初期メンバー在籍中から3期加入と改名を設計し、その後も複数の加入経路、作家陣、リーダー世代を更新した。継承されたのは特定の形ではなく、危機になる前に自分たちを作り替える自己更新能力だった。",
+      "centralQuestion": "改名・増員・卒業・制作体制変更を繰り返しながら、なぜ別物になり続けることを強みにできたのか",
+      "thesis": "成功した現行形を聖域化せず、危機になる前に次世代と新しい作家・象徴を内部へ入れ、自己更新能力そのものを継承した。",
       "survivalModel": "renewal_capacity_survives",
-      "keyContrast": "モーニング娘。が名前と基本制度を固定して構成員を替えるのに対し、アンジュルムは構成員だけでなく名前・人数・制作体制・リーダー像まで更新対象にし、更新手続きそのものを継承した。",
-      "archiveNote": "2026年現在はスマイレージ時代を経験した現役メンバーが一人もおらず、改名を決めた世代も卒業済み。それでも伊勢鈴蘭リーダー・為永幸音サブリーダーの9人体制で活動し、2026年7月に37thシングルを発売している。",
       "status": "complete"
     },
     {
@@ -127,11 +111,9 @@
       "essayId": "juice-juice-history-capability-pipeline",
       "canonical": "essays/2026-08-24-juice-juice-history-capability-pipeline.md",
       "englishMix": "english-mix/juice-juice-history-capability-pipeline.md",
-      "centralQuestion": "初期の強い歌唱メンバーが全員卒業しても、なぜ『歌えるグループ』という評価を次世代へ渡し続けられたのか",
-      "thesis": "難度の高いレパートリー、先輩と新人の同時在籍、一般オーディション・研修生・移籍という複数の入口、役割分散を組み合わせ、個人の歌唱力を一代限りの資産ではなく再生産可能な組織能力へ変えた。2024年に初期メンバーがゼロになった後も、育てられた中途加入者がリーダーとなって次世代を育てる循環が続いている。",
+      "centralQuestion": "初期の強い歌唱メンバーが全員卒業しても、なぜ『歌えるグループ』を世代交代できたのか",
+      "thesis": "高難度レパートリー、先輩後輩の重複期間、複数の採用入口、役割分散によって個人能力を再生産可能な組織能力へ変えた。",
       "survivalModel": "capability_pipeline_survives",
-      "keyContrast": "℃-uteが解散後にパフォーマンス基準を残したのに対し、Juice=Juiceは活動を継続しながら、その基準を満たす人材を組織内部で繰り返し育て直す。",
-      "archiveNote": "2026年現在は段原瑠々リーダー、井上玲音サブリーダーの11人体制。2025年加入の林仁愛まで含む現行世代にも高難度曲が与えられ、初期メンバー不在後も歌唱力がグループの評価軸として機能している。",
       "status": "complete"
     },
     {
@@ -139,11 +121,9 @@
       "essayId": "kobushi-factory-history-reconstruction",
       "canonical": "essays/2026-08-24-kobushi-factory-history-reconstruction.md",
       "englishMix": "english-mix/kobushi-factory-history-reconstruction.md",
-      "centralQuestion": "研修生8人で始まり、2017年に3人が相次いで離れた後、残った5人はなぜ元の形を復元せず別の完成形を作れたのか",
-      "thesis": "2017年の3人の離脱を一つの原因へ単純化せず、残った5人が補充を行わない状態で役割を再配置し、アカペラ・コーラス・ハモリという新能力を獲得した過程として読む。『辛夷第二幕』では危機後の技能が正式な商品となり、5人の第二の人格が初期8人とは別のグループ像を完成させた。",
+      "centralQuestion": "8人から5人へ縮小した後、なぜ元の形を復元せず別の完成形を作れたのか",
+      "thesis": "5人で役割を再配置し、アカペラ・コーラス・ハモリという新能力を獲得して、危機前とは異なる第二の人格を完成させた。",
       "survivalModel": "reconstructed_identity_survives",
-      "keyContrast": "Juice=Juiceが新加入を重ねて能力を世代間で再生産するのに対し、こぶしファクトリーは新加入を行わず、残った5人の役割と能力を作り直して一つのチームとして完成させた。",
-      "archiveNote": "2019年『辛夷第二幕』初回生産限定盤Bにはアカペラ集を収録。2020年3月30日のラストライブはCOVID-19の影響で無観客となったが生中継され、5人体制で獲得した歌唱・アカペラの記録が残った。井上玲音は解散後Juice=Juiceへ加入した。",
       "status": "complete"
     },
     {
@@ -151,83 +131,77 @@
       "essayId": "tsubaki-factory-history-layered-cohorts",
       "canonical": "essays/2026-08-24-tsubaki-factory-history-layered-cohorts.md",
       "englishMix": "english-mix/tsubaki-factory-history-layered-cohorts.md",
-      "centralQuestion": "研修生6人から始まり、2016・2021・2024・2025年と新しい世代を重ね、初期世代が卒業しても、なぜ『つばきらしさ』を断絶させず更新できたのか",
-      "thesis": "新しい世代を既存世代が在籍しているうちに先に加入させ、一定の重複期間を持たせた後で旧世代が少しずつ卒業することで、大きな世代交代を複数の小さな断絶へ分解した。歌や技能だけでなく、恋愛曲の感情表現、MC、ライブの空気を新旧世代の同居によって渡し、2026年には5つの加入時点を持つ11人が同じブランドを共有している。",
+      "centralQuestion": "新しい世代を何度も重ねながら、なぜ『つばきらしさ』を断絶させず更新できたのか",
+      "thesis": "新世代を旧世代の在籍中に加入させて重複期間を作り、大きな世代交代を複数の小さな断絶へ分解した。",
       "survivalModel": "layered_cohort_survives",
-      "keyContrast": "こぶしファクトリーが危機後に新加入をせず残った5人で第二の完成形を作ったのに対し、つばきファクトリーは完成形を固定せず、新しい世代を何度も上に重ねることで連続性を作った。",
-      "archiveNote": "2026年現在は2015年結成の谷本安美、2016年加入組、2021年加入組、2024年加入組、2025年加入の西村乙輝が同時在籍。世代間の重複そのものが継承装置になっている。",
+      "status": "complete"
+    },
+    {
+      "group": "BEYOOOOONDS",
+      "essayId": "beyooooonds-history-combinatorial-identity",
+      "canonical": "essays/2026-08-24-beyooooonds-history-combinatorial-identity.md",
+      "englishMix": "english-mix/beyooooonds-history-combinatorial-identity.md",
+      "centralQuestion": "複数ユニット、個人特技、寸劇を抱える複雑な構造は、なぜ分かりにくさではなく作品を生むエンジンになったのか",
+      "thesis": "内部ユニット、役柄、ピアノやビートボックス等の個人技能を固定配線せずモジュールとして扱い、作品ごとに組み替えることで、完成形ではなく組み合わせ方そのものをアイデンティティにした。2026年の3人加入でも新人を内部ユニットへ再配置し、構造を更新した。",
+      "survivalModel": "combinatorial_identity_survives",
+      "archiveNote": "2026年現在はCHICA#TETSU 4人、雨ノ森 川海4人、SeasoningS 3人の11人体制。2018年のオリジナル構成員が複数卒業した後も、内部ユニット制そのものを新メンバー配置によって再起動している。",
       "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "BEYOOOOONDS",
-      "centralQuestion": "複数ユニットと個人の特技を組み合わせた複雑な構造は、なぜ『分かりにくさ』ではなく作品を生むエンジンになったのか",
+      "group": "OCHA NORMA",
+      "centralQuestion": "研修生ユニットと一般オーディション合格者を統合して始まった10人組は、なぜ『新しい標準』を掲げる必要があったのか",
       "status": "next"
     },
-    {"group": "OCHA NORMA", "status": "planned"},
-    {"group": "ロージークロニクル", "status": "planned"}
+    {
+      "group": "ロージークロニクル",
+      "status": "planned"
+    }
   ],
   "survivalModels": [
     {"id": "system_survives", "meaning": "構成員を替えながら制度・名前・継承ルールを連続運転する"},
     {"id": "repertoire_survives", "meaning": "組織終了後も楽曲が後輩の再演によって文化的に活動し続ける"},
     {"id": "brand_survives_by_redefinition", "meaning": "活動空白や運営方式の断絶を許容し、名前の意味を入れ替えて再起動する"},
-    {"id": "community_survives", "meaning": "固定メンバーと観客が共有したライブの作法・記憶・所属感が、組織終了後も再集合可能性を保つ"},
-    {"id": "format_survives_as_ip", "meaning": "正史の活動を停止しても、視覚記号・キャスティング原理・遊び方・キャラクターを別キャストや別媒体へ移植できる"},
-    {"id": "persona_survives_by_reinterpretation", "meaning": "一人の演者が過去の人格ブランドを否定せず、年齢・歌唱・作家・活動頻度を変えながら同じ名前の意味を更新する"},
-    {"id": "shared_time_survives", "meaning": "同じ構成員が長期間成長を共有し、本人たちと観客が蓄積した時間そのものが、楽曲再解釈や部分的再集合から再起動できる資産になる"},
-    {"id": "performance_standard_survives", "meaning": "組織終了後も楽曲・ライブ像・技能評価が後輩の課題曲や比較軸として機能し、グループが作ったパフォーマンス基準そのものが残る"},
-    {"id": "autonomous_side_project_survives", "meaning": "親組織から借りた人材で始まった派生企画が、専用レパートリー・専用現場・独自役割を蓄積し、親組織の説明なしでも成立する独立ブランドになる"},
-    {"id": "renewal_capacity_survives", "meaning": "現行のブランド・人数・制作体制・リーダーを聖域化せず、危機になる前に次世代を内部へ入れ、成功した形さえ作り替える自己更新能力そのものが継承される"},
-    {"id": "capability_pipeline_survives", "meaning": "強い個人の能力を一代限りの資産にせず、先輩後輩の重複期間、難度の高い仕事、複数の採用入口、役割分散によって同等以上の能力を次世代で再生産する"},
-    {"id": "reconstructed_identity_survives", "meaning": "大きな断絶の後に旧体制を復元せず、残った構成員の能力と関係性に合わせて新しい強みを獲得し、その第二の人格を後世に残す"},
-    {"id": "layered_cohort_survives", "meaning": "新世代を旧世代の在籍中に先に加入させ、重複期間を作って文化を混ぜた後に旧世代が段階的に離れることで、大きな世代交代を複数の小さな断絶へ分解する"}
+    {"id": "community_survives", "meaning": "固定メンバーと観客が共有したライブの作法・記憶・所属感が組織終了後も再集合可能性を保つ"},
+    {"id": "format_survives_as_ip", "meaning": "正史停止後も視覚記号・キャスティング原理・遊び方を別キャストや別媒体へ移植できる"},
+    {"id": "persona_survives_by_reinterpretation", "meaning": "一人の演者が年齢・歌唱・作家・活動頻度を変えながら過去の人格ブランドを更新する"},
+    {"id": "shared_time_survives", "meaning": "同じ構成員が長期間共有した成長と記憶そのものが再起動可能な資産になる"},
+    {"id": "performance_standard_survives", "meaning": "組織終了後も楽曲と技能評価が後輩の課題曲や比較軸として残る"},
+    {"id": "autonomous_side_project_survives", "meaning": "派生企画が専用レパートリー・専用現場・独自役割を蓄積して親組織から独立した説明可能性を得る"},
+    {"id": "renewal_capacity_survives", "meaning": "成功した形を聖域化せず、自己更新の許可と手続きを次世代へ継承する"},
+    {"id": "capability_pipeline_survives", "meaning": "個人能力を先輩後輩の重複、高難度仕事、複数採用入口、役割分散で次世代に再生産する"},
+    {"id": "reconstructed_identity_survives", "meaning": "大きな断絶後に旧体制を復元せず、残った構成員に合わせた第二の人格を作る"},
+    {"id": "layered_cohort_survives", "meaning": "新世代を旧世代の在籍中に先に入れ、重複期間の後に旧世代が段階的に離れることで断絶を小さくする"},
+    {"id": "combinatorial_identity_survives", "meaning": "人・内部ユニット・役柄・個人技能をモジュールとして扱い、完成形ではなく組み替える権利と方法そのものをアイデンティティとして継承する"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, autonomous side-project identities, renewal capacity, capability pipelines, reconstructed identities, and layered cohorts can each preserve continuity in different ways.",
-    "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
-    "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
-    "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
-    "A fixed lineup can accumulate relational capital: repeated interaction between the same performers and audience can make live rituals and shared memory more valuable than chart scale.",
-    "A fixed cohort can also turn human development into content. The same song sung by the same people at different ages becomes an autobiographical record rather than a static repertoire item.",
-    "Partial reunions can reactivate full-group memory when the historical value lies in accumulated shared time rather than in an active succession system.",
-    "A strong format reduces explanation cost. If colors, gestures, rules, songs, and props make a unit instantly legible, the concept can travel across age groups and media.",
-    "A solo identity concentrates brand equity and brand risk in the same person. It can create unusually strong recognition, but adaptation requires self-reinterpretation rather than member replacement.",
-    "A disadvantaged initial comparison can be escaped by changing the metric. If a group builds distinctive capabilities, those capabilities can become the new standard on which later groups are judged.",
-    "Performance reputation is broader than athletic difficulty: vocal interpretation, stillness, rhythm, audience control, and consistency all contribute to a durable performance standard.",
-    "A side project becomes autonomous when it owns resources that the parent groups cannot substitute: dedicated repertoire, a distinct performance environment, an audience, and a gateway work discoverable without organizational backstory.",
-    "Identity can become independent before resources do. Side projects may remain dependent on parent-group calendars even after audiences perceive them as standalone brands.",
-    "Continuity can be a meta-capability rather than a fixed identity: an organization may survive because each generation inherits permission and procedure to redefine what the organization is.",
-    "Succession is more robust when founders transfer authorship before departure. Adding successors and changing symbols while founders are still present can reduce the identity shock of founder exit.",
-    "A capability becomes organizational when the group can reproduce it after the original expert leaves. Overlap periods, demanding repertoire and distributed roles convert tacit individual skill into a repeatable pipeline.",
-    "Multiple recruitment channels can coexist with a strong identity when entry is flexible but post-entry standards are shared.",
-    "Post-crisis recovery does not require restoration. A smaller team can create a new identity by learning capabilities that the old configuration did not need, and that second identity can become the group's strongest legacy.",
-    "When a reconstructed team is intentionally member-specific, successful recovery can coexist with later dissolution; organizational continuation and team completion are different objectives.",
-    "Layered succession reduces identity shock by overlapping cohorts before departures. Large organizational change can be made culturally continuous when it is decomposed into smaller discontinuities over time.",
-    "Overlap protects continuity but can reduce clarity: organizations with many simultaneous cohorts must repeatedly explain who represents the present and what remains distinctive.",
-    "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
-    "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
-    "Reunion or return does not require exact restoration. Respecting present agency and current life stage can preserve historical legitimacy better than forcing a complete replica of the past."
+    "Hello! Project has multiple survival models; longevity alone is not the only measure of continuity.",
+    "Member interchangeability and member-specific chemistry are different organizational designs with different failure modes.",
+    "Repertoire inheritance can keep short-lived groups culturally active after the organization ends.",
+    "A brand can preserve option value across inactive periods if its name and repertoire remain reusable.",
+    "Fixed cohorts can convert shared human development into content and relational capital.",
+    "Strong formats reduce explanation cost but may require strategic suspension when defining constraints disappear.",
+    "Performance standards and capability pipelines are different: one leaves a benchmark, the other repeatedly reproduces people who can meet it.",
+    "Succession is more robust when founders transfer authorship and culture before departure.",
+    "Post-crisis recovery does not require restoration; a smaller team can build a second identity around new capabilities.",
+    "Layered cohorts reduce identity shock by letting old and new generations work together before departures.",
+    "Complexity can be an asset when components are modular. The important capability is not having many parts, but being able to recombine them into legible works.",
+    "Flexibility has an identity cost, while stability has an adaptation cost. Durable groups decide what remains fixed and what is allowed to change."
   ],
   "researchRules": [
     "Research first; do not write from memory alone.",
     "Use official sources for dates, joins, graduations, releases and current lineups.",
     "Use interviews and reporting to interpret turning points, but distinguish interpretation from official fact.",
     "Include negative history without rumor or villain framing.",
-    "Treat songs as historical evidence: identify what changed in the group's identity, audience, system or performance through each key song.",
+    "Treat songs as historical evidence: identify what changed in identity, audience, system or performance through each key song.",
     "Connect each group history back to the broader Hello! Project system.",
     "Compare survival models across groups instead of assuming longevity is the only measure of success.",
-    "For real-world tragedy or health-related departures, state only well-supported facts, avoid sensational detail, and do not use personal suffering as a narrative shortcut.",
-    "When covering reunions or returns, distinguish the historical operating model from the actual present-day activity and respect stated non-participation or limited activity without speculation.",
-    "For character or media-mix histories, distinguish the human performer lineup, fictional/character layer, tie-in product, and later archive merchandise.",
-    "For solo histories, distinguish a constructed public persona from the performer's own statements and avoid treating either as the complete private person.",
-    "When comparing sibling groups, do not turn structural asymmetry into a simplistic winner/loser story. Use official wording for selection and naming, and treat later reputation as earned rather than predetermined.",
-    "When describing performance reputation, separate sourced skill observations from later fan mythology and avoid treating technical difficulty as the only form of performance quality.",
-    "For side-project histories, distinguish original external purpose, parent-group resource dependence, and the point at which the project develops non-substitutable repertoire, live context, audience, or discoverability.",
-    "For renaming and self-reinvention histories, distinguish discontinuity of surface identity from continuity of governance, repertoire, members, and succession. Do not assume a name change is either a total reset or a purely cosmetic rebrand.",
-    "For current active groups, verify the current lineup and leadership from a fresh official profile before publication.",
-    "For capability-pipeline histories, distinguish individual star skill from organizational reproduction mechanisms. Look for overlap periods, assignment of difficult repertoire, recruitment routes, role redistribution and whether successors themselves become trainers or leaders.",
-    "For post-crisis reconstruction histories, keep departure causes distinct, do not manufacture a single villain or cause, and distinguish restoration of the old structure from deliberate redesign around the remaining members.",
-    "For layered-cohort histories, map exact join and departure dates to verify real overlap. Distinguish cultural transfer created by coexistence from simple chronological replacement, and note the clarity cost of many simultaneous cohorts."
+    "For health-related or personal departures, state only well-supported facts and avoid speculation.",
+    "For current active groups, verify current lineup and leadership from a fresh official profile before publication.",
+    "For capability histories, distinguish individual talent from organizational reproduction mechanisms.",
+    "For post-crisis reconstruction histories, keep departure causes distinct and distinguish restoration from redesign.",
+    "For layered-cohort histories, verify actual overlap periods and do not equate all additions with formal generations.",
+    "For modular or multi-unit groups, distinguish full-group identity, subunit membership, individual skills and temporary performance roles; test whether those components are actually recombined in works rather than merely listed in profiles."
   ]
 }
