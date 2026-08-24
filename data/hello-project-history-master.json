@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "updated": "2026-08-24",
+  "scope": "Hello! Project history, 1997-2026",
+  "canonicalEssayId": "hello-project-history-series-map",
+  "principle": "People x Music x System x Society",
+  "workingHypothesis": "Hello! Project has endured not because it avoided change, but because it institutionalized change through recruitment, development, graduation, regrouping, and repertoire inheritance.",
+  "eras": [
+    {
+      "id": "era-0",
+      "period": "1997-1999",
+      "label": "前史と成立",
+      "keywords": ["ASAYAN", "敗者復活", "テレビ", "つんく♂", "モーニング娘。"]
+    },
+    {
+      "id": "era-1",
+      "period": "1999-2004",
+      "label": "マスメディア巨大化期",
+      "keywords": ["黄金期", "派生ユニット", "テレビ", "子ども市場", "ソロアイドル"]
+    },
+    {
+      "id": "era-2",
+      "period": "2002-2007",
+      "label": "Kidsと第二世代",
+      "keywords": ["ハロー！プロジェクト・キッズ", "Berryz工房", "℃-ute", "長期育成"]
+    },
+    {
+      "id": "era-3",
+      "period": "2007-2010",
+      "label": "テレビの中心からライブの強度へ",
+      "keywords": ["プラチナ期", "ライブ", "歌唱", "ダンス", "アイドル市場再編"]
+    },
+    {
+      "id": "era-4",
+      "period": "2011-2014",
+      "label": "再構築とアイドル戦国時代",
+      "keywords": ["9期・10期", "鞘師里保", "フォーメーションダンス", "One・Two・Three", "Juice=Juice"]
+    },
+    {
+      "id": "era-5",
+      "period": "2014-2019",
+      "label": "ポストつんく♂と研修生ファクトリー期",
+      "keywords": ["つんく♂総合P退任", "アンジュルム", "こぶしファクトリー", "つばきファクトリー", "BEYOOOOONDS"]
+    },
+    {
+      "id": "era-6",
+      "period": "2017-2022",
+      "label": "終わりと再編、そしてコロナ",
+      "keywords": ["℃-ute解散", "カントリー・ガールズ", "こぶしファクトリー解散", "COVID-19", "OCHA NORMA"]
+    },
+    {
+      "id": "era-7",
+      "period": "2023-2026",
+      "label": "アーカイブ化と次の30年",
+      "keywords": ["25周年", "過去MV公開", "サブスク", "ロージークロニクル", "新メンバー"]
+    }
+  ],
+  "timeline": [
+    {"date": "1997-09", "eventType": "formation", "group": "モーニング娘。", "event": "結成", "confidence": "high"},
+    {"date": "1997-11-03", "eventType": "release", "group": "モーニング娘。", "event": "インディーズシングル『愛の種』発売", "confidence": "high"},
+    {"date": "1998-01-26", "eventType": "system_change", "group": "Hello!", "event": "平家みちよとモーニング娘。の合同ファンクラブ『Hello!』設立", "confidence": "high"},
+    {"date": "1998-01-28", "eventType": "debut", "group": "モーニング娘。", "event": "『モーニングコーヒー』でメジャーデビュー", "confidence": "high"},
+    {"date": "1998-09-09", "eventType": "release", "group": "モーニング娘。", "event": "『抱いて HOLD ON ME!』発売、初の週間1位", "confidence": "high"},
+    {"date": "1999-04-01", "eventType": "rename", "group": "Hello! Project", "event": "ファンクラブ名を『Hello! Project』へ改称", "confidence": "high"},
+    {"date": "1999-09-09", "eventType": "release", "group": "モーニング娘。", "event": "『LOVEマシーン』発売、初ミリオン", "confidence": "high"},
+    {"date": "2000", "eventType": "system_change", "group": "Hello! Project", "event": "派生ユニットが拡大し、テレビ・子ども市場まで巨大化", "confidence": "medium"},
+    {"date": "2002-06-30", "eventType": "audition", "group": "ハロー！プロジェクト・キッズ", "event": "27,958人の応募から15人が合格", "confidence": "high"},
+    {"date": "2004-01-14", "eventType": "formation", "group": "Berryz工房", "event": "正式結成", "confidence": "high"},
+    {"date": "2005-06", "eventType": "formation", "group": "℃-ute", "event": "結成", "confidence": "high"},
+    {"date": "2007-2010", "eventType": "era_label", "group": "モーニング娘。", "event": "後年『プラチナ期』と呼ばれる時期。ライブ・歌唱・ダンスの蓄積が再評価される", "confidence": "medium"},
+    {"date": "2009-04", "eventType": "formation", "group": "スマイレージ", "event": "ハロプロエッグから結成", "confidence": "high"},
+    {"date": "2010-05", "eventType": "debut", "group": "スマイレージ", "event": "『夢見る 15歳』でメジャーデビュー。同年日本レコード大賞最優秀新人賞", "confidence": "high"},
+    {"date": "2011", "eventType": "join", "group": "モーニング娘。", "event": "9期・10期加入、大規模な世代交代が進行", "confidence": "high"},
+    {"date": "2012-07", "eventType": "release", "group": "モーニング娘。", "event": "50thシングル『One・Two・Three』発売、約10年ぶりに初週10万枚を突破", "confidence": "high"},
+    {"date": "2013-02-03", "eventType": "formation", "group": "Juice=Juice", "event": "ハロプロ研修生から結成発表", "confidence": "high"},
+    {"date": "2013", "eventType": "chart", "group": "モーニング娘。", "event": "『Help me!!』から3作連続週間1位", "confidence": "high"},
+    {"date": "2014-01-01", "eventType": "rename", "group": "モーニング娘。", "event": "年号付きグループ名へ移行し『モーニング娘。'14』に", "confidence": "high"},
+    {"date": "2014-08-02", "eventType": "hiatus_announcement", "group": "Berryz工房", "event": "2015年春からの無期限活動停止を発表", "confidence": "high"},
+    {"date": "2014-10", "eventType": "system_change", "group": "Hello! Project", "event": "つんく♂がハロー！プロジェクト総合プロデューサーを退任", "confidence": "high"},
+    {"date": "2014-12-17", "eventType": "rename", "group": "スマイレージ", "event": "『アンジュルム』への改名を発表", "confidence": "high"},
+    {"date": "2015-02-25", "eventType": "rename", "group": "こぶしファクトリー", "event": "新ユニット名発表。Berryz工房の『工房』の精神継承を名前に込める", "confidence": "high"},
+    {"date": "2015-03-03", "eventType": "hiatus", "group": "Berryz工房", "event": "無期限活動停止へ", "confidence": "high"},
+    {"date": "2015-04-29", "eventType": "formation", "group": "つばきファクトリー", "event": "結成", "confidence": "high"},
+    {"date": "2017-06-12", "eventType": "disbandment", "group": "℃-ute", "event": "さいたまスーパーアリーナ公演をもって解散", "confidence": "high"},
+    {"date": "2018-10-19", "eventType": "formation", "group": "BEYOOOOONDS", "event": "CHICA#TETSU、雨ノ森 川海、BEYOOOOONDSの名称発表", "confidence": "high"},
+    {"date": "2019-08", "eventType": "debut", "group": "BEYOOOOONDS", "event": "メジャーデビュー", "confidence": "high"},
+    {"date": "2019-12-26", "eventType": "hiatus", "group": "カントリー・ガールズ", "event": "活動休止", "confidence": "high"},
+    {"date": "2020-03-30", "eventType": "disbandment", "group": "こぶしファクトリー", "event": "解散。感染拡大を受けラストライブは無観客開催", "confidence": "high"},
+    {"date": "2021-12-12", "eventType": "formation", "group": "OCHA NORMA", "event": "結成", "confidence": "high"},
+    {"date": "2022", "eventType": "debut", "group": "OCHA NORMA", "event": "メジャーデビュー", "confidence": "high"},
+    {"date": "2023-08", "eventType": "archive", "group": "Hello! Project", "event": "25周年記念として過去MVの大規模公開開始", "confidence": "high"},
+    {"date": "2023-09", "eventType": "concert", "group": "Hello! Project", "event": "Hello! Project 25th ANNIVERSARY CONCERT開催", "confidence": "high"},
+    {"date": "2024-06-16", "eventType": "formation", "group": "ロージークロニクル", "event": "グループ名と9人体制を発表", "confidence": "high"},
+    {"date": "2025-03-19", "eventType": "debut", "group": "ロージークロニクル", "event": "メジャーデビューシングル発売", "confidence": "high"},
+    {"date": "2026-03-21", "eventType": "join", "group": "モーニング娘。'26", "event": "ハロプロ研修生・杉原明紗の加入を発表", "confidence": "high"},
+    {"date": "2026-06-16", "eventType": "join", "group": "BEYOOOOONDS", "event": "新メンバー加入、内部ユニットも更新", "confidence": "high"},
+    {"date": "2026-06-24", "eventType": "join", "group": "モーニング娘。'26", "event": "新メンバーが加わり、新世代編成へ", "confidence": "high"},
+    {"date": "2026-08-09", "eventType": "audition", "group": "Hello! Project", "event": "ハロー！プロジェクト新メンバーオーディション2026開始。2027年のモーニング娘。30周年、2028年のハロプロ30周年を見据えた募集", "confidence": "high"}
+  ],
+  "talentPipelines": [
+    {"id": "asayan", "label": "ASAYAN型", "flow": ["テレビオーディション", "モーニング娘。／太陽とシスコムーンなど"]},
+    {"id": "kids", "label": "Kids型", "flow": ["ハロー！プロジェクト・キッズ", "Berryz工房／℃-ute"]},
+    {"id": "egg-kenshusei", "label": "Egg / Kenshusei型", "flow": ["ハロプロエッグ／ハロプロ研修生", "新グループ結成／既存グループ加入"]},
+    {"id": "hybrid", "label": "Open Audition + Kenshusei Hybrid型", "flow": ["一般オーディション合格者＋研修生", "新グループ／既存グループで合流"]}
+  ],
+  "songRoles": ["Breakthrough", "Turning Point", "Fan Classic", "Musical Experiment", "Legacy Song"],
+  "series": {
+    "overview": [
+      "第0回 ハロー！プロジェクトとは何だったのか――1997–2026全体史",
+      "1997–1999：ASAYAN、モーニング娘。、Hello! Projectの成立",
+      "1999–2004：黄金期――テレビと派生ユニットの巨大実験",
+      "2002–2007：ハロプロキッズ――Berryz工房と℃-uteが変えた育成",
+      "2007–2010：プラチナ期――売上の外側でライブ文化が育った",
+      "2011–2014：再構築――アイドル戦国時代とモーニング娘。再浮上",
+      "2014–2019：ポストつんく♂――アンジュルム、Factory、BEYOOOOONDS",
+      "2019–2022：終わるグループ、生まれるグループ、コロナ",
+      "2023–2026：25周年から30周年へ――巨大アーカイブの継承"
+    ],
+    "groupHistories": ["モーニング娘。", "太陽とシスコムーン／T&Cボンバー", "カントリー娘。／カントリー・ガールズ", "メロン記念日", "ミニモニ。と派生ユニット", "松浦亜弥", "Berryz工房", "℃-ute", "Buono!", "スマイレージ／アンジュルム", "Juice=Juice", "こぶしファクトリー", "つばきファクトリー", "BEYOOOOONDS", "OCHA NORMA", "ロージークロニクル"],
+    "themeHistories": ["ハロー！プロジェクト・キッズ史", "ハロプロエッグ／ハロプロ研修生史", "オーディション史", "卒業というシステム", "リーダー史", "ハロコン史", "日本武道館とハロプロ", "振付とフォーメーションダンス", "つんく♂の音楽とポストつんく♂の作家たち", "楽曲のカバー／継承史", "テレビからYouTube・SNSへのメディア史", "女性ファンとファンダム", "握手会・リリースイベントとCDビジネス", "サブスク解禁と全曲アーカイブ化"]
+  },
+  "researchRules": [
+    "Research first; do not write from memory alone.",
+    "Prioritize official announcements and reinforce them with reporting and interviews.",
+    "Distinguish official facts from later labels, criticism, interpretation, and fan discourse.",
+    "Do not judge success or failure by sales alone.",
+    "Do not erase commercial difficulty with vague claims of fan affection.",
+    "Do not make individuals into villains; examine systems and circumstances.",
+    "Do not treat rumors as history.",
+    "Update this master file when stronger primary sources are found."
+  ],
+  "sources": [
+    "https://helloproject.com/",
+    "https://helloproject.com/morningmusume/",
+    "https://helloproject.com/angerme/",
+    "https://helloproject.com/juicejuice/",
+    "https://r.helloproject.com/berryzkobo/history/",
+    "https://helloproject.com/news/16294/",
+    "https://helloproject.com/news/1902/",
+    "https://helloproject.com/news/2501/",
+    "https://helloproject.com/news/5568/",
+    "https://helloproject.com/news/11156/",
+    "https://helloproject.com/news/11547/",
+    "https://helloproject.com/news/9386/",
+    "https://helloproject.com/news/17553/",
+    "https://hp-audition.com/",
+    "https://www.oricon.co.jp/special/50661/",
+    "https://www.oricon.co.jp/news/2033543/full/",
+    "https://realsound.jp/2017/11/post-124300.html",
+    "https://realsound.jp/2015/09/post-4522.html"
+  ]
+}
