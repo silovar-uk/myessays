@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "hello-project-history-07-2019-2022-covid": "english-mix/hello-project-history-07-2019-2022-covid.md",
     "hello-project-history-06-2014-2019-post-tsunku": "english-mix/hello-project-history-06-2014-2019-post-tsunku.md",
     "america-cities-04-detroit": "english-mix/america-cities-04-detroit.md",
     "hello-project-history-05-2011-2014-rebuild": "english-mix/hello-project-history-05-2011-2014-rebuild.md",
