@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "note": "One-time migration metadata for legacy essays created before the Series Engine. New essays must use front matter series/seriesOrder instead.",
+  "articles": {
+    "hello-project-1997-2026-overview": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 0
+    },
+    "hello-project-history-01-1997-1999": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 1
+    },
+    "hello-project-history-02-1999-2004": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 2
+    },
+    "hello-project-history-03-2002-2007-kids": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 3
+    },
+    "hello-project-history-04-2007-2010-platinum": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 4
+    },
+    "hello-project-history-05-2011-2014-rebuild": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 5
+    }
+  }
+}
