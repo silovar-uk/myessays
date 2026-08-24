@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -49,15 +49,26 @@
       "keyContrast": "メンバーを替えて制度を継ぐのではなく、人を固定したまま観客との関係を深くし、解散後も再集合できる共同体を残した。",
       "reunionNote": "2025–26年の25周年再結成は大谷雅恵の意思を尊重した3人体制。完全復元ではなく現在の条件で共同体を再起動した事例として扱う。",
       "status": "complete"
+    },
+    {
+      "group": "ミニモニ。と派生ユニット",
+      "essayId": "minimoni-history-format-ip",
+      "canonical": "essays/2026-08-24-minimoni-history-format-ip.md",
+      "englishMix": "english-mix/minimoni-history-format-ip.md",
+      "centralQuestion": "身長150cm以下という小さな企画ユニットは、なぜハロプロを子ども市場・アニメ・映画・商品へ拡張できたのか",
+      "thesis": "ミニモニ。は特定メンバーだけでなく、色、4人編成、ゲーム、真似できる身体動作、キャラクター、小道具を組み合わせた可搬性の高いフォーマットを作った。2004年に正史の連続運転を封印した後も、新ミニモニ。、世代横断再演、25周年商品として再利用できた。",
+      "survivalModel": "format_survives_as_ip",
+      "keyContrast": "モーニング娘。が制度を連続運転したのに対し、ミニモニ。は正史を止めてもフォーマットの文法を別キャスト・別媒体へ再レンダリングできた。",
+      "archiveNote": "2025年の25周年商品ではCDだけでなく、ミニモニ。テレフォン、コンパクト、カメラ、ミニモちゃん等の小道具・キャラクター記号が再商品化された。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "ミニモニ。と派生ユニット",
-      "centralQuestion": "メンバーの本体所属を越えて作られた小さなユニットは、なぜ子ども市場までハロプロを拡張できたのか",
+      "group": "松浦亜弥",
+      "centralQuestion": "グループ全盛のハロプロで、なぜ一人のソロアイドルが独立したブランドとして成立できたのか",
       "status": "next"
     },
-    {"group": "松浦亜弥", "status": "planned"},
     {"group": "Berryz工房", "status": "planned"},
     {"group": "℃-ute", "status": "planned"},
     {"group": "Buono!", "status": "planned"},
@@ -73,14 +84,17 @@
     {"id": "system_survives", "meaning": "構成員を替えながら制度・名前・継承ルールを連続運転する"},
     {"id": "repertoire_survives", "meaning": "組織終了後も楽曲が後輩の再演によって文化的に活動し続ける"},
     {"id": "brand_survives_by_redefinition", "meaning": "活動空白や運営方式の断絶を許容し、名前の意味を入れ替えて再起動する"},
-    {"id": "community_survives", "meaning": "固定メンバーと観客が共有したライブの作法・記憶・所属感が、組織終了後も再集合可能性を保つ"}
+    {"id": "community_survives", "meaning": "固定メンバーと観客が共有したライブの作法・記憶・所属感が、組織終了後も再集合可能性を保つ"},
+    {"id": "format_survives_as_ip", "meaning": "正史の活動を停止しても、視覚記号・キャスティング原理・遊び方・キャラクターを別キャストや別媒体へ移植できる"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: an institution can survive through continuous replacement, a repertoire can survive after an institution ends, a brand can survive operational gaps by being redefined, or a fan community can survive long enough to reactivate a dissolved group.",
+    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, and formats can each outlive an original lineup in different ways.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
     "A fixed lineup can accumulate relational capital: repeated interaction between the same performers and audience can make live rituals and shared memory more valuable than chart scale.",
+    "A strong format reduces explanation cost. If colors, gestures, rules, songs, and props make a unit instantly legible, the concept can travel across age groups and media.",
+    "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
     "Reunion does not require exact restoration. Respecting present member agency can preserve historical legitimacy better than forcing a complete replica of the past."
   ],
@@ -93,6 +107,7 @@
     "Connect each group history back to the broader Hello! Project system.",
     "Compare survival models across groups instead of assuming longevity is the only measure of success.",
     "For real-world tragedy or health-related departures, state only well-supported facts, avoid sensational detail, and do not use personal suffering as a narrative shortcut.",
-    "When covering reunions, distinguish the canonical historical lineup from the actual reunion participants and respect stated non-participation without speculation."
+    "When covering reunions, distinguish the canonical historical lineup from the actual reunion participants and respect stated non-participation without speculation.",
+    "For character or media-mix histories, distinguish the human performer lineup, fictional/character layer, tie-in product, and later archive merchandise."
   ]
 }
