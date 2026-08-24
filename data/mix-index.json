@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "sf6-cammy-kimberly-air-throw-counterplay": "english-mix/sf6-cammy-kimberly-air-throw-counterplay.md",
     "tsubaki-factory-history-layered-cohorts": "english-mix/tsubaki-factory-history-layered-cohorts.md",
     "kobushi-factory-history-reconstruction": "english-mix/kobushi-factory-history-reconstruction.md",
     "juice-juice-history-capability-pipeline": "english-mix/juice-juice-history-capability-pipeline.md",
