@@ -1,328 +1,405 @@
 ---
 id: sf6-cammy-kimberly-air-throw-counterplay
 title: "空中投げは『投げ対策』ではない"
-subtitle: "Cammy's Leg Scissors Choke and Kimberly's Nue Twister: manage the jump before the throw"
+subtitle: "Cammy air throws, Hooligan Combination, and Kimberly's Nue Twister: manage the airborne state first"
 mode: "english-mix"
 english_ratio: 0.45
 mix_unit: "sentence"
 ---
 
 # 空中投げは「投げ対策」ではない
-## Cammy's Leg Scissors Choke and Kimberly's Nue Twister: manage the jump before the throw
+## Cammy air throws, Hooligan Combination, and Kimberly's Nue Twister: manage the airborne state first
 
-> **Simple English:** Do not focus only on the moment you get thrown. Ask why you were in the air in the first place.
+> **Simple English:** Cammy's air throw, Cammy's Hooligan, and Kimberly's air throw are different problems. Separate them first.
 
-キャミィやキンバリーに空中で捕まると、「これコマ投げ？」「投げ抜けできる？」と考えたくなる。
+キャミィやキンバリーに空中で何かされると、全部「空中コマ投げ」に見えやすい。
 
-But that question starts a little too late.
+But there are at least three different mechanics here.
 
-まず、二人の技は同じ種類ではない。
+> **Cammy's Leg Scissors Choke = normal air throw.**  
+> **キャミィのHooligan Combination＝複数派生を持つ空中移動・崩し技。**  
+> **Kimberly's Nue Twister = aerial special throw.**
 
-**Cammy has a normal air throw. Kimberly's Nue Twister is an aerial special throw.**
+対策も分けた方がいい。
 
-そして共通する対策は、空中で投げを見てから何かすることではない。
+Against air throws, make your jumps less predictable.
 
-The key is **jump management**.
+フーリガンには、派生を見分けてから守る前に本体を落とす。
 
-> **キャミィ＝通常空中投げ。**  
-> **Kimberly = aerial special throw.**  
-> **苦しくなるたびに同じジャンプをしない。**  
-> **When they jump, prefer grounded anti-air when the situation allows it.**
+**Do not wait for the branch if you can attack the trunk.**
 
-空中投げは「投げ技の知識」より、「自分がいつairborneになるか」の問題として見ると理解しやすい。
+本稿は2026年8月24日時点で確認した技情報を基準にする。
 
-This article uses move information checked on August 24, 2026. For frame numbers, always treat the latest in-game and official data as the final authority.
+For frame values, later in-game and official data should always override older third-party numbers.
 
 ---
 
-## 1. They look similar, but they are different moves
+## 1. First, separate the three moves
 
 ### Cammy: Leg Scissors Choke
 
-キャミィの **Leg Scissors Choke** は、空中で近い空中相手をつかむ通常投げ。
+キャミィの **Leg Scissors Choke** は通常の空中投げ。
 
-It is performed near an airborne opponent while Cammy is also in the air.
+Cammy and the opponent must both be airborne and close enough for the throw to connect.
 
-参照できるフレーム情報では発生5F、ダメージ1200。
+参照フレームでは発生5F、ダメージ1200。
 
-This is not a grounded command grab like Zangief's Screw Piledriver.
+This is not the same kind of move as a grounded command grab.
 
-キャミィ側から見ると、相手のジャンプを読んで先に空中へ入り、air-to-airの代わりに捕まえる用途がある。
+相手のジャンプを読んだキャミィが先に跳び、air-to-airの代わりに捕まえる使い方がわかりやすい。
 
 [Cammy Guide - dood](https://dood.gg/en/street-fighter-6/cammy/)
 
 [Leg Scissors Choke - dood](https://dood.gg/pt/street-fighter-6/cammy/Leg%20Scissors%20Choke/)
 
+### Cammy: Hooligan Combination
+
+**Hooligan Combination** itself is not the throw.
+
+キャミィが丸まりながら放物線状に飛び、そこから複数の派生へ移るmixup platformだ。
+
+Punch strength changes the travel arc, and the Heavy version can be held to delay and enhance the move's properties.
+
+PlayStationの公式ブログでも、強フーリガンをホールドするとタイミングと性質が変わると説明されている。
+
+[PlayStation Blog: Street Fighter 6 launch roster](https://blog.playstation.com/2023/02/23/street-fighter-6-rounds-out-its-launch-roster-with-cammy-lily-and-zangief/)
+
 ### Kimberly: 荒鵺捻り / Nue Twister
 
 キンバリーの **荒鵺捻り（Nue Twister）** は空中必殺投げ。
 
-In Classic controls, Kimberly performs it with `j.236P` near an airborne opponent.
+CAPCOM describes it as an air throw that grabs an airborne opponent and slams them to the ground.
 
-CAPCOM describes Nue Twister as an air throw that grabs an airborne opponent and smashes them into the ground.
+クラシックではジャンプ中236+P。
 
-通常版の参照発生は5F。OD版はground bounceを作り、追撃へつなげられる。
+The normal version is listed at 5F startup in current reference data, while the OD version creates a ground bounce for follow-up pressure and combos.
 
 [CAPCOM News - Kimberly and Juri join Street Fighter 6](https://news.capcomusa.com/2022/08/07/the-newcomer-ninja-kimberly-and-thrill-seeking-juri-joins-street-fighter-6/)
 
 [Kimberly Guide - dood](https://dood.gg/en/street-fighter-6/kimberly/)
 
-[SF6 Frame Data - DiamondLobby](https://diamondlobby.com/street-fighter-6/sf6-frame-data/)
+キンバリーの **Bushin Izuna Otoshi / 武神イズナ落とし** は別ルートの投げなので、荒鵺捻りと混ぜない方がいい。
 
-つまり、**do not put both moves into one mental box called “command grab.”**
-
-なお、キンバリーの **Bushin Izuna Otoshi / 武神イズナ落とし** は疾駆け〜弧空からの別派生。
-
-Different name, different route, different situation.
+Different name, different route, different defensive question.
 
 ---
 
-## 2. Why does an air throw feel so unfair?
+## 2. What is Hooligan actually doing?
 
-地上投げなら、「近い」「投げが来る」「投げ抜け」という防御感覚を持ちやすい。
+フーリガンがしんどい理由は、**同じ飛び方から着地点が変わる**こと。
 
-An air throw feels different because by the time the grab happens, you have already made a big decision.
+The main follow-ups are easy to map once you stop treating Hooligan as one move.
 
-その決定がジャンプだ。
+### No input → Razor's Edge Slicer
 
-**A jump is a commitment.**
+着地際に滑る**下段**。
 
-ジャンプした瞬間、すぐ地上ガードには戻れない。
+It beats standing guard. Current reference data lists it as +2 on block.
 
-You cannot suddenly change that jump into walking backward.
+### K → Cannon Strike
 
-相手がそのジャンプを先読みしていれば、空中投げは「反応できない謎の投げ」ではない。
+フーリガンからの急降下蹴り。
 
-It is simply an answer to a predictable airborne state.
+Its frame advantage changes with height and spacing, much like Cammy's normal divekick.
 
-だから、捕まったフレームだけ見ても原因が見えない。
+### Down + K → Reverse Edge
 
-You need to rewind the replay one decision earlier.
+上から振り下ろす**中段**。
 
----
+It cannot be blocked crouching, so simply holding down-back does not solve the whole sequence.
 
-## 3. Do not “escape the throw.” Deny the situation.
+### Throw input → Fatal Leg Twister
 
-一番大事な考え方は、空中投げが来てから避けるのではなく、**成立しやすい状況を減らす**こと。
+地上の立っている相手をつかむ派生投げ。
 
-This does not mean “never jump.”
+Current frame references list 10F startup, and most importantly, **it whiffs against a crouching opponent.**
 
-意味するのは、「困ったら後ろジャンプ」がautomaticにならないことだ。
+### P → Silent Step
 
-Suppose every time pressure becomes uncomfortable, you jump backward.
+攻撃せずに急着地するフェイント。
 
-1回目は逃げられる。
+It exists partly to make a defender commit too hard to an anti-air or reversal.
 
-The second time may also work.
+[dood: Cammy Guide](https://dood.gg/en/street-fighter-6/cammy/)
 
-でも相手は学習する。
+[Ultimate Frame Data: Cammy](https://ultimateframedata.com/sf6/cammy)
 
-They start thinking: **when this player feels pressure, he jumps.**
+着地まで待つと、下段・中段・投げ・ストライク・フェイントを全部処理することになる。
 
-そこからキャミィは先回りして跳び、キンバリーは荒鵺捻りを狙える。
-
-So the goal is not to delete jump from your game.
-
-**Turn jump from a habit back into a choice.**
+That is why Hooligan feels like chaos when you first meet it.
 
 ---
 
-## 4. When they jump, you do not have to jump too
+## 3. First rule against Hooligan: hit the trunk before the branches
 
-相手が空中に来たら、こちらも空対空へ行きたくなる。
+ここが一番大事。
 
-But against characters with air throws, jumping to meet them carries one extra risk: you become throwable in the air.
+**Do not make your first plan “guess the follow-up correctly.”**
 
-そこで判断順をこう変える。
+GAME Watchの検証では、フーリガンの各派生は**しゃがみ状態から出せる上方向に強い通常技対空**でまとめて迎撃する方針が紹介されている。
 
-> **Opponent jumps → stay grounded → check whether a grounded anti-air works.**
+Fatal Leg Twister misses crouchers.
 
-空対空そのものが悪いわけではない。
+Reverse Edge beats crouch-block, but that matters only if you wait and block; a grounded anti-air can hit Cammy before the overhead becomes the real problem.
 
-Air-to-air is still a valid tool when you have the read, the spacing, or a better angle.
+Cannon Strike派生も同じ発想で落とす。
 
-ただ、地上対空ならそもそも相手の空中投げが成立する状態へ入らなくて済む。
+[GAME Watch: キャミィ「フーリガンコンビネーション」対策](https://game.watch.impress.co.jp/docs/news/1543864.html)
 
-That is why grounded anti-air has strategic value beyond simply “beating jump attacks.”
+覚え方はシンプルでいい。
 
----
+> **See the spinning Hooligan → think anti-air before high/low/throw.**
 
-## 5. Against Cammy: make your escape jump less obvious
+派生のガード方向を考え始める前に、問題を「対空」に変える。
 
-キャミィ戦では、特に**後ろジャンプ逃げ**が読まれやすい。
-
-Cammy is fast on the ground and can make close-range pressure feel uncomfortable.
-
-だから「とりあえず空中へ逃げたい」という気持ちが出やすい。
-
-If backward jump becomes your default escape, Cammy can start meeting that jump early with Leg Scissors Choke.
-
-守りは最低でも複数の方向へ分散したい。
-
-- 地上ガード
-- Back walk
-- 切り返し
-- Backward jump
-- 垂直ジャンプ
-
-You do not need to use every option equally.
-
-大事なのは、**one option should not become your signature.**
-
-空中投げを食らったら、「次は空中で何を押す？」ではなく、「その前も同じ状況で跳んでいた？」を確認する。
-
-That question produces better counterplay.
+That keeps you out of Cammy's preferred guessing game.
 
 ---
 
-## 6. Against Kimberly: separate raw Nue Twister from combo Nue Twister
+## 4. Do not overcommit: Silent Step can bait big anti-airs
 
-荒鵺捻りは、こちらのジャンプを捕まえるだけの技ではない。
+「フーリガンを見たら絶対に無敵対空」も危ない。
 
-Nue Twister can work as an anti-air and as a combo ender or combo part after Kimberly launches the opponent.
+Silent Step lets Cammy drop quickly without attacking, which can make a large reversal whiff.
 
-だから被弾を二種類に分ける。
+GAME Watchも、昇龍系の対空必殺技はサイレントステップで空振りを誘われる点を挙げている。
 
-### Raw catch
+So an ordinary anti-air normal is often a better first layer than a huge commitment.
 
-生で荒鵺捻りに捕まったなら、自分のjump timingやair-to-air choiceが読まれている可能性がある。
+コミュニティでも「jabで落とす」「normal anti-airで処理する」という回答は繰り返し出てくる。
 
-The adjustment is mainly about staying grounded more often and making your jumps less predictable.
+[Reddit: What's your counterplay to hooligan?](https://www.reddit.com/r/StreetFighter/comments/1sdj7mz/whats_your_counterplay_to_hooligan/)
 
-### Combo catch
+ただし、every character has a different best button.
 
-すでに打撃で浮かされ、その後に荒鵺捻りへつながったなら、荒鵺捻りの瞬間は防御ポイントではない。
-
-The real question is: **what launched you?**
-
-OD版はground bounceを作れるため、その後の追撃まで含めてリターンが大きい。
-
-Do not blame the last move in the combo. Review the starter.
+「弱Pなら必ず勝てる」と暗記するより、自キャラの**fast, upward, low-risk anti-air normal**をトレモで確認する方がいい。
 
 ---
 
-## 7. Modern Marisa: keep your anti-air decision on the ground
+## 5. Modern Marisa: start by testing Half Heart
 
-モダン・マリーザなら、この考え方は対空整理と相性がいい。
+モダン・マリーザなら、まず **Half Heart / crouching heavy punch** をフーリガン迎撃候補にするのがわかりやすい。
 
-Against a frontal jump at the right distance, **Half Heart / crouching heavy attack** can be a grounded answer.
+Marisa's 2HP already functions as a frontal anti-air, and community matchup discussions specifically mention reacting to Hooligan with cr.HP.
 
-近すぎる飛びや、頭を越える軌道は別回答へ切り替える。
+[Reddit: Help me learn how to deal with moving throws](https://www.reddit.com/r/StreetFighter/comments/14lpoco/)
 
-The principle is simple:
+ただし万能ではない。
 
-> **Air throw is scary → do not automatically jump first.**  
-> **Air throw is scary → build a grounded anti-air answer first.**
+- 正面・少し距離あり → Half Heart first
+- Too close / passing over your head → do not force 2HP
+- Silent Stepが増えた → 大技を早押ししすぎない
+- Raw Hooligan keeps working → train “see spin, press 2HP” first
 
-ハーフハート自体の使い分けは別稿で整理している。
+2026年8月3日の調整でハーフハートは前方向の判定が拡大され、少し遠めの正面対空を取りやすくなった。
+
+That makes it even more useful as a first practical answer, while still not making it universal.
 
 [Related: ハーフハート、そのあと何する？](https://silovar-uk.github.io/myessays/#/essay/sf6-modern-marisa-half-heart-guide)
 
-もちろん、no anti-air works at every distance.
+---
 
-だから「ハーフハート一本」ではなく、**stay grounded first, then choose by spacing**という順番が大事になる。
+## 6. If you are already blocking the Hooligan mix
+
+対空が間に合わず、もう択を受ける段階なら最低限だけ覚える。
+
+> **Fatal Leg Twister misses crouching.**  
+> **Reverse Edge = overhead, so crouch-block loses.**  
+> **No-input Razor's Edge Slicer = low.**
+
+つまり、crouching solves the throw but loses to the overhead.
+
+立ちっぱなしなら中段は守れるが、投げと下段が残る。
+
+That is exactly why anti-airing the Hooligan before the branch is the cleaner answer.
 
 ---
 
-## 8. Three questions during a match
+## 7. Why air throws feel unfair
 
-試合中に5Fだの1200ダメージだのを思い出す必要はない。
+ここからLeg Scissors Chokeと荒鵺捻りに戻る。
 
-Use three questions.
+By the time the air throw happens, you have already made a big decision: **you jumped.**
 
-### Q1. Am I still grounded?
+ジャンプ中はすぐ地上ガードへ戻れない。
 
-YESなら、まず地上対空を候補にする。
+You cannot suddenly turn the jump into walking or blocking low.
 
-### Q2. Am I jumping only because I feel uncomfortable?
+相手がそのジャンプを読んでいたら、空中投げは「見てから避ける謎の投げ」ではない。
 
-YESなら、ガードや歩きを選択肢へ戻す。
+It is an answer to a predictable airborne state.
 
-### Q3. Did I jump in the same situation last time?
+だからリプレイでは投げの瞬間だけ見ない。
 
-YESなら、相手が技を擦っているのではなく、**your pattern is being read.**
-
-この3問の方が、技表を暗記するより実戦的だ。
+Rewind one decision earlier.
 
 ---
 
-## 9. Training mode: practice not jumping
+## 8. Against Cammy's air throw: stop advertising backward jump
 
-空中投げを食らうと、空中で勝つ練習をしたくなる。
+キャミィ戦では、特に**後ろジャンプ逃げ**が狩られやすい。
 
-Start with the opposite drill.
+Cammy walks fast and creates strong close-range pressure, so the defender naturally wants to escape into the air.
 
-### 10-minute drill
+毎回そうすると、キャミィ側は簡単に学習する。
 
-1. ダミーに前ジャンプ攻撃を録画。
-2. Record a grounded approach in another slot.
-3. ランダム再生。
-4. When you see the jump, use a grounded anti-air.
-5. 苦しくなっても、10回中8回は反射的な後ろジャンプをしない。
+> approach → opponent jumps → jump early → Leg Scissors Choke
 
-After that, watch a replay and count only three things.
+対策は空中で勝てるボタン探しより、守りを散らすこと。
 
-- 空中投げを食らった回数
-- Whether you jumped first
-- 同じ場面で以前も跳んでいたか
+- Ground block
+- バックウォーク
+- Reversal
+- 後ろジャンプ
+- Neutral jump
 
-The target metric is not “zero air throws taken.”
+You do not need equal percentages.
 
-**Reduce predictable jumps.**
+**Just do not make backward jump your signature.**
 
----
+空中投げを食らったら、「何を押せば勝てた？」より「同じ場面でまた跳んでなかった？」を見る。
 
-## 10. “Stay grounded” can also become a bad habit
-
-ここまでの話を「キャミィとキンバリーにはジャンプ禁止」と覚えるのは危険だ。
-
-Never jumping makes your defense predictable in the opposite direction.
-
-投げを避けるジャンプが正しい場面もある。
-
-Sometimes air-to-air is exactly the right answer.
-
-問題はjumpingではない。
-
-The problem is **automatic jumping**.
-
-空中投げを持つ相手は、自分のその癖を厳しく見せてくれる。
-
-In that sense, an air throw is almost a diagnostic tool for your defensive habits.
+That is usually the more useful question.
 
 ---
 
-## Conclusion: look at the jump, not only the throw
+## 9. Against Kimberly: raw Nue Twister or combo Nue Twister?
 
-キャミィのLeg Scissors Chokeとキンバリーの荒鵺捻りは別物。
+荒鵺捻りは対空にもコンボパーツにもなる。
 
-- Cammy: normal air throw
-- Kimberly: aerial special throw
-- 武神イズナ落とし: another Kimberly throw route
+Separate the loss into two categories.
 
-でも、対策の大きな考え方は共通する。
+### Raw catch
 
-**Before asking how to beat the throw in the air, ask why you entered the air.**
+生で捕まったなら、your jump or air-to-air timing may be predictable.
 
-相手が跳んだら、まず地上対空。
+地上に残る割合を上げ、相手が跳んでも反射で自分まで跳ばない。
 
-Make your defensive jumps less automatic.
+### Combo catch
 
-空中投げを食らったら、その瞬間ではなく一手前を見る。
+すでに打撃で浮かされた後なら、荒鵺捻りの瞬間は防御ポイントではない。
 
-> **The throw is not the beginning of the mistake. The jump often is.**
+The useful replay question is not “why did the throw hit?” but **“what launched me?”**
 
-空中投げ対策は、投げ抜け知識より **control of your own state** の話なのである。
+OD荒鵺捻りはその後の追撃まで含めてリターンが大きい。
+
+Review the starter, not only the flashy ending.
+
+---
+
+## 10. Use two alarms in a real match
+
+試合中に全部覚えようとすると遅い。
+
+Use only two mental alarms.
+
+### Alarm A: Cammy curls into Hooligan
+
+> **Hooligan → grounded anti-air first.**
+
+上下・投げの読み合いは二番目。
+
+### Alarm B: normal jump / you feel like escaping
+
+> **Do not automatically jump too.**
+
+地上対空できるなら地上に残る。
+
+This keeps “Hooligan ground throw” and “actual air throw” from becoming one blurry problem in your head.
+
+---
+
+## 11. Fifteen-minute training drill
+
+### First 5 minutes: stop Hooligan before the mix
+
+キャミィのダミーに次を録画する。
+
+1. Hooligan → low
+2. フーリガン → Reverse Edge
+3. Hooligan → Fatal Leg Twister
+4. フーリガン → Cannon Strike
+5. Hooligan → Silent Step
+
+Random playback.
+
+最初は派生を見分けない。
+
+> **See the spin → 2HP.**
+
+成功率が上がったらSilent Stepへの空振りを見て、press timingを調整する。
+
+### Next 10 minutes: reduce predictable jumps
+
+前ジャンプ攻撃と地上接近をランダム再生する。
+
+- Jump appears → grounded anti-air
+- 苦しくなっても10回中8回はautomatic back jumpをしない
+- Replay review → check whether you jumped first before every air throw
+
+The goal is not “never get air-thrown.”
+
+**Reduce predictable airborne decisions.**
+
+---
+
+## 12. Limit: “just 2HP every Hooligan” is only stage one
+
+初心者段階では「見たら2HP」でいい。
+
+But do not turn it into permanent autopilot.
+
+フーリガンには軌道差、位置入れ替え、Silent Step、セットプレイがある。
+
+Marisa's anti-airs are also spacing-dependent, especially against close or crossing trajectories.
+
+だから段階はこう考える。
+
+> **Stage 1: see Hooligan, use 2HP.**  
+> **Stage 2: notice spacing and Silent Step.**  
+> **Stage 3: learn which knockdowns create real Hooligan setups.**
+
+最初から全部やる必要はない。
+
+Build the defensive model one layer at a time.
+
+---
+
+## Conclusion: split the airborne problem into two
+
+キャミィとキンバリーの「空中から何かされる」を一括りにしない。
+
+- **Leg Scissors Choke** = Cammy normal air throw
+- **Hooligan Combination** = Cammy branching mixup platform
+- **Fatal Leg Twister** = grounded throw branch from Hooligan
+- **荒鵺捻り / Nue Twister** = Kimberly aerial special throw
+
+実戦の答えも二つ。
+
+> **Hooligan → anti-air before reading the branch.**  
+> **Air throw → review the jump before the throw.**
+
+> **The throw is not always the beginning of the mistake. Sometimes the jump is. And against Hooligan, the mistake is often waiting for the branch.**
+
+フーリガンは「五択を全部暗記しないと無理」ではない。
+
+Hit the trunk first.
+
+空中投げは「投げ抜けの知識不足」だけの問題ではない。
+
+Manage your airborne state first.
 
 ---
 
 ## Sources
 
-- [CAPCOM News: The Newcomer Ninja Kimberly and Thrill-Seeking Juri Joins Street Fighter 6](https://news.capcomusa.com/2022/08/07/the-newcomer-ninja-kimberly-and-thrill-seeking-juri-joins-street-fighter-6/)
+- [GAME Watch: キャミィ「フーリガンコンビネーション」対策](https://game.watch.impress.co.jp/docs/news/1543864.html)
+- [PlayStation Blog: Street Fighter 6 launch roster - Cammy](https://blog.playstation.com/2023/02/23/street-fighter-6-rounds-out-its-launch-roster-with-cammy-lily-and-zangief/)
 - [dood: Cammy Guide](https://dood.gg/en/street-fighter-6/cammy/)
-- [dood: Leg Scissors Choke](https://dood.gg/pt/street-fighter-6/cammy/Leg%20Scissors%20Choke/)
+- [Ultimate Frame Data: Cammy](https://ultimateframedata.com/sf6/cammy)
+- [CAPCOM News: Kimberly and Juri join Street Fighter 6](https://news.capcomusa.com/2022/08/07/the-newcomer-ninja-kimberly-and-thrill-seeking-juri-joins-street-fighter-6/)
 - [dood: Kimberly Guide](https://dood.gg/en/street-fighter-6/kimberly/)
-- [DiamondLobby: Street Fighter 6 Frame Data for Every Character](https://diamondlobby.com/street-fighter-6/sf6-frame-data/)
-- [StrategyWiki: Street Fighter 6 Moves](https://strategywiki.org/wiki/Street_Fighter_6/Moves)
+- [Reddit: Help me learn how to deal with moving throws](https://www.reddit.com/r/StreetFighter/comments/14lpoco/)
+- [Reddit: What's your counterplay to hooligan?](https://www.reddit.com/r/StreetFighter/comments/1sdj7mz/whats_your_counterplay_to_hooligan/)
 
-Move names, inputs, and roles were cross-checked across multiple sources. Frame values include third-party databases, so use the latest in-game/official information if a later balance update conflicts with them. Checked: 2026-08-24.
+Move names and branch structure were cross-checked across multiple sources. Frame values and some practical counterplay include third-party databases and community testing, so prefer later in-game and official information if a future balance update conflicts with this article. Checked: 2026-08-24.
