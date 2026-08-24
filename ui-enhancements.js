@@ -35,13 +35,20 @@
   track.appendChild(bar);
   document.body.appendChild(track);
 
-  function safeGet(key, storage = localStorage) {
-    try { return storage.getItem(key); }
+  function browserStorage(kind = 'local') {
+    try { return kind === 'session' ? window.sessionStorage : window.localStorage; }
     catch { return null; }
   }
 
-  function safeSet(key, value, storage = localStorage) {
+  function safeGet(key, kind = 'local') {
+    try { return browserStorage(kind)?.getItem(key) ?? null; }
+    catch { return null; }
+  }
+
+  function safeSet(key, value, kind = 'local') {
     try {
+      const storage = browserStorage(kind);
+      if (!storage) return false;
       storage.setItem(key, value);
       return true;
     } catch {
@@ -179,7 +186,7 @@
 
   function randomHistory() {
     try {
-      const value = JSON.parse(safeGet(RANDOM_HISTORY_KEY, sessionStorage) || '[]');
+      const value = JSON.parse(safeGet(RANDOM_HISTORY_KEY, 'session') || '[]');
       return Array.isArray(value) ? value.filter(Boolean).slice(-RANDOM_HISTORY_LIMIT) : [];
     } catch {
       return [];
@@ -190,7 +197,7 @@
     if (!id) return;
     const history = randomHistory().filter(value => value !== id);
     history.push(id);
-    safeSet(RANDOM_HISTORY_KEY, JSON.stringify(history.slice(-RANDOM_HISTORY_LIMIT)), sessionStorage);
+    safeSet(RANDOM_HISTORY_KEY, JSON.stringify(history.slice(-RANDOM_HISTORY_LIMIT)), 'session');
   }
 
   function pickRandomId(ids) {
@@ -240,7 +247,8 @@
 
     if (unreadRandomCount) {
       unreadRandomCount.hidden = unreadIds.length === 0;
-      unreadRandomCount.textContent = String(unreadIds.length);
+      const nextCount = String(unreadIds.length);
+      if (unreadRandomCount.textContent !== nextCount) unreadRandomCount.textContent = nextCount;
       unreadRandomCount.setAttribute('aria-label', `未読了 ${unreadIds.length}本`);
     }
   }
@@ -262,14 +270,17 @@
     }
 
     const candidates = allUncompletedEssayIds({ exclude: currentEssayId() });
-    button.disabled = candidates.length === 0;
-    button.setAttribute('aria-disabled', String(candidates.length === 0));
-    button.textContent = candidates.length
+    const nextText = candidates.length
       ? `未読了から次の1本  ↝  ${candidates.length}`
       : '未読了の記事はありません';
-    button.title = candidates.length
+    const nextTitle = candidates.length
       ? `未読了 ${candidates.length}本から次の記事を選ぶ`
       : '未読了の記事はありません';
+
+    button.disabled = candidates.length === 0;
+    button.setAttribute('aria-disabled', String(candidates.length === 0));
+    if (button.textContent !== nextText) button.textContent = nextText;
+    if (button.title !== nextTitle) button.title = nextTitle;
     return button;
   }
 
