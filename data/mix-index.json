@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "overgiving-love-autonomy-responsiveness": "english-mix/overgiving-love-autonomy-responsiveness.md",
     "bcg-consulting-reality-voices": "english-mix/bcg-consulting-reality-voices.md",
     "beer-flavor-map-20-reference-beers": "english-mix/beer-flavor-map-20-reference-beers.md",
     "craft-beer-map-definition-styles": "english-mix/craft-beer-map-definition-styles.md",
