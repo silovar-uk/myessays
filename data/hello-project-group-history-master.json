@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -37,15 +37,26 @@
       "survivalModel": "brand_survives_by_redefinition",
       "keyContrast": "モーニング娘。は連続運転する制度、太陽とシスコムーンは解散後も残る作品、カントリーは空白期間を許容しながら再定義できるブランド名を残した。",
       "status": "complete"
+    },
+    {
+      "group": "メロン記念日",
+      "essayId": "melon-kinenbi-history-live-community",
+      "canonical": "essays/2026-08-24-melon-kinenbi-history-live-community.md",
+      "englishMix": "english-mix/melon-kinenbi-history-live-community.md",
+      "centralQuestion": "メンバーチェンジをせず約10年活動した4人組は、なぜハロプロの中で独自のライブ文化を作り、解散15年後にも再集結できたのか",
+      "thesis": "固定4人のままライブハウス、Melon Lounge、ロックシーンへ環境を変え続け、観客との共有文法と所属感を蓄積した。解散後もそのライブ共同体が残り、2025–26年の期間限定再結成を支えた。",
+      "survivalModel": "community_survives",
+      "keyContrast": "メンバーを替えて制度を継ぐのではなく、人を固定したまま観客との関係を深くし、解散後も再集合できる共同体を残した。",
+      "reunionNote": "2025–26年の25周年再結成は大谷雅恵の意思を尊重した3人体制。完全復元ではなく現在の条件で共同体を再起動した事例として扱う。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "メロン記念日",
-      "centralQuestion": "メンバーチェンジをせず約10年活動した4人組は、なぜハロプロの中で独自のライブ文化を作れたのか",
+      "group": "ミニモニ。と派生ユニット",
+      "centralQuestion": "メンバーの本体所属を越えて作られた小さなユニットは、なぜ子ども市場までハロプロを拡張できたのか",
       "status": "next"
     },
-    {"group": "ミニモニ。と派生ユニット", "status": "planned"},
     {"group": "松浦亜弥", "status": "planned"},
     {"group": "Berryz工房", "status": "planned"},
     {"group": "℃-ute", "status": "planned"},
@@ -58,12 +69,20 @@
     {"group": "OCHA NORMA", "status": "planned"},
     {"group": "ロージークロニクル", "status": "planned"}
   ],
+  "survivalModels": [
+    {"id": "system_survives", "meaning": "構成員を替えながら制度・名前・継承ルールを連続運転する"},
+    {"id": "repertoire_survives", "meaning": "組織終了後も楽曲が後輩の再演によって文化的に活動し続ける"},
+    {"id": "brand_survives_by_redefinition", "meaning": "活動空白や運営方式の断絶を許容し、名前の意味を入れ替えて再起動する"},
+    {"id": "community_survives", "meaning": "固定メンバーと観客が共有したライブの作法・記憶・所属感が、組織終了後も再集合可能性を保つ"}
+  ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: an institution can survive through continuous replacement, a repertoire can survive after an institution ends, or a brand can survive operational gaps by being redefined and rebooted.",
+    "Hello! Project has multiple survival models: an institution can survive through continuous replacement, a repertoire can survive after an institution ends, a brand can survive operational gaps by being redefined, or a fan community can survive long enough to reactivate a dissolved group.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
-    "Flexibility has an identity cost. The more a group borrows members, uses concurrent affiliations, or changes operating models, the more it needs repertoire, people, or narrative to prove continuity."
+    "A fixed lineup can accumulate relational capital: repeated interaction between the same performers and audience can make live rituals and shared memory more valuable than chart scale.",
+    "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
+    "Reunion does not require exact restoration. Respecting present member agency can preserve historical legitimacy better than forcing a complete replica of the past."
   ],
   "researchRules": [
     "Research first; do not write from memory alone.",
@@ -73,6 +92,7 @@
     "Treat songs as historical evidence: identify what changed in the group's identity, audience, system or performance through each key song.",
     "Connect each group history back to the broader Hello! Project system.",
     "Compare survival models across groups instead of assuming longevity is the only measure of success.",
-    "For real-world tragedy or health-related departures, state only well-supported facts, avoid sensational detail, and do not use personal suffering as a narrative shortcut."
+    "For real-world tragedy or health-related departures, state only well-supported facts, avoid sensational detail, and do not use personal suffering as a narrative shortcut.",
+    "When covering reunions, distinguish the canonical historical lineup from the actual reunion participants and respect stated non-participation without speculation."
   ]
 }
