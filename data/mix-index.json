@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "bcg-consulting-reality-voices": "english-mix/bcg-consulting-reality-voices.md",
     "beer-flavor-map-20-reference-beers": "english-mix/beer-flavor-map-20-reference-beers.md",
     "craft-beer-map-definition-styles": "english-mix/craft-beer-map-definition-styles.md",
     "sunzi-win-without-fighting-strategy": "english-mix/sunzi-win-without-fighting-strategy.md",
