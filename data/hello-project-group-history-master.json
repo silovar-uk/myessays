@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -97,15 +97,26 @@
       "keyContrast": "Berryz工房が固定コホートの共有時間を資産にしたのに対し、℃-uteは人数減少後の少人数編成で技能差を可視化し、グループ全体をパフォーマンスの物差しへ変えた。",
       "archiveNote": "2023年ハロプロ25周年公演ではBEYOOOOONDSが『Kiss me 愛してる』、つばきファクトリーが『大きな愛でもてなして』、モーニング娘。'23が『Danceでバコーン！』を再演。解散後も℃-ute楽曲が現役メンバーのパフォーマンスを見せる素材として機能している。",
       "status": "complete"
+    },
+    {
+      "group": "Buono!",
+      "essayId": "buono-history-autonomous-side-project",
+      "canonical": "essays/2026-08-24-buono-history-autonomous-side-project.md",
+      "englishMix": "english-mix/buono-history-autonomous-side-project.md",
+      "centralQuestion": "Berryz工房と℃-uteから人材を借りたタイアップユニットは、なぜ親グループの説明なしでも成立する独立したロック・アイドルブランドへ成長できたのか",
+      "thesis": "『しゅごキャラ！』という外部目的から始まりながら、専用レパートリー、Dolceとの生バンド環境、3人の歌唱配置、単独ライブ、海外公演、『初恋サイダー』という独立した入口を積み上げ、出身組織では代替できない音楽人格を作った。",
+      "survivalModel": "autonomous_side_project_survives",
+      "keyContrast": "Berryz工房と℃-uteがそれぞれ本体として人と時間を蓄積したのに対し、Buono!は両組織から借りた人材の組み合わせ自体を新しい本体へ変えた。",
+      "archiveNote": "2025年のサブスク解禁ではBuono!がBerryz工房・℃-uteとは別のアーティスト名で並び、『初恋サイダー』もカバーやSNSを通じて再注目された。活動終了後も親グループの予備知識なしで発見できる独立カタログになっている。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "Buono!",
-      "centralQuestion": "Berryz工房と℃-uteの3人を横断して作られた期間限定ユニットは、なぜ本体グループとは別のロック・アイドル像を完成させ、活動終了後も強い独立ブランドとして残ったのか",
+      "group": "スマイレージ／アンジュルム",
+      "centralQuestion": "『日本一スカートの短いアイドルグループ』として始まった4人組は、なぜ改名・増員・卒業を繰り返しながら、別物になり続けること自体を強みにできたのか",
       "status": "next"
     },
-    {"group": "スマイレージ／アンジュルム", "status": "planned"},
     {"group": "Juice=Juice", "status": "planned"},
     {"group": "こぶしファクトリー", "status": "planned"},
     {"group": "つばきファクトリー", "status": "planned"},
@@ -121,10 +132,11 @@
     {"id": "format_survives_as_ip", "meaning": "正史の活動を停止しても、視覚記号・キャスティング原理・遊び方・キャラクターを別キャストや別媒体へ移植できる"},
     {"id": "persona_survives_by_reinterpretation", "meaning": "一人の演者が過去の人格ブランドを否定せず、年齢・歌唱・作家・活動頻度を変えながら同じ名前の意味を更新する"},
     {"id": "shared_time_survives", "meaning": "同じ構成員が長期間成長を共有し、本人たちと観客が蓄積した時間そのものが、楽曲再解釈や部分的再集合から再起動できる資産になる"},
-    {"id": "performance_standard_survives", "meaning": "組織終了後も楽曲・ライブ像・技能評価が後輩の課題曲や比較軸として機能し、グループが作ったパフォーマンス基準そのものが残る"}
+    {"id": "performance_standard_survives", "meaning": "組織終了後も楽曲・ライブ像・技能評価が後輩の課題曲や比較軸として機能し、グループが作ったパフォーマンス基準そのものが残る"},
+    {"id": "autonomous_side_project_survives", "meaning": "親組織から借りた人材で始まった派生企画が、専用レパートリー・専用現場・独自役割を蓄積し、親組織の説明なしでも成立する独立ブランドになる"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, and performance standards can each preserve continuity in different ways.",
+    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, and autonomous side-project identities can each preserve continuity in different ways.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
@@ -135,6 +147,8 @@
     "A solo identity concentrates brand equity and brand risk in the same person. It can create unusually strong recognition, but adaptation requires self-reinterpretation rather than member replacement.",
     "A disadvantaged initial comparison can be escaped by changing the metric. If a group builds distinctive capabilities, those capabilities can become the new standard on which later groups are judged.",
     "Performance reputation is broader than athletic difficulty: vocal interpretation, stillness, rhythm, audience control, and consistency all contribute to a durable performance standard.",
+    "A side project becomes autonomous when it owns resources that the parent groups cannot substitute: dedicated repertoire, a distinct performance environment, an audience, and a gateway work discoverable without organizational backstory.",
+    "Identity can become independent before resources do. Side projects may remain dependent on parent-group calendars even after audiences perceive them as standalone brands.",
     "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
     "Reunion or return does not require exact restoration. Respecting present agency and current life stage can preserve historical legitimacy better than forcing a complete replica of the past."
@@ -152,6 +166,7 @@
     "For character or media-mix histories, distinguish the human performer lineup, fictional/character layer, tie-in product, and later archive merchandise.",
     "For solo histories, distinguish a constructed public persona from the performer's own statements and avoid treating either as the complete private person.",
     "When comparing sibling groups, do not turn structural asymmetry into a simplistic winner/loser story. Use official wording for selection and naming, and treat later reputation as earned rather than predetermined.",
-    "When describing performance reputation, separate sourced skill observations from later fan mythology and avoid treating technical difficulty as the only form of performance quality."
+    "When describing performance reputation, separate sourced skill observations from later fan mythology and avoid treating technical difficulty as the only form of performance quality.",
+    "For side-project histories, distinguish original external purpose, parent-group resource dependence, and the point at which the project develops non-substitutable repertoire, live context, audience, or discoverability."
   ]
 }
