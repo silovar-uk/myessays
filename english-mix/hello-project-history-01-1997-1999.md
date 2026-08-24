@@ -90,9 +90,9 @@ Tsunku later identified “Summer Night Town,” “LOVE Machine,” and “One�
 
 This story also needs an industry background.
 
-日本レコード協会の統計では、1998年の音楽ソフト生産金額は約6,075億円で、統計上のピークに達している。同年のCDアルバム生産金額は約4,924億円、CDシングルは約955億円。
+日本レコード協会の統計では、1998年の音楽ソフト生産数量は607,494千枚・巻で、同統計のピークに達している。生産金額も4,801.77億円と極めて高い水準だった。
 
-Morning Musume debuted **at the center of the era when Japan was buying physical music at its greatest scale.**
+Morning Musume debuted **at the center of the era when physical music software was being produced at its greatest volume in Japan.**
 
 テレビで物語を見る。CDショップで曲を買う。カラオケで歌う。音楽番組でもう一度見る。雑誌やCMでも見る。
 
@@ -237,7 +237,7 @@ By the end of 1999, the basic operating system was surprisingly complete.
 ### Society
 
 - テレビが共通体験を作る
-- Japan's physical music market reaches its historical peak
+- Japan's physical music-software production volume reaches its historical peak
 - カラオケ、CM、音楽番組、雑誌が相互に増幅する
 
 Hello! Project did not begin with a finished philosophy.
@@ -324,6 +324,6 @@ Next, the series examines the explosive expansion after “LOVE Machine”: the 
 - Real Sound「＜ハロプロ＞20年間で発表された楽曲数は？」  
   https://realsound.jp/2017/11/post-124300.html
 - 日本レコード協会「音楽ソフト種類別生産実績推移」  
-  https://www.riaj.or.jp/g/data/annual/ms_m.html
-- 日本レコード協会『日本のレコード産業2005』CDシングル／アルバム生産金額  
+  https://www.riaj.or.jp/data/annual/trends/ms_nm/
+- 日本レコード協会『日本のレコード産業2005』  
   https://adm.riaj.or.jp/sites/default/files/2025-05/%E6%97%A5%E6%9C%AC%E3%81%AE%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%88%E3%82%99%E7%94%A3%E6%A5%AD2005%E5%B9%B4%E7%89%88.pdf
