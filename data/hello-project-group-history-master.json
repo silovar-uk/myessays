@@ -1,10 +1,10 @@
 {
-  "version": 15,
+  "version": 16,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
   "principle": "People x Music x System x Society",
-  "status": "in_progress",
+  "status": "complete",
   "completed": [
     {
       "group": "モーニング娘。",
@@ -157,15 +157,20 @@
       "survivalModel": "hybrid_origin_survives",
       "archiveNote": "2026年現在は斉藤円香リーダー、広本瑠璃サブリーダーを含む8人体制。7月に6thシングルを発売し、春・秋のライブツアーを継続している。",
       "status": "complete"
-    }
-  ],
-  "queue": [
+    },
     {
       "group": "ロージークロニクル",
-      "centralQuestion": "研修生ユニットから9人組として形を整え、2025年にメジャーデビューした新世代グループは、なぜ『年代記』を名前にしたのか",
-      "status": "next"
+      "essayId": "rosy-chronicle-history-chronicle-as-commitment",
+      "canonical": "essays/2026-08-24-rosy-chronicle-history-chronicle-as-commitment.md",
+      "englishMix": "english-mix/rosy-chronicle-history-chronicle-as-commitment.md",
+      "centralQuestion": "歴史がまだ短い新世代グループは、なぜ結成時点から『年代記』を名前に掲げたのか",
+      "thesis": "研修生ユニットとして前史を積んだ後、2024年6月16日に9人の正史を同時に開始し、First Page!、BOOKMARK、Blueprintなど時間・記録・設計を想起させる語彙を活動へ重ねている。長寿を証明したから年代記なのではなく、これから歴史を積み上げ、後から読み返せるものにすることを先にブランドとして約束した。",
+      "formationHypothesis": "chronicle_as_commitment",
+      "archiveNote": "2026年8月現在は結成時と同じ9人で、橋田歩果がリーダー。3rdシングルまで発売し、First Page!のライブ映像を商品へ収録。BOOKMARK、Blueprintなど年代記の語彙を拡張しながら活動している。",
+      "status": "complete"
     }
   ],
+  "queue": [],
   "survivalModels": [
     {"id": "system_survives", "meaning": "構成員を替えながら制度・名前・継承ルールを連続運転する"},
     {"id": "repertoire_survives", "meaning": "組織終了後も楽曲が後輩の再演によって文化的に活動し続ける"},
@@ -183,6 +188,9 @@
     {"id": "combinatorial_identity_survives", "meaning": "人・内部ユニット・役柄・個人技能をモジュールとして扱い、完成形ではなく組み替える権利と方法そのものをアイデンティティとして継承する"},
     {"id": "hybrid_origin_survives", "meaning": "異なる育成・採用経路を持つ人材をデビュー前に同じ創設期へ統合し、同一の前史ではなく結成後の共有履歴を組織の正統性にする"}
   ],
+  "formationHypotheses": [
+    {"id": "chronicle_as_commitment", "meaning": "長寿や世代交代をまだ証明していない新しい組織が、これから時間を積み上げ、記録し、後から読み返せる歴史にすること自体をブランドの約束として先に掲げる"}
+  ],
   "crossGroupHypotheses": [
     "Hello! Project has multiple survival models; longevity alone is not the only measure of continuity.",
     "Member interchangeability and member-specific chemistry are different organizational designs with different failure modes.",
@@ -196,6 +204,7 @@
     "Layered cohorts reduce identity shock by letting old and new generations work together before departures.",
     "Complexity can be an asset when components are modular. The important capability is not having many parts, but being able to recombine them into legible works.",
     "A shared founding date can integrate unequal prehistories without pretending those prehistories were equal. Hybrid origins work when post-formation roles remain open to revision.",
+    "The youngest group should not be forced into a mature survival model. A forward-looking formation hypothesis can be more accurate than pretending future continuity is already proven.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Durable groups decide what remains fixed and what is allowed to change."
   ],
   "researchRules": [
@@ -212,6 +221,7 @@
     "For post-crisis reconstruction histories, keep departure causes distinct and distinguish restoration from redesign.",
     "For layered-cohort histories, verify actual overlap periods and do not equate all additions with formal generations.",
     "For modular or multi-unit groups, distinguish full-group identity, subunit membership, individual skills and temporary performance roles; test whether those components are actually recombined in works rather than merely listed in profiles.",
-    "For hybrid-origin histories, keep pre-debut career differences visible; a shared formation date does not erase unequal time costs or prior experience. Distinguish integration from homogenization."
+    "For hybrid-origin histories, keep pre-debut career differences visible; a shared formation date does not erase unequal time costs or prior experience. Distinguish integration from homogenization.",
+    "For newly formed groups, do not manufacture a survival model from insufficient history. Separate observed formation design from future continuity claims."
   ]
 }
