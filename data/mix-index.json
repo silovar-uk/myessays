@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "america-cities-02-boston": "english-mix/america-cities-02-boston.md",
     "analogy-structure-mapping-thinking": "english-mix/analogy-structure-mapping-thinking.md",
     "hello-project-history-03-2002-2007-kids": "english-mix/hello-project-history-03-2002-2007-kids.md",
     "hello-project-history-02-1999-2004": "english-mix/hello-project-history-02-1999-2004.md",
