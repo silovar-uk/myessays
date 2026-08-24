@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "calculation-as-modeling-tournament-expectation": "english-mix/calculation-as-modeling-tournament-expectation.md",
     "rosy-chronicle-history-chronicle-as-commitment": "english-mix/rosy-chronicle-history-chronicle-as-commitment.md",
     "ocha-norma-history-hybrid-origin": "english-mix/ocha-norma-history-hybrid-origin.md",
     "beyooooonds-history-combinatorial-identity": "english-mix/beyooooonds-history-combinatorial-identity.md",
