@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -13,16 +13,27 @@
       "englishMix": "english-mix/morning-musume-history-renewal-system.md",
       "centralQuestion": "創設メンバーが一人もいなくなった後も、なぜ同じ名前で30年近く続けられたのか",
       "thesis": "モーニング娘。は特定メンバーの集合ではなく、加入・卒業・リーダー継承・楽曲再演・年号表記によって同じ物語を更新する制度になった。",
+      "survivalModel": "system_survives",
+      "status": "complete"
+    },
+    {
+      "group": "太陽とシスコムーン／T&Cボンバー",
+      "essayId": "taiyo-ciscomoon-history-compressed-legacy",
+      "canonical": "essays/2026-08-24-taiyo-ciscomoon-history-compressed-legacy.md",
+      "englishMix": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md",
+      "centralQuestion": "実力派4人組は、なぜ1年半の活動でも25年以上ハロプロ史に残り続けたのか",
+      "thesis": "更新可能な組織としては短命だったが、異なる専門性を持つ4人の化学反応と高密度な約20曲が後輩へ継承され、制度ではなくレパートリーが長期的に生き残った。",
+      "survivalModel": "repertoire_survives",
+      "keyContrast": "モーニング娘。が人を替えて制度を残したのに対し、太陽とシスコムーンは4人の固定的な化学反応が終わった後も作品が残った。",
       "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "太陽とシスコムーン／T&Cボンバー",
-      "centralQuestion": "実力派4人組は、なぜ短期間でもハロプロ史に残ったのか",
+      "group": "カントリー娘。／カントリー・ガールズ",
+      "centralQuestion": "同じ名前の系譜は、なぜ北海道の半農半芸から都市型アイドルへ何度も作り替えられたのか",
       "status": "next"
     },
-    {"group": "カントリー娘。／カントリー・ガールズ", "status": "planned"},
     {"group": "メロン記念日", "status": "planned"},
     {"group": "ミニモニ。と派生ユニット", "status": "planned"},
     {"group": "松浦亜弥", "status": "planned"},
@@ -37,12 +48,18 @@
     {"group": "OCHA NORMA", "status": "planned"},
     {"group": "ロージークロニクル", "status": "planned"}
   ],
+  "crossGroupHypotheses": [
+    "Hello! Project has multiple survival models: a group may survive as an institution, or its repertoire may survive after the institution ends.",
+    "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
+    "Repertoire inheritance allows short-lived groups to remain culturally active inside Hello! Project after disbandment."
+  ],
   "researchRules": [
     "Research first; do not write from memory alone.",
     "Use official sources for dates, joins, graduations, releases and current lineups.",
     "Use interviews and reporting to interpret turning points, but distinguish interpretation from official fact.",
     "Include negative history without rumor or villain framing.",
     "Treat songs as historical evidence: identify what changed in the group's identity, audience, system or performance through each key song.",
-    "Connect each group history back to the broader Hello! Project system."
+    "Connect each group history back to the broader Hello! Project system.",
+    "Compare survival models across groups instead of assuming longevity is the only measure of success."
   ]
 }
