@@ -10,7 +10,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <link rel="stylesheet" href="styles.css?v=20260813-1353">
-  <link rel="stylesheet" href="ui-enhancements.css?v=20260823-2335">
+  <link rel="stylesheet" href="ui-enhancements.css?v=20260824-2333">
   <link rel="stylesheet" href="native-essay-links.css?v=20260817-0931">
   <link rel="stylesheet" href="source-links.css?v=20260816-1856">
   <link rel="stylesheet" href="selection-tools.css?v=20260813-1353">
@@ -41,19 +41,36 @@
         <p class="hero-copy">論文・エッセイ・レビューをためて、必要なときに探し出す個人アーカイブ。</p>
       </div>
 
+      <section class="reading-launcher" aria-label="読むものを探す">
+        <div class="reading-launcher-search">
+          <p class="reading-launcher-label">SEARCH</p>
+          <div id="searchControl" class="search-control discovery-search">
+            <button id="searchToggle" class="compact-button search-trigger discovery-search-trigger" type="button" aria-expanded="false" aria-controls="searchInput">
+              <span aria-hidden="true">⌕</span><span class="search-trigger-label">記事を検索</span>
+            </button>
+            <input id="searchInput" class="inline-search-input" type="search" placeholder="タイトル・本文・タグから探す" autocomplete="off" tabindex="-1">
+            <kbd class="search-shortcut">/</kbd>
+          </div>
+        </div>
+        <div class="reading-launcher-random">
+          <p class="reading-launcher-label">DISCOVER</p>
+          <div class="discovery-random-actions">
+            <button id="unreadRandomEssay" class="discovery-button discovery-button-primary" type="button" title="現在の候補から未読了の記事をランダムに1本読む">
+              <span class="discovery-button-icon" aria-hidden="true">↝</span>
+              <span>未読了から1本</span>
+              <span id="unreadRandomCount" class="discovery-count" aria-label="未読了 0本" hidden></span>
+            </button>
+            <button id="randomEssay" class="discovery-button discovery-button-secondary random-essay-button" type="button" title="現在の候補からランダムに1本読む">
+              <span class="discovery-button-icon" aria-hidden="true">↝</span>
+              <span>ランダムで1本</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
       <div class="library-toolbar" aria-label="ライブラリ操作">
         <p id="resultCount" class="library-count" aria-live="polite"></p>
         <div class="toolbar-actions">
-          <button id="randomEssay" class="compact-button random-essay-button" type="button" title="現在の一覧からランダムに1本読む">
-            <span aria-hidden="true">↝</span><span>ランダム</span>
-          </button>
-          <div id="searchControl" class="search-control">
-            <button id="searchToggle" class="compact-button search-trigger" type="button" aria-expanded="false" aria-controls="searchInput">
-              <span aria-hidden="true">⌕</span><span class="search-trigger-label">検索</span>
-            </button>
-            <input id="searchInput" class="inline-search-input" type="search" placeholder="タイトル・本文・タグを検索" autocomplete="off" tabindex="-1">
-            <kbd class="search-shortcut">/</kbd>
-          </div>
           <button id="filterToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="filterPanel">
             <span>絞り込み</span><span id="filterCount" class="filter-count" hidden></span>
           </button>
@@ -151,7 +168,7 @@
   <script src="reader-gpt-bridge.js?v=20260817-1017" defer></script>
   <script src="selection-note-bridge.js?v=20260813-1353" defer></script>
   <script src="selection-tools.js?v=20260813-1353" defer></script>
-  <script src="ui-enhancements.js?v=20260823-2335" defer></script>
+  <script src="ui-enhancements.js?v=20260824-2333" defer></script>
   <script src="reading-state-ui.js?v=20260822-2140" defer></script>
   <script src="reading-locators.js?v=20260819-2326" defer></script>
   <script src="english-mix.js?v=20260819-2326" defer></script>
