@@ -21,9 +21,7 @@ abstract: "アメリカの都市を一つずつ知るシリーズ第1回。フ�
 # アメリカ都市を読む #1｜フィラデルフィア――建国の街、その先へ
 ## グリッド、ロウハウス、脱工業化、Eds & Meds、スポーツ。ひとつの街からアメリカの層を読む
 
-![フィラデルフィアのスカイライン](https://commons.wikimedia.org/wiki/Special:Redirect/file/Philadelphia_skyline_from_south_street_bridge.jpg?width=1280 "South Street Bridge付近から見るフィラデルフィア中心部")
-
-Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Philadelphia_skyline_from_south_street_bridge.jpg) / Bmoredlj, Public Domain
+![フィラデルフィアのスカイライン](https://commons.wikimedia.org/wiki/Special:Redirect/file/Philadelphia_skyline_from_south_street_bridge.jpg?width=1280 "South Street Bridge付近から見るフィラデルフィア中心部。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Philadelphia_skyline_from_south_street_bridge.jpg) / Bmoredlj, Public Domain")
 
 ## 要旨
 
@@ -63,9 +61,7 @@ Sources: [U.S. Census Bureau QuickFacts](https://www.census.gov/quickfacts/fact/
 
 ## 1. 「アメリカ建国の街」は、本当にここから始まる
 
-![Independence Hall](https://commons.wikimedia.org/wiki/Special:Redirect/file/Independence_Hall_Exterior_Front.jpg?width=1280 "独立宣言と合衆国憲法の舞台となったIndependence Hall")
-
-Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Independence_Hall_Exterior_Front.jpg) / Andrew Rehbein, CC BY-SA 4.0
+![Independence Hall](https://commons.wikimedia.org/wiki/Special:Redirect/file/Independence_Hall_Exterior_Front.jpg?width=1280 "独立宣言と合衆国憲法の舞台となったIndependence Hall。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Independence_Hall_Exterior_Front.jpg) / Andrew Rehbein, CC BY-SA 4.0")
 
 フィラデルフィアの知名度を一気に引き上げているのが **Independence Hall** である。
 
@@ -83,6 +79,8 @@ Source: [National Park Service — Independence Hall](https://www.nps.gov/places
 
 ## 2. 街を歩くと、1682年の設計思想がまだ残っている
 
+![1683年のフィラデルフィア都市計画図](https://commons.wikimedia.org/wiki/Special:Redirect/file/Map_of_the_Original_City_of_Philadelphia_in_1682_by_Thomas_Holme.jpg?width=1280 "Thomas Holmeによる1683年の都市計画図。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Map_of_the_Original_City_of_Philadelphia_in_1682_by_Thomas_Holme.jpg) / Thomas Holme, Public Domain")
+
 フィラデルフィアは、アメリカで早い時期に明確な直交グリッドを採用した都市の一つである。
 
 ウィリアム・ペンと測量家トーマス・ホルムは1682〜1683年、デラウェア川とスクールキル川に挟まれた土地に格子状の道路を引いた。東西の大軸がMarket Street、南北の大軸がBroad Street。さらに四つの地区に公共広場を置き、中央にも一つ置いた。
@@ -99,9 +97,7 @@ Source: [City of Philadelphia — Old City Historic District](https://www.phila.
 
 ## 3. フィラデルフィアを覚えるなら「ロウハウスの街」と覚える
 
-![South Philadelphiaのロウハウス](https://commons.wikimedia.org/wiki/Special:Redirect/file/SouthPhillyRowhousesCropped.JPG?width=1280 "South Philadelphiaに並ぶロウハウス")
-
-Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SouthPhillyRowhousesCropped.JPG) / Moncrief, Public Domain
+![Lower Moyamensingのロウハウス](https://commons.wikimedia.org/wiki/Special:Redirect/file/Row_homes,_Lower_Moyamensing_Philadelphia.jpg?width=1000 "South Philadelphia・Lower Moyamensingの住宅街。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Row_homes,_Lower_Moyamensing_Philadelphia.jpg) / Lomofan77, CC BY-SA 4.0")
 
 フィラデルフィアの都市景観で最も重要なのは、高層ビルよりむしろ **rowhouse / rowhome** かもしれない。
 
@@ -123,6 +119,8 @@ Source: [Philadelphia Rowhouse Manual](https://www.phila.gov/media/2019052112472
 
 ## 4. かつては「世界の工場」だった
 
+![1875年のBaldwin Locomotive Works](https://commons.wikimedia.org/wiki/Special:Redirect/file/Baldwin_Locomotive_Works,_Philadelphia,_Pennsylvania,_1875.jpg?width=1280 "1875年のBaldwin Locomotive Works。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Baldwin_Locomotive_Works,_Philadelphia,_Pennsylvania,_1875.jpg) / Author unknown, Public Domain")
+
 今のフィラデルフィアを大学や病院の街として見るだけでは、なぜ人口が200万人を超えたのか分からない。
 
 19世紀から20世紀前半、この地域は繊維、衣服、鉄鋼、造船、機械、機関車、食品など多様な製造業を抱え、**Workshop of the World** と呼ばれた。
@@ -138,6 +136,8 @@ Source: [Philadelphia Rowhouse Manual](https://www.phila.gov/media/2019052112472
 Source: [Encyclopedia of Greater Philadelphia — Deindustrialization](https://philadelphiaencyclopedia.org/essays/deindustrialization/) / [U.S. Census 1950](https://www.census.gov/about/history/historical-censuses-and-surveys/decade-facts.1950.html)
 
 ## 5. 「建国の自由」と「住宅の分断」を同じ地図で見る
+
+![1930年代のHOLC住宅評価地図](https://commons.wikimedia.org/wiki/Special:Redirect/file/Home_Owners%27_Loan_Corporation_Philadelphia_redlining_map.jpg?width=1200 "PhiladelphiaとCamdenのHOLC Residential Security Map。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Home_Owners%27_Loan_Corporation_Philadelphia_redlining_map.jpg) / HOLC・National Archives records, Public Domain")
 
 フィラデルフィアを学ぶうえで、避けてはいけないのが人種と住宅である。
 
@@ -175,6 +175,8 @@ Source: [Federal Reserve Bank of Philadelphia — About Our District](https://ww
 
 ## 7. SEPTAを見ると「アメリカでも車だけではない」が分かる
 
+![SEPTA Route 10 Trolley](https://commons.wikimedia.org/wiki/Special:Redirect/file/SEPTA_Route_10_Trolley_on_36th_Street.JPG?width=1280 "36th Streetを走るSEPTA Route 10のトロリー。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SEPTA_Route_10_Trolley_on_36th_Street.JPG) / DanTD, CC BY-SA 3.0")
+
 アメリカの都市というと高速道路と自動車を想像しやすいが、フィラデルフィアではそのイメージだけでは足りない。
 
 公共交通は **SEPTA**。2026年現在、地下鉄・高架鉄道・トロリー系統をSEPTA Metroとして整理し、L、B、T、G、D、Mという文字ベースの案内へ移行している。さらにRegional Railが中心部と郊外を結ぶ。
@@ -185,13 +187,11 @@ Source: [Federal Reserve Bank of Philadelphia — About Our District](https://ww
 
 SEPTAが近年、路線名を色・文字・数字で統一しようとしているのも面白い。交通インフラそのものだけでなく、「初見の人が理解できるか」という情報設計まで都市体験になる。
 
-Source: [SEPTA Metro](https://wwww.septa.org/metro/) / [SEPTA Maps](https://wwww.septa.org/maps/) / [SEPTA Regional Rail](https://wwww.septa.org/initiatives/regional-rail/)
+Source: [SEPTA Metro](https://www.septa.org/metro/) / [SEPTA Maps](https://www.septa.org/maps/) / [SEPTA Regional Rail](https://www.septa.org/initiatives/regional-rail/)
 
 ## 8. Reading Terminal Marketは「都市が食べる場所」
 
-![Reading Terminal Market](https://commons.wikimedia.org/wiki/Special:Redirect/file/Reading_Terminal_Market_%2853587020195%29.jpg?width=1280 "Reading Terminal Market")
-
-Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Reading_Terminal_Market_(53587020195).jpg) / ajay_suresh, CC BY 2.0
+![Reading Terminal Marketのセンターコート](https://commons.wikimedia.org/wiki/Special:Redirect/file/Reading_Terminal_Market_center_court.jpg?width=1280 "Reading Terminal Marketのセンターコート。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Reading_Terminal_Market_center_court.jpg) / Bruce Andersen, CC BY-SA 3.0")
 
 フィラデルフィアの食と聞くと、まずcheesesteakが出てくる。
 
@@ -204,6 +204,8 @@ Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Reading_Termi
 Cheesesteakだけ覚えるより、**food is migration made visible** と覚えた方がフィラデルフィアらしい。
 
 ## 9. スポーツは娯楽ではなく、都市の自己紹介
+
+![South Philadelphia Sports Complex](https://commons.wikimedia.org/wiki/Special:Redirect/file/South_Philadelphia_Sports_Complex_from_airplane_approaching_PHL.jpeg?width=1280 "飛行機から見たSouth Philadelphia Sports Complex。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:South_Philadelphia_Sports_Complex_from_airplane_approaching_PHL.jpeg) / Dough4872, CC BY-SA 4.0")
 
 フィラデルフィアを知るなら、スポーツは外せない。
 
@@ -218,6 +220,8 @@ Eagles（NFL）、Phillies（MLB）、76ers（NBA）、Flyers（NHL）のホー�
 Source: [Visit Philadelphia — South Philadelphia Sports Complex](https://www.visitphilly.com/areas/south-philadelphia-sports-complex/) / [Visit Philadelphia — Sports 2026](https://www.visitphilly.com/articles/philadelphia/sports-2026/)
 
 ## 10. 「Mural Capital」の壁を見る
+
+![Convergence mural](https://commons.wikimedia.org/wiki/Special:Redirect/file/Convergence_Mural_by_Rebecca_Rutstein_in_Philadelphia,_PA.jpg?width=1280 "27th & South Streetの《Convergence》。Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Convergence_Mural_by_Rebecca_Rutstein_in_Philadelphia,_PA.jpg) / Artwork: Rebecca Rutstein; Photo: Steve Weinik, CC BY-SA 4.0")
 
 フィラデルフィアを歩くと、巨大な壁画が突然現れる。
 
@@ -234,10 +238,6 @@ Mural Arts Philadelphiaは毎年50〜100件規模の公共アートプロジェ�
 Source: [Mural Arts Philadelphia — About](https://muralarts.org/about/) / [Reimaging Public Art](https://muralarts.org/blog/reimaging-public-art/)
 
 ## 11. フィラデルフィアを一言で覚えるなら
-
-![Benjamin Franklin ParkwayからCity Hall方向](https://commons.wikimedia.org/wiki/Special:Redirect/file/Benjamin_Franklin_Parkway-27527.JPG?width=1280 "Philadelphia Museum of Art側からCity Hallを見る")
-
-Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Benjamin_Franklin_Parkway-27527.JPG) / Ken Thomas, Public Domain
 
 フィラデルフィアは、**「アメリカの古い設計図の上で、現代の問題を抱えながら生き続けている街」**である。
 
@@ -289,15 +289,7 @@ Photo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Benjamin_Fran
 - [Penn LDI — Redlining maps and their limits](https://ldi.upenn.edu/our-work/research-updates/one-agencys-maps-are-known-for-documenting-redlining/)
 - [Encyclopedia of Greater Philadelphia — Deindustrialization](https://philadelphiaencyclopedia.org/essays/deindustrialization/)
 - [Federal Reserve Bank of Philadelphia — About Our District](https://www.philadelphiafed.org/about-us/about-our-district)
-- [SEPTA — Metro](https://wwww.septa.org/metro/)
-- [SEPTA — Regional Rail](https://wwww.septa.org/initiatives/regional-rail/)
+- [SEPTA — Metro](https://www.septa.org/metro/)
+- [SEPTA — Regional Rail](https://www.septa.org/initiatives/regional-rail/)
 - [Visit Philadelphia — South Philadelphia Sports Complex](https://www.visitphilly.com/areas/south-philadelphia-sports-complex/)
 - [Mural Arts Philadelphia — About](https://muralarts.org/about/)
-
-## Photo credits
-
-- Skyline: Bmoredlj / Wikimedia Commons / Public Domain
-- Independence Hall: Andrew Rehbein / Wikimedia Commons / CC BY-SA 4.0
-- South Philadelphia rowhouses: Moncrief / Wikimedia Commons / Public Domain
-- Reading Terminal Market: ajay_suresh / Wikimedia Commons / CC BY 2.0
-- Benjamin Franklin Parkway: Ken Thomas / Wikimedia Commons / Public Domain
