@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "kobushi-factory-history-reconstruction": "english-mix/kobushi-factory-history-reconstruction.md",
     "juice-juice-history-capability-pipeline": "english-mix/juice-juice-history-capability-pipeline.md",
     "smileage-angerme-history-renewal-capacity": "english-mix/smileage-angerme-history-renewal-capacity.md",
     "buono-history-autonomous-side-project": "english-mix/buono-history-autonomous-side-project.md",
