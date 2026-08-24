@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "taiyo-ciscomoon-history-compressed-legacy": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md",
     "morning-musume-history-renewal-system": "english-mix/morning-musume-history-renewal-system.md",
     "pride-obligation-strength": "english-mix/pride-obligation-strength.md",
     "america-cities-05-los-angeles": "english-mix/america-cities-05-los-angeles.md",
