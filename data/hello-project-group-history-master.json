@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -109,15 +109,26 @@
       "keyContrast": "Berryz工房と℃-uteがそれぞれ本体として人と時間を蓄積したのに対し、Buono!は両組織から借りた人材の組み合わせ自体を新しい本体へ変えた。",
       "archiveNote": "2025年のサブスク解禁ではBuono!がBerryz工房・℃-uteとは別のアーティスト名で並び、『初恋サイダー』もカバーやSNSを通じて再注目された。活動終了後も親グループの予備知識なしで発見できる独立カタログになっている。",
       "status": "complete"
+    },
+    {
+      "group": "スマイレージ／アンジュルム",
+      "essayId": "smileage-angerme-history-renewal-capacity",
+      "canonical": "essays/2026-08-24-smileage-angerme-history-renewal-capacity.md",
+      "englishMix": "english-mix/smileage-angerme-history-renewal-capacity.md",
+      "centralQuestion": "4人のスマイレージとして始まったグループは、なぜ改名・増員・卒業・制作体制変更を繰り返しながら、別物になり続けること自体を強みにできたのか",
+      "thesis": "成功した現行形を聖域化せず、初期メンバー在籍中から3期加入と改名を設計し、その後も複数の加入経路、作家陣、リーダー世代を更新した。継承されたのは特定の形ではなく、危機になる前に自分たちを作り替える自己更新能力だった。",
+      "survivalModel": "renewal_capacity_survives",
+      "keyContrast": "モーニング娘。が名前と基本制度を固定して構成員を替えるのに対し、アンジュルムは構成員だけでなく名前・人数・制作体制・リーダー像まで更新対象にし、更新手続きそのものを継承した。",
+      "archiveNote": "2026年現在はスマイレージ時代を経験した現役メンバーが一人もおらず、改名を決めた世代も卒業済み。それでも伊勢鈴蘭リーダー・為永幸音サブリーダーの9人体制で活動し、2026年7月に37thシングルを発売している。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "スマイレージ／アンジュルム",
-      "centralQuestion": "『日本一スカートの短いアイドルグループ』として始まった4人組は、なぜ改名・増員・卒業を繰り返しながら、別物になり続けること自体を強みにできたのか",
+      "group": "Juice=Juice",
+      "centralQuestion": "研修生中心の5人＋宮崎由加で始まり、卒業と加入を繰り返しながら、なぜ『歌えるグループ』という基準を世代交代させられたのか",
       "status": "next"
     },
-    {"group": "Juice=Juice", "status": "planned"},
     {"group": "こぶしファクトリー", "status": "planned"},
     {"group": "つばきファクトリー", "status": "planned"},
     {"group": "BEYOOOOONDS", "status": "planned"},
@@ -133,10 +144,11 @@
     {"id": "persona_survives_by_reinterpretation", "meaning": "一人の演者が過去の人格ブランドを否定せず、年齢・歌唱・作家・活動頻度を変えながら同じ名前の意味を更新する"},
     {"id": "shared_time_survives", "meaning": "同じ構成員が長期間成長を共有し、本人たちと観客が蓄積した時間そのものが、楽曲再解釈や部分的再集合から再起動できる資産になる"},
     {"id": "performance_standard_survives", "meaning": "組織終了後も楽曲・ライブ像・技能評価が後輩の課題曲や比較軸として機能し、グループが作ったパフォーマンス基準そのものが残る"},
-    {"id": "autonomous_side_project_survives", "meaning": "親組織から借りた人材で始まった派生企画が、専用レパートリー・専用現場・独自役割を蓄積し、親組織の説明なしでも成立する独立ブランドになる"}
+    {"id": "autonomous_side_project_survives", "meaning": "親組織から借りた人材で始まった派生企画が、専用レパートリー・専用現場・独自役割を蓄積し、親組織の説明なしでも成立する独立ブランドになる"},
+    {"id": "renewal_capacity_survives", "meaning": "現行のブランド・人数・制作体制・リーダーを聖域化せず、危機になる前に次世代を内部へ入れ、成功した形さえ作り替える自己更新能力そのものが継承される"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, and autonomous side-project identities can each preserve continuity in different ways.",
+    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, autonomous side-project identities, and renewal capacity can each preserve continuity in different ways.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
@@ -149,6 +161,8 @@
     "Performance reputation is broader than athletic difficulty: vocal interpretation, stillness, rhythm, audience control, and consistency all contribute to a durable performance standard.",
     "A side project becomes autonomous when it owns resources that the parent groups cannot substitute: dedicated repertoire, a distinct performance environment, an audience, and a gateway work discoverable without organizational backstory.",
     "Identity can become independent before resources do. Side projects may remain dependent on parent-group calendars even after audiences perceive them as standalone brands.",
+    "Continuity can be a meta-capability rather than a fixed identity: an organization may survive because each generation inherits permission and procedure to redefine what the organization is.",
+    "Succession is more robust when founders transfer authorship before departure. Adding successors and changing symbols while founders are still present can reduce the identity shock of founder exit.",
     "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
     "Reunion or return does not require exact restoration. Respecting present agency and current life stage can preserve historical legitimacy better than forcing a complete replica of the past."
@@ -167,6 +181,8 @@
     "For solo histories, distinguish a constructed public persona from the performer's own statements and avoid treating either as the complete private person.",
     "When comparing sibling groups, do not turn structural asymmetry into a simplistic winner/loser story. Use official wording for selection and naming, and treat later reputation as earned rather than predetermined.",
     "When describing performance reputation, separate sourced skill observations from later fan mythology and avoid treating technical difficulty as the only form of performance quality.",
-    "For side-project histories, distinguish original external purpose, parent-group resource dependence, and the point at which the project develops non-substitutable repertoire, live context, audience, or discoverability."
+    "For side-project histories, distinguish original external purpose, parent-group resource dependence, and the point at which the project develops non-substitutable repertoire, live context, audience, or discoverability.",
+    "For renaming and self-reinvention histories, distinguish discontinuity of surface identity from continuity of governance, repertoire, members, and succession. Do not assume a name change is either a total reset or a purely cosmetic rebrand.",
+    "For current active groups, verify the current lineup and leadership from a fresh official profile before publication."
   ]
 }
