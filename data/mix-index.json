@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "delay-accuracy-in-conversation": "english-mix/delay-accuracy-in-conversation.md",
     "america-cities-03-chicago": "english-mix/america-cities-03-chicago.md",
     "hello-project-history-04-2007-2010-platinum": "english-mix/hello-project-history-04-2007-2010-platinum.md",
     "america-cities-02-boston": "english-mix/america-cities-02-boston.md",
