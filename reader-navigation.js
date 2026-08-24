@@ -26,16 +26,37 @@
     }
   }
 
+  function getSeriesSequence(currentEssay) {
+    if (!currentEssay?.series || currentEssay.seriesOrder === undefined || currentEssay.seriesOrder === null) return null;
+
+    const items = getAllEssays()
+      .filter(essay => essay.series === currentEssay.series && Number.isFinite(Number(essay.seriesOrder)))
+      .sort((a, b) => Number(a.seriesOrder) - Number(b.seriesOrder));
+
+    if (items.length < 2) return null;
+    const index = items.findIndex(essay => essay.id === currentEssay.id);
+    if (index === -1) return null;
+
+    return {
+      items,
+      index,
+      previous: index > 0 ? items[index - 1] : null,
+      next: index < items.length - 1 ? items[index + 1] : null
+    };
+  }
+
   function formatNavigationDate(value = '') {
     if (!value) return '';
     const [year, month, day] = String(value).split('-');
     return [year, month, day].filter(Boolean).join('.');
   }
 
-  function essayLink(essay, direction) {
+  function essayLink(essay, direction, { series = false } = {}) {
     if (!essay) return '<div class="reader-end-link reader-end-link--empty" aria-hidden="true"></div>';
     const previous = direction === 'previous';
-    const label = previous ? '← 前の記事' : '次の記事 →';
+    const label = series
+      ? (previous ? '← シリーズ前へ' : 'シリーズ次へ →')
+      : (previous ? '← 前の記事' : '次の記事 →');
     const directionClass = previous ? 'reader-end-link--previous' : 'reader-end-link--next';
     return `
       <a class="reader-end-link ${directionClass}" href="#/essay/${encodeURIComponent(essay.id)}">
@@ -103,29 +124,48 @@
 
     root.querySelector(navSelector)?.remove();
 
-    const visible = getVisibleEssayOrder();
-    let currentIndex = visible.findIndex(essay => essay.id === currentEssay.id);
-    let order = visible;
+    const seriesSequence = getSeriesSequence(currentEssay);
+    let previous = null;
+    let next = null;
+    let sequenceHeader = '';
+    let isSeries = false;
 
-    // When a filter removes the current card from the hidden Library DOM,
-    // fall back to the complete archive so navigation never disappears.
-    if (currentIndex === -1) {
-      order = getAllEssays().map(essay => ({ id: essay.id, title: essay.title || '' }));
-      currentIndex = order.findIndex(essay => essay.id === currentEssay.id);
+    if (seriesSequence) {
+      previous = seriesSequence.previous;
+      next = seriesSequence.next;
+      isSeries = true;
+      sequenceHeader = `
+        <p class="reader-related-kicker">SERIES</p>
+        <p class="reader-related-note" style="max-width:none;margin:0 0 12px !important;text-align:left;">
+          ${escapeNavigationHtml(currentEssay.series)} · ${seriesSequence.index + 1}/${seriesSequence.items.length}
+        </p>`;
+    } else {
+      const visible = getVisibleEssayOrder();
+      let currentIndex = visible.findIndex(essay => essay.id === currentEssay.id);
+      let order = visible;
+
+      // When a filter removes the current card from the hidden Library DOM,
+      // fall back to the complete archive so navigation never disappears.
+      if (currentIndex === -1) {
+        order = getAllEssays().map(essay => ({ id: essay.id, title: essay.title || '' }));
+        currentIndex = order.findIndex(essay => essay.id === currentEssay.id);
+      }
+      if (currentIndex === -1) return;
+
+      previous = currentIndex > 0 ? order[currentIndex - 1] : null;
+      next = currentIndex < order.length - 1 ? order[currentIndex + 1] : null;
     }
-    if (currentIndex === -1) return;
 
-    const previous = currentIndex > 0 ? order[currentIndex - 1] : null;
-    const next = currentIndex < order.length - 1 ? order[currentIndex + 1] : null;
     const nav = document.createElement('div');
     nav.className = 'reader-end-navigation';
     nav.dataset.essayId = currentEssay.id;
     nav.innerHTML = `
       ${relatedSection(currentEssay)}
-      <nav class="reader-sequence-navigation" aria-label="前後の記事">
+      <nav class="reader-sequence-navigation" aria-label="${isSeries ? 'シリーズ前後の記事' : '前後の記事'}">
+        ${sequenceHeader}
         <div class="reader-end-links">
-          ${essayLink(previous, 'previous')}
-          ${essayLink(next, 'next')}
+          ${essayLink(previous, 'previous', { series: isSeries })}
+          ${essayLink(next, 'next', { series: isSeries })}
         </div>
         <a class="reader-top-link" href="#/">↑ TOPへ戻る</a>
       </nav>`;
