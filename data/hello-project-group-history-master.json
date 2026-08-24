@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -26,15 +26,25 @@
       "survivalModel": "repertoire_survives",
       "keyContrast": "モーニング娘。が人を替えて制度を残したのに対し、太陽とシスコムーンは4人の固定的な化学反応が終わった後も作品が残った。",
       "status": "complete"
+    },
+    {
+      "group": "カントリー娘。／カントリー・ガールズ",
+      "essayId": "country-musume-country-girls-history-brand-redefinition",
+      "canonical": "essays/2026-08-24-country-musume-country-girls-history-brand-redefinition.md",
+      "englishMix": "english-mix/country-musume-country-girls-history-brand-redefinition.md",
+      "centralQuestion": "同じ名前の系譜は、なぜ北海道の半農半芸から都市型アイドル、さらに兼任中心の活動へ何度も作り替えられたのか",
+      "thesis": "メンバー、活動場所、運営方式が途切れても『カントリー』という名前を閉じず、里田まいと旧曲を橋にして時代ごとに別の意味を入れ直した。継続したのは固定形ではなく再起動可能性だった。",
+      "survivalModel": "brand_survives_by_redefinition",
+      "keyContrast": "モーニング娘。は連続運転する制度、太陽とシスコムーンは解散後も残る作品、カントリーは空白期間を許容しながら再定義できるブランド名を残した。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "カントリー娘。／カントリー・ガールズ",
-      "centralQuestion": "同じ名前の系譜は、なぜ北海道の半農半芸から都市型アイドルへ何度も作り替えられたのか",
+      "group": "メロン記念日",
+      "centralQuestion": "メンバーチェンジをせず約10年活動した4人組は、なぜハロプロの中で独自のライブ文化を作れたのか",
       "status": "next"
     },
-    {"group": "メロン記念日", "status": "planned"},
     {"group": "ミニモニ。と派生ユニット", "status": "planned"},
     {"group": "松浦亜弥", "status": "planned"},
     {"group": "Berryz工房", "status": "planned"},
@@ -49,9 +59,11 @@
     {"group": "ロージークロニクル", "status": "planned"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: a group may survive as an institution, or its repertoire may survive after the institution ends.",
+    "Hello! Project has multiple survival models: an institution can survive through continuous replacement, a repertoire can survive after an institution ends, or a brand can survive operational gaps by being redefined and rebooted.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
-    "Repertoire inheritance allows short-lived groups to remain culturally active inside Hello! Project after disbandment."
+    "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
+    "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
+    "Flexibility has an identity cost. The more a group borrows members, uses concurrent affiliations, or changes operating models, the more it needs repertoire, people, or narrative to prove continuity."
   ],
   "researchRules": [
     "Research first; do not write from memory alone.",
@@ -60,6 +72,7 @@
     "Include negative history without rumor or villain framing.",
     "Treat songs as historical evidence: identify what changed in the group's identity, audience, system or performance through each key song.",
     "Connect each group history back to the broader Hello! Project system.",
-    "Compare survival models across groups instead of assuming longevity is the only measure of success."
+    "Compare survival models across groups instead of assuming longevity is the only measure of success.",
+    "For real-world tragedy or health-related departures, state only well-supported facts, avoid sensational detail, and do not use personal suffering as a narrative shortcut."
   ]
 }
