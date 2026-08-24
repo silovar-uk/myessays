@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -146,17 +146,24 @@
       "survivalModel": "combinatorial_identity_survives",
       "archiveNote": "2026年現在はCHICA#TETSU 4人、雨ノ森 川海4人、SeasoningS 3人の11人体制。2018年のオリジナル構成員が複数卒業した後も、内部ユニット制そのものを新メンバー配置によって再起動している。",
       "status": "complete"
+    },
+    {
+      "group": "OCHA NORMA",
+      "essayId": "ocha-norma-history-hybrid-origin",
+      "canonical": "essays/2026-08-24-ocha-norma-history-hybrid-origin.md",
+      "englishMix": "english-mix/ocha-norma-history-hybrid-origin.md",
+      "centralQuestion": "長期研修生、後から選ばれた研修生、一般オーディション合格者という異なる経歴を、なぜ一つの創設メンバーへ統合できたのか",
+      "thesis": "2019年の仮ユニットから段階的に人を加え、2021年12月12日に異なる育成・採用経路を持つ10人を同じ創設メンバーとして統合した。個々の前史を消すのではなく、結成後の共有履歴を組織の正統性にしたため、2025年に2人が卒業して8人になった後も同じブランドを継続できた。",
+      "survivalModel": "hybrid_origin_survives",
+      "archiveNote": "2026年現在は斉藤円香リーダー、広本瑠璃サブリーダーを含む8人体制。7月に6thシングルを発売し、春・秋のライブツアーを継続している。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "OCHA NORMA",
-      "centralQuestion": "研修生ユニットと一般オーディション合格者を統合して始まった10人組は、なぜ『新しい標準』を掲げる必要があったのか",
-      "status": "next"
-    },
-    {
       "group": "ロージークロニクル",
-      "status": "planned"
+      "centralQuestion": "研修生ユニットから9人組として形を整え、2025年にメジャーデビューした新世代グループは、なぜ『年代記』を名前にしたのか",
+      "status": "next"
     }
   ],
   "survivalModels": [
@@ -173,7 +180,8 @@
     {"id": "capability_pipeline_survives", "meaning": "個人能力を先輩後輩の重複、高難度仕事、複数採用入口、役割分散で次世代に再生産する"},
     {"id": "reconstructed_identity_survives", "meaning": "大きな断絶後に旧体制を復元せず、残った構成員に合わせた第二の人格を作る"},
     {"id": "layered_cohort_survives", "meaning": "新世代を旧世代の在籍中に先に入れ、重複期間の後に旧世代が段階的に離れることで断絶を小さくする"},
-    {"id": "combinatorial_identity_survives", "meaning": "人・内部ユニット・役柄・個人技能をモジュールとして扱い、完成形ではなく組み替える権利と方法そのものをアイデンティティとして継承する"}
+    {"id": "combinatorial_identity_survives", "meaning": "人・内部ユニット・役柄・個人技能をモジュールとして扱い、完成形ではなく組み替える権利と方法そのものをアイデンティティとして継承する"},
+    {"id": "hybrid_origin_survives", "meaning": "異なる育成・採用経路を持つ人材をデビュー前に同じ創設期へ統合し、同一の前史ではなく結成後の共有履歴を組織の正統性にする"}
   ],
   "crossGroupHypotheses": [
     "Hello! Project has multiple survival models; longevity alone is not the only measure of continuity.",
@@ -187,6 +195,7 @@
     "Post-crisis recovery does not require restoration; a smaller team can build a second identity around new capabilities.",
     "Layered cohorts reduce identity shock by letting old and new generations work together before departures.",
     "Complexity can be an asset when components are modular. The important capability is not having many parts, but being able to recombine them into legible works.",
+    "A shared founding date can integrate unequal prehistories without pretending those prehistories were equal. Hybrid origins work when post-formation roles remain open to revision.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Durable groups decide what remains fixed and what is allowed to change."
   ],
   "researchRules": [
@@ -202,6 +211,7 @@
     "For capability histories, distinguish individual talent from organizational reproduction mechanisms.",
     "For post-crisis reconstruction histories, keep departure causes distinct and distinguish restoration from redesign.",
     "For layered-cohort histories, verify actual overlap periods and do not equate all additions with formal generations.",
-    "For modular or multi-unit groups, distinguish full-group identity, subunit membership, individual skills and temporary performance roles; test whether those components are actually recombined in works rather than merely listed in profiles."
+    "For modular or multi-unit groups, distinguish full-group identity, subunit membership, individual skills and temporary performance roles; test whether those components are actually recombined in works rather than merely listed in profiles.",
+    "For hybrid-origin histories, keep pre-debut career differences visible; a shared formation date does not erase unequal time costs or prior experience. Distinguish integration from homogenization."
   ]
 }
