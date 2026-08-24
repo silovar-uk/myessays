@@ -30,7 +30,7 @@ Maki Goto could be a Morning Musume member and a solo singer at the same time. A
 
 > **Hello! Project became a media system: one idol did not have to belong to only one product, one audience, or one story.**
 
-しかも、この巨大化は市場全体が成長し続けていた時期に起きたわけではない。日本レコード協会の生産実績では、音楽ソフトの生産金額は1998年の約6,075億円から、2004年には約4,313億円へ下がっている。
+しかも、この巨大化は市場全体が成長し続けていた時期に起きたわけではない。日本レコード協会の金額統計では、音楽ソフトの生産金額は1998年の約4,802億円から、2004年には約3,475億円へ縮小している。
 
 So the “golden age” of Hello! Project happened exactly when Japan's physical music market was moving from its peak into decline.
 
@@ -211,9 +211,9 @@ The golden age showed not only the power of change, but also its cost.
 
 ハロプロ黄金期とCD市場黄金期は、完全には一致しない。
 
-According to the Recording Industry Association of Japan, music-software production value fell from about ¥607.5 billion in 1998 to ¥569.6 billion in 1999, ¥539.8 billion in 2000, ¥503.1 billion in 2001, ¥481.5 billion in 2002, ¥456.2 billion in 2003, and ¥431.3 billion in 2004.
+According to the Recording Industry Association of Japan's value statistics, music-software production value fell from ¥480.177 billion in 1998 to ¥347.451 billion in 2004, a decline of about 27.6%.
 
-1998年から2004年で約29％減である。
+つまり、モーニング娘。やミニモニ。、松浦亜弥がテレビを席巻した時代は、音楽産業全体ではすでに縮小局面だった。
 
 Tsunku later recalled that after the success of “LOVE Machine,” the CD market moved into recession and the question became how Morning Musume could survive that change.
 
