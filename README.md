@@ -45,6 +45,10 @@ abstract: "概要"
 
 ルートの `index.html` をそのまま配信できる静的サイト。GitHub Pagesが未設定の場合は、Repository Settings → Pages から `main` / root を公開元に指定する。
 
+## Page Reader Bookmarklet
+
+長いページを抽出するPage Readerは、短いBookmarklet Loaderと外部本体に分離している。導入・更新・制約は [tools/page-reader.md](tools/page-reader.md) を参照。
+
 ## 最初の収録論文
 
 - 「できる」は外から見えない――他者能力推定における出力・文脈・自己基準の非対称性――AI評価を補助線とした概念モデル

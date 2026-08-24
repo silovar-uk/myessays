@@ -10,7 +10,10 @@ on:
       - 'data/**'
       - 'essays/**'
       - 'english-mix/**'
+      - 'tools/**'
+      - 'tests/**'
       - 'scripts/visual-qa.mjs'
+      - 'scripts/page-reader-qa.cjs'
       - '.github/workflows/visual-qa.yml'
   workflow_dispatch:
 
@@ -47,6 +50,12 @@ jobs:
           done
           cat /tmp/myessays-server.log
           exit 1
+
+      - name: Run Page Reader static tests
+        run: node --test tests/page-reader-loader.test.js
+
+      - name: Run Page Reader browser QA
+        run: node scripts/page-reader-qa.cjs
 
       - name: Run browser QA
         env:
