@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "updated": "2026-08-24",
+  "scope": "Hello! Project individual group histories",
+  "parentMaster": "data/hello-project-history-master.json",
+  "principle": "People x Music x System x Society",
+  "status": "in_progress",
+  "completed": [
+    {
+      "group": "モーニング娘。",
+      "essayId": "morning-musume-history-renewal-system",
+      "canonical": "essays/2026-08-24-morning-musume-history-renewal-system.md",
+      "englishMix": "english-mix/morning-musume-history-renewal-system.md",
+      "centralQuestion": "創設メンバーが一人もいなくなった後も、なぜ同じ名前で30年近く続けられたのか",
+      "thesis": "モーニング娘。は特定メンバーの集合ではなく、加入・卒業・リーダー継承・楽曲再演・年号表記によって同じ物語を更新する制度になった。",
+      "status": "complete"
+    }
+  ],
+  "queue": [
+    {
+      "group": "太陽とシスコムーン／T&Cボンバー",
+      "centralQuestion": "実力派4人組は、なぜ短期間でもハロプロ史に残ったのか",
+      "status": "next"
+    },
+    {"group": "カントリー娘。／カントリー・ガールズ", "status": "planned"},
+    {"group": "メロン記念日", "status": "planned"},
+    {"group": "ミニモニ。と派生ユニット", "status": "planned"},
+    {"group": "松浦亜弥", "status": "planned"},
+    {"group": "Berryz工房", "status": "planned"},
+    {"group": "℃-ute", "status": "planned"},
+    {"group": "Buono!", "status": "planned"},
+    {"group": "スマイレージ／アンジュルム", "status": "planned"},
+    {"group": "Juice=Juice", "status": "planned"},
+    {"group": "こぶしファクトリー", "status": "planned"},
+    {"group": "つばきファクトリー", "status": "planned"},
+    {"group": "BEYOOOOONDS", "status": "planned"},
+    {"group": "OCHA NORMA", "status": "planned"},
+    {"group": "ロージークロニクル", "status": "planned"}
+  ],
+  "researchRules": [
+    "Research first; do not write from memory alone.",
+    "Use official sources for dates, joins, graduations, releases and current lineups.",
+    "Use interviews and reporting to interpret turning points, but distinguish interpretation from official fact.",
+    "Include negative history without rumor or villain framing.",
+    "Treat songs as historical evidence: identify what changed in the group's identity, audience, system or performance through each key song.",
+    "Connect each group history back to the broader Hello! Project system."
+  ]
+}
