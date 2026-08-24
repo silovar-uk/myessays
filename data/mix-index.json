@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "craft-beer-map-definition-styles": "english-mix/craft-beer-map-definition-styles.md",
     "sunzi-win-without-fighting-strategy": "english-mix/sunzi-win-without-fighting-strategy.md",
     "urawa-machida-progress-not-points": "english-mix/urawa-machida-progress-not-points.md",
     "india-pale-ale-history-hops-craft-beer": "english-mix/india-pale-ale-history-hops-craft-beer.md",
