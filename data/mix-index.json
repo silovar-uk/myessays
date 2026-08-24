@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "hello-project-history-01-1997-1999": "english-mix/hello-project-history-01-1997-1999.md",
     "hello-project-1997-2026-overview": "english-mix/hello-project-1997-2026-overview.md",
     "hello-project-history-series-map": "english-mix/hello-project-history-series-map.md",
     "overgiving-love-autonomy-responsiveness": "english-mix/overgiving-love-autonomy-responsiveness.md",
