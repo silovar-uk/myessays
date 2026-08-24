@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -73,15 +73,26 @@
       "keyContrast": "グループのように役割を後輩へ渡せない代わりに、同じ本人が年齢・歌い方・活動量を変えながら過去のレパートリーと現在を接続する。",
       "archiveNote": "2024–25年の7インチ復刻と2026年デビュー25周年WEB CMは、全盛期の活動量を再現せずとも本人と歌声だけで過去のブランド記憶を現在へ再接続できる例。",
       "status": "complete"
+    },
+    {
+      "group": "Berryz工房",
+      "essayId": "berryz-kobo-history-shared-time",
+      "canonical": "essays/2026-08-24-berryz-kobo-history-shared-time.md",
+      "englishMix": "english-mix/berryz-kobo-history-shared-time.md",
+      "centralQuestion": "同じキッズ世代が長く一緒に成長したグループは、なぜメンバー交代より『時間の共有』を資産にできたのか",
+      "thesis": "当初はメンバー交代も想定されたが、石村舞波卒業後は7人を固定し、同じ人たちが小学生から大人へ変わる過程そのものをコンテンツ化した。過去曲が年齢とともに別の意味を持ち、活動停止後も一部メンバーのライブから7人時代全体の記憶を再起動できる。",
+      "survivalModel": "shared_time_survives",
+      "keyContrast": "モーニング娘。が構成員を替えて物語を更新したのに対し、Berryz工房は構成員を固定し、同じ人間の成長によって物語を更新した。",
+      "reunionNote": "2024、2025、2026年のBerryz工房名義ライブは須藤茉麻・夏焼雅・熊井友理奈の3人体制。7人完全再結成ではなく、部分的な再集合から11年間の共有記憶を呼び起こす事例として扱う。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "Berryz工房",
-      "centralQuestion": "同じキッズ世代が長く一緒に成長したグループは、なぜメンバー交代より『時間の共有』を資産にできたのか",
+      "group": "℃-ute",
+      "centralQuestion": "Berryz工房に選ばれなかった側から始まったグループは、なぜ『残ったメンバー』ではなくハロプロ屈指のパフォーマンス集団へ変われたのか",
       "status": "next"
     },
-    {"group": "℃-ute", "status": "planned"},
     {"group": "Buono!", "status": "planned"},
     {"group": "スマイレージ／アンジュルム", "status": "planned"},
     {"group": "Juice=Juice", "status": "planned"},
@@ -97,14 +108,17 @@
     {"id": "brand_survives_by_redefinition", "meaning": "活動空白や運営方式の断絶を許容し、名前の意味を入れ替えて再起動する"},
     {"id": "community_survives", "meaning": "固定メンバーと観客が共有したライブの作法・記憶・所属感が、組織終了後も再集合可能性を保つ"},
     {"id": "format_survives_as_ip", "meaning": "正史の活動を停止しても、視覚記号・キャスティング原理・遊び方・キャラクターを別キャストや別媒体へ移植できる"},
-    {"id": "persona_survives_by_reinterpretation", "meaning": "一人の演者が過去の人格ブランドを否定せず、年齢・歌唱・作家・活動頻度を変えながら同じ名前の意味を更新する"}
+    {"id": "persona_survives_by_reinterpretation", "meaning": "一人の演者が過去の人格ブランドを否定せず、年齢・歌唱・作家・活動頻度を変えながら同じ名前の意味を更新する"},
+    {"id": "shared_time_survives", "meaning": "同じ構成員が長期間成長を共有し、本人たちと観客が蓄積した時間そのものが、楽曲再解釈や部分的再集合から再起動できる資産になる"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, and individual personas can each preserve continuity in different ways.",
+    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, and shared cohort time can each preserve continuity in different ways.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
     "A fixed lineup can accumulate relational capital: repeated interaction between the same performers and audience can make live rituals and shared memory more valuable than chart scale.",
+    "A fixed cohort can also turn human development into content. The same song sung by the same people at different ages becomes an autobiographical record rather than a static repertoire item.",
+    "Partial reunions can reactivate full-group memory when the historical value lies in accumulated shared time rather than in an active succession system.",
     "A strong format reduces explanation cost. If colors, gestures, rules, songs, and props make a unit instantly legible, the concept can travel across age groups and media.",
     "A solo identity concentrates brand equity and brand risk in the same person. It can create unusually strong recognition, but adaptation requires self-reinterpretation rather than member replacement.",
     "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
