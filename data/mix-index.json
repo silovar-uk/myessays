@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "america-cities-05-los-angeles": "english-mix/america-cities-05-los-angeles.md",
     "hello-project-history-08-2023-2026-archive": "english-mix/hello-project-history-08-2023-2026-archive.md",
     "hello-project-history-07-2019-2022-covid": "english-mix/hello-project-history-07-2019-2022-covid.md",
     "hello-project-history-06-2014-2019-post-tsunku": "english-mix/hello-project-history-06-2014-2019-post-tsunku.md",
