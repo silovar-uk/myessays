@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "melon-kinenbi-history-live-community": "english-mix/melon-kinenbi-history-live-community.md",
     "country-musume-country-girls-history-brand-redefinition": "english-mix/country-musume-country-girls-history-brand-redefinition.md",
     "taiyo-ciscomoon-history-compressed-legacy": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md",
     "morning-musume-history-renewal-system": "english-mix/morning-musume-history-renewal-system.md",
