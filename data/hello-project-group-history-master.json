@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -145,15 +145,26 @@
       "keyContrast": "Juice=Juiceが新加入を重ねて能力を世代間で再生産するのに対し、こぶしファクトリーは新加入を行わず、残った5人の役割と能力を作り直して一つのチームとして完成させた。",
       "archiveNote": "2019年『辛夷第二幕』初回生産限定盤Bにはアカペラ集を収録。2020年3月30日のラストライブはCOVID-19の影響で無観客となったが生中継され、5人体制で獲得した歌唱・アカペラの記録が残った。井上玲音は解散後Juice=Juiceへ加入した。",
       "status": "complete"
+    },
+    {
+      "group": "つばきファクトリー",
+      "essayId": "tsubaki-factory-history-layered-cohorts",
+      "canonical": "essays/2026-08-24-tsubaki-factory-history-layered-cohorts.md",
+      "englishMix": "english-mix/tsubaki-factory-history-layered-cohorts.md",
+      "centralQuestion": "研修生6人から始まり、2016・2021・2024・2025年と新しい世代を重ね、初期世代が卒業しても、なぜ『つばきらしさ』を断絶させず更新できたのか",
+      "thesis": "新しい世代を既存世代が在籍しているうちに先に加入させ、一定の重複期間を持たせた後で旧世代が少しずつ卒業することで、大きな世代交代を複数の小さな断絶へ分解した。歌や技能だけでなく、恋愛曲の感情表現、MC、ライブの空気を新旧世代の同居によって渡し、2026年には5つの加入時点を持つ11人が同じブランドを共有している。",
+      "survivalModel": "layered_cohort_survives",
+      "keyContrast": "こぶしファクトリーが危機後に新加入をせず残った5人で第二の完成形を作ったのに対し、つばきファクトリーは完成形を固定せず、新しい世代を何度も上に重ねることで連続性を作った。",
+      "archiveNote": "2026年現在は2015年結成の谷本安美、2016年加入組、2021年加入組、2024年加入組、2025年加入の西村乙輝が同時在籍。世代間の重複そのものが継承装置になっている。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "つばきファクトリー",
-      "centralQuestion": "研修生6人から始まり、増員、初期メンバーの卒業、2021年の大規模加入を経ても、なぜ『つばきらしさ』を更新できたのか",
+      "group": "BEYOOOOONDS",
+      "centralQuestion": "複数ユニットと個人の特技を組み合わせた複雑な構造は、なぜ『分かりにくさ』ではなく作品を生むエンジンになったのか",
       "status": "next"
     },
-    {"group": "BEYOOOOONDS", "status": "planned"},
     {"group": "OCHA NORMA", "status": "planned"},
     {"group": "ロージークロニクル", "status": "planned"}
   ],
@@ -169,10 +180,11 @@
     {"id": "autonomous_side_project_survives", "meaning": "親組織から借りた人材で始まった派生企画が、専用レパートリー・専用現場・独自役割を蓄積し、親組織の説明なしでも成立する独立ブランドになる"},
     {"id": "renewal_capacity_survives", "meaning": "現行のブランド・人数・制作体制・リーダーを聖域化せず、危機になる前に次世代を内部へ入れ、成功した形さえ作り替える自己更新能力そのものが継承される"},
     {"id": "capability_pipeline_survives", "meaning": "強い個人の能力を一代限りの資産にせず、先輩後輩の重複期間、難度の高い仕事、複数の採用入口、役割分散によって同等以上の能力を次世代で再生産する"},
-    {"id": "reconstructed_identity_survives", "meaning": "大きな断絶の後に旧体制を復元せず、残った構成員の能力と関係性に合わせて新しい強みを獲得し、その第二の人格を後世に残す"}
+    {"id": "reconstructed_identity_survives", "meaning": "大きな断絶の後に旧体制を復元せず、残った構成員の能力と関係性に合わせて新しい強みを獲得し、その第二の人格を後世に残す"},
+    {"id": "layered_cohort_survives", "meaning": "新世代を旧世代の在籍中に先に加入させ、重複期間を作って文化を混ぜた後に旧世代が段階的に離れることで、大きな世代交代を複数の小さな断絶へ分解する"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, autonomous side-project identities, renewal capacity, capability pipelines, and reconstructed identities can each preserve continuity in different ways.",
+    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, autonomous side-project identities, renewal capacity, capability pipelines, reconstructed identities, and layered cohorts can each preserve continuity in different ways.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
@@ -191,6 +203,8 @@
     "Multiple recruitment channels can coexist with a strong identity when entry is flexible but post-entry standards are shared.",
     "Post-crisis recovery does not require restoration. A smaller team can create a new identity by learning capabilities that the old configuration did not need, and that second identity can become the group's strongest legacy.",
     "When a reconstructed team is intentionally member-specific, successful recovery can coexist with later dissolution; organizational continuation and team completion are different objectives.",
+    "Layered succession reduces identity shock by overlapping cohorts before departures. Large organizational change can be made culturally continuous when it is decomposed into smaller discontinuities over time.",
+    "Overlap protects continuity but can reduce clarity: organizations with many simultaneous cohorts must repeatedly explain who represents the present and what remains distinctive.",
     "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
     "Reunion or return does not require exact restoration. Respecting present agency and current life stage can preserve historical legitimacy better than forcing a complete replica of the past."
@@ -213,6 +227,7 @@
     "For renaming and self-reinvention histories, distinguish discontinuity of surface identity from continuity of governance, repertoire, members, and succession. Do not assume a name change is either a total reset or a purely cosmetic rebrand.",
     "For current active groups, verify the current lineup and leadership from a fresh official profile before publication.",
     "For capability-pipeline histories, distinguish individual star skill from organizational reproduction mechanisms. Look for overlap periods, assignment of difficult repertoire, recruitment routes, role redistribution and whether successors themselves become trainers or leaders.",
-    "For post-crisis reconstruction histories, keep departure causes distinct, do not manufacture a single villain or cause, and distinguish restoration of the old structure from deliberate redesign around the remaining members."
+    "For post-crisis reconstruction histories, keep departure causes distinct, do not manufacture a single villain or cause, and distinguish restoration of the old structure from deliberate redesign around the remaining members.",
+    "For layered-cohort histories, map exact join and departure dates to verify real overlap. Distinguish cultural transfer created by coexistence from simple chronological replacement, and note the clarity cost of many simultaneous cohorts."
   ]
 }
