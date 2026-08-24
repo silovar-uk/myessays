@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "updated": "2026-08-24",
   "scope": "Hello! Project individual group histories",
   "parentMaster": "data/hello-project-history-master.json",
@@ -133,15 +133,26 @@
       "keyContrast": "℃-uteが解散後にパフォーマンス基準を残したのに対し、Juice=Juiceは活動を継続しながら、その基準を満たす人材を組織内部で繰り返し育て直す。",
       "archiveNote": "2026年現在は段原瑠々リーダー、井上玲音サブリーダーの11人体制。2025年加入の林仁愛まで含む現行世代にも高難度曲が与えられ、初期メンバー不在後も歌唱力がグループの評価軸として機能している。",
       "status": "complete"
+    },
+    {
+      "group": "こぶしファクトリー",
+      "essayId": "kobushi-factory-history-reconstruction",
+      "canonical": "essays/2026-08-24-kobushi-factory-history-reconstruction.md",
+      "englishMix": "english-mix/kobushi-factory-history-reconstruction.md",
+      "centralQuestion": "研修生8人で始まり、2017年に3人が相次いで離れた後、残った5人はなぜ元の形を復元せず別の完成形を作れたのか",
+      "thesis": "2017年の3人の離脱を一つの原因へ単純化せず、残った5人が補充を行わない状態で役割を再配置し、アカペラ・コーラス・ハモリという新能力を獲得した過程として読む。『辛夷第二幕』では危機後の技能が正式な商品となり、5人の第二の人格が初期8人とは別のグループ像を完成させた。",
+      "survivalModel": "reconstructed_identity_survives",
+      "keyContrast": "Juice=Juiceが新加入を重ねて能力を世代間で再生産するのに対し、こぶしファクトリーは新加入を行わず、残った5人の役割と能力を作り直して一つのチームとして完成させた。",
+      "archiveNote": "2019年『辛夷第二幕』初回生産限定盤Bにはアカペラ集を収録。2020年3月30日のラストライブはCOVID-19の影響で無観客となったが生中継され、5人体制で獲得した歌唱・アカペラの記録が残った。井上玲音は解散後Juice=Juiceへ加入した。",
+      "status": "complete"
     }
   ],
   "queue": [
     {
-      "group": "こぶしファクトリー",
-      "centralQuestion": "研修生8人で始まり、2017年に3人が相次いで離れた後、残った5人はなぜ解散までグループを再構築できたのか",
+      "group": "つばきファクトリー",
+      "centralQuestion": "研修生6人から始まり、増員、初期メンバーの卒業、2021年の大規模加入を経ても、なぜ『つばきらしさ』を更新できたのか",
       "status": "next"
     },
-    {"group": "つばきファクトリー", "status": "planned"},
     {"group": "BEYOOOOONDS", "status": "planned"},
     {"group": "OCHA NORMA", "status": "planned"},
     {"group": "ロージークロニクル", "status": "planned"}
@@ -157,10 +168,11 @@
     {"id": "performance_standard_survives", "meaning": "組織終了後も楽曲・ライブ像・技能評価が後輩の課題曲や比較軸として機能し、グループが作ったパフォーマンス基準そのものが残る"},
     {"id": "autonomous_side_project_survives", "meaning": "親組織から借りた人材で始まった派生企画が、専用レパートリー・専用現場・独自役割を蓄積し、親組織の説明なしでも成立する独立ブランドになる"},
     {"id": "renewal_capacity_survives", "meaning": "現行のブランド・人数・制作体制・リーダーを聖域化せず、危機になる前に次世代を内部へ入れ、成功した形さえ作り替える自己更新能力そのものが継承される"},
-    {"id": "capability_pipeline_survives", "meaning": "強い個人の能力を一代限りの資産にせず、先輩後輩の重複期間、難度の高い仕事、複数の採用入口、役割分散によって同等以上の能力を次世代で再生産する"}
+    {"id": "capability_pipeline_survives", "meaning": "強い個人の能力を一代限りの資産にせず、先輩後輩の重複期間、難度の高い仕事、複数の採用入口、役割分散によって同等以上の能力を次世代で再生産する"},
+    {"id": "reconstructed_identity_survives", "meaning": "大きな断絶の後に旧体制を復元せず、残った構成員の能力と関係性に合わせて新しい強みを獲得し、その第二の人格を後世に残す"}
   ],
   "crossGroupHypotheses": [
-    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, autonomous side-project identities, renewal capacity, and capability pipelines can each preserve continuity in different ways.",
+    "Hello! Project has multiple survival models: institutions, repertoires, brands, communities, formats, individual personas, shared cohort time, performance standards, autonomous side-project identities, renewal capacity, capability pipelines, and reconstructed identities can each preserve continuity in different ways.",
     "Member interchangeability and member-specific chemistry are not opposites to rank; they are different organizational designs with different failure modes.",
     "Repertoire inheritance allows short-lived or rebooted groups to remain culturally connected across discontinuous lineups.",
     "A brand name can preserve option value: if it is not formally closed, future members can inherit it even when there is no continuous active lineup.",
@@ -177,6 +189,8 @@
     "Succession is more robust when founders transfer authorship before departure. Adding successors and changing symbols while founders are still present can reduce the identity shock of founder exit.",
     "A capability becomes organizational when the group can reproduce it after the original expert leaves. Overlap periods, demanding repertoire and distributed roles convert tacit individual skill into a repeatable pipeline.",
     "Multiple recruitment channels can coexist with a strong identity when entry is flexible but post-entry standards are shared.",
+    "Post-crisis recovery does not require restoration. A smaller team can create a new identity by learning capabilities that the old configuration did not need, and that second identity can become the group's strongest legacy.",
+    "When a reconstructed team is intentionally member-specific, successful recovery can coexist with later dissolution; organizational continuation and team completion are different objectives.",
     "Format portability has a limit. Replacing too many defining constraints can weaken identity, so strategic suspension may preserve a format better than endless member replacement.",
     "Flexibility has an identity cost, while stability has an adaptation cost. Groups survive by deciding what remains fixed and what is allowed to change.",
     "Reunion or return does not require exact restoration. Respecting present agency and current life stage can preserve historical legitimacy better than forcing a complete replica of the past."
@@ -198,6 +212,7 @@
     "For side-project histories, distinguish original external purpose, parent-group resource dependence, and the point at which the project develops non-substitutable repertoire, live context, audience, or discoverability.",
     "For renaming and self-reinvention histories, distinguish discontinuity of surface identity from continuity of governance, repertoire, members, and succession. Do not assume a name change is either a total reset or a purely cosmetic rebrand.",
     "For current active groups, verify the current lineup and leadership from a fresh official profile before publication.",
-    "For capability-pipeline histories, distinguish individual star skill from organizational reproduction mechanisms. Look for overlap periods, assignment of difficult repertoire, recruitment routes, role redistribution and whether successors themselves become trainers or leaders."
+    "For capability-pipeline histories, distinguish individual star skill from organizational reproduction mechanisms. Look for overlap periods, assignment of difficult repertoire, recruitment routes, role redistribution and whether successors themselves become trainers or leaders.",
+    "For post-crisis reconstruction histories, keep departure causes distinct, do not manufacture a single villain or cause, and distinguish restoration of the old structure from deliberate redesign around the remaining members."
   ]
 }
