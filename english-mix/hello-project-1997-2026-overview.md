@@ -164,7 +164,7 @@ In 2017, ℃-ute disbanded after its final concert at Saitama Super Arena. Berry
 
 それでも研修生システムは止まらない。
 
-In 2018, BEYOOOOONDS took shape with internal units including CHICA#TETSU, Ame no Mori Kawa Umi, and SeasoningS, and made its major debut in 2019. 寸劇、台詞、ジャンル横断、メンバー個々の特技まで楽曲やステージへ持ち込むBEYOOOOONDSは、「ハロプロらしさ」を古い様式の保存ではなく、**変なことを本気でやる実験精神**として更新した存在とも読める。
+In 2018, BEYOOOOONDS took shape around the internal units CHICA#TETSU and Ame no Mori Kawa Umi, together with three additional members who would later form SeasoningS, and made its major debut in 2019. 寸劇、台詞、ジャンル横断、メンバー個々の特技まで楽曲やステージへ持ち込むBEYOOOOONDSは、「ハロプロらしさ」を古い様式の保存ではなく、**変なことを本気でやる実験精神**として更新した存在とも読める。
 
 ## 6. 終わりも制度の一部になる――Berryz、℃-ute、カントリー、こぶし
 
