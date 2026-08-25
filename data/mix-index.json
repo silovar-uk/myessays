@@ -1,6 +1,8 @@
 {
   "version": 1,
   "mixes": {
+    "xunzi-borrowing-external-resources": "english-mix/xunzi-borrowing-external-resources.md",
+    "confucius-correct-mistakes-update": "english-mix/confucius-correct-mistakes-update.md",
     "mali-sahel-history-state-france-russia": "english-mix/mali-sahel-history-state-france-russia.md",
     "edm-listening-lab-five-genres-ten-tracks": "english-mix/edm-listening-lab-five-genres-ten-tracks.md",
     "edm-is-not-one-sound": "english-mix/edm-is-not-one-sound.md",
