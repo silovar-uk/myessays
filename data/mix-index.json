@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "nakada-keisuke-keep-adding-reasons": "english-mix/nakada-keisuke-keep-adding-reasons.md",
     "xunzi-borrowing-external-resources": "english-mix/xunzi-borrowing-external-resources.md",
     "confucius-correct-mistakes-update": "english-mix/confucius-correct-mistakes-update.md",
     "mali-sahel-history-state-france-russia": "english-mix/mali-sahel-history-state-france-russia.md",
