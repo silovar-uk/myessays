@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "edm-listening-lab-five-genres-ten-tracks": "english-mix/edm-listening-lab-five-genres-ten-tracks.md",
     "edm-is-not-one-sound": "english-mix/edm-is-not-one-sound.md",
     "physical-ai-embodied-intelligence-deployment": "english-mix/physical-ai-embodied-intelligence-deployment.md",
     "calculation-as-modeling-tournament-expectation": "english-mix/calculation-as-modeling-tournament-expectation.md",
