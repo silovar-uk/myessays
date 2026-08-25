@@ -4,7 +4,7 @@
 
   filters.insertAdjacentHTML('beforeend', `
     <label class="english-mix-filter-label">English Mix
-      <select id="englishMixFilter" aria-label="English Mix版で絞り込む">
+      <select id="englishMixFilter" aria-label="English Mix版で絞り込む" disabled>
         <option value="">すべて</option>
         <option value="yes">あり</option>
         <option value="no">なし</option>
