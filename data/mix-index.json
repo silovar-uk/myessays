@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "laozi-knowing-yourself-self-mastery": "english-mix/laozi-knowing-yourself-self-mastery.md",
     "tsugunaga-momoko-history-persona-professionalism": "english-mix/tsugunaga-momoko-history-persona-professionalism.md",
     "ime-between-keystrokes-and-text": "english-mix/ime-between-keystrokes-and-text.md",
     "fukuda-asuka-history-first-exit": "english-mix/fukuda-asuka-history-first-exit.md",
