@@ -32,6 +32,21 @@
       "seriesId": "hello-project-history",
       "seriesOrder": 5
     },
+    "hello-project-history-06-2014-2019-post-tsunku": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 6
+    },
+    "hello-project-history-07-2019-2022-covid": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 7
+    },
+    "hello-project-history-08-2023-2026-archive": {
+      "series": "ハロプロ史",
+      "seriesId": "hello-project-history",
+      "seriesOrder": 8
+    },
     "laozi-shangshan-ruoshui-water-noncontention": {
       "series": "中国古典思想・毎日3分",
       "seriesId": "chinese-classics-3min",
