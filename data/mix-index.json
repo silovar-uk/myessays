@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "json-history-small-spec-common-language": "english-mix/json-history-small-spec-common-language.md",
     "pneumonia-how-serious-hospital-oxygen": "english-mix/pneumonia-how-serious-hospital-oxygen.md",
     "nakada-keisuke-keep-adding-reasons": "english-mix/nakada-keisuke-keep-adding-reasons.md",
     "xunzi-borrowing-external-resources": "english-mix/xunzi-borrowing-external-resources.md",
