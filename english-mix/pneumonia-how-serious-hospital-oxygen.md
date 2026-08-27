@@ -1,14 +1,14 @@
 ---
 id: pneumonia-how-serious-hospital-oxygen
-title: "肺炎って、どのくらい重い？――「病名」より、入院と酸素で考える"
-subtitle: "How serious is pneumonia? A practical way to understand the range"
+title: "肺炎って、どのくらい重い？――病名より「入院・酸素・全身状態」を見る"
+subtitle: "How serious is pneumonia? Look beyond the diagnosis"
 mode: "english-mix"
 english_ratio: 0.45
 mix_unit: "sentence"
 ---
 
-# 肺炎って、どのくらい重い？――「病名」より、入院と酸素で考える
-## How serious is pneumonia? A practical way to understand the range
+# 肺炎って、どのくらい重い？――病名より「入院・酸素・全身状態」を見る
+## How serious is pneumonia? Look beyond the diagnosis
 
 A coworker has pneumonia.
 
@@ -16,19 +16,19 @@ A coworker has pneumonia.
 
 But how serious is that, actually?
 
-正直、風邪より少し重い程度なのか、かなり危険なのか、ぴんとこない。
+風邪より少し重い程度なのか、数週間休むような病気なのか、それともかなり危険なのか。正直、病名だけではぴんとこない。
 
 **Pneumonia can be mild, but it can also become life-threatening.**
 
-肺炎は、軽症なら外来で治療できる一方、重症では命に関わることもある。
+肺炎は、外来で治療できる人もいれば、入院が必要な人もいる。さらに重い場合は酸素投与や集中治療が必要になることもある。
 
-So the word *pneumonia* alone does not tell you how sick someone is.
+So the diagnosis alone is not enough.
 
-だから「肺炎」という病名だけでは、その人がどの程度重いのかはほとんど分からない。
+だから「肺炎」という一語だけで、その人の重さを判断することはできない。
 
-A better question is: **Are they in hospital? Do they need oxygen?**
+A more useful question is: **How is their breathing and overall condition?**
 
-重さをつかむには、「入院しているか」「酸素投与が必要か」を見るほうが分かりやすい。
+重さを理解するには、病名そのものより、入院しているか、酸素が必要か、呼吸や全身状態がどこまで崩れているかを見るほうが分かりやすい。
 
 > **This article gives general medical information. It cannot tell us the condition or prognosis of a specific person.**
 >
@@ -42,223 +42,246 @@ A better question is: **Are they in hospital? Do they need oxygen?**
 
 This is where oxygen moves from the air into your blood.
 
-ここが、吸い込んだ空気から酸素を血液へ渡す場所だ。
+ここが、吸い込んだ空気から酸素を血液へ渡す現場だ。
 
-In pneumonia, these air sacs can fill with pus and fluid.
+When someone has pneumonia, these air sacs can fill with fluid or pus.
 
-肺炎では、肺胞に膿や液体がたまることがある。
+WHOは、肺炎では肺胞に液体や膿がたまり、呼吸が苦しくなったり、酸素の取り込みが妨げられたりすると説明している。
 
-That makes breathing harder and can reduce oxygen intake.
+So pneumonia is not only a sore throat or a bad cough.
 
-そのため、単に「喉が痛くて咳が出る」というだけではなく、酸素を取り込む働きそのものが落ちることがある。
+単に「喉が腫れて咳が出る」というだけではなく、**酸素を取り込む場所そのものが働きにくくなる可能性がある。**
 
-WHO describes pneumonia as an acute respiratory infection, most commonly caused by viruses or bacteria, that can range from mild to life-threatening illness.
+That is why shortness of breath matters.
 
-WHOも、肺炎をウイルスや細菌などによる急性呼吸器感染症とし、軽いものから生命を脅かすものまで幅があると説明している。
+咳、発熱、痰だけでなく、息切れや胸の痛みも重要な症状になる。
+
+WHO says pneumonia can range from mild to life-threatening illness.
+
+この「軽症から生命を脅かす状態まで幅がある」という点が、肺炎の重さを分かりにくくしている。
 
 [WHO: Pneumonia](https://www.who.int/health-topics/pneumonia/)
 
-## 2. Pneumonia does not always mean hospitalisation
+## 2. Doctors do not judge severity from the word “pneumonia” alone
 
-**Not everyone with pneumonia needs to stay in hospital.**
+**In Japan, A-DROP is one tool used to assess community-acquired pneumonia.**
 
-肺炎だからといって、全員が入院するわけではない。
+日本呼吸器学会の『成人肺炎診療ガイドライン2024』では、市中肺炎の重症度評価としてA-DROPが弱く推奨されている。
 
-In Japan, doctors use severity tools such as **A-DROP** for community-acquired pneumonia.
+A-DROP looks at five areas.
 
-日本呼吸器学会では、市中肺炎の重症度をみる指標としてA-DROPが使われる。
+見るのは大きく5つ。
 
-It looks at factors such as age, dehydration, oxygen level, consciousness, and blood pressure.
+- **A / Age**：年齢
+- **D / Dehydration**：脱水や腎機能に関係する所見
+- **R / Respiration**：呼吸・酸素化
+- **O / Orientation**：意識状態
+- **P / Pressure**：血圧
 
-年齢、脱水、酸素化、意識、血圧などから重症度を評価する仕組みだ。
+The important point is simple.
 
-Mild cases may be treated as outpatients.
+重要なのは、医師も「肺炎だから重い」と判断しているわけではない、ということだ。
 
-軽症なら外来治療が可能なケースがある。
+**They look at oxygen, blood pressure, consciousness, dehydration, age, and other clinical information.**
 
-More serious cases may need a general hospital ward.
+酸素、血圧、意識、脱水、年齢など、患者の全身状態を合わせて見ている。
 
-重症度が上がれば、一般病棟への入院が検討される。
+The 2024 guideline compared A-DROP with CURB-65 and PSI.
 
-Very severe cases may need intensive care.
+2024年ガイドラインでは複数の重症度評価法を比較し、短期死亡を予測する能力はおおむね同程度だったとしている。
 
-さらに重い場合は、ICUなどでの集中治療が必要になることもある。
+A-DROP is useful, but it is not a crystal ball.
 
-A simple mental model is:
+A-DROPは便利な「ものさし」ではあるが、**その人の未来を言い当てる点数表ではない。**
 
-ざっくりした感覚に直すと、こんな幅がある。
+It also does not automatically decide where every patient must be treated.
 
-- **Mild — 軽症**: outpatient treatment may be possible / 外来治療が可能なことがある
-- **Moderate — 中等症**: hospitalisation becomes more likely / 入院して経過を見るケースが増える
-- **Severe — 重症**: oxygen or close monitoring may be needed / 酸素投与や厳重な管理が必要になることがある
-- **Very severe — 超重症**: ICU or ventilatory support may be needed / ICUや人工呼吸管理が必要になる場合がある
-
-[日本呼吸器学会「STOP! 肺炎」医療従事者向け資料](https://fa.jrs.or.jp/guidelines/stop-haien_medical_02.pdf)
+点数だけで入院先を機械的に決めるものでもない。
 
 [日本呼吸器学会「成人肺炎診療ガイドライン2024」](https://www.jrs.or.jp/publication/file/adult_pneumonia_2024v5.pdf)
 
-## 3. “Hospital” and “oxygen” tell you more than the diagnosis name
+## 3. A practical scale: home, hospital, oxygen, intensive care
 
-**If all you know is “they have pneumonia,” you still know very little about severity.**
+If you are not a doctor, lab values are hard to interpret.
 
-「肺炎になった」としか聞いていないなら、その人の重症度はまだほとんど分からない。
+専門的な検査値が分からない立場なら、もっと生活者向けの尺度で考えるほうが分かりやすい。
 
-But a few words give you much more information.
+### ① Home treatment or outpatient care
 
-ただし、いくつかの情報は重さを考える大きな手掛かりになる。
+**Some mild cases can be treated without admission.**
 
-### At home / outpatient care — 自宅療養・通院
+日本呼吸器学会の一般向け解説では、A-DROPが0点の軽症なら外来治療が可能と説明されている。
 
-This may mean the condition can be managed outside hospital.
+Being at home does not prove that the illness is minor.
 
-外来で治療できる程度の可能性がある。
+もちろん「家にいる＝絶対に軽い」ではない。症状は変化するし、治療環境によって判断も変わる。
 
-But “at home” does not automatically mean “minor.”
+But outpatient care is still useful information.
 
-ただし、自宅にいるから軽症だと断定はできない。
+それでも、外来で管理できているという事実は、重さを考える一つの手掛かりになる。
 
-### Hospitalised — 入院
+### ② Hospital admission
 
-Hospitalisation means doctors think hospital-level observation or treatment is appropriate.
+**Hospital does not automatically mean critical illness.**
 
-入院しているなら、少なくとも病院で経過を見たり治療したりする必要があると判断されている。
+「入院」と聞くとかなり重く感じるが、入院＝危篤ではない。
 
-**Hospitalised does not mean critical.**
+NHS says hospital treatment may be needed for people over 65, people with heart or long-term lung disease, people who are very unwell, or people who are not improving after antibiotics.
 
-ただし、入院＝危篤ではない。
+NHSでは、年齢、心血管疾患や慢性肺疾患、かなり強い症状、抗菌薬で改善しないことなどが入院につながる条件として挙げられている。
 
-### On oxygen — 酸素投与
+Admission can mean the patient needs closer observation and treatment.
 
-This is a useful clue that the lungs may not be maintaining oxygen levels well enough without support.
+つまり入院は、重症度だけでなく、持病、年齢、経過、治療や観察の必要性などを含めて判断される。
 
-酸素投与があるなら、肺炎による酸素化の低下を補助する必要がある可能性がある。
+### ③ Oxygen treatment
 
-### ICU or ventilator — ICU・人工呼吸器
+**Needing oxygen tells us more about breathing than the diagnosis name does.**
 
-This usually points to a much more severe situation requiring intensive support.
+酸素投与の有無は、一般人にも比較的イメージしやすい情報だ。
 
-ここまで来ると、かなり強い管理を要する重症の状態と考えられる。
+Pneumonia can make it harder for oxygen to move into the blood.
 
-**“They need oxygen” often tells you more than “they have pneumonia.”**
+肺炎では肺胞に液体などがたまり、酸素を血液へ取り込みにくくなることがある。
 
-「肺炎」という病名より、「酸素を使っている」という情報のほうが、重さについて多くを教えてくれる。
+So oxygen may be given in hospital when needed.
 
-## 4. The same pneumonia can affect two people very differently
+病院では必要に応じて酸素が使われる。
 
-**Risk depends on the person, not only the infection.**
+But oxygen does not automatically mean the patient is in immediate danger.
 
-同じ肺炎でも、誰がかかるかで重症化しやすさは変わる。
+ただし、**「酸素を使っている＝即重篤」でもない。** 少量の補助と、より強い呼吸管理では意味が違う。
 
-WHO lists adults over 65 and people with pre-existing health problems among higher-risk groups.
+### ④ ICU or mechanical ventilation
 
-WHOは、65歳を超える成人や、もともと健康上の問題がある人をリスクの高い集団として挙げている。
+**At this level, the problem is no longer just the label “pneumonia.”**
 
-The NHS also says hospital treatment may be needed when someone is over 65, has cardiovascular or long-term lung disease, is very unwell, or is not improving after antibiotics.
+ICUや人工呼吸管理が必要なら、一般病棟より強い呼吸・全身管理が必要な段階だと理解できる。
 
-NHSも、65歳を超える人、心血管疾患や慢性肺疾患がある人、かなり具合が悪い人、抗菌薬で改善しない人などでは入院が必要になることがあるとしている。
+The key question becomes how well the person can maintain breathing and circulation.
 
-[NHS: Pneumonia](https://www.nhs.uk/conditions/pneumonia/)
+ここまで来ると、病名よりも、呼吸や循環をどこまで自力で保てているかのほうが重要になる。
 
-A younger person with no major health problems and stable oxygen levels may have a very different course.
-
-一方、比較的若く、重い持病がなく、酸素状態が保たれている人では、外来で回復する肺炎もある。
-
-So both of these reactions are too simple:
-
-だから、次の二つはどちらも雑すぎる。
-
-“Pneumonia is always extremely dangerous.”
-
-「肺炎なら相当やばい」
-
-“It is basically just a bad cold.”
-
-「まあ、ひどい風邪みたいなもん」
-
-A better view is: **it is an illness that deserves proper rest and treatment, with a very wide range of severity.**
-
-「しっかり休んで治療する必要がある病気で、重さにはかなり幅がある」と捉えるのが近い。
-
-## 5. Feeling better is not always the same as being fully recovered
-
-**Recovery is often measured in weeks, not days.**
-
-肺炎の回復は、数日より「数週間」という単位で考えたほうが近いことがある。
-
-The NHS says that, depending on symptoms, most people get better in about **2 to 4 weeks**.
-
-NHSでは、症状にもよるが、多くの人が2〜4週間ほどで改善するとしている。
-
-That does not mean everyone is bedridden for a month.
-
-もちろん、1か月ずっと寝たきりという意味ではない。
-
-But fever going away does not always mean energy, cough, and breathing have completely returned to normal.
-
-ただ、熱が下がっても、咳やだるさ、体力低下が残ることはある。
-
-**Being medically improved and being ready for full-speed work are not exactly the same thing.**
-
-病気が改善することと、仕事を通常運転に戻せることは同じではない。
+[日本呼吸器学会「市中で起こる肺炎」](https://www.jrs.or.jp/citizen/disease/a/a-04.html)
 
 [NHS: Pneumonia](https://www.nhs.uk/conditions/pneumonia/)
 
-## 6. Emergency signs show why pneumonia can become serious
+## 4. Useful information does not mean you should ask for private details
 
-**These signs are not for judging your coworker from a distance.**
+Medically, hospitalisation and oxygen use can help us understand severity.
 
-これは会社の人の状態を詮索するためのリストではない。
+医学的には、入院や酸素投与の情報があれば重さをイメージしやすい。
 
-They are useful for understanding what severe pneumonia can look like.
+But that does not mean you need to ask your coworker for all the details.
 
-肺炎が重くなると何が起こりうるかを理解するための目安だ。
+でも、それは「本人に病状を詳しく聞くべき」という意味ではない。
 
-The NHS advises emergency care for signs such as severe difficulty breathing, blue or very pale lips or skin, coughing up blood, or sudden confusion.
+**Understanding the disease and respecting privacy are different tasks.**
 
-NHSは、強い呼吸困難、唇や皮膚が青白い・青くなる、血を吐く、急に混乱する、といった状態では緊急対応を求めている。
+病気の重さを理解することと、本人にどこまで聞くかは別問題だ。
 
-[NHS: Pneumonia — emergency symptoms](https://www.nhs.uk/conditions/pneumonia/)
+At work, practical support may matter more than medical curiosity.
 
-These symptoms make one thing clear.
+職場で必要なのは、診断ごっこよりも配慮だ。
 
-ここから分かることはシンプルだ。
+- Give them enough time to rest.
+- 復帰日を急がせない。
+- Do not ask for more medical detail than they choose to share.
+- 復帰直後から完全な通常運転を前提にしない。
 
-**Pneumonia is not only a “cough and fever” disease. It can affect oxygen and the whole body.**
+You usually do not need to know their oxygen level to be a good colleague.
 
-肺炎は、単なる「咳と熱の病気」ではなく、呼吸や全身状態に影響しうる病気だ。
+良い同僚でいるために、相手のSpO₂まで知る必要はない。
 
-## 7. So how should I react when a coworker has pneumonia?
+## 5. The same diagnosis can mean very different things in different people
 
-**Take it seriously, but do not assume the worst.**
+**Age and underlying conditions matter.**
 
-軽く見ない。ただし、いきなり最悪を想定もしない。
+同じ肺炎でも、人によって重症化しやすさは違う。
 
-That is probably the most balanced response.
+The Japanese Respiratory Society notes that conditions such as stroke, diabetes, heart disease, and kidney disease can increase the risk of developing and worsening pneumonia.
 
-このくらいが、いちばん実態に近い受け止め方だと思う。
+日本呼吸器学会は、年齢に加えて、脳梗塞、糖尿病、心疾患、腎疾患などの基礎疾患がある人は肺炎を発症しやすく、重症化もしやすいとしている。
 
-If all you know is the diagnosis, think: “They probably need real rest and treatment.”
+WHO also lists adults over 65 and people with pre-existing health problems as higher-risk groups.
 
-病名しか分からないなら、「ちゃんと休んで治療する必要がある病気なんだな」くらいに考える。
+WHOも、65歳を超える成人や、もともと健康上の問題がある人をリスクの高い集団として挙げている。
 
-If you genuinely need to understand severity, ask about the clinical level rather than the label.
+So two people with “pneumonia” may have very different clinical situations.
 
-もし重さを知る必要がある立場なら、病名よりも治療のレベルを見る。
+だから、同じ病名でも患者側の条件によって意味はかなり変わる。
 
-**Hospitalised? On oxygen? How is their general condition?**
+This does not mean young people are automatically safe.
 
-**入院しているか。酸素投与があるか。全身状態はどうか。**
+もちろん「若ければ大丈夫」という意味ではない。
 
-Those three questions tell you far more than the single word *pneumonia*.
+It means the diagnosis is only one part of the picture.
 
-肺炎という一語より、その三つのほうがずっと多くを教えてくれる。
+**病名は、状態を理解する材料の一つにすぎない。**
 
-## Sources / 参考資料
+[日本呼吸器学会「市中で起こる肺炎」](https://www.jrs.or.jp/citizen/disease/a/a-04.html)
 
-- [WHO: Pneumonia](https://www.who.int/health-topics/pneumonia/)
-- [日本呼吸器学会「STOP! 肺炎」医療従事者向け資料](https://fa.jrs.or.jp/guidelines/stop-haien_medical_02.pdf)
+[WHO: Pneumonia](https://www.who.int/health-topics/pneumonia/)
+
+## 6. Think in weeks, not only days
+
+**Many people improve within two to four weeks.**
+
+NHSは、症状にもよるが、多くの人は2〜4週間で改善するとしている。
+
+That does not mean everyone is fully back to normal after exactly four weeks.
+
+これは「4週間たてば全員完全復活」という意味ではない。回復の速さは人によって違う。
+
+For a workplace, the useful lesson is simple.
+
+会社の感覚に直すなら、
+
+**Do not assume it is a two-day cold.**
+
+「風邪で2、3日休んで終了」と最初から見積もらないほうがいい。
+
+[NHS: Pneumonia](https://www.nhs.uk/conditions/pneumonia/)
+
+## 7. So, how serious is pneumonia?
+
+Here is the shortest answer.
+
+一番短く答えるなら、こうなる。
+
+> **Pneumonia ranges from cases treated as an outpatient to cases that need oxygen or intensive care. Severity depends more on breathing and overall condition than on the diagnosis name itself.**
+>
+> 肺炎は、外来で治療できる例から、酸素投与や集中治療が必要な例まである。病名そのものより、「呼吸と全身状態がどれだけ崩れているか」で重さを考える病気だ。
+
+If a coworker has pneumonia, you do not need to panic.
+
+会社の人が肺炎になったと聞いて、過度に怖がる必要はない。
+
+But you should not treat it like a minor cold either.
+
+一方で、軽い風邪のように扱うのも雑だ。
+
+A good first reaction is: **They probably need proper treatment and proper rest.**
+
+「ちゃんと治療して、ちゃんと休む必要がある病気なんだな」くらいで受け止めるのが近い。
+
+And if you truly need to understand severity, look beyond the label.
+
+本当に重さを理解する必要があるなら、「肺炎」というラベルの先を見る。
+
+**Hospital. Oxygen. Overall condition.**
+
+**入院。酸素。全身状態。**
+
+Those three ideas tell you much more than the diagnosis alone.
+
+この三つのほうが、「肺炎」という一語よりずっと多くを教えてくれる。
+
+## Sources
+
+Checked: 27 August 2026
+
 - [日本呼吸器学会「成人肺炎診療ガイドライン2024」](https://www.jrs.or.jp/publication/file/adult_pneumonia_2024v5.pdf)
-- [日本呼吸器学会「肺炎の診断と治療」](https://www.jrs.or.jp/activities/guidelines/file/stop_haien_medical20250709.pdf)
+- [日本呼吸器学会「市中で起こる肺炎」](https://www.jrs.or.jp/citizen/disease/a/a-04.html)
+- [WHO: Pneumonia](https://www.who.int/health-topics/pneumonia/)
 - [NHS: Pneumonia](https://www.nhs.uk/conditions/pneumonia/)
-
-※Sources checked on 27 August 2026. This page is general educational information, not individual medical advice.
