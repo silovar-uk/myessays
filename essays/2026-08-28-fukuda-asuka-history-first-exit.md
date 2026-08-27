@@ -564,10 +564,10 @@ ORICON NEWSは、1999年4月18日の福田卒業以来、5人がテレビで共�
 
 ## 関連して読む
 
-- [ハロプロ史 第1回――敗者復活からLOVEマシーンへ](#/essay/hello-project-history-01-1997-1999)
-- [モーニング娘。史――「メンバーが変わっても同じグループ」はなぜ成立したのか](#/essay/morning-musume-history-renewal-system)
-- [松浦亜弥史――「あやや」はなぜ一人で巨大なアイドルブランドになれたのか](#/essay/matsuura-aya-history-solo-persona)
-- [ハロプロ史シリーズ設計図――1997–2026](#/essay/hello-project-history-series-map)
+- [ハロプロ史 第1回――敗者復活からLOVEマシーンへ](https://silovar-uk.github.io/myessays/#/essay/hello-project-history-01-1997-1999)
+- [モーニング娘。史――「メンバーが変わっても同じグループ」はなぜ成立したのか](https://silovar-uk.github.io/myessays/#/essay/morning-musume-history-renewal-system)
+- [松浦亜弥史――「あやや」はなぜ一人で巨大なアイドルブランドになれたのか](https://silovar-uk.github.io/myessays/#/essay/matsuura-aya-history-solo-persona)
+- [ハロプロ史シリーズ設計図――1997–2026](https://silovar-uk.github.io/myessays/#/essay/hello-project-history-series-map)
 
 ---
 
