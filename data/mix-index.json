@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "e2ee-trust-boundary-end-to-end-encryption": "english-mix/e2ee-trust-boundary-end-to-end-encryption.md",
     "yamanashi-gakuin-urawa-emperors-cup-2026": "english-mix/yamanashi-gakuin-urawa-emperors-cup-2026.md",
     "json-history-small-spec-common-language": "english-mix/json-history-small-spec-common-language.md",
     "pneumonia-how-serious-hospital-oxygen": "english-mix/pneumonia-how-serious-hospital-oxygen.md",
