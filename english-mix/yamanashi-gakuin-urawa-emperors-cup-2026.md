@@ -124,7 +124,7 @@ So the Urawa match was not a perfect, fully finished version of Yamanashi Gakuin
 
 **It was a developing team testing itself against J1.**
 
-[ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?435028-435028-fl)
+[ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?457625-457625-fl=)
 
 ## 5. The message before kickoff: don't be afraid
 
@@ -295,6 +295,6 @@ And that is when this Emperor's Cup match will really be completed.
 - [JFA 天皇杯1回戦 山梨学院大学 1-0 東京国際大学FC](https://www.jfa.jp/match/emperorscup_2026/match_page/m16.html)
 - [Jリーグ公式 天皇杯2回戦 浦和3-0山梨学院大学](https://www.jleague.jp/match/emperor/2026/082621/)
 - [浦和レッズ 試合速報・対戦相手チームコメント](https://www.urawa-reds.co.jp/th/game/sokuhou_recent/?game=1899)
-- [ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?435028-435028-fl)
+- [ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?457625-457625-fl=)
 - [関東大学サッカー連盟 3部第10節](https://www.jufa-kanto.jp/2026_league_report/div3/sec_10/)
 - [関東大学サッカー連盟 3部第11節](https://www.jufa-kanto.jp/2026_league_report/div3/sec_11/)
