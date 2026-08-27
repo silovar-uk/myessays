@@ -120,7 +120,7 @@ abstract: "2026年8月26日の天皇杯2回戦で、山梨学院大学は浦和�
 
 リーグで勢いに乗る若手と、復帰途中の主将を抱えながら、自分たちの現在地をJ1相手に測る試合だった。
 
-[ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?435028-435028-fl)
+[ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?457625-457625-fl=)
 
 ## 5. 岩渕監督が選手に求めたのは「びびらず、前へ」
 
@@ -297,6 +297,6 @@ Jリーグのクラブと公式戦で戦える機会は、学生にとって4年
 - [JFA 天皇杯1回戦 山梨学院大学 1-0 東京国際大学FC](https://www.jfa.jp/match/emperorscup_2026/match_page/m16.html)
 - [Jリーグ公式 天皇杯2回戦 浦和3-0山梨学院大学](https://www.jleague.jp/match/emperor/2026/082621/)
 - [浦和レッズ 試合速報・対戦相手チームコメント](https://www.urawa-reds.co.jp/th/game/sokuhou_recent/?game=1899)
-- [ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?435028-435028-fl)
+- [ゲキサカ「天皇杯初出場山梨学院大はJ1浦和に完敗で終戦」](https://web.gekisaka.jp/news/emperorscup/detail/?457625-457625-fl=)
 - [関東大学サッカー連盟 3部第10節](https://www.jufa-kanto.jp/2026_league_report/div3/sec_10/)
 - [関東大学サッカー連盟 3部第11節](https://www.jufa-kanto.jp/2026_league_report/div3/sec_11/)
