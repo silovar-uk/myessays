@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "mozi-impartial-care-beyond-own-side": "english-mix/mozi-impartial-care-beyond-own-side.md",
     "laozi-knowing-yourself-self-mastery": "english-mix/laozi-knowing-yourself-self-mastery.md",
     "sayashi-riho-history-ace-mission-choice": "english-mix/sayashi-riho-history-ace-mission-choice.md",
     "tsugunaga-momoko-history-persona-professionalism": "english-mix/tsugunaga-momoko-history-persona-professionalism.md",
@@ -33,7 +34,7 @@
     "minimoni-history-format-ip": "english-mix/minimoni-history-format-ip.md",
     "melon-kinenbi-history-live-community": "english-mix/melon-kinenbi-history-live-community.md",
     "country-musume-country-girls-history-brand-redefinition": "english-mix/country-musume-country-girls-history-brand-redefinition.md",
-    "taiyo-ciscomoon-history-compressed-legacy": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md",
+    "taiyo-ciscomoon-compressed-legacy": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md",
     "morning-musume-history-renewal-system": "english-mix/morning-musume-history-renewal-system.md",
     "pride-obligation-strength": "english-mix/pride-obligation-strength.md",
     "america-cities-05-los-angeles": "english-mix/america-cities-05-los-angeles.md",
