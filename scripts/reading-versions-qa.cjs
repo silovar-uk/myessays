@@ -93,6 +93,32 @@ function overlaps(a, b) {
   assert.ok(noteBox, 'note tab should remain visible on mobile');
   assert.equal(overlaps(switchBox, noteBox), false, `version switch overlaps note tab: switch=${JSON.stringify(switchBox)} note=${JSON.stringify(noteBox)}`);
 
+  const tocSafety = await page.evaluate(async () => {
+    window.__myessaysTocProbe = 0;
+    showReader({
+      id: 'toc-security-probe',
+      title: 'TOC safety probe',
+      type: 'Essay',
+      created: '2026-08-29',
+      updated: '2026-08-29',
+      favorite: 0,
+      grow: 0,
+      tags: [],
+      metrics: { charCount: 1, minutes: 1 },
+      body: '## &lt;img src=x onerror="window.__myessaysTocProbe=1"&gt;'
+    });
+    await new Promise(resolve => setTimeout(resolve, 80));
+    const nav = document.querySelector('#readerAside nav');
+    return {
+      executed: window.__myessaysTocProbe,
+      imageCount: nav?.querySelectorAll('img').length || 0,
+      text: nav?.textContent || ''
+    };
+  });
+  assert.equal(tocSafety.executed, 0, 'reader TOC must not execute markup reconstructed from heading text');
+  assert.equal(tocSafety.imageCount, 0, 'reader TOC must keep heading markup as text');
+  assert.match(tocSafety.text, /<img src=x onerror=/, 'reader TOC should preserve the literal heading text');
+
   await browser.close();
   console.log('Reading versions QA passed');
 })().catch(error => {
