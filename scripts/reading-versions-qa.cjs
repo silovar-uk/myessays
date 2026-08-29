@@ -4,6 +4,11 @@ const assert = require('node:assert/strict');
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
 
+function overlaps(a, b) {
+  if (!a || !b) return false;
+  return !(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y);
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
@@ -40,9 +45,18 @@ const ESSAY_ID = 'confucius-knowing-liking-enjoying';
     }, version);
   };
 
+  await page.evaluate(() => window.scrollTo({ top: Math.max(500, document.documentElement.scrollHeight * 0.42), behavior: 'auto' }));
+  const scrollBeforeSwitch = await page.evaluate(() => window.scrollY);
+  assert.ok(scrollBeforeSwitch > 300, `expected a meaningful reading position before switch, got ${scrollBeforeSwitch}`);
+
   await switchTo('en-mix');
+  const scrollAfterEnglishMix = await page.evaluate(() => window.scrollY);
+  assert.ok(scrollAfterEnglishMix > 200, `English Mix switch reset reading position: ${scrollAfterEnglishMix}`);
+
   await switchTo('es');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Saber no basta'));
+  const scrollAfterSpanish = await page.evaluate(() => window.scrollY);
+  assert.ok(scrollAfterSpanish > 200, `Spanish switch reset reading position: ${scrollAfterSpanish}`);
   assert.ok((await page.locator('#readerContent').innerText()).includes('La pregunta de hoy'));
 
   const spanishTitle = await page.locator('#readerContent').innerText();
@@ -50,6 +64,7 @@ const ESSAY_ID = 'confucius-knowing-liking-enjoying';
 
   await switchTo('ja');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('知っているだけでは、まだ遠い'));
+  assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'returning to Japanese should preserve a meaningful reading position');
 
   for (let i = 0; i < 3; i += 1) {
     await switchTo('en-mix');
@@ -69,9 +84,13 @@ const ESSAY_ID = 'confucius-knowing-liking-enjoying';
   await page.setViewportSize({ width: 320, height: 700 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForSelector('#readerLanguageSwitch:not([hidden])');
-  const box = await page.locator('#readerLanguageSwitch').boundingBox();
-  assert.ok(box, 'version switch should be visible on mobile');
-  assert.ok(box.x >= 0 && box.x + box.width <= 320.5, `version switch overflows mobile viewport: ${JSON.stringify(box)}`);
+  const switchBox = await page.locator('#readerLanguageSwitch').boundingBox();
+  assert.ok(switchBox, 'version switch should be visible on mobile');
+  assert.ok(switchBox.x >= 0 && switchBox.x + switchBox.width <= 320.5, `version switch overflows mobile viewport: ${JSON.stringify(switchBox)}`);
+
+  const noteBox = await page.locator('#noteTab').boundingBox();
+  assert.ok(noteBox, 'note tab should remain visible on mobile');
+  assert.equal(overlaps(switchBox, noteBox), false, `version switch overlaps note tab: switch=${JSON.stringify(switchBox)} note=${JSON.stringify(noteBox)}`);
 
   await browser.close();
   console.log('Reading versions QA passed');
