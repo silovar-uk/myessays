@@ -1,0 +1,103 @@
+.reader-language-switch {
+  position: fixed;
+  z-index: 32;
+  right: 8px;
+  top: calc(39% - 66px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  margin: 0;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(244,241,234,.95);
+  box-shadow: 0 8px 28px rgba(39,32,24,.07);
+  backdrop-filter: blur(10px);
+  transition: opacity .14s ease, transform .14s ease;
+}
+
+.reader-language-switch[hidden] {
+  display: none !important;
+}
+
+.reader-language-switch-label {
+  align-self: flex-start;
+  padding-left: 4px;
+  color: var(--muted);
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  line-height: 1;
+}
+
+.reader-language-switch-buttons {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(213,207,194,.42);
+}
+
+.reader-language-switch button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.reader-language-switch button:hover:not(.is-active) {
+  background: rgba(255,255,255,.54);
+  color: var(--ink);
+}
+
+.reader-language-switch button.is-active {
+  background: rgba(255,255,255,.96);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(39,32,24,.08);
+}
+
+@media (max-width: 760px) {
+  .reader-language-switch {
+    top: auto;
+    right: 8px;
+    bottom: 146px;
+    padding: 5px;
+    border-radius: 11px;
+    max-width: calc(100vw - 16px);
+  }
+
+  .reader-language-switch-label {
+    font-size: 7px;
+  }
+
+  .reader-language-switch-buttons {
+    max-width: calc(100vw - 28px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .reader-language-switch-buttons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reader-language-switch button {
+    min-height: 27px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+}
