@@ -13,9 +13,7 @@ on:
       - 'spanish/**'
       - 'tools/**'
       - 'tests/**'
-      - 'scripts/visual-qa.mjs'
-      - 'scripts/page-reader-qa.cjs'
-      - 'scripts/reading-versions-qa.cjs'
+      - 'scripts/**'
       - '.github/workflows/visual-qa.yml'
   workflow_dispatch:
 
@@ -38,7 +36,7 @@ jobs:
 
       - name: Install Playwright
         run: |
-          npm install --no-save playwright@latest
+          npm install --no-save playwright@1.62.1
           npx playwright install --with-deps chromium
 
       - name: Start local site
