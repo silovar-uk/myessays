@@ -21,9 +21,9 @@ test('reading versions index only points to existing derived files', () => {
   }
 });
 
-test('every English Mix markdown is migrated exactly once into the shared index', () => {
+test('every English Mix article markdown is migrated exactly once into the shared index', () => {
   const englishMixFiles = fs.readdirSync(path.join(root, 'english-mix'))
-    .filter(file => file.endsWith('.md'))
+    .filter(file => file.endsWith('.md') && file !== 'README.md')
     .map(file => `english-mix/${file}`)
     .sort();
   const indexedPaths = Object.values(articles)
