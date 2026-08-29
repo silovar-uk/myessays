@@ -26,6 +26,17 @@
     }
   }
 
+  function getCurrentEssay() {
+    try {
+      if (typeof state !== 'undefined' && state.currentEssay?.id) return state.currentEssay;
+    } catch {}
+    const rawId = location.hash.match(/^#\/essay\/(.+)$/)?.[1];
+    if (!rawId) return null;
+    let id = rawId;
+    try { id = decodeURIComponent(rawId); } catch {}
+    return getAllEssays().find(essay => essay.id === id) || null;
+  }
+
   function getSeriesSequence(currentEssay) {
     if (!currentEssay?.series || currentEssay.seriesOrder === undefined || currentEssay.seriesOrder === null) return null;
 
@@ -119,7 +130,7 @@
 
   function renderReaderEndNavigation(context) {
     const root = context?.root || document.getElementById('readerContent');
-    const currentEssay = context?.essay || null;
+    const currentEssay = context?.essay || getCurrentEssay();
     if (!root || !currentEssay) return;
 
     root.querySelector(navSelector)?.remove();
@@ -144,8 +155,6 @@
       let currentIndex = visible.findIndex(essay => essay.id === currentEssay.id);
       let order = visible;
 
-      // When a filter removes the current card from the hidden Library DOM,
-      // fall back to the complete archive so navigation never disappears.
       if (currentIndex === -1) {
         order = getAllEssays().map(essay => ({ id: essay.id, title: essay.title || '' }));
         currentIndex = order.findIndex(essay => essay.id === currentEssay.id);
