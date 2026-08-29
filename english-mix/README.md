@@ -1,14 +1,14 @@
 # English Mix publishing contract
 
-English Mix is a companion reading mode for My Essays. The Japanese essay remains the canonical source.
+English Mix is a companion reading version for My Essays. The Japanese essay remains the canonical source.
 
 ## Files
 
 - Canonical Japanese: `essays/YYYY-MM-DD-slug.md`
 - English Mix companion: `english-mix/<essay-id>.md`
-- Availability map: `data/mix-index.json`
+- Derived-version map: `data/versions-index.json`
 
-Both versions must use the same essay `id`. Reading status, After Reading entries, and browser-local notes are shared by that id.
+Both versions must use the same essay `id`. Reading status, After Reading entries, Series state, favorites, and browser-local notes are shared by that id.
 
 ## Mixing rules
 
@@ -23,4 +23,21 @@ Both versions must use the same essay `id`. Reading status, After Reading entrie
 
 ## Publishing rule
 
-When a new essay is published with an English Mix version, commit the Japanese essay and its companion together, then add the companion path to `data/mix-index.json`. The Library lists the essay only once; the reader exposes `日本語 / English Mix` when a companion exists.
+When a new essay is published with an English Mix version:
+
+1. Publish the Japanese canonical essay and register it in `data/index.json`.
+2. Create `english-mix/<essay-id>.md` using the same `id`.
+3. Add the English Mix path under the same article ID in `data/versions-index.json` as `en-mix`.
+4. Do not add the English Mix file to `data/index.json` as a separate essay.
+
+Example:
+
+```json
+{
+  "article-id": {
+    "en-mix": "english-mix/article-id.md"
+  }
+}
+```
+
+If an Español version also exists, add `es` to the same article entry. The Library lists the essay only once; the reader exposes the available versions for that article.
