@@ -57,7 +57,7 @@ try {
     const jaState = await page.evaluate(() => {
       const reader = document.querySelector('#readerContent');
       const switcher = document.querySelector('#readerLanguageSwitch');
-      const mixButton = document.querySelector('[data-reader-language="mix"]');
+      const mixButton = document.querySelector('[data-reader-version="en-mix"]');
       return {
         title: document.title,
         readerVisible: Boolean(reader && reader.textContent.trim().length > 0),
@@ -70,8 +70,8 @@ try {
     });
 
     if (!jaState.readerVisible) throw new Error(`${config.name}: reader content is empty`);
-    if (!jaState.switchVisible) throw new Error(`${config.name}: language switch is not visible`);
-    if (!jaState.mixEnabled) throw new Error(`${config.name}: English Mix button is disabled`);
+    if (!jaState.switchVisible) throw new Error(`${config.name}: reading version switch is not visible`);
+    if (!jaState.mixEnabled) throw new Error(`${config.name}: English Mix button is unavailable`);
     if (jaState.horizontalOverflow) {
       throw new Error(`${config.name}: horizontal overflow (${jaState.scrollWidth}px > ${jaState.innerWidth}px)`);
     }
@@ -81,7 +81,7 @@ try {
       fullPage: true
     });
 
-    await page.locator('[data-reader-language="mix"]').click();
+    await page.locator('[data-reader-version="en-mix"]').click();
     await page.waitForFunction(
       expected => document.querySelector('#readerContent')?.textContent?.includes(expected),
       MIX_SENTINEL,
@@ -89,7 +89,7 @@ try {
     );
 
     const mixState = await page.evaluate(() => {
-      const mixButton = document.querySelector('[data-reader-language="mix"]');
+      const mixButton = document.querySelector('[data-reader-version="en-mix"]');
       return {
         mixPressed: mixButton?.getAttribute('aria-pressed') === 'true',
         horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
