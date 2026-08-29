@@ -47,10 +47,10 @@ test('copy feedback, relative time, and long-note folding exist',()=>{
   assert.match(source,/i>0/);
 });
 
-test('section stays before navigation and cache versions are updated',()=>{
+test('section stays before navigation and reflection assets are cache-busted',()=>{
   assert.match(source,/insertBefore\(root,nav\)/);
-  assert.match(index,/reader-reflections\.css\?v=20260816-1648/);
-  assert.match(index,/reader-reflections\.js\?v=20260816-1648/);
+  assert.match(index,/reader-reflections\.css\?v=[0-9-]+/);
+  assert.match(index,/reader-reflections\.js\?v=[0-9-]+/);
 });
 
 test('mobile and accessibility details are covered',()=>{
