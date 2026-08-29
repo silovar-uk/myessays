@@ -1277,6 +1277,27 @@ docs: update essay publishing guide for variants
 
 少なくとも旧indexのentryが全て新indexに存在すること。
 
+### 追加の機械検証
+
+件数一致だけでは、同じ件数で別keyが欠ける可能性がある。
+
+そのため以下も確認する。
+
+```text
+oldMixIds - newEnMixIds = 0件
+newEnMixIds - oldMixIds = 0件
+```
+
+さらに各IDについてpath一致を確認する。
+
+疑似チェック:
+
+```js
+for (const [id, oldPath] of Object.entries(oldIndex.mixes)) {
+  assert.equal(newIndex.articles[id]?.['en-mix'], oldPath);
+}
+```
+
 ## 14-3. JAのみ記事
 
 手順:
@@ -1476,6 +1497,36 @@ warnも今回変更由来なら解消する。
 - switchが本文を覆わない
 - filter selectが見切れない
 
+## 14-18. 高速連続操作
+
+以下を10回程度繰り返す。
+
+```text
+JA → EN MIX → ES → JA
+```
+
+途中でLibraryへ戻り、別記事を開いて再度切替。
+
+期待:
+
+- switchが反応しなくならない
+- `switchInFlight` が残留しない
+- 同じversionのfetchが不必要に増えない
+- Reader末尾UIが多重生成されない
+- event listenerの多重反応が見られない
+
+## 14-19. 直接URL / reload
+
+各記事URLを直接開く、またはReader表示中にreloadする。
+
+期待:
+
+- 日本語正本で正常に復元される
+- hash routingが壊れない
+- version systemのindex load失敗があってもLibrary / JA本文は利用できる
+
+なお、今回version自体をURLへ永続化する仕様は追加しない。
+
 ---
 
 # 15. 受け入れ条件（Definition of Done）
@@ -1487,6 +1538,8 @@ warnも今回変更由来なら解消する。
 - [ ] `versions-index.json` が存在
 - [ ] 旧English Mix全entryが移行済み
 - [ ] 旧indexとの件数一致確認済み
+- [ ] ID集合差分0件確認済み
+- [ ] 旧/newでEN Mix path一致確認済み
 - [ ] Spanish sample 1記事登録済み
 - [ ] `mix-index.json` 不要なら削除済み
 
@@ -1499,6 +1552,7 @@ warnも今回変更由来なら解消する。
 - [ ] Spanish専用JSなし
 - [ ] semantic scroll restore維持
 - [ ] title / subtitle / abstract fallback正常
+- [ ] 派生metadata全面mergeなし
 
 ## State
 
@@ -1533,6 +1587,9 @@ warnも今回変更由来なら解消する。
 
 - [ ] Node tests 0 failure
 - [ ] versions用test追加
+- [ ] migration integrity test実施
+- [ ] 高速連続切替確認
+- [ ] direct URL / reload確認
 - [ ] PC確認
 - [ ] mobile確認
 - [ ] console error 0
@@ -1577,7 +1634,8 @@ warnも今回変更由来なら解消する。
 対策:
 
 - entry件数比較
-- key差分比較
+- ID集合差分比較
+- path一致比較
 - scriptで機械変換推奨
 - 手作業コピーを避ける
 
@@ -1626,6 +1684,20 @@ warnも今回変更由来なら解消する。
 - index.htmlのcache bust query更新
 - deploy後hard reload確認
 - network上の実ファイル名確認
+
+## Risk H: version cacheの取り違え
+
+対策:
+
+- cache keyにarticle IDとversion keyの両方を含める
+- EN Mix読み込み後にESへ切替し、本文混同がないことを確認
+
+## Risk I: index読込失敗でReader全体が壊れる
+
+対策:
+
+- versions-index取得失敗は「派生版なし」として扱う
+- 日本語正本の表示は常に独立して成立させる
 
 ---
 
@@ -1726,6 +1798,7 @@ spanish/<article-id>.md
 - [ ] main最新確認
 - [ ] 現行tests実行
 - [ ] mix-index件数記録
+- [ ] mix-index ID一覧記録
 - [ ] glossary参照全検索
 - [ ] `__languageMode` 参照全検索
 - [ ] `reader-language-changed` 参照全検索
@@ -1744,10 +1817,14 @@ spanish/<article-id>.md
 
 - [ ] tests 0 failure
 - [ ] EN Mix件数一致
+- [ ] EN Mix ID差分0
+- [ ] EN Mix path差分0
 - [ ] JA → EN → ES → JA
+- [ ] 連続切替10回
 - [ ] 読了共有
 - [ ] メモ共有
 - [ ] Series確認
+- [ ] reload確認
 - [ ] PC確認
 - [ ] 320px確認
 - [ ] Network 404確認
@@ -1778,12 +1855,14 @@ spanish/<article-id>.md
 【migration確認】
 旧EN Mix件数:
 新EN Mix件数:
-差分:
+ID差分:
+Path差分:
 
 【テスト変更内容】
 
 【テスト結果】
 自動テスト:
+連続切替:
 PC:
 Mobile:
 Console:
