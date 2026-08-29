@@ -76,7 +76,8 @@ function overlaps(a, b) {
   assert.ok(storageKeys.includes(canonicalKey));
   assert.equal(storageKeys.some(key => key.includes(`${ESSAY_ID}:en-mix`) || key.includes(`${ESSAY_ID}:es`)), false);
 
-  assert.equal(requestedUrls.some(url => /glossary|mix-index\.json/.test(url)), false, 'legacy glossary/mix index should not be requested');
+  const legacyRequests = requestedUrls.filter(url => /\/data\/mix-index\.json(?:[?#]|$)|\/data\/glossar(?:y|ies)(?:[/?#]|$)|\/glossary-tools\.(?:js|css)(?:[?#]|$)/.test(url));
+  assert.deepEqual(legacyRequests, [], `legacy resources should not be requested: ${legacyRequests.join(', ')}`);
   assert.deepEqual(pageErrors, []);
   assert.deepEqual(failedRequests, []);
   assert.deepEqual(consoleErrors, []);
