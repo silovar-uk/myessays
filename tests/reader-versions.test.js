@@ -21,10 +21,21 @@ test('reading versions index only points to existing derived files', () => {
   }
 });
 
-test('existing English Mix assets were migrated into the shared index', () => {
-  const englishMixEntries = Object.entries(articles).filter(([, versions]) => versions['en-mix']);
-  assert.ok(englishMixEntries.length >= 80, 'expected the existing English Mix library to be preserved');
-  englishMixEntries.forEach(([essayId, versions]) => {
+test('every English Mix markdown is migrated exactly once into the shared index', () => {
+  const englishMixFiles = fs.readdirSync(path.join(root, 'english-mix'))
+    .filter(file => file.endsWith('.md'))
+    .map(file => `english-mix/${file}`)
+    .sort();
+  const indexedPaths = Object.values(articles)
+    .map(versions => versions['en-mix'])
+    .filter(Boolean)
+    .sort();
+  assert.deepEqual(indexedPaths, englishMixFiles);
+});
+
+test('English Mix paths stay keyed by the canonical article id', () => {
+  Object.entries(articles).forEach(([essayId, versions]) => {
+    if (!versions['en-mix']) return;
     assert.equal(versions['en-mix'], `english-mix/${essayId}.md`);
   });
 });
