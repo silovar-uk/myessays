@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const INDEX_URL = 'data/mix-index.json';
+  const INDEX_URL = 'data/versions-index.json';
   const LOCATOR_BLOCK_SELECTOR = 'p, ul, ol, blockquote, figure';
   const READING_LINE_RATIO = 0.28;
   const FLASH_DURATION_MS = 1800;
@@ -35,11 +35,12 @@
     return root ? [...root.children].filter(element => element.matches(selector)) : [];
   }
 
-  function mixIndex() {
+  function versionsIndex() {
     if (!indexPromise) {
       indexPromise = fetch(INDEX_URL, { cache: 'no-store' })
-        .then(response => response.ok ? response.json() : { mixes: {} })
-        .catch(() => ({ mixes: {} }));
+        .then(response => response.ok ? response.json() : { articles: {} })
+        .then(data => ({ articles: data?.articles && typeof data.articles === 'object' ? data.articles : {} }))
+        .catch(() => ({ articles: {} }));
     }
     return indexPromise;
   }
@@ -89,10 +90,10 @@
   function mappedCanonicalIndex(currentIndex, currentCount, canonicalCount) {
     if (canonicalCount <= 1 || currentCount <= 1) return 0;
 
-    // JA is the canonical structure. English Mix often splits one Japanese
-    // paragraph into several sentence-sized paragraphs, so raw DOM ordinals
-    // are not stable across modes. Map each rendered block back onto the
-    // canonical Japanese paragraph sequence by relative position.
+    // Japanese is the canonical structure. Derived reading versions can split
+    // or merge paragraphs, so raw DOM ordinals are not stable across versions.
+    // Map each rendered block back onto the canonical paragraph sequence by
+    // relative position within the section.
     const midpoint = (currentIndex + 0.5) / currentCount;
     return Math.min(
       canonicalCount - 1,
@@ -136,9 +137,9 @@
         block.dataset.readingLocator = label;
         block.classList.add('reader-locator-block');
 
-        // English Mix can expand one canonical Japanese paragraph into several
-        // rendered blocks. Keep duplicate landmarks visually quiet, but retain
-        // the locator on every block so a switch target can reveal its label.
+        // A derived version can expand one canonical Japanese paragraph into
+        // several rendered blocks. Keep duplicate landmarks visually quiet,
+        // while retaining a locator on every block for switch feedback.
         if (label === previousLabel) block.classList.add('reader-locator-repeat');
         previousLabel = label;
       });
@@ -150,12 +151,13 @@
     const id = currentEssayId();
     if (!content || !id) return;
 
-    const index = await mixIndex();
+    const index = await versionsIndex();
     if (id !== currentEssayId()) return;
 
+    const versions = index?.articles?.[id] || {};
     content.classList.toggle(
       'has-language-alternate',
-      Boolean(index?.mixes?.[id])
+      Object.keys(versions).length > 0
     );
   }
 
@@ -198,7 +200,6 @@
 
     window.clearTimeout(flashTimer);
 
-    // Restart the transition even when the same paragraph is targeted twice.
     target.classList.remove('is-language-switch-target');
     void target.offsetWidth;
     target.classList.add('is-language-switch-target');
@@ -215,8 +216,7 @@
 
   document.addEventListener('myessays:reader-rendered', syncReaderLocators);
   document.addEventListener('myessays:reader-ready', syncReaderLocators);
-  document.addEventListener('myessays:reader-language-changed', () => {
-    // english-mix.js dispatches this after semantic scroll restoration.
+  document.addEventListener('myessays:reader-version-changed', () => {
     requestAnimationFrame(() => {
       assignLocators();
       syncAlternateState();
