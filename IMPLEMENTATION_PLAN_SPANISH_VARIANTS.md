@@ -3,7 +3,9 @@
 更新日: 2026-08-29
 対象: `silovar-uk/myessays`
 
-## 0. この計画の結論
+---
+
+# 0. この計画の結論
 
 今回の変更は、MyEssaysを大規模な多言語CMSへ作り替えるものではない。
 
@@ -21,6 +23,17 @@
 - 現在のEnglish Mix資産と読書状態を壊さない
 - Libraryは引き続き「日本語正本の記事一覧」を中心とする
 - 今回のSpanish化は動作確認用1記事のみ。全記事翻訳はしない
+- 既存のlocalStorageキーを変更しない
+- 今回と無関係なUI・Markdown・Series・After Reading・検索仕様は変更しない
+
+この変更の成功条件は「多機能になること」ではなく、以下である。
+
+- Español版を1記事で正常に読める
+- English Mixが従来どおり使える
+- 日本語 / English Mix / Español 間で同一記事として状態が共有される
+- 用語機能が完全に消える
+- 投稿フローが過度に複雑化しない
+- 今後Español記事を追加するときにアプリ本体コードを触らなくて済む
 
 ---
 
@@ -49,11 +62,13 @@
 - `series`
 - `seriesOrder`
 
-この構造は今回も維持する。
+今回もこの日本語版metadataを記事の正本として扱う。
 
-## 1-2. English Mixは記事IDをキーにした派生版
+## 1-2. English Mixは記事ID単位の派生表示
 
-現在は `data/mix-index.json` に、
+現在の `data/mix-index.json` は、記事IDからEnglish Mix Markdownへのパスを引く単純なmapになっている。
+
+概念上は以下。
 
 ```json
 {
@@ -64,11 +79,9 @@
 }
 ```
 
-という形でEnglish Mix版を管理している。
+English Mixファイルは `english-mix/*.md` に保存される。
 
-既存Mix資産は多数存在しており、今回の変更でこれらを破壊しないことが重要。
-
-English MixのMarkdownには例として以下のfront matterが存在する。
+実ファイルには、例として以下のようなfront matterが存在する。
 
 ```yaml
 ---
@@ -81,304 +94,272 @@ mix_unit: "sentence"
 ---
 ```
 
-現行の `english-mix.js` は主に派生版本文を読み込み、日本語記事オブジェクトへ本文を差し替える形で表示している。
+ただし現行 `english-mix.js` は派生Markdownの本文を主に使用し、日本語正本の記事オブジェクトへ `body` を差し替える方式を採っている。
 
-## 1-3. 言語切替時の読書位置復元は既に存在する
+この設計により記事IDが維持され、他機能から同じ記事として見える。
 
-`english-mix.js` では、単純な `scrollY` コピーではなく、
+## 1-3. English Mix切替には読書位置復元ロジックがある
 
-- 見出し
-- 本文ブロック
-- セクション内のおおよその位置
+`english-mix.js` では単純な `scrollY` のコピーではなく、以下を組み合わせて切替前の読書位置を保存・復元している。
+
+- H2見出しのセクション位置
+- セクション内のreading block位置
+- block内の進捗
 - 記事全体の進捗
+- top / bottom付近の特別扱い
 
-を使って、日本語とEnglish Mixの文章量が違っても近い読書位置へ戻す処理がある。
+Spanish追加でもこの仕組みを捨てない。
 
-これは今回のEspañol対応でも再利用する。
+むしろ、English Mix専用名称を外して共通処理にすることが変更の中心になる。
 
-## 1-4. 読了状態・メモ等は記事ID単位
+## 1-4. LibraryにもEnglish Mix専用ロジックがある
 
-`reading-state-ui.js` ではLocalStorageキーに記事IDを使用している。
+`library-mix.js` は `data/mix-index.json` を読み込み、以下を追加している。
 
-例:
+- English Mixあり / なしフィルター
+- `EN MIX` badge
+- featured cardへのbadge表示
+- archive rowへのbadge表示
+
+Spanish対応時にこのファイルをそのままコピーして `library-spanish.js` を作ってはいけない。
+
+## 1-5. 読了状態・メモは記事ID基準
+
+読書状態関連ではlocalStorageキーが記事IDを基準にしている。
+
+主な例:
 
 ```text
-myessays:reading-state:{articleId}
-myessays:reading-note:{articleId}
-myessays:reader-reflections:v1:{articleId}
-myessays:reader-reflections:draft:v1:{articleId}
+myessays:reading-state:<article-id>
+myessays:reading-note:<article-id>
+myessays:reader-reflections:v1:<article-id>
+myessays:reader-reflections:draft:v1:<article-id>
 ```
 
-そのため、派生版でも同一記事IDを維持すれば、
+したがって、派生版が同じ記事IDを維持すれば、基本的に状態共有は自然に成立する。
 
-- 読了状態
-- 開封状態
-- メモ
-- After Reading
+今回、これらのlocalStorageキーは変更しない。
 
-を原則そのまま共有できる。
+## 1-6. 用語機能は独立Reader pluginとして存在
 
-この既存設計は変更しない。
-
-## 1-5. LibraryにはEnglish Mix専用拡張がある
-
-`library-mix.js` が以下を追加している。
-
-- English Mix有無の判定
-- `EN MIX` バッジ
-- English Mix版あり / なしフィルター
-
-Español対応では、このコードをコピーしてSpanish専用処理を作るのではなく、必要最小限だけ複数派生版対応へ一般化する。
-
-## 1-6. 用語機能はReader Pluginとして独立している
-
-現在の用語機能は主に以下で構成される。
+現在、用語機能は主に以下で構成される。
 
 - `glossary-tools.js`
 - `glossary-tools.css`
 - `data/glossary.json`
 - `data/glossaries/*.json`
 - `index.html` のCSS / JS読み込み
-- Reader Runtimeへのplugin登録
+- Reader Runtimeへの `glossary` plugin登録
+- 本文中の用語mark生成
+- 用語tab / panel DOM生成
 - 記事追加ガイド内の用語説明
-- glossaryを前提にした自動テスト
+- glossaryを前提とするtests
 
-用語機能はDOM上の表示だけでなく、本文中の対象語をボタン化し、サイドパネルを生成する処理まで持っている。
+つまり、CSSを非表示にするだけでは撤去にならない。
 
-したがって、単なる非表示ではなく完全削除が必要。
+## 1-7. testsがglossaryの存在を仕様として固定している
 
-## 1-7. テストがglossaryの存在を前提にしている
+`tests/reader-architecture.test.js` には、以下を確認するテストがある。
 
-`tests/reader-architecture.test.js` では、
+- glossary pluginがreader runtime後に読み込まれる
+- glossaryがcentral runtimeを使う
+- article別glossary JSONを読み込む
+- legacy glossary fallbackがある
+- Node.js記事の `libuv` 用語データがある
+- glossary priorityが20である
 
-- `glossary-tools.js` がReader Runtimeより後に読み込まれること
-- glossary pluginが `MyEssaysReaderRuntime.register` を利用していること
-- 記事別glossary JSONを読むこと
-- glossary priority
-- 特定glossary JSONの内容
+したがって、glossary削除時はこれらのテストも削除または置換が必要。
 
-などを直接テストしている。
-
-そのため、用語削除時にはテスト修正が必須。
+テストが赤いままでも機能上は見える、という状態は完了とみなさない。
 
 ---
 
 # 2. 今回のスコープ
 
-## 必ず実施する
+## 2-1. 必ずやる
 
-- Español版の派生記事を読めるようにする
-- 日本語 / English Mix / Español を同一記事画面で切り替えられるようにする
-- 派生版切替ロジックを1つへまとめる
-- English Mix既存資産を新しい派生版インデックスへ移行する
-- 読書位置復元をEnglish Mix / Español双方で利用する
-- 記事状態を日本語と共有する
-- Libraryで `EN MIX` / `ES` の存在を確認できるようにする
-- Libraryの派生版フィルターを必要最小限一般化する
-- 用語機能を完全削除する
-- 用語削除に伴うtestsを修正する
-- READMEと「論考を追加するには」を新仕様へ更新する
-- Español版サンプル記事を1本だけ作る
-- 既存testsを実行する
-- PC / スマホで主要動作を確認する
+- Español版を1記事追加する
+- 日本語 / English Mix / Español を同一Reader内で切り替えられるようにする
+- English Mix専用indexを、複数派生版を扱える最小構造へ移行する
+- 派生版切替JSを共通化する
+- LibraryのEN MIX表示を複数版対応へ最小限一般化する
+- Spanishのtitle / subtitle / abstract / bodyを表示可能にする
+- 記事ID単位の読書状態共有を維持する
+- glossary機能を完全削除する
+- READMEを更新する
+- 画面内「論考を追加するには」を更新する
+- glossary前提testsを修正する
+- 派生版機能の最低限テストを追加する
+- PC / スマホ双方で確認する
+- 404 / console errorを確認する
 
-## 今回やらない
+## 2-2. 今回やらない
 
-以下はスコープ外。
-
-- 全既存記事のSpanish翻訳
+- 全既存記事のSpanish化
 - Library全体のスペイン語UI化
-- Spanish本文をLibrary全文検索対象へ入れること
-- 英語全文版の新設
-- Portuguese版の新設
-- Easy Japanese版
-- 要約版
-- 派生版ごとのSEOページ生成
-- URLを言語ごとに分割する仕組み
+- Spanish本文をLibrary全文検索対象に追加
+- English全文版の追加
+- Português追加
+- Easy Japanese追加
+- 自動翻訳API連携
+- 翻訳生成ボタン
+- 管理画面
+- CMS化
+- `type: learning / translation` 等の抽象metadata追加
+- 言語検出
 - ブラウザ言語による自動切替
-- 翻訳APIの自動実行
-- 翻訳管理CMS
-- `learning` / `translation` など今回使わない抽象typeの導入
-- 今回の変更と無関係なReader全体のリファクタ
+- URLを `/es/` のように言語別ルート化
+- SEO用hreflang対応
+- 状態を言語別に持つ仕様
+- 今回と無関係なreader pluginの整理
+- Markdown engineのリファクタ
+- Series機能の再設計
+
+これらは将来必要になった段階で別タスクとする。
 
 ---
 
-# 3. 目標UX
+# 3. 目標アーキテクチャ
 
-## 3-1. 記事画面
+## 3-1. 基本モデル
 
-記事を開いたとき、現在の表示切替を次のようにする。
-
-```text
-日本語 | English Mix | Español
-```
-
-ただし、記事ごとに存在する版だけを利用可能にする。
-
-例1: 日本語のみ
+記事には1つの正本と0個以上の派生版がある。
 
 ```text
-日本語
+article-id
+├─ 日本語正本
+│  └─ essays/YYYY-MM-DD-slug.md
+├─ English Mix（optional）
+│  └─ english-mix/article-id.md
+└─ Español（optional）
+   └─ spanish/article-id.md
 ```
 
-例2: 日本語 + English Mix
+日本語正本だけが `data/index.json` に登録される。
+
+English Mix / Españolは独立記事として `data/index.json` へ登録しない。
+
+## 3-2. 派生版index
+
+推奨ファイル名:
 
 ```text
-日本語 | English Mix
+data/versions-index.json
 ```
 
-例3: 日本語 + Español
-
-```text
-日本語 | Español
-```
-
-例4: 3版すべて
-
-```text
-日本語 | English Mix | Español
-```
-
-未作成版をdisabledで常時並べるか、存在する版だけ表示するかは、実装時のUI確認で決める。
-
-第一候補は「存在する版だけ表示」。理由は、未作成表示が大量に並ぶと記事閲覧時のノイズになるため。
-
-## 3-2. 初期表示
-
-初期表示は常に日本語。
-
-ブラウザ言語から自動的にEspañolへ切り替えない。
-
-理由:
-
-- 日本語が正本という思想を維持する
-- 既存利用者の挙動を変えない
-- 言語判定ロジックを今回増やさない
-
-## 3-3. 切替時
-
-`JA → EN MIX → ES → JA` と連続切替しても、読んでいた意味上の位置から大きく飛ばないこと。
-
-現在のEnglish Mix用読書位置復元を共通処理として利用する。
-
-## 3-4. Library
-
-日本語記事カードを正本とする。
-
-派生版がある場合のみ小さなAvailability Badgeを出す。
-
-例:
-
-```text
-Conceptual Paper   EN MIX  ES
-```
-
-バッジ自体をクリックして直接派生版を開く機能は今回不要。
-
-記事ページへ入ってから表示を切り替える。
-
----
-
-# 4. 推奨データ構造
-
-## 4-1. 新規ファイル
-
-`data/versions-index.json`
-
-第一候補:
+推奨構造:
 
 ```json
 {
   "version": 1,
   "articles": {
-    "decaf-coffee-how-caffeine-is-removed": {
-      "en-mix": "english-mix/decaf-coffee-how-caffeine-is-removed.md",
-      "es": "spanish/decaf-coffee-how-caffeine-is-removed.md"
-    },
-    "json-history-small-spec-common-language": {
-      "en-mix": "english-mix/json-history-small-spec-common-language.md"
+    "article-id": {
+      "en-mix": "english-mix/article-id.md",
+      "es": "spanish/article-id.md"
     }
   }
 }
 ```
 
-### この形を推奨する理由
-
-- 現在の `mix-index.json` から機械的に移行しやすい
-- 言語 / 派生版ごとの専用JSが不要になる
-- `en-mix` と `es` 以外の概念を今は持たなくてよい
-- 新しい版を増やす場合もデータ追加中心で対応できる
-- 過剰なschemaを導入しない
-
-## 4-2. 日本語版はversions-indexへ入れない
-
-日本語版は引き続き `data/index.json` + `essays/` を正本とする。
-
-`versions-index.json` には派生版だけを持たせる。
-
 理由:
 
-- 既存アプリ構造を大きく変えない
-- 日本語正本というルールが明確
-- `data/index.json` を再設計する必要がない
+- 現在のmix-indexとほぼ同じ思想
+- migrationが単純
+- JSON構造が読みやすい
+- 将来別版が増えてもkeyを1個追加すればよい
+- typeやlabelなど余計な情報を持たない
 
-## 4-3. 旧 `mix-index.json`
+### UI labelの管理
 
-移行完了後は削除を第一候補とする。
+UI labelはversion keyからアプリ側の小さな定数mapで解決する。
 
-ただし、一時的互換処理を入れる場合も恒久的に残さない。
+例:
 
-理想的な移行順:
+```js
+const VERSION_DEFINITIONS = {
+  ja: { label: '日本語', badge: 'JA' },
+  'en-mix': { label: 'English Mix', badge: 'EN MIX' },
+  es: { label: 'Español', badge: 'ES' }
+};
+```
 
-1. 現在の `mix-index.json` を読み取る
-2. 全エントリを `versions-index.json` の `en-mix` へ移行
-3. 新コードを `versions-index.json` 対応に変更
-4. tests確認
-5. `mix-index.json` への参照が0件になったことを検索
-6. `mix-index.json` 削除
+ここで重要なのは、「記事ごとにlabelを書く必要をなくす」こと。
+
+一方、version追加時に定数mapを1行追加する程度は許容する。
+
+今回の目的は完全データ駆動フレームワークではなく、言語ごとの巨大コードコピーをなくすこと。
+
+## 3-3. mix-index移行
+
+現在 `data/mix-index.json` にある全entryを `versions-index.json` の `en-mix` へ移す。
+
+例:
+
+Before:
+
+```json
+{
+  "version": 1,
+  "mixes": {
+    "a": "english-mix/a.md",
+    "b": "english-mix/b.md"
+  }
+}
+```
+
+After:
+
+```json
+{
+  "version": 1,
+  "articles": {
+    "a": {
+      "en-mix": "english-mix/a.md"
+    },
+    "b": {
+      "en-mix": "english-mix/b.md"
+    }
+  }
+}
+```
+
+移行完了後、アプリ本体が `mix-index.json` を参照していないことを確認してから旧ファイルを削除する。
+
+中途半端に両方を永続運用しない。
 
 ---
 
-# 5. 派生Markdownの扱い
+# 4. 派生版Markdown仕様
 
-## 5-1. 保存場所
+## 4-1. 共通原則
 
-```text
-essays/        日本語正本
-english-mix/   English Mix
-spanish/       Español
+派生版Markdownは日本語正本と同じ記事IDを持つ。
+
+例:
+
+```yaml
+---
+id: decaf-coffee-how-caffeine-is-removed
+title: "Cómo se elimina la cafeína del café descafeinado"
+subtitle: "Cómo se retira la cafeína antes del tostado"
+abstract: "..."
+---
 ```
 
-Españolファイル名:
+本文はfront matter後に通常のMarkdownとして記述する。
 
-```text
-spanish/{article-id}.md
-```
+## 4-2. 派生版から上書きできるもの
 
-## 5-2. 同一記事ID
-
-すべて同じ `id` を持つ。
-
-```text
-Japanese      id: example
-English Mix   id: example
-Español       id: example
-```
-
-派生版に新しい記事IDを発行しない。
-
-## 5-3. metadataのマージルール
-
-派生版のfront matterすべてを日本語metadataへ上書きしない。
-
-### 派生版から上書きしてよいもの
+Reader表示に限り、以下を派生版front matterから上書き可能とする。
 
 - `title`
 - `subtitle`
 - `abstract`
 - `body`
 
-### 日本語正本を維持するもの
+## 4-3. 日本語正本から必ず引き継ぐもの
+
+以下は派生版から上書きしない。
 
 - `id`
 - `created`
@@ -391,80 +372,181 @@ Español       id: example
 - `grow`
 - `series`
 - `seriesOrder`
+- Library上の基礎情報
 
-### English Mix固有metadata
+理由:
 
-既存ファイルに存在する以下は、そのままファイル内に残してよい。
+派生版は別記事ではなく、「同じ記事を別の読み方で表示するデータ」だから。
 
-- `mode`
-- `english_ratio`
-- `mix_unit`
+## 4-4. fallback
 
-ただし、Reader表示の共通metadataとして無理に扱う必要はない。
+派生版Markdownに `title` / `subtitle` / `abstract` がない場合、日本語正本値へfallbackする。
 
-## 5-4. fallback
+疑似コード:
 
-派生版に `title` / `subtitle` / `abstract` が存在しない場合は、日本語正本を表示する。
+```js
+function composeVersionEssay(original, variant) {
+  return {
+    ...original,
+    title: variant.meta.title || original.title,
+    subtitle: variant.meta.subtitle || original.subtitle,
+    abstract: variant.meta.abstract || original.abstract,
+    body: variant.body,
+    __version: variant.key
+  };
+}
+```
 
-これにより既存English Mixファイルを一括修正せずに移行できる。
+注意:
+
+`...variant.meta` のような全面mergeは禁止。
+
+これをすると `id` や `series` など管理metadataまで派生版に侵食されるため。
 
 ---
 
-# 6. Reader実装方針
+# 5. Reader切替実装詳細
 
-## 6-1. `english-mix.js` の役割を一般化する
+## 5-1. ファイル方針
 
-現行 `english-mix.js` には以下が含まれている。
+現状:
 
-- 現在記事ID取得
-- mix index読み込み
-- 派生本文fetch
-- キャッシュ
-- Reader切替UI生成
-- 読書位置capture
-- 読書位置restore
-- 切替後render
+```text
+english-mix.js
+english-mix.css
+```
 
-このうち、English Mix固有なのは主に以下。
-
-- `INDEX_URL = data/mix-index.json`
-- `mixes`
-- `mixCache`
-- `mode === 'mix'`
-- `English Mix` 固定ラベル
-
-これらだけを派生版共通へ変更する。
-
-## 6-2. ファイル名候補
-
-第一候補:
+変更後の推奨:
 
 ```text
 reader-versions.js
 reader-versions.css
 ```
 
-既存 `english-mix.js / css` を名前変更するか、新ファイルへ整理したうえで旧ファイルを削除する。
+ただし、リネームによる差分が大きくなりすぎる場合は、第一段階として `english-mix.js` 内部を共通化し、後からファイル名のみ変更してもよい。
 
-### 禁止
+最終状態ではファイル名と実態が一致していることが望ましい。
 
-```text
-english-mix.js
-spanish.js
+## 5-2. 共通状態
+
+推奨state:
+
+```js
+const modeByEssay = new Map();
+const versionCache = new Map();
+let indexPromise = null;
+let switchInFlight = false;
 ```
 
-のように言語ごとの切替実装を並行して持つこと。
+ただし `modeByEssay` は `versionByEssay` など実態に合う命名へ変更推奨。
 
-## 6-3. stateイメージ
-
-必要最小限でよい。
+例:
 
 ```js
 const versionByEssay = new Map();
-const versionCache = new Map();
 ```
 
-現在版:
+## 5-3. index loader
+
+旧:
+
+```js
+mixIndex()
+```
+
+新:
+
+```js
+versionsIndex()
+```
+
+役割:
+
+- `data/versions-index.json` を1回だけload
+- 読み込み失敗時は空の `articles` として扱う
+- 日本語Reader自体は壊さない
+
+例:
+
+```js
+function versionsIndex() {
+  if (!indexPromise) {
+    indexPromise = fetch('data/versions-index.json', { cache: 'no-store' })
+      .then(response => response.ok ? response.json() : { articles: {} })
+      .catch(() => ({ articles: {} }));
+  }
+  return indexPromise;
+}
+```
+
+## 5-4. 派生版loader
+
+旧:
+
+```js
+mixBody(id)
+```
+
+新:
+
+```js
+versionData(id, versionKey)
+```
+
+返すもの:
+
+```js
+{
+  key: 'es',
+  meta: {...},
+  body: '...'
+}
+```
+
+cache keyは記事IDだけでは不足する。
+
+必ず:
+
+```text
+<article-id>::<version-key>
+```
+
+のようにversionを含める。
+
+例:
+
+```js
+const cacheKey = `${id}::${versionKey}`;
+```
+
+## 5-5. 派生Markdown parse
+
+現行 `parseFrontMatter()` が利用できる場合は再利用する。
+
+返却値:
+
+```js
+{
+  meta,
+  body
+}
+```
+
+独自parserを重複実装しない。
+
+ただし読み込みタイミング上 `parseFrontMatter` が使えない可能性があるなら、現行fallback実装を共通処理として残す。
+
+## 5-6. 現在version判定
+
+現状 `__languageMode` を利用している。
+
+変更案:
+
+```js
+__readerVersion
+```
+
+値:
 
 ```text
 ja
@@ -472,143 +554,291 @@ en-mix
 es
 ```
 
-日本語は `state.essays` の正本。
+日本語正本はpropertyなしでも `ja` と解釈可能。
 
-派生版のみ `versions-index.json` からfetchする。
+既存の他ファイルが `__languageMode` を参照していないか、リポジトリ全検索してからrenameする。
 
-## 6-4. 切替処理の流れ
+参照がある場合は互換propertyを一時維持するか、同一commitで全参照を修正する。
 
-```text
-1. 現在記事ID取得
-2. 正本記事を取得
-3. 現在読書位置をcapture
-4. 選択versionを確認
-5. jaなら正本記事を利用
-6. 派生版ならversions-indexからpath取得
-7. Markdownをfetch + parseFrontMatter
-8. metadata merge
-9. showReader()
-10. 読書位置restore
-11. version changedイベント発火
-```
+## 5-7. switchVersion
 
-## 6-5. 派生記事オブジェクト
-
-イメージ:
+旧:
 
 ```js
-const derivedEssay = {
-  ...originalEssay,
-  title: variantMeta.title || originalEssay.title,
-  subtitle: variantMeta.subtitle || originalEssay.subtitle,
-  abstract: variantMeta.abstract || originalEssay.abstract,
-  body: variantBody,
-  metrics: readingMetrics(variantBody),
-  __readerVersion: versionKey
-};
+switchLanguage(mode)
 ```
 
-管理metadataは原則正本を優先する。
+新:
 
-## 6-6. Reader Runtimeとの関係
+```js
+switchVersion(versionKey)
+```
 
-派生版切替後も `showReader()` を通してReader plugin群を正常に再実行できることを確認する。
+処理順:
 
-特に以下を回帰確認する。
+1. `switchInFlight` guard
+2. 現在のarticle ID取得
+3. 日本語正本取得
+4. 現在位置capture
+5. `ja` なら正本をそのまま使用
+6. 派生版ならversionData取得
+7. whitelist mergeで表示用essay生成
+8. `showReader(nextEssay)`
+9. 直前scroll位置を一時復元
+10. semantic position restore
+11. version state更新
+12. custom event発火
+13. switch UI同期
 
-- source links
-- reader navigation
-- reflections / After Reading
-- GPT bridge
-- selection tools
-- reading state
-- reading locators
-- series
+注意:
 
-用語pluginは今回削除する。
+派生版取得に失敗した場合、現在表示中の記事を空にしない。
+
+UI上でそのversionをdisableするか、日本語へ戻す。
+
+## 5-8. 読書位置capture / restore
+
+現行ロジックを極力そのまま利用する。
+
+変更対象は名称と呼び出し元だけに留める。
+
+特に以下を変更しない。
+
+- `READING_LINE_RATIO`
+- `READING_EDGE_TOLERANCE`
+- section indexの考え方
+- block ratioの考え方
+- article progress fallback
+- top / bottom handling
+
+Spanishと日本語では段落長が大きく異なる可能性があるため、単純pixel比率への簡略化は禁止。
+
+## 5-9. Reader switch UI
+
+表示候補:
+
+```text
+表示
+[日本語] [English Mix] [Español]
+```
+
+原則:
+
+- 日本語は常に有効
+- 派生版が存在するものだけ有効
+- 未作成版をdisabledで見せるか非表示にするかは現UI密度を確認して決定
+- 現在versionは `aria-pressed=true`
+- groupには `aria-label="表示版"` などを設定
+
+### 推奨
+
+現状English Mixが未作成でも「未作成」を見せるUIがあるため、3版程度ならdisabled表示でもよい。
+
+ただしスマホで横幅が厳しい場合、存在する版のみ表示する方を優先する。
+
+実装後に320〜375px幅で確認して決定する。
+
+## 5-10. custom event
+
+現在の:
+
+```text
+myessays:reader-language-changed
+```
+
+は意味が狭くなる。
+
+変更候補:
+
+```text
+myessays:reader-version-changed
+```
+
+ただし既存listenerがないか全検索してから変更する。
+
+既存互換が必要なら同時に旧eventも短期発火してよいが、不要なら二重化しない。
 
 ---
 
-# 7. Library実装方針
+# 6. Library実装詳細
 
-## 7-1. `library-mix.js` を必要最小限一般化
+## 6-1. ファイル方針
 
-現在のEnglish Mix専用処理:
+現状:
 
-- `state.mixIds`
-- `state.mixMap`
-- `hasEnglishMix()`
-- `EN MIX` badge
-- English Mix filter
+```text
+library-mix.js
+library-mix.css
+```
 
-これを複数派生版対応へ変更する。
-
-ファイル名第一候補:
+推奨:
 
 ```text
 library-versions.js
 library-versions.css
 ```
 
-## 7-2. Library state
+Reader側と同様、リネーム差分が過剰になる場合は中身を先に一般化してもよい。
+
+## 6-2. state
+
+現状:
+
+```js
+state.mixIds
+state.mixMap
+```
+
+変更案:
+
+```js
+state.versionMap
+```
+
+形:
+
+```js
+{
+  'article-id': {
+    'en-mix': 'english-mix/article-id.md',
+    'es': 'spanish/article-id.md'
+  }
+}
+```
+
+helper:
+
+```js
+function hasVersion(essay, versionKey) {
+  return Boolean(state.versionMap?.[essay.id]?.[versionKey]);
+}
+```
+
+## 6-3. badges
+
+記事ごとに存在する版だけ表示。
 
 例:
 
-```js
-state.versionMap = {};
-```
-
-判定:
-
-```js
-hasVersion(essay, 'en-mix')
-hasVersion(essay, 'es')
-```
-
-## 7-3. Badge
-
-表示例:
-
 ```text
-EN MIX
-ES
+EN MIX  ES
 ```
 
-記事に存在するものだけ表示。
+日本語badgeは不要。
 
-## 7-4. Filter
+理由:
 
-既存の「English Mix あり / なし」から、以下程度へ変更する。
+Library自体が日本語正本一覧なので、全記事にJAを出しても情報価値がない。
 
-第一候補:
+badge順は固定:
+
+1. EN MIX
+2. ES
+
+## 6-4. filter
+
+現在のEnglish Mix専用filterを最小限一般化する。
+
+候補UI:
 
 ```text
 読める版
 - すべて
-- English Mixあり
-- Españolあり
+- English Mix
+- Español
 ```
 
-「なし」フィルターは必要性が低いため、削除候補。
+複数選択は不要。
+
+「English Mixあり / なし」の `なし` 条件も削除候補。
 
 理由:
 
-- 主目的は読みたい版が存在する記事を探すこと
-- UIを簡潔に保つ
+Spanish追加後に「English Mixなし」「Spanishなし」など否定条件を増やすとUIが肥大化するため。
 
-実装前後で現在の利用性を見て最終判断する。
+ただし既存利用上 `なし` が重要なら、変更前の挙動を確認して維持判断する。
 
-## 7-5. 検索
+## 6-5. Library検索
 
-Spanish本文を検索対象にしない。
+変更しない。
 
-既存の `searchText` は日本語正本を基準としたまま。
+検索対象は引き続き日本語正本のtitle / subtitle / abstract / tags / keywords / bodyを中心とする。
+
+Spanish本文をloadして検索indexに含めない。
+
+理由:
+
+- 初期load増加
+- 派生版全fetchが必要になる
+- Libraryの日本語中心思想がぼやける
+- 今回の目的に不要
 
 ---
 
-# 8. 用語機能の完全撤去
+# 7. Españolサンプル記事
 
-## 8-1. 削除対象
+## 7-1. 1記事だけ作成
+
+今回Spanish化する記事は1本。
+
+選定基準:
+
+- English Mix版も存在する
+- Markdown構造が標準的
+- 表・画像・複雑な特殊記法が過剰でない
+- 適度な長さがあり読書位置切替テストに使える
+
+候補として `decaf-coffee-how-caffeine-is-removed` は適している。
+
+理由:
+
+- 日本語版とEnglish Mix版が存在
+- 技術的内容だが文脈が明確
+- English Mix実ファイルを既に確認済み
+- Spanish翻訳品質を判断しやすい
+
+最終的な採用記事は実装時に日本語正本も確認して決定する。
+
+## 7-2. ファイル名
+
+```text
+spanish/decaf-coffee-how-caffeine-is-removed.md
+```
+
+## 7-3. front matter
+
+最低限:
+
+```yaml
+---
+id: decaf-coffee-how-caffeine-is-removed
+title: "..."
+subtitle: "..."
+abstract: "..."
+---
+```
+
+不要なmetadataを日本語正本からコピーしない。
+
+## 7-4. 翻訳ルール
+
+- 原文の構成を維持
+- H1 / H2 / H3階層を維持
+- URL維持
+- 画像path維持
+- code block維持
+- table構造維持
+- 引用元維持
+- 日本語固有の説明がSpanish読者に成立しない場合のみ最小限補足
+- 勝手な事実追加をしない
+- 単位や固有名詞を改変しない
+- 地域差の強い俗語を避ける
+
+---
+
+# 8. 用語機能撤去 詳細
+
+## 8-1. 削除候補ファイル
 
 最低限:
 
@@ -616,10 +846,12 @@ Spanish本文を検索対象にしない。
 glossary-tools.js
 glossary-tools.css
 data/glossary.json
-data/glossaries/*
+data/glossaries/
 ```
 
-## 8-2. `index.html`
+`data/glossaries/` は中身を確認して全削除。
+
+## 8-2. index.html
 
 削除:
 
@@ -628,613 +860,952 @@ data/glossaries/*
 <script src="glossary-tools.js?..." defer></script>
 ```
 
-記事追加ガイドから以下内容も削除する。
+記事追加ガイドから以下を削除:
+
+- `data/glossaries/記事ID.json`
+- `label`
+- `match`
+- 用語補足作成手順
+
+## 8-3. Reader Runtime
+
+`reader-runtime.js` 本体にglossary専用処理があるか確認。
+
+基本的にはplugin register先なので、glossary固有コードがなければ変更不要。
+
+「glossaryを消すためにruntime自体を触る」ことは避ける。
+
+## 8-4. CSS残存
+
+リポジトリ全体で以下を検索。
 
 ```text
-用語補足を付ける場合は data/glossaries/記事ID.json を追加する...
+glossary-
+glossary-is-open
+#glossary
+.glossary
 ```
 
-## 8-3. tests
+`glossary-tools.css` 外に残っていれば削除可否を確認。
 
-`tests/reader-architecture.test.js` のglossary前提部分を削除 / 書き換える。
+## 8-5. JS残存
 
-削除対象例:
-
-- plugin配列の `glossary-tools.js`
-- glossary runtime register確認
-- per-article glossary loading test
-- libuv glossary test
-- glossary priority test
-
-ただし「Reader Runtimeが各Reader pluginより先に読み込まれる」というアーキテクチャテスト自体は維持する。
-
-例:
-
-```text
-source-links.js
-reader-navigation.js
-reader-reflections.js
-```
-
-などを対象に継続する。
-
-## 8-4. repository-wide search
-
-実装完了後、最低限以下を検索する。
+全検索語:
 
 ```text
 glossary
 用語
-glossary-tools
-data/glossaries
-data/glossary.json
+READING GLOSSARY
+用語メモ
 ```
 
-旧機能由来の参照が0であることを確認する。
+ただし、過去記事本文の一般語として「用語」と書いてあるものは削除対象ではない。
 
-記事本文中で一般名詞として「用語」が使われている場合は削除対象ではない。
+UI機能・実装説明としての参照のみ対象。
 
----
+## 8-6. tests
 
-# 9. Spanishサンプル記事
+`tests/reader-architecture.test.js` を更新。
 
-## 9-1. 今回は1記事のみ
+削除対象test:
 
-全記事翻訳は行わない。
+- glossary load per article
+- legacy fallback
+- Node.js glossary data
+- glossary priority
 
-既存記事1本を選び、Español版の動作確認用にする。
+修正対象:
 
-候補:
+reader plugin一覧から `glossary-tools.js` を除外。
+
+追加候補test:
+
+```js
+test('glossary plugin is no longer loaded', () => {
+  const html = read('index.html');
+  assert.doesNotMatch(html, /glossary-tools/);
+});
+```
+
+さらに可能なら:
+
+```js
+test('repository guide no longer references glossary data', ...)
+```
+
+## 8-7. network確認
+
+公開サイトで記事を開き、Network上に以下が出ないことを確認。
 
 ```text
-decaf-coffee-how-caffeine-is-removed
-```
-
-理由:
-
-- 比較的構造が分かりやすい
-- English Mix版も存在する
-- JA / EN MIX / ES の3版切替を1記事でテストできる
-- 技術用語や固有名詞が過度に多くない
-
-実装時によりテストしやすい記事があれば変更してよい。
-
-## 9-2. Spanish翻訳ルール
-
-- 全文スペイン語
-- 日本語語順を残した逐語訳を避ける
-- 原文の主張、論理、事実関係を変えない
-- 地域固有表現へ寄せすぎない
-- 読みやすい標準スペイン語を優先
-- 固有名詞を必要以上に翻訳しない
-- Markdown構造を維持
-- 見出し階層を維持
-- URLを維持
-- 画像を維持
-- 引用を維持
-- 出典を維持
-
-front matterの読者向け項目:
-
-```yaml
-title:
-subtitle:
-abstract:
-```
-
-はSpanish化してよい。
-
----
-
-# 10. ファイル単位の変更計画
-
-## 新規予定
-
-```text
-data/versions-index.json
-reader-versions.js
-reader-versions.css
-library-versions.js
-library-versions.css
-spanish/{sample-article-id}.md
-```
-
-※ 既存ファイルをrename / 改修した方が差分が小さい場合は調整可。
-
-## 更新予定
-
-```text
-index.html
-README.md
-tests/reader-architecture.test.js
-```
-
-加えて、依存関係調査の結果必要なら:
-
-```text
-app.js
-reader-runtime.js
-reading-state-ui.js
-series.js
-```
-
-ただし、明確な必要がなければ変更しない。
-
-## 削除予定
-
-```text
-data/mix-index.json
-english-mix.js
-english-mix.css
-library-mix.js
-library-mix.css
 glossary-tools.js
 glossary-tools.css
 data/glossary.json
-data/glossaries/*
+data/glossaries/*.json
 ```
 
-`mix-index` / `english-mix.js` 等は新共通処理への移行完了後に削除。
+404になっていなくても、不要fetchが残っていたら撤去未完了。
 
 ---
 
-# 11. 実装フェーズ
+# 9. index.html更新詳細
 
-## Phase 1: Before snapshot
+想定変更:
 
-実装前に以下を確認。
+- glossary CSS削除
+- glossary JS削除
+- English Mix CSS/JSをversions名称へ変更した場合は参照変更
+- Library Mix CSS/JSをversions名称へ変更した場合は参照変更
+- 記事追加ガイド更新
+- dialog note更新
 
-- Library正常表示
-- 日本語記事正常表示
-- English Mix切替正常
-- EN MIX badge
-- English Mix filter
-- 読了状態
-- メモ
-- After Reading
-- Series
-- スマホ表示
-
-可能なら対象記事を1本決めて、JA / EN MIX切替時の挙動を基準として記録する。
-
-## Phase 2: 用語機能撤去
-
-先にglossaryを削除する。
-
-理由:
-
-- 多言語対応と独立した変更
-- Reader plugin数を減らした状態で派生版対応へ進められる
-- 問題発生時の切り分けがしやすい
-
-作業:
-
-1. glossary CSS読み込み削除
-2. glossary JS読み込み削除
-3. glossary files削除
-4. data削除
-5. 投稿ガイド削除
-6. tests修正
-7. tests実行
-8. Reader回帰確認
-
-## Phase 3: versions index作成
-
-`mix-index.json` の全English Mix mappingを `versions-index.json` へ移行。
-
-この段階ではSpanishなしでもよい。
-
-移行内容の件数が旧indexと一致することを確認する。
-
-## Phase 4: Reader共通化
-
-`english-mix.js` の既存読書位置処理を保持しながら、
+記事追加ガイド案:
 
 ```text
-ja
-en-mix
-es
+1. essay-template.md を複製し、日本語版を作る
+2. essays/ に保存
+3. data/index.json に登録
+4. English Mixを作る場合は english-mix/記事ID.md を作成
+5. Españolを作る場合は spanish/記事ID.md を作成
+6. 派生版は data/versions-index.json に登録
+7. Seriesの場合は日本語正本front matterへ series / seriesOrderを設定
+8. GitHubへ反映
 ```
 
-を共通関数で扱えるよう変更。
-
-まずJA / EN MIXのみで既存挙動が維持されることを確認。
-
-Spanish追加はその後。
-
-## Phase 5: Library共通化
-
-`library-mix.js` を派生版map対応へ変更。
-
-まず `EN MIX` badgeが全既存対象記事で維持されることを確認。
-
-その後 `ES` badge対応を追加。
-
-## Phase 6: Españolサンプル追加
-
-Spanish Markdownを1本作成。
-
-`versions-index.json` に `es` を追加。
-
-以下を確認。
-
-```text
-JA → ES
-ES → JA
-JA → EN MIX → ES → JA
-```
-
-## Phase 7: ガイド・README更新
-
-記事追加フローを現行より複雑にしすぎない。
-
-推奨説明:
-
-```text
-1. 日本語版を essays/ に追加
-2. data/index.jsonへ登録
-3. 必要ならEnglish Mixを english-mix/ に追加
-4. 必要ならEspañolを spanish/ に追加
-5. 派生版を data/versions-index.json に登録
-6. GitHubへ反映
-```
-
-用語JSONの説明は削除。
-
-## Phase 8: cleanup
-
-検索:
-
-```text
-mix-index
-english-mix.js
-library-mix.js
-glossary
-用語
-```
-
-旧コード参照を確認。
-
-移行済みで不要なら旧ファイル削除。
+用語説明は完全削除。
 
 ---
 
-# 12. テスト計画
+# 10. README更新詳細
 
-## 12-1. 自動テスト
+READMEには実装内部の細部を書きすぎない。
 
-repoに `package.json` は現在確認できないため、既存testsが `node:test` ベースであることを踏まえ、実装環境で実行方法を確認する。
+追加すべきもの:
 
-想定コマンド:
+## できること
 
-```bash
-node --test tests/*.test.js
-```
+- 日本語 / English Mix / Españolの派生表示
+- ただし記事ごとに存在する版のみ
 
-実装前に現在のtestsが通る状態を確認し、変更後も実行する。
+## 論考データ
 
-## 12-2. Case A: 日本語のみ
+- 日本語正本は `essays/`
+- 派生版は同じ記事ID
+- English Mixは `english-mix/`
+- Españolは `spanish/`
 
-期待:
+## 新しい論考を追加する
 
-- 記事表示正常
-- version switchが不要なら非表示または日本語のみ
-- 404なし
-- console errorなし
+- 日本語版作成
+- index登録
+- optionalな派生版作成
+- versions-index登録
 
-## 12-3. Case B: JA + EN MIX
+READMEに書かないもの:
 
-期待:
+- 読書位置アルゴリズム詳細
+- internal cache
+- custom event一覧
+- 実装関数名
 
-- 既存English Mix正常表示
-- JA → EN MIX
-- EN MIX → JA
-- 読書位置維持
-- EN MIX badge正常
+これらは本実装計画に残す。
 
-## 12-4. Case C: JA + ES
+---
 
-期待:
+# 11. 既存ファイル別 変更予定一覧
 
-- JA → ES
-- ES → JA
-- title / subtitle / abstractのfallback正常
-- Markdown表示正常
-- 読書位置維持
+## `data/mix-index.json`
 
-## 12-5. Case D: JA + EN MIX + ES
+- 全entryをmigration
+- migration確認後に削除
 
-期待:
+## `data/versions-index.json`
 
-```text
-JA → EN MIX → ES → JA
-```
+- 新規作成
+- 既存English Mix全entryを `en-mix` として登録
+- Spanishサンプル1記事に `es` を追加
 
-を複数回繰り返しても表示が壊れない。
+## `english-mix.js`
 
-## 12-6. 状態共有
+- English Mix専用loaderを複数version対応へ一般化
+- 必要なら `reader-versions.js` へrename
+- semantic scroll restoreは維持
+- bodyのみでなく表示metadata whitelist上書き対応
 
-同一記事で以下を確認。
+## `english-mix.css`
 
-- 日本語で読了 → ESでも読了状態
-- EN MIXでメモ → JAでも同じメモ
-- ESでAfter Reading入力 → JAでも同じ記事データとして扱われる
-- Series位置が派生版によって増殖しない
+- class名に `english-mix` が大量に含まれる場合、必要範囲のみ一般名称化
+- UI見た目が変わらないことを優先
+- 必要なら `reader-versions.css` へrename
 
-## 12-7. Library
+## `library-mix.js`
+
+- `mix-index` loaderをversions loaderへ変更
+- EN MIX / ES badge対応
+- filterを最小限一般化
+- 必要なら `library-versions.js` へrename
+
+## `library-mix.css`
+
+- badgeが2つ並んでも崩れないよう調整
+- 320〜375px幅確認
+- 必要なら `library-versions.css` へrename
+
+## `app.js`
+
+原則変更最小。
+
+確認ポイント:
+
+- `showReader()` が派生metadataを正常表示できるか
+- `state.currentEssay` が派生版表示時も同一IDを持つか
+- route処理がversionに依存していないか
+- Library検索を不用意に派生版対応へ変更しない
+
+必要な変更がなければ触らない。
+
+## `reader-runtime.js`
+
+原則変更不要。
+
+version切替後の再renderでpluginが期待通り再実行されるか確認のみ。
+
+## `reading-state-ui.js`
+
+原則変更不要。
+
+article ID基準であることを維持。
 
 確認:
 
-- 日本語検索
-- 種類filter
-- 年filter
-- お気に入りfilter
-- tag filter
-- sort
-- 未読了から1本
-- ランダムで1本
-- EN MIX badge
+- currentEssayが派生版でもid不変
+- completed / opened / memo表示が共通
+- localStorage key不変
+
+## `reader-navigation.js`
+
+原則変更不要。
+
+派生版表示中でも前後記事リンクが日本語記事IDを基準に動くか確認。
+
+## `series.js`
+
+原則変更不要。
+
+派生版metadataにseriesを持たせず、日本語正本から継承するため既存挙動維持を確認。
+
+## `reader-reflections.js`
+
+原則変更不要。
+
+After Readingが記事ID基準で共有されることを確認。
+
+## `index.html`
+
+- glossary参照削除
+- versions関連CSS/JS参照更新
+- 投稿ガイド更新
+
+## `README.md`
+
+- 派生版投稿方法追加
+- 用語説明があれば削除
+
+## `tests/reader-architecture.test.js`
+
+- glossary前提削除
+- versions runtimeのロード順テスト追加候補
+
+## 新規test候補
+
+```text
+tests/reader-versions.test.js
+```
+
+最低限、静的構造テストでも以下を確認する。
+
+- versions-indexを参照している
+- mix-indexを参照していない
+- version cacheがarticle + versionで分かれる
+- Spanish keyが認識される
+- glossary参照がindex.htmlから消えている
+
+---
+
+# 12. migration手順
+
+## Step 1. 現在のmainを基準として記録
+
+- 現在commit SHAを控える
+- `data/mix-index.json` 件数を記録
+- English Mixファイル件数と照合
+
+目的:
+
+migration漏れを防ぐ。
+
+## Step 2. versions-index生成
+
+`mix-index.json` の全entryを機械的に変換。
+
+検証:
+
+```text
+旧mix件数 === 新versions内 en-mix件数
+```
+
+一致しなければ次へ進まない。
+
+## Step 3. Readerを新index対応
+
+この時点ではSpanishをまだ追加しなくてもよい。
+
+まず全既存English Mixが新indexで読める状態にする。
+
+## Step 4. Libraryを新index対応
+
+既存EN MIX badge / filterが維持されることを確認。
+
+## Step 5. 旧mix-index参照ゼロ確認
+
+repo全検索:
+
+```text
+mix-index.json
+```
+
+READMEなど歴史説明以外で0件にする。
+
+## Step 6. mix-index削除
+
+ここで初めて削除。
+
+## Step 7. Spanishサンプル追加
+
+- `spanish/` 作成
+- 1記事追加
+- versions-indexへ `es` 登録
+
+## Step 8. glossary撤去
+
+versions migrationとglossary削除を同時にやると切り分けが難しいため、可能なら段階的commitに分ける。
+
+---
+
+# 13. 推奨commit分割
+
+可能なら以下のように分ける。
+
+## Commit 1
+
+```text
+refactor: generalize English Mix index for reader versions
+```
+
+内容:
+
+- versions-index作成
+- Reader共通化
+- Library共通化
+- 既存EN Mix移行
+- tests更新
+
+この段階では見た目上ほぼ何も変わらないことが理想。
+
+## Commit 2
+
+```text
+feat: add Spanish essay variant support
+```
+
+内容:
+
+- Españolボタン
+- Spanish sample
 - ES badge
-- 派生版filter
+- metadata上書き
 
-## 12-8. Reader plugins
-
-確認:
-
-- source links
-- navigation
-- reflections
-- GPT bridge
-- selection tools
-- reading state
-- locators
-- series
-
-## 12-9. glossary撤去
-
-確認:
-
-- 用語タブなし
-- 用語パネルなし
-- glossary CSSリクエストなし
-- glossary JSリクエストなし
-- glossary JSONリクエストなし
-- 404なし
-- console errorなし
-
-## 12-10. responsive
-
-最低限:
+## Commit 3
 
 ```text
-Desktop: 1280px以上
-Mobile: 390px前後
+refactor: remove glossary feature
+```
+
+内容:
+
+- glossary JS/CSS/data削除
+- index修正
+- guide修正
+- tests修正
+
+## Commit 4
+
+```text
+docs: update essay publishing guide for variants
+```
+
+内容:
+
+- README
+- 細かな説明整理
+
+一括commitでも実装可能だが、問題切り分けのため分割推奨。
+
+---
+
+# 14. テスト計画
+
+## 14-1. 自動テスト
+
+既存Node testsをすべて実行。
+
+期待:
+
+```text
+0 failed
+```
+
+新規versions testsも追加する。
+
+## 14-2. migration integrity
+
+確認項目:
+
+- 旧mix-index件数
+- 新versions-indexのen-mix件数
+- English Mixファイル件数
+
+少なくとも旧indexのentryが全て新indexに存在すること。
+
+## 14-3. JAのみ記事
+
+手順:
+
+1. SpanishもEnglish Mixもない記事を開く
+2. Reader switch確認
+3. 本文確認
+4. メモ入力
+5. 読了toggle
+
+期待:
+
+- 日本語本文正常
+- 不要versionを押せない
+- console errorなし
+- 404なし
+- 読了 / メモ正常
+
+## 14-4. JA + EN MIX
+
+手順:
+
+1. English Mixあり / Spanishなし記事を開く
+2. 中盤までscroll
+3. EN MIXへ切替
+4. JAへ戻す
+
+期待:
+
+- EN MIX正常表示
+- Spanish未作成扱い
+- 切替前後で大きく位置が飛ばない
+- title挙動が従来から意図せず変わらない
+- 読了状態不変
+
+## 14-5. JA + ES
+
+Spanish sampleでEnglish Mixを一時的に無効化して作る必要はない。
+
+もし両方ある記事しかsampleにしない場合は、fixtureまたはindex編集で検証してもよい。
+
+期待:
+
+- Spanish本文正常
+- Spanish title / subtitle正常
+- 日本語へ戻せる
+
+## 14-6. JA + EN MIX + ES
+
+サンプル記事で検証。
+
+手順:
+
+```text
+JA → EN MIX → ES → JA
+```
+
+各切替前に異なる位置へscrollして確認。
+
+期待:
+
+- 本文が正しい版へ変わる
+- ボタンactive状態正しい
+- scroll位置が大きく破綻しない
+- reader pluginが重複mountしない
+- DOMが増殖しない
+
+## 14-7. 読了状態共有
+
+1. JAで読了
+2. EN MIXへ切替
+3. ESへ切替
+
+期待:
+
+全て読了扱い。
+
+localStorageにversion別keyが生成されていないことも確認。
+
+## 14-8. メモ共有
+
+1. JAでメモ作成
+2. ESへ切替
+3. メモtabを開く
+
+期待:
+
+同じメモが表示。
+
+## 14-9. After Reading共有
+
+1. JAでAfter Reading記入
+2. EN MIX / ESへ切替
+
+期待:
+
+同一記事の記録として表示。
+
+## 14-10. Series
+
+Series所属記事でEN Mixへ切替。
+
+期待:
+
+- Series名不変
+- 前後移動正常
+- Series Library正常
+
+Spanish sampleがSeries記事でなくても、EN Mixで回帰確認する。
+
+## 14-11. Library badges
+
+記事パターンごとに確認:
+
+```text
+JAのみ                → badgeなし
+JA + EN MIX           → EN MIX
+JA + ES               → ES
+JA + EN MIX + ES      → EN MIX / ES
+```
+
+## 14-12. Filter
+
+- すべて
+- English Mix
+- Español
+
+それぞれ正しい記事数になること。
+
+filter解除で元件数に戻る。
+
+## 14-13. Random / 未読了
+
+version変更によって候補母集団が変わらないこと。
+
+Libraryは日本語記事単位なので、派生版が増えても記事数自体は増えない。
+
+## 14-14. 404確認
+
+Networkで最低限確認:
+
+- `versions-index.json` 200
+- 選択した派生版Markdown 200
+- 存在しないSpanishを毎回fetchしていない
+- `mix-index.json` をfetchしていない
+- glossary関連fetchなし
+
+## 14-15. console確認
+
+確認対象:
+
+- 初回Library表示
+- 日本語記事open
+- EN Mix切替
+- ES切替
+- Library戻る
+- Series移動
+- filter操作
+
+期待:
+
+新規error 0。
+
+warnも今回変更由来なら解消する。
+
+## 14-16. PC viewport
+
+最低:
+
+```text
+1440x900
+1280x720
 ```
 
 確認:
 
-- version switchが本文へ重ならない
-- メモタブと衝突しない
-- filter UIが横にはみ出さない
-- Reader左右レイアウトを壊さない
+- switch位置
+- note tabとの干渉
+- reader asideとの干渉
+
+## 14-17. Mobile viewport
+
+最低:
+
+```text
+390x844
+375x812
+360x800
+320x568
+```
+
+確認:
+
+- 3version buttonが折り返しても崩れない
+- note tabと重ならない
+- horizontal overflowなし
+- switchが本文を覆わない
+- filter selectが見切れない
 
 ---
 
-# 13. 受け入れ条件 / Definition of Done
+# 15. 受け入れ条件（Definition of Done）
 
-以下をすべて満たしたら完了。
+以下すべて満たして完了。
 
-## Functional
+## Data
 
-- [ ] 日本語版を正本として表示できる
-- [ ] 既存English Mixがすべて引き続き読める
-- [ ] Español版サンプル1本を読める
-- [ ] JA / EN MIX / ESを同一記事URLで切替可能
-- [ ] 読書位置が大きく飛ばない
-- [ ] 記事IDが派生版で変わらない
-- [ ] 読了状態が共有される
-- [ ] メモが共有される
-- [ ] After Readingが共有される
-- [ ] Seriesが共有される
+- [ ] `versions-index.json` が存在
+- [ ] 旧English Mix全entryが移行済み
+- [ ] 旧indexとの件数一致確認済み
+- [ ] Spanish sample 1記事登録済み
+- [ ] `mix-index.json` 不要なら削除済み
+
+## Reader
+
+- [ ] JA表示正常
+- [ ] EN MIX表示正常
+- [ ] ES表示正常
+- [ ] version切替共通処理化
+- [ ] Spanish専用JSなし
+- [ ] semantic scroll restore維持
+- [ ] title / subtitle / abstract fallback正常
+
+## State
+
+- [ ] 読了共有
+- [ ] メモ共有
+- [ ] After Reading共有
+- [ ] Series共有
+- [ ] localStorage key変更なし
+- [ ] version別state keyなし
 
 ## Library
 
-- [ ] EN MIX badgeを維持
-- [ ] ES badgeを表示
-- [ ] 派生版filterが動作
-- [ ] 日本語全文検索が正常
-- [ ] ランダム機能正常
-- [ ] 未読了機能正常
+- [ ] EN MIX badge正常
+- [ ] ES badge正常
+- [ ] filter正常
+- [ ] 検索回帰なし
+- [ ] Random回帰なし
+- [ ] 未読了機能回帰なし
 
-## Removal
+## Glossary removal
 
-- [ ] glossary UIが存在しない
-- [ ] glossary JS/CSSが存在しない
-- [ ] glossary JSONが存在しない
-- [ ] `index.html` にglossary参照なし
-- [ ] testsに旧glossary前提なし
-- [ ] 投稿ガイドに用語JSON説明なし
+- [ ] glossary JS削除
+- [ ] glossary CSS削除
+- [ ] glossary JSON削除
+- [ ] index参照削除
+- [ ] 投稿ガイド参照削除
+- [ ] tests参照削除
+- [ ] network request 0
+- [ ] glossary DOM 0
 
-## Quality
+## Tests
 
-- [ ] Spanish専用切替JSを作っていない
-- [ ] 今回使わない抽象概念を増やしていない
-- [ ] 無関係な大規模リファクタをしていない
-- [ ] 既存testsが通る
-- [ ] 新仕様に必要なtestsが追加 / 修正されている
-- [ ] 404なし
-- [ ] console errorなし
-- [ ] PC表示正常
-- [ ] スマホ表示正常
+- [ ] Node tests 0 failure
+- [ ] versions用test追加
+- [ ] PC確認
+- [ ] mobile確認
+- [ ] console error 0
+- [ ] 404 0
 
----
+## Docs
 
-# 14. 却下条件
-
-以下の状態になった場合、その実装方針は見直す。
-
-## 過剰設計
-
-- `VersionManagerFactory` 等の大きな抽象層を新設する
-- 現在使わないtype / locale schemaを大量に導入する
-- 日本語記事管理まで全面再設計する
-- Routerを言語対応のためだけに全面変更する
-
-## コピー実装
-
-- `spanish.js` が `english-mix.js` のほぼコピー
-- `library-spanish.js` を別途作る
-- 言語が増えるたびJSファイルが1本増える
-
-## 状態破壊
-
-- Españolだけ別記事ID
-- 言語切替で読了状態がリセット
-- メモがversionごとに分離
-- Seriesに同じ記事が複数回出る
-
-## UI過剰化
-
-- Library全体をSpanish化
-- 未作成言語を大量にdisabled表示
-- version switchがスマホ本文へ重なる
-
-## scope creep
-
-- 全記事Spanish翻訳
-- Portuguese等の追加
-- 翻訳API連携
-- SEO国際化
+- [ ] README更新
+- [ ] 投稿ガイド更新
+- [ ] Spanish追加手順が明記
 
 ---
 
-# 15. リスクと対策
+# 16. 却下条件
 
-## Risk 1: 既存English Mix大量資産のindex移行漏れ
+以下のどれかに該当する場合、実装を見直す。
 
-対策:
-
-- `mix-index.json` の旧エントリ数を取得
-- `versions-index.json` の `en-mix` 数と比較
-- key一覧の差分を確認
-
-移行漏れが1件でもあれば旧indexを削除しない。
-
-## Risk 2: 派生metadataで記事管理情報を上書き
-
-対策:
-
-- whitelist方式で `title / subtitle / abstract / body` のみ派生版から採用
-- `id` 等をspread順だけに任せない
-
-## Risk 3: showReader再実行でpluginが二重mount
-
-対策:
-
-- 既存Reader Runtimeのlifecycleを維持
-- version切替を複数回行ってDOM重複を確認
-
-## Risk 4: 読書位置復元がSpanishで精度低下
-
-対策:
-
-- 現在のsemantic position方式を維持
-- h2構造をSpanish版でも日本語版と対応させる
-- 見出し数が異なる翻訳を避ける
-
-## Risk 5: glossary削除でReader architecture testが壊れる
-
-対策:
-
-- glossaryテストを単純削除するだけでなく、残存pluginのruntime順序テストを維持
-
-## Risk 6: filter UI複雑化
-
-対策:
-
-- filterは「EN Mixあり / Españolあり」程度まで
-- 組み合わせmatrix等は作らない
+- `spanish.js` を作りEnglish Mixロジックをコピーしている
+- `library-spanish.js` を作っている
+- Spanish版を `data/index.json` に別記事登録している
+- Spanish版に別article IDを振っている
+- `myessays:reading-state:<id>:es` のようなversion別状態を作っている
+- 派生版front matterを全面mergeしている
+- Spanish本文をLibrary初期load時に全件fetchしている
+- Library検索を今回の必要性なく多言語化している
+- 全既存記事をSpanish化している
+- `type: translation` 等、未使用抽象概念を増やしている
+- glossary UIだけ隠してJS/Dataを残している
+- glossaryを前提にしたtestsが残っている
+- `mix-index.json` と `versions-index.json` を理由なく恒久併存させている
+- 今回と無関係なreader pluginをリファクタしている
+- localStorage keyを変更して過去状態を失わせている
+- スマホでswitchとnote UIが重なる
+- 既存EN Mix数がmigration後に減っている
 
 ---
 
-# 16. ロールバック判断
+# 17. リスクと対策
 
-以下が発生した場合、公開反映前に一度戻して原因を切り分ける。
+## Risk A: English Mix大量migration漏れ
 
-- 既存English Mixの一部が開けなくなった
-- 既存記事の読了状態が見えなくなった
-- Library読み込み自体が失敗した
-- version切替後にReader pluginが重複する
-- スマホでReader操作UIが重なる
-- 既存testsの複数カテゴリが同時に壊れる
+対策:
 
-大規模リファクタで一気に解決せず、Phase単位で戻せる差分を維持する。
+- entry件数比較
+- key差分比較
+- scriptで機械変換推奨
+- 手作業コピーを避ける
+
+## Risk B: 派生metadataで記事管理情報が壊れる
+
+対策:
+
+- whitelist merge
+- id / series / favorite等は正本固定
+
+## Risk C: version切替でreader pluginが二重mount
+
+対策:
+
+- 現在のshowReader lifecycleを維持
+- DOM増殖確認
+- switch連打テスト
+
+## Risk D: Spanishで文章量が変わりscroll復元が悪化
+
+対策:
+
+- 現semantic restore維持
+- H2構造をSpanishでも原文と揃える
+- paragraph構造を過剰に組み替えない
+
+## Risk E: glossary削除でruntime testが壊れる
+
+対策:
+
+- 実装削除とtest修正を同じcommitで行う
+- runtime本体は不用意に触らない
+
+## Risk F: UIがスマホで窮屈
+
+対策:
+
+- 320px幅まで確認
+- 必要なら未作成版非表示
+- badge文字列を短く維持
+
+## Risk G: GitHub Pages cacheで旧JSが混在
+
+対策:
+
+- index.htmlのcache bust query更新
+- deploy後hard reload確認
+- network上の実ファイル名確認
 
 ---
 
-# 17. 実装後の記事追加手順
+# 18. ロールバック条件
 
-## 日本語記事のみ
+以下が解消できない場合、Spanish追加を一旦rollbackし、まずEN Mix共通化だけを安定させる。
 
-```text
-1. essays/ にMarkdown追加
-2. data/index.jsonへ追加
+- 既存EN Mixの一部が開けない
+- 読書位置復元が大幅に悪化
+- 読了 / メモが失われる
+- Seriesが壊れる
+- mobileでReader操作不能
+- Node testsが継続して失敗
+
+rollback優先順位:
+
+1. Spanish sample / ES UIを外す
+2. versions構造でEN Mixのみ維持できるか確認
+3. 必要なら `mix-index.json` を復元
+4. 最後にReader共通化自体を戻す
+
+既存ユーザーデータを壊す変更を無理に前進させない。
+
+---
+
+# 19. 実装後の新規記事追加手順
+
+## 日本語だけ
+
+1. `essay-template.md` から日本語記事作成
+2. `essays/...md` に保存
+3. `data/index.json` に登録
+
+## English Mixも作る
+
+1. 日本語記事追加
+2. `english-mix/<article-id>.md` 作成
+3. `data/versions-index.json` の該当articleへ追加
+
+```json
+"article-id": {
+  "en-mix": "english-mix/article-id.md"
+}
 ```
 
-## English Mixも追加
+## Españolも作る
 
 ```text
-1. english-mix/{article-id}.md を追加
-2. data/versions-index.json の記事IDへ en-mix を追加
+spanish/<article-id>.md
 ```
 
-## Españolも追加
+を作り、同じ記事IDへ追加。
 
-```text
-1. spanish/{article-id}.md を追加
-2. data/versions-index.json の記事IDへ es を追加
+```json
+"article-id": {
+  "en-mix": "english-mix/article-id.md",
+  "es": "spanish/article-id.md"
+}
 ```
+
+日本語記事を `data/index.json` に再登録したり、Spanishを別記事として追加したりしない。
+
+---
+
+# 20. 将来4つ目を追加するときの基準
+
+将来別版を追加したくなった場合、今回の仕組みで以下程度なら許容。
 
 例:
 
 ```json
-{
-  "example": {
-    "en-mix": "english-mix/example.md",
-    "es": "spanish/example.md"
-  }
+"article-id": {
+  "en-mix": "english-mix/article-id.md",
+  "es": "spanish/article-id.md",
+  "pt": "portuguese/article-id.md"
 }
 ```
 
-原則としてアプリ本体JavaScriptを編集しない。
+加えてversion definitionへlabel / badgeを1件追加。
+
+この程度で済むなら今回の設計は成功。
+
+逆に新言語ごとに、
+
+- 専用loader
+- 専用Reader
+- 専用Library JS
+- 専用状態管理
+
+が必要なら今回の一般化は失敗とみなす。
 
 ---
 
-# 18. 実装担当への最終指示
+# 21. 実装担当者向け 最終チェック順
 
-この計画より美しい設計を思いついても、まず以下を優先すること。
+実装前:
 
-1. 既存English Mixを壊さない
-2. Españolを追加できる
-3. glossaryを完全撤去する
-4. 状態共有を維持する
-5. 投稿運用を複雑にしない
-6. 変更量を最小化する
+- [ ] main最新確認
+- [ ] 現行tests実行
+- [ ] mix-index件数記録
+- [ ] glossary参照全検索
+- [ ] `__languageMode` 参照全検索
+- [ ] `reader-language-changed` 参照全検索
 
-「将来もっと拡張しやすいから」という理由だけで、今回不要な抽象化を増やさない。
+実装中:
 
-実装終了時には、必ず次の順で報告する。
+- [ ] versions-index生成
+- [ ] EN Mixのみで新構造確認
+- [ ] Library EN Mix回帰確認
+- [ ] Spanish追加
+- [ ] metadata切替確認
+- [ ] glossary削除
+- [ ] docs更新
+
+実装後:
+
+- [ ] tests 0 failure
+- [ ] EN Mix件数一致
+- [ ] JA → EN → ES → JA
+- [ ] 読了共有
+- [ ] メモ共有
+- [ ] Series確認
+- [ ] PC確認
+- [ ] 320px確認
+- [ ] Network 404確認
+- [ ] console確認
+- [ ] glossary network request 0
+- [ ] repo内 `mix-index.json` 旧参照確認
+- [ ] repo内 `glossary-tools` 参照0確認
+
+---
+
+# 22. 最終報告フォーマット
+
+実装完了時は以下だけを簡潔に報告する。
 
 ```text
 【変更概要】
+
 【変更したファイル】
+
 【削除したファイル】
+
 【派生版の管理方法】
+
 【今回Spanish化した記事】
+
 【今後Spanish版を追加する手順】
+
+【migration確認】
+旧EN Mix件数:
+新EN Mix件数:
+差分:
+
 【テスト変更内容】
+
 【テスト結果】
+自動テスト:
+PC:
+Mobile:
+Console:
+404:
+
 【残課題】
 ```
 
-以上。
+---
+
+# 23. 実装判断の優先順位
+
+迷った場合は以下の順で判断する。
+
+1. 既存データを壊さない
+2. 既存English Mixを壊さない
+3. 記事ID単位の状態共有を維持する
+4. Españolを正常に読める
+5. 用語機能を完全に消す
+6. 投稿手順を簡単に保つ
+7. コード重複を減らす
+8. 将来拡張を少しだけ容易にする
+9. コードの美しさ
+
+「きれいな全面再設計」と「現在の動作を壊さない小さな変更」が競合する場合、後者を選ぶ。
