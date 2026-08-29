@@ -101,7 +101,7 @@ At 16 years and 0 days, he became the youngest player in club history to sign a 
 
 Miidera started all of the first three league matches and scored twice. Against Vissel Kobe, he scored the only goal in the ninth minute.
 
-第3節終了時点でチーム最多2得点、スプリント37回でチーム2位。
+第3節終了時点でチーム最多タイの2得点、スプリント37回でチーム2位。
 
 Corica said after the Kobe match that Miidera was improving day by day.
 
@@ -159,7 +159,9 @@ If you remember an old Marinos side mainly for its attacking football, follow Ts
 
 ### Kaina Tanimura — can the front line produce the second goal?
 
-背番号9の**谷村海那**はリーグ3試合で1得点。開幕3試合はいずれも先発している。
+背番号9の**谷村海那**はリーグ3試合で2得点。2得点はいずれも開幕の鹿島戦で記録した。
+
+Tanimura started all three opening league matches alongside players such as Miidera and Tomoki Kondo.
 
 The next question for the attack is simple: can Marinos move from protecting one-goal leads to creating a second and third goal?
 
@@ -277,6 +279,7 @@ That may be the most enjoyable way to watch Yokohama F. Marinos in the summer of
 - [Yokohama F. Marinos: Shin Miidera professional contract](https://www.f-marinos.com/news/team/9925)
 - [J.League: Yokohama F. Marinos club stats](https://www.jleague.jp/club/yokohamafm/)
 - [Yokohama F. Marinos: 2026/27 results](https://www.f-marinos.com/matches/results)
+- [Yokohama F. Marinos: J1 vs Kashima match data](https://www.f-marinos.com/matches/20260807/matchdata)
 - [Yokohama F. Marinos: Steve Corica press conference after Kobe](https://www.f-marinos.com/tricolore_plus/article/1520)
 - [Yokohama F. Marinos: Emperor's Cup vs Fukushima report](https://www.f-marinos.com/matches/20260826/report)
 - [Yokohama F. Marinos: J1 vs Shimizu report](https://www.f-marinos.com/matches/20260815/report)
