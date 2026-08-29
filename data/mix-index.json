@@ -1,6 +1,7 @@
 {
   "version": 1,
   "mixes": {
+    "confucius-knowing-liking-enjoying": "english-mix/confucius-knowing-liking-enjoying.md",
     "mencius-conditions-and-popular-support": "english-mix/mencius-conditions-and-popular-support.md",
     "outsourcing-ai-results-without-capability": "english-mix/outsourcing-ai-results-without-capability.md",
     "decaf-coffee-how-caffeine-is-removed": "english-mix/decaf-coffee-how-caffeine-is-removed.md",
