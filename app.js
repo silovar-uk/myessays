@@ -457,6 +457,10 @@ function showReader(essay) {
   markAcademicSections();
 
   const headings = [...els.readerContent.querySelectorAll('h2')];
+  const tocHtml = headings.map(h => {
+    const id = escapeHtml(h.id || '');
+    return `<a href="#${id}" data-anchor="${id}">${escapeHtml(h.textContent || '')}</a>`;
+  }).join('');
   els.readerAside.innerHTML = `
     <dl class="meta-block">
       <dt>Type</dt><dd>${escapeHtml(essay.type || '')}</dd>
@@ -467,7 +471,7 @@ function showReader(essay) {
       <dt>Grow</dt><dd>${essay.grow || 0}/5</dd>
       <dt>Tags</dt><dd>${(essay.tags||[]).map(t=>`#${escapeHtml(t)}`).join(' ')}</dd>
     </dl>
-    <nav aria-label="目次">${headings.map(h=>`<a href="#${h.id}" data-anchor="${h.id}">${h.textContent}</a>`).join('')}</nav>`;
+    <nav aria-label="目次">${tocHtml}</nav>`;
   els.readerAside.querySelectorAll('[data-anchor]').forEach(a => a.addEventListener('click', ev => {
     ev.preventDefault(); document.getElementById(a.dataset.anchor)?.scrollIntoView({behavior:'smooth', block:'start'});
   }));
