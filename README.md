@@ -11,9 +11,21 @@
 - お気に入り度で絞り込み・並び替え
 - 作成日 / 更新日 / お気に入り度 / 育てたい度を表示
 - 論考ごとの読書ビューと目次
-- 同一記事を日本語 / English Mix / Españolで切り替えて読む
+- 同一記事を日本語 / English Mix / Español Mixで切り替えて読む
 - Structure情報付き記事では、段落のConceptual ProfileとSentence Levelを確認
 - `/` で検索、`Esc` でLibraryへ戻る
+
+## 現在のコンテンツ仕様
+
+過去記事の移行を含む正式なコンテンツ契約は [`CURRENT_SPEC.md`](CURRENT_SPEC.md) を参照する。
+
+移行状況・優先順位は以下で管理する。
+
+- [`MIGRATION_INVENTORY.md`](MIGRATION_INVENTORY.md)
+- [`MIGRATION_ROADMAP.md`](MIGRATION_ROADMAP.md)
+- `node tools/audit-content.mjs` — リポジトリ全体の再現可能な機械監査
+
+旧READMEや旧実装計画と現在コードが食い違う場合は、`CURRENT_SPEC.md` と現在のruntime/data contractを優先する。
 
 ## 論考データの考え方
 
@@ -36,14 +48,36 @@ abstract: "概要"
 ---
 ```
 
-English MixとEspañolは別記事ではなく、同じ記事IDを使う派生版として扱う。
+## Reading Modes
+
+日本語正本に対して、必要な記事だけ派生Reading Modeを持てる。
 
 - 日本語正本: `essays/YYYY-MM-DD-slug.md`
 - English Mix: `english-mix/記事ID.md`
-- Español: `spanish/記事ID.md`
+- Español Mix: `spanish-mix/記事ID.md`
 - 派生版index: `data/versions-index.json`
 
+現在サポートするversion keyは次の3つ。
+
+- `ja`
+- `en-mix`
+- `es-mix`
+
+English Mix / Español Mixは別記事ではなく、同じ記事IDを使う派生Reading Modeとして扱う。完全英語版・完全スペイン語版を標準運用として作らない。
+
 派生版では `title` / `subtitle` / `abstract` / 本文を差し替えられる。`id`、作成日、Series、お気に入り、読了状態、After Reading、ブラウザ内メモなどの記事管理情報は日本語正本と共有する。
+
+### English Mix
+
+日本語を理解の足場にし、自然な英語を文脈の中へ混ぜる。全文英訳や、日本語文の直後に同内容を毎回英訳する形式にはしない。
+
+詳細は [`english-mix/README.md`](english-mix/README.md) を参照。
+
+### Español Mix
+
+日本語を理解の足場にし、自然なスペイン語を文脈の中へ混ぜる。完全スペイン語版にはしない。
+
+目安は日本語50〜70%・スペイン語30〜50%程度だが、文字数比率を機械的に合わせるより、意味単位で自然に切り替えることを優先する。
 
 ## Argument Structure / Writing Architecture
 
@@ -111,8 +145,8 @@ Structure metadataは読了時間・文字数・全文検索の対象から除�
 2. 日本語正本を `essays/YYYY-MM-DD-slug.md` として保存する。
 3. `data/index.json` の `essays` 配列へ日本語版のパスを追加する。
 4. English Mixも作る場合は、同じ記事IDで `english-mix/記事ID.md` を作る。
-5. Españolも作る場合は、同じ記事IDで `spanish/記事ID.md` を作る。
-6. 派生版を作った記事は `data/versions-index.json` の同じ記事IDへ `en-mix` / `es` のパスを登録する。
+5. Español Mixも作る場合は、同じ記事IDで `spanish-mix/記事ID.md` を作る。
+6. 派生版を作った記事は `data/versions-index.json` の同じ記事IDへ `en-mix` / `es-mix` のパスを登録する。
 7. 必要な段落だけStructure metadataを追加する。
 8. GitHubへ反映する。
 
@@ -122,12 +156,12 @@ Structure metadataは読了時間・文字数・全文検索の対象から除�
 {
   "article-id": {
     "en-mix": "english-mix/article-id.md",
-    "es": "spanish/article-id.md"
+    "es-mix": "spanish-mix/article-id.md"
   }
 }
 ```
 
-Español版は全文スペイン語を基本とし、原文の意味・Markdown構造・リンク・画像・引用・出典を維持する。派生版は `data/index.json` へ追加しない。
+派生版は `data/index.json` へ追加しない。
 
 ## 実装メモ
 
@@ -139,7 +173,9 @@ Español版は全文スペイン語を基本とし、原文の意味・Markdown�
 - Argument Structure Reader: `argument-structure.js` / `argument-structure.css`
 - localStorageの読書状態キーは記事ID基準のまま変更しない
 
-詳細な設計・移行方針は [IMPLEMENTATION_PLAN_SPANISH_VARIANTS.md](IMPLEMENTATION_PLAN_SPANISH_VARIANTS.md) および [DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md](DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md) を参照。
+Argument Structureの背景・設計は [`DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md`](DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md) と [`RESEARCH_ARGUMENT_STRUCTURE.md`](RESEARCH_ARGUMENT_STRUCTURE.md) を参照。
+
+`IMPLEMENTATION_PLAN_SPANISH_VARIANTS.md` は2026-08-29時点の旧Español単独版導入時の歴史的実装計画であり、現在のReading Mode仕様には使用しない。
 
 ## GitHub Pages
 
