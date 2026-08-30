@@ -53,16 +53,22 @@ try {
       TITLE,
       { timeout: 15_000 }
     );
+    await page.waitForSelector('#readerLanguageSwitch:not([hidden])', { timeout: 15_000 });
+
+    const trigger = page.locator('.reader-language-trigger');
+    const menu = page.locator('#readerLanguageMenu');
 
     const jaState = await page.evaluate(() => {
       const reader = document.querySelector('#readerContent');
       const switcher = document.querySelector('#readerLanguageSwitch');
+      const trigger = document.querySelector('.reader-language-trigger');
       const mixButton = document.querySelector('[data-reader-version="en-mix"]');
       return {
         title: document.title,
         readerVisible: Boolean(reader && reader.textContent.trim().length > 0),
         switchVisible: Boolean(switcher && !switcher.hidden),
-        mixEnabled: Boolean(mixButton && !mixButton.disabled),
+        disclosureExpanded: trigger?.getAttribute('aria-expanded') === 'true',
+        mixAvailable: Boolean(mixButton && !mixButton.disabled),
         horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
         scrollWidth: document.documentElement.scrollWidth,
         innerWidth: window.innerWidth
@@ -71,7 +77,8 @@ try {
 
     if (!jaState.readerVisible) throw new Error(`${config.name}: reader content is empty`);
     if (!jaState.switchVisible) throw new Error(`${config.name}: reading version switch is not visible`);
-    if (!jaState.mixEnabled) throw new Error(`${config.name}: English Mix button is unavailable`);
+    if (jaState.disclosureExpanded) throw new Error(`${config.name}: language disclosure should start collapsed`);
+    if (!jaState.mixAvailable) throw new Error(`${config.name}: English Mix option is unavailable`);
     if (jaState.horizontalOverflow) {
       throw new Error(`${config.name}: horizontal overflow (${jaState.scrollWidth}px > ${jaState.innerWidth}px)`);
     }
@@ -81,27 +88,35 @@ try {
       fullPage: true
     });
 
+    await trigger.click();
+    await page.waitForSelector('#readerLanguageMenu:not([hidden])', { timeout: 5_000 });
     await page.locator('[data-reader-version="en-mix"]').click();
     await page.waitForFunction(
       expected => document.querySelector('#readerContent')?.textContent?.includes(expected),
       MIX_SENTINEL,
       { timeout: 15_000 }
     );
+    await page.waitForFunction(() => document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded') === 'false');
 
     const mixState = await page.evaluate(() => {
       const mixButton = document.querySelector('[data-reader-version="en-mix"]');
+      const current = document.querySelector('.reader-language-current')?.textContent?.trim();
       return {
-        mixPressed: mixButton?.getAttribute('aria-pressed') === 'true',
+        mixSelected: mixButton?.getAttribute('aria-checked') === 'true',
+        currentBadge: current,
         horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
         scrollWidth: document.documentElement.scrollWidth,
         innerWidth: window.innerWidth
       };
     });
 
-    if (!mixState.mixPressed) throw new Error(`${config.name}: English Mix did not become active`);
+    if (!mixState.mixSelected) throw new Error(`${config.name}: English Mix did not become active`);
+    if (mixState.currentBadge !== 'EN MIX') throw new Error(`${config.name}: language chip did not update to EN MIX`);
     if (mixState.horizontalOverflow) {
       throw new Error(`${config.name} mix: horizontal overflow (${mixState.scrollWidth}px > ${mixState.innerWidth}px)`);
     }
+
+    if (!await menu.isHidden()) throw new Error(`${config.name}: language disclosure stayed open after selection`);
 
     await page.screenshot({
       path: `${OUTPUT_DIR}/${config.name}-mix.png`,
