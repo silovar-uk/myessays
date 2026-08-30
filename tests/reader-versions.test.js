@@ -10,12 +10,12 @@ const exists = file => fs.existsSync(path.join(root, file));
 const index = JSON.parse(read('data/versions-index.json'));
 const articles = index.articles || {};
 
-test('reading versions index only points to existing derived files', () => {
+test('reading versions index only points to existing current derived files', () => {
   assert.equal(index.version, 1);
   assert.ok(Object.keys(articles).length > 0);
   for (const [essayId, versions] of Object.entries(articles)) {
     for (const [version, file] of Object.entries(versions)) {
-      assert.ok(['en-mix', 'es'].includes(version), `${essayId} has unsupported version ${version}`);
+      assert.ok(['en-mix', 'es-mix'].includes(version), `${essayId} has unsupported version ${version}`);
       assert.ok(exists(file), `${essayId}/${version} points to missing file: ${file}`);
     }
   }
@@ -40,23 +40,38 @@ test('English Mix paths stay keyed by the canonical article id', () => {
   });
 });
 
-test('Spanish sample shares the canonical article id and keeps English Mix', () => {
+test('Español Mix sample shares canonical id, keeps English Mix, and stays mixed-language', () => {
   const id = 'confucius-knowing-liking-enjoying';
   assert.equal(articles[id]['en-mix'], `english-mix/${id}.md`);
-  assert.equal(articles[id].es, `spanish/${id}.md`);
-  const spanish = read(articles[id].es);
-  assert.match(spanish, new RegExp(`^---\\nid: ${id}\\n`));
-  assert.match(spanish, /title:\s*"Saber no basta/);
-  assert.match(spanish, /## 8\. La pregunta de hoy/);
+  assert.equal(articles[id]['es-mix'], `spanish-mix/${id}.md`);
+  const spanishMix = read(articles[id]['es-mix']);
+  assert.match(spanishMix, new RegExp(`^---\\nid: ${id}\\n`));
+  assert.match(spanishMix, /title:\s*"知っているだけでは、まだ遠い — Confucio/);
+  assert.match(spanishMix, /日本語＋Español Mix/);
+  assert.match(spanishMix, /Sabemos que es importante/);
+  assert.match(spanishMix, /必要性も方法も知っている/);
 });
 
-test('reader and library use the shared versions index', () => {
+test('reader and library use shared current version definitions', () => {
   const reader = read('reader-versions.js');
   const library = read('library-versions.js');
   assert.match(reader, /data\/versions-index\.json/);
   assert.match(library, /data\/versions-index\.json/);
+  assert.match(reader, /'es-mix':\s*\{\s*label:\s*'Español Mix',\s*badge:\s*'ES MIX'/);
+  assert.match(library, /'es-mix':\s*\{\s*label:\s*'Español Mix',\s*badge:\s*'ES MIX'/);
   assert.match(reader, /DISPLAY_META_KEYS = \['title', 'subtitle', 'abstract'\]/);
   assert.match(reader, /next\.id = original\.id/);
+});
+
+test('reader language switch is a collapsed disclosure rather than always-expanded buttons', () => {
+  const reader = read('reader-versions.js');
+  assert.match(reader, /reader-language-trigger/);
+  assert.match(reader, /aria-expanded="false"/);
+  assert.match(reader, /aria-controls="readerLanguageMenu"/);
+  assert.match(reader, /aria-haspopup="menu"/);
+  assert.match(reader, /role="menuitemradio"/);
+  assert.match(reader, /setDisclosureOpen/);
+  assert.match(reader, /event\.key !== 'Escape'/);
 });
 
 test('active page no longer references legacy Mix or glossary assets', () => {
