@@ -13,28 +13,28 @@ Order of work:
 
 Compatibility comes first. Optional sophistication comes later.
 
-The target is not “100% of articles have Structure and two foreign-language modes.” The target is:
+Program targets:
 
-- 100% current-contract compatibility;
-- 100% review of P1 content;
-- Structure only where it adds explanatory value;
-- Reading Modes only where they are useful and maintainable.
+- current-contract compatibility: 100%;
+- P1 content: 100% manually reviewed to an intentional target class;
+- Structure: only where argument visualization adds value;
+- Reading Modes: only where useful and maintainable.
 
-## 2. Change streams
+## 2. Two change streams
 
-Keep these streams separate whenever possible.
+### Mechanical
 
-### Mechanical stream
-
-- paths;
-- IDs;
-- indexes;
-- Reading Mode keys;
-- legacy files/directories;
+- paths and IDs;
+- canonical/derived indexes;
+- Reading Mode keys/directories;
+- legacy files;
 - front-matter syntax;
-- tests, browser QA, CI triggers and publishing contracts.
+- publishing contracts;
+- static tests;
+- browser QA;
+- CI triggers.
 
-### Editorial stream
+### Editorial
 
 - prose;
 - paragraph boundaries;
@@ -44,86 +44,45 @@ Keep these streams separate whenever possible.
 - Structure annotation;
 - English Mix / Español Mix quality.
 
-Mechanical and Editorial work should normally use separate PRs so review remains understandable.
+Keep mechanical and editorial changes in separate PRs whenever possible.
 
 ## 3. Batch 0A — Baseline and repeatable audit
 
-**Status:** this planning batch
+**Status: completed in the baseline infrastructure branch.**
 
-### Deliverables
+Deliverables:
 
 - `CURRENT_SPEC.md`
 - `MIGRATION_INVENTORY.md`
 - `MIGRATION_ROADMAP.md`
 - `tools/audit-content.mjs`
 
-### Purpose
-
-- establish one current content contract;
-- stop reasoning from stale README text;
-- make repository-wide auditing repeatable;
-- identify P0 compatibility problems before article edits.
-
-### Article body changes
-
-None.
-
-### Done when
-
-- documents are committed;
-- audit logic is reviewable;
-- roadmap names concrete P0 work;
-- no content article is rewritten in the baseline PR.
+No article body was rewritten.
 
 ## 4. Batch 0B — Specification and QA contract cleanup
 
-**Priority:** P0
-**Migration class:** infrastructure/contract, not article class
+**Status: completed in the same baseline infrastructure branch because the newly added audit tool triggers existing QA on `main`.**
 
-### Files expected
+The initial inventory found runtime/data already using `ja / en-mix / es-mix`, while documentation and QA still validated `es / spanish/` and full-Spanish content.
 
-- `README.md`
-- `english-mix/README.md`
-- legacy `spanish/README.md`
-- `tests/data-integrity.test.js`
-- `tests/reader-versions.test.js`
-- `scripts/reading-versions-qa.cjs`
-- `.github/workflows/visual-qa.yml`
-- potentially old Spanish implementation-plan documentation if it can be mistaken for the active contract
+Resolved in Batch 0B:
 
-### Work
+- root `README.md` aligned to current Reading Modes;
+- `english-mix/README.md` aligned to `es-mix`;
+- obsolete `spanish/README.md` removed;
+- new `spanish-mix/README.md` added;
+- `tests/data-integrity.test.js` aligned to `en-mix / es-mix` and current directories;
+- `tests/reader-versions.test.js` aligned to Español Mix and disclosure UI;
+- `scripts/reading-versions-qa.cjs` changed to exercise the collapsed language disclosure, reading-position preservation and mixed Japanese/Spanish content;
+- `.github/workflows/visual-qa.yml` now watches `spanish-mix/**` and runs the migration audit.
 
-1. Replace old `Español / spanish/ / es` instructions with `Español Mix / spanish-mix/ / es-mix`.
-2. Clearly mark old full-Spanish design documents as historical if retained.
-3. Remove the obsolete active publishing contract under `spanish/` or replace it with a short migration pointer.
-4. Update data-integrity tests to support only `en-mix` and `es-mix`.
-5. Enumerate `english-mix/` and `spanish-mix/` as derived directories.
-6. Update Reader Version tests to assert `es-mix`, `spanish-mix/<id>.md` and Japanese+Spanish mixed content.
-7. Update browser Reading Mode QA to open the disclosure UI before selecting modes, check `aria-expanded`/close behavior, switch to `es-mix`, and validate current Español Mix content instead of the deleted full-Spanish text.
-8. Update localStorage assertions so derived Reading Modes do not create mode-specific state keys.
-9. Update workflow path triggers so `spanish-mix/**` changes run QA; retain `spanish/**` only if intentionally watching legacy cleanup.
-10. Add assertions preventing derived modes from appearing in `data/index.json`.
-11. Run static tests, browser Reading Mode QA, visual QA and the migration audit.
+No historical essay body was changed as part of Batch 0B.
 
-### Reject if
+## 5. Batch 1 — Legacy canonical `*-mixed-en.md` cleanup
 
-- the old `es` key is still described as a valid new-content option;
-- tests and runtime disagree;
-- browser QA bypasses the new disclosure interaction;
-- a current `spanish-mix/**` change can skip the relevant CI trigger;
-- a full-Spanish translation workflow remains presented as current.
-
-### Done when
-
-- runtime, documentation, static tests, browser QA and workflow path triggers all agree on `ja / en-mix / es-mix`;
-- current Español Mix paths trigger QA;
-- there is no active publishing instruction for full-Spanish articles;
-- no article bodies have been modernized as part of this infrastructure cleanup.
-
-## 5. Batch 1 — Legacy `*-mixed-en.md` canonical cleanup
-
-**Priority:** P0
-**Migration class:** A / Mechanical
+**Status: next.**
+**Priority: P0**
+**Migration class: A / Mechanical**
 
 Confirmed candidates:
 
@@ -135,64 +94,61 @@ Confirmed candidates:
 
 ### Per-article procedure
 
-1. Read canonical Japanese and legacy mixed-English files.
+1. Read the Japanese canonical file and its legacy `*-mixed-en.md` companion.
 2. Verify IDs and logical pairing.
-3. Check for an existing `english-mix/<id>.md` file.
-4. Choose the best existing mixed content; do not overwrite a newer derived version blindly.
-5. Place/retain the valid derived version under `english-mix/<canonical-id>.md`.
-6. Register `en-mix` under the canonical ID in `data/versions-index.json`.
-7. Remove the legacy mixed companion path from `data/index.json`.
-8. Delete the obsolete `essays/*-mixed-en.md` only after the derived mode resolves correctly.
+3. Check whether `english-mix/<canonical-id>.md` already exists.
+4. Keep the best current mixed content; do not overwrite a newer derived mode blindly.
+5. Ensure the derived file uses the canonical Japanese `id`.
+6. Register it as `en-mix` in `data/versions-index.json`.
+7. Remove the legacy companion path from `data/index.json`.
+8. Delete the obsolete `essays/*-mixed-en.md` only after replacement validation.
 9. Confirm one Library card per logical article.
-10. Confirm language switching preserves the article ID and reading state.
-
-### PR sizing
-
-All five may be one PR only if the transformation is homogeneous and each pair is explicitly documented in the PR body. Otherwise split into two PRs.
+10. Confirm reading state remains article-ID based.
 
 ### Done when
 
-- no canonical index entry ends `-mixed-en.md`;
-- no logical article is duplicated in Library because of a Reading Mode;
-- all migrated English Mix paths are valid and indexed exactly once.
+- no canonical index entry ends in `-mixed-en.md`;
+- all five logical articles have one canonical Japanese entry;
+- any retained English Mix is indexed exactly once as a derived mode;
+- Language switching and reading state work normally.
 
-## 6. Batch 2 — Full-library compatibility pass
+## 6. Batch 2 — Full-library class-A compatibility pass
 
-**Priority:** P0/P2
-**Migration class:** A
+**Priority: P0/P2**
+**Migration class: A**
 
-Use `tools/audit-content.mjs` as the inventory baseline.
+Use:
 
-### Audit dimensions
+```bash
+node tools/audit-content.mjs --strict
+```
 
-- duplicate canonical IDs;
-- duplicate canonical paths;
+Audit:
+
+- duplicate canonical IDs/paths;
 - missing canonical files;
 - unindexed canonical Markdown;
-- missing required front matter;
+- required front matter;
 - invalid `created` dates;
 - unsupported version keys;
 - missing derived files;
 - derived ID mismatches;
-- unindexed derived files;
+- unindexed derived Markdown;
 - derived files accidentally registered as canonical;
 - legacy Spanish dependencies;
-- documentation/test/browser-QA/workflow drift;
-- obvious local-path/reference breakage where mechanically detectable.
+- documentation/test/browser-QA/workflow drift.
 
-### Editorial rule
-
-Do not improve prose in this batch unless a syntax issue makes the article unreadable.
+Do not improve prose in this batch unless syntax makes an article unreadable.
 
 ### Done when
 
-`node tools/audit-content.mjs --strict` reports no integrity errors and all remaining warnings are consciously classified for later batches.
+The strict audit has zero integrity errors and every remaining warning is consciously assigned to a later editorial batch or accepted as non-defect.
 
 ## 7. Batch 3 — P1 flagship conceptual essays
 
-**Priority:** P1
-**Migration class:** B/C/D
-**Suggested batch size:** 5–8 articles
+**Priority: P1**
+**Migration class: B/C/D**
+**Editorial batch size: 5–8 articles**
 
 Candidate pool:
 
@@ -204,152 +160,123 @@ Candidate pool:
 - `goodharts-law-proxy-target-design`
 - `learning-organization-senge-systems-thinking`
 - `commentary-as-technology-of-noticing`
-- `outsourcing-ai-results-without-capability` as the existing Structure reference
+- `outsourcing-ai-results-without-capability` as the current Structure reference
 
-Final selection should use article metadata, linkage, current relevance and manual reading rather than this list alone.
+Final selection must follow full-article reading, metadata/value, linkage and freshness risk rather than this candidate list alone.
 
-### Workflow per article
+### Per-article workflow
 
 1. Read the full Japanese canonical article.
-2. Decide B, C or D before editing.
-3. Identify the article's central question/thesis.
+2. Assign B, C or D before editing.
+3. Identify the central question/thesis.
 4. Review title/subtitle/abstract.
-5. Review section structure and paragraph boundaries.
-6. If C/D, annotate only argument-bearing paragraphs.
-7. Preserve old claims unless a factual correction is needed.
-8. If factual/current material exists, research it before editing.
+5. Review sections and paragraph boundaries.
+6. Add Structure only to argument-bearing paragraphs if C/D.
+7. Preserve historical claims unless a correction is required.
+8. Research current facts before changing time-sensitive content.
 9. Review existing English Mix if present.
-10. Add Español Mix only if the article is intentionally selected for it.
-11. Test normal Reader first, Structure mode second.
+10. Add Español Mix only when intentionally selected.
+11. Test normal Reader before Structure mode.
 
-### Quality gate
+## 8. Batch 4 — Chinese classics / thought series
 
-No article should be upgraded to C merely because Structure UI exists.
+**Priority: P1/P2**
+**Migration class: B; selective C/D**
 
-## 8. Batch 4 — Chinese classics series
+Why grouped:
 
-**Priority:** P1/P2
-**Migration class:** B, selective C/D
+Many pieces share a reusable arc:
 
-### Why this is its own batch
+**source text → interpretation → modern application → implication/question**
 
-These pieces share a recognizable editorial pattern:
+Focus:
 
-source phrase → historical/commentarial context → interpretation → modern application → question/implication.
+- Series metadata consistency;
+- source/reference presentation;
+- Japanese/English Mix H2 alignment;
+- selective Writing Architecture;
+- a small set of flagship Español Mix entries.
 
-That makes cross-series consistency more valuable than arbitrary chronological migration.
+Do not make every entry a Conceptual Paper or annotate every sentence.
 
-### Work
+## 9. Batch 5 — Hello! Project history / person-history archive
 
-- normalize Series metadata where needed;
-- check source/reference presentation;
-- align Japanese and English Mix H2 structures where practical;
-- selectively add Structure to argument-rich entries;
-- select a small number of flagship entries for Español Mix;
-- do not convert every source explanation into a Conceptual Paper template.
+**Priority: P1/P2**
+**Migration class: A/B; selective C**
 
-### Candidate flagship pattern
-
-Prefer entries that:
-
-- introduce a recurring learning/decision concept;
-- connect clearly to other essays;
-- are likely to be reread;
-- have strong sources and a durable thesis.
-
-## 9. Batch 5 — Hello! Project history and person-history archive
-
-**Priority:** P1/P2
-**Migration class:** A/B, selective C
-
-### Primary goals
+Focus:
 
 - Series consistency;
 - metadata consistency;
 - canonical/English Mix alignment;
 - source consistency;
-- handling of recent-history freshness;
-- navigation and series-map coherence.
+- recent-history freshness;
+- series-map/navigation coherence.
 
-### Non-goal
+Structure is useful only where an interpretive argument exists; chronology alone does not require L1–L5 metadata.
 
-Do not add L1–L5 metadata to every historical paragraph. Structure is useful only where the author is making an interpretive argument rather than merely recording chronology.
-
-### Batch shape
-
-Prefer series-level batches, e.g. overview + series map, then chronological subsets, then person-focused essays.
+Prefer series-level batches over arbitrary date order.
 
 ## 10. Batch 6 — Freshness-risk content
 
-**Priority:** P1/P2 depending on visibility
-**Migration class:** B/D after research
+**Priority: P1/P2 depending on visibility**
+**Migration class: B/D after research**
 
-Potential categories:
+Examples:
 
 - current sports teams/players;
-- companies and management;
+- companies;
 - market/financial topics;
-- AI products/platform behavior;
-- software/current technical behavior;
-- health/medical/current guidance.
+- AI products/platforms;
+- software behavior;
+- health/medical content.
 
-### Required rule
+Before editorial modernization, research current facts and choose one of:
 
-Research current facts before editorial modernization.
+- update facts and `updated`;
+- preserve a dated historical snapshot;
+- add an update note;
+- publish a newer related essay rather than silently replacing the old thesis.
 
-Then decide whether to:
+Never rewrite `created` to make an old article look new.
 
-- update the article and `updated` date;
-- preserve it explicitly as a time-stamped historical snapshot;
-- add a short update note;
-- create a newer related essay instead of rewriting the original thesis.
+## 11. Batch 7 — Reference / technical / game-guide content
 
-Do not convert a 2026 historical snapshot into an apparently timeless statement without explaining the time frame.
+**Priority: P2/P3**
+**Migration class: A/B**
 
-## 11. Batch 7 — Reference, technical and game-guide content
-
-**Priority:** P2/P3
-**Migration class:** A/B
-
-### Focus
+Focus on:
 
 - retrievability;
-- clear headings;
-- stable examples;
-- valid links/code blocks;
+- headings;
+- examples/code blocks;
+- links;
 - concise abstracts;
 - current technical correctness where relevant.
 
-Argument Structure is normally not necessary.
+Argument Structure is normally unnecessary.
 
 ## 12. Batch 8 — Remaining P2/P3 archive
 
 Only after P0 and P1 work has established stable conventions.
 
-Use the generated inventory to group remaining articles by type/series rather than editing them in arbitrary date order.
+Group remaining articles by type or series, not arbitrary chronological order.
 
-## 13. PR sizing rules
+## 13. PR sizing
 
 ### Mechanical PRs
 
-May contain more files when transformations are homogeneous, scriptable and easily verified.
+Can be larger when transformations are homogeneous, scriptable and easy to review.
 
 ### Editorial PRs
 
-Default to 5–10 articles maximum.
+Default maximum: 5–10 articles.
 
-Use fewer when:
+Use smaller batches for long pieces, current-fact research, Structure work or Reading Mode rewriting.
 
-- articles are long;
-- factual research is required;
-- Structure metadata is being added;
-- Reading Modes are being rewritten.
+## 14. Change reasons
 
-Never optimize for article count at the expense of reviewability.
-
-## 14. Review labels for changes
-
-Every editorial PR should explain changes using these reasons:
+Editorial PRs should classify substantive edits as:
 
 - `SPEC`
 - `BUG`
@@ -358,79 +285,65 @@ Every editorial PR should explain changes using these reasons:
 - `READABILITY`
 - `LANGUAGE`
 
-If a prose change cannot be explained by one of these, reconsider whether the historical article should be changed.
+If a prose edit cannot be explained by one of these, reconsider whether a historical article should change.
 
-## 15. Regression checklist per batch
+## 15. Regression checklist
 
-At minimum:
+Per batch:
 
 - Japanese canonical loads;
-- Library shows one card per logical article;
-- search finds canonical article correctly;
-- available Reading Mode badges are correct;
-- Language disclosure only shows available modes;
-- disclosure opens/closes by click, selection, outside click and Escape;
-- switching modes keeps the same logical article ID;
-- reading position remains reasonable across modes;
-- Note/reading state remains shared;
-- normal Reader remains clean;
-- Structure articles work with Structure OFF and ON;
-- mobile reader remains usable;
-- console errors are not introduced;
-- migration audit is rerun after changes.
+- one Library card per logical article;
+- search finds the canonical article;
+- Reading Mode badges are correct;
+- Language disclosure shows only available modes;
+- disclosure closes by selection, outside click and Escape;
+- mode switching preserves logical article identity and a reasonable reading position;
+- Note/reading state stays shared;
+- normal Reader stays clean;
+- Structure OFF/ON works for structured articles;
+- mobile remains usable;
+- no new console errors;
+- migration audit reruns after changes.
 
 ## 16. Program metrics
 
-Do not use “number of articles touched” as the primary success measure.
-
-Track:
+Do not use “articles touched” as the primary metric.
 
 ### Compatibility Coverage
 
-Percentage of canonical articles passing current data/runtime contract checks.
+Canonical articles passing the current mechanical contract.
 
-**Target:** 100%.
+**Target: 100%.**
 
 ### P1 Modernization Coverage
 
-Percentage of P1 articles manually reviewed to their chosen target class.
+Selected P1 articles reviewed to their intentional target class.
 
-**Target:** 100% of the selected P1 set.
+**Target: 100% of the selected P1 set.**
 
 ### Writing Architecture Coverage
 
-Percentage of articles intentionally classified C/D that have meaningful Structure review.
+Articles intentionally classified C/D that have meaningful Structure review.
 
-**Target:** 100% of C/D targets, not 100% of the Library.
+**Target: 100% of C/D targets, not 100% of the Library.**
 
 ### Reading Mode Quality
 
-Percentage of existing derived modes reviewed against current Mix contracts.
+Existing derived modes reviewed against current Mix contracts.
 
-**Target:** all existing derived modes eventually reviewed; absence of a derived mode is not failure.
+Absence of a derived mode is not failure.
 
-## 17. Rollback principle
+## 17. Rollback rule
 
-Each migration batch must remain reversible through Git history.
+Never delete a legacy companion until:
 
-Do not delete a legacy companion until:
+- canonical identity is known;
+- replacement derived content exists in the same PR or already on `main`;
+- `data/versions-index.json` points to it;
+- the Library no longer depends on the legacy path.
 
-- its canonical identity is known;
-- replacement derived content is committed in the same PR or already exists;
-- `data/versions-index.json` points to the replacement;
-- the Library no longer needs the legacy path.
+## 18. Immediate next action
 
-## 18. Immediate next action after this baseline
+Proceed to **Batch 1 — the five legacy canonical `*-mixed-en.md` companions**.
 
-Proceed to **Batch 0B — Specification and QA contract cleanup**.
-
-Do not begin broad article modernization before:
-
-1. current documentation is aligned;
-2. static data and Reader Version tests match `es-mix` / `spanish-mix/`;
-3. browser Reading Mode QA drives the current disclosure UI and Español Mix content;
-4. workflow path triggers cover `spanish-mix/**`;
-5. the audit can be rerun against the same contract;
-6. the five `*-mixed-en.md` canonical companions have an explicit Batch 1 migration route.
-
-That sequence prevents the migration project itself from creating or approving new legacy content while it is trying to remove old legacy content.
+After Batch 1, run the full class-A compatibility pass before any broad editorial modernization.
