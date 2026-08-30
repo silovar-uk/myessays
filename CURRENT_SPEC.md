@@ -232,11 +232,25 @@ Confirmed on 2026-08-30:
 - `spanish/README.md` still describes a full-Spanish translation contract.
 - `english-mix/README.md` still refers to adding `es` when a Spanish version exists.
 - `tests/data-integrity.test.js` still accepts `es` and enumerates `spanish/` rather than `es-mix` / `spanish-mix/`.
+- `tests/reader-versions.test.js` still asserts the old `es` key, `spanish/` path and full-Spanish sample content.
+- `scripts/reading-versions-qa.cjs` still drives `es` and checks full-Spanish strings rather than the disclosure-based Español Mix behavior.
+- `.github/workflows/visual-qa.yml` watches `spanish/**` but not `spanish-mix/**`, so current Español Mix changes can escape its path trigger.
 - Five legacy `*-mixed-en.md` files are still registered in `data/index.json` as canonical essays.
 
 These are Batch 0 / Batch 1 migration work. Their presence does not redefine the current contract.
 
-## 15. Reject conditions
+## 15. QA contract
+
+The test and QA suite is part of the content contract. When a Reading Mode or directory contract changes, update all of these together:
+
+- static data-integrity tests;
+- Reader Version unit/static tests;
+- browser Reading Mode QA;
+- workflow path triggers.
+
+A production implementation is not considered fully migrated when the runtime uses the new contract but CI still validates the old one.
+
+## 16. Reject conditions
 
 Stop and re-review if a migration:
 
@@ -250,7 +264,7 @@ Stop and re-review if a migration:
 - reintroduces `es`, `spanish/` or canonical `*-mixed-en.md` as current conventions;
 - changes normal Reader output for articles without Structure metadata.
 
-## 16. Definition of compatibility
+## 17. Definition of compatibility
 
 At minimum, a compatible article set has:
 
@@ -261,6 +275,7 @@ At minimum, a compatible article set has:
 - every version path exists and declares the canonical ID;
 - no missing derived file outside `data/versions-index.json`;
 - no legacy `spanish/` dependency;
+- tests and browser QA validate the same Reading Mode contract as runtime;
 - normal Japanese Reader behavior remains intact.
 
 This is the baseline that all articles should eventually satisfy before optional modernization layers are expanded.
