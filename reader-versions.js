@@ -5,7 +5,7 @@
   const VERSION_DEFINITIONS = {
     ja: { label: '日本語', badge: 'JA' },
     'en-mix': { label: 'English Mix', badge: 'EN MIX' },
-    es: { label: 'Español', badge: 'ES' }
+    'es-mix': { label: 'Español Mix', badge: 'ES MIX' }
   };
   const DISPLAY_META_KEYS = ['title', 'subtitle', 'abstract'];
   const READING_BLOCK_SELECTOR = 'h2, h3, p, ul, ol, blockquote, figure, .essay-table-wrap, hr';
@@ -234,35 +234,70 @@
     });
   }
 
+  function setDisclosureOpen(switcher, open, { focusTrigger = false } = {}) {
+    if (!switcher) return;
+    const trigger = switcher.querySelector('.reader-language-trigger');
+    const menu = switcher.querySelector('.reader-language-menu');
+    const nextOpen = Boolean(open && !switcher.hidden);
+    switcher.classList.toggle('is-open', nextOpen);
+    if (trigger) trigger.setAttribute('aria-expanded', String(nextOpen));
+    if (menu) menu.hidden = !nextOpen;
+    if (!nextOpen && focusTrigger) trigger?.focus();
+  }
+
   function ensureSwitchElement() {
     let switcher = document.getElementById('readerLanguageSwitch');
     if (switcher) return switcher;
+
     switcher = document.createElement('div');
     switcher.id = 'readerLanguageSwitch';
     switcher.className = 'reader-language-switch';
     switcher.hidden = true;
-    switcher.setAttribute('role', 'group');
-    switcher.setAttribute('aria-label', '表示バージョン');
-    switcher.innerHTML = '<span class="reader-language-switch-label">表示</span><div class="reader-language-switch-buttons"></div>';
+    switcher.setAttribute('aria-label', '表示言語');
+    switcher.innerHTML = `
+      <button class="reader-language-trigger" type="button" aria-expanded="false" aria-controls="readerLanguageMenu" aria-haspopup="menu">
+        <span class="reader-language-current">JA</span>
+        <span class="reader-language-chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div id="readerLanguageMenu" class="reader-language-menu" role="menu" aria-label="表示言語を選択" hidden>
+        <span class="reader-language-menu-label">LANGUAGE</span>
+        <div class="reader-language-options"></div>
+      </div>`;
+
     switcher.addEventListener('click', event => {
+      const trigger = event.target.closest('.reader-language-trigger');
+      if (trigger) {
+        setDisclosureOpen(switcher, trigger.getAttribute('aria-expanded') !== 'true');
+        return;
+      }
+
       const button = event.target.closest('[data-reader-version]');
       if (!button || button.disabled) return;
       const next = button.dataset.readerVersion;
-      if (!VERSION_DEFINITIONS[next] || next === currentRenderedVersion()) return;
+      if (!VERSION_DEFINITIONS[next]) return;
+      setDisclosureOpen(switcher, false);
+      if (next === currentRenderedVersion()) return;
       switchVersion(next);
     });
+
     document.body.append(switcher);
     return switcher;
   }
 
-  function renderSwitchButtons(switcher, availableVersions, activeVersion) {
-    const container = switcher.querySelector('.reader-language-switch-buttons');
-    if (!container) return;
+  function renderDisclosure(switcher, availableVersions, activeVersion) {
+    const triggerCurrent = switcher.querySelector('.reader-language-current');
+    const options = switcher.querySelector('.reader-language-options');
+    if (!triggerCurrent || !options) return;
+
     const versions = ['ja', ...availableVersions.filter(key => key !== 'ja' && VERSION_DEFINITIONS[key])];
-    container.innerHTML = versions.map(version => {
+    const activeDefinition = VERSION_DEFINITIONS[activeVersion] || VERSION_DEFINITIONS.ja;
+    triggerCurrent.textContent = activeDefinition.badge;
+    switcher.querySelector('.reader-language-trigger')?.setAttribute('aria-label', `表示言語: ${activeDefinition.label}`);
+
+    options.innerHTML = versions.map(version => {
       const definition = VERSION_DEFINITIONS[version];
       const active = version === activeVersion;
-      return `<button type="button" data-reader-version="${version}" class="${active ? 'is-active' : ''}" aria-pressed="${active}">${definition.label}</button>`;
+      return `<button type="button" role="menuitemradio" data-reader-version="${version}" class="reader-language-option${active ? ' is-active' : ''}" aria-checked="${active}"><span class="reader-language-check" aria-hidden="true">${active ? '✓' : ''}</span><span>${definition.label}</span><small>${definition.badge}</small></button>`;
     }).join('');
   }
 
@@ -306,18 +341,28 @@
     const id = currentEssayId();
     const reader = document.getElementById('readerView');
     const readerIsOpen = Boolean(id && reader && !reader.hidden);
-    switcher.hidden = !readerIsOpen;
-    if (!readerIsOpen) return;
+    if (!readerIsOpen) {
+      switcher.hidden = true;
+      setDisclosureOpen(switcher, false);
+      return;
+    }
 
     const index = await versionsIndex();
     if (id !== currentEssayId()) return;
     const availableVersions = Object.keys(index?.articles?.[id] || {}).filter(key => VERSION_DEFINITIONS[key]);
+    const hasAlternative = availableVersions.length > 0;
+    switcher.hidden = !hasAlternative;
+    if (!hasAlternative) {
+      setDisclosureOpen(switcher, false);
+      return;
+    }
+
     const rendered = currentRenderedVersion();
     let desired = versionByEssay.get(id) || rendered;
     if (desired !== 'ja' && !availableVersions.includes(desired)) desired = 'ja';
     if (desired === 'ja' && rendered !== 'ja' && availableVersions.includes(rendered)) desired = rendered;
     versionByEssay.set(id, desired);
-    renderSwitchButtons(switcher, availableVersions, desired);
+    renderDisclosure(switcher, availableVersions, desired);
   }
 
   function syncAfterRender() {
@@ -327,11 +372,27 @@
     requestAnimationFrame(ensureVersionSwitch);
   }
 
+  document.addEventListener('click', event => {
+    const switcher = document.getElementById('readerLanguageSwitch');
+    if (!switcher || switcher.hidden || !switcher.classList.contains('is-open')) return;
+    if (!switcher.contains(event.target)) setDisclosureOpen(switcher, false);
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    const switcher = document.getElementById('readerLanguageSwitch');
+    if (!switcher?.classList.contains('is-open')) return;
+    event.preventDefault();
+    setDisclosureOpen(switcher, false, { focusTrigger: true });
+  });
+
   document.addEventListener('myessays:reader-rendered', syncAfterRender);
   document.addEventListener('myessays:reader-ready', ensureVersionSwitch);
   document.addEventListener('myessays:reader-version-changed', ensureVersionSwitch);
   window.addEventListener('hashchange', () => {
     const id = currentEssayId();
+    const switcher = document.getElementById('readerLanguageSwitch');
+    setDisclosureOpen(switcher, false);
     if (id && !versionByEssay.has(id)) versionByEssay.set(id, 'ja');
     requestAnimationFrame(ensureVersionSwitch);
   });
