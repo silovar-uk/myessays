@@ -35,6 +35,10 @@ const canonicalIndex = JSON.parse(read('data/index.json'));
 const canonicalPaths = canonicalIndex.essays || [];
 const versionsIndex = JSON.parse(read('data/versions-index.json'));
 const versions = versionsIndex.articles || {};
+const versionDirectories = {
+  'en-mix': 'english-mix',
+  'es-mix': 'spanish-mix'
+};
 
 test('canonical essay index contains unique existing Japanese markdown files', () => {
   assert.ok(Array.isArray(canonicalPaths) && canonicalPaths.length > 0, 'data/index.json must contain essays');
@@ -69,8 +73,9 @@ test('every derived version belongs to a canonical article and declares the same
   Object.entries(versions).forEach(([articleId, entries]) => {
     assert.ok(canonicalIds.has(articleId), `versions-index contains non-canonical article id: ${articleId}`);
     Object.entries(entries || {}).forEach(([version, file]) => {
-      assert.ok(['en-mix', 'es'].includes(version), `${articleId} has unsupported version ${version}`);
+      assert.ok(Object.hasOwn(versionDirectories, version), `${articleId} has unsupported version ${version}`);
       assert.ok(exists(file), `${articleId}/${version} points to missing file: ${file}`);
+      assert.match(file, new RegExp(`^${versionDirectories[version]}/`), `${articleId}/${version} must stay under ${versionDirectories[version]}/: ${file}`);
       const meta = frontMatter(file);
       assert.equal(String(meta.id || '').trim(), articleId, `${file} must keep canonical id ${articleId}`);
     });
@@ -80,7 +85,7 @@ test('every derived version belongs to a canonical article and declares the same
 test('derived markdown files are indexed exactly once and never enter the canonical index', () => {
   const actualDerived = [
     ...markdownFiles('english-mix'),
-    ...markdownFiles('spanish')
+    ...markdownFiles('spanish-mix')
   ].sort();
   const indexedDerived = Object.values(versions)
     .flatMap(entries => Object.values(entries || {}))
@@ -90,4 +95,9 @@ test('derived markdown files are indexed exactly once and never enter the canoni
   actualDerived.forEach(file => {
     assert.equal(canonicalPaths.includes(file), false, `derived file must not be listed in data/index.json: ${file}`);
   });
+});
+
+test('legacy full-Spanish content directory is no longer an active publishing surface', () => {
+  assert.equal(exists('spanish'), false, 'legacy spanish/ directory should be removed; use spanish-mix/');
+  assert.ok(exists('spanish-mix/README.md'), 'Español Mix publishing contract should live under spanish-mix/');
 });
