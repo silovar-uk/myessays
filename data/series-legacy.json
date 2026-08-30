@@ -76,6 +76,11 @@
       "series": "中国古典思想・毎日3分",
       "seriesId": "chinese-classics-3min",
       "seriesOrder": 8
+    },
+    "decaf-coffee-how-caffeine-is-removed": {
+      "series": "身近なものの科学",
+      "seriesId": "science-behind-everyday-things",
+      "seriesOrder": 1
     }
   }
 }
