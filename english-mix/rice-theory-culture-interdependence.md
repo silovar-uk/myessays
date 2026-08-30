@@ -1,5 +1,5 @@
 ---
-id: rice-theory-culture-interdependence-mixed-en
+id: rice-theory-culture-interdependence
 title: "Does the way we farm shape the way we think?――稲作理論（Rice Theory）英語混じり版"
 subtitle: "Rice, wheat, interdependence, and individualism — what the evidence actually says"
 created: "2026-08-27"

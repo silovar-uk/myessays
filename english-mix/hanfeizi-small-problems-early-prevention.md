@@ -1,5 +1,5 @@
 ---
-id: hanfeizi-small-problems-early-prevention-mixed-en
+id: hanfeizi-small-problems-early-prevention
 title: "Fix it while it is still small――韓非子「千丈之堤」英語混じり版"
 subtitle: "中国古典思想・毎日3分 #13｜Small signs, early action, lower cost"
 created: "2026-08-26"

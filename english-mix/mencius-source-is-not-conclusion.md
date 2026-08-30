@@ -1,5 +1,5 @@
 ---
-id: mencius-source-is-not-conclusion-mixed-en
+id: mencius-source-is-not-conclusion
 title: "A source is evidence, not the conclusion――孟子「盡信《書》，則不如無《書》」英語混じり版"
 subtitle: "中国古典思想・毎日3分 #14｜Read the document, then read the situation"
 created: "2026-08-27"

@@ -1,5 +1,5 @@
 ---
-id: confucius-learning-through-practice-mixed-en
+id: confucius-learning-through-practice
 title: "Learning becomes yours through practice――孔子「学而時習之」英語混じり版"
 subtitle: "中国古典思想・毎日3分 #12｜From understanding to usable knowledge"
 created: "2026-08-26"

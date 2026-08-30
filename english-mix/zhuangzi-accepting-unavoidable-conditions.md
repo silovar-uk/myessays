@@ -1,5 +1,5 @@
 ---
-id: zhuangzi-accepting-unavoidable-conditions-mixed-en
+id: zhuangzi-accepting-unavoidable-conditions
 title: "Acceptance is not giving up――荘子「知其不可奈何而安之若命」英語混じり版"
 subtitle: "中国古典思想・毎日3分 #15｜Work with what you can, without fighting reality"
 created: "2026-08-27"
