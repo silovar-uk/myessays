@@ -2,8 +2,9 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = new Set(process.argv.slice(2));
 const format = args.has('--json') ? 'json' : 'markdown';
 const strict = args.has('--strict');
@@ -11,7 +12,6 @@ const write = args.has('--write');
 
 const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n?/g, '\n');
 const exists = file => fs.existsSync(path.join(root, file));
-const relative = file => path.relative(root, file).split(path.sep).join('/');
 
 function listMarkdown(directory) {
   const dir = path.join(root, directory);
@@ -72,14 +72,14 @@ function bodyChars(body) {
     .length;
 }
 
-function freshnessRisk(meta, body, file) {
-  const sample = `${file} ${textValue(meta.title)} ${textValue(meta.tags)} ${textValue(meta.keywords)} ${body.slice(0, 2500)}`.toLowerCase();
-  const high = [
-    '2026', 'current', 'latest', '最新', '現在', '現役', '選手', 'チーム', 'urawa', '浦和',
-    'marinos', 'マリノス', 'company', '企業', 'market', '市場', '株', 'fx', 'ai ', '生成ai',
+function freshnessRisk(meta, body) {
+  const sample = `${textValue(meta.title)} ${textValue(meta.tags)} ${textValue(meta.keywords)} ${body.slice(0, 2500)}`.toLowerCase();
+  const reviewTokens = [
+    'current', 'latest', '最新', '現在', '現役', '選手', 'チーム', 'urawa', '浦和',
+    'marinos', 'マリノス', 'company', '企業', 'market', '市場', '株', 'fx', '生成ai',
     'claude', 'software', 'node.js', '価格', '法律', 'hospital', '肺炎', 'health', '医療'
   ];
-  return high.some(token => sample.includes(token)) ? 'review' : 'low';
+  return reviewTokens.some(token => sample.includes(token)) ? 'review' : 'low';
 }
 
 const requiredCanonicalFields = ['id', 'title', 'created'];
@@ -156,7 +156,7 @@ const rows = canonicalPaths.map(file => {
     esMix: Boolean(versionEntry['es-mix']),
     legacyMixedEn,
     preferredMissing,
-    freshnessRisk: freshnessRisk(meta, body, file),
+    freshnessRisk: freshnessRisk(meta, body),
     migrationClass,
     priority,
     issues
@@ -197,13 +197,16 @@ if (legacySpanishFiles.length) {
 if (exists('spanish/README.md')) warnings.push('legacy contract remains: spanish/README.md');
 
 const driftChecks = [
-  ['README.md', /spanish\/|`es`|Español版|全文スペイン語/],
-  ['english-mix/README.md', /add `es`|Español version/],
-  ['spanish/README.md', /full Spanish|spanish\/|"es"|`es`/],
-  ['tests/data-integrity.test.js', /\['en-mix',\s*'es'\]|markdownFiles\('spanish'\)/]
+  ['README.md', source => /spanish\/|`es`|Español版|全文スペイン語/.test(source)],
+  ['english-mix/README.md', source => /add `es`|Español version/.test(source)],
+  ['spanish/README.md', source => /full Spanish|spanish\/|"es"|`es`/.test(source)],
+  ['tests/data-integrity.test.js', source => /\['en-mix',\s*'es'\]|markdownFiles\('spanish'\)/.test(source)],
+  ['tests/reader-versions.test.js', source => /\['en-mix',\s*'es'\]|spanish\/|\.es\b/.test(source)],
+  ['scripts/reading-versions-qa.cjs', source => /['"]es['"]|Saber no basta|La pregunta de hoy/.test(source)],
+  ['.github/workflows/visual-qa.yml', source => source.includes("- 'spanish/**'") && !source.includes("- 'spanish-mix/**'")]
 ];
 const specDrift = driftChecks
-  .filter(([file, pattern]) => exists(file) && pattern.test(read(file)))
+  .filter(([file, detector]) => exists(file) && detector(read(file)))
   .map(([file]) => file);
 
 const legacyCanonicalMixedEn = rows.filter(row => row.legacyMixedEn).map(row => row.path);
@@ -247,6 +250,7 @@ function markdownReport(data) {
     `- Legacy canonical *-mixed-en.md entries: ${s.legacyCanonicalMixedEnCount}`,
     `- Integrity errors: ${s.errors}`,
     `- Warnings: ${s.warnings}`,
+    `- Known spec-drift files: ${s.specDriftFiles}`,
     '',
     '## P0 / compatibility findings',
     ''
