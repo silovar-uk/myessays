@@ -1,6 +1,6 @@
 # English Mix publishing contract
 
-English Mix is a companion reading version for My Essays. The Japanese essay remains the canonical source.
+English Mix is a companion Reading Mode for My Essays. The Japanese essay remains the canonical source.
 
 ## Files
 
@@ -12,14 +12,16 @@ Both versions must use the same essay `id`. Reading status, After Reading entrie
 
 ## Mixing rules
 
-- Target English ratio: roughly 40–50%.
-- Mix at sentence level rather than translating whole sections.
-- Prefer an alternating rhythm of Japanese and English; avoid long uninterrupted English blocks.
-- Preserve the original structure, claims, numbers, links, examples, and argument order.
+- Target English ratio: roughly 40–50% as an editorial guide, not a mechanical quota.
+- Keep Japanese as the comprehension base.
+- Mix at sentence or phrase level rather than translating whole sections by default.
+- Avoid long uninterrupted English blocks when they make comparison with the canonical Japanese difficult.
+- Do not repeat every Japanese sentence with a full English translation.
+- Preserve the original structure, claims, numbers, links, examples, quotations and argument order unless there is a specific editorial reason not to.
 - Do not add facts or interpretations that are absent from the Japanese source.
 - English should be natural and understandable from context, not mechanically literal.
 - Keep difficult proper nouns or concepts in the language that preserves meaning most safely.
-- Headings may remain Japanese when that keeps navigation and comparison with the canonical version clear.
+- Keep H2-level section structure broadly aligned with the Japanese canonical article where practical so Reading Mode switching can preserve position.
 
 ## Publishing rule
 
@@ -40,4 +42,6 @@ Example:
 }
 ```
 
-If an Español version also exists, add `es` to the same article entry. The Library lists the essay only once; the reader exposes the available versions for that article.
+If an Español Mix version also exists, keep it under the same article entry as `es-mix` and store it under `spanish-mix/<essay-id>.md`. The Library remains Japanese-canonical and only indicates which companion Reading Modes are available.
+
+The repository-wide current contract is defined in [`../CURRENT_SPEC.md`](../CURRENT_SPEC.md).

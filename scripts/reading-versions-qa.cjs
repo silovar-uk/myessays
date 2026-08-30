@@ -3,6 +3,11 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
+const VERSION_BADGES = {
+  ja: 'JA',
+  'en-mix': 'EN MIX',
+  'es-mix': 'ES MIX'
+};
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -28,21 +33,49 @@ function overlaps(a, b) {
   await page.waitForSelector('#readerView:not([hidden])');
   await page.waitForSelector('#readerLanguageSwitch:not([hidden])');
 
-  for (const version of ['ja', 'en-mix', 'es']) {
+  const trigger = page.locator('.reader-language-trigger');
+  const menu = page.locator('#readerLanguageMenu');
+  const current = page.locator('.reader-language-current');
+
+  assert.equal(await trigger.getAttribute('aria-expanded'), 'false');
+  assert.equal(await menu.isHidden(), true, 'language menu should start collapsed');
+  assert.equal((await current.innerText()).trim(), 'JA');
+
+  await trigger.click();
+  assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
+  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
+  for (const version of ['ja', 'en-mix', 'es-mix']) {
     await page.waitForSelector(`[data-reader-version="${version}"]`);
   }
 
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded') === 'false');
+  assert.equal(await menu.isHidden(), true, 'Escape should close language menu');
+
+  await trigger.click();
+  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
+  await page.locator('#readerContent h1').click();
+  await page.waitForFunction(() => document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded') === 'false');
+  assert.equal(await menu.isHidden(), true, 'outside click should close language menu');
+
   const canonicalKey = `myessays:reading-state:${ESSAY_ID}`;
   await page.evaluate(({ key }) => {
-    localStorage.setItem(key, JSON.stringify({ openedAt: '2026-08-29T00:00:00.000Z' }));
+    localStorage.setItem(key, JSON.stringify({ openedAt: '2026-08-30T00:00:00.000Z' }));
   }, { key: canonicalKey });
 
-  const switchTo = async (version) => {
+  const switchTo = async version => {
+    const expectedBadge = VERSION_BADGES[version];
+    assert.ok(expectedBadge, `unknown version ${version}`);
+
+    if (await menu.isHidden()) await trigger.click();
+    await page.waitForSelector('#readerLanguageMenu:not([hidden])');
     await page.click(`[data-reader-version="${version}"]`);
-    await page.waitForFunction(expected => {
-      const button = document.querySelector(`[data-reader-version="${expected}"]`);
-      return button?.getAttribute('aria-pressed') === 'true';
-    }, version);
+    await page.waitForFunction(({ expectedVersion, badge }) => {
+      const option = document.querySelector(`[data-reader-version="${expectedVersion}"]`);
+      const currentBadge = document.querySelector('.reader-language-current')?.textContent?.trim();
+      const expanded = document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded');
+      return option?.getAttribute('aria-checked') === 'true' && currentBadge === badge && expanded === 'false';
+    }, { expectedVersion: version, badge: expectedBadge });
   };
 
   await page.evaluate(() => window.scrollTo({ top: Math.max(500, document.documentElement.scrollHeight * 0.42), behavior: 'auto' }));
@@ -53,30 +86,30 @@ function overlaps(a, b) {
   const scrollAfterEnglishMix = await page.evaluate(() => window.scrollY);
   assert.ok(scrollAfterEnglishMix > 200, `English Mix switch reset reading position: ${scrollAfterEnglishMix}`);
 
-  await switchTo('es');
-  await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Saber no basta'));
-  const scrollAfterSpanish = await page.evaluate(() => window.scrollY);
-  assert.ok(scrollAfterSpanish > 200, `Spanish switch reset reading position: ${scrollAfterSpanish}`);
-  assert.ok((await page.locator('#readerContent').innerText()).includes('La pregunta de hoy'));
-
-  const spanishTitle = await page.locator('#readerContent').innerText();
-  assert.match(spanishTitle, /Saber no basta/);
+  await switchTo('es-mix');
+  await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
+  const scrollAfterSpanishMix = await page.evaluate(() => window.scrollY);
+  assert.ok(scrollAfterSpanishMix > 200, `Español Mix switch reset reading position: ${scrollAfterSpanishMix}`);
+  const spanishMixText = await page.locator('#readerContent').innerText();
+  assert.match(spanishMixText, /日本語＋Español Mix/);
+  assert.match(spanishMixText, /Sabemos que es importante/);
+  assert.match(spanishMixText, /必要性も方法も知っている/);
 
   await switchTo('ja');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('知っているだけでは、まだ遠い'));
   assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'returning to Japanese should preserve a meaningful reading position');
 
-  for (let i = 0; i < 3; i += 1) {
+  for (let i = 0; i < 2; i += 1) {
     await switchTo('en-mix');
-    await switchTo('es');
+    await switchTo('es-mix');
     await switchTo('ja');
   }
 
   const storageKeys = await page.evaluate(() => Object.keys(localStorage));
   assert.ok(storageKeys.includes(canonicalKey));
-  assert.equal(storageKeys.some(key => key.includes(`${ESSAY_ID}:en-mix`) || key.includes(`${ESSAY_ID}:es`)), false);
+  assert.equal(storageKeys.some(key => key.includes(`${ESSAY_ID}:en-mix`) || key.includes(`${ESSAY_ID}:es-mix`)), false);
 
-  const legacyRequests = requestedUrls.filter(url => /\/data\/mix-index\.json(?:[?#]|$)|\/data\/glossar(?:y|ies)(?:[/?#]|$)|\/glossary-tools\.(?:js|css)(?:[?#]|$)/.test(url));
+  const legacyRequests = requestedUrls.filter(url => /\/data\/mix-index\.json(?:[?#]|$)|\/spanish\/(?!-mix)|\/data\/glossar(?:y|ies)(?:[/?#]|$)|\/glossary-tools\.(?:js|css)(?:[?#]|$)/.test(url));
   assert.deepEqual(legacyRequests, [], `legacy resources should not be requested: ${legacyRequests.join(', ')}`);
   assert.deepEqual(pageErrors, []);
   assert.deepEqual(failedRequests, []);
@@ -85,13 +118,21 @@ function overlaps(a, b) {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForSelector('#readerLanguageSwitch:not([hidden])');
+  assert.equal(await page.locator('#readerLanguageMenu').isHidden(), true, 'mobile language menu should remain collapsed by default');
   const switchBox = await page.locator('#readerLanguageSwitch').boundingBox();
-  assert.ok(switchBox, 'version switch should be visible on mobile');
-  assert.ok(switchBox.x >= 0 && switchBox.x + switchBox.width <= 320.5, `version switch overflows mobile viewport: ${JSON.stringify(switchBox)}`);
+  assert.ok(switchBox, 'language switch should be visible on mobile');
+  assert.ok(switchBox.x >= 0 && switchBox.x + switchBox.width <= 320.5, `language switch overflows mobile viewport: ${JSON.stringify(switchBox)}`);
 
   const noteBox = await page.locator('#noteTab').boundingBox();
   assert.ok(noteBox, 'note tab should remain visible on mobile');
-  assert.equal(overlaps(switchBox, noteBox), false, `version switch overlaps note tab: switch=${JSON.stringify(switchBox)} note=${JSON.stringify(noteBox)}`);
+  assert.equal(overlaps(switchBox, noteBox), false, `language switch overlaps note tab: switch=${JSON.stringify(switchBox)} note=${JSON.stringify(noteBox)}`);
+
+  await page.locator('.reader-language-trigger').click();
+  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
+  const menuBox = await page.locator('#readerLanguageMenu').boundingBox();
+  assert.ok(menuBox, 'language menu should open on mobile');
+  assert.ok(menuBox.x >= 0 && menuBox.x + menuBox.width <= 320.5, `language menu overflows mobile viewport: ${JSON.stringify(menuBox)}`);
+  await page.keyboard.press('Escape');
 
   const tocSafety = await page.evaluate(async () => {
     window.__myessaysTocProbe = 0;
@@ -99,8 +140,8 @@ function overlaps(a, b) {
       id: 'toc-security-probe',
       title: 'TOC safety probe',
       type: 'Essay',
-      created: '2026-08-29',
-      updated: '2026-08-29',
+      created: '2026-08-30',
+      updated: '2026-08-30',
       favorite: 0,
       grow: 0,
       tags: [],
