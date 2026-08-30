@@ -32,7 +32,7 @@ Keep these streams separate whenever possible.
 - Reading Mode keys;
 - legacy files/directories;
 - front-matter syntax;
-- tests and publishing contracts.
+- tests, browser QA, CI triggers and publishing contracts.
 
 ### Editorial stream
 
@@ -75,7 +75,7 @@ None.
 - roadmap names concrete P0 work;
 - no content article is rewritten in the baseline PR.
 
-## 4. Batch 0B — Specification drift cleanup
+## 4. Batch 0B — Specification and QA contract cleanup
 
 **Priority:** P0
 **Migration class:** infrastructure/contract, not article class
@@ -86,6 +86,9 @@ None.
 - `english-mix/README.md`
 - legacy `spanish/README.md`
 - `tests/data-integrity.test.js`
+- `tests/reader-versions.test.js`
+- `scripts/reading-versions-qa.cjs`
+- `.github/workflows/visual-qa.yml`
 - potentially old Spanish implementation-plan documentation if it can be mistaken for the active contract
 
 ### Work
@@ -95,14 +98,27 @@ None.
 3. Remove the obsolete active publishing contract under `spanish/` or replace it with a short migration pointer.
 4. Update data-integrity tests to support only `en-mix` and `es-mix`.
 5. Enumerate `english-mix/` and `spanish-mix/` as derived directories.
-6. Add assertions preventing derived modes from appearing in `data/index.json`.
-7. Run existing tests plus the migration audit.
+6. Update Reader Version tests to assert `es-mix`, `spanish-mix/<id>.md` and Japanese+Spanish mixed content.
+7. Update browser Reading Mode QA to open the disclosure UI before selecting modes, check `aria-expanded`/close behavior, switch to `es-mix`, and validate current Español Mix content instead of the deleted full-Spanish text.
+8. Update localStorage assertions so derived Reading Modes do not create mode-specific state keys.
+9. Update workflow path triggers so `spanish-mix/**` changes run QA; retain `spanish/**` only if intentionally watching legacy cleanup.
+10. Add assertions preventing derived modes from appearing in `data/index.json`.
+11. Run static tests, browser Reading Mode QA, visual QA and the migration audit.
 
 ### Reject if
 
 - the old `es` key is still described as a valid new-content option;
 - tests and runtime disagree;
+- browser QA bypasses the new disclosure interaction;
+- a current `spanish-mix/**` change can skip the relevant CI trigger;
 - a full-Spanish translation workflow remains presented as current.
+
+### Done when
+
+- runtime, documentation, static tests, browser QA and workflow path triggers all agree on `ja / en-mix / es-mix`;
+- current Español Mix paths trigger QA;
+- there is no active publishing instruction for full-Spanish articles;
+- no article bodies have been modernized as part of this infrastructure cleanup.
 
 ## 5. Batch 1 — Legacy `*-mixed-en.md` canonical cleanup
 
@@ -161,6 +177,7 @@ Use `tools/audit-content.mjs` as the inventory baseline.
 - unindexed derived files;
 - derived files accidentally registered as canonical;
 - legacy Spanish dependencies;
+- documentation/test/browser-QA/workflow drift;
 - obvious local-path/reference breakage where mechanically detectable.
 
 ### Editorial rule
@@ -352,6 +369,7 @@ At minimum:
 - search finds canonical article correctly;
 - available Reading Mode badges are correct;
 - Language disclosure only shows available modes;
+- disclosure opens/closes by click, selection, outside click and Escape;
 - switching modes keeps the same logical article ID;
 - reading position remains reasonable across modes;
 - Note/reading state remains shared;
@@ -404,13 +422,15 @@ Do not delete a legacy companion until:
 
 ## 18. Immediate next action after this baseline
 
-Proceed to **Batch 0B — Specification drift cleanup**.
+Proceed to **Batch 0B — Specification and QA contract cleanup**.
 
 Do not begin broad article modernization before:
 
 1. current documentation is aligned;
-2. data-integrity tests match `es-mix` / `spanish-mix/`;
-3. the audit can be rerun against the same contract;
-4. the five `*-mixed-en.md` canonical companions have an explicit Batch 1 migration route.
+2. static data and Reader Version tests match `es-mix` / `spanish-mix/`;
+3. browser Reading Mode QA drives the current disclosure UI and Español Mix content;
+4. workflow path triggers cover `spanish-mix/**`;
+5. the audit can be rerun against the same contract;
+6. the five `*-mixed-en.md` canonical companions have an explicit Batch 1 migration route.
 
-That sequence prevents the migration project itself from creating new legacy content while it is trying to remove old legacy content.
+That sequence prevents the migration project itself from creating or approving new legacy content while it is trying to remove old legacy content.
