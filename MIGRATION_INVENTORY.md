@@ -41,7 +41,7 @@ Current Español Mix content exists under `spanish-mix/` and is registered with 
 
 ## 3. Confirmed P0 specification drift
 
-These are not article-writing problems. They are contract/infrastructure drift that can cause future content to be created incorrectly.
+These are not article-writing problems. They are contract/infrastructure drift that can cause future content to be created incorrectly or allow current regressions to pass unnoticed.
 
 ### P0-01 — Root README documents the old Spanish model
 
@@ -80,6 +80,37 @@ No current full-Spanish article remains there, but the contract itself is a high
 This means the test contract and production contract disagree.
 
 **Migration type:** Mechanical / Test contract
+
+### P0-05 — Reader Version test still validates full Spanish
+
+`tests/reader-versions.test.js` still:
+
+- accepts `es`;
+- expects `spanish/<id>.md`;
+- checks old full-Spanish title/section strings.
+
+**Migration type:** Mechanical / Test contract
+
+### P0-06 — Browser Reading Mode QA still drives the legacy UI/content model
+
+`scripts/reading-versions-qa.cjs` still:
+
+- expects `ja`, `en-mix`, `es`;
+- clicks version buttons directly without opening the new disclosure UI;
+- checks full-Spanish strings such as the old Spanish title/section;
+- checks localStorage using the legacy `:es` suffix pattern.
+
+The browser QA therefore does not currently verify the production Español Mix disclosure behavior.
+
+**Migration type:** Mechanical / Browser QA
+
+### P0-07 — Visual QA workflow does not watch current Español Mix paths
+
+`.github/workflows/visual-qa.yml` watches `spanish/**` but not `spanish-mix/**`.
+
+A change limited to current Español Mix content can therefore miss the automatic QA trigger.
+
+**Migration type:** Mechanical / CI trigger
 
 ## 4. Confirmed P0 legacy canonical Reading Modes
 
@@ -257,7 +288,8 @@ Current-spec or integrity conflicts:
 - unsupported version key/path;
 - duplicate ID/path;
 - missing file;
-- stale publishing contract that can recreate invalid content.
+- stale publishing contract that can recreate invalid content;
+- test/QA contract that validates obsolete Reading Mode behavior.
 
 ### P1
 
@@ -294,7 +326,7 @@ Archive/reference articles that already behave correctly and do not justify majo
 - unsupported version keys;
 - derived ID mismatches;
 - unindexed derived Markdown;
-- known documentation/test specification drift;
+- known documentation/test/browser-QA/workflow specification drift;
 - a conservative freshness-review flag.
 
 Run:
@@ -341,10 +373,12 @@ The audit tool provides reproducible mechanical inventory. Human editorial class
 
 The next work should be Batch 0B, not article modernization:
 
-1. align README/contracts/tests with `CURRENT_SPEC.md`;
+1. align README and publishing contracts with `CURRENT_SPEC.md`;
 2. remove or replace the legacy full-Spanish contract;
-3. make data-integrity tests enforce `es-mix` / `spanish-mix/`;
-4. run the audit again;
-5. then migrate the five P0 canonical `*-mixed-en.md` companions in a separate mechanical PR.
+3. update `tests/data-integrity.test.js` and `tests/reader-versions.test.js` for `es-mix` / `spanish-mix/`;
+4. update `scripts/reading-versions-qa.cjs` for the disclosure UI and Español Mix content;
+5. update `.github/workflows/visual-qa.yml` to watch `spanish-mix/**` rather than the obsolete active path;
+6. run the audit and existing QA again;
+7. then migrate the five P0 canonical `*-mixed-en.md` companions in a separate mechanical PR.
 
 Only after those P0 contracts are clean should broad article-by-article modernization begin.
