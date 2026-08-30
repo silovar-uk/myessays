@@ -2,102 +2,178 @@
   position: fixed;
   z-index: 32;
   right: 8px;
-  top: calc(39% - 66px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
+  top: calc(39% - 36px);
   width: max-content;
   max-width: calc(100vw - 24px);
   margin: 0;
-  padding: 6px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: rgba(244,241,234,.95);
-  box-shadow: 0 8px 28px rgba(39,32,24,.07);
-  backdrop-filter: blur(10px);
-  transition: opacity .14s ease, transform .14s ease;
 }
 
-.reader-language-switch[hidden] {
+.reader-language-switch[hidden],
+.reader-language-menu[hidden] {
   display: none !important;
 }
 
-.reader-language-switch-label {
-  align-self: flex-start;
-  padding-left: 4px;
-  color: var(--muted);
-  font-size: 7.5px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  line-height: 1;
-}
-
-.reader-language-switch-buttons {
-  display: inline-flex;
-  align-items: stretch;
-  gap: 2px;
-  padding: 2px;
-  border-radius: 999px;
-  background: rgba(213,207,194,.42);
-}
-
-.reader-language-switch button {
+.reader-language-trigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 26px;
-  padding: 4px 8px;
-  border: 0;
+  gap: 5px;
+  min-height: 30px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: transparent;
+  background: rgba(244,241,234,.94);
   color: var(--muted);
-  font-size: 9.5px;
-  font-weight: 700;
-  line-height: 1.15;
-  white-space: nowrap;
+  box-shadow: 0 6px 22px rgba(39,32,24,.06);
+  backdrop-filter: blur(10px);
   cursor: pointer;
-  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 
-.reader-language-switch button:hover:not(.is-active) {
-  background: rgba(255,255,255,.54);
-  color: var(--ink);
-}
-
-.reader-language-switch button.is-active {
+.reader-language-trigger:hover,
+.reader-language-trigger:focus-visible,
+.reader-language-switch.is-open .reader-language-trigger {
   background: rgba(255,255,255,.96);
   color: var(--ink);
-  box-shadow: 0 2px 8px rgba(39,32,24,.08);
+  border-color: rgba(39,32,24,.22);
+  box-shadow: 0 8px 26px rgba(39,32,24,.09);
+}
+
+.reader-language-trigger:focus-visible,
+.reader-language-option:focus-visible {
+  outline: 2px solid rgba(180,62,49,.34);
+  outline-offset: 2px;
+}
+
+.reader-language-current {
+  font: 800 9px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+
+.reader-language-chevron {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1;
+  transform: translateY(-1px);
+  transition: transform .16s ease;
+}
+
+.reader-language-switch.is-open .reader-language-chevron {
+  transform: translateY(1px) rotate(180deg);
+}
+
+.reader-language-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 7px);
+  width: 174px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(244,241,234,.985);
+  box-shadow: 0 14px 38px rgba(39,32,24,.12);
+  backdrop-filter: blur(12px);
+}
+
+.reader-language-menu-label {
+  display: block;
+  margin: 0 5px 6px;
+  color: var(--muted);
+  font: 800 7.5px/1 Inter, "Hiragino Sans", sans-serif;
+  letter-spacing: .13em;
+}
+
+.reader-language-options {
+  display: grid;
+  gap: 2px;
+}
+
+.reader-language-option {
+  display: grid;
+  grid-template-columns: 17px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 7px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+  transition: background .14s ease, color .14s ease;
+}
+
+.reader-language-option:hover,
+.reader-language-option:focus-visible {
+  background: rgba(255,255,255,.62);
+  color: var(--ink);
+}
+
+.reader-language-option.is-active {
+  background: rgba(255,255,255,.86);
+  color: var(--ink);
+}
+
+.reader-language-check {
+  color: var(--accent);
+  font: 800 10px/1 Inter, sans-serif;
+}
+
+.reader-language-option > span:nth-child(2) {
+  font: 700 9.5px/1.25 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  white-space: nowrap;
+}
+
+.reader-language-option small {
+  color: var(--muted);
+  font: 800 7px/1 Inter, "Hiragino Sans", sans-serif;
+  letter-spacing: .04em;
+  white-space: nowrap;
 }
 
 @media (max-width: 760px) {
   .reader-language-switch {
     top: auto;
-    right: 8px;
-    bottom: 146px;
-    padding: 5px;
-    border-radius: 11px;
-    max-width: calc(100vw - 16px);
+    right: 10px;
+    bottom: 18px;
+    max-width: calc(100vw - 20px);
   }
 
-  .reader-language-switch-label {
-    font-size: 7px;
+  .reader-language-trigger {
+    min-height: 34px;
+    padding: 7px 10px;
+    background: rgba(244,241,234,.97);
+    box-shadow: 0 8px 28px rgba(39,32,24,.08);
   }
 
-  .reader-language-switch-buttons {
-    max-width: calc(100vw - 28px);
-    overflow-x: auto;
-    scrollbar-width: none;
+  .reader-language-current {
+    font-size: 9.5px;
   }
 
-  .reader-language-switch-buttons::-webkit-scrollbar {
-    display: none;
+  .reader-language-menu {
+    top: auto;
+    right: 0;
+    bottom: calc(100% + 8px);
+    width: min(190px, calc(100vw - 20px));
   }
 
-  .reader-language-switch button {
-    min-height: 27px;
-    padding: 4px 7px;
-    font-size: 9px;
+  .reader-language-option {
+    min-height: 36px;
+  }
+
+  .reader-language-option > span:nth-child(2) {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-language-trigger,
+  .reader-language-chevron,
+  .reader-language-option {
+    transition: none;
   }
 }

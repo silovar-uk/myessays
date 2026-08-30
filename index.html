@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="reader-gpt-bridge.css?v=20260817-1017">
   <link rel="stylesheet" href="reader-content.css?v=20260816-1931">
   <link rel="stylesheet" href="reading-status.css?v=20260822-2140">
-  <link rel="stylesheet" href="reader-versions.css?v=20260829-1815">
+  <link rel="stylesheet" href="reader-versions.css?v=20260830-2258">
   <link rel="stylesheet" href="library-versions.css?v=20260829-1815">
   <link rel="stylesheet" href="reading-locators.css?v=20260819-2326">
   <link rel="stylesheet" href="series.css?v=20260824-1637">
@@ -140,15 +140,15 @@
       <ol>
         <li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li>
         <li>日本語版を <code>essays/YYYY-MM-DD-slug.md</code> として保存し、<code>data/index.json</code> にパスを追加する。</li>
-        <li>English Mix版も作る場合は、同じ記事IDで <code>english-mix/記事ID.md</code> を作る。文単位で日本語と英語を交互にし、英語比率40〜50%を基本とする。</li>
-        <li>Español版も作る場合は、同じ記事IDで <code>spanish/記事ID.md</code> を作る。<code>title</code>、<code>subtitle</code>、<code>abstract</code> はスペイン語で上書きできる。</li>
-        <li><code>data/versions-index.json</code> の同じ記事IDへ、作成した版のパスを <code>en-mix</code> / <code>es</code> として登録する。</li>
+        <li>English Mix版も作る場合は、同じ記事IDで <code>english-mix/記事ID.md</code> を作る。日本語を基盤に英語を自然に混ぜ、内容理解を壊さないことを優先する。</li>
+        <li>Español Mix版も作る場合は、同じ記事IDで <code>spanish-mix/記事ID.md</code> を作る。日本語を基盤にスペイン語を自然に混ぜ、完全スペイン語版にはしない。</li>
+        <li><code>data/versions-index.json</code> の同じ記事IDへ、作成した版のパスを <code>en-mix</code> / <code>es-mix</code> として登録する。</li>
         <li>連載にする場合は日本語正本のfront matterに同じ <code>series</code> 名と数値の <code>seriesOrder</code> を付ける。Series・読了状態・After Reading・ブラウザ内メモは記事ID単位で共有される。</li>
         <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。MyEssaysでは、本文中で入力した1行改行も編集意図として表示へ反映する。</li>
         <li>論証構造を付ける場合は、Sentenceの直前に <code>&lt;!-- level:4 role:claim --&gt;</code> のようなメタ情報を置く。同一段落では空行を挟まず、1文1行で連続して記述する。</li>
         <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
       </ol>
-      <p class="dialog-note">日本語版を正本とし、English Mix版とEspañol版は同じ記事の派生表示として扱う。派生版は別記事として <code>data/index.json</code> に登録しない。Structure情報は任意で、未設定の記事は従来どおり表示される。</p>
+      <p class="dialog-note">日本語版を正本とし、English Mix版とEspañol Mix版は外国語を文脈の中で読むための派生Reading Modeとして扱う。完全英語版・完全スペイン語版は作らない。派生版は別記事として <code>data/index.json</code> に登録しない。Structure情報は任意で、未設定の記事は従来どおり表示される。</p>
     </form>
   </dialog>
 
@@ -157,7 +157,7 @@
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="app.js?v=20260829-2045" defer></script>
   <script src="argument-metadata-compat.js?v=20260830-2207" defer></script>
-  <script src="library-versions.js?v=20260829-1815" defer></script>
+  <script src="library-versions.js?v=20260830-2258" defer></script>
   <script src="native-essay-links.js?v=20260817-0931" defer></script>
   <script src="markdown-engine.js?v=20260816-1931" defer></script>
   <script src="argument-structure.js?v=20260830-2207" defer></script>
@@ -176,7 +176,7 @@
   <script src="ui-enhancements.js?v=20260824-2337" defer></script>
   <script src="reading-state-ui.js?v=20260822-2140" defer></script>
   <script src="reading-locators.js?v=20260829-2033" defer></script>
-  <script src="reader-versions.js?v=20260829-1815" defer></script>
+  <script src="reader-versions.js?v=20260830-2258" defer></script>
   <script src="series.js?v=20260824-1651" defer></script>
 </body>
 </html>

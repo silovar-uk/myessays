@@ -4,7 +4,7 @@
   const INDEX_URL = 'data/versions-index.json';
   const VERSION_DEFINITIONS = {
     'en-mix': { label: 'English Mix', badge: 'EN MIX' },
-    es: { label: 'Español', badge: 'ES' }
+    'es-mix': { label: 'Español Mix', badge: 'ES MIX' }
   };
 
   const filters = document.querySelector('#filterPanel .filters');
