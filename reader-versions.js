@@ -383,6 +383,7 @@
     const switcher = document.getElementById('readerLanguageSwitch');
     if (!switcher?.classList.contains('is-open')) return;
     event.preventDefault();
+    event.stopPropagation();
     setDisclosureOpen(switcher, false, { focusTrigger: true });
   });
 
