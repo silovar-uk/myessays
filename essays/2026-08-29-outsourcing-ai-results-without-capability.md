@@ -3,7 +3,7 @@ id: outsourcing-ai-results-without-capability
 title: "成果は外注できる。でも、能力まで外に出すと何も残らない"
 subtitle: "外注とAIに共通する、短期効率と長期資産のトレードオフ"
 created: "2026-08-29"
-updated: "2026-08-29"
+updated: "2026-08-30"
 type: "Conceptual Paper"
 status: "完成"
 tags: ["AI", "外注", "組織学習", "知識", "生産性", "能力開発", "仕事術"]
@@ -114,12 +114,13 @@ Ali YakhlefはITアウトソーシングのケース研究で、外注するた�
 
 [Absorptive Capacity: A New Perspective on Learning and Innovation — Cohen & Levinthal](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1504447)
 
+<!-- level:4 role:claim -->
 少し逆説的だが、**外部の専門家をうまく使うためにも、内部にある程度の専門性が必要**なのである。
-
+<!-- level:2 role:description -->
 何も知らなければ、何が良い成果なのか判断できない。質問もできない。相手の説明のどこが重要か見抜けない。
-
+<!-- level:3 role:analysis -->
 外注の問題は「外に頼むこと」ではない。
-
+<!-- level:5 role:implication -->
 **外から返ってきた知識を、内部の知識へ変換する回路がないこと**である。
 
 ## 5. AIは「外注の摩擦」をほぼゼロにした
@@ -184,24 +185,26 @@ AIにも同じ補助線を引ける。
 
 ## 7. 「夕食を買う」と「料理がうまくなる」は違う
 
+<!-- level:3 role:bridge -->
 もっと日常的な比喩でもいい。
-
+<!-- level:2 role:description -->
 料理する時間がない日に、完成した夕食を買うのは合理的だ。毎回すべて自炊する必要はない。
-
+<!-- level:3 role:analysis -->
 でも、完成品を買うこと自体では、包丁の使い方や火加減は上達しない。
-
+<!-- level:2 role:description -->
 ジムでも同じである。
-
+<!-- level:1 role:evidence -->
 重いバーベルを誰かに代わりに持ち上げてもらえば、バーベルは上がる。しかし、自分の筋肉は鍛えられない。
-
+<!-- level:4 role:claim -->
 ここで言いたいのは、**外部資源を使うな、ではない。何を成果として数えているかを分けろ**ということだ。
 
+<!-- level:2 role:description -->
 今日の夕食が必要なら買えばいい。
-
+<!-- level:2 role:description -->
 今日の納品が最優先なら外注すればいい。
-
+<!-- level:2 role:description -->
 今日の文章が必要ならAIに下書きさせればいい。
-
+<!-- level:5 role:implication -->
 ただし同時に、「次回は自分たちが何をできるようになっていたいのか」を決めておく。
 
 ## 8. 仕事で残せる資産は、少なくとも4種類ある
@@ -334,34 +337,37 @@ AIは、この資産化をむしろやりやすくする。
 
 ## 12. 「外注するか」ではなく「何を内部に残すか」
 
+<!-- level:4 role:claim -->
 外注とAIの議論は、つい二択になりやすい。
-
+<!-- level:2 role:description -->
 自分でやるか、任せるか。
-
+<!-- level:2 role:description -->
 AIを使うか、使わないか。
-
+<!-- level:3 role:analysis -->
 でも、本当の設計変数はそこではない。
-
+<!-- level:5 role:claim -->
 **実行を外へ出しても、学習の所有権まで外へ出す必要はない。**
 
+<!-- level:2 role:description -->
 専門家に作ってもらいながら、その判断基準を学べる。
-
+<!-- level:2 role:description -->
 AIに下書きを作らせながら、自分の編集力を上げることもできる。
-
+<!-- level:2 role:description -->
 GPSで目的地へ向かいながら、自分でルートを考え、ランドマークを意識することもできる。
-
+<!-- level:4 role:claim -->
 短期効率と長期学習は、必ずしも敵ではない。
-
+<!-- level:3 role:analysis -->
 問題は、効率化で浮いた時間を次の成果物へ全部使い、**学習の回収を一度もしないこと**である。
-
+<!-- level:4 role:claim -->
 最も強い外注やAI活用は、単に「自分の代わりにやってもらう」ことではない。
-
+<!-- level:5 role:implication -->
 **今日の仕事を速く終わらせながら、明日の自分を少し強くすること。**
 
+<!-- level:4 role:claim -->
 成果を外注するのはいい。
-
+<!-- level:4 role:qualification -->
 ただし、次回の成果を生む能力まで外注しない。
-
+<!-- level:5 role:implication -->
 その境界を設計すること自体が、AI時代に残る重要な能力なのだと思う。
 
 ## 参考文献・関連資料
