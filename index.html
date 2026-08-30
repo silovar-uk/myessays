@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="library-versions.css?v=20260829-1815">
   <link rel="stylesheet" href="reading-locators.css?v=20260819-2326">
   <link rel="stylesheet" href="series.css?v=20260824-1637">
+  <link rel="stylesheet" href="argument-structure.css?v=20260830-2207">
 </head>
 <body>
   <header class="site-header">
@@ -144,9 +145,10 @@
         <li><code>data/versions-index.json</code> の同じ記事IDへ、作成した版のパスを <code>en-mix</code> / <code>es</code> として登録する。</li>
         <li>連載にする場合は日本語正本のfront matterに同じ <code>series</code> 名と数値の <code>seriesOrder</code> を付ける。Series・読了状態・After Reading・ブラウザ内メモは記事ID単位で共有される。</li>
         <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。MyEssaysでは、本文中で入力した1行改行も編集意図として表示へ反映する。</li>
+        <li>論証構造を付ける場合は、Sentenceの直前に <code>&lt;!-- level:4 role:claim --&gt;</code> のようなメタ情報を置く。同一段落では空行を挟まず、1文1行で連続して記述する。</li>
         <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
       </ol>
-      <p class="dialog-note">日本語版を正本とし、English Mix版とEspañol版は同じ記事の派生表示として扱う。派生版は別記事として <code>data/index.json</code> に登録しない。</p>
+      <p class="dialog-note">日本語版を正本とし、English Mix版とEspañol版は同じ記事の派生表示として扱う。派生版は別記事として <code>data/index.json</code> に登録しない。Structure情報は任意で、未設定の記事は従来どおり表示される。</p>
     </form>
   </dialog>
 
@@ -154,9 +156,11 @@
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="app.js?v=20260829-2045" defer></script>
+  <script src="argument-metadata-compat.js?v=20260830-2207" defer></script>
   <script src="library-versions.js?v=20260829-1815" defer></script>
   <script src="native-essay-links.js?v=20260817-0931" defer></script>
   <script src="markdown-engine.js?v=20260816-1931" defer></script>
+  <script src="argument-structure.js?v=20260830-2207" defer></script>
 
   <!-- Reader lifecycle -->
   <script src="reader-runtime.js?v=20260816-1856" defer></script>
