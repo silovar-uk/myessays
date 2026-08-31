@@ -62,7 +62,7 @@ Draft a good player. Sign a good player through FA. Trade for a good player.
 
 第2回で見た「役割（role）」という概念は、ここでも生きてくる。
 
-NEEDは「選手が何人足りないか」ではなく、**"what role is missing, on what time horizon"**という形で立てるほうが編成問題として扱いやすい。
+NEEDは「選手が何人足りないか」ではなく、"**what role is missing, on what time horizon**"という形で立てるほうが編成問題として扱いやすい。
 
 ---
 
@@ -129,7 +129,7 @@ MECHANISMは、思いついたときにいつでも自由に使えるわけで�
 
 **Support-roster cap (支配下枠)**
 
-野球協約により、球団が同一年度中に支配下選手として保有できる人数には上限があり、広く**"the 70-player cap"**と呼ばれている。第6回で確認した2026年7月31日時点の支配下登録合計（12球団で836名）は、この上限と矛盾しない範囲に収まっている。
+野球協約により、球団が同一年度中に支配下選手として保有できる人数には上限があり、広く"**the 70-player cap**"と呼ばれている。第6回で確認した2026年7月31日時点の支配下登録合計（12球団で836名）は、この上限と矛盾しない範囲に収まっている。
 
 **Development-player quota**
 
