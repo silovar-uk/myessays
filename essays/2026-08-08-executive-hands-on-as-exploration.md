@@ -1,456 +1,297 @@
 ---
 id: executive-hands-on-as-exploration
-title: "作ることは、知ることである"
-subtitle: "生成AI時代の経営者によるハンズオン開発を「探索」として再定義する――比較優位に基づく時間配分論の再検討"
+title: "作ることは、知るためのプローブになる"
+subtitle: "生成AI時代の経営者ハンズオンを、探索・情報取得・委任の条件から再検討する"
 created: "2026-08-08"
-updated: "2026-08-08"
+updated: "2026-08-31"
 type: "Conceptual Paper"
 status: "完成"
-tags: ["生成AI", "経営", "探索", "組織学習", "プロトタイピング", "比較優位"]
-keywords: ["exploration", "organizational learning", "generative AI", "experimentation", "absorptive capacity", "sticky information", "prototyping"]
+tags: ["生成AI", "経営", "探索", "組織学習", "プロトタイピング", "委任"]
+keywords: ["hands-on management", "exploration", "organizational learning", "experimentation", "sticky information", "absorptive capacity", "prototyping", "delegation"]
 favorite: 5
 grow: 5
-abstract: "本稿は、経営者が生成AIを用いて社内ツールやSaaS代替を自作する行為を、単純な生産活動として機会費用だけで評価する議論を再検討する。組織学習、探索／活用、実験研究、sticky information、absorptive capacity、人間―AI協働研究を統合し、ハンズオン開発がAI適合性の情報獲得、局所知の発見、吸収能力形成、問題の前倒し発見、将来選択肢の創出を同時に生みうることを論じる。結論として、経営者の自作は恒常的な内製ではなく「探索的内製」として条件付きで合理化されうる。"
+abstract: "経営者が生成AIで自らツールを作る行為は、単純な生産活動とも、自動的に探索活動とも言えない。実験、sticky information、situated learning、absorptive capacityの研究は、小さな試作が意思決定に必要な情報を生む可能性を示す一方、inventor CEO研究は、継続的なhands-on involvementが企業のinnovationをexploratoryではなくexploitativeな方向へ狭めうることも示している。本稿は『経営者が作るべきか』という二択を退け、意思決定に直結する不確実性を減らすための限定的・可逆的なhands-on probeとして合理化できる条件と、その後に委任へ切り替える条件を整理する。"
 ---
 
-# 作ることは、知ることである
-## 生成AI時代の経営者によるハンズオン開発を「探索」として再定義する――比較優位に基づく時間配分論の再検討
+# 作ることは、知るためのプローブになる
+## 生成AI時代の経営者ハンズオンを、探索・情報取得・委任の条件から再検討する
 
-### 要旨
+生成AIによって、経営者自身が数時間で社内ツールやプロトタイプを作れる場面が増えた。
 
-経営者が生成AIを用いて社内ツールを自作し、既存SaaSの代替を試みる行為に対して、「経営者には意思決定や資源配分という比較優位があるのだから、開発に時間を使うべきではない」という批判がある。この批判は、経営者の希少な注意資源と機会費用を可視化する点で重要である。しかし本稿は、その批判がハンズオン開発を**生産活動としてのみ評価している**場合、重要な価値を取り落とすと論じる。
+そこで二つの反応が生まれる。
 
-組織学習論では、既知の能力を効率的に利用する「活用（exploitation）」と、新しい可能性について不確実性を減らす「探索（exploration）」は区別される（March, 1991）。また、実験は成果物を生むだけでなく、何が可能か、どこで失敗するか、どの仮定が誤っているかについて情報を生む（Thomke, 1998; Thomke & Bell, 2001）。さらに、新技術の学習は文脈に埋め込まれ（Tyre & von Hippel, 1997）、問題解決に必要な情報は移転コストの高い「sticky information」となりうる（von Hippel, 1994）。したがって、経営者がAIを使って短時間のプロトタイプを自ら作る行為は、完成品の生産ではなく、AIの能力境界、業務の構造、仕様化困難な局所知を発見する**探索行為**として理解できる。
+一つは、「経営者こそAIを触り、自分で作るべきだ」という称賛である。もう一つは、「経営者の時間にはもっと高い機会費用があるのだから、実装は専門家へ任せるべきだ」という批判である。
 
-生成AIではこの論点が特に重要になる。AIの性能はタスク間で滑らかに変化せず、似た仕事でも有効性が大きく異なる「jagged technological frontier」が実証されている（Dell’Acqua et al., 2026a）。また、企業におけるAI導入では、技術を所有することよりも「どこで、どう使えば価値が出るか」を発見すること自体がボトルネックになりうる（Kim, Kim, & Koning, 2026）。この状況では、AI活用方針を抽象的に設計するだけでなく、小さく作って局所的な因果関係を観察することに情報価値がある。
+どちらも半分正しい。
 
-本稿は、この行為を**探索的内製（exploratory insourcing）**と呼ぶ。探索的内製とは、恒常的に実務を抱え込むことではなく、意思決定者が不確実性の高い局面で、限定的・可逆的な実装を自ら行い、戦略判断に必要な情報と吸収能力を獲得した後、運用を適切な専門家や組織へ移すことである。本稿の結論は「経営者はコードを書くべきだ」ではない。より限定された命題は、**経営者のハンズオン活動を評価するとき、直接成果と機会費用だけでなく、情報価値・学習価値・オプション価値を同時に計上しなければならない**というものである。実践原則としては、「探るために作り、回すために任せる」と要約できる。
+問題は、**手を動かすこと自体に価値があるか**ではない。
 
-**キーワード**：生成AI、探索、活用、組織学習、実験、プロトタイピング、absorptive capacity、sticky information、比較優位
+<!-- level:4 role:claim -->
+経営者のハンズオン活動は、それだけでは探索でも学習でもない。
+<!-- level:2 role:description -->
+同じ一時間の実装でも、既知の仕事を本人が代替している場合と、意思決定に必要な未知を減らすために試している場合では、経済的な意味が違う。
+<!-- level:3 role:analysis -->
+したがって評価すべき対象は「CEOがコードを書いた」という行動ではなく、その試行がどの不確実性を減らし、次の資源配分をどう変えるかである。
+<!-- level:5 role:implication -->
+本稿は、経営者が直接手を動かす合理性を、**意思決定に接続された限定的なhands-on probe**として捉え直す。
+
+ここでいうprobeは完成品を作ることではない。問いに答えるために、小さく、安く、戻せる形で現実へ触れることである。
 
 ---
 
-## 1. 問題設定――「社長がコードを書く1時間」は本当に開発の1時間なのか
+## 1. 「探索」という言葉を、ハンズオンの免罪符にしない
 
-生成AIの普及により、非エンジニアでも自然言語を介して小規模なアプリケーション、業務自動化、データ分析、プロトタイプを作れるようになった。これに伴い、経営者自身がAIを用いて社内ツールを作り、既存SaaSを置き換え、業務フローを再設計する事例が注目されている。
+March（1991）は、組織学習におけるexplorationとexploitationを区別した。探索にはsearch、variation、risk taking、experimentation、play、discoveryなどが含まれ、活用は既存の能力・知識を精緻化し効率化する活動を指す。
 
-この現象に対して、比較優位や機会費用の観点から次のような批判が成立する。経営者は開発担当者よりコードを書くのが速いとしても、経営者には意思決定、資源配分、採用、組織設計、顧客や投資家との交渉など、代替しにくい仕事がある。したがって、経営者が開発に1時間を費やすことは、その1時間にしかできなかった高価値の仕事を放棄することになる。ゆえに、経営者は「自分にできるか」ではなく、「自分がやるべきか」を考えるべきだ、という主張である。
+この区別は重要だが、「新しい技術を自分で触ること」を自動的にexplorationへ分類してよいわけではない。
 
-この主張の重要な点は、**絶対的な作業能力と、資源配分上の合理性を区別すること**にある。これは妥当である。本稿は比較優位や機会費用を否定しない。
+2024年のStrategic Management Journalに掲載されたHarrison, Boivie, Stern, and Poracの研究は、ここに強い反証を与える。S&P 1500企業を対象に、inventor CEOがCEO就任後もpatentingへ直接関与する程度を分析したところ、hands-on involvementが強い企業ほど、innovationがexploratoryではなく**exploitative**な方向へ寄る傾向が示された。特にinsider CEOやfounderでその傾向が強かった。
 
-しかし、この批判には一つの暗黙の仮定がある。
+<!-- level:2 role:description -->
+「経営者が直接innovationへ参加している」という表面的な事実から、その活動がexplorationだとは判定できない。
+<!-- level:1 role:evidence -->
+Harrison et al.（2024）は、inventor CEOの継続的なhands-on involvementが、より既存知識に近いexploitative innovationと結びつくことを報告している。
+<!-- level:3 role:analysis -->
+深い既存経験を持つ人が自ら問題を解くほど、自分の知っている技術領域、解法、評価軸へsearchが局在する可能性がある。
+<!-- level:5 role:implication -->
+したがって本稿では、「hands-on = exploration」という旧稿の暗黙の等式を撤回し、hands-onを**探索にも活用にもなりうる実行様式**として扱う。
 
-経営者がコードを書く行為を「コードという成果物を生産する活動」として分類していることである。
+この修正は、経営者のハンズオンを否定するものではない。むしろ、価値が生じる条件を厳しくするための修正である。
 
-もし経営者の1時間が、社員でも作れるツールを単に代替生産しているだけなら、機会費用を理由に委任すべきケースは多いだろう。だが、同じ1時間が「この業務はAIでどこまで置換可能か」「どのデータが不足しているか」「既存SaaSで本当に必要なのはどの機能か」「例外処理はどこで発生するか」「AIがもっともらしく間違うのはどこか」を知るための実験であるなら、活動の経済的意味は変わる。
+---
 
-その1時間の出力は、ソフトウェアだけではない。**情報**でもある。
+## 2. 過去のhands-on経験と、現在のhands-on実行を分ける
 
-本稿の研究課題は、次のように定式化できる。
+一方で、「経営者は技術実務から完全に離れた方がよい」という結論も強すぎる。
 
-> 生成AIのように性能境界が不確実で、実験コストが急速に低下している技術環境において、経営者自身による限定的なハンズオン開発は、どのような条件のもとで「低い比較優位を持つ生産活動」ではなく「戦略的な探索活動」として合理化できるか。
+Islam and Zein（2020）は、米国high-tech企業のInventor CEOを分析し、発明経験を持つCEOの企業では、CEO自身の技術経験に近い領域でpatent数とpatent valueが高くなることを示した。彼らは、hands-onの発明経験がinnovation-intensiveな投資案件を評価・選択・実行する能力につながると解釈している。
 
-この問いは、「経営者は自分で作るべきか、任せるべきか」という二者択一を避ける。重要なのは、**同じ「作る」という行為が、生産にも探索にもなりうる**という区別である。
+さらにTakeishi（2002）は、自動車企業とsupplierの分業を研究し、部品の設計・製造taskを外部へ委ねても、automaker側が関連知識を保持しているほど、特に新規性の高いprojectで良い成果につながることを示した。**taskを持たないことと、knowledgeを持たないことは別問題**である。
 
-## 2. 研究上の位置づけと方法
+<!-- level:4 role:claim -->
+経営者に必要なのは、実行を永久に抱えることではなく、良い判断と委任に必要な関連知識を持つことである。
+<!-- level:1 role:evidence -->
+Islam and Zein（2020）は過去のinventor experienceとinnovation projectの評価・選択能力の関係を示し、Takeishi（2002）は外部委任後も発注側の関連知識保持が重要になりうることを示している。
+<!-- level:3 role:analysis -->
+ここから言えるのは「CEO should code」ではなく、意思決定者が技術について無知なまま抽象的に管理することにもコストがある、という限定的な命題である。
+<!-- level:2 role:qualification -->
+ただし、これらの研究は生成AIでCEOが短時間のprototypeを作る行為を直接検証したものではなく、本稿の適用は理論的な拡張である。
+<!-- level:5 role:implication -->
+したがってhands-onの目的は、専門職を代替することではなく、**その後の判断と委任の質を上げるだけのknowledge overlapを作ること**に置くべきである。
 
-### 2.1 概念論文としての位置づけ
+この区別を入れると、「自分で作るか／任せるか」という二者択一は崩れる。短く自分で触った後に、より良く任せるという経路がある。
 
-本稿は、経営者による生成AI開発の効果を直接測定した実証研究ではない。むしろ、複数の研究領域に存在する知見を統合し、「経営者による自作」という現象を再分類する概念論文である。
+---
 
-理論的基盤として、主に次の六つの研究系譜を用いる。
+## 3. なぜ生成AIでは「小さく触る」情報価値が上がるのか
 
-第一に、探索と活用を区別する組織学習論である（Levitt & March, 1988; March, 1991）。第二に、試行を情報生成活動として扱う実験・プロトタイピング研究である（Thomke, 1998; Thomke & Bell, 2001; Koning, Hasan, & Chatterji, 2022）。第三に、学習と問題解決が文脈や局所情報に依存することを示す研究である（von Hippel, 1994, 1998; Tyre & von Hippel, 1997; Carlile, 2002）。第四に、外部知識を認識・同化・活用する能力を扱うabsorptive capacity研究である（Cohen & Levinthal, 1990）。第五に、不確実性の高い意思決定における探索、実験、オプション価値を扱う研究である（Gavetti & Levinthal, 2000; McGrath, 1999; Camuffo et al., 2024）。第六に、生成AIが知識労働と組織内探索をどう変えるかに関する近年の実証研究である（Boussioux et al., 2024; Brynjolfsson, Li, & Raymond, 2025; Dell’Acqua et al., 2026a, 2026b; Kim et al., 2026）。
+生成AIでは、性能境界を外から正確に読むことが難しい。
 
-### 2.2 文献選定
+Dell’Acqua et al.（2026）は、知識労働のfield experimentで、AIが有効なtaskとそうでないtaskが同じworkflow内でも不規則に並ぶ**jagged technological frontier**を示した。AIの支援によってperformanceが上がるtaskがある一方、frontierの外側ではAIを使うことでperformanceが悪化する場合もある。
 
-本稿はsystematic reviewではなく、理論的関連性を基準に行った構造化されたnarrative reviewである。古典研究については査読済み原著論文を中心とし、生成AIについては2024年から2026年に公刊された査読済み研究を優先した。なおKim et al.（2026）はINSEAD Working Paperであり、企業レベルでのAI導入に関する新しい因果推定として重要であるため採用するが、査読済み研究と同等には扱わず、予備的知見として位置づける。
+企業レベルでも、Kim, Kim, and Koning（2026）は、515のhigh-growth startupsを対象としたfield experimentで、AIから価値を得る際の重要な摩擦を、**どこへAIをmappingすれば価値が出るかを発見すること**だと捉えている。AI利用事例についての情報を与えられた企業は、より多くのuse caseを発見し、task completionやcustomer acquisition、revenueでも改善を示した。
 
-また、本稿が参照する多くの研究は、経営者本人がコードを書く行為を直接検証したものではない。したがって本稿の主張は、それらの結果から導かれる**理論的推論**である。特に「経営者のハンズオン開発が企業業績を改善する」という因果命題を実証済みの事実として提示するものではない。
+<!-- level:2 role:description -->
+生成AIでは「このmodelは賢い」という一般評価と、「自社のこのworkflowで、どの入力・制約・例外のもとなら価値が出るか」という局所判断の間に大きな距離がある。
+<!-- level:1 role:evidence -->
+Dell’Acqua et al.（2026）はtask間の効果がjaggedであることを示し、Kim et al.（2026）はAI use caseのmapping自体がfirm-level adoptionの摩擦になりうると報告している。
+<!-- level:3 role:analysis -->
+この環境では、benchmarkやvendor説明を読むだけでは埋まらない不確実性が残り、小さな実行がその不確実性を直接減らす場合がある。
+<!-- level:5 role:implication -->
+経営者によるhands-onが合理化される最初の条件は、**その試行が重要な経営判断の前に残っている局所的不確実性を減らすこと**である。
 
-この制約を明示したうえで、本稿は「経営者によるAI自作」を単純な生産代替ではなく、探索、情報獲得、能力形成として分類できる条件を整理する。
+ただし「AIは変化が速いから触るべき」というだけでは弱い。何を知りたいかが言えなければ、探索ではなく単なる体験になる。
 
-## 3. 生産と探索を区別しなければ、機会費用の計算を誤る
+---
 
-### 3.1 Marchの探索と活用
+## 4. Prototypeの価値は、成果物より「問いを現実へ接続すること」にある
 
-March（1991）は、組織学習における活動を大きく**exploration**と**exploitation**に区別した。探索にはsearch、variation、risk taking、experimentation、discoveryなどが含まれ、活用にはrefinement、choice、production、efficiency、implementationなどが含まれる。両者は時間的な収益構造が異なる。活用は結果が比較的近く確実である一方、探索は結果が遠く、不確実で、しばしば失敗に終わる。
+実験研究は、prototypeを安価な情報生成装置として見る視点を与える。
 
-この区別は「経営者がAIでSaaSを作る」という行為を見るうえで決定的である。
+Thomke（1998）は、新製品設計のexperimentationをproblem-solvingとして扱い、simulationやrapid prototypingによってexperiment modeの経済性が変わり、trial-and-error learningをより安く速く回せることを示した。Thomke and Fujimoto（2000）のfront-loading研究も、問題発見を開発工程の前方へ移すことで、後工程での高価な修正を減らせると論じる。
 
-すでに仕様が明確な社内システムを、経営者が毎週修正し続けているのであれば、それは主として活用である。そこでは生産効率、専門性、保守性、安定運用が重要になり、委任と分業の論理が強くなる。
+また、Lynn, Morone, and Paulson（1996）は、不連続innovationにおける**probe-and-learn**を、予測し切れない市場・技術へ小さなprobeを打ち、結果から学びながら方向を更新するprocessとして描いた。
 
-一方で、「生成AIを使うと、この複雑な承認業務をどこまで自動化できるのか」が分からない段階で、2時間だけプロトタイプを作る行為は性質が異なる。それは既知の成果を効率よく生産する行為ではなく、**未知の生産可能性を探索する行為**である。
+<!-- level:4 role:claim -->
+生成AIによる短時間のprototypeは、「安く完成品を作る手段」より「仮説を現実へぶつけるprobe」として価値を持つ場合がある。
+<!-- level:1 role:evidence -->
+Thomke（1998）はexperiment costとiteration strategyの関係を示し、Thomke and Fujimoto（2000）は早い問題発見が後工程のcostを下げうることを整理している。
+<!-- level:3 role:analysis -->
+経営者が二時間で粗いtoolを作り、必要dataが存在しない、例外処理が多すぎる、security上外部modelを使えない、と判明したなら、その失敗は完成品の失敗ではなく意思決定情報の獲得である。
+<!-- level:5 role:implication -->
+したがってhands-on probeの評価単位は、code量や完成度ではなく、**試行前後で意思決定に必要なbeliefがどれだけ更新されたか**に置く方がよい。
 
-March（1991）が示したように、組織は短期的に確実な活用へ過度に傾きやすく、その適応過程が長期には自己破壊的になりうる。したがって、「経営者の時間は高価だから、既知の高価値業務だけに集中すべきだ」という原則を無条件に適用すると、短期の機会費用を最小化する代わりに、新技術に関する探索を体系的に過少投資する可能性がある。
+この意味で「作ることは、知ることである」という旧稿の題意は残る。ただし、作れば必ず知れるのではなく、**問いを持って作ったときだけ、作ることが知る手段になる**。
 
-### 3.2 一つの行為は、二種類の成果を生む
+---
 
-ここで本稿は、経営者のハンズオン活動の戦略価値を、概念的に次のように分解する。
+## 5. なぜ「本人が触る」ことに追加価値が生じる場合があるのか
 
-> **総戦略価値 = 直接成果価値 + 情報価値 + 能力形成価値 + 調整価値 + オプション価値 − 注意機会費用 − リスク費用**
+では、probeを専門家へ頼めばよいのではないか。
 
-これは測定済みの実証式ではなく、意思決定で見落とされやすい項目を明示するための概念式である。
+その通りのケースは多い。
 
-「社長が1時間コードを書けば、社長にしかできない仕事が1時間止まる」という議論は、主として「直接成果価値」と「注意機会費用」を比較している。しかし探索局面では、情報価値、能力形成価値、調整価値、オプション価値が無視できない。
+それでも問題所有者や意思決定者が直接参加する価値が生じるのは、重要な情報が移転しにくい場合である。
 
-たとえば、AIを用いた30分の試作で「この処理はモデルの推論能力ではなく、データの標準化不足がボトルネックである」と判明したなら、得られたものは30分相当のコードではない。今後数か月の投資配分を変えうる情報である。
+von Hippel（1994）は、problem solvingに必要な情報が取得・移転・利用しにくい**sticky information**であるとき、problem-solvingのlocusがその情報のある場所へ寄ることを論じた。Tyre and von Hippel（1997）は、新しいproduction technologyへの適応学習を調べ、problem solverが複数の現場contextを往復することで、異なるclueやresource、assumptionに触れ、問題の因果構造を理解していくことを示した。
 
-Thomke and Bell（2001）は、製品開発におけるテストを、単なる品質確認ではなく、技術的・顧客関連の問題について**情報を生成する活動**として明示的にモデル化している。最適なテスト頻度は、テスト費用だけでなく、後工程で問題が判明した場合の回避可能コストなどにも依存する。この考え方を経営者のAI試作へ拡張すると、コードを書くコストだけを見て「高い」と判定するのは不十分である。試作が高価な誤投資を早期に止めるなら、その情報価値は大きい。
+<!-- level:3 role:analysis -->
+仕様書へ落とす前の業務には、「例外は月末だけ出る」「この項目は実は誰も信用していない」「顧客へ見せるときだけ判断基準が変わる」といった局所知が大量に埋まっている。
+<!-- level:2 role:description -->
+その知識の所在が経営者本人とは限らず、業務責任者、現場担当、顧客、engineerに分散していることも多い。
+<!-- level:4 role:claim -->
+したがって、hands-on probeを担うべき人は「最も偉い人」ではなく、**重要なsticky informationと次の意思決定の接点にいる人**である。
+<!-- level:5 role:implication -->
+経営者本人がprobeへ入る合理性は、その人にしかない情報・権限・戦略判断が試行結果の解釈に必要な場合に限って強くなる。
 
-本稿は、直接成果だけで活動価値を測る考え方を**生産還元主義（production reductionism）**と呼ぶ。探索活動を生産還元主義で評価すると、試行錯誤は非効率に見え、失敗したプロトタイプは「何も生まなかった」ように見える。しかし不確実性の削減そのものに価値がある場合、その評価は誤る。
+この点は旧稿より重要な修正である。探索価値を認めても、それはCEO本人の直接実装を一般化しない。
 
-### 3.3 実験コストが下がると、最適な探索量は変わる
+---
 
-Thomke（1998）は、コンピュータシミュレーションやrapid prototypingなどの新しい実験手法が、実験の経済性を変えることを示した。彼の集積回路設計の研究では、多くのプロトタイプ反復を可能にする実験モードが、別のモードより開発効率で優位になるケースが観測されている。重要なのは特定の数値ではなく、**実験方法の技術革新が「何回試すのが合理的か」を変える**という一般原理である。
+## 6. Hands-on probeを「経営者の趣味」から分ける五条件
 
-Koning et al.（2022）も、A/B testingによってビジネス仮説を試すコストが下がると、スタートアップが単発のテストではなく、より広い実験戦略を採用し、学習、製品開発、アイデアの選別へつなげることを示した。Camuffo et al.（2024）の759社を対象とした複数RCTでも、仮説を明示し検証する科学的アプローチが、アイデアの中止や探索効率に影響することが示されている。
+本稿では、経営者の直接実装を正当化する概念として旧稿の**exploratory insourcing**という名称を使わない。
 
-この系譜から導かれる含意は単純である。
+`insourcing`は本来、組織内外のsourcing boundaryを扱う既存の語である。一方、ここで問題にしているのは、企業内に仕事を残すかではなく、意思決定者自身が一時的にproblem solvingへ参加するかである。名称を重ねると、firm boundaryとindividual task allocationが混ざる。
 
-**実験の単価が下がれば、以前は高すぎて合理的でなかった探索が合理的になる。**
+そこで、より限定的に**hands-on probe**と呼ぶ。
 
-生成AIは、非エンジニアにとってのプロトタイピング費用を下げる可能性がある。したがって、「経営者の時給は高い」という事実だけでは、実験が不合理とは言えない。必要なのは、AI以前の開発コストを前提にした直感ではなく、現在の**探索一回あたりの費用と情報利得**の比較である。
+hands-on probeとして扱うには、少なくとも次の五条件を置く。
 
-## 4. なぜ「自分で作ること」が、委任では得にくい情報を生むのか
+1. **Decision-linked** — 試行結果が具体的な投資・採用・購入・業務設計・撤退判断を変えうる。
+2. **Question-led** — 「AIを勉強する」ではなく、試行前に減らしたい不確実性を言語化できる。
+3. **Bounded** — 時間・費用・scopeが小さく、失敗しても戻せる。
+4. **Comparatively direct** — meeting、demo、shadowing、専門家レビューより、自分で触る方が必要情報を速く得られる理由がある。
+5. **Exit-ready** — 学習後に、運用を誰へ渡すか、または中止するかの条件がある。
 
-### 4.1 sticky information――仕様書にできない情報
+<!-- level:4 role:claim -->
+「経営者が手を動かした」という事実ではなく、この五条件を満たすかどうかでhands-on probeを評価する。
+<!-- level:2 role:description -->
+特に4番目は重要で、直接実装は情報取得方法の一つにすぎず、最も高価な方法になる場合もある。
+<!-- level:3 role:analysis -->
+専門家とのpairingや現場shadowingで同じ不確実性を十分に減らせるなら、経営者自身がproduction-quality codeを書く必要はない。
+<!-- level:3 role:qualification -->
+逆に、数十分触るだけで「このworkflowでは入力dataが根本的に足りない」と判明するなら、説明資料を何度も往復するより安いこともある。
+<!-- level:5 role:implication -->
+合理性の基準はhands-onへの賛否ではなく、**意思決定情報一単位を得るための総コスト**である。
 
-von Hippel（1994）は、問題解決に必要な情報が、取得・移転・利用のために高いコストを要する場合、それを“sticky”な情報と呼んだ。情報がstickyであるほど、問題解決能力を情報のある場所へ移すか、情報を問題解決者のいる場所へ移すかという選択が重要になる。
+ここでは経営者の時間単価を無視しない。むしろ機会費用を入れたうえで、それでも直接probeが最短経路かを問う。
 
-この議論は、経営者のハンズオンAI利用に直接的な示唆を持つ。
+---
 
-「この申請業務を自動化したい」と言うことは簡単である。しかし実際に作り始めると、承認条件が規程に書かれていない、例外が担当者の記憶に依存している、CSVの項目名が部署ごとに違う、顧客名の表記揺れがある、最終判断では数字より文脈が重視されている、といった事実が現れる。
+## 7. 「分かったら任せる」は、探索の後始末ではなく設計の一部である
 
-これらは、最初から完全な仕様書に変換できるとは限らない。
+probeに出口がなければ、経営者はやがて保守担当者になる。
 
-von Hippel（1998）はさらに、専門家へ問題を集約するほうが効率的に見える場合でも、agency costやsticky local informationのために、利用者側が設計するほうが合理的になる条件を論じている。これは「専門家に任せるな」という意味ではない。むしろ、**専門性の優位だけでは問題解決の所在を決められず、局所情報の移転コストを含めなければならない**という意味である。
+Takeishi（2002）が示すknowledge partitioningの考え方を使えば、taskを渡してもknowledge overlapは残せる。Cohen and Levinthal（1990）のabsorptive capacityも、外部知識の価値を認識し、同化し、利用する能力がprior related knowledgeに依存することを論じている。
 
-この点は、比較優位による委任論への重要な補正となる。開発者のほうがコードを書くのが速くても、問題そのものがまだ定義できていなければ、仕様を完全に移転するコストは高い。経営者や業務責任者が短時間だけ自分で触ることは、実装を奪うことではなく、**何を委任すべきかを発見する前処理**になりうる。
+つまり、短いhands-on経験の目標は「自分でできるようになる」より、**何を専門家へ任せ、何を自分たちが理解し続けるべきかを知ること**にある。
 
-### 4.2 situated learning――現場に入らなければ見えない因果
+Carlile（2002）が新製品開発で論じたboundary objectの観点から見ても、動くprototypeは職能間の違いを表面化させる媒介になりうる。ただし、prototypeを作った本人がそのままownerになり続ける必要はない。
 
-Tyre and von Hippel（1997）は、新しい生産設備をめぐる問題解決を研究し、適応学習がsituatedであることを示した。異なる組織的な場には異なる手がかり、情報資源、前提があり、問題の因果構造を理解するために、担当者が複数の場を行き来する必要があった。
+<!-- level:4 role:claim -->
+良いhands-on probeは、経営者の実装依存を増やすのではなく、委任可能性を高める。
+<!-- level:2 role:description -->
+試行のあとに残すべきものは、codeだけでなく、検証した問い、成立条件、失敗条件、未解決risk、次のowner、production化の判断基準である。
+<!-- level:3 role:analysis -->
+この外部化がなければ、個人は学んでも組織は学ばず、経営者だけが暗黙知を抱えたsingle point of failureになる。
+<!-- level:5 role:implication -->
+したがって「探るために作り、回すために任せる」は、単なるキャッチコピーではなく、**probeのdefinition of done**に委任を組み込むという意味で使うべきである。
 
-ここから導かれるのは、知識が「説明を聞けば完全に移る」ものではないということである。技術導入の理解は、抽象的な会議だけでなく、実際の使用場面で現れるエラーや摩擦との接触によって進む。
+この出口があるからこそ、hands-onと比較優位は対立しない。探索が終われば、運用の比較優位へ戻れる。
 
-Pisano（1994）も、製薬プロセス開発の23プロジェクトを分析し、どの学習方法が有効かは基礎となる知識構造によって異なることを示した。科学的知識が厚い環境ではlaboratory experimentationによるlearning-before-doingが有効である一方、知識が十分に理論化されていない環境では、同じ学習方式が同じ効果をもたらさない。つまり、**最善の学習場所は問題の知識構造によって変わる**。
+---
 
-生成AIについても、モデルの能力を一般論として知ることと、「自社のデータ、自社の例外、自社の責任分界で実際に使えるか」を知ることは別である。経営者が自分で小さく作る価値があるとすれば、それはプログラミング技能を誇示できるからではなく、**自社固有の文脈で因果を観察できるから**である。
+## 8. 最大の反論――hands-onは探索を狭めるかもしれない
 
-### 4.3 認知的探索だけでは、経験的探索を代替できない
+ここまでの議論は、直接参加が情報を増やす面を中心に見てきた。
 
-Gavetti and Levinthal（2000）は、探索を、行為と結果の認知地図に基づくforward-lookingな認知的探索と、実際の経験に基づくbackward-lookingな経験的探索に分け、両者の相互作用を論じた。粗い認知モデルでも探索方向を定めるうえで有用だが、経験はそのモデルを更新する材料となる。
+しかし、情報を増やすことと探索空間を広げることは同じではない。
 
-経営者が「AIをどこに使うべきか」を会議室で考える行為は認知的探索である。それは不可欠である。しかし、実際にデータを入れ、プロンプトを変え、APIをつなぎ、失敗を見る行為は経験的探索である。
+Harrison et al.（2024）の結果が示唆するのは、expert executiveが強く関与すると、その既存knowledge baseに近いinnovationへ組織のattentionが寄る可能性である。経営者がprototypeを作ると、そのprototypeは強い具体性と権威を持ち、チームの探索を「この案をどう完成させるか」へ早すぎる段階で固定する危険がある。
 
-生成AIのように能力境界が不規則な技術では、認知モデルだけで適合領域を正確に予測することは難しい。したがって戦略と実践を対立させるのではなく、**戦略が実験を導き、実験が戦略の認知地図を書き換える循環**として捉えるべきである。
+Leonardi and Leavell（2026）は、AIによる詳細でrealisticなrepresentationが、本来不確実な未来を確実に知れるかのような**artificial certainty**を生みうることを示した。動くprototypeには、PowerPoint以上に「もう分かった」という錯覚を作る力がある。
 
-## 5. 生成AIは、「探索してから決める」ことの経済性を変えた
+<!-- level:4 role:counterargument -->
+経営者のhands-on probeは、不確実性を減らすだけでなく、誤った確信や探索の早期収束を生むことがある。
+<!-- level:2 role:description -->
+特にCEOが最初のprototypeを自ら作ると、組織はそれを仮説ではなく方針として受け取り、別解を出しにくくなる可能性がある。
+<!-- level:3 role:analysis -->
+そのためprobeの出力には、反証条件、代替仮説、専門家レビュー、別案との比較を意図的に残し、「動いた」ことと「本番で正しい」ことを分けなければならない。
+<!-- level:5 role:implication -->
+経営者が直接probeを行うほど、**自分のprototypeを弱い証拠として扱うgovernance**が必要になる。
 
-### 5.1 AIの能力境界は滑らかではない
+この限界を入れると、hands-onは「現場感が増えるから善い」という文化論ではなく、情報取得とattention distortionのtrade-offになる。
 
-Dell’Acqua et al.（2026a）は、758人の知識労働者を対象とした事前登録済み実験で、生成AIの影響がタスクごとに不規則に変化する“jagged technological frontier”を示した。AIの能力範囲内と設計された18の知識課題では、AI利用者は非利用者より多くの課題を、より短時間で、高い品質で処理した。一方、能力範囲外として設計された複雑なマネジメント課題では、AI利用者は正答する可能性が低下した。
+---
 
-この結果の核心は、「AIは強い」あるいは「AIは危険」という単純な結論ではない。
+## 9. 実務判断――誰がprobeを打つべきか
 
-**どの仕事がAIの能力境界の内側にあり、どの仕事が外側にあるかが、仕事の見た目だけでは分かりにくい**ことである。
+最終的には、「CEOが作るべきか」という問いを次の順に分解した方がよい。
 
-ならば企業は、AIの能力マップを外部から購入して終わることができない。自社の仕事をAIへ当て、局所的に検証しなければならない。これはまさに探索である。
+**Q1. 何がまだ分からないのか。**  
+AI capability、data availability、workflow exception、customer acceptance、security、cost構造など、次の意思決定を止めている未知を特定する。
 
-比較優位の計算には、本来「AIを含めた各主体が各仕事をどの程度のコストと品質で遂行できるか」という情報が必要である。しかし生成AI環境では、その生産性パラメータ自体が事前には不確実である。**比較優位を計算する前に、比較優位を計算するためのデータを作る必要がある。**
+**Q2. その未知は、実際に触らないと分からないのか。**  
+既存data、専門家、vendor、user interviewで十分なら、まず安い方法を使う。
 
-この順序が重要である。
+**Q3. 誰が触ると最も情報が増えるのか。**  
+CEOとは限らない。問題所有者、業務責任者、engineer、designer、顧客とのpairingの方がよい場合もある。
 
-### 5.2 企業の課題はAI購入ではなく「mapping problem」になりうる
+**Q4. 何が分かったら終えるのか。**  
+time box、success/failure criteria、次のownerを先に決める。
 
-Kim et al.（2026）は、515社の高成長スタートアップを対象としたフィールド実験で、企業のAI導入における重要な摩擦を“mapping problem”――企業の生産過程のどこで、どのようにAIが価値を生むかを発見する問題――として扱っている。介入を受けた企業は、AIのユースケース探索をより広い職能へ広げ、発見したユースケースが44%増加し、特にproduct developmentとstrategyで増加した。さらにタスク遂行、顧客獲得、売上でも改善が報告されている。
+<!-- level:4 role:claim -->
+経営者がhands-onになるべき条件は、「作る能力があること」ではなく、「その人の直接参加が意思決定上の未知を最も効率よく減らすこと」である。
+<!-- level:3 role:analysis -->
+この条件なら、機会費用、sticky information、experiment cost、knowledge retention、attention distortionを同じ判断表へ入れられる。
+<!-- level:2 role:qualification -->
+なお、本稿はこの判断表の効果を直接検証した研究ではなく、複数研究から導いたdiagnostic heuristicである。
+<!-- level:5 role:implication -->
+したがって結論は「経営者は作れ」でも「経営者は任せろ」でもなく、**最小の直接参加で、最大の意思決定学習を得よ**となる。
 
-これは2026年時点のWorking Paperであり、今後の査読と追試を待つ必要がある。しかし、「AIの価値は単純に導入すれば自動的に現れるのではなく、適用先を探索する能力に左右される」という問題設定は、本稿の論点と強く整合する。
+---
 
-もし最大のボトルネックがmappingであるなら、経営者の役割は「AIを使うか否か」を一度決めることではない。AIと業務の対応関係について**探索ポートフォリオを設計すること**になる。そして、重要な仮説について経営者自身が短時間の実験に参加することは、そのmappingを高速化する一手段になりうる。
+## 10. 結論――作ることの価値は、作ったものではなく、次の判断で測る
 
-### 5.3 AIは専門領域の境界そのものを動かす
+生成AIは、非エンジニアが現実へprobeを打つ費用を大きく下げた。
 
-Dell’Acqua et al.（2026b）は、Procter & Gambleの791人の専門職を対象とするフィールド実験で、生成AIがチームワーク、専門知識統合、成果に及ぼす影響を調べた。AIを使う個人はAIなしのチームに匹敵する成果を示し、さらにR&D職とcommercial職の専門性の偏りをまたぐ、より均衡した解決案を生み出した。著者らは、AIが機能的サイロを橋渡しする可能性を示している。
+これは経営の仕事と実装の仕事を同一化することを意味しない。
 
-Boussioux et al.（2024）の創造的問題解決研究でも、人間―AI協働による探索が、戦略的実行可能性、価値、総合品質で高く評価され、特に前の案と異なる案を逐次生成させるdifferentiated searchが有効であった。
+March（1991）が示したようにexplorationとexploitationには緊張関係がある。Thomke（1998）が示したように、実験手段の変化はtrial-and-error learningの経済性を変える。von Hippel（1994）とTyre and von Hippel（1997）が示したように、問題解決に必要な情報はstickyでsituatedでありうる。Takeishi（2002）が示したように、taskを外へ出しても関連knowledgeを保持する価値がある。
 
-これらは、AIが単なる「高速な部下」ではなく、探索空間の形を変える可能性を示す。
+一方で、hands-on executive研究は、直接関与をロマン化しない理由も与える。過去のinventor experienceはinnovation判断に役立ちうるが（Islam & Zein, 2020）、継続的なinventor CEO involvementは探索を既存領域へ狭めうる（Harrison et al., 2024）。
 
-経営者がAIを直接操作する意味もここにある。従来なら「エンジニア領域」「マーケティング領域」と分類されていた仕事が、AIを介すると異なる組み合わせでアクセス可能になる。ハンズオン探索は、経営者が専門家の仕事を奪うためではなく、**どの専門境界がAIによって動いたかを身体的に把握する行為**として位置づけられる。
+だから、作ることの価値を「経営者が現場を分かっている証拠」や「AI時代のリーダーらしさ」で測るべきではない。
 
-## 6. 経営者のハンズオン開発が生みうる五つの価値
+<!-- level:4 role:claim -->
+作ることが知ることになるのは、その試作が意思決定に必要な未知を減らすよう設計されている場合だけである。
+<!-- level:3 role:analysis -->
+良いprobeは小さく、問いがあり、反証でき、知見を外部化し、次のownerへ渡せる。
+<!-- level:2 role:description -->
+悪いhands-onは、経営者の既知の強みへ組織を引き寄せ、prototypeを方針へ変え、保守責任まで本人へ固定する。
+<!-- level:5 role:implication -->
+したがって経営者のhands-on活動は、完成したsoftwareではなく、**その後の投資・撤退・委任・workflow設計がどれだけ良くなったか**で評価するのがよい。
 
-以上の研究を統合すると、生成AIを使った限定的な自作には、少なくとも五種類の価値が考えられる。
+探るために、少し作る。
 
-### 6.1 直接成果価値――実際に動くものができる
+分かったら、任せる。
 
-第一はもっとも分かりやすい。ツールそのものが完成し、SaaS費用や工数を削減できる価値である。
-
-ただし本稿では、これはむしろ副次的である。ここだけを見れば、経営者より専門家へ任せるべきケースが多い。探索的内製を正当化する本体は、以下の四つにある。
-
-### 6.2 情報価値――「できる／できない」の解像度が上がる
-
-第二は情報価値である。
-
-生成AIの能力はjaggedであり、利用可能性は業務固有のデータ、例外処理、要求品質、説明責任によって変わる（Dell’Acqua et al., 2026a）。短時間の実装は「AIでできる」という抽象論を、「この入力形式ならここまで」「この例外では破綻する」「この判断だけは人間へ戻す」といった局所的な知識へ変える。
-
-Thomke（1998）とThomke and Bell（2001）が示すように、実験は情報を作る。したがって、失敗したプロトタイプも「どこで失敗するか」を明らかにしたなら、情報成果を持つ。
-
-### 6.3 能力形成価値――外部知識を評価できるようになる
-
-第三はabsorptive capacityである。
-
-Cohen and Levinthal（1990）は、外部情報の価値を認識し、同化し、商業的に利用する能力をabsorptive capacityと呼び、それが既存の関連知識に大きく依存すると論じた。重要なのは、知識を「自分で実行するため」にだけ持つ必要はないことである。**他人の提案を評価するためにも、関連知識は必要になる。**
-
-AIに一度も触れたことのない経営者と、数個のプロトタイプを自ら作り、失敗も見た経営者では、外部ベンダーや社内チームから「この業務はAI化できます」と提案されたときの評価能力が異なる可能性がある。
-
-Takeishi（2002）の自動車開発研究は、この点に近い。実際の設計や製造をサプライヤーへ外注できても、発注側の自動車メーカーが関連知識を保持していることが、よりよい部品設計成果に重要であった。また、設計を外部化するとlearning by doingの機会自体を失うというジレンマも示されている。
-
-したがって、「任せる」ためには、ときに「少し自分でやる」必要がある。
-
-これは委任の否定ではない。むしろ**委任の質を上げるための最小限の実践知**という位置づけである。
-
-Brynjolfsson et al.（2025）は、5,172人のカスタマーサポート担当者を対象に、生成AI支援が平均15%の生産性向上をもたらし、その効果が経験の浅い・低スキルの労働者に大きいことを示した。さらにAI支援が労働者の学習と行動変化に関係する証拠も報告している。これは経営者についての研究ではないが、AIを「使うこと」自体が能力形成と切り離せない場合があることを示している。
-
-### 6.4 調整価値――見えなかった知識境界を具体物にする
-
-第四は調整価値である。
-
-Carlile（2002）は、新製品開発における知識がfunctional boundaryごとにlocalized、embedded、investedであり、異なる職能の間では単純な情報伝達だけでは問題が解けないことを示した。そこでboundary objectは、知識を表現し、相互に学び、変換する媒介となる。Carlile（2004）はさらに、境界の複雑さに応じてtransfer、translation、transformationという異なる知識管理プロセスが必要になると整理した。
-
-この研究から**本稿が類推するなら**、動くプロトタイプはboundary objectとして機能しうる。
-
-「AIで営業支援を効率化したい」という言葉だけでは、経営、営業、法務、ITがそれぞれ別のものを想像する。しかし、粗くても実際に動く画面があれば、「この入力は誰が責任を持つのか」「顧客情報をここへ送ってよいのか」「この推薦は説明できるのか」「営業はこのボタンを本当に押すのか」という境界問題が具体化する。
-
-プロトタイプの価値は、完成度ではなく、**組織が議論すべき論点を露出させること**にもある。
-
-### 6.5 オプション価値――小さく作ることで、大きく間違える権利を放棄できる
-
-第五はオプション価値である。
-
-McGrath（1999）は、real options reasoningを用い、不確実な事業では、最初から全面投資するのではなく、条件が好ましい場合だけ追加投資できる構造を持つことで、損失を限定しつつ上方可能性を残せると論じた。
-
-生成AIプロジェクトも同様に考えられる。1000万円のシステム導入を承認する前に、経営者や小チームが数時間で粗い試作を行い、「少なくともこの仮説は成立しない」と分かれば、その試作は大きな投資をしない権利を作ったことになる。
-
-Thomke and Fujimoto（2000）のfront-loading研究も、問題の発見と解決を開発プロセスの前方へ移すことが、後工程での高価な修正を減らし、開発時間・コストを低減しうることを示している。AIによる高速な試作が価値を持つのは、完成品を安く作れるからだけではない。**間違いを安いうちに発見できるから**である。
-
-## 7. 「探索的内製」という概念
-
-### 7.1 定義
-
-以上を踏まえ、本稿は**探索的内製（exploratory insourcing）**を次のように定義する。
-
-> **探索的内製とは、意思決定者または問題所有者が、不確実性の高い問題について、限定的・可逆的な実装や作業を一時的に自ら担い、その直接成果よりも、問題構造・技術適合性・局所知・失敗条件に関する情報を獲得し、後続の資源配分と委任を改善する行為である。**
-
-ここで重要なのは「内製」という語が、永続的な自前主義を意味しないことである。むしろ探索的内製には**出口が必要**である。
-
-作り続けることが目的になった瞬間、探索的内製は単なる抱え込みに変わる。
-
-### 7.2 四つのハンズオン類型
-
-経営者による自作は、少なくとも次の四類型に分けるべきである。
-
-**第一は、恒常的代替内製である。**  
-要件が明確で反復的な業務を、専門職やSaaSの代わりに経営者が継続して処理する。学習の限界利益は低く、注意コストが蓄積する。この領域では比較優位と委任の論理がもっとも強い。
-
-**第二は、探索的内製である。**  
-不確実な問いに答えるため、小さな試作を行う。「このデータで精度が出るか」「このSaaSの本質的機能は何か」「この業務は何割まで自動化できるか」のように、学習仮説が明示されている。完成品ではなく情報が主成果となる。
-
-**第三は、能力形成型内製である。**  
-将来の意思決定や委任に必要な最低限の関連知識を得るため、一定期間だけ手を動かす。Cohen and Levinthal（1990）のabsorptive capacityやTakeishi（2002）の知識保持論から正当化されうる。ただし学習目的を達成した後も続ければ、恒常的代替内製へ移行する。
-
-**第四は、趣味的内製である。**  
-経営者本人には楽しいが、明示的な学習課題、戦略的意思決定、組織への知識移転につながらない。この類型を「AIキャッチアップ」という言葉だけで正当化することは難しい。
-
-この区別によって、「経営者が自分で作っている」という表面的な行動だけから、良い／悪いを判断する必要がなくなる。
-
-### 7.3 探索的内製が合理的になりやすい条件
-
-既存研究から、本稿は次の条件を導く。
-
-1. **AI―タスク適合性の不確実性が高いこと。**  
-   能力境界が分からないほど、実験による情報価値が高い（Dell’Acqua et al., 2026a）。
-
-2. **問題の戦略的重要性が高いこと。**  
-   小さな試作が将来の大きな資源配分を変えるなら、情報の価値が上がる。
-
-3. **実験が短時間・低コスト・可逆的であること。**  
-   実験コストの低下は探索量を変える（Thomke, 1998; Koning et al., 2022）。
-
-4. **重要知識がstickyまたはsituatedであること。**  
-   仕様化・移転が難しいほど、問題所有者の直接参加の価値が上がる（von Hippel, 1994; Tyre & von Hippel, 1997）。
-
-5. **問題自体が十分に定義されていないこと。**  
-   Nickerson and Zenger（2004）が論じるように、問題の複雑性によって最適なsolution searchと組織形態は変わる。問題定義前の段階では、単純な発注関係が最適とは限らない。
-
-6. **明示的な学習仮説があること。**  
-   「何を知るために作るのか」が言語化できなければ、探索と趣味を区別しにくい。
-
-7. **退出条件が設定されていること。**  
-   不確実性が十分に下がった後は、専門化・標準化・委任へ切り替える。
-
-### 7.4 四つの命題
-
-本稿の概念モデルは、次の命題として要約できる。
-
-**命題1：実験コストが低下するほど、不確実性の高い局面で意思決定者が直接行う探索の合理性は高まる。**
-
-これは「意思決定者の時間単価が下がる」という意味ではない。情報一単位を得るための総コストが下がるという意味である（Thomke, 1998; Boussioux et al., 2024）。
-
-**命題2：問題解決に必要な情報のstickinessが高いほど、専門家への完全委任より、問題所有者が初期探索へ参加する価値が高まる。**
-
-問題所有者が最終実装まで行う必要はない。重要なのは、委任前に問題構造を解像することである（von Hippel, 1994, 1998; Tyre & von Hippel, 1997）。
-
-**命題3：限定的なハンズオン経験は、関連知識を増やすことで、その後の外部知識の評価・委任・統合能力を高めうる。**
-
-これはabsorptive capacityからの理論的推論である（Cohen & Levinthal, 1990）。「自分でやる」と「任せる」は代替関係だけでなく、前者が後者の質を高める補完関係にもなりうる。
-
-**命題4：不確実性が下がり、タスクが反復・標準化されるほど、探索的内製の限界価値は低下し、比較優位・分業・専門化の論理が再び優位になる。**
-
-つまり本稿は比較優位を否定するのではない。**比較優位を適用するタイミングを問題にする。**
-
-## 8. 「探るために作り、回すために任せる」――探索から委任への転換
-
-探索的内製が有効だとしても、経営者がプロダクトの保守担当者になることを意味しない。
-
-むしろ重要なのは、**探索と運用を分離すること**である。
-
-初期には、何が問題なのか自体が不明である。ここでは経営者、業務責任者、専門家、AIが一緒に問題を触り、認知的探索と経験的探索を往復する価値が高い（Gavetti & Levinthal, 2000）。プロトタイプは、専門領域間の知識を可視化するboundary objectとして働きうる（Carlile, 2002）。
-
-しかし、問題が十分に定義され、要求仕様が安定し、反復運用が始まれば条件は変わる。保守性、セキュリティ、監査可能性、テスト、障害対応、属人化防止といった論点が支配的になる。ここでは専門家の比較優位が大きい。
-
-この転換を、次のように表現できる。
-
-> **探るために作り、回すために任せる。**
-
-探索フェーズにおける経営者の直接参加と、運用フェーズにおける委任は矛盾しない。
-
-むしろ両者を一貫して「誰が一番速く作れるか」で決めるほうが不適切である。探索段階では「誰がその試行から最も重要な情報を得られるか」、運用段階では「誰が最も安定して価値を供給できるか」を問うべきである。
-
-## 9. 反論と限界
-
-### 9.1 ハンズオンは容易に「経営者の趣味」へ変わる
-
-本稿の議論には明確な危険がある。
-
-探索という言葉を使えば、経営者が好きな技術作業へ時間を使うことを何でも正当化できてしまう。
-
-この問題を避けるには、探索的内製に最低限、①明示的な問い、②時間上限、③得られた知見の記録、④次の意思決定、⑤退出条件を求める必要がある。「AIを理解したい」は広すぎる。「顧客問い合わせの一次分類を、個人情報を外部送信せずに80%まで自動化できるかを2時間で検証する」であれば、探索として評価しやすい。
-
-### 9.2 小さなプロトタイプの成功は、本番運用の成功を意味しない
-
-プロトタイプは不確実性を減らすが、すべてを解消しない。
-
-一人で100件を処理できたことと、会社全体で100万件を安全に処理できることは違う。精度、レイテンシ、費用、セキュリティ、権限、監査、障害時対応などは、規模によって性質が変わる。
-
-したがって探索的内製は、**production readinessの証明ではなく、仮説の更新**と位置づけるべきである。
-
-### 9.3 AIは「人工的確信」を作りうる
-
-Leonardi and Leavell（2026）は、AIが生成する詳細で現実的な表現が、本来不確実な未来を確定的に知れるかのような“artificial certainty”を生む可能性を示した。
-
-この知見は、本稿に対する重要な警告である。
-
-経営者が自分でプロトタイプを作ると、「実際に動いた」という具体性が強い説得力を持つ。そのため、専門家から説明を聞くだけの場合よりも、かえって過信する可能性もある。ハンズオン経験は知識を増やすが、同時に「少し知ったことで分かった気になる」危険も増やす。
-
-したがって、探索結果には反証可能性、専門家レビュー、複数条件での検証が必要である。
-
-### 9.4 個人が学んでも、組織が学ぶとは限らない
-
-Levitt and March（1988）は、組織学習を、経験から得た推論をroutineへencodeし、organizational memoryとして保持する過程として捉えた。
-
-経営者一人がAIに詳しくなっても、その知識がプロセス、判断基準、ガイドライン、組織的な実験能力へ変換されなければ、組織学習にはならない。
-
-したがって探索的内製の最終成果はコードではなく、少なくとも次のような形で外部化される必要がある。
-
-- 何を試したか
-- 何ができたか
-- 何ができなかったか
-- どの前提条件で結果が変わったか
-- 次に誰が検証するか
-- 本番化する／しないの判断基準は何か
-
-ここまで行って初めて、個人的な体験が組織資産へ変わる。
-
-### 9.5 経営者本人でなければ探索できないわけではない
-
-本稿が最も慎重であるべき点である。
-
-sticky informationやabsorptive capacityは、経営者本人が必ずコードを書くべきだとは述べていない。業務責任者、プロダクトマネージャー、エンジニア、デザイナーなど、問題と意思決定に近い人が探索を担うほうが適切なケースは多い。
-
-したがって本稿の強い命題は「CEO should code」ではない。
-
-正確には、
-
-> **「経営者は作るべきではない」という一般原則もまた、理論的には強すぎる。**
-
-経営者が直接探索へ参加すべきかは、情報の所在、問題の重要性、実験費用、意思決定への接続、代替可能性によって決まる。
-
-## 10. 結論――比較優位を計算する前に、地図を作らなければならない
-
-経営者の時間が希少であることに異論はない。
-
-だからこそ、何に使うかを慎重に考える必要がある。
-
-しかし、「経営者がAIで社内ツールを作る」という行為を見て、それをただちに「本来エンジニアへ任せるべき生産活動」と分類することもまた、粗い判断である。
-
-組織学習研究が示すように、探索と活用は異なる（March, 1991）。実験研究が示すように、試作は成果物だけでなく情報を作る（Thomke, 1998; Thomke & Bell, 2001）。知識研究が示すように、重要な情報は移転しにくく（von Hippel, 1994）、学習は文脈に埋め込まれる（Tyre & von Hippel, 1997）。absorptive capacity研究が示すように、外部知識を評価する能力には事前の関連知識が必要である（Cohen & Levinthal, 1990）。そして生成AI研究が示し始めているように、AIの有効性はタスク間で不規則であり（Dell’Acqua et al., 2026a）、企業にとって「どこでAIが価値を生むか」を発見すること自体が重要な経営課題になりうる（Kim et al., 2026）。
-
-したがって、比較優位によって最適に仕事を配るには、その前に一つの問題を解かなければならない。
-
-**誰が、何を、どこまでできるのかを知ること。**
-
-生成AI時代には、この地図が急速に書き換わる。
-
-しかも地図は、外から眺めているだけでは完成しない。ときには自分で歩かなければ、道があるかどうかさえ分からない。
-
-だから、経営者による小さなAI開発を評価する問いは、
-
-「社長がそんな細かい仕事をするべきか」
-
-だけでは足りない。
-
-より良い問いは、
-
-> **この試作によって、どの不確実性を減らそうとしているのか。得られる情報は、経営者の機会費用を上回る意思決定価値を持つのか。そして、その学習が終わったとき、誰へ渡すのか。**
-
-である。
-
-経営者がコードを書き続ける会社を理想化する必要はない。
-
-しかし、AIの可能性について誰かの説明だけを聞きながら、抽象的な資源配分だけを行う経営者を理想化する必要もない。
-
-生成AIが探索コストを下げ、能力境界そのものを不安定にする時代には、戦略と実装の間に小さな往復運動が必要になる。
-
-**探るために作る。  
-分かったら任せる。  
-そして盤面が変わったら、また小さく探る。**
-
-比較優位は、その後に使えばよい。
+そして自分が作ったものほど、仮説として疑う。
 
 ---
 
 ## 参考文献
 
-Boussioux, L., Lane, J. N., Zhang, M., Jacimovic, V., & Lakhani, K. R. (2024). The crowdless future? Generative AI and creative problem-solving. *Organization Science, 35*(5), 1589–1607. https://doi.org/10.1287/orsc.2023.18430
-
-Brynjolfsson, E., Li, D., & Raymond, L. (2025). Generative AI at work. *The Quarterly Journal of Economics, 140*(2), 889–942. https://doi.org/10.1093/qje/qjae044
-
-Camuffo, A., Gambardella, A., Messinese, D., Novelli, E., Paolucci, E., & Spina, C. (2024). A scientific approach to entrepreneurial decision-making: Large-scale replication and extension. *Strategic Management Journal, 45*(6), 1209–1237. https://doi.org/10.1002/smj.3580
-
 Carlile, P. R. (2002). A pragmatic view of knowledge and boundaries: Boundary objects in new product development. *Organization Science, 13*(4), 442–455. https://doi.org/10.1287/orsc.13.4.442.2953
-
-Carlile, P. R. (2004). Transferring, translating, and transforming: An integrative framework for managing knowledge across boundaries. *Organization Science, 15*(5), 555–568. https://doi.org/10.1287/orsc.1040.0094
 
 Cohen, W. M., & Levinthal, D. A. (1990). Absorptive capacity: A new perspective on learning and innovation. *Administrative Science Quarterly, 35*(1), 128–152. https://doi.org/10.2307/2393553
 
-Dell’Acqua, F., McFowland III, E., Mollick, E., Lifshitz, H., Kellogg, K. C., Rajendran, S., Krayer, L., Candelon, F., & Lakhani, K. R. (2026a). Navigating the jagged technological frontier: Field experimental evidence of the effects of artificial intelligence on knowledge worker productivity and quality. *Organization Science, 37*(2), 403–423. https://doi.org/10.1287/orsc.2025.21838
+Dell’Acqua, F., McFowland III, E., Mollick, E., Lifshitz, H., Kellogg, K. C., Rajendran, S., Krayer, L., Candelon, F., & Lakhani, K. R. (2026). Navigating the jagged technological frontier: Field experimental evidence of the effects of artificial intelligence on knowledge worker productivity and quality. *Organization Science, 37*(2), 403–423. https://doi.org/10.1287/orsc.2025.21838
 
-Dell’Acqua, F., Ayoubi, C., Lifshitz, H., Sadun, R., Mollick, E., Mollick, L., Han, Y., Goldman, J., Nair, H., Taub, S., & Lakhani, K. R. (2026b). The cybernetic teammate: A field experiment on generative AI and teamwork. *Organization Science*, advance online publication. https://doi.org/10.1287/orsc.2025.20702
+Harrison, J. S., Boivie, S., Stern, I., & Porac, J. (2024). Inventor CEO involvement and firm exploitative and exploratory innovation. *Strategic Management Journal, 45*(11), 2227–2256. https://doi.org/10.1002/smj.3628
 
-Gavetti, G., & Levinthal, D. (2000). Looking forward and looking backward: Cognitive and experiential search. *Administrative Science Quarterly, 45*(1), 113–137. https://doi.org/10.2307/2666981
+Islam, E., & Zein, J. (2020). Inventor CEOs. *Journal of Financial Economics, 135*(2), 505–527. https://doi.org/10.1016/j.jfineco.2019.06.009
 
 Kim, H., Kim, D., & Koning, R. (2026). *Mapping AI into production: A field experiment on firm performance* (INSEAD Working Paper No. 2026/20/STR). INSEAD. https://www.insead.edu/faculty-research/publications/working-papers/mapping-ai-production-a-field-experiment-firm
 
@@ -458,26 +299,16 @@ Koning, R., Hasan, S., & Chatterji, A. (2022). Experimentation and start-up perf
 
 Leonardi, P. M., & Leavell, V. (2026). Knowing enough to be dangerous: The problem of “artificial certainty” for expert authority when using AI for decision making and planning. *Organization Science, 37*(2), 516–543. https://doi.org/10.1287/orsc.2023.18224
 
-Levitt, B., & March, J. G. (1988). Organizational learning. *Annual Review of Sociology, 14*, 319–338. https://doi.org/10.1146/annurev.so.14.080188.001535
+Lynn, G. S., Morone, J. G., & Paulson, A. S. (1996). Marketing and discontinuous innovation: The probe and learn process. *California Management Review, 38*(3), 8–37. https://doi.org/10.2307/41165841
 
 March, J. G. (1991). Exploration and exploitation in organizational learning. *Organization Science, 2*(1), 71–87. https://doi.org/10.1287/orsc.2.1.71
-
-McGrath, R. G. (1999). Falling forward: Real options reasoning and entrepreneurial failure. *Academy of Management Review, 24*(1), 13–30. https://doi.org/10.5465/amr.1999.1580438
-
-Nickerson, J. A., & Zenger, T. R. (2004). A knowledge-based theory of the firm—The problem-solving perspective. *Organization Science, 15*(6), 617–632. https://doi.org/10.1287/orsc.1040.0093
-
-Pisano, G. P. (1994). Knowledge, integration, and the locus of learning: An empirical analysis of process development. *Strategic Management Journal, 15*(S1), 85–100. https://doi.org/10.1002/smj.4250150907
 
 Takeishi, A. (2002). Knowledge partitioning in the interfirm division of labor: The case of automotive product development. *Organization Science, 13*(3), 321–338. https://doi.org/10.1287/orsc.13.3.321.2779
 
 Thomke, S. H. (1998). Managing experimentation in the design of new products. *Management Science, 44*(6), 743–762. https://doi.org/10.1287/mnsc.44.6.743
 
-Thomke, S., & Bell, D. E. (2001). Sequential testing in product development. *Management Science, 47*(2), 308–323. https://doi.org/10.1287/mnsc.47.2.308.9838
-
-Thomke, S., & Fujimoto, T. (2000). The effect of “front-loading” problem-solving on product development performance. *Journal of Product Innovation Management, 17*(2), 128–142. https://doi.org/10.1111/1540-5885.1720128
+Thomke, S., & Fujimoto, T. (2000). The effect of “front-loading” problem-solving on product development performance. *Journal of Product Innovation Management, 17*(2), 128–142. https://doi.org/10.1016/S0737-6782(99)00031-4
 
 Tyre, M. J., & von Hippel, E. (1997). The situated nature of adaptive learning in organizations. *Organization Science, 8*(1), 71–83. https://doi.org/10.1287/orsc.8.1.71
 
 von Hippel, E. (1994). “Sticky information” and the locus of problem solving: Implications for innovation. *Management Science, 40*(4), 429–439. https://doi.org/10.1287/mnsc.40.4.429
-
-von Hippel, E. (1998). Economics of product development by users: The impact of “sticky” local information. *Management Science, 44*(5), 629–644. https://doi.org/10.1287/mnsc.44.5.629
