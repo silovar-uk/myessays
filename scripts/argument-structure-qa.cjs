@@ -119,6 +119,23 @@ const FIXTURES = [
 
 const profileLabel = profile => profile.split('-').join(' → ');
 
+async function waitForScrollSettled(page) {
+  await page.waitForFunction(() => {
+    const now = performance.now();
+    const y = window.scrollY;
+    const key = '__argumentQaScrollState';
+    const previous = window[key];
+
+    if (!previous || Math.abs(previous.y - y) > 0.5) {
+      window[key] = { y, stableSince: now };
+      return false;
+    }
+
+    return now - previous.stableSince >= 180;
+  }, null, { polling: 50, timeout: 3000 });
+  await page.evaluate(() => { delete window.__argumentQaScrollState; });
+}
+
 async function runFixture(browser, fixture) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 820 } });
   const consoleErrors = [];
@@ -164,10 +181,16 @@ async function runFixture(browser, fixture) {
   if (fixture.profiles.length > 1) {
     await page.locator('#argumentStructurePanel .argument-profile-row[data-argument-paragraph="1"]').click();
     await page.waitForFunction(() => document.querySelector('#argumentInspector')?.textContent?.includes('Paragraph 2'));
+    await waitForScrollSettled(page);
+
     const paragraphTwoInspector = await page.locator('#argumentInspector').innerText();
-    assert.match(paragraphTwoInspector, /Paragraph 2/);
-    assert.match(paragraphTwoInspector, new RegExp(profileLabel(fixture.profiles[1]).replaceAll('→', '\\→')));
-    assert.equal(await page.locator('#argument-paragraph-2').evaluate(node => node.classList.contains('is-argument-active')), true);
+    assert.match(paragraphTwoInspector, /Paragraph 2/, `${fixture.essayId}: Inspector should remain on Paragraph 2 after programmatic scroll settles`);
+    assert.match(paragraphTwoInspector, new RegExp(profileLabel(fixture.profiles[1]).replaceAll('→', '\\→')), `${fixture.essayId}: Paragraph 2 profile should remain selected after programmatic scroll settles`);
+    assert.equal(
+      await page.locator('#argument-paragraph-2').evaluate(node => node.classList.contains('is-argument-active')),
+      true,
+      `${fixture.essayId}: Paragraph 2 should remain active after programmatic scroll settles`
+    );
   }
 
   await page.keyboard.press('s');
