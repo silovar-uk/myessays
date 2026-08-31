@@ -44,7 +44,7 @@ NVIDIAは、ロボットや自動運転車などが物理世界を認識・理�
 <!-- level:4 role:claim -->
 Physical AIを理解する一番長持ちする入口は、**知能が現実世界のclosed loopへ入ること**である。
 <!-- level:2 role:description -->
-基本形は `Perceive → Decide → Act → Observe again` で、行動結果が次の観測と判断条件を変える。
+基本形は **Perceive → Decide → Act → Observe again** で、行動結果が次の観測と判断条件を変える。
 <!-- level:3 role:analysis -->
 このため、認識精度だけ、言語理解だけ、あるいは一回の動作成功率だけではシステム全体を評価できない。
 <!-- level:5 role:implication -->
