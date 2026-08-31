@@ -14,7 +14,7 @@ This file records the **current execution status** of the migration program.
 | 1 — Legacy canonical `*-mixed-en.md` cleanup | Completed | Five legacy mixed-English canonical companions migrated to Reading Mode. |
 | 2 — Full-library class-A compatibility pass | Completed | Compatibility baseline reached 0 integrity errors / 0 warnings / 0 known spec drift. |
 | 3 — P1 editorial / Writing Architecture batch | **Completed — 7 / 7, final QA green** | Four D Flagships and three C Writing Architecture articles modernized; Reading Mode debt closed and seven Structure fixtures protected. |
-| 4 — Freshness & External Claims | **Selected — 0 / 7** | Seven externally volatile articles selected from the latest audit. `claude-delegation-horizon-opus-fable` is next. |
+| 4 — Freshness & External Claims | **In Progress — 1 / 7** | Article 1 `claude-delegation-horizon-opus-fable` completed and green. `physical-ai-embodied-intelligence-deployment` is next. |
 
 ## Batch 1
 
@@ -131,8 +131,8 @@ Selection source: `MIGRATION_BATCH_4_SELECTION.md`
 
 Selected order:
 
-1. `claude-delegation-horizon-opus-fable` — AI products / workflow — **Next**
-2. `physical-ai-embodied-intelligence-deployment` — AI / robotics
+1. `claude-delegation-horizon-opus-fable` — AI products / workflow — **Completed**
+2. `physical-ai-embodied-intelligence-deployment` — AI / robotics — **Next**
 3. `rakuten-securities-information-infrastructure` — finance / product ecosystem
 4. `bcg-consulting-reality-voices` — company / career
 5. `sato-teru-eight-category-dominance` — sports statistics
@@ -146,6 +146,63 @@ For each article use:
 **fresh research → information-basis date → evidence map → counterevidence → canonical edit → Structure → Reading Mode decision → QA → merge**
 
 Do not edit all seven at once.
+
+### Article 1 — completed
+
+Article: `claude-delegation-horizon-opus-fable`
+
+Research audit:
+
+- `RESEARCH_BATCH_4_01_CLAUDE_DELEGATION_HORIZON_2026-08-31.md`
+
+Principal PR:
+
+- PR #51 — `Modernize Claude delegation horizon with freshness-safe evidence`
+- merge commit: `075945913a9b7eabbedd715ec365b72f23d8b034`
+
+Fixture correction:
+
+- PR #52 — `Align Claude Structure fixture with compiled profile`
+- merge commit: `6ca1cf199cc96974114f93853570fcefd515c735`
+
+Editorial result:
+
+- corrected the obsolete Sonnet 5 planned Sep. 1 price increase; the current `$2 / $10` price had been made permanent;
+- separated verified product facts, vendor-reported customer results, third-party benchmarks, practitioner reports, and the article's original heuristic;
+- retained the Stripe migration example but explicitly classified the `>2 months → 1 day` claim as an Anthropic-published customer report rather than an independently reproduced benchmark;
+- reframed `delegation horizon / 委譲距離` as an article-level operational heuristic, not an Anthropic taxonomy or validated scale;
+- replaced fixed `Sonnet = execution / Opus = judgment / Fable = project` ranking with a routing hypothesis based on work length, ambiguity, self-verification burden, human intervention interval, verifiability, and cost;
+- synchronized the existing English Mix — Reading Mode decision: **UPDATE**.
+
+Writing Architecture:
+
+- Structure: **10 paragraphs / 40 sentences**;
+- shared Argument Structure regression suite: **8 fixtures** after Article 1.
+
+The first Article 1 main run, Visual QA `33389039967`, passed strict audit, all 40 static tests, and Reading Mode QA, then exposed a single manually authored Structure fixture mismatch. Browser compilation and the migration audit both confirmed the canonical article itself contained the intended 10 paragraphs / 40 structured sentences. PR #52 corrected only that fixture value; no prose, runtime behavior, count, or assertion strictness was changed.
+
+Final Article 1 validation on `6ca1cf199cc96974114f93853570fcefd515c735`:
+
+- Visual QA `33389369825` — **success**
+  - strict migration audit — success
+  - canonical: 191
+  - English Mix: 120
+  - Español Mix: 1
+  - Structure canonicals: 15
+  - integrity errors: 0
+  - warnings: 0
+  - known spec drift: 0
+  - static tests: **40 / 40**
+  - Reading Mode browser QA — success
+  - Argument Structure browser QA — **8 fixtures passed**
+  - Page Reader browser QA — success
+  - desktop/mobile browser Visual QA — success
+  - horizontal overflow — none
+  - console/page errors — none
+  - QA artifact upload — success
+- Pages deployment `33389368946` — **success**
+
+**Batch 4 progress: 1 / 7.**
 
 ### Reading Mode rule
 
