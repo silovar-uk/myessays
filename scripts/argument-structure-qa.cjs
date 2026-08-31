@@ -85,8 +85,10 @@ const EXPECTED_PROFILES = [
   assert.equal(await page.locator('#argumentStructureSheet .argument-profile-row').count(), EXPECTED_PROFILES.length);
 
   await page.locator('#argumentStructureSheet .argument-profile-row[data-argument-paragraph="0"]').click();
-  await page.waitForFunction(() => document.querySelector('#argumentStructureSheet #argumentInspector')?.textContent?.includes('Paragraph 1'));
-  assert.match(await page.locator('#argumentStructureSheet #argumentInspector').innerText(), /4 → 2 → 3 → 5/);
+  await page.waitForFunction(() => document.querySelector('#argumentStructureSheet')?.textContent?.includes('Paragraph 1'));
+  const mobileInspector = await page.locator('#argumentStructureSheet').innerText();
+  assert.match(mobileInspector, /Paragraph 1/);
+  assert.match(mobileInspector, /4 → 2 → 3 → 5/);
 
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => document.querySelector('#argumentStructureSheet')?.getAttribute('aria-hidden') === 'true');
