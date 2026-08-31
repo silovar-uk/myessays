@@ -49,6 +49,23 @@ const FIXTURES = [
       '4-3-2-5',
       '4-3-2-5'
     ]
+  },
+  {
+    essayId: 'learning-organization-senge-systems-thinking',
+    sentenceCount: 44,
+    profiles: [
+      '4-1-3-5',
+      '4-2-3-5',
+      '2-1-3-5',
+      '4-1-3-5',
+      '2-1-3-5',
+      '4-2-3-5',
+      '4-1-3-5',
+      '4-2-3-3-5',
+      '4-1-3-5',
+      '4-2-3-5',
+      '4-3-5'
+    ]
   }
 ];
 
