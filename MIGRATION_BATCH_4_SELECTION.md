@@ -1,10 +1,13 @@
 # MyEssays Migration Batch 4 Selection
 
 Selected: 2026-08-31
+Updated: 2026-08-31
 
 Theme: **Freshness & External Claims**
 
 Batch 3 established a reusable Writing Architecture for conceptual essays. Batch 4 deliberately tests that method against a different failure mode: articles whose truth can drift because they depend on changing products, services, organizations, statistics, geopolitics, or medical guidance.
+
+Current progress: **1 / 7 completed**.
 
 ## Selection rule
 
@@ -22,15 +25,15 @@ Newly authored NPB series articles are intentionally excluded because they are a
 
 ## Selected order
 
-| # | Article | Domain | EN Mix | Why now |
-| --- | --- | --- | --- | --- |
-| 1 | `claude-delegation-horizon-opus-fable` | AI products / workflow | yes | Model names, pricing, benchmarks, product positioning, and case studies can date quickly. The article also builds an original `delegation horizon` model on top of vendor claims. |
-| 2 | `physical-ai-embodied-intelligence-deployment` | AI / robotics | yes | Fast-moving terminology and 2026 product/research claims; needs a clean boundary between industry label, research concepts, and editorial working definitions. |
-| 3 | `rakuten-securities-information-infrastructure` | finance / product ecosystem | no | Product availability, rates, account counts, ownership, NISA features, and content entitlements are operational facts that can change. |
-| 4 | `bcg-consulting-reality-voices` | company / career | yes | Anonymous reviews, employee testimony, staffing practices, and working-hours claims need source weighting and protection against overgeneralizing from anecdotes. |
-| 5 | `sato-teru-eight-category-dominance` | sports statistics | yes | The thesis is anchored to a specific in-season statistical snapshot and requires separation of date-stamped fact from durable interpretation. |
-| 6 | `mali-sahel-history-state-france-russia` | geopolitics / history | yes | Historical material is relatively stable, but military rule, regional blocs, foreign-security actors, and current security conditions move quickly. |
-| 7 | `pneumonia-how-serious-hospital-oxygen` | medicine / health literacy | yes | High-stakes domain. Guidance, severity tools, and practical interpretation must be held to a higher evidence and wording threshold than ordinary essays. |
+| # | Article | Domain | EN Mix | Status | Why now |
+| --- | --- | --- | --- | --- | --- |
+| 1 | `claude-delegation-horizon-opus-fable` | AI products / workflow | yes | **Completed** | Model names, pricing, benchmarks, product positioning, and case studies can date quickly. The article also builds an original `delegation horizon` model on top of vendor claims. |
+| 2 | `physical-ai-embodied-intelligence-deployment` | AI / robotics | yes | **Next** | Fast-moving terminology and 2026 product/research claims; needs a clean boundary between industry label, research concepts, and editorial working definitions. |
+| 3 | `rakuten-securities-information-infrastructure` | finance / product ecosystem | no | Pending | Product availability, rates, account counts, ownership, NISA features, and content entitlements are operational facts that can change. |
+| 4 | `bcg-consulting-reality-voices` | company / career | yes | Pending | Anonymous reviews, employee testimony, staffing practices, and working-hours claims need source weighting and protection against overgeneralizing from anecdotes. |
+| 5 | `sato-teru-eight-category-dominance` | sports statistics | yes | Pending | The thesis is anchored to a specific in-season statistical snapshot and requires separation of date-stamped fact from durable interpretation. |
+| 6 | `mali-sahel-history-state-france-russia` | geopolitics / history | yes | Pending | Historical material is relatively stable, but military rule, regional blocs, foreign-security actors, and current security conditions move quickly. |
+| 7 | `pneumonia-how-serious-hospital-oxygen` | medicine / health literacy | yes | Pending | High-stakes domain. Guidance, severity tools, and practical interpretation must be held to a higher evidence and wording threshold than ordinary essays. |
 
 ## Execution policy
 
@@ -42,51 +45,77 @@ Use one principal article PR at a time:
 
 After each article, decide whether the Batch 4 conventions need refinement before moving on.
 
-## Article 1 — Next
+## Article 1 — Completed
 
 `claude-delegation-horizon-opus-fable`
 
-### Why first
+Research audit:
 
-It is the cleanest stress test for the new batch because nearly every layer can drift:
+- `RESEARCH_BATCH_4_01_CLAUDE_DELEGATION_HORIZON_2026-08-31.md`
 
-- model lineup;
-- release dates;
-- API pricing;
-- benchmark claims;
-- vendor case studies;
-- third-party evaluations;
-- product naming;
-- the boundary between demonstrated capability and marketing framing.
+### Editorial outcome
 
-The canonical article currently makes concrete 2026 claims about Sonnet 5, Opus 5, and Fable 5 and introduces `委譲距離 / delegation horizon` as an article-level model.
+The central `delegation horizon / 委譲距離` idea was retained, but its evidence boundary was rebuilt:
 
-### Required research classes
+- corrected the superseded Sonnet 5 Sep. 1 pricing assumption; `$2 / $10` had been made permanent;
+- separated verified product facts from vendor-reported customer results, third-party benchmarks, practitioner reports, and editorial synthesis;
+- kept the Stripe 50-million-line migration case but identified the `>2 months → 1 day` figure as a vendor-published customer report;
+- explicitly labeled `delegation horizon` as the article's operational heuristic rather than an Anthropic taxonomy or validated metric;
+- replaced fixed Sonnet / Opus / Fable role ranks with a routing hypothesis based on work length, ambiguity, self-verification burden, human intervention interval, external verifiability, and cost;
+- synchronized the existing English Mix — **Reading Mode: UPDATE**.
 
-Prefer this source order:
+### Writing Architecture
 
-1. Anthropic official model/release/pricing documentation;
-2. primary case-study sources named in the article;
-3. independent technical evaluations and practitioner reports;
-4. only then secondary summaries.
+Final browser-compiled Structure:
 
-### Required editorial distinctions
+- **10 structured paragraphs**;
+- **40 structured sentences**.
 
-Keep separate:
+This raises the shared regression suite from seven to **eight article fixtures**.
 
-- **verified product fact**;
-- **vendor-reported benchmark or customer result**;
-- **independent observation**;
-- **editorial synthesis**;
-- **original model (`delegation horizon`)**.
+### Implementation
 
-Do not allow a vendor case study to silently become a general capability claim.
+Principal article PR:
 
-### Reading Mode
+- PR #51 — `Modernize Claude delegation horizon with freshness-safe evidence`
+- merge: `075945913a9b7eabbedd715ec365b72f23d8b034`
 
-Existing English Mix: **UPDATE if canonical thesis or evidence boundary changes**.
+Fixture correction:
 
-`DEFER` is not allowed because a derived version already exists.
+- PR #52 — `Align Claude Structure fixture with compiled profile`
+- merge: `6ca1cf199cc96974114f93853570fcefd515c735`
+
+The initial main run exposed one manual fixture-profile mismatch. The canonical content and audit already agreed on 10 / 40, so PR #52 changed one fixture value only; no article prose, runtime behavior, sentence count, or assertion strictness was weakened.
+
+### Final QA gate
+
+Visual QA `33389369825` — **success**:
+
+- strict audit: 0 errors / 0 warnings / 0 known drift;
+- static tests: 40 / 40;
+- Reading Mode QA: success;
+- Argument Structure QA: **8 fixtures passed**;
+- Page Reader QA: success;
+- desktop/mobile Visual QA: success;
+- horizontal overflow: none;
+- console/page errors: none;
+- QA artifacts: uploaded.
+
+Pages `33389368946` — **success**.
+
+Article 1 is closed.
+
+## Article 2 — Next
+
+`physical-ai-embodied-intelligence-deployment`
+
+Primary review question:
+
+> Which parts of the current article are stable research concepts, which are industry/product language, and which are time-stamped 2026 deployment claims?
+
+Do not start the canonical edit until current terminology, Gemini Robotics / VLA / world-model evidence, safety claims, deployment evidence, and product-state claims have been re-researched.
+
+Existing English Mix: present. Therefore the final Reading Mode decision must be **KEEP / UPDATE / RETIRE**; `DEFER` is not allowed.
 
 ## Batch 4 completion gate
 
