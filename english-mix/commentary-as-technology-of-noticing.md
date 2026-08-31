@@ -1,525 +1,256 @@
 ---
 id: commentary-as-technology-of-noticing
-title: "実況とはなにか――気づくための技術"
-subtitle: "注意・言語化・分節・説明から考える、世界を見直す方法"
+title: "実況は、何を見るかを変える"
+subtitle: "注意・専門家の視線・言語化・分節から考える、気づきの足場"
 mode: "english-mix"
 english_ratio: 0.45
 mix_unit: "sentence"
 ---
 
-# 実況とはなにか――気づくための技術
-## 注意・言語化・分節・説明から考える、世界を見直す方法
+# 実況は、何を見るかを変える
+## 注意・専門家の視線・言語化・分節から考える、気づきの足場
 
-### 要旨
+“What is happening right now?”
 
-What is happening right now?
+そう問いながら、目の前の出来事を言葉にしてみる。
 
-そう自分に問いかけて、目の前のことを言葉にしてみる。
+Aが話した。Bは返事をしなかった。Three seconds passed. 自分は、その沈黙を埋めたくなった。
 
-Someone enters the room.
+Putting experience into words can move something from background to foreground.
 
-さっきまで話していた二人が黙った。
+では、実況すれば観察力は上がるのだろうか。
 
-The rain outside becomes heavier.
+We should begin cautiously. **The research discussed here does not establish a general causal law that commentary itself increases noticing ability.**
 
-自分は返事を急いでいる。胸のあたりが少し硬い。
+Strong evidence exists for adjacent mechanisms: cues guide attention, expert and novice visual search can differ in task-specific ways, event segmentation relates to memory and learning, and directed verbalization can alter cognitive processing.
 
-None of these observations is extraordinary. Yet the moment we try to put experience into words, something that was only background can move into the foreground.
+だから「実況＝観察力向上」と一つの因果へ束ねない。Instead, ask how commentary may change **what we search for, how we segment an event, and when we move from description to explanation.**
 
-本稿では、この行為を広い意味で**実況**と呼ぶ。
-
-Here, commentary does not mean only broadcasting an event to other people. It means **putting an ongoing event or inner state into words while it is still unfolding**.
-
-なぜ、実況すると気づくことが増えたように感じるのか。
-
-Does language make the world itself easier to see? Or does it simply select what we are prepared to notice?
-
-実況は観察を助けるのか。それとも、経験を説明しやすい形へ歪めてしまうのか。
-
-The central claim of this essay is simple:
-
-> **実況とは、気づきの量を単純に増やす技術ではない。何に注意を向け、どこで出来事を区切り、何と何を関係づけるかを変える技術である。**
-
-Language can reveal the world.
-
-しかし同時に、言葉にできる世界だけを見せることもある。
+本稿では実況を完成された学習法ではなく、**an attentional scaffold — a provisional model for externalizing the path from attention to interpretation** として扱う。
 
 ---
 
-## 1. 人は「見えているもの」を見ているわけではない
+## 1. 気づきは「見えている量」ではなく、選ばれている情報に左右される
 
-Visibility and awareness are not the same thing.
+What enters the visual field is not identical to what enters awareness.
 
-目を開けていれば、目の前にあるものは見えている。私たちはつい、そう考える。
+inattentional blindness研究が繰り返し示すように、何かへ強く注意を向けると、目立つ予想外の出来事でも見落としうる。
 
-Research on attention repeatedly shows that something can be present in the visual field without entering awareness.
+Commentary creates observation axes: “watch the player without the ball,” “listen for changes in sound,” “notice who is not speaking.”
 
-SimonsとChabrisのよく知られた実験では、映像の中で特定の対象に注意を向けて課題を行うと、かなり目立つ予想外の出来事でさえ見落とす参加者が現れた。これは**inattentional blindness（非注意性盲目）**の代表例である。
+Those words do not add information to the world. **They redistribute attention.**
 
-The point is not simply that humans are bad observers.
+Multimedia-learning research on signaling shows that cues highlighting relevant elements or structure can guide attention and, on average, improve retention and transfer.
 
-**What we notice depends not only on what is there, but also on what we are looking for.**
+実況の言葉はvisual signalそのものではない。Still, it can serve a structurally similar function by saying, in effect, “look here.”
 
-Mostらの研究でも、予想外の対象への気づきにはattentional set、つまり「何に注意する構えになっているか」が大きく関わると論じられている。
+But this boundary matters: signaling studies are not direct evidence that free self-commentary or sports commentary produces the same effect size.
 
-This suggests a first function of commentary: before describing anything, we must choose a target.
+だから「たくさん喋る」より先に、**what do I want to foreground?** を決めるほうが理にかなう。
 
-「人の動きを見る」
-
-Listen for changes in sound.
-
-「自分の身体を見る」
-
-Notice who is not speaking.
-
-こうした言葉は、世界の情報量を増やしてはいない。代わりに、**注意の向きを指定している**。
-
-Commentary is like a flashlight. It does not illuminate the whole room; it changes where the beam points.
-
-だから、「実況すると気づきが増える」という言い方は半分だけ正しい。
-
-A better formulation is:
-
-> **実況すると、気づく対象の分布が変わる。**
-
-And every beam creates darkness somewhere else.
-
-何かに注意することは、別の何かへ向けられる注意を減らすことでもある。実況は注意力の増幅器というより、**注意の配分装置**と考えたほうがよい。
+[Schneider et al. — A meta-analysis of how signaling affects learning with media](https://doi.org/10.1016/j.edurev.2017.11.001)
 
 ---
 
-## 2. 言葉は、見たものの「あと」に来るのか
+## 2. 専門家は「全部を見る」のではなく、task-relevantなcueの使い方が違う
 
-We usually imagine a simple sequence: see the world, recognize it, then name it.
+Beginners in sports often track the ball. With experience, attention may shift toward body orientation, space, off-ball movement, and future options.
 
-しかし、言葉と知覚の関係はそれほど一方向ではない。
+ここで「専門家は視野が広い」と一言でまとめるのは危ない。
 
-Lupyan and Ward reported that hearing a linguistic label before a difficult-to-see target could improve detection of the matching object.
+A 2022 systematic review in team sports found substantial heterogeneity in expert–novice visual-search differences. A 2026 meta-analysis in individual sports found that experts, on average, tended to use fewer fixation locations and longer fixation durations, while the exact informative locations differed by sport.
 
-これは実況を考えるうえで重要である。
+専門性は「全部を見る」より、**selecting high-value information for the task and ignoring lower-value information** として現れることがある。
 
-Without a name, a pattern may pass by as “something vague.” Once we have a word, it becomes searchable.
+If commentary helps learning, its value may lie less in telling novices the answer and more in transferring a **search policy**: why this location matters now, and what cue should be checked next.
 
-「沈黙」
+良い解説の候補は、正解を代わりに言う人ではなく、**次に自分で探せる観察軸を増やす人**である。
 
-A pause.
-
-「視線の回避」
-
-A change of topic.
-
-「ためらい」
-
-Tension.
-
-言葉を持つことは、単に説明が上手になることではない。**何を探せばよいかを指定する検索語を持つこと**でもある。
-
-Charles Goodwin called the organized ways in which experts learn to see their domain **professional vision**.
-
-専門家は単に知識を大量に持っているのではない。カテゴリー化し、特定の特徴を強調し、ある現象を「見るべきもの」として組織する。
-
-In this sense, learning vocabulary can expand the set of places where attention can land.
-
-ただし、「言葉が知覚そのものを変える」とまで言えるかどうかには大きな論争がある。
-
-Firestone and Scholl argued that many claimed top-down effects on perception may instead be explained by judgment, memory, response bias, or attention. Researchers defending cognitive influences on perception have responded in turn.
-
-したがって、本稿では強く言いすぎない。
-
-We do not need to claim that commentary rewrites vision itself.
-
-> **言葉は、何を探し、何を検出し、何を重要なものとして扱うかに関与する。**
-
-That is already a powerful claim.
+[Silva et al. (2022) — Expert–novice visual search in team sports](https://pubmed.ncbi.nlm.nih.gov/36211897/)
+[Wang et al. (2026) — Expert–novice visual search in individual sports](https://pubmed.ncbi.nlm.nih.gov/42222294/)
 
 ---
 
-## 3. 実況は、流れている世界に「切れ目」を入れる
+## 3. Professional Vision――専門家は対象だけでなく「見るための実践」を共有する
 
-Reality does not arrive with chapter headings.
+Charles Goodwin called the socially organized ways professional communities make domain-specific phenomena visible **professional vision**.
 
-人が立ち上がる。歩く。扉を開ける。廊下へ出る。
+考古学、法廷、専門職では、同じmaterialを見ても、category、highlighting、representationを通じて「何をrelevant evidenceとして扱うか」が組織される。
 
-The movement is continuous, yet we understand it as events such as “standing up” or “leaving the room.”
+This is not a claim that experts possess superhuman eyesight.
 
-Zacksらの**Event Segmentation Theory**は、人間が連続した活動を意味のあるイベントへ自動的に分節して知覚していることを説明する。出来事の境界の捉え方は、後の記憶や学習にも関係する。
+It suggests that seeing is partly shaped by shared categories, tools, representations, and practices.
 
-This matters because commentary does not create segmentation from nothing. The mind is already segmenting experience.
+実況との接点はここにある。Commentary may not directly improve “vision,” but it can share the categories by which an event becomes nameable and a feature becomes evidence.
 
-では、実況には何ができるのか。
+Training value may therefore come from making observation categories reusable, not merely from hearing an expert’s impression.
 
-It may bring an automatic cut into conscious view and allow us to edit it.
-
-「空気が悪くなった」
-
-can be unpacked into:
-
-「質問が出た」
-
-There was a three-second pause before the reply.
-
-「別の人が先に話した」
-
-The first person then stayed silent.
-
-すると「空気」という曖昧な塊が、複数の出来事へ分解される。
-
-The reverse is also possible. Tiny events can be grouped into a larger unit: “That whole sequence was one exchange.”
-
-つまり実況が操作するのは、出来事の有無ではなく、**経験の粒度**である。
-
-Fine-grained commentary reveals detail. Coarse-grained commentary reveals flow and structure.
-
-> **気づくとは、情報を増やすことだけではない。経験をどの大きさで切り取るかを変えることでもある。**
+[Goodwin (1994) — Professional Vision](https://doi.org/10.1525/aa.1994.96.3.02a00100)
 
 ---
 
-## 4. 「実況」と「解説」は同じではない
+## 4. 実況は、流れ続ける経験へ「区切り」を置く
 
-Description reports. Explanation adds a model.
+Reality does not come with chapter headings.
 
-実況を続けていると、ある瞬間から別の行為へ移る。
+人が立つ、歩く、扉を開ける、部屋を出る。The movement is continuous, yet we naturally divide it into events such as “stood up” or “left the room.”
 
-「Aが話した」
+Event Segmentation research argues that people spontaneously divide ongoing activity into hierarchical events, and that the way boundaries are identified relates to memory and learning.
 
-B is silent.
+2026年のreviewでは、自然な出来事のsegmentationをscaffoldするinterventionとmemory improvementの研究も整理されている。
 
-「Aが話すと、Bは視線を下げた」
+Commentary probably does not create segmentation from nothing. It can make usually implicit boundaries **available for inspection in words.**
 
-So far, these are descriptions of events.
+「空気が変わった」を「質問 → 沈黙 → 視線 → 別の人の発話」へ分けると、one vague event becomes several observable events.
 
-ところが、
+Sometimes noticing improves not by adding information, but by changing the size of the unit we call “one event.”
 
-「Aの話し方が強いから、Bは発言できない」
-
-The word “because” changes the act. A causal model has entered.
-
-Fox、Ericsson、Bestは、94研究・約3500人を対象にしたメタ分析で、考えていることをそのまま声に出す通常のthink-aloudと、理由や説明を求める言語化を区別した。
-
-Simple think-aloud procedures did not, on average, strongly change task performance, while verbalizations that required explanation or particular information were more likely to alter performance. Verbalizing also tended to take more time.
-
-ここから、実況には少なくとも複数のレベルがあると考えられる。
-
-```text
-1. 注意する　—— 何を見るかを決める
-2. 描写する　—— 起きたことを言葉にする
-3. 分節する　—— どこからどこまでを一つの出来事とするか決める
-4. 関係づける—— 複数の出来事を並べて見る
-5. 説明する　—— 原因、意図、意味を与える
-```
-
-In everyday life, we often jump through all five levels almost instantly.
-
-誰かが返事をしなかった。
-
-“They must be angry.”
-
-しかし実際に観察されたのは、「返事がなかった」ことだけかもしれない。
-
-The value of commentary may not be producing more interpretations.
-
-> **観察から解釈へ飛ぶ瞬間を、見える形にすること。**
-
-That may be closer to its real power.
+[Zacks & Swallow (2007) — Event Segmentation](https://doi.org/10.1111/j.1467-8721.2007.00480.x)
+[Smith & Zacks (2026) — Event Segmentation Interventions Improve Memory for Naturalistic Events](https://doi.org/10.1177/09637214251350690)
 
 ---
 
-## 5. 「なぜ？」は理解を深める。しかし、世界を整えすぎる
+## 5. 描写と説明を分けないと、実況はすぐ物語になる
 
-Explanation can reveal ignorance, but it can also invent order.
+“A spoke.”
 
-RozenblitとKeilが示した**illusion of explanatory depth（説明深度の錯覚）**では、人は身近な仕組みを実際以上によく理解していると感じやすい。
+「Bは黙っている。」
 
-Ask someone to explain the mechanism in detail, however, and confidence often falls.
+“Three seconds passed before the reply.”
 
-「分かっている」と思っていたものを説明しようとすると、言葉が止まる。
+These are relatively close to observation.
 
-That pause matters.
+「Aが怖いからBは話せない」と言った瞬間、a causal model has entered the scene.
 
-**Noticing that we do not understand is also a form of noticing.**
+Fox, Ericsson, and Best’s meta-analysis distinguished ordinary concurrent think-aloud from directed verbalization that asks for reasons or specific information.
 
-WilliamsとLombrozoの研究でも、説明が規則性の発見や一般化を促す場合が示されている。
+The result matters: ordinary think-aloud had little average effect on accuracy, while explanatory or directed verbalization could change performance, and verbalization generally increased time on task.
 
-But explanation has an opposite force as well. When asked “why?”, we start searching for patterns and causes.
+つまり、**putting things into words is not one neutral operation.** The farther we move from description toward explanation, the more we may intervene in the process we are trying to observe.
 
-それは学習を助ける一方、世界を説明しやすい形へ整えすぎる可能性もある。
+実況すれば客観的になる、とは言えない。
 
-“Why did this happen?” quietly assumes that there is a reason to find.
+For noticing practice, it helps to separate **Observation / Relation / Hypothesis** and change labels at the moment a causal explanation enters.
 
-本当は偶然かもしれない。複数の要因かもしれない。そもそも因果関係がないかもしれない。
-
-When commentary moves from “what happened?” to “why did it happen?”, it begins to resemble a story-generating machine.
-
-だから、気づくための実況では、**事実実況と原因実況を分ける**ことが重要になる。
+[Fox, Ericsson & Best (2011) — Verbal reporting meta-analysis](https://pubmed.ncbi.nlm.nih.gov/21090887/)
 
 ---
 
-## 6. 自分自身は、もっとも危険な実況対象である
+## 6. 言語化は役立つだけでなく、非言語的な情報を削ることもある
 
-We can comment not only on the outside world, but also on ourselves.
+There is inconvenient evidence for any simple “verbalize more” theory: verbal overshadowing.
 
-「いま焦っている」
+顔を見たあと、その顔を詳しく言葉で説明すると、later recognition can become worse under some conditions.
 
-My breathing is shallow.
+A preregistered direct replication of the classic Schooler work reproduced the effect, while also showing that its magnitude depended strongly on the timing of the description.
 
-「返事を急いでいる」
+This gives us an important boundary: **being able to describe more features is not the same thing as representing the whole object more accurately.**
 
-I am preparing my answer before the other person finishes speaking.
+表情、音色、身体感覚、配置全体のようなholistic informationは、partsへ分解して言語化すると別のrepresentationへ置き換わる可能性がある。
 
-感情研究には**affect labeling**という領域がある。Liebermanらは、ネガティブな感情刺激に感情語を付ける条件で、情動関連領域の反応に違いが生じることを報告した。
+The goal of commentary is therefore not to convert all experience into language. After naming something, remember that **unnamed information may still remain.**
 
-Putting feelings into words may therefore change how we relate to the feeling, not merely describe it.
-
-「私は怒っている」
-
-The sentence creates a tiny distance between being anger and observing anger.
-
-しかし、内面実況には重大な罠がある。
-
-Johanssonらの**choice blindness**研究では、参加者が実際には選んでいない選択肢を「自分が選んだもの」として提示されても、その入れ替えに気づかず、その選択理由まで説明するケースが確認された。
-
-We do not have perfect access to the causes of our own mental states.
-
-だから、
-
-「手が震えている」
-
-“My chest feels heavy.”
-
-「不安という言葉が近い」
-
-may remain relatively close to observation.
-
-しかし、
-
-「昨日の失敗を引きずっているから不安なのだ」
-
-is a hypothesis about cause.
-
-**内面を実況するときほど、観察と物語を分ける必要がある。**
+[Registered Replication Report — Schooler & Engstler-Schooler](https://pubmed.ncbi.nlm.nih.gov/26186758/)
 
 ---
 
-## 7. 言葉にすると、見えなくなるものがある
+## 7. 「専門家の実況」は足場にも、盲点の配布にもなる
 
-Language can sharpen experience, but sometimes verbalization makes recognition worse.
+If an expert says “look here,” a novice can borrow that direction of attention.
 
-ここまで読むと、実況はかなり便利な技術に見える。しかし、最も強い反論がある。
+強力だ。But every cue selects.
 
-Schooler and Engstler-Schooler reported a phenomenon later called **verbal overshadowing**: after describing a previously seen face in words, participants could become worse at recognizing it later.
+Point right, and attention may leave the left side. If the expert’s categories are outdated, the learner may inherit those categories too.
 
-その後、効果の大きさや条件には議論が続いたが、事前登録された大規模な直接追試でも、課題のタイミングによって大きさが変わりながら言語的隠蔽効果が確認されている。
+So commentary is both **attention scaffold and attention filter.**
 
-Why might this happen?
+Cueing research shows that highlighting relevant information can help learning, while effects depend on material, cue type, and other boundary conditions.
 
-顔を「細い目」「大きな鼻」「長い髪」と説明すると、もともと全体として捉えていた対象を、言語化しやすい特徴へ分解する。
+実況者のsalienceをそのまま正解として受け取ると、学習者は観察軸を借りる代わりに、他の可能性を探索する機会を失う。
 
-The verbal representation may interfere with a richer, less verbal memory.
+A better training loop is:
 
-これは実況にとって都合の悪い事実である。しかし、この都合の悪さこそ重要だ。
-
-> **世界には、言葉にすることで見えやすくなるものと、言葉にすることで失われるものがある。**
-
-Facial expression. Music. Smell. Bodily sensation. Beauty. A vague sense that something is wrong.
-
-こうしたものを言葉にすることには価値がある。しかし、言葉に置き換えられたものが経験の全体だと考えた瞬間、実況は世界を豊かにする技術から、世界を削る技術へ変わる。
+**cueを与える → cueなしで見る → 別の観察軸を作る。**
 
 ---
 
-## 8. 実況すると、「いま」から離れてしまうのか
+## 8. 実況を「気づきの練習」にする3レイヤー
 
-Observing an experience is not exactly the same as simply living it.
+You do not need to sound like a professional broadcaster.
 
-経験していることと、「自分はいま経験している」と観察することは、同じなのだろうか。
+### Layer 1｜Observation
 
-Phenomenology distinguishes reflective observation from forms of self-awareness already present before reflection, often discussed as **prereflective self-consciousness**.
+観察されたことだけを短く言う。
 
-痛みを感じているとき、通常はまず痛みを生きている。
+“B is silent.” 「右側が空いた。」 “My breathing is shallow.”
 
-Later, we can step back and say, “I am feeling pain.”
+### Layer 2｜Relation
 
-この二つは同じ状態ではない。
+Put multiple observations together without yet claiming a cause.
 
-Commentary also places experience at a slight distance.
+「Aが話した直後にBが黙った。」 “When the ball moved left, the right side opened.”
 
-風景を見ている。
+### Layer 3｜Hypothesis
 
-Then we say, “Light is hitting the edge of that building.”
+原因・意図・意味を仮説として置く。
 
-その言葉によって新しい特徴に気づくかもしれない。
+“Maybe B finds it difficult to speak here.” 「守備がボールへ寄りすぎたのかもしれない。」
 
-But we have also moved from simply being in the scene to noticing ourselves as observers of the scene.
+The point of these layers is not elegant commentary. **It is preserving the boundary between what was perceived and what was inferred.**
 
-ここから、実況には避けられない交換条件が見えてくる。
+Observation扱うのはcueとevent。Relationはpattern。Hypothesisはcausal model。Their epistemic status is different even when they appear in one smooth sentence stream.
 
-> **実況は経験を明晰にする代わりに、経験との距離を作る。**
+If the layers remain visible, later evidence can tell us whether the error was in observation, relation, or interpretation.
 
-Distance can be useful when we are overwhelmed by emotion, trying to understand a complex situation, or checking our assumptions.
-
-しかし、距離そのものが邪魔になる経験もある。すべてを実況すればよいわけではない。
+実況は結論を早く作る技術ではなく、**a way to make the path toward a conclusion reviewable.**
 
 ---
 
-## 9. 実況の五つの作用
+## 9. 気づきの量ではなく「探索可能な場所」が増えたかを見る
 
-Commentary points, names, cuts, connects, and explains.
+Do not measure improvement by word count or commentary fluency.
 
-ここまでをまとめると、実況には少なくとも五つの作用がある。
+Instead, ask:
 
-### 1. 向ける
+- 前は見ていなかった場所へ注意を向けられたか
+- Can you find the same cue without the expert pointing to it?
+- eventの粒度を切り替えられるか
+- Can you separate Observation from Hypothesis?
+- 一つの解釈に固まったあと、別の観察軸を作れるか
 
-Choose what to attend to.
+Noticing growth may be better understood not as seeing more information all the time, but as **being able to reorganize the search space when the task changes.**
 
-注意の配分を変える。
+Expertise research often points toward task-specific selection rather than uniform attention to everything.
 
-### 2. 名づける
-
-Give a word to something vague.
-
-探索可能な対象にする。
-
-### 3. 切る
-
-Place boundaries in continuous experience.
-
-出来事の粒度を変える。
-
-### 4. つなぐ
-
-Put multiple events next to each other and notice relations.
-
-単独では見えなかったパターンを浮かべる。
-
-### 5. 説明する
-
-Add causes, intentions, and meanings.
-
-理解を深める一方、物語を捏造する危険も増える。
-
-The order matters.
-
-私たちは普段、1から5までをほとんど一瞬で通過する。だから「見た」と「解釈した」の区別がつかなくなる。
-
-The value of commentary may be that it slows this sequence down just enough to inspect it.
-
-出来事に気づく。言葉を置く。関係を見る。そして、説明へ飛ぶ前に一瞬止まる。
-
-> **実況とは、思考を速くする技術ではなく、認識の途中経過を見えるようにする技術である。**
+実況のゴールも、実況なしでは見えない人を作ることではない。**Borrow an observation axis, then learn to switch it yourself.**
 
 ---
 
-## 10. 「気づく」とは、情報を増やすことではない
+## おわりに――実況は、世界の字幕ではない
 
-Noticing may mean becoming aware of how attention itself is being organized.
+Commentary is not simply subtitles added to an already visible world.
 
-ここで最初の問いへ戻る。実況すると、なぜ気づくことが増えたように感じるのか。
+言葉を置くと注意が向く。Events acquire boundaries. 専門家のcategoryを借りられる。The difference between observation and inference can become easier to inspect.
 
-Probably not because the raw amount of information entering the mind suddenly becomes much larger.
+But cues also hide alternatives. Explanation can intervene in cognition. Language can sometimes damage nonverbal memory.
 
-実況することで、普段は自動的に進んでいる認識の操作が表面へ出てくるからである。
+だから「実況すれば観察力が上がる」という結論にはしない。
 
-What did I notice?
+The more defensible claim is narrower and more useful:
 
-何を見なかったか。
+**実況は、何を見ようとしているかを、自分で見えるようにする。**
 
-Where did I place the boundary of an event?
-
-どんな名前を付けたか。
-
-What did I connect?
-
-どの瞬間に原因を想定したか。
-
-These operations happen even without commentary.
-
-実況はそれを発生させるというより、**検査可能にする**。
-
-In that sense, commentary is close to a metacognitive technique: not only seeing the world, but seeing how we are seeing it.
-
-しかし、この定義を採用するなら、気づく技術の最終地点は「たくさん実況できること」ではない。
-
-We should also be able to question the commentary itself.
-
-「いま、この言葉で世界を切っている」
-
-“This explanation is pulling my attention.”
-
-「別の見方を落としている」
-
-“Maybe this is a moment when words should stop.”
-
-そこまで気づけるようになったとき、実況は単なる言語化から一段変わる。
+That is the firmest place from which to call it a technology of noticing.
 
 ---
 
-## 結論　実況することと、黙ること
+## 参考資料
 
-The skill is not to comment on everything. It is to know when words help us see and when they make us blind.
-
-実況とは、目の前にある世界をそのままコピーして言葉へ変換する行為ではない。
-
-Every act of commentary contains choices.
-
-何を見るかを選ぶ。
-
-We choose what to call it.
-
-どこで切るかを選ぶ。
-
-We choose what to connect.
-
-何を原因と考えるかを選ぶ。
-
-Therefore commentary is not a neutral record of the world.
-
-**注意を編集する行為である。**
-
-And yet it has real value.
-
-自動的に通り過ぎていたことを止める。曖昧な塊を細かく見る。自分が知らなかったことに気づく。
-
-It can expose the boundary between observation and interpretation and create a little distance from emotion.
-
-そうした働きによって、実況は「もっと考えるための技術」より先に、**もっと気づくための技術**になりうる。
-
-But language is not universal.
-
-言葉を与えた瞬間に、こぼれるものがある。
-
-An explanation can create a cause that was never there.
-
-自分を観察した瞬間に、失われる没入がある。
-
-So the real skill is not endless commentary.
-
-> **言葉にすべき瞬間と、黙って見るべき瞬間を往復できること。**
-
-Comment.
-
-気づく。
-
-Notice the bias in the commentary itself.
-
-そして、ときどき実況をやめる。
-
-That movement between words and silence may be one way to increase the resolution with which we encounter the world.
-
----
-
-## 参考文献・関連資料
-
-- Simons, D. J., & Chabris, C. F. (1999). *Gorillas in our midst: sustained inattentional blindness for dynamic events*. Perception, 28(9), 1059–1074. https://pubmed.ncbi.nlm.nih.gov/10694957/
-- Most, S. B., Scholl, B. J., Clifford, E. R., & Simons, D. J. (2005). *What you see is what you set: sustained inattentional blindness and the capture of awareness*. Psychological Review, 112(1), 217–242. https://pubmed.ncbi.nlm.nih.gov/15631594/
-- Lupyan, G., & Ward, E. J. (2013). *Language can boost otherwise unseen objects into visual awareness*. Proceedings of the National Academy of Sciences, 110(35), 14196–14201. https://pubmed.ncbi.nlm.nih.gov/23940323/
-- Firestone, C., & Scholl, B. J. (2016). *Cognition does not affect perception: Evaluating the evidence for “top-down” effects*. Behavioral and Brain Sciences, 39, e229. https://www.cambridge.org/core/product/920E2AE74C642DD3CB3FA8160EA1D84A
-- Levin, D. T., Baker, L. J., & Banaji, M. R. (2016). *Cognition can affect perception: Restating the evidence of a top-down effect*. Behavioral and Brain Sciences, 39, e250. https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/cognition-can-affect-perception-restating-the-evidence-of-a-topdown-effect/CF21D99C5131967AFBEB4E57F4E9BC57
-- Zacks, J. M., & Swallow, K. M. (2007). *Event segmentation*. Current Directions in Psychological Science, 16(2), 80–84. https://pubmed.ncbi.nlm.nih.gov/22468032/
-- Zacks, J. M., Speer, N. K., Swallow, K. M., Braver, T. S., & Reynolds, J. R. (2007). *Event perception: a mind-brain perspective*. Psychological Bulletin, 133(2), 273–293. https://pubmed.ncbi.nlm.nih.gov/17338600/
-- Fox, M. C., Ericsson, K. A., & Best, R. (2011). *Do procedures for verbal reporting of thinking have to be reactive? A meta-analysis and recommendations for best reporting methods*. Psychological Bulletin, 137(2), 316–344. https://pubmed.ncbi.nlm.nih.gov/21090887/
-- Rozenblit, L., & Keil, F. (2002). *The misunderstood limits of folk science: an illusion of explanatory depth*. Cognitive Science, 26(5), 521–562. https://pubmed.ncbi.nlm.nih.gov/21442007/
-- Williams, J. J., & Lombrozo, T. (2010). *The role of explanation in discovery and generalization: evidence from category learning*. Cognitive Science, 34(5), 776–806. https://pubmed.ncbi.nlm.nih.gov/21564236/
-- Lieberman, M. D., et al. (2007). *Putting feelings into words: affect labeling disrupts amygdala activity in response to affective stimuli*. Psychological Science, 18(5), 421–428. https://pubmed.ncbi.nlm.nih.gov/17576282/
-- Johansson, P., Hall, L., Sikström, S., & Olsson, A. (2005). *Failure to detect mismatches between intention and outcome in a simple decision task*. Science, 310(5745), 116–119. https://pubmed.ncbi.nlm.nih.gov/16210542/
-- Alogna, V. K., et al. (2014). *Registered Replication Report: Schooler and Engstler-Schooler (1990)*. Perspectives on Psychological Science. https://pubmed.ncbi.nlm.nih.gov/26186758/
-- Goodwin, C. (1994). *Professional Vision*. American Anthropologist, 96(3), 606–633. https://anthrosource.onlinelibrary.wiley.com/doi/10.1525/aa.1994.96.3.02a00100
-- Stanford Encyclopedia of Philosophy. *Phenomenological Approaches to Self-Consciousness*. https://plato.stanford.edu/entries/self-consciousness-phenomenological/
+- [Goodwin, C. (1994) — Professional Vision](https://doi.org/10.1525/aa.1994.96.3.02a00100)
+- [Fox, M. C., Ericsson, K. A. & Best, R. (2011) — Do procedures for verbal reporting of thinking have to be reactive?](https://pubmed.ncbi.nlm.nih.gov/21090887/)
+- [Schneider et al. (2018) — A meta-analysis of how signaling affects learning with media](https://doi.org/10.1016/j.edurev.2017.11.001)
+- [Silva et al. (2022) — Differences in visual search behavior between expert and novice team sports athletes](https://pubmed.ncbi.nlm.nih.gov/36211897/)
+- [Wang et al. (2026) — Differences in visual search behavior between expert and novice individual sports athletes](https://pubmed.ncbi.nlm.nih.gov/42222294/)
+- [Zacks, J. M. & Swallow, K. M. (2007) — Event Segmentation](https://doi.org/10.1111/j.1467-8721.2007.00480.x)
+- [Smith, M. E. & Zacks, J. M. (2026) — Event Segmentation Interventions Improve Memory for Naturalistic Events](https://doi.org/10.1177/09637214251350690)
+- [Registered Replication Report — Schooler & Engstler-Schooler](https://pubmed.ncbi.nlm.nih.gov/26186758/)
