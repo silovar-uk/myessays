@@ -13,8 +13,8 @@ This file records the **current execution status** of the migration program.
 | 0B — Specification and QA contract cleanup | Completed | Docs, static tests, browser QA, and workflow aligned to `ja / en-mix / es-mix`. |
 | 1 — Legacy canonical `*-mixed-en.md` cleanup | Completed | Five legacy mixed-English canonical companions migrated to Reading Mode. |
 | 2 — Full-library class-A compatibility pass | Completed | Compatibility baseline reached 0 integrity errors / 0 warnings / 0 known spec drift. |
-| 3 — P1 editorial / Writing Architecture batch | **Completed — 7 / 7** | Four D Flagships and three C Writing Architecture articles modernized; all seven have article-specific Structure regression fixtures. |
-| 4 — Next editorial batch | **Selection pending after Batch 3 closeout QA** | Re-select from the latest audit rather than continuing from stale inventory order. |
+| 3 — P1 editorial / Writing Architecture batch | **Completed — 7 / 7, final QA green** | Four D Flagships and three C Writing Architecture articles modernized; Reading Mode debt closed and seven Structure fixtures protected. |
+| 4 — Freshness & External Claims | **Selected — 0 / 7** | Seven externally volatile articles selected from the latest audit. `claude-delegation-horizon-opus-fable` is next. |
 
 ## Batch 1
 
@@ -50,9 +50,10 @@ Baseline strict audit:
 - warnings: 0
 - known specification drift: 0
 
-## Batch 3 target set — completed
+## Batch 3 — completed
 
 Selection source: `MIGRATION_BATCH_3_SELECTION.md`
+Reusable method: `MIGRATION_BATCH_3_CONVENTIONS.md`
 
 | # | Article | Class | Principal PR | Structure |
 | --- | --- | --- | --- | ---: |
@@ -66,72 +67,105 @@ Selection source: `MIGRATION_BATCH_3_SELECTION.md`
 
 Final shared Structure fixture PR: #43 — `Protect all Batch 3 Structure fixtures`.
 
-### What Batch 3 established
-
-The method now survives multiple domains without forcing the same prose or Structure shape:
-
-- psychology / evaluation;
-- economics / AI task allocation;
-- management / executive experimentation;
-- organizational learning;
-- structured communication / Minto;
-- metrics / incentives / Goodhart;
-- attention / expertise / commentary.
-
-Reusable rules are finalized in `MIGRATION_BATCH_3_CONVENTIONS.md`.
-
 ### Reading Mode closeout
 
-The first four articles had no registered derived Reading Mode and were valid `DEFER` cases.
+Articles 5–7 already had English Mix files. Their canonical rewrites materially changed the thesis, so the earlier `DEFER` interpretation was corrected to **UPDATE**.
 
-Articles 5–7 already had English Mix files. Their canonical rewrites materially changed the thesis, so treating them as `DEFER` was incorrect. Batch 3 closeout therefore changes their decision to **UPDATE** and synchronizes:
+PR #47 — `Close Batch 3 and synchronize derived Reading Modes`
+
+Merge commit: `67c06217978f7072e3c1126cfb9d982a441885bd`
+
+Synchronized:
 
 - `english-mix/minto-pyramid-thinking-structure-ai.md`;
 - `english-mix/goodharts-law-proxy-target-design.md`;
 - `english-mix/commentary-as-technology-of-noticing.md`.
 
-The synchronized versions preserve the revised evidence boundaries rather than the superseded claims:
+The synchronized versions preserve the revised evidence boundaries:
 
 - Minto: structure is a working tool for externalizing/testing thought, not thinking itself or a fully validated cognitive theory;
 - Goodhart: proxies do not necessarily fail the instant they become targets; failure risk depends on proxy–goal gaps, optimization pressure, and mechanism;
 - Commentary: no direct general law that commentary itself increases noticing; the article uses an attentional-scaffolding model grounded in adjacent evidence.
 
-### Publishing integrity rule added at closeout
+### Publishing integrity contract
 
-A logical article is now treated as one publishing transaction:
+A logical article is one publishing transaction:
 
 **canonical file + `data/index.json` + derived file(s) + `data/versions-index.json`**.
 
-`tools/audit-content.mjs --strict` now treats unindexed canonical or derived Markdown as an **integrity error**, not a warning. This aligns the strict audit with the static data-integrity tests and prevents a file from looking published while the data contract is incomplete.
+`tools/audit-content.mjs --strict` now treats unindexed canonical or derived Markdown as an **integrity error**, not a warning.
 
-## Batch 3 final validation gate
+### Final QA
 
-Closeout branch: `migration/batch-3-closeout`
+The first closeout run, Visual QA `33385489095`, established that:
 
-Required before merge:
-
-- strict migration audit: 0 errors;
+- strict migration audit: 0 errors / 0 warnings / 0 known drift;
 - static tests: 40 / 40;
-- Reading Mode browser QA;
-- Argument Structure browser QA: all 7 fixtures;
-- Page Reader browser QA;
-- desktop/mobile Visual QA;
-- horizontal-overflow checks;
-- console/page-error checks;
-- QA artifact upload.
+- Reading Mode browser QA: success.
 
-After merge, confirm GitHub Pages deployment and record the final run IDs here.
+It then exposed a timing race in the Argument Structure QA: the test sampled the active paragraph while the runtime's intentional smooth scroll was still updating scroll-based selection.
 
-## Batch 4 selection rule
+PR #49 — `Stabilize Argument Structure selection QA after smooth scroll`
 
-Do not continue mechanically from the original inventory order. The archive has changed materially during Batch 3.
+Merge commit: `47daad99a82954c693a69bd872e90540b015f867`
 
-Re-select the next 5–10 candidates from the latest audit using:
+The fix preserved the same assertion and waits for programmatic scrolling to settle before validating the final selected paragraph. No runtime behavior, article content, Structure fixtures, or expected outcome was weakened.
 
-1. **claim risk** — strength of factual/causal claims that may be wrong or overgeneralized;
-2. **freshness risk** — dependence on current teams, companies, software, policy, health, or markets;
-3. **reader value** — articles worth preserving and improving rather than merely normalizing;
-4. **architecture gap** — distance from the current editorial / Structure standard;
-5. **derived-mode debt** — existing Reading Modes likely to preserve outdated theses.
+Final main validation:
 
-Batch 4 begins only after the Batch 3 closeout gate is green.
+- Visual QA `33385910625` — **success**
+  - strict migration audit — success
+  - static tests — success
+  - Reading Mode browser QA — success
+  - Argument Structure browser QA — success for all seven fixtures
+  - Page Reader browser QA — success
+  - desktop/mobile browser Visual QA — success
+  - QA artifact upload — success
+- Pages deployment `33385909982` — **success**
+
+**Batch 3 is closed.**
+
+## Batch 4 — Freshness & External Claims
+
+Selection source: `MIGRATION_BATCH_4_SELECTION.md`
+
+Selected order:
+
+1. `claude-delegation-horizon-opus-fable` — AI products / workflow — **Next**
+2. `physical-ai-embodied-intelligence-deployment` — AI / robotics
+3. `rakuten-securities-information-infrastructure` — finance / product ecosystem
+4. `bcg-consulting-reality-voices` — company / career
+5. `sato-teru-eight-category-dominance` — sports statistics
+6. `mali-sahel-history-state-france-russia` — geopolitics / history
+7. `pneumonia-how-serious-hospital-oxygen` — medicine / health literacy
+
+Batch 4 tests a different editorial risk from Batch 3: the argument may remain structurally coherent while the external facts underneath it become stale.
+
+For each article use:
+
+**fresh research → information-basis date → evidence map → counterevidence → canonical edit → Structure → Reading Mode decision → QA → merge**
+
+Do not edit all seven at once.
+
+### Reading Mode rule
+
+Existing derived modes must be classified **KEEP / UPDATE / RETIRE** after canonical changes.
+`DEFER` is allowed only when no derived mode exists.
+
+### Batch 4 completion gate
+
+For each article:
+
+- important current claims re-researched;
+- snapshot facts separated from durable thesis;
+- vendor-reported / independent / primary evidence distinguished where relevant;
+- original article-level models labeled as such;
+- selective Structure added only after canonical stabilizes;
+- existing Reading Modes synchronized where needed;
+- strict audit green;
+- static tests green;
+- Reading Mode QA green;
+- all registered Structure fixtures green;
+- Page Reader QA green;
+- desktop/mobile Visual QA green;
+- Pages deployment green after merge.
