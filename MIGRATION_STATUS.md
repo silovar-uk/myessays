@@ -1,6 +1,6 @@
 # MyEssays Migration Status
 
-Updated: 2026-08-30
+Updated: 2026-08-31
 
 This file records the **current execution status** of the migration program.
 `MIGRATION_INVENTORY.md` and `MIGRATION_ROADMAP.md` remain the baseline inventory and plan captured at the start of the program; when their embedded status labels differ from this file, this file is the current status.
@@ -12,8 +12,9 @@ This file records the **current execution status** of the migration program.
 | 0A — Baseline and repeatable audit | Completed | Current specification, inventory, roadmap and repeatable content audit added. |
 | 0B — Specification and QA contract cleanup | Completed | Documentation, static tests, browser QA and workflow contract aligned to `ja / en-mix / es-mix`. |
 | 1 — Legacy canonical `*-mixed-en.md` cleanup | Completed | Five legacy mixed-English canonical companions migrated to `english-mix/` Reading Mode. |
-| 2 — Full-library class-A compatibility pass | Next | Run the strict audit across the full archive and classify any remaining warnings before editorial modernization. |
-| 3+ — Editorial migration batches | Not started | Start only after Batch 2 establishes the compatibility baseline. |
+| 2 — Full-library class-A compatibility pass | **Completed** | Strict full-library audit: 178 canonical / 107 English Mix / 1 Español Mix; 0 integrity errors, 0 warnings, 0 known spec drift. |
+| 3 — P1 editorial / Writing Architecture batch | **Next — targets selected** | Seven coherent conceptual/management essays selected in `MIGRATION_BATCH_3_SELECTION.md`; research precedes substantive editing. |
+| 4+ — Later editorial migration batches | Not started | Select only after Batch 3 documents reusable editorial/Structure conventions. |
 
 ## Batch 1 completion record
 
@@ -55,22 +56,68 @@ Passed steps:
 
 GitHub Pages deployment run `33318399393` also completed successfully for the same merge commit.
 
-## Next execution gate — Batch 2
+## Batch 2 completion record
 
-Run:
+Batch 2 audited the latest full archive after Batch 1 and subsequent content additions.
 
-```bash
-node tools/audit-content.mjs --strict
-```
+Strict audit result from GitHub Actions run `33347057375`:
 
-Then review the full report, not only the exit code.
+- Canonical index entries: **178**
+- Markdown files under `essays/`: **178**
+- English Mix files: **107**
+- Español Mix files: **1**
+- Canonical articles with Structure metadata: **1**
+- Legacy canonical `*-mixed-en.md` entries: **0**
+- Integrity errors: **0**
+- Warnings: **0**
+- Known specification-drift files: **0**
 
-Batch 2 is complete only when:
+Classification:
 
-- integrity errors are zero;
-- every warning is classified as a later editorial task, an intentional legacy condition, or a defect to fix now;
-- no canonical/derived identity collision remains;
-- no unindexed canonical or derived Markdown remains;
-- no stale Reading Mode contract remains in active documentation, tests, browser QA or workflows.
+- P0-A integrity defects: none
+- P0-B active specification drift: none
+- P1 editorial modernization: intentionally deferred to Batch 3+
+- P2 freshness review: handled only when an article is selected for editorial work
+- ACCEPT: absence of English Mix, Español Mix, or Structure remains a valid state
 
-Do **not** begin broad prose modernization before this compatibility pass is reviewed.
+No historical article prose needed a compatibility correction in Batch 2.
+
+PR #24 — `Preserve full migration audit in Visual QA artifacts` — changed CI so the full strict-audit report is printed and retained as `qa-artifacts/migration-audit.md` rather than discarded in `/tmp`.
+
+Merge commit:
+
+`6314c59892b77899b58a8de01de29f17104d0d4e`
+
+Validation on that commit:
+
+- strict migration audit: success;
+- static tests: **40 / 40 passed**;
+- Reading Mode browser QA: success;
+- Page Reader browser QA: success;
+- desktop/mobile visual QA: success;
+- console/page errors in visual QA: none;
+- QA artifact upload: success.
+
+## Next execution gate — Batch 3
+
+Selected targets and classifications are recorded in:
+
+`MIGRATION_BATCH_3_SELECTION.md`
+
+Selected order:
+
+1. `capability-output-asymmetry` — D
+2. `dynamic-multilayer-comparative-advantage` — D
+3. `executive-hands-on-as-exploration` — D
+4. `learning-organization-senge-systems-thinking` — D
+5. `minto-pyramid-thinking-structure-ai` — C
+6. `goodharts-law-proxy-target-design` — C
+7. `commentary-as-technology-of-noticing` — C
+
+Do **not** edit all seven at once.
+
+Start with `capability-output-asymmetry` and use:
+
+**Research → editorial diagnosis → proposed changes → article/Structure edit → diff audit → Reader/Structure QA → merge**
+
+before proceeding to the next target.
