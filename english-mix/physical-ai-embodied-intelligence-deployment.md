@@ -1,437 +1,243 @@
 ---
 id: physical-ai-embodied-intelligence-deployment
-title: "フィジカルAIとは何か――AIが「考える」だけでなく「動く」時代"
-subtitle: "狭義と広義、Embodied AIとの違い、良し悪し、そして2026年の評判を整理する"
+title: "フィジカルAIとは何か――「動けるAI」から「配備できるシステム」へ"
+subtitle: "Embodied AI、VLA、World Modelを分け、Capability→Reliability→Deployabilityで読む"
 mode: "english-mix"
 english_ratio: 0.45
 mix_unit: "sentence"
 ---
 
-# フィジカルAIとは何か――AIが「考える」だけでなく「動く」時代
-## 狭義と広義、Embodied AIとの違い、良し悪し、そして2026年の評判を整理する
+# フィジカルAIとは何か――「動けるAI」から「配備できるシステム」へ
+## Embodied AI、VLA、World Modelを分け、Capability→Reliability→Deployabilityで読む
 
-After generative AI became familiar, another phrase started appearing more often: **Physical AI**.
+Physical AIという言葉は、2026年のroboticsを語るときの大きなumbrellaになっている。
 
-「次はフィジカルAIだ」と言われると、人型ロボットの話に聞こえやすい。
+But it is not one perfectly fixed academic taxonomy.
 
-But Physical AI is broader than humanoid robots.
+NVIDIAは、robotやautonomous vehicleがphysical worldをperceive, understand, reason, and actするためのAIとしてPhysical AIを説明する。
 
-NVIDIA describes it as AI that lets autonomous systems such as robots, cameras, and self-driving cars **perceive, understand, reason, and act in the physical world**.
+一方、Nature Machine Intelligenceは、embodied intelligence、world models、morphology、materials、controlなど複数の研究潮流が、**how a system acts intelligently in the physical world**という問題へ収束していると整理している。
 
-ただし、最初に大事な注意がある。
+So the useful question is not “What is the one true definition of Physical AI?”
 
-**There is no single, perfectly fixed definition of Physical AI.**
+大事なのは、その言葉が**どのresearch problemとどのdeploymentをまとめているのか**を見ることだ。
 
-研究ではEmbodied AI、robot learning、autonomous systems、Vision-Language-Action models、world modelsなど、重なる言葉が使われる。
-
-So instead of asking only, “What is Physical AI?”, it is better to ask: **How broadly are we using the term?**
+この記事の情報基準日は2026年8月31日。Product names and deployment status are snapshots; the analytical framework is meant to last longer.
 
 ---
 
-## 1. The core idea: close the loop in the real world
+## 1. The durable core is a closed loop
 
-普通の生成AIは、入力を受けて文章や画像を返す。
+Text AI can often stop after producing an answer.
 
-Physical AI adds physical action to that process.
+ロボットは行動した瞬間にenvironmentを変える。
 
-基本のループはシンプル。
+**Perceive → Decide → Act → Observe again**
 
-**Perceive → Reason → Act → Perceive again**
+This closed loop is the durable core of Physical AI.
 
-A robot sees the world, thinks about what to do, acts, and then observes the result.
+腕を動かせば物体の位置が変わり、歩けば見えるsceneが変わる。だからone-shot accuracyだけではsystem qualityを測れない。
 
-つまり、一度答えて終わりではない。
-
-Its action changes the environment, so the next decision is based on a changed world.
-
-このclosed loopこそ、フィジカルAIを理解する中心になる。
+The question becomes: can intelligence keep working while the world keeps changing?
 
 ---
 
-## 2. Narrow, middle, and broad meanings
+## 2. Embodiment is more than putting software in a body
 
-Physical AIは統一定義が弱いので、ここでは理解のための三段階の作業定義を使う。
+Physical AIとEmbodied AIは大きく重なる。
 
-### Narrow meaning
+But “Physical AI = industry, Embodied AI = academia” is too neat.
 
-In the narrow sense, an AI system reads the real world through sensors and produces physical action.
+Embodied-intelligence research asks whether adaptive behaviour can really be explained by software alone.
 
-例えば、
+身体のmorphology、materials、sensor placement、mechanics、control loopもbehaviourを作る。
 
-- autonomous mobile robots
-- robot arms
-- humanoids
-- self-driving cars
-- drones
+The same model can behave differently when the body, sensors, or control rate changes.
 
-など。
-
-The system must sense, decide, and control motors or other actuators.
-
-ここでは、humanoidは一例にすぎない。
-
-### Middle meaning
-
-A Physical AI system is not only the robot body.
-
-現実世界で動かすには、
-
-- sensors
-- multimodal models
-- VLA models
-- world models
-- reinforcement learning
-- simulation
-- control software
-- edge computing
-- hardware
-
-が必要になる。
-
-A smart model alone is not enough.
-
-知覚、推論、制御、身体、電力、安全性まで含めて一つのsystemとして成立する必要がある。
-
-### Broad meaning
-
-In the broad sense, Physical AI can describe the automation of physical operations themselves.
-
-工場、倉庫、物流、建設、農業、医療、モビリティなどが対象になる。
-
-The key question is not “Is there a humanoid?”
-
-重要なのは、**how much of real-world decision and action is closed-loop and autonomous?** ということ。
+だからrobot intelligenceは、**model + body + environment**の組み合わせとして考えた方がよい。
 
 ---
 
-## 3. Physical AI and Embodied AI
+## 3. What a VLA actually connects
 
-These terms overlap a lot.
+Vision-Language-Action models connect visual and language representations to robot action policies.
 
-Nature describes Embodied AI as AI integrated into physical entities that can actively perceive, learn from, and interact with their environments.
+RT-2 was an early prominent example: web-scale vision-language pretraining was adapted to predict robot actions.
 
-ざっくり整理すると、
+ただしVLAはone mandatory architectureではない。
 
-**Embodied AI** focuses on intelligence emerging through interaction between body and environment.
+Some systems are more monolithic; others are hierarchical.
 
-**Physical AI** often sounds more like a system or industrial framing: how intelligent autonomous machines operate in the physical world.
+2026年のGemini Robotics stackでも、Gemini Robotics ER 2がhigh-level embodied reasoningを担い、lower-level VLAへmotor executionを渡せる。
 
-でも、きれいな境界線はない。
+So VLA does not automatically mean perception, planning, and control have collapsed into one giant model.
 
-It is safer to think of them as overlapping views of the same larger problem.
-
----
-
-## 4. VLA connects vision, language, and action
-
-VLA means **Vision-Language-Action**.
-
-従来のロボットでは、画像認識、計画、運動制御が別々のmoduleとして設計されることが多かった。
-
-VLA tries to connect these parts more directly.
-
-A model sees an image, understands a language instruction, and produces actions for the robot.
-
-2026年7月、Google DeepMindはGemini Robotics 2を発表した。
-
-Gemini Robotics 2 is a VLA model that converts vision and language input into motor control.
-
-さらにGemini Robotics ER 2は、高レベルのembodied reasoningを担当する。
-
-It observes the scene, plans multiple steps, tracks progress, and can correct failed steps.
-
-ここで重要なのは、「ChatGPTをロボットに入れた」という話ではない。
-
-The important change is that **language and visual understanding are being connected to physical control**.
+見るべきなのは、**what is integrated, what is hierarchical, and where verification/control still lives** という点。
 
 ---
 
-## 5. World models: “What will happen if I do this?”
+## 4. World models are not perfect internal realities
 
-A world model predicts how the environment may change after an action.
+The term “world model” predates the current Physical AI boom.
 
-人間でいえば、「このコップを押したら倒れるかもしれない」と頭の中で先を想像する感じに近い。
+Ha and Schmidhuber's 2018 work is a well-known example of learning compressed spatial-temporal representations of an environment for an agent.
 
-In robotics, world models can support planning, simulation, policy learning, evaluation, and data generation.
+現在はさらに、future videoや3D environmentをpredict / generateしてplanning, simulation, policy learning, synthetic dataに使う文脈が広がっている。
 
-2026年のsurveyでも、robot learningにおける重要な研究領域として整理されている。
+But a world model is not a complete copy of reality inside the machine.
 
-But a world model is not a perfect copy of reality.
+摩擦、柔らかい物体、人間の突然の行動、sensor noiseなどではprediction errorが積み重なる。
 
-柔らかい物体、摩擦、人の突然の動き、光、センサー誤差など、現実は非常に複雑。
-
-Long-horizon prediction is especially difficult because small errors accumulate.
+Its value is practical: **does the prediction help action selection within the range that matters?**
 
 ---
 
-## 6. Why now?
+## 5. In 2026, look at the stack, not only the model
 
-Robotics, control, reinforcement learning, and autonomous driving are not new.
+Google DeepMind now presents multiple robotics models with different roles: Gemini Robotics 2, ER 2, and On-Device 2.
 
-それでも2020年代半ばにPhysical AIが急に注目されたのは、複数の技術がつながり始めたから。
+NVIDIA's Isaac GR00T is also not only a foundation model. It includes data pipelines, simulation, middleware, runtimes, and on-robot compute.
 
-**LLM → Multimodal AI → Vision-Language Model → VLA → Physical Action**
+つまり、「一番賢いrobot modelは何か」だけではdeploymentの大部分を見落とす。
 
-Large models learned to handle not only text, but also images, video, audio, space, and increasingly action.
+A real robot system needs sensors, policies, planners, low-level controllers, functional safety, compute, power, monitoring, data collection, and maintenance.
 
-同時に、GPU、simulation、synthetic data、robot data collectionも進歩した。
+DeepMind's own On-Device 2 model card also recommends layered safety rather than trusting the VLA alone.
 
-This created a powerful idea:
-
-> Can we transfer the general perception and reasoning gains of generative AI into physical control?
-
-これが現在のフィジカルAI・ブームの中心にある期待。
+Model progress is real. But Physical AI is still a **systems problem**.
 
 ---
 
-## 7. What is good about Physical AI?
+## 6. Capability → Reliability → Deployability
 
-### Flexible automation
+この記事では、正式なindustry standardではなくdiagnostic scaffoldとして三段階を置く。
 
-Traditional industrial robots are extremely good at repeating fixed actions in fixed environments.
+**Capability** — その条件でtaskをできるか。
 
-フィジカルAIが狙うのは、状況を見ながら行動を変えること。
+**Reliability** — variationやrepetitionの中でも、必要なspeed, safety, success rateで安定してできるか。
 
-If an object moves, a person enters the area, or the task changes slightly, the robot may adapt instead of stopping.
+**Deployability** — maintenance, integration, safety case, throughput, cost, human interventionまで含め、現場で成立するか。
 
-### Natural-language control
+These are not the same thing.
 
-A worker may be able to say, “Put the red box on the right shelf.”
+Gemini Robotics On-Device 2のmodel cardはOOD taskやhigh-DoF controlのlimitationsを明記しているし、VLA safety benchmarkではtask successの中にunsafe successが残るケースも報告されている。
 
-自然言語がrobot interfaceになれば、専門的なprogramming負担を下げられる可能性がある。
+So a successful demo should not be automatically promoted to “reliable” or “deployable.”
 
-### Dangerous and unpopular work
-
-Physical AI may help with high-temperature work, heavy lifting, hazardous environments, night shifts, or disaster response.
-
-人手不足への対応だけでなく、人間がやるには危険・負担の大きい仕事を置き換える価値もある。
-
-### Simulation at scale
-
-Robots cannot safely fall millions of times in the real world.
-
-Simulation lets them practice many situations cheaply and safely.
-
-ただし、simulationでできたことがそのまま現実でできるわけではない。
+この差を本稿では**Deployment Gap**と呼ぶ。This is an editorial working term, not a validated robotics metric.
 
 ---
 
-## 8. The bad part: reality has no Undo button
+## 7. Demo is not deployment
 
-This is the biggest difference from text AI.
+A laboratory demo, a site pilot, a commercial deployment, and scaled operation are different stages.
 
-LLMが10回に1回間違うとしても、用途によっては人間が確認すればよい。
+2026年、Boston Dynamicsはproduct versionのAtlasを発表し、HyundaiとGoogle DeepMindへのdeploymentを予定している。
 
-A physical robot that makes a dangerous mistake one time out of ten is unusable.
+That is an important product milestone, but it is not yet proof of scaled ROI.
 
-つまりPhysical AIでは、average accuracyだけでは足りない。
+Agility RoboticsはDigitについて、GXOでcommercial/RaaS deploymentを行い、10万個超のtoteを扱ったと報告している。
 
-**Failure modes, worst cases, and recovery matter.**
+This is stronger operational evidence than a showcase video, while still being a vendor-reported result.
+
+ロボットを見るときは “Did it move?” だけでなく、**What deployment stage is this?** と聞く。
+
+---
+
+## 8. Five sources of the Deployment Gap
+
+### Data
+Robot action data is expensive and embodiment-specific. Current VLA surveys still describe a fidelity-versus-cost bottleneck.
+
+### Sim-to-Real
+Simulation scales learning, but friction, latency, deformation, lighting, and sensor noise do not transfer perfectly.
 
 ### Safety
+Physical actions can have irreversible consequences. Safety cannot be reduced to language filtering alone.
 
-A 2026 survey on VLA safety highlights risks that do not exist in the same form for text-only AI.
+### Recovery
+Operational systems need to detect failure, enter a safe state, retry when appropriate, or hand off to a human.
 
-- irreversible physical consequences
-- attacks across vision, language, and system state
-- real-time latency constraints
-- error propagation during long tasks
-- vulnerable data pipelines
+### Throughput and economics
+Task success can be high while the robot remains too slow, intervention-heavy, or expensive to deploy.
 
-ロボットの誤作動は、変な文章が出るだけでは終わらない。
+A 2026 real-robot benchmark, PhAIL, reported that its best evaluated VLA was still roughly seven times slower per operation than its human teleoperation reference in that setup.
 
-### Long-horizon tasks
-
-Picking up one object is easier than cleaning a room for ten minutes while handling unexpected failures.
-
-タスクが長くなるほど、小さな認識・計画・制御ミスが積み上がる。
-
-Gemini Robotics 2が数分・数百decisionのtaskを強調しているのも、この問題がまだ重要だから。
-
-### Expensive data
-
-The internet contains enormous amounts of text and images.
-
-でも、高品質なrobot action dataは自然には大量に集まらない。
-
-A 2026 VLA survey describes a basic trade-off between data fidelity and collection cost.
-
-### Sim-to-Real gap
-
-A robot can succeed in simulation and still fail in the real world.
-
-摩擦、反射、傷、柔らかさ、機械の個体差、sensor noiseがあるから。
-
-Simulation success is not deployment success.
-
-### Hardware does not scale like software
-
-Software can be copied almost for free.
-
-A robot needs motors, batteries, materials, factories, shipping, maintenance, and replacement parts.
-
-壊れるし、摩耗するし、充電も必要。
-
-This changes the economics completely.
+The exact number is setup-specific, but the lesson is durable: **success rate is not throughput**.
 
 ---
 
-## 9. Demo is not deployment
+## 9. Humanoid is not a synonym for Physical AI
 
-This may be the most useful sentence for evaluating robot news.
+Humanoids have one obvious advantage: much of the world is built around the human body.
 
-**Demo is not deployment.**
+Doors, shelves, stairs, tools, and workstations already assume human reach and geometry.
 
-2026年8月、Reutersは中国のhumanoid robotics industryについて、派手なmarathonやbackflipのデモから、productivity、autonomy、ROIを証明する段階へ移っていると報じた。
+But morphological compatibility is not the same as universal optimality.
 
-One successful video is only one level.
+二足、多関節、handsは環境適合性を増やす一方、control complexity, energy, cost, maintenanceも増やす。
 
-毎日動く。
-8時間止まらない。
-失敗から自律復帰する。
-人を雇うより安い。
+For some tasks, wheels or a dedicated arm are simply better.
 
-These are different levels of difficulty.
-
-ロボット動画を見るときは、次を確認したい。
-
-- What is the success rate?
-- Is it autonomous or teleoperated?
-- How fast is it?
-- How long can it run continuously?
-- Can it recover from failure?
-- What does it cost?
-- How much maintenance is needed?
-
-派手さではなく、deployment条件を見る。
+So “Physical AI will grow” and “humanoids will dominate” are two separate hypotheses.
 
 ---
 
-## 10. Reputation in 2026: different groups have different temperatures
+## 10. What actually changed in the mid-2020s?
 
-### Big Tech: very optimistic
+Robotics itself is old.
 
-NVIDIA is strongly promoting Physical AI as a major computing frontier.
+What changed is the attempt to reuse internet-scale semantic knowledge, multimodal representation, natural-language instruction, and cross-task robot data inside physical policies.
 
-Google DeepMind is pushing VLA, embodied reasoning, whole-body control, dexterity, and on-device robotics.
+RT-2、Physical Intelligenceのπ0、Gemini Robotics、NVIDIA GR00Tは、taskごとにゼロからprogrammingする世界から、broad pretrainingを持つgeneralist policyをtaskやbodyへadaptする世界を目指している。
 
-技術企業側の期待はかなり高い。
+This is a meaningful change.
 
-### Researchers: real progress, real open problems
+But it does not mean one foundation model can instantly control any robot in any environment.
 
-Nature Machine Intelligence wrote in April 2026 that several research traditions are converging on the problem of intelligent physical action.
-
-同時に、robust perception, action, and adaptation in the real world remain open challenges.
-
-So the research view is not “nothing works.”
-
-でも、「もう解決した」でもない。
-
-### Investors: huge expectations
-
-On August 24, 2026, Reuters reported that XPeng's robotics unit raised more than $900 million and was valued above $6.3 billion.
-
-資金は明確に流れ込んでいる。
-
-But investment is not proof that the technology is finished.
-
-It mainly shows that investors believe the future market could be very large.
-
-### Real-world operators: ROI and reliability
-
-A factory does not care much about a benchmark score if the robot stops every hour.
-
-現場が見るのは、処理量、停止時間、回収期間、安全性、保守性。
-
-Future-looking excitement is not enough.
+The direction toward generalization is real; **general-purpose deployment is still under validation**.
 
 ---
 
-## 11. Are humanoids the winner?
-
-Humanoid robots get the most attention because human environments are designed for human bodies.
-
-階段、ドア、工具、棚、机は、人間が使う前提で作られている。
-
-So a human-shaped robot could potentially work without rebuilding the environment.
-
-一方、人型は難しい。
-
-Bipedal walking is unstable, many joints increase control complexity, and energy efficiency can be worse.
-
-移動だけならwheelsの方が合理的なこともある。
-
-For repetitive factory work, a dedicated arm may be faster and cheaper.
-
-だから、
-
-**Physical AI growth does not automatically mean humanoid domination.**
-
-この二つの予測は分けて考えるべき。
-
----
-
-## 12. Will robotics have a “ChatGPT moment”?
-
-The phrase “ChatGPT moment” appears often in robotics.
-
-意味するのは、未知の環境でも自然言語で幅広い仕事をこなせる汎用性が突然立ち上がる瞬間。
-
-In August 2026, Unitree's CEO told Reuters that such a software breakthrough might arrive within two to ten years.
-
-でも、ChatGPTとの比較には注意が必要。
-
-ChatGPT was software delivered through an existing digital network.
-
-Physical AI needs factories, robots, batteries, installation, safety checks, maintenance, and integration into real workflows.
-
-So even if the model improves suddenly, deployment may remain slow.
-
-**Software breakthrough ≠ deployment speed.**
-
-ここがロボティクスの難しさ。
-
----
-
-## 13. Conclusion: the progress is real, but the physical world is still hard
+## 11. Conclusion: intelligence meets responsibility
 
 Physical AI is not only hype.
 
-VLA models, multimodal reasoning, world models, simulation, and on-device AI are making real progress.
+VLA models, multimodal learning, world models, simulation, and robot foundation models are expanding what robots can learn and how quickly new behaviours can be specified.
 
-ロボットが言葉を理解し、周囲を見て、複数stepの行動へつなげる能力は確実に伸びている。
+でもphysical worldはsoftware benchmarkより厳しい。
 
-But a smarter model is not the same as a cheap, safe, reliable machine that works every day.
+Objects fall. Motors heat up. Batteries run out. Sensors lose track. People enter the workspace. And after a failure, the next second still happens.
 
-このgapを見ることが重要。
+The final question is not simply, “How smart is the AI?”
 
-When judging Physical AI, ask six questions:
+それは、**Can this intelligence operate under the constraints and responsibilities of the real world?** という問いになる。
 
-- How good is perception?
-- How long can reasoning stay reliable?
-- How accurate is action?
-- Can the system recover from failure?
-- How durable is the hardware?
-- Does deployment make economic sense?
+Capabilityだけならdemoを見る。
 
-Physical AI is not simply “giving AI a body.”
+Reliabilityを見るとsafety, recovery, speedが入る。
 
-**It means putting intelligence inside the constraints and responsibilities of the real world.**
+Deployabilityまで行けばmaintenance, integration, cost, throughputが入る。
 
-そこから、本当の難しさが始まる。
+**Do not automatically translate “it worked” into “it is usable.”**
+
+その区別を持つと、Physical AIの進歩をhypeとして切り捨てず、同時に過大評価もしにくくなる。
 
 ---
 
 ## Sources / 参考文献
 
-- NVIDIA, [What is Physical AI?](https://www.nvidia.com/en-eu/glossary/generative-physical-ai/)
-- Nature Machine Intelligence, [From embodied intelligence to physical AI](https://www.nature.com/articles/s42256-026-01239-3), 2026-04-24.
-- Google DeepMind, [Gemini Robotics 2 brings whole body intelligence to robots](https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/), 2026-07-30.
-- Google DeepMind, [Gemini Robotics ER 2 Model Card](https://deepmind.google/models/model-cards/gemini-robotics-er-2/), 2026-07.
-- Nature, [Embodied AI collection](https://www.nature.com/collections/ibgfciaafb).
-- Hou et al., [World Model for Robot Learning: A Comprehensive Survey](https://arxiv.org/abs/2605.00080), 2026.
-- Wang et al., [Vision-Language-Action in Robotics: A Survey of Datasets, Benchmarks, and Data Engines](https://arxiv.org/abs/2604.23001), 2026.
-- Li et al., [Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms](https://arxiv.org/abs/2604.23775), 2026.
-- Reuters, [Beyond marathons and backflips, China's robots face a commercial test](https://www.reuters.com/world/asia-pacific/beyond-marathons-backflips-chinas-robots-face-commercial-test-2026-08-18/), 2026-08-18.
-- Reuters, [Robots poised for 'ChatGPT moment,' Unitree CEO says](https://www.reuters.com/world/asia-pacific/robots-poised-chatgpt-moment-unitree-ceo-says-2026-08-20/), 2026-08-20.
-- Reuters, [Xpeng's robotics unit valued at over $6.3 billion after record funding round](https://www.reuters.com/business/retail-consumer/xpeng-says-its-robotics-business-raised-over-900-million-first-funding-round-2026-08-24/), 2026-08-24.
+- NVIDIA, [フィジカル AI とは?](https://www.nvidia.com/ja-jp/glossary/generative-physical-ai/)
+- Nature Machine Intelligence, [From embodied intelligence to physical AI](https://www.nature.com/articles/s42256-026-01239-3)
+- Ha & Schmidhuber, [World Models](https://arxiv.org/abs/1803.10122)
+- Google DeepMind, [RT-2](https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/)
+- Google DeepMind, [Gemini Robotics](https://deepmind.google/models/gemini-robotics/)
+- Google DeepMind, [Gemini Robotics On-Device 2 Model Card](https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/)
+- NVIDIA, [Isaac GR00T](https://developer.nvidia.com/isaac/gr00t)
+- Physical Intelligence, [π0: Our First Generalist Policy](https://www.physicalintelligence.company/blog/pi0)
+- Wang et al., [VLA datasets, benchmarks and data engines survey](https://arxiv.org/abs/2604.23001)
+- Lyu et al., [ForesightSafety-VLA](https://arxiv.org/abs/2606.27079)
+- Kim et al., [Object-Centric Residual RL for Zero-Shot Sim-to-Real VLA Enhancement](https://arxiv.org/abs/2606.18953)
+- Arkhangelskiy, [PhAIL](https://arxiv.org/abs/2605.29710)
+- Boston Dynamics, [Product Atlas announcement](https://bostondynamics.com/blog/boston-dynamics-unveils-new-atlas-robot-to-revolutionize-industry/)
+- Agility Robotics, [Digit at GXO](https://www.agilityrobotics.com/content/digit-deployed-at-gxo-in-historic-humanoid-raas-agreement)
