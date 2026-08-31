@@ -12,9 +12,9 @@ This file records the **current execution status** of the migration program.
 | 0A — Baseline and repeatable audit | Completed | Current specification, inventory, roadmap and repeatable content audit added. |
 | 0B — Specification and QA contract cleanup | Completed | Documentation, static tests, browser QA and workflow contract aligned to `ja / en-mix / es-mix`. |
 | 1 — Legacy canonical `*-mixed-en.md` cleanup | Completed | Five legacy mixed-English canonical companions migrated to `english-mix/` Reading Mode. |
-| 2 — Full-library class-A compatibility pass | **Completed** | Strict full-library audit: 178 canonical / 107 English Mix / 1 Español Mix; 0 integrity errors, 0 warnings, 0 known spec drift. |
-| 3 — P1 editorial / Writing Architecture batch | **In progress — 1 / 7 completed** | `capability-output-asymmetry` completed as the first D Flagship; reusable method recorded in `MIGRATION_BATCH_3_CONVENTIONS.md`. |
-| 4+ — Later editorial migration batches | Not started | Select only after Batch 3 documents reusable editorial/Structure conventions. |
+| 2 — Full-library class-A compatibility pass | **Completed** | Compatibility layer reached 0 integrity errors / 0 warnings / 0 known spec drift. |
+| 3 — P1 editorial / Writing Architecture batch | **In progress — 2 / 7 completed** | Two D Flagships completed; editorial method now validated across two different subject domains and Structure QA is fixture-driven. |
+| 4+ — Later editorial migration batches | Not started | Select only after Batch 3 completes and conventions have been tested across C and D articles. |
 
 ## Batch 1 completion record
 
@@ -41,178 +41,172 @@ For each article:
 - `data/versions-index.json` now registers the file as `en-mix`;
 - no editorial rewriting was performed as part of this mechanical migration.
 
-## Batch 1 validation
+Validation:
 
-GitHub Actions run `33318400060` completed successfully after the merge.
-
-Passed steps:
-
-- content migration audit;
-- static tests;
-- Reading Mode browser QA;
-- Page Reader browser QA;
-- desktop/mobile visual QA;
-- QA artifact upload.
-
-GitHub Pages deployment run `33318399393` also completed successfully for the same merge commit.
+- Visual QA run `33318400060` — success
+- Pages deployment run `33318399393` — success
 
 ## Batch 2 completion record
 
-Batch 2 audited the latest full archive after Batch 1 and subsequent content additions.
+Batch 2 audited the full archive after Batch 1 and established the class-A compatibility baseline.
 
 Strict audit result from GitHub Actions run `33347057375`:
 
-- Canonical index entries: **178**
-- Markdown files under `essays/`: **178**
-- English Mix files: **107**
-- Español Mix files: **1**
-- Canonical articles with Structure metadata: **1**
-- Legacy canonical `*-mixed-en.md` entries: **0**
-- Integrity errors: **0**
-- Warnings: **0**
-- Known specification-drift files: **0**
+- Canonical index entries: 178
+- English Mix files: 107
+- Español Mix files: 1
+- Canonical articles with Structure metadata: 1
+- Legacy canonical `*-mixed-en.md` entries: 0
+- Integrity errors: 0
+- Warnings: 0
+- Known specification-drift files: 0
 
-Classification:
+PR #24 — `Preserve full migration audit in Visual QA artifacts` — changed CI so the complete strict-audit report is retained as `qa-artifacts/migration-audit.md`.
 
-- P0-A integrity defects: none
-- P0-B active specification drift: none
-- P1 editorial modernization: intentionally deferred to Batch 3+
-- P2 freshness review: handled only when an article is selected for editorial work
-- ACCEPT: absence of English Mix, Español Mix, or Structure remains a valid state
-
-No historical article prose needed a compatibility correction in Batch 2.
-
-PR #24 — `Preserve full migration audit in Visual QA artifacts` — changed CI so the full strict-audit report is printed and retained as `qa-artifacts/migration-audit.md` rather than discarded in `/tmp`.
-
-Merge commit:
-
-`6314c59892b77899b58a8de01de29f17104d0d4e`
-
-Validation on that commit:
-
-- strict migration audit: success;
-- static tests: **40 / 40 passed**;
-- Reading Mode browser QA: success;
-- Page Reader browser QA: success;
-- desktop/mobile visual QA: success;
-- console/page errors in visual QA: none;
-- QA artifact upload: success.
+Merge commit: `6314c59892b77899b58a8de01de29f17104d0d4e`
 
 ## Batch 3 target set
 
-Selected targets and classifications are recorded in:
-
-`MIGRATION_BATCH_3_SELECTION.md`
+Selected targets and classifications are recorded in `MIGRATION_BATCH_3_SELECTION.md`.
 
 Selected order:
 
 1. `capability-output-asymmetry` — D — **Completed**
-2. `dynamic-multilayer-comparative-advantage` — D — Next
-3. `executive-hands-on-as-exploration` — D
+2. `dynamic-multilayer-comparative-advantage` — D — **Completed**
+3. `executive-hands-on-as-exploration` — D — **Next**
 4. `learning-organization-senge-systems-thinking` — D
 5. `minto-pyramid-thinking-structure-ai` — C
 6. `goodharts-law-proxy-target-design` — C
 7. `commentary-as-technology-of-noticing` — C
 
-Do **not** edit the remaining six at once.
+Do **not** edit the remaining five at once.
 
 ## Batch 3 article 1 — completion record
 
-Article:
-
-`capability-output-asymmetry`
-
-Target class:
-
-**D — Flagship**
+Article: `capability-output-asymmetry`
+Target class: **D — Flagship**
 
 Execution:
 
 **Research → evidence-boundary review → editorial diagnosis → argument redesign → article/Structure edit → critical review → browser QA → merge**
 
+Article PR: #26
+Article merge commit: `c25b4e908064d6b197cea99c7ac4a12dd8477b40`
+
+Writing Architecture:
+
+- structured paragraphs: 8
+- structured sentences: 32
+- Reading Mode: DEFER
+
+Follow-up QA/runtime work:
+
+- PR #27 — dedicated Argument Structure browser QA
+- PR #28 — mobile Inspector QA selector correction
+- PR #29 — real mobile Escape UX fix exposed by the QA
+
+Final runtime/QA commit: `a1dc0d38396d09f4cea40364ea90505307f75bce`
+Final Visual QA run: `33350901710` — success
+Final Pages deployment run: `33350901263` — success
+
+Reusable method was recorded in `MIGRATION_BATCH_3_CONVENTIONS.md`.
+
+## Batch 3 article 2 — completion record
+
+Article: `dynamic-multilayer-comparative-advantage`
+Target class: **D — Flagship**
+
+Execution reused the article-1 method but not its prose layout or Structure profile.
+
+### Research / evidence-boundary result
+
+The second flagship rechecked comparative advantage, task allocation, AI adoption, AI chaining, learning-by-doing, dynamic task models, switching costs, and established dynamic-capabilities terminology.
+
+The key correction was that the original `Chain Comparative Advantage` label overstated the theory. AI chaining research shows that simple task-level comparative-advantage logic can fail when adjacent steps are bundled. The article therefore reframed the second layer as `Workflow Boundary` rather than inventing another kind of comparative advantage.
+
 ### Article changes
 
-- preserved the article's core claim that observed performance and capability should not be collapsed;
-- separated direct empirical findings from editorial/theoretical extensions;
-- redesigned COIM so it no longer assumes an omniscient `true ability yes/no` axis;
-- reframed COIM around initial observed output and richer subsequent evidence;
-- strengthened limitations and counterarguments;
-- limited the human/AI analogy to the structure of evaluation rather than internal mechanisms;
-- retained distinctive useful metaphors where they could be clearly labeled as the article's interpretation;
-- preserved `created: 2026-08-08` and updated only `updated: 2026-08-31`.
+- retitled to `比較優位は、点ではなく軌道で読む`;
+- preserved `created: 2026-08-08` and updated only `updated: 2026-08-31`;
+- reframed DMCA as a **three-layer diagnostic framework**, not a validated new economic theory;
+- Layer 1: `Task Relative Surplus`;
+- Layer 2: `Workflow Boundary`;
+- Layer 3: `Capability Trajectory`;
+- operationally defined what `dynamic` and `multilayer` add;
+- distinguished DMCA's use of `dynamic` from established `dynamic capabilities` theory;
+- removed arbitrary numeric reallocation thresholds;
+- labeled reallocation thresholds and Harvest / Bridge / Option as article-level heuristics;
+- separated direct research support from original hypotheses;
+- added the limitation that comparative advantage is not a theorem guaranteeing permanent human employment.
 
-Article PR:
-
-#26 — `Modernize capability-output flagship article with Writing Architecture`
+Article PR: #31 — `Reframe dynamic comparative-advantage flagship article`
 
 Article merge commit:
 
-`c25b4e908064d6b197cea99c7ac4a12dd8477b40`
+`40836c71a7f5c66a3d2f5aca96366997af847b8e`
 
 ### Writing Architecture
 
-- structured paragraphs: **8**
-- structured sentences: **32**
-- canonical articles with Structure metadata after this article: **2**
-- Structure metadata remains selective rather than full-article coverage
-- exact profiles are a regression fixture for this article, not a template for the remaining Batch 3 articles
+- structured paragraphs: **9**
+- structured sentences: **36**
+- exact profile differs from article 1 and is treated as an article-specific regression fixture
+- Reading Mode: **DEFER**
 
-### Reading Mode
+### QA generalization
 
-Decision: **DEFER**
+PR #32 — `Make Argument Structure QA fixture-driven`
 
-No existing English Mix or Español Mix was registered for the article. A derived mode was not added merely to increase coverage; the Japanese canonical argument was stabilized first.
+Merge commit:
 
-### QA and UX findings
+`bcbe2fe48c4d2a65fb8939a78d852f0e45a4f17f`
 
-The article migration exposed a gap: existing CI did not directly exercise Argument Structure UI.
-
-Follow-up work:
-
-- PR #27 — added `scripts/argument-structure-qa.cjs` and wired it into Visual QA;
-- PR #28 — corrected the QA's mobile Inspector selector after classifying the first failure as a test-contract issue;
-- PR #29 — fixed a real UX bug revealed by the corrected QA: Escape closed the mobile Structure sheet and also triggered the global reader-back shortcut.
-
-Final runtime/QA commit:
-
-`a1dc0d38396d09f4cea40364ea90505307f75bce`
+`scripts/argument-structure-qa.cjs` now runs the common desktop/mobile behavior contract against both flagship fixtures rather than hard-coding only the first article.
 
 Final Visual QA run:
 
-`33350901710` — **success**
+`33353633982` — **success**
+
+Strict audit in that run:
+
+- Canonical index entries: **181**
+- Markdown files under `essays/`: **181**
+- English Mix files: **110**
+- Español Mix files: **1**
+- Canonical articles with Structure metadata: **3**
+- Legacy canonical `*-mixed-en.md` entries: **0**
+- Integrity errors: **0**
+- Warnings: **0**
+- Known specification drift: **0**
 
 Passed:
 
 - strict migration audit;
 - static tests: **40 / 40**;
 - Reading Mode browser QA;
-- dedicated Argument Structure browser QA;
+- Argument Structure browser QA: **2 fixtures passed**;
 - Page Reader browser QA;
 - ordinary desktop/mobile Visual QA;
+- horizontal overflow checks;
+- console/page error checks;
 - QA artifact upload.
 
-Latest audit in that validation sequence remained clean and recognized `capability-output-asymmetry` as **32 structured sentences**. Parallel article additions were preserved rather than overwritten.
+## Conventions after two D Flagships
 
-Final Pages deployment run:
+`MIGRATION_BATCH_3_CONVENTIONS.md` now distinguishes:
 
-`33350901263` — **success**
+- **KEEP** — research-before-prose, evidence boundary, selective Structure, limitations, historical identity, Reading Mode decision, focused PRs, QA-failure classification;
+- **REFINE** — cross-domain analogy became a broader borrowed-theory / terminology-boundary rule; Structure QA became fixture-driven;
+- **ADD** — if aggregation breaks a lower-level optimization rule, model a correction layer instead of renaming the same rule; original modifiers such as `dynamic` / `multilayer` must earn explanatory value; comparative advantage must not be presented as an employment guarantee;
+- **DROP** — none after article 2.
 
-### Reusable method
-
-The conventions extracted from this article are recorded in:
-
-`MIGRATION_BATCH_3_CONVENTIONS.md`
-
-Future Batch 3 articles should reuse the method, not copy this article's section layout, wording, or L1–L5 profile.
-
-## Next execution gate — Batch 3 article 2
+## Next execution gate — Batch 3 article 3
 
 Next target:
 
-`dynamic-multilayer-comparative-advantage`
+`executive-hands-on-as-exploration`
 
 Use:
 
-**Research → evidence boundary → editorial diagnosis → argument skeleton → prose edit → selective Structure annotation → critical review → dedicated Structure QA → merge**
+**Research → evidence boundary → editorial diagnosis → borrowed-theory/term check → argument skeleton → prose edit → selective Structure annotation → critical review → add article-specific Structure fixture → full QA → merge**
 
-Before editing, recheck current AI/task-economics sources and the article's proposed task / chain / trajectory model. Do not treat the baseline article's eight profiles as a target shape.
+Reuse the validated method and QA behavior contract. Do not copy either previous article's section layout, sentence count, or L1–L5 profile.
