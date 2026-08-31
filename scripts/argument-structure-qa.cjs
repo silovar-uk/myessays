@@ -52,7 +52,7 @@ const FIXTURES = [
   },
   {
     essayId: 'learning-organization-senge-systems-thinking',
-    sentenceCount: 44,
+    sentenceCount: 48,
     profiles: [
       '4-1-3-5',
       '4-2-3-5',
@@ -63,6 +63,54 @@ const FIXTURES = [
       '4-1-3-5',
       '4-2-3-3-5',
       '4-1-3-5',
+      '4-2-3-5',
+      '4-2-3-5',
+      '4-3-5'
+    ]
+  },
+  {
+    essayId: 'minto-pyramid-thinking-structure-ai',
+    sentenceCount: 35,
+    profiles: [
+      '4-2-3-5',
+      '2-1-3-5',
+      '4-2-3-5',
+      '4-1-3-5',
+      '4-2-3-5',
+      '4-2-3-5',
+      '4-1-3-5',
+      '4-2-3-5',
+      '4-3-5'
+    ]
+  },
+  {
+    essayId: 'goodharts-law-proxy-target-design',
+    sentenceCount: 40,
+    profiles: [
+      '4-2-3-5',
+      '2-1-3-5',
+      '4-2-3-5',
+      '4-2-3-2-5',
+      '4-1-3-5',
+      '4-1-3-5',
+      '4-1-3-5',
+      '4-2-3-5',
+      '4-2-3-5',
+      '4-3-5'
+    ]
+  },
+  {
+    essayId: 'commentary-as-technology-of-noticing',
+    sentenceCount: 40,
+    profiles: [
+      '4-2-3-5',
+      '4-1-3-3-5',
+      '4-1-3-5',
+      '2-1-3-5',
+      '4-1-3-5',
+      '4-1-3-5',
+      '4-1-3-5',
+      '4-2-3-5',
       '4-2-3-5',
       '4-3-5'
     ]
