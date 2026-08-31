@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "npb-club-business-revenue-structure": {"en-mix": "english-mix/npb-club-business-revenue-structure.md"},
     "water-flosser-device-assisted-interdental-care": {"en-mix": "english-mix/water-flosser-device-assisted-interdental-care.md"},
     "software-architecture-oop-boundaries-change": {"en-mix": "english-mix/software-architecture-oop-boundaries-change.md"},
     "bicycle-vehicle-pedestrian-traffic-rules": {"en-mix": "english-mix/bicycle-vehicle-pedestrian-traffic-rules.md"},
