@@ -53,7 +53,9 @@ jobs:
           exit 1
 
       - name: Run content migration audit
-        run: node tools/audit-content.mjs --strict > /tmp/myessays-migration-audit.md
+        run: |
+          mkdir -p qa-artifacts
+          node tools/audit-content.mjs --strict | tee qa-artifacts/migration-audit.md
 
       - name: Run static tests
         run: node --test tests/*.test.js
