@@ -24,9 +24,9 @@ const FIXTURES = [
     profiles: [
       '4-2-3-5',
       '2-1-3-5',
+      '4-2-3-5',
       '4-1-3-5',
       '2-1-3-5',
-      '4-1-3-5',
       '4-2-2-2-5',
       '3-2-4-5',
       '4-2-3-5',
@@ -164,6 +164,7 @@ async function runFixture(browser, fixture) {
   if (fixture.profiles.length > 1) {
     await page.locator('#argumentStructurePanel .argument-profile-row[data-argument-paragraph="1"]').click();
     await page.waitForFunction(() => document.querySelector('#argumentInspector')?.textContent?.includes('Paragraph 2'));
+    await page.waitForFunction(() => document.querySelector('#argument-paragraph-2')?.classList.contains('is-argument-active'));
     const paragraphTwoInspector = await page.locator('#argumentInspector').innerText();
     assert.match(paragraphTwoInspector, /Paragraph 2/);
     assert.match(paragraphTwoInspector, new RegExp(profileLabel(fixture.profiles[1]).replaceAll('→', '\\→')));
