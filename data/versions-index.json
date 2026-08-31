@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "software-architecture-oop-boundaries-change": {"en-mix": "english-mix/software-architecture-oop-boundaries-change.md"},
     "bicycle-vehicle-pedestrian-traffic-rules": {"en-mix": "english-mix/bicycle-vehicle-pedestrian-traffic-rules.md"},
     "high-note-practice-usable-range-experiment": {"en-mix": "english-mix/high-note-practice-usable-range-experiment.md"},
     "kamei-eri-history-role-elasticity": {"en-mix": "english-mix/kamei-eri-history-role-elasticity.md"},
