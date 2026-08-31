@@ -65,6 +65,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node scripts/reading-versions-qa.cjs
 
+      - name: Run Argument Structure browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/argument-structure-qa.cjs
+
       - name: Run Page Reader browser QA
         run: node scripts/page-reader-qa.cjs
 
