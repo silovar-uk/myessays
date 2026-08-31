@@ -133,8 +133,9 @@ const FIXTURES = [
   },
   {
     essayId: 'physical-ai-embodied-intelligence-deployment',
-    sentenceCount: 44,
+    sentenceCount: 48,
     profiles: [
+      '4-2-3-5',
       '4-2-3-5',
       '4-2-3-5',
       '4-2-3-5',
