@@ -35,7 +35,7 @@ const FIXTURES = [
   },
   {
     essayId: 'executive-hands-on-as-exploration',
-    sentenceCount: 38,
+    sentenceCount: 46,
     profiles: [
       '4-2-3-5',
       '2-1-3-5',
@@ -45,6 +45,8 @@ const FIXTURES = [
       '3-2-4-5',
       '4-2-3-3-5',
       '4-2-3-5',
+      '4-2-3-5',
+      '4-3-2-5',
       '4-3-2-5'
     ]
   }
