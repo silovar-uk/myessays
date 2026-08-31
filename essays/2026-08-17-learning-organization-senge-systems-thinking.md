@@ -1,1052 +1,385 @@
 ---
 id: learning-organization-senge-systems-thinking
-title: "なぜ、頭のいい組織は同じ失敗を繰り返すのか"
-subtitle: "ピーター・センゲ「学習する組織」――NASA、Beer Game、米陸軍、Pixar、Toyotaから考える"
+title: "組織が学ぶとは、何が変わることなのか"
+subtitle: "ピーター・センゲ『学習する組織』を、組織学習研究・NASA・心理的安全性から読み直す"
 created: "2026-08-17"
-updated: "2026-08-17"
+updated: "2026-08-31"
 type: "Organizational Learning Essay"
 status: "完成"
-tags: ["ピーター・センゲ", "学習する組織", "システム思考", "組織学習", "チーム学習", "メンタルモデル", "心理的安全性", "振り返り", "マネジメント"]
-keywords: ["Peter Senge", "learning organization", "The Fifth Discipline", "systems thinking", "mental models", "shared vision", "team learning", "personal mastery", "double loop learning", "After Action Review"]
+tags: ["ピーター・センゲ", "学習する組織", "システム思考", "組織学習", "チーム学習", "メンタルモデル", "心理的安全性", "マネジメント"]
+keywords: ["Peter Senge", "learning organization", "organizational learning", "The Fifth Discipline", "systems thinking", "mental models", "team learning", "psychological safety", "institutionalizing", "DLOQ"]
 favorite: 5
 grow: 5
-abstract: "なぜ、優秀な人が集まり、反省会も行い、改善策まで決めている組織が、同じ失敗を繰り返すのか。NASAコロンビア事故、MITのBeer Game、米陸軍AAR、Pixar、Toyotaを手がかりに、ピーター・センゲの「学習する組織」を読み解く。5つのディシプリンを暗記するのではなく、個人の経験が組織の前提・関係・仕組みを書き換える瞬間を追う。"
+abstract: "『学習する組織』を、5つのディシプリンを備えた理想像としてではなく、経験が解釈・対話・routine・制度へ変換される仕組みとして読み直す。Sengeの影響力と実証的な根拠を分け、NASAコロンビア事故、組織学習研究、心理的安全性、team learning、DLOQ研究から、組織が本当に学んだと言える条件を考える。"
 ---
 
-# なぜ、頭のいい組織は同じ失敗を繰り返すのか
-## ピーター・センゲ「学習する組織」――NASA、Beer Game、米陸軍、Pixar、Toyotaから考える
+# 組織が学ぶとは、何が変わることなのか
+## ピーター・センゲ『学習する組織』を、組織学習研究・NASA・心理的安全性から読み直す
 
-2003年1月16日、スペースシャトル「コロンビア」が打ち上げられた。
+2003年2月1日、スペースシャトル「コロンビア」は大気圏再突入中に空中分解し、7人の乗員全員が亡くなった。
 
-打ち上げから約82秒後、外部燃料タンクから断熱材の一部が剥がれ、左翼前縁に衝突した。
+事故を調べたColumbia Accident Investigation Board（CAIB）は、断熱材が翼を損傷したという技術的原因だけでなく、NASAの歴史、文化、意思決定、情報伝達、資源制約、スケジュール圧力まで原因モデルに入れた。
 
-異常だった。
+報告書は、NASAの組織文化と構造が事故に深く関わったとし、今後必要な文化として「learning organizationの最良の特性」にまで言及した。
 
-しかし、こうした断熱材の剥離そのものは、シャトル計画にとってまったく未知の出来事ではなかった。
+ここで問いたいのは、NASAに知識がなかったかではない。
 
-過去にも似たことは起きていた。そしてシャトルは帰ってきていた。
+むしろ、世界でも有数の専門家と経験を持つ組織で、なぜ既知の異常が十分な行動変更へつながらなかったのか、である。
 
-2月1日、コロンビアは帰ってこなかった。
+<!-- level:4 role:claim -->
+**個人が知ったことと、組織が学んだことは同じではない。**
+<!-- level:1 role:evidence -->
+CAIBは、過去の成功への依存、重要情報を上方へ通しにくい組織的障壁、統合されない管理、非公式な意思決定経路などを事故の組織的原因として挙げた。
+<!-- level:3 role:analysis -->
+つまり問題は「誰かが教訓を知らなかった」だけではなく、教訓が判断基準・権限・情報経路・routineを書き換えるところまで届かなかったことにある。
+<!-- level:5 role:implication -->
+組織学習を見るなら、まず「何を知ったか」より**「知った結果、何が変わったか」**を問う必要がある。
 
-大気圏への再突入中に機体は空中分解し、7人の乗員全員が亡くなった。
-
-事故後に設置されたColumbia Accident Investigation Board（CAIB）は、原因を「断熱材が翼を傷つけた」という技術的説明だけでは終わらせなかった。
-
-NASAの歴史、文化、意思決定、情報伝達、予算、スケジュール圧力まで調べた。そして報告書は、シャトル計画を監督していた**マネジメントのあり方も、翼に衝突した断熱材と同じくらい事故の原因だった**と結論づけた。
-
-さらにCAIBは、今後NASAに必要な組織文化について「learning organizationの最良の特性」を備えることにまで言及している。
-
-ここで、妙な疑問が残る。
-
-NASAには、頭のいい人がいなかったのだろうか。
-
-そんなはずはない。
-
-経験がなかったのだろうか。
-
-それも違う。
-
-むしろ、世界でも有数の専門家と経験が集まった組織だった。
-
-それなのに、なぜ学べなかったのか。
-
-この問いから始めると、ピーター・センゲの「学習する組織」という言葉が、急に経営学の教科書からこちら側へ出てくる。
-
-**人が学ぶことと、組織が学ぶことは、同じではない。**
-
-[NASA「Columbia Accident Investigation Board Report」](https://ntrs.nasa.gov/citations/20030066167)
-
-[NASA Safety and Mission Assurance「Columbia」](https://sma.nasa.gov/sma-disciplines/accllp/columbia)
+[NASA — Columbia Accident Investigation Board Report](https://ntrs.nasa.gov/citations/20030066167)
+[NASA — Columbia Accident Investigation Board Synopsis](https://www.nasa.gov/history/columbia-accident-investigation-board-synopsis/)
 
 ---
 
-## 1. 「反省した」は、「学習した」ではない
+## 1. Sengeは「組織学習そのもの」ではなく、学習する組織の設計像を広めた
 
-仕事で失敗すると、振り返りをする。
+ピーター・センゲは1990年の *The Fifth Discipline* によって、learning organizationという言葉を経営実務へ広く浸透させた。
 
-「告知開始が遅かった」
+MIT Sloanは同書を、aspirationを育て、reflective conversationを発展させ、complexityを理解するための理論と方法を示した本として紹介している。
 
-「確認が不足していた」
+有名な5つのディシプリンは次のとおりである。
 
-「もっと早く共有すべきだった」
+1. Personal Mastery｜自己マスタリー
+2. Mental Models｜メンタル・モデル
+3. Shared Vision｜共有ビジョン
+4. Team Learning｜チーム学習
+5. Systems Thinking｜システム思考
 
-「次回は余裕を持って進める」
+ただし、ここで一つ境界を置いたほうがいい。
 
-どれも、もっともらしい。
+<!-- level:4 role:claim -->
+Sengeの5ディシプリンは、影響力の大きい**処方的な設計フレーム**ではあるが、「この5因子がこの形で揃えば組織学習が成立する」と実証された唯一の法則ではない。
+<!-- level:2 role:description -->
+learning organization研究にはSenge以外にも複数の定義と測定尺度があり、代表的なDLOQもWatkinsとMarsickの別系統の概念化から発展している。
+<!-- level:3 role:analysis -->
+実際、learning organizationの測定研究には一定の妥当性証拠や業績との関連がある一方、概念の曖昧さや測定法には現在も批判的検討が続いている。
+<!-- level:5 role:implication -->
+だからSengeを読む価値は、5項目を「正解」と暗記することではなく、**組織が学べなくなる場所を観察する5つのレンズ**として使うことにある。
 
-議事録に残る。担当者も反省する。
-
-半年後、また告知開始が遅れる。
-
-ここで「前の担当者からちゃんと引き継がれていなかった」と考えることもできる。
-
-では、担当者が毎回違うのに、毎回同じ反省が出てくるとしたらどうだろう。
-
-**Repeated mistakes are clues.**
-
-同じ失敗の反復は、誰かの注意力が低いというだけではなく、そこに何らかの構造があることを知らせている。
-
-たとえば、告知が遅れる理由を掘ってみる。
-
-告知担当者の着手が遅い。
-
-なぜ遅い？
-
-内容が確定するまで待っているから。
-
-なぜ待つ？
-
-未確定情報を出して修正することが嫌われるから。
-
-なぜ嫌われる？
-
-「一度出した情報を変えるのはミスだ」という暗黙の前提があるから。
-
-そうだとすれば、改善策は「担当者が早く動く」ではない。
-
-未確定情報をどう扱うか、告知開始の判断基準をどう置くか、どこまで先に出してよいかという**仕事の設計そのもの**を変える必要がある。
-
-担当者が学んだ経験が、担当者の頭の中に残っているだけなら、担当者が異動すれば消える。
-
-判断基準、会議、役割、データ、ルール、関係性まで変わって初めて、その経験は組織に残る。
-
-つまり学習を見るときの問いは、
-
-> **「何を知ったか」ではなく、「知った結果、何が変わったか」**
-
-なのだ。
+[MIT Sloan — Peter M. Senge](https://mitsloan.mit.edu/faculty/directory/peter-m-senge)
+[Oxford Handbook — Measurement of the Learning Organization Construct](https://academic.oup.com/edited-volume/28272/chapter-abstract/213437148)
 
 ---
 
-## 2. 全員が正しく判断したのに、全員が失敗するゲーム
+## 2. 「学習する組織」と「組織学習」は、同じ言葉ではない
 
-ここで、少しゲームをしよう。
+ここを分けると、話がかなり整理される。
 
-あなたは小さな小売店でビールの在庫を担当している。
+**learning organization**は、学習し続けられる組織をどう設計するかという規範的・実践的な問いを含みやすい。
 
-いつもは毎週4ケース売れる。
+一方、**organizational learning**は、組織が実際にどのように経験を解釈し、記憶し、行動を変えるのかを記述・説明する研究領域である。
 
-ある週、8ケース売れた。
+LevittとMarchは1988年のレビューで、組織学習をroutine-based、history-dependent、target-orientedなものとして整理し、組織は歴史から得た推論をroutineへencodeすることで学ぶと論じた。
 
-棚が空きそうだ。
+<!-- level:2 role:description -->
+この見方では、学習は「社員が賢くなった」ことではなく、過去から得た推論が組織の行動を導くroutineや解釈枠へ残ることとして観察できる。
+<!-- level:1 role:evidence -->
+Crossan、Lane、Whiteの4I frameworkも、intuiting、interpreting、integrating、institutionalizingという過程を通じ、個人・集団・組織の水準がつながると整理している。
+<!-- level:3 role:analysis -->
+両者に共通するのは、個人の気づきと組織レベルの学習の間に、共有・統合・制度化という変換過程を置いていることである。
+<!-- level:5 role:implication -->
+「振り返りをした」「研修をした」だけで学習と呼ばず、**経験が次の行動を変える仕組みへ変換されたか**を見るほうが、組織学習を具体的に扱える。
 
-欠品は困る。
-
-さて、次の発注をどうするだろう。
-
-少し多めに頼む。
-
-たぶんそうする。
-
-これは合理的な判断だ。
-
-ところが、あなたから注文を受けた卸売業者にも、急に注文が増えて見える。
-
-卸売業者も不安になる。
-
-多めに注文する。
-
-その注文を見た流通業者も多めに注文する。
-
-工場にも、大量の注文が届く。
-
-しかし、商品が届くまでには時間差がある。
-
-注文したのに在庫が来ない。
-
-不安になる。
-
-さらに注文する。
-
-しばらくすると、大量の商品が一気に届く。
-
-今度は在庫が余る。
-
-注文を止める。
-
-上流にはまだ、以前の大量注文が残っている。
-
-在庫はさらに増える。
-
-全員、自分の場所では合理的に判断している。
-
-なのに、システム全体はめちゃくちゃになる。
-
-これはMIT Sloanで長く使われてきた「Beer Distribution Game」で起きることだ。
-
-面白いのは、在庫の波だけではない。
-
-ゲームの参加者はしばしば、
-
-「小売が変な注文をしている」
-
-「卸が無能だ」
-
-「工場がちゃんと供給しない」
-
-と、ほかのプレイヤーに原因を求め始める。
-
-MIT Sloanはこのゲームを、サプライチェーンだけでなく、**systems thinkingとmental modelsを学ぶ教材**として位置づけている。自分の意思決定が生む意図しない結果や、そこから他人への否定的な推論が生まれ、信頼を壊していくところまでが学習対象だ。
-
-ここで一つ、かなり怖いことが分かる。
-
-> **問題を起こすには、悪い人は必要ない。**
-
-善意の人。
-
-優秀な人。
-
-責任感のある人。
-
-それぞれが自分の場所で正しい判断をしていても、つなぎ方が悪ければ全体として悪い結果が生まれる。
-
-人を入れ替えても、構造が同じなら似たことが起きる。
-
-**人を替えて同じ失敗が起きるなら、犯人は人ではない。**
-
-[MIT Sloan「MIT Sloan Beer Game Online」](https://mitsloan.mit.edu/teaching-resources-library/mit-sloan-beer-game-online)
+[Levitt & March (1988) — Organizational Learning](https://www.annualreviews.org/content/journals/10.1146/annurev.so.14.080188.001535)
+[Crossan, Lane & White (1999) — An Organizational Learning Framework](https://journals.aom.org/doi/abs/10.5465/amr.1999.2202135)
 
 ---
 
-## 3. ここで、ピーター・センゲが出てくる
+## 3. 同じ失敗を繰り返すとき、「人」より先に残っている仕組みを見る
 
-ピーター・センゲはMIT Sloanで組織学習とシステム思考を研究してきた研究者である。
+たとえば毎回、告知開始が遅れる。
 
-1990年に刊行した『The Fifth Discipline』によって、「learning organization――学習する組織」という考え方を広く知られるものにした。
+振り返りでは「もっと早く共有する」「余裕を持つ」「担当者が注意する」と決まる。
 
-MIT Sloanはセンゲについて、組織学習の最前線に長く立ち、『The Fifth Discipline』はlearning organizationをつくるために、aspirationを育て、reflective conversationを発展させ、complexityを理解するための理論と方法を示したと紹介している。
+半年後、担当者が変わってもまた遅れる。
 
-センゲは、学習する組織に必要な実践を五つに整理した。
+このとき個人の注意力だけを見ると、前回の学習が消えたように見える。
 
-1. **Personal Mastery｜自己マスタリー**
-2. **Mental Models｜メンタル・モデル**
-3. **Shared Vision｜共有ビジョン**
-4. **Team Learning｜チーム学習**
-5. **Systems Thinking｜システム思考**
+しかし、実際には次のような構造が残っているかもしれない。
 
-こう並べた瞬間に、経営学の暗記項目っぽくなる。
+- 内容が完全確定するまで告知準備を始めない
+- 未確定情報を修正することが「ミス」と見なされる
+- 最終承認者が一人で、レビューが後工程へ集中する
+- 途中案を見せるメリットより、見せるリスクのほうが大きい
 
-でも、ここまでNASAとBeer Gameを見てきたあとなら、少し違って見える。
-
-なぜ「メンタル・モデル」が必要なのか。
-
-前提を事実だと思い込むからだ。
-
-なぜ「チーム学習」が必要なのか。
-
-一人が分かっていても、組織が変わるとは限らないからだ。
-
-なぜ「システム思考」が最後に置かれているのか。
-
-一人ひとりの能力だけを見ても、全体の振る舞いを説明できないからだ。
-
-センゲの5項目は、能力開発メニューではない。
-
-**「組織はなぜ学べないのか」に対する、五つの観察レンズ**と考えたほうが面白い。
-
-[MIT Sloan「Peter M. Senge」](https://mitsloan.mit.edu/faculty/directory/peter-m-senge)
-
-[AHRQ Patient Safety Network「The Fifth Discipline」](https://psnet.ahrq.gov/issue/fifth-discipline-art-practice-learning-organization-revised-updated-edition)
+<!-- level:4 role:claim -->
+**人を替えて同じ失敗が起きるなら、個人以外に再現装置が残っている可能性が高い。**
+<!-- level:1 role:evidence -->
+CAIBもColumbia事故で、単一の技術ミスや個人の誤りに原因を閉じず、歴史・文化・組織構造・資源制約・意思決定過程まで調査対象にした。
+<!-- level:3 role:analysis -->
+これは個人責任を消す議論ではなく、個人の再訓練だけでは再発防止にならない原因層が存在するということだ。
+<!-- level:5 role:implication -->
+再発を止めたいなら、「誰が間違えたか」に加えて**「何が、別の人にも同じ行動を選ばせるか」**を調べる必要がある。
 
 ---
 
-## 4. 自己マスタリー――「もっと頑張る」の前に、何をつくりたいのか
+## 4. Systems Thinkingは「人を責めない」ことではなく、因果を一段長く見ること
 
-Personal Masteryは、少し訳が難しい。
+システム思考は、ときどき「何でも構造のせいにする考え方」のように聞こえる。
 
-「自己研鑽」と考えると、資格取得やスキルアップの話に見える。
+そうではない。
 
-センゲが重視したのは、もう少し根本にある。
+重要なのは、局所的な行動と全体の結果の間にあるfeedback、delay、相互依存を見ることだ。
 
-**自分は何を実現したいのか。現実は今どうなっているのか。その二つを同時に見続ける。**
+MITのBeer Distribution Gameでは、各プレイヤーが自分の場所では合理的に在庫不足へ対応しても、情報と供給の遅れを通じて注文変動を増幅させることがある。
 
-たとえば営業担当者が「今月100件電話する」という目標を持っている。
+<!-- level:2 role:description -->
+局所的に正しい判断が、相互作用すると全体では悪い結果を生むことがある。
+<!-- level:1 role:evidence -->
+Beer Gameは、意思決定の意図しない結果や、他者への否定的推論、mental modelsまで観察するsystems thinking教材としてMIT Sloanで使われている。
+<!-- level:3 role:analysis -->
+ここでのポイントは「人は悪くない」ではなく、個人の意図だけではシステムの挙動を予測できないということにある。
+<!-- level:5 role:implication -->
+システム思考は、責任を薄めるためではなく、**責任ある改善の対象を、本人の注意力から関係・遅れ・ルールまで広げる**ために使うべきだ。
 
-100件電話した。
-
-達成だ。
-
-しかし、本当に実現したかったものが「顧客から相談される関係を増やす」ことなら、電話件数だけでは結果を測れない。
-
-100件電話したのに相談件数が増えていない。
-
-ここに、理想と現実の差が生まれる。
-
-この差を「もっと電話しよう」で埋めるのか。
-
-「電話という方法自体が違うのでは」と見るのか。
-
-自己マスタリーは、頑張り方の話というより、**目的を見失わずに現実を見る訓練**と考えると分かりやすい。
-
-目標の数字だけが組織を歩き始めると、いつの間にか「何のための数字だったか」が消える。
-
-学習するためには、まず自分たちが何を生み出したかったのかを覚えていなければならない。
+[MIT Sloan — MIT Sloan Beer Game Online](https://mitsloan.mit.edu/teaching-resources-library/mit-sloan-beer-game-online)
 
 ---
 
-## 5. メンタル・モデル――「若者は長文を読まない」は事実か
+## 5. Mental Modelsは「思い込み」ではなく、行動を生成する仮説として扱う
 
 組織には、事実の顔をした仮説が大量にある。
 
 「若者は長文を読まない」
 
-「価格を下げれば売れる」
+「未確定情報を出すと混乱する」
 
-「コアな顧客は値段を気にしない」
+「この部署に早く相談すると遅くなる」
 
-「この部署に相談すると遅くなる」
+「上司は反対する」
 
-「上司は絶対に反対する」
+どれも正しいかもしれない。
 
-「うちの業界では無理」
+危険なのは、検証されないまま意思決定の前提になることだ。
 
-全部、正しい可能性はある。
+<!-- level:4 role:claim -->
+メンタル・モデルを扱う実務的な価値は、前提を消すことではなく、**前提を検証可能な仮説へ戻すこと**にある。
+<!-- level:2 role:description -->
+「若者は長文を読まない」を前提に長文を一度も出さなければ、その組織は自分の仮説を反証するデータを自ら失う。
+<!-- level:3 role:analysis -->
+Argyrisのdouble-loop learningが問うのも、行動の修正だけでなく、その行動を生んだgoverning variablesや前提まで問い直せるかという点だった。
+<!-- level:5 role:implication -->
+良い振り返りは「次回どう改善するか」だけでなく、**今回の判断を生んだ前提のうち、何を再検証するか**まで決める。
 
-問題は、**仮説だったことを忘れること**だ。
-
-メンタル・モデルとは、世界がどう動くかについて私たちが持っている、深く染み込んだ前提やイメージのことだ。
-
-厄介なのは、メンタル・モデルは眼鏡に似ていることだ。
-
-眼鏡を通して世界を見ているうちに、レンズそのものが見えなくなる。
-
-「若者は長文を読まない」と考えている人は、長文を出さない。
-
-長文を出さないので、若者が長文を読むデータも得られない。
-
-結果として、最初の前提は永遠に反証されない。
-
-Beer Gameで「卸が悪い」と考え始めた参加者も同じだ。
-
-自分には相手の判断過程が見えない。
-
-見えない部分を、人物評価で埋める。
-
-そしてその評価に合わせて自分の行動を変える。
-
-メンタル・モデルは、頭の中にあるだけではない。
-
-**自分が信じている世界を、自分の行動によって本当に作ってしまうことがある。**
+[Harvard Business Review — Double Loop Learning in Organizations](https://hbr.org/1977/09/double-loop-learning-in-organizations)
 
 ---
 
-## 6. 頭のいい人ほど、学習が難しくなることがある
+## 6. Team Learningは、会議の回数ではなく「不確実な情報が出てくるか」で見る
 
-ここでセンゲと並べて知っておきたい人物が、Chris Argyrisである。
+チーム学習には、知識共有だけでなく、質問、助言要請、失敗の報告、異論、試行といった対人的リスクを伴う行動が含まれる。
 
-Argyrisは「single-loop learning」と「double-loop learning」という区別を示した。
+Amy Edmondsonの1999年研究では、51のwork teamを対象に、team psychological safetyがlearning behaviorと関連し、learning behaviorがperformanceとの関係を媒介するモデルが支持された。
 
-単純な例で考える。
+その後の研究蓄積でも、心理的安全性とteam learningには一貫して正の関連が報告されている。
 
-広告のCTRが悪い。
+2024年公表のteam learningメタ分析は198サンプル・15,536チームを集約し、psychological safetyを含む複数のemergent stateや組織条件とlearningの関連を示した。
 
-クリエイティブを変える。
+<!-- level:4 role:claim -->
+**心理的安全性は、居心地の良さではなく、学習に必要な不確実情報を表面化させる条件の一つである。**
+<!-- level:1 role:evidence -->
+Edmondsonの研究と後続メタ分析では、心理的安全性とteam learning behaviorの正の関連が繰り返し確認されている。
+<!-- level:3 role:analysis -->
+「分かりません」「自分のミスです」「その前提は違うと思います」が出なければ、組織は現実より整った情報だけを材料に学ぶことになる。
+<!-- level:5 role:implication -->
+学習するチームをつくるなら、発言量そのものより、**悪い知らせ・未完成・異論が、意思決定に間に合う時点で出るか**を観察したほうがいい。
 
-これはsingle-loop learningに近い。
-
-目的や前提はそのままに、行動を修正する。
-
-一方で、
-
-「そもそもこのターゲットに広告を出す判断は正しかったのか」
-
-「CTRを最優先指標にすること自体が正しいのか」
-
-まで戻るのがdouble-loop learningである。
-
-要するに、
-
-> **やり方を直すだけでなく、やり方を生んだ前提まで疑う。**
-
-Argyrisのさらに面白い指摘は、優秀なプロフェッショナルほど必ずしも学習が上手ではないという点にある。
-
-成功経験が多い人は、そもそも自分の推論が失敗の原因になった経験が少ない。
-
-そのため、問題が起きたときに、
-
-「相手が理解しなかった」
-
-「部下が実行できなかった」
-
-「時間が足りなかった」
-
-と、自分の外側に説明を作りやすい。
-
-これはかなり嫌な話だ。
-
-知識が増えるほど、自分の説明を上手につくれるようになる。
-
-だから、
-
-**学習の敵は無知ではなく、「説明できてしまうこと」なのかもしれない。**
-
-[Harvard Business Review「Double Loop Learning in Organizations」](https://hbr.org/1977/09/double-loop-learning-in-organizations)
-
-[Harvard Business Review「Teaching Smart People How to Learn」](https://hbr.org/1991/05/teaching-smart-people-how-to-learn)
+[Edmondson (1999) — Psychological Safety and Learning Behavior in Work Teams](https://journals.sagepub.com/doi/10.2307/2666999)
+[Marlow et al. — There is No End to Learning, but How Does it Begin?](https://onlinelibrary.wiley.com/doi/10.1111/joms.13064)
+[Nellen et al. — Organization-Level Drivers of Team Learning](https://journals.sagepub.com/doi/10.1177/1534484319894756)
 
 ---
 
-## 7. NASA――「前も大丈夫だった」が安全の根拠になる
+## 7. 学習の最終工程は「Institutionalizing」である
 
-コロンビア事故に戻ろう。
+良い振り返りをした直後は、誰でも覚えている。
 
-CAIBの報告で繰り返し問題になるのは、個人の能力不足ではなく、組織がどのように情報を解釈し、意思決定していたかである。
+難しいのは半年後だ。
 
-NASA自身も現在、コロンビア事故からの文化的教訓として、**organizational silence**や**normalization of deviance**を挙げている。
+担当者が異動し、新しい人が入り、忙しい日に同じ判断を迫られたとき、前回の学習はどこに存在するのか。
 
-normalization of deviance――逸脱の正常化。
+議事録にしかなければ、読まれなければ消える。
 
-最初は異常だったものが、悪い結果を起こさないまま繰り返されることで、少しずつ「許容できるもの」に見えてくる。
-
-前も起きた。
-
-でも大丈夫だった。
-
-今回も起きた。
-
-でも大丈夫だった。
-
-それが続く。
-
-すると、いつの間にか推論が逆転する。
-
-「事故にならなかった」は本来、**安全だったことの証明ではない**。
-
-ところが組織の中では、
-
-「前回も事故にならなかった」
-
-が、
-
-「これは安全だ」
-
-という根拠へ変わっていく。
-
-これは宇宙開発だけの話ではない。
-
-「本当は二人で確認するルールだけど、一人でも今まで問題なかった」
-
-「毎回ぎりぎりだけど、結局間に合っている」
-
-「申請は後追いだけど、何も言われていない」
-
-成功してしまうから、危険なやり方が強化される。
-
-ここには、学習について大事な逆説がある。
-
-> **成功は、ときどき最も危険な教師になる。**
-
-失敗から間違って学ぶだけではない。
-
-成功からも、間違って学ぶ。
-
-[NASA Safety and Mission Assurance「Columbia」](https://sma.nasa.gov/sma-disciplines/accllp/columbia)
-
-[NASA「Columbia Accident Investigation Board Synopsis」](https://www.nasa.gov/history/columbia-accident-investigation-board-synopsis/)
+<!-- level:4 role:claim -->
+組織レベルの学習を強くするには、知識の共有だけでなく、**次の行動を変える場所へ学習を埋め込む**必要がある。
+<!-- level:2 role:description -->
+Crossanらの4I frameworkでは、個人のintuitingからgroupのinterpreting・integratingを経て、組織レベルのinstitutionalizingへ至る流れが示される。
+<!-- level:3 role:analysis -->
+institutionalizingの対象はマニュアルだけではなく、routine、system、structure、strategy、判断基準など、行動を再現する組織的な仕組みを含む。
+<!-- level:3 role:qualification -->
+ただし制度化は学習の固定でもあるため、環境が変わったのに古いroutineだけが残れば、過去の成功が現在の硬直性へ変わる。
+<!-- level:5 role:implication -->
+したがって組織学習には、**学びを残す力と、残した学びを再び疑う力の両方**が必要になる。
 
 ---
 
-## 8. チーム学習――米陸軍の反省会には、何が足りないかではなく「何が起きたか」がある
+## 8. 組織は「正しいこと」だけを学ぶわけではない
 
-失敗を経験すれば、自動的に学習できるわけではない。
+「学習」という言葉には、つい良い方向への改善という響きがある。
 
-経験と学習の間には、変換装置が必要になる。
+しかし、組織は誤った因果関係も、沈黙も、過剰適応も学習できる。
 
-その代表例が、米陸軍で長く使われてきたAfter Action Review（AAR）である。
+NASAのColumbia調査で問題になった一つが、過去の成功を将来の安全性の代替証拠として扱うことだった。
 
-AARの基本的な問いは、驚くほど簡単だ。
+事故にならなかった異常が繰り返されると、「前も大丈夫だった」が「これは安全だ」へ変わりうる。
 
-1. 何をしようとしていたのか。
-2. 実際には何が起きたのか。
-3. なぜそうなったのか。
-4. 次回、何を維持し、何を変えるのか。
-
-米陸軍の資料では、AARは訓練サイクルの基盤として長く使われ、チームが自己学習・自己修正するための協働的な振り返りとして説明されている。
-
-ここで注目したいのは、問いの中に、
-
-**「誰が悪かったのか」**
-
-がないことだ。
-
-もちろん責任を曖昧にするという意味ではない。
-
-先に見たいのは、人物評価ではなく出来事の構造である。
-
-イベントで入場列が長くなったとする。
-
-「担当者の配置が悪かった」
-
-で終われば、次回その担当者は気をつけるだろう。
-
-AAR型にすると、問いが変わる。
-
-「何分以内の入場を想定していた？」
-
-「実際は何分だった？」
-
-「どの時間から差が広がった？」
-
-「来場集中か、処理速度か、スタッフ数か？」
-
-「なぜその来場集中を予測できなかった？」
-
-感想から観察へ。
-
-反省から比較へ。
-
-犯人探しから構造理解へ。
-
-この切り替えが、個人の経験をチームの学習に変える。
-
-[Army University Press「Improving After Action Review (AAR)」](https://www.armyupress.army.mil/Journals/Journal-of-Military-Learning/Journal-of-Military-Learning-Archives/April-2022/Cates-Action-Review/)
+<!-- level:4 role:claim -->
+**経験から行動が変わっただけでは、その学習が正しいとは限らない。**
+<!-- level:1 role:evidence -->
+LevittとMarch自身も、organizational learningを知性の源泉としてだけでなく、history-dependentな推論の限界を含むものとして論じている。
+<!-- level:3 role:analysis -->
+結果から原因を学ぶとき、運・選択バイアス・遅れ・観測できない反実仮想が混ざるため、「うまくいったから正しかった」という推論は簡単に成立してしまう。
+<!-- level:5 role:implication -->
+学習する組織には、失敗を振り返る能力だけでなく、**成功から間違って学んでいないかを監査する能力**も必要である。
 
 ---
 
-## 9. ただし、AARを導入すれば学習するわけではない
+## 9. 「learning organizationは業績を上げる」は、どこまで言えるか
 
-ここで話が一段ややこしくなる。
+learning organization研究には、実証研究もある。
 
-AARという優れた仕組みを入れても、組織が学習するとは限らない。
+WatkinsとMarsick系のDimensions of the Learning Organization Questionnaire（DLOQ）は、learning cultureを複数次元で測る代表的な尺度の一つである。
 
-Army University Pressに2024年に掲載されたlearning organizationについての論考に、印象的な事例がある。
+2021年のDLOQ研究のメタ分析では、DLOQとfinancial、knowledge、innovative performance、job satisfaction、organizational commitmentなどに正の関連が報告された。
 
-ある部隊のAARで、作戦担当者がスタッフのミスを率直に話した。
+これは「learning organizationは単なる美辞麗句だ」と切り捨てるには強い材料である。
 
-その後、指揮官は彼を呼び出し、「自分と部隊に恥をかかせた」と叱責した。
+しかし、相関があることと、Sengeの5ディシプリンが因果的に業績を上げることは同じではない。
 
-周囲にもその話が広まった。
+<!-- level:4 role:claim -->
+learning organizationには実証的な関連研究があるが、**ブランド名としての概念、測定尺度、因果メカニズムを一つに畳まないほうがいい。**
+<!-- level:2 role:description -->
+DLOQはSengeの5ディシプリンをそのまま測る尺度ではなく、別の理論系譜からcontinuous learning、dialogue、team learning、systems connectionなどを測定する。
+<!-- level:3 role:analysis -->
+「learning organizationとperformanceが関連する」という結果は、学習を支える文化や仕組みの重要性を示す一方、どの介入をすればどの成果が生じるかまで自動的に特定しない。
+<!-- level:5 role:implication -->
+実務では「学習する組織になろう」より、**どの学習行動・情報経路・routine・測定値を変えるのか**まで降ろしたほうが検証可能になる。
 
-次の任務のあと、スタッフはどうしたか。
-
-AARの前に「AARの事前打ち合わせ」を始めた。
-
-指揮官を怒らせそうな内容を、あらかじめ選別するために。
-
-すごいのは、これもまた**学習**だということだ。
-
-組織は、
-
-「失敗を率直に共有すると改善できる」
-
-ではなく、
-
-**「率直に話すと危険である」**
-
-と学習した。
-
-その論考が指摘するように、organizational learningは価値中立的だ。
-
-組織は良いことだけを学ぶわけではない。
-
-悪い文化も、極めて効率よく学習される。
-
-上司に悪い報告をすると怒られる。
-
-↓
-
-悪い情報は確定するまで出さない。
-
-↓
-
-報告が遅れる。
-
-↓
-
-問題が大きくなる。
-
-↓
-
-上司がさらに怒る。
-
-↓
-
-もっと報告しにくくなる。
-
-見事なフィードバックループである。
-
-**組織文化とは、壁に掲げた言葉ではなく、悪い知らせが来た瞬間の反応なのかもしれない。**
-
-[Army University Press「Future Proof: How to Build a Learning Organization」](https://www.armyupress.army.mil/Journals/Military-Review/Online-Exclusive/2024-OLE/Future-Proof/)
+[Ju et al. (2021) — Meta-Analytic Review of Learning Organization and Outcomes](https://journals.sagepub.com/doi/10.1177/1534484320987363)
+[Yang, Watkins & Marsick (2004) — The construct of the learning organization](https://onlinelibrary.wiley.com/doi/10.1002/hrdq.1086)
 
 ---
 
-## 10. Pixar――完成してから見せると、学習は遅い
+## 10. Sengeの5ディシプリンを「観察質問」へ変換する
 
-チーム学習を別の場所から見ると、Pixarも面白い。
+ここまでを実務へ戻す。
 
-Pixar共同創業者のEd Catmullは、映画制作における創造性を、一人の天才が一つの優れたアイデアを思いつくこととして捉えていない。
+5ディシプリンを導入項目にするより、問いに変えたほうが使いやすい。
 
-映画には、膨大な数のアイデアと、異なる専門性を持つ人々による問題解決が必要になる。
+### Personal Mastery
 
-だから重要なのは、最初のアイデアより、**多くの人が途中の仕事を出し合い、問題を一緒に解ける仕組み**になる。
+**私たちは何を実現したくて、現実との差をどう観測しているか。**
 
-CatmullはHBRで、Pixarがwork-in-progressを共有し、仲間同士で支援する文化とプロセスを重視してきたことを説明している。
+KPI達成そのものが目的化していないかを見る。
 
-ここで考えたいのは、未完成品を見せる難しさだ。
+### Mental Models
 
-完成した企画書なら見せられる。
+**今回の判断は、どの前提に依存しているか。**
 
-自信がある案なら説明できる。
+「当然」を事実と解釈へ分け、反証可能にする。
 
-でも学習余地が最大なのは、もっと前だ。
+### Shared Vision
 
-「これ、まだ全然まとまってないんですけど」
+**判断が割れたとき、何を優先すれば同じ方向へ決められるか。**
 
-「なんとなく違和感があって」
+同じスローガンを言えるかではなく、現場判断の基準として共有されているかを見る。
 
-「この案、自信ないです」
+### Team Learning
 
-という段階。
+**悪い知らせ、未完成、異論、助けを求める声が、間に合う時点で出るか。**
 
-早く見せれば、大きく直せる。
+会議回数ではなく、learning behaviorが起きる条件を見る。
 
-遅く見せれば、直せるのは言葉遣いやレイアウトくらいになる。
+### Systems Thinking
 
-ところが、早く見せるには対人的なリスクがある。
+**改善策を打った結果、別の場所・別の時点で何が動くか。**
 
-「こんなことも考えてないの？」と思われるかもしれない。
+局所最適、feedback、delay、相互依存を見る。
 
-だから、チーム学習は制度だけでは起きない。
-
-未完成を出しても大丈夫だという関係が必要になる。
-
-[Harvard Business Review「How Pixar Fosters Collective Creativity」](https://hbr.org/2008/09/how-pixar-fosters-collective-creativity)
-
----
-
-## 11. 心理的安全性――仲良しである必要はない
-
-ここでAmy Edmondsonの「psychological safety――心理的安全性」が補助線になる。
-
-心理的安全性は、センゲの五つのディシプリンそのものではない。
-
-しかし、チーム学習が現実に起こる条件を考えると非常に近い場所にある。
-
-心理的安全性が必要になるのは、
-
-「分かりません」
-
-「助けてください」
-
-「自分のミスです」
-
-「その方針、違うと思います」
-
-といった言葉が、すべて小さな対人的リスクを伴うからだ。
-
-Edmondsonらは、低侵襲心臓手術という新技術を導入した病院チームを研究した。
-
-同じ新技術を導入しても、学習速度には差があった。
-
-速く適応したチームでは、新技術を単なる「新しい機械の使い方」として狭く捉えず、医師、看護師、技師などの役割とコミュニケーションまで変わる**組織学習の課題**として扱っていた。
-
-そして、問題を率直に話し、メンバーが発言できる心理的安全性が学習を支えた。
-
-ここで重要なのは、心理的安全性を「優しい職場」と取り違えないことだ。
-
-むしろ必要なのは、
-
-「それ、違うと思います」
-
-を言えること。
-
-高い基準と、率直さを両立させることだ。
-
-**話しやすいだけでは、学習しない。違いを出せるから、学習できる。**
-
-[Harvard Business School「From Turf Wars to Learning Curves」](https://www.library.hbs.edu/working-knowledge/from-turf-wars-to-learning-curves-how-hospitals-adopt-new-technology)
-
-[Harvard Business School「Amy C. Edmondson – Research Summary」](https://www.hbs.edu/faculty/Pages/item.aspx?researchSummary=108)
+<!-- level:4 role:claim -->
+5ディシプリンの価値は、組織を採点するチェックリストより、**見落としやすい因果層へ問いを移すこと**にある。
+<!-- level:2 role:description -->
+同じ失敗でも、自己マスタリーなら目的とのズレ、メンタル・モデルなら前提、team learningなら情報の出方、systems thinkingなら相互作用を見る。
+<!-- level:3 role:analysis -->
+一つの失敗を複数のレンズで見ることで、「担当者が注意する」の一択から離れ、異なる介入候補をつくれる。
+<!-- level:5 role:implication -->
+Sengeを使うなら、理想の組織像を宣言するより、**次にどこを観察すべきかを増やす診断装置**として使うほうが強い。
 
 ---
 
-## 12. Toyota――問題が少ない組織と、問題を見つけられる組織
+## 11. 組織が学んだかを判定する、小さなテスト
 
-反対方向から考えるために、Toyota Production Systemを見てみる。
+最近の失敗や成功を一つ選び、次を確認してみる。
 
-ここでも、「Toyotaはセンゲの5つのディシプリンを導入した会社だ」という話ではない。
+- 何を予想していたか
+- 実際には何が起きたか
+- 事実と解釈を分けられるか
+- どの前提を更新したか
+- 判断基準、routine、権限、情報経路のどれが変わったか
+- 担当者が全員入れ替わっても、その変更は残るか
+- その変更自体を将来見直す条件はあるか
 
-センゲのレンズで見ると、Toyotaの仕組みの何が面白く見えるか、という話である。
-
-Toyota Production Systemの二本柱の一つが「自働化（jidoka）」だ。
-
-Toyotaの公式説明では、設備異常、品質異常、作業遅れなどを検知すると機械が停止したり、作業者自身がラインを止めたりする。
-
-目的は、異常を明確にし、不良の流出を防ぎ、再発防止につなげることにある。
-
-直感的には、
-
-**止まらない工場＝優秀**
-
-に見える。
-
-しかし問題が起きているのに止まらないなら、強いのではない。
-
-問題が見えなくなっているだけかもしれない。
-
-学習するためには、まず現実が見えなければならない。
-
-だから、
-
-**問題がない組織より、問題を早く表面化できる組織のほうが強い。**
-
-この見方を製造業以外へ持っていくと、かなり使える。
-
-「ミスをゼロにしろ」と強く言う。
-
-すると、本当にミスが減るかもしれない。
-
-しかし同時に、ミスの報告も減るかもしれない。
-
-数字上は改善する。
-
-組織の実態は悪化する。
-
-システム思考が見るのは、こういう副作用だ。
-
-自分が押した場所だけではなく、押した結果、別の場所で何が動いたかを見る。
-
-[Toyota Motor Corporation「トヨタ生産方式」](https://global.toyota/jp/company/vision-and-philosophy/production-system/)
+<!-- level:4 role:claim -->
+**組織学習の最小単位は「反省」ではなく、再現される行動の変化である。**
+<!-- level:3 role:analysis -->
+個人の頭の中だけで理解が変わっても、次の意思決定を支えるroutineや関係へ届かなければ、その学習は組織に残りにくい。
+<!-- level:5 role:implication -->
+逆に、小さな判断基準一つでも、経験から更新され、共有され、次の人の行動を変え、必要なら再検証できるなら、そこには組織学習の具体的な痕跡がある。
 
 ---
 
-## 13. 共有ビジョン――スローガンが同じでも、見ている未来は違う
+## おわりに――「学習する組織」は称号ではない
 
-Shared Visionも、言葉だけを見ると簡単に見える。
+Sengeの *The Fifth Discipline* が長く読まれてきた理由は、単に5つの項目が覚えやすいからではない。
 
-会社のビジョンを決める。
+組織の問題を見る単位を、「優秀な人／ダメな人」だけから、前提、対話、関係、feedback、structureへ広げたことにある。
 
-全員に説明する。
+ただし、Sengeの言葉をそのまま科学的な完成モデルとして扱う必要はない。
 
-ポスターにする。
+organizational learning研究、team learning研究、psychological safety研究、learning organizationの測定研究を重ねると、むしろ問いは具体的になる。
 
-覚えてもらう。
+組織は、経験したか。
 
-しかし、それは「共有された文章」であって、必ずしも共有ビジョンではない。
+経験を解釈したか。
 
-たとえば、
+異論を出せたか。
 
-「来場者数を増やす」
+理解を統合したか。
 
-という目標がある。
+routineへ残したか。
 
-営業は売上を考える。
-
-運営は混雑を考える。
-
-広報は認知を考える。
-
-現場は事故なく終えることを考える。
-
-同じKPIを見ていても、頭の中にある「成功した一日」は違う。
-
-共有ビジョンの価値は、全員が同じ文章を言えることではない。
-
-判断に迷ったときに、
-
-**「自分たちは何をつくりたいのか」から、それぞれが同じ方向へ判断できること**にある。
-
-細かな指示を全部決めなくても、現場で判断できる。
-
-逆に、ビジョンが共有されていなければ、ルールを増やすしかない。
-
-ルールが増える。
-
-例外が増える。
-
-確認が増える。
-
-判断が遅くなる。
-
-そして「もっと主体的に動いてほしい」と言われる。
-
-これもまた、システムである。
-
----
-
-## 14. なぜシステム思考が「第五のディシプリン」なのか
-
-ここまで来ると、センゲがsystems thinkingを特別扱いした理由が見えてくる。
-
-自己マスタリーだけなら、優秀で向上心の高い人を増やせる。
-
-しかし、メンタル・モデルを疑えなければ、各自が自分のやり方を上手にするだけになる。
-
-共有ビジョンだけなら、全員が同じ方向を向ける。
-
-しかしシステムを見なければ、全員が一生懸命アクセルを踏み、同じボトルネックを悪化させることがある。
-
-チーム学習だけなら、良い対話ができる。
-
-しかし、そこで得た知見が仕事の仕組みに残らなければ、次のメンバーはまたゼロから学ぶ。
-
-五つはチェックリストではない。
-
-システム思考は、残り四つを「関係」にする。
-
-自分がどう成長するか。
-
-自分が何を前提にしているか。
-
-みんなが何を目指すか。
-
-チームでどう考えるか。
-
-それらが互いにどう影響し、時間差を伴って、どんな結果をつくっているか。
-
-そこまで見る。
-
-センゲの面白さは、組織を見る単位を**「優秀な人／ダメな人」から「関係と構造」へずらしたこと**にあると思う。
-
-Beer Gameが見せたように、いい人から悪い結果は生まれる。
-
-NASAが見せたように、成功経験から危険な確信は生まれる。
-
-AARの失敗例が見せたように、学習のための制度から沈黙を学ぶことすらある。
-
-だから、問いは、
-
-「誰が悪かった？」
-
-だけでは足りない。
-
-> **「何が、その人にそう行動させた？」**
-
-ここからシステム思考が始まる。
-
----
-
-## 15. 明日からできる「学習する組織」の小さな実験
-
-learning organizationを導入する、と宣言する必要はない。
-
-むしろ大きな言葉にすると、また一つ社内用語が増えて終わる可能性がある。
-
-小さく試せる。
-
-### 1｜施策の前に「予想」を書く
-
-「何をやるか」だけでなく、
-
-**「その結果、何が起きると思っているか」**
-
-を書く。
-
-「告知を一週間早めれば、発売初週の販売が20％増える」
-
-まで書く。
-
-結果が10％増なら、成功・失敗の二択ではなく、予想と現実の差が学習材料になる。
-
-予想を書かなければ、人は結果を見てからいくらでも「最初からそう思っていた」と説明できる。
-
-### 2｜事実と解釈を二列に分ける
-
-「若い人の反応が悪かった」
-
-は解釈である。
-
-「18〜24歳のクリック率が他年代より1.2ポイント低かった」
-
-が観察された事実。
-
-その横に、
-
-「クリエイティブが刺さらなかったのでは」
-
-と仮説を書く。
-
-事実と解釈を混ぜないだけで、メンタル・モデルが少し見える。
-
-### 3｜振り返りを四問にする
-
-- 何を狙っていた？
-- 実際には何が起きた？
-- なぜ差が生まれた？
-- 次回、何を残し、何を変える？
-
-「良かった点・悪かった点」より、予想と現実の差を見る。
-
-### 4｜「誰が」の前に「何が」を聞く
-
-確認漏れが起きたら、
-
-「誰が確認しなかった？」
-
-の前に、
-
-「確認漏れが起こりやすい流れになっていなかった？」
-
-を聞く。
-
-個人責任を消すのではない。
-
-同じ場所で複数人が同じミスをするなら、構造を見る価値があるというだけだ。
-
-### 5｜「次回気をつける」を禁止する
-
-これはかなり強い。
-
-振り返りで、
-
-「次回は注意する」
-
-が出たら、一段掘る。
-
-「注意しなくても間違えにくくできない？」
-
-「忘れても事故にならないようにできない？」
-
-「そもそも、その判断をなくせない？」
-
-人間の記憶力に依存する改善は、担当者と一緒に消える。
-
-仕組みが変われば、担当者が変わっても残る。
-
-### 6｜異常を見つけた人を評価する
-
-結果的に問題が起きなかった人だけでなく、
-
-**問題が大きくなる前に「これ、おかしくないですか」と言った人**
-
-を評価する。
-
-問題の報告を「仕事を増やす人」と扱えば、組織はすぐ学習する。
-
-「問題を見つけても黙ったほうが得だ」と。
-
-### 7｜一つだけ「当然」を疑う
-
-会議の最後に、
-
-「今回、われわれが当然だと思っていることは何？」
-
-と聞く。
-
-「若者は短い動画が好き」
-
-「価格を下げれば買う」
-
-「前年実績が基準になる」
-
-「詳細が固まってから告知する」
-
-間違っていると決める必要はない。
-
-ただ、事実から**検証可能な仮説**へ戻す。
-
-それだけでも、組織は少し学びやすくなる。
-
----
-
-## 16. 自分たちの組織は、本当に学んだのか
-
-最近起きた失敗を一つ思い出してみる。
-
-そして、こう聞いてみる。
-
-- その失敗から、何を学んだ？
-- その結果、何を変えた？
-- 「人が気をつける」以外の変更はあった？
-- 以前持っていた前提を一つでも捨てた？
-- 担当者が全員入れ替わっても、その学習は残る？
-- 同じ失敗を生みそうな構造は、別の場所に残っていない？
-- 悪い情報ほど早く上がってくる？
-- 「前も大丈夫だった」が、安全の根拠になっていない？
-
-答えに詰まるなら、
-
-人は学んだが、組織はまだ学んでいないのかもしれない。
-
----
-
-## おわりに――「前も大丈夫だった」の次に、何を見るか
-
-最初のコロンビア事故へ戻る。
-
-事故調査で明らかになったのは、壊れた部品だけではなかった。
-
-情報の流れ。
-
-意思決定。
-
-過去の成功の解釈。
-
-組織の文化。
-
-スケジュールや資源をめぐる圧力。
-
-それらが絡み合って、事故へ向かうシステムをつくっていた。
-
-ここに、センゲの「学習する組織」を考える意味がある。
+そして、そのroutineを再び疑えるか。
 
 学習する組織は、失敗しない組織ではない。
 
-研修が多い組織でもない。
+**経験によって、自分たちの前提と行動を更新できる組織である。**
 
-振り返り会を毎回やる組織でもない。
+その更新が人の記憶を越えて残り、しかも環境が変われば再び書き換えられる。
 
-問題がない組織ですらない。
-
-**現実を見た結果、自分たちの前提と行動と仕組みを書き換えられる組織である。**
-
-失敗したときだけではない。
-
-成功したときにも、
-
-「なぜうまくいった？」
-
-「本当に自分たちの判断が正しかったから？」
-
-「たまたま事故にならなかっただけでは？」
-
-と聞く。
-
-経験を対話にする。
-
-対話を理解にする。
-
-理解を仕組みにする。
-
-仕組みが変われば、担当者が変わっても経験が残る。
-
-そこで初めて、個人の学習は組織の学習になる。
-
-だから、「学習する組織」の反対は、失敗する組織ではないのだと思う。
-
-失敗しても、成功しても、
-
-**自分たちの前提が一ミリも変わらない組織。**
-
-それが、いちばん学習から遠い。
-
-もし去年と同じ失敗が今年も起きたなら、去年の振り返りで学んだのは誰だったのだろう。
-
-担当者か。
-
-チームか。
-
-組織か。
-
-それとも、
-
-**誰も学ばなかったのだろうか。**
+そこまで来て初めて、「組織が学んだ」と言えるのだと思う。
 
 ---
 
 ## 参考資料
 
 - [MIT Sloan — Peter M. Senge](https://mitsloan.mit.edu/faculty/directory/peter-m-senge)
-- [AHRQ Patient Safety Network — The Fifth Discipline](https://psnet.ahrq.gov/issue/fifth-discipline-art-practice-learning-organization-revised-updated-edition)
-- [MIT Sloan — MIT Sloan Beer Game Online](https://mitsloan.mit.edu/teaching-resources-library/mit-sloan-beer-game-online)
-- [NASA Technical Reports Server — Columbia Accident Investigation Board Report](https://ntrs.nasa.gov/citations/20030066167)
-- [NASA Safety and Mission Assurance — Columbia](https://sma.nasa.gov/sma-disciplines/accllp/columbia)
+- [NASA — Columbia Accident Investigation Board Report](https://ntrs.nasa.gov/citations/20030066167)
 - [NASA — Columbia Accident Investigation Board Synopsis](https://www.nasa.gov/history/columbia-accident-investigation-board-synopsis/)
-- [Chris Argyris — Double Loop Learning in Organizations, Harvard Business Review](https://hbr.org/1977/09/double-loop-learning-in-organizations)
-- [Chris Argyris — Teaching Smart People How to Learn, Harvard Business Review](https://hbr.org/1991/05/teaching-smart-people-how-to-learn)
-- [Army University Press — Improving After Action Review (AAR)](https://www.armyupress.army.mil/Journals/Journal-of-Military-Learning/Journal-of-Military-Learning-Archives/April-2022/Cates-Action-Review/)
-- [Army University Press — Future Proof: How to Build a Learning Organization](https://www.armyupress.army.mil/Journals/Military-Review/Online-Exclusive/2024-OLE/Future-Proof/)
-- [Ed Catmull — How Pixar Fosters Collective Creativity, Harvard Business Review](https://hbr.org/2008/09/how-pixar-fosters-collective-creativity)
-- [Harvard Business School — From Turf Wars to Learning Curves: How Hospitals Adopt New Technology](https://www.library.hbs.edu/working-knowledge/from-turf-wars-to-learning-curves-how-hospitals-adopt-new-technology)
-- [Toyota Motor Corporation — トヨタ生産方式](https://global.toyota/jp/company/vision-and-philosophy/production-system/)
+- [MIT Sloan — MIT Sloan Beer Game Online](https://mitsloan.mit.edu/teaching-resources-library/mit-sloan-beer-game-online)
+- [Levitt, B. & March, J. G. (1988) — Organizational Learning](https://www.annualreviews.org/content/journals/10.1146/annurev.so.14.080188.001535)
+- [Crossan, M. M., Lane, H. W. & White, R. E. (1999) — An Organizational Learning Framework](https://journals.aom.org/doi/abs/10.5465/amr.1999.2202135)
+- [Edmondson, A. (1999) — Psychological Safety and Learning Behavior in Work Teams](https://journals.sagepub.com/doi/10.2307/2666999)
+- [Nellen, L. C., Gijselaers, W. H. & Grohnert, T. (2020) — A Meta-Analytic Literature Review on Organization-Level Drivers of Team Learning](https://journals.sagepub.com/doi/10.1177/1534484319894756)
+- [Marlow et al. — There is No End to Learning, but How Does it Begin?](https://onlinelibrary.wiley.com/doi/10.1111/joms.13064)
+- [Ju et al. (2021) — A Meta-Analytic Review of the Relationship Between Learning Organization and Organizational Performance and Employee Attitudes](https://journals.sagepub.com/doi/10.1177/1534484320987363)
+- [Yang, B., Watkins, K. E. & Marsick, V. J. (2004) — The construct of the learning organization](https://onlinelibrary.wiley.com/doi/10.1002/hrdq.1086)
+- [Oxford Handbook — Measurement of the Learning Organization Construct](https://academic.oup.com/edited-volume/28272/chapter-abstract/213437148)
