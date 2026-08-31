@@ -164,7 +164,7 @@ const rows = canonicalPaths.map(file => {
 });
 
 for (const file of actualCanonicalFiles) {
-  if (!indexedSet.has(file)) warnings.push(`unindexed markdown under essays/: ${file}`);
+  if (!indexedSet.has(file)) errors.push(`unindexed markdown under essays/: ${file}`);
 }
 
 const canonicalIds = new Set(rows.map(row => row.id).filter(Boolean));
@@ -188,7 +188,7 @@ for (const [id, entry] of Object.entries(versions)) {
 }
 
 for (const file of [...actualEnglishMix, ...actualSpanishMix]) {
-  if (!indexedDerived.has(file)) warnings.push(`derived markdown is not in versions-index: ${file}`);
+  if (!indexedDerived.has(file)) errors.push(`derived markdown is not in versions-index: ${file}`);
 }
 
 if (legacySpanishFiles.length) {
