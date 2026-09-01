@@ -12,7 +12,7 @@ favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 3
-abstract: "Gestalt心理学のFigure–Ground（図と地）を、UIで『重要な要素をどう前景として知覚させるか』という実務の問題として読む。CTAを大きくする前に周囲のvisual weightを下げる、強調を足す前にnoiseを減らす、という設計判断へつなげる。Proximity、Visual Hierarchyとの接続も整理し、知覚から制作指示まで往復する。"
+abstract: "Gestalt心理学のFigure–Ground（図と地）を、UIで『重要な要素をどう前景として知覚させるか』という実務の問題として読む。CSSだけの軽量Visual Lessonで、CTAを強くする以外にgroundを静かにすることで焦点を作れることを体験し、Proximity、Visual Hierarchyとの接続まで整理する。"
 ---
 
 # 目立たせる前に、背景から分離する――Figure–Groundで焦点をつくる
@@ -24,89 +24,60 @@ UIで「このボタン、弱いな」と感じたとき、すぐに大きくし
 
 でも、弱いのはボタンそのものではなく、**背景との差が弱いから**かもしれない。
 
-今回のテーマは **Figure–Ground（図と地）**。
-
-Gestalt心理学で扱われる代表的な知覚原則の一つで、人が視覚場面を「いま見る対象＝figure」と「その背景＝ground」に分けて知覚する関係を考える。UXでも、前景と背景を明確に分離することで、重要な要素へ注意を導く考え方として使われている。
+今回のテーマは **Figure–Ground（図と地）**。Gestalt心理学で扱われる代表的な知覚原則の一つで、人が視覚場面を「いま見る対象＝figure」と「その背景＝ground」に分けて知覚する関係を考える。
 
 [Interaction Design Foundation — Law of Figure-Ground](https://assets.interaction-design.org/literature/topics/law-of-figure)
 
 [Nielsen Norman Group — 5 Principles of Visual Design in UX](https://www.nngroup.com/articles/principles-visual-design/)
 
-## 1. まず一言：Visibility is relational
+## 1. まず、見てみる：何が前に出ている？
 
-**目立つかどうかは、その要素単体では決まらない。**
+<div class="dl-visual" role="group" aria-label="FigureとGroundの知覚を試す抽象図">
+<p class="dl-visual-kicker">VISUAL EXPERIMENT 01</p>
+<p class="dl-visual-title"><strong>明るい二つの形を見るか、中央の暗い形を見るか。</strong></p>
+<div class="dl-figure-ground" role="img" aria-label="左右の明るい輪郭と中央の暗い空間のどちらも形として知覚できる抽象図"></div>
+<p class="dl-visual-note">同じ画面でも、どこをfigureとして取るかで「形」が変わる。FigureとGroundは、単純に前景色・背景色という固定属性ではない。</p>
+</div>
 
-周囲との関係で決まる。
+### What just happened?
 
-たとえば、ボタンの文字サイズを16pxから18pxへ上げても、周囲の見出し、リンク、バッジ、装飾、色面が全部強ければ、期待ほど前へ出てこない。
+**目立つかどうかは、その要素単体では決まらない。Visibility is relational.**
 
-逆に、ボタン自体をほとんど変えなくても、周囲の要素を一段静かにすれば、figureとして立ち上がることがある。
-
-```text
-BUTTON ≒ BACKGROUND
-        ↓
-   分離が弱い
-
-BUTTON ≠ BACKGROUND
-        ↓
-   figureとして認識しやすい
-```
+人は視覚場面のすべてを同じ強さで扱うのではなく、あるものを対象として取り出し、残りを背景として扱う。UIでも、この関係が曖昧だと「どこを見ればいいのか」が弱くなる。
 
 **Don't always amplify the signal. Reduce the noise.**
 
-この考え方は、UIレビューでかなり使える。
+## 2. Visual Lesson：CTAを大きくせずに、前景へ出す
 
-## 2. Visual Lesson：全部を前景にすると、前景が消える
+<div class="dl-visual" role="group" aria-label="CTAのFigure-Ground関係をBeforeとAfterで比較">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>同じ情報でも、周囲を静かにすると主役が変わる。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — EVERYTHING COMPETES</p>
+<div class="dl-demo-card">
+<p class="dl-event">浦和 vs ○○</p><p class="dl-meta">9.19 · 19:00</p>
+<div class="dl-actions"><span class="dl-action">チケットを購入</span><span class="dl-action">詳細を見る</span><span class="dl-action">注意事項</span></div>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — ONE CLEAR FIGURE</p>
+<div class="dl-demo-card">
+<p class="dl-event">浦和 vs ○○</p><p class="dl-meta">9.19 · 19:00</p>
+<div class="dl-actions"><span class="dl-action dl-action-primary">チケットを購入</span><span class="dl-action dl-action-secondary">詳細を見る · 注意事項</span></div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">AfterでCTAを巨大化していないことがポイント。補助情報のvisual weightを下げ、関係の差でfigureを作っている。</p>
+</div>
 
-### BEFORE
+ここで重要なのは、**CTAを何倍にも巨大化したことではない**。周囲との差を設計したことや。
 
-```text
-┌──────────────────────┐
-│  MATCH DAY           │
-│                      │
-│  浦和 vs ○○          │
-│                      │
-│  9.19 19:00          │
-│                      │
-│  詳細を見る          │
-│  チケットを購入      │
-│  注意事項はこちら    │
-└──────────────────────┘
-```
-
-全部が同じくらいの太さ、色、枠、強さを持っているとする。
-
-情報は存在している。でも、**どれがfigureなのかが曖昧**になる。
-
-### AFTER
-
-```text
-┌──────────────────────┐
-│  MATCH DAY           │
-│                      │
-│  浦和 vs ○○          │
-│  9.19 19:00          │
-│                      │
-│  █ チケットを購入 █  │
-│                      │
-│  詳細を見る          │
-│  注意事項            │
-└──────────────────────┘
-```
-
-CTAだけを前へ出し、補助リンクをground側へ下げる。
-
-ここで重要なのは、**CTAを何倍にも巨大化したことではない**。
-
-周囲との差を設計したことや。
-
-Figure–Groundは「何を派手にするか」という話ではなく、**何を知覚上の主役にするか**という話として考えると使いやすい。
+Figure–Groundは「何を派手にするか」ではなく、**何を知覚上の主役にするか**として考えると使いやすい。
 
 ## 3. Figure–Groundを作るレバー
 
 figureとgroundの分離は、色だけで作るわけではない。
-
-たとえば次のような要素が関係する。
 
 - **Contrast** — 明暗、色、太さの差
 - **Scale** — サイズ差
@@ -115,17 +86,7 @@ figureとgroundの分離は、色だけで作るわけではない。
 - **Shape** — 形状や境界の違い
 - **Visual Weight** — 複数の要素を合わせた視覚的な強さ
 
-NN/gもVisual Designの原則としてscale、visual hierarchy、contrast、Gestaltなどを整理している。
-
-だから、「CTAを目立たせる」を一個のCSSプロパティへ変換しない方がいい。
-
-```text
-目立たせたい
-    ↓
-font-sizeを上げる
-```
-
-ではなく、
+だから「CTAを目立たせる」を一個のCSSプロパティへ変換しない方がいい。
 
 ```text
 何をfigureにしたい？
@@ -135,13 +96,7 @@ font-sizeを上げる
 どの差を使えば最小変更で分離できる？
 ```
 
-と考える。
-
 ## 4. そのまま使える制作・修正指示
-
-「ボタンをもっと目立たせてください」だけだと、制作側はサイズ、色、影、アニメーションなど、何を強くするかを推測するしかない。
-
-もう一段具体化すると、こう言える。
 
 > CTAそのものを大きくする前に、周囲とのFigure–Ground関係を整理してください。補助リンクや装飾のvisual weightを下げ、CTAだけが明確なfigureとして認識できる状態を作ってください。
 
@@ -153,96 +108,39 @@ font-sizeを上げる
 
 ## 5. 「重要なものを全部目立たせる」が失敗する理由
 
-実務では、ほぼ全部が「重要」と言われる。
-
-日付も重要。
-
-タイトルも重要。
-
-スポンサーも重要。
-
-CTAも重要。
-
-注意事項も読んでほしい。
+実務では、日付もタイトルもスポンサーもCTAも注意事項も、ほぼ全部が「重要」と言われる。
 
 そこで全部を太字、色付き、枠付きにすると、**importance inflation**が起きる。
 
-強調は絶対的な属性ではない。相対差で成立する。
-
-赤が一つだけなら目立つ。
-
-赤が十個あれば、赤はもう背景になりうる。
+強調は絶対的な属性ではない。相対差で成立する。赤が一つなら目立つ。赤が十個あれば、赤はもう背景になりうる。
 
 だから、強いUIを作るには「何を強くするか」だけでなく、**何を弱くするかを決める必要がある**。
 
 ## 6. Gestaltへ戻る：デザインは物体ではなく知覚関係を扱う
 
-Figure–Groundは、UIのために発明されたテクニックではない。
-
-20世紀初頭に展開したGestalt心理学では、人間が視覚要素をバラバラの断片としてだけではなく、まとまりや関係として知覚する仕組みが研究された。
+Figure–GroundはUIのために発明されたテクニックではない。20世紀初頭に展開したGestalt心理学では、人間が視覚要素をバラバラの断片としてだけではなく、まとまりや関係として知覚する仕組みが研究された。
 
 Figure–Groundのほかにも、Proximity、Similarity、Closureなどが現在のデザイン教育やUXで頻繁に参照される。
 
-ここから見えてくるのは、デザインが「ボタンという物体をきれいに描く」だけではないということや。
-
 **Design is not only about objects. It is about perception.**
 
-ボタンと背景。
-
-見出しと本文。
-
-カードとページ。
-
-それらが**どういう関係として人間の目に現れるか**まで設計対象になる。
+ボタンと背景、見出しと本文、カードとページ。それらが**どういう関係として人間の目に現れるか**まで設計対象になる。
 
 ## 7. 誤解しやすい点：Figure = 派手、Ground = 地味ではない
 
-Figure–Groundを「目立つ色 vs 地味な色」とだけ覚えると狭すぎる。
-
 白い広い背景に小さな黒い文字が一つだけあれば、小さくても十分にfigureになりうる。
 
-逆に、赤背景、黄色文字、巨大写真、太字、影、バッジ、アニメーションを全部入れれば、コントラストが大量に存在していても、どこへ注意を向けるべきか分からなくなる。
+逆に、赤背景、黄色文字、巨大写真、太字、影、バッジ、アニメーションを全部入れれば、コントラストが大量にあっても、どこへ注意を向けるべきか分からなくなる。
 
-つまり、figureは派手さそのものではない。
-
-**知覚上、対象として分離されること**が重要や。
+figureで重要なのは派手さではなく、**知覚上、対象として分離されること**や。
 
 ## 8. これまでの学びとの接続
 
-Design Literacyでは、ここまで次の順に進んできた。
+<div class="dl-chain" aria-label="Design Literacyの概念接続"><span>Spacing</span><span>Proximity / Grouping</span><span>Visual Hierarchy / Order</span><span>Figure–Ground / Focus</span></div>
 
-```text
-Proximity
-何と何が仲間？
-      ↓
-Visual Hierarchy
-何から見る？
-      ↓
-Figure–Ground
-何を「見る対象」として認識する？
-```
+Proximityは「何と何が仲間か」を作る。Visual Hierarchyは「何から見るか」を作る。Figure–Groundは「何を対象として見るか」を作る。
 
-Proximityは**Grouping**を作る。
-
-Visual Hierarchyは**Order**を作る。
-
-Figure–Groundは**Focus**を作る。
-
-つまり、
-
-```text
-Spacing
-  ↓
-Grouping
-  ↓
-Order
-  ↓
-Focus
-```
-
-と理解できる。
-
-これで「なんかCTAが弱い」という感覚を、
+これで「なんかCTAが弱い」を、
 
 > 周囲もvisual weightが高く、CTAとgroundの分離が弱い。
 
@@ -250,21 +148,11 @@ Focus
 
 ## 9. 30秒デザイン観察
 
-スマホで好きなアプリやWebサイトを一つ開く。
-
-文字の意味を読まずに、次の二つだけを見る。
-
-**背景へ溶けているものは何か。**
-
-**前へ飛び出して見えるものは何か。**
+スマホで好きなアプリやWebサイトを一つ開く。文字の意味を読まずに、**背景へ溶けているもの**と**前へ飛び出して見えるもの**だけを見る。
 
 そのあと一つだけ問う。
 
 > **一番前に見えるものは、本当にこの画面で一番重要なものか？**
-
-広告が最もfigureになっているかもしれない。
-
-小さな通知バッジが本来のCTAより強いかもしれない。
 
 そのズレを見つけられれば、今日の観察は成功や。
 
@@ -272,17 +160,11 @@ Focus
 
 次は視点をMACROへ上げる。
 
-ここまでは、人間が情報をどう知覚するかという側から「秩序」を考えてきた。
+ここまでは、人間が情報をどう知覚するかという側から「秩序」を考えてきた。次は、20世紀のグラフィックデザイナーたちが、**情報を秩序立てるためにどんな視覚言語を発展させたのか**を見る。
 
-次は、20世紀のグラフィックデザイナーたちが、**情報を秩序立てるためにどんな視覚言語を発展させたのか**を見る。
+キーワードは **Grid / asymmetric layout / sans-serif typography / objective communication**。
 
-キーワードは、
-
-**Grid / asymmetric layout / sans-serif typography / objective communication**。
-
-つまり次は、**Swiss Style / International Typographic Style**。
-
-「きれいに並べるためのグリッド」から、「なぜ近代デザインは秩序を求めたのか」まで、一段大きな話へ進む。
+次は **Swiss Style / International Typographic Style**。「きれいに並べるためのグリッド」から、「なぜ近代デザインは秩序を求めたのか」まで進む。
 
 ## 参考資料
 
