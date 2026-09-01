@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "design-literacy-figure-ground-focus": {"en-mix": "english-mix/design-literacy-figure-ground-focus.md"},
     "aichi-nagoya-asian-games-finance-who-pays": {"en-mix": "english-mix/aichi-nagoya-asian-games-finance-who-pays.md"},
     "aichi-nagoya-asian-games-governance-who-runs-it": {"en-mix": "english-mix/aichi-nagoya-asian-games-governance-who-runs-it.md"},
     "prompt-caller-what-i-built-windows-app": {"en-mix": "english-mix/prompt-caller-what-i-built-windows-app.md"},
