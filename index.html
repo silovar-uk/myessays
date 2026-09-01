@@ -47,7 +47,9 @@
         <div class="reading-launcher-search">
           <p class="reading-launcher-label">SEARCH</p>
           <div id="searchControl" class="search-control discovery-search">
-            <button id="searchToggle" class="compact-button search-trigger discovery-search-trigger" type="button" aria-expanded="false" aria-controls="searchInput"><span aria-hidden="true">⌕</span><span class="search-trigger-label">記事を検索</span></button>
+            <button id="searchToggle" class="compact-button search-trigger discovery-search-trigger" type="button" aria-expanded="false" aria-controls="searchInput">
+              <span aria-hidden="true">⌕</span><span class="search-trigger-label">記事を検索</span>
+            </button>
             <input id="searchInput" class="inline-search-input" type="search" placeholder="タイトル・本文・タグから探す" autocomplete="off" tabindex="-1">
             <kbd class="search-shortcut">/</kbd>
           </div>
@@ -55,36 +57,103 @@
         <div class="reading-launcher-random">
           <p class="reading-launcher-label">DISCOVER</p>
           <div class="discovery-random-actions">
-            <button id="unreadRandomEssay" class="discovery-button discovery-button-primary" type="button" title="現在の候補から未読了の記事をランダムに1本読む"><span class="discovery-button-icon" aria-hidden="true">↝</span><span>未読了から1本</span><span id="unreadRandomCount" class="discovery-count" aria-label="未読了 0本" hidden></span></button>
-            <button id="randomEssay" class="discovery-button discovery-button-secondary random-essay-button" type="button" title="現在の候補からランダムに1本読む"><span class="discovery-button-icon" aria-hidden="true">↝</span><span>ランダムで1本</span></button>
+            <button id="unreadRandomEssay" class="discovery-button discovery-button-primary" type="button" title="現在の候補から未読了の記事をランダムに1本読む">
+              <span class="discovery-button-icon" aria-hidden="true">↝</span>
+              <span>未読了から1本</span>
+              <span id="unreadRandomCount" class="discovery-count" aria-label="未読了 0本" hidden></span>
+            </button>
+            <button id="randomEssay" class="discovery-button discovery-button-secondary random-essay-button" type="button" title="現在の候補からランダムに1本読む">
+              <span class="discovery-button-icon" aria-hidden="true">↝</span>
+              <span>ランダムで1本</span>
+            </button>
           </div>
         </div>
       </section>
 
       <div class="library-toolbar" aria-label="ライブラリ操作">
         <p id="resultCount" class="library-count" aria-live="polite"></p>
-        <div class="toolbar-actions"><button id="filterToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="filterPanel"><span>絞り込み</span><span id="filterCount" class="filter-count" hidden></span></button><button id="clearFilters" class="quiet-button" type="button" hidden>条件をクリア</button></div>
+        <div class="toolbar-actions">
+          <button id="filterToggle" class="compact-button" type="button" aria-expanded="false" aria-controls="filterPanel">
+            <span>絞り込み</span><span id="filterCount" class="filter-count" hidden></span>
+          </button>
+          <button id="clearFilters" class="quiet-button" type="button" hidden>条件をクリア</button>
+        </div>
       </div>
 
       <section id="filterPanel" class="tool-panel filter-panel" aria-label="絞り込み" hidden>
-        <div class="filters"><label>種類<select id="typeFilter"><option value="">すべて</option></select></label><label>作成年<select id="yearFilter"><option value="">すべて</option></select></label><label>お気に入り<select id="favoriteFilter"><option value="0">すべて</option><option value="5">★★★★★</option><option value="4">★★★★以上</option><option value="3">★★★以上</option></select></label><label>並び順<select id="sortSelect"><option value="created-desc">新しい順</option><option value="updated-desc">更新順</option><option value="favorite-desc">お気に入り順</option><option value="title-asc">タイトル順</option></select></label></div>
+        <div class="filters">
+          <label>種類<select id="typeFilter"><option value="">すべて</option></select></label>
+          <label>作成年<select id="yearFilter"><option value="">すべて</option></select></label>
+          <label>お気に入り<select id="favoriteFilter"><option value="0">すべて</option><option value="5">★★★★★</option><option value="4">★★★★以上</option><option value="3">★★★以上</option></select></label>
+          <label>並び順<select id="sortSelect"><option value="created-desc">新しい順</option><option value="updated-desc">更新順</option><option value="favorite-desc">お気に入り順</option><option value="title-asc">タイトル順</option></select></label>
+        </div>
         <div id="tagFilters" class="tag-filters" aria-label="タグ"></div>
       </section>
+
       <section id="essayGrid" class="essay-grid" aria-live="polite"></section>
       <p id="emptyState" class="empty-state" hidden>条件に合う論考がない。検索語かフィルターを少しゆるめてみて。</p>
     </section>
 
     <article id="readerView" class="reader-shell" hidden>
       <button id="backButton" class="back-button" type="button">← Library</button>
-      <div class="reader-layout"><aside id="readerAside" class="reader-aside"></aside><div id="readerContent" class="reader-content"></div></div>
-      <button id="noteTab" class="note-tab" type="button" aria-expanded="false" aria-controls="notePanel"><span>メモ</span><kbd>M</kbd></button>
-      <aside id="notePanel" class="note-panel" aria-label="読書メモ" aria-hidden="true"><div class="note-panel-head"><div><p class="note-kicker">LOCAL READING NOTE</p><h2>読書メモ</h2></div><button id="closeNote" class="note-close" type="button" aria-label="メモを閉じる">×</button></div><p class="note-local">この端末のブラウザにのみ自動保存</p><textarea id="noteTextarea" class="note-textarea" placeholder="気づき、疑問、あとで考えたいこと…" spellcheck="true"></textarea><div class="note-footer"><span id="noteStatus" class="note-status" aria-live="polite">保存済み</span><div class="note-actions"><button id="clearNote" class="note-action note-action-danger" type="button">全削除</button><button id="copyNote" class="note-action note-action-primary" type="button">全文コピー</button></div></div></aside>
-      <div id="quoteMenu" class="quote-menu" role="menu" hidden><button id="quoteToNote" type="button" role="menuitem">“ ” メモに引用</button></div>
+      <div class="reader-layout">
+        <aside id="readerAside" class="reader-aside"></aside>
+        <div id="readerContent" class="reader-content"></div>
+      </div>
+
+      <button id="noteTab" class="note-tab" type="button" aria-expanded="false" aria-controls="notePanel">
+        <span>メモ</span><kbd>M</kbd>
+      </button>
+      <aside id="notePanel" class="note-panel" aria-label="読書メモ" aria-hidden="true">
+        <div class="note-panel-head">
+          <div>
+            <p class="note-kicker">LOCAL READING NOTE</p>
+            <h2>読書メモ</h2>
+          </div>
+          <button id="closeNote" class="note-close" type="button" aria-label="メモを閉じる">×</button>
+        </div>
+        <p class="note-local">この端末のブラウザにのみ自動保存</p>
+        <textarea id="noteTextarea" class="note-textarea" placeholder="気づき、疑問、あとで考えたいこと…" spellcheck="true"></textarea>
+        <div class="note-footer">
+          <span id="noteStatus" class="note-status" aria-live="polite">保存済み</span>
+          <div class="note-actions">
+            <button id="clearNote" class="note-action note-action-danger" type="button">全削除</button>
+            <button id="copyNote" class="note-action note-action-primary" type="button">全文コピー</button>
+          </div>
+        </div>
+      </aside>
+
+      <div id="quoteMenu" class="quote-menu" role="menu" hidden>
+        <button id="quoteToNote" type="button" role="menuitem">“ ” メモに引用</button>
+      </div>
     </article>
   </main>
 
-  <dialog id="guideDialog"><form method="dialog" class="dialog-card"><div class="dialog-head"><div><p class="eyebrow">ADD A NEW ESSAY</p><h2>1本追加するときの流れ</h2></div><button class="icon-button" value="cancel" aria-label="閉じる">×</button></div><ol><li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li><li>日本語版を <code>essays/YYYY-MM-DD-slug.md</code> として保存し、<code>data/index.json</code> にパスを追加する。</li><li>English Mix版も作る場合は、同じ記事IDで <code>english-mix/記事ID.md</code> を作る。日本語を基盤に英語を自然に混ぜ、内容理解を壊さないことを優先する。</li><li>Español Mix版も作る場合は、同じ記事IDで <code>spanish-mix/記事ID.md</code> を作る。日本語を基盤にスペイン語を自然に混ぜ、完全スペイン語版にはしない。</li><li><code>data/versions-index.json</code> の同じ記事IDへ、作成した版のパスを <code>en-mix</code> / <code>es-mix</code> として登録する。</li><li>連載にする場合は日本語正本のfront matterに同じ <code>series</code> 名と数値の <code>seriesOrder</code> を付ける。Series・読了状態・After Reading・ブラウザ内メモは記事ID単位で共有される。</li><li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。MyEssaysでは、本文中で入力した1行改行も編集意図として表示へ反映する。</li><li>論証構造を付ける場合は、Sentenceの直前に <code>&lt;!-- level:4 role:claim --&gt;</code> のようなメタ情報を置く。同一段落では空行を挟まず、1文1行で連続して記述する。</li><li>GitHubへ反映すると、このLibraryが自動で読み込む。</li></ol><p class="dialog-note">日本語版を正本とし、English Mix版とEspañol Mix版は外国語を文脈の中で読むための派生Reading Modeとして扱う。完全英語版・完全スペイン語版は作らない。派生版は別記事として <code>data/index.json</code> に登録しない。Structure情報は任意で、未設定の記事は従来どおり表示される。</p></form></dialog>
+  <dialog id="guideDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">ADD A NEW ESSAY</p>
+          <h2>1本追加するときの流れ</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="閉じる">×</button>
+      </div>
+      <ol>
+        <li><code>essay-template.md</code> を複製し、front matter と本文を書く。</li>
+        <li>日本語版を <code>essays/YYYY-MM-DD-slug.md</code> として保存し、<code>data/index.json</code> にパスを追加する。</li>
+        <li>English Mix版も作る場合は、同じ記事IDで <code>english-mix/記事ID.md</code> を作る。日本語を基盤に英語を自然に混ぜ、内容理解を壊さないことを優先する。</li>
+        <li>Español Mix版も作る場合は、同じ記事IDで <code>spanish-mix/記事ID.md</code> を作る。日本語を基盤にスペイン語を自然に混ぜ、完全スペイン語版にはしない。</li>
+        <li><code>data/versions-index.json</code> の同じ記事IDへ、作成した版のパスを <code>en-mix</code> / <code>es-mix</code> として登録する。</li>
+        <li>連載にする場合は日本語正本のfront matterに同じ <code>series</code> 名と数値の <code>seriesOrder</code> を付ける。Series・読了状態・After Reading・ブラウザ内メモは記事ID単位で共有される。</li>
+        <li>本文は標準的なMarkdown（CommonMark / GFM）で記述できる。MyEssaysでは、本文中で入力した1行改行も編集意図として表示へ反映する。</li>
+        <li>論証構造を付ける場合は、Sentenceの直前に <code>&lt;!-- level:4 role:claim --&gt;</code> のようなメタ情報を置く。同一段落では空行を挟まず、1文1行で連続して記述する。</li>
+        <li>GitHubへ反映すると、このLibraryが自動で読み込む。</li>
+      </ol>
+      <p class="dialog-note">日本語版を正本とし、English Mix版とEspañol Mix版は外国語を文脈の中で読むための派生Reading Modeとして扱う。完全英語版・完全スペイン語版は作らない。派生版は別記事として <code>data/index.json</code> に登録しない。Structure情報は任意で、未設定の記事は従来どおり表示される。</p>
+    </form>
+  </dialog>
 
+  <!-- Content engine -->
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="app.js?v=20260829-2045" defer></script>
@@ -95,7 +164,11 @@
   <script src="argument-structure.js?v=20260830-2207" defer></script>
   <script src="argument-structure-escape-guard.js?v=20260831-1128" defer></script>
   <script src="argument-flow-compat.js?v=20260830-2245" defer></script>
+
+  <!-- Reader lifecycle -->
   <script src="reader-runtime.js?v=20260816-1856" defer></script>
+
+  <!-- Reader plugins: runtime controls execution order -->
   <script src="source-links.js?v=20260816-1856" defer></script>
   <script src="reader-navigation.js?v=20260829-2033" defer></script>
   <script src="reader-reflections.js?v=20260816-1856" defer></script>
