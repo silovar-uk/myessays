@@ -18,118 +18,65 @@ seriesOrder: 3
 
 **Good design makes it obvious what to look at — and what to ignore.**
 
-UIで「このボタン、弱いな」と感じたとき、we often try to make the button itself stronger.
+UIで「このボタン、弱いな」と感じたとき、we often try to make the button itself stronger. もっと大きくする。Make it bolder. 色を派手にする。
 
-もっと大きくする。Make it bolder. 色を派手にする。
+でも、**the problem may be the relationship, not the button itself.**
 
-でも、the problem may not be the button itself.
-
-**It may be too similar to its background.**
-
-今回のテーマは **Figure–Ground（図と地）**。
-
-Gestalt psychology uses this idea to describe how we separate a visual scene into the **figure — the thing we focus on — and the ground — the surrounding background**.
-
-UXでも、foregroundとbackgroundを明確に分けることで、重要な要素へ注意を導く考え方として使われる。
+今回のテーマは **Figure–Ground（図と地）**。Gestalt psychology describes how we separate a visual scene into the **figure — what we focus on — and the ground — what recedes around it**.
 
 [Interaction Design Foundation — Law of Figure-Ground](https://assets.interaction-design.org/literature/topics/law-of-figure)
 
 [Nielsen Norman Group — 5 Principles of Visual Design in UX](https://www.nngroup.com/articles/principles-visual-design/)
 
-## 1. Visibility is relational
+## 1. First, look：何が前に出ている？
 
-**目立つかどうかは、その要素単体では決まらない。**
+<div class="dl-visual" role="group" aria-label="FigureとGroundの知覚を試す抽象図">
+<p class="dl-visual-kicker">VISUAL EXPERIMENT 01</p>
+<p class="dl-visual-title"><strong>Do you see two light shapes, or one dark shape in the middle?</strong></p>
+<div class="dl-figure-ground" role="img" aria-label="左右の明るい輪郭と中央の暗い空間のどちらも形として知覚できる抽象図"></div>
+<p class="dl-visual-note">The pixels do not change. What changes is which region your perception treats as the figure.</p>
+</div>
 
-Visibility is relational.
+### What just happened?
 
-周囲との関係で決まる。
+**目立つかどうかは、その要素単体では決まらない。Visibility is relational.**
 
-For example, increasing a button from 16px to 18px may not help much if headings, links, badges, decorations and background colors are all visually loud.
-
-逆に、ボタン自体をほとんど変えなくても、周囲のvisual weightを一段下げれば、figureとして立ち上がることがある。
-
-```text
-BUTTON ≒ BACKGROUND
-        ↓
-   weak separation
-
-BUTTON ≠ BACKGROUND
-        ↓
-   easier to perceive as figure
-```
+People do not process every region of a screen with equal emphasis. あるものを対象として取り出し、残りをbackgroundとして扱う。
 
 **Don't always amplify the signal. Reduce the noise.**
 
-## 2. Visual Lesson：全部を前景にすると、前景が消える
+## 2. Visual Lesson：CTAを大きくせずに前景へ出す
 
-### BEFORE
+<div class="dl-visual" role="group" aria-label="CTAのFigure-Ground関係をBeforeとAfterで比較">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>Same information. Different perceptual priority.</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — EVERYTHING COMPETES</p>
+<div class="dl-demo-card"><p class="dl-event">浦和 vs ○○</p><p class="dl-meta">9.19 · 19:00</p><div class="dl-actions"><span class="dl-action">チケットを購入</span><span class="dl-action">詳細を見る</span><span class="dl-action">注意事項</span></div></div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — ONE CLEAR FIGURE</p>
+<div class="dl-demo-card"><p class="dl-event">浦和 vs ○○</p><p class="dl-meta">9.19 · 19:00</p><div class="dl-actions"><span class="dl-action dl-action-primary">チケットを購入</span><span class="dl-action dl-action-secondary">詳細を見る · 注意事項</span></div></div>
+</div>
+</div>
+<p class="dl-visual-note">The CTA did not become enormous. Supporting elements became quieter, so the relationship changed.</p>
+</div>
 
-```text
-┌──────────────────────┐
-│  MATCH DAY           │
-│                      │
-│  浦和 vs ○○          │
-│                      │
-│  9.19 19:00          │
-│                      │
-│  詳細を見る          │
-│  チケットを購入      │
-│  注意事項はこちら    │
-└──────────────────────┘
-```
-
-If everything has similar weight, color and emphasis, **the interface has information but no clear figure**.
-
-### AFTER
-
-```text
-┌──────────────────────┐
-│  MATCH DAY           │
-│                      │
-│  浦和 vs ○○          │
-│  9.19 19:00          │
-│                      │
-│  █ チケットを購入 █  │
-│                      │
-│  詳細を見る          │
-│  注意事項            │
-└──────────────────────┘
-```
-
-CTAだけを前へ出し、supporting links move toward the ground.
-
-ここで大事なのは、the CTA did not need to become enormous.
-
-**We changed the relationship.**
-
-Figure–Groundは「何を派手にするか」より、**何を知覚上の主役にするか**と考えると使いやすい。
+Figure–Groundは「何を派手にするか」より、**what becomes the perceptual subject**と考えると使いやすい。
 
 ## 3. What creates Figure–Ground?
 
 Figure–Ground is not only about color.
 
-分離を作るレバーはいくつもある。
-
 - **Contrast** — 明暗、色、太さの差
 - **Scale** — size difference
 - **Position** — 配置と周囲との距離
-- **Whitespace** — space around the element
+- **Whitespace** — space around an element
 - **Shape** — 形状や境界の違い
-- **Visual Weight** — the combined perceptual strength of an element
+- **Visual Weight** — combined perceptual strength
 
-NN/gもvisual designの原則としてscale、visual hierarchy、contrast、Gestaltなどを整理している。
-
-だから、「CTAを目立たせる」を一つのCSS propertyに変換しない方がいい。
-
-Instead of:
-
-```text
-Make it stand out
-      ↓
-Increase font-size
-```
-
-think:
+Instead of translating “make it stand out” directly into `font-size`, ask:
 
 ```text
 What should become the figure?
@@ -141,96 +88,49 @@ What is the smallest change that creates separation?
 
 ## 4. そのまま使える制作・修正指示
 
-「ボタンをもっと目立たせてください」だけでは、the designer has to guess whether you mean size, color, shadow or motion.
-
-一段具体化するとこうなる。
-
 > CTAそのものを大きくする前に、周囲とのFigure–Ground関係を整理してください。補助リンクや装飾のvisual weightを下げ、CTAだけが明確なfigureとして認識できる状態を作ってください。
 
-A shorter version:
+Short version:
 
 > **強調を足す前に、背景側を一段静かにできないか確認してください。**
 
-This works for websites, slides, posters and social graphics as well.
+This works for websites, slides, posters and social graphics too.
 
 ## 5. Why “make everything important” fails
 
-実務では、ほぼ全部が「重要」と言われる。
-
-The date matters. The title matters. Sponsors matter. The CTA matters. The legal note matters too.
+The date matters. The title matters. Sponsors matter. The CTA matters. 注意事項も重要。
 
 そこで全部を太字、色付き、枠付きにすると、**importance inflation**が起きる。
 
-Emphasis is relative, not absolute.
+Emphasis is relative, not absolute. 赤が一つなら目立つ。If ten things are red, red can become the ground.
 
-赤が一つなら目立つ。
+Strong hierarchy therefore requires a decision about **what should become quieter**.
 
-If ten things are red, red can become the ground.
+## 6. Back to Gestalt：デザインは知覚関係を扱う
 
-だから、strong visual hierarchy requires a decision about **what should become quieter**.
+Figure–Ground was not invented as a UI trick. 20世紀初頭に展開したGestalt psychologyでは、人間が視覚要素を孤立した断片だけでなく、relationships and organized wholesとして知覚する仕組みが研究された。
 
-## 6. Back to Gestalt：デザインは物体ではなく知覚関係を扱う
-
-Figure–Ground was not invented as a UI trick.
-
-Gestalt psychology, developed in the early 20th century, examined how people perceive visual elements as relationships and organized wholes rather than only as isolated fragments.
-
-Figure–Groundのほかにも、Proximity、Similarity、Closureなどが現在のデザイン教育やUXで頻繁に参照される。
+Figure–GroundのほかにもProximity、Similarity、Closureなどが現在のdesign educationやUXで参照される。
 
 **Design is not only about objects. It is about perception.**
 
-ボタンと背景。
-
-A heading and body text.
-
-カードとページ。
-
-デザインするのは物体だけではなく、**how those things appear in relation to one another**でもある。
+ボタンと背景、a heading and body text、カードとページ。デザインするのは物体だけではなく、**how those things appear in relation to one another**でもある。
 
 ## 7. Common Misreading：Figure = 派手、Ground = 地味ではない
 
 Figure does not simply mean “bright and loud.”
 
-広い白背景に小さな黒文字が一つだけあれば、小さくても十分にfigureになりうる。
+広い白背景に小さな黒文字が一つだけあれば、小さくてもfigureになりうる。逆に、red background, yellow text, huge photo, bold type, shadows and badgesを全部入れてもclear focusが生まれるとは限らない。
 
-On the other hand, a red background, yellow text, huge photo, bold type, shadows, badges and animation can produce lots of contrast while still giving the viewer no clear focus.
-
-Figure–Groundで重要なのは派手さではなく、**perceptual separation**。
+What matters is **perceptual separation**.
 
 ## 8. Connect the previous lessons
 
-Design Literacyでは、ここまでこう進んできた。
+<div class="dl-chain" aria-label="Design Literacyの概念接続"><span>Spacing</span><span>Proximity / Grouping</span><span>Visual Hierarchy / Order</span><span>Figure–Ground / Focus</span></div>
 
-```text
-Proximity
-What belongs together?
-      ↓
-Visual Hierarchy
-What should I see first?
-      ↓
-Figure–Ground
-What becomes the thing I focus on?
-```
+Proximity asks **what belongs together**. Visual Hierarchy asks **what should I see first**. Figure–Ground asks **what becomes the thing I focus on**.
 
-Proximity creates **Grouping**.
-
-Visual Hierarchy creates **Order**.
-
-Figure–Ground creates **Focus**.
-
-つまり、
-
-```text
-Spacing
-  ↓
-Grouping
-  ↓
-Order
-  ↓
-Focus
-```
-
-ここまでつながると、「なんかCTAが弱い」を、
+これで「なんかCTAが弱い」を、
 
 > The surrounding elements carry too much visual weight, so the CTA is not clearly separated from the ground.
 
@@ -238,23 +138,15 @@ Focus
 
 ## 9. 30-second design observation
 
-スマホで好きなアプリかWebサイトを一つ開く。
-
-Don't read the words first.
-
-次の二つだけを見る。
+スマホで好きなアプリかWebサイトを一つ開く。Don't read the words first.
 
 **What dissolves into the background?**
 
 **What jumps forward as the figure?**
 
-Then ask one question:
+Then ask:
 
 > **Is the most visible thing actually the most important thing on this screen?**
-
-広告が一番figureになっているかもしれない。
-
-A notification badge may dominate the real CTA.
 
 そのズレを見つけられれば、今日の観察は成功。
 
@@ -262,17 +154,11 @@ A notification badge may dominate the real CTA.
 
 Next, we move from perception to history.
 
-ここまでは、人間が情報をどう知覚するかという側から「秩序」を考えてきた。
+ここまでは、人間が情報をどう知覚するかという側から「秩序」を考えてきた。次は20世紀のgraphic designersが、**how they built visual systems for organizing information**を見ていく。
 
-次は、20世紀のグラフィックデザイナーたちが、**how they built visual systems for organizing information**を見ていく。
+Keywords: **Grid / asymmetric layout / sans-serif typography / objective communication**.
 
-Keywords:
-
-**Grid / asymmetric layout / sans-serif typography / objective communication**
-
-次は **Swiss Style / International Typographic Style**。
-
-「グリッドはきれいに並べるための線」から、「なぜ近代デザインは秩序を求めたのか」まで進む。
+次は **Swiss Style / International Typographic Style**。「グリッドはきれいに並べるための線」から、「なぜ近代デザインは秩序を求めたのか」まで進む。
 
 ## Sources
 
