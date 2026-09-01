@@ -1,0 +1,137 @@
+/* Design Literacy: lightweight, reusable learning visuals. No images or JS required. */
+.reader-content .dl-visual {
+  margin: 34px 0 42px;
+  padding: 22px;
+  border: 1px solid rgba(33, 31, 28, .16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .46);
+}
+.reader-content .dl-visual-kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.reader-content .dl-visual-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+.reader-content .dl-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.reader-content .dl-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(33, 31, 28, .12);
+  border-radius: 12px;
+  background: #f7f4ed;
+}
+.reader-content .dl-panel-label {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+.reader-content .dl-demo-card {
+  padding: 16px;
+  border-radius: 10px;
+  background: #fff;
+}
+.reader-content .dl-demo-card p { margin: 0; }
+.reader-content .dl-demo-card .dl-event {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.reader-content .dl-demo-card .dl-meta {
+  color: #68645c;
+  font-size: 13px;
+}
+.reader-content .dl-demo-card .dl-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+.reader-content .dl-demo-card .dl-action {
+  display: block;
+  padding: 9px 10px;
+  border: 1px solid #8b877f;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.reader-content .dl-panel-after .dl-action-primary {
+  border-color: #24221f;
+  background: #24221f;
+  color: #fff;
+}
+.reader-content .dl-panel-after .dl-action-secondary {
+  border-color: transparent;
+  color: #68645c;
+  font-weight: 500;
+}
+.reader-content .dl-visual-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.reader-content .dl-figure-ground {
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #24221f;
+}
+.reader-content .dl-figure-ground::before,
+.reader-content .dl-figure-ground::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  width: 42%;
+  background: #f7f4ed;
+}
+.reader-content .dl-figure-ground::before {
+  left: 7%;
+  clip-path: polygon(0 0, 100% 0, 72% 23%, 82% 38%, 66% 50%, 82% 62%, 72% 77%, 100% 100%, 0 100%);
+}
+.reader-content .dl-figure-ground::after {
+  right: 7%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 28% 77%, 18% 62%, 34% 50%, 18% 38%, 28% 23%);
+}
+.reader-content .dl-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 26px 0 34px;
+  padding: 16px;
+  border: 1px solid rgba(33, 31, 28, .12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.38);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+.reader-content .dl-chain span:not(:last-child)::after {
+  content: "→";
+  margin-left: 8px;
+  color: var(--muted);
+}
+@media (max-width: 620px) {
+  .reader-content .dl-visual { padding: 16px; }
+  .reader-content .dl-compare { grid-template-columns: 1fr; }
+  .reader-content .dl-figure-ground { min-height: 170px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reader-content .dl-visual * { scroll-behavior: auto; }
+}
