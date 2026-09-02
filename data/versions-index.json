@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "design-literacy-touch-target-interaction-geometry": {"en-mix": "english-mix/design-literacy-touch-target-interaction-geometry.md"},
     "design-literacy-alignment-invisible-relationships": {"en-mix": "english-mix/design-literacy-alignment-invisible-relationships.md"},
     "npb-comparative-institutions-mlb-jleague": {"en-mix": "english-mix/npb-comparative-institutions-mlb-jleague.md"},
     "npb-player-business-system-interaction": {"en-mix": "english-mix/npb-player-business-system-interaction.md"},
@@ -75,7 +76,7 @@
     "edm-is-not-one-sound": {"en-mix": "english-mix/edm-is-not-one-sound.md"},
     "physical-ai-embodied-intelligence-deployment": {"en-mix": "english-mix/physical-ai-embodied-intelligence-deployment.md"},
     "calculation-as-modeling-tournament-expectation": {"en-mix": "english-mix/calculation-as-modeling-tournament-expectation.md"},
-    "rosy-chronicle-history-chronicle-as-commitment": {"en-mix": "english-mix/rosy-chronicle-history-chronicle-as-commitment.md"},
+    "rosy-chronicle-history-as-commitment": {"en-mix": "english-mix/rosy-chronicle-history-as-commitment.md"},
     "ocha-norma-history-hybrid-origin": {"en-mix": "english-mix/ocha-norma-history-hybrid-origin.md"},
     "beyooooonds-history-combinatorial-identity": {"en-mix": "english-mix/beyooooonds-history-combinatorial-identity.md"},
     "sf6-cammy-kimberly-air-throw-counterplay": {"en-mix": "english-mix/sf6-cammy-kimberly-air-throw-counterplay.md"},
@@ -86,7 +87,7 @@
     "buono-history-autonomous-side-project": {"en-mix": "english-mix/buono-history-autonomous-side-project.md"},
     "cute-history-performance-standard": {"en-mix": "english-mix/cute-history-performance-standard.md"},
     "berryz-kobo-history-shared-time": {"en-mix": "english-mix/berryz-kobo-history-shared-time.md"},
-    "matsuura-aya-history-solo-persona": {"en-mix": "english-mix/matsuura-aya-history-solo-persona.md"},
+    "matsuura-aya-history-taste-curation-direction": {"en-mix": "english-mix/matsuura-aya-history-taste-curation-direction.md"},
     "minimoni-history-format-ip": {"en-mix": "english-mix/minimoni-history-format-ip.md"},
     "melon-kinenbi-history-live-community": {"en-mix": "english-mix/melon-kinenbi-history-live-community.md"},
     "country-musume-country-girls-history-brand-redefinition": {"en-mix": "english-mix/country-musume-country-girls-history-brand-redefinition.md"},
