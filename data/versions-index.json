@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "kidzania-experience-small-society-loop": {"en-mix": "english-mix/kidzania-experience-small-society-loop.md"},
     "soka-leather-industry-water-tokyo-reinvention": {"en-mix": "english-mix/soka-leather-industry-water-tokyo-reinvention.md"},
     "design-literacy-affordance-signifier-discoverability": {"en-mix": "english-mix/design-literacy-affordance-signifier-discoverability.md"},
     "design-literacy-touch-target-interaction-geometry": {"en-mix": "english-mix/design-literacy-touch-target-interaction-geometry.md"},
@@ -91,7 +92,7 @@
     "berryz-kobo-history-shared-time": {"en-mix": "english-mix/berryz-kobo-history-shared-time.md"},
     "matsuura-aya-history-solo-persona": {"en-mix": "english-mix/matsuura-aya-history-solo-persona.md"},
     "minimoni-history-format-ip": {"en-mix": "english-mix/minimoni-history-format-ip.md"},
-    "melon-kinenbi-history-live-community": {"en-mix": "english-mix/melon-kinenbi-history-live-community.md"},
+    "melon-kinenbi-history-live-community": {"en-mix": "english-mix/melon-kinenbi-live-community.md"},
     "country-musume-country-girls-history-brand-redefinition": {"en-mix": "english-mix/country-musume-country-girls-history-brand-redefinition.md"},
     "taiyo-ciscomoon-history-compressed-legacy": {"en-mix": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md"},
     "morning-musume-history-renewal-system": {"en-mix": "english-mix/morning-musume-history-renewal-system.md"},
