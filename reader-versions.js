@@ -2,6 +2,7 @@
   'use strict';
 
   const INDEX_URL = 'data/versions-index.json';
+  const LANGUAGE_STORAGE_KEY = 'myessays:reader-language';
   const VERSION_DEFINITIONS = {
     ja: { label: '日本語', badge: 'JA' },
     'en-mix': { label: 'English Mix', badge: 'EN MIX' },
@@ -110,6 +111,21 @@
   function currentRenderedVersion() {
     try { return state?.currentEssay?.__readingVersion || 'ja'; }
     catch { return 'ja'; }
+  }
+
+  function preferredVersion() {
+    try {
+      const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      return VERSION_DEFINITIONS[stored] ? stored : 'ja';
+    } catch {
+      return 'ja';
+    }
+  }
+
+  function rememberPreferredVersion(version) {
+    if (!VERSION_DEFINITIONS[version]) return;
+    try { localStorage.setItem(LANGUAGE_STORAGE_KEY, version); }
+    catch {}
   }
 
   function clamp(value, min = 0, max = 1) {
@@ -276,7 +292,11 @@
       const next = button.dataset.readerVersion;
       if (!VERSION_DEFINITIONS[next]) return;
       setDisclosureOpen(switcher, false);
-      if (next === currentRenderedVersion()) return;
+      if (next === currentRenderedVersion()) {
+        rememberPreferredVersion(next);
+        versionByEssay.set(currentEssayId(), next);
+        return;
+      }
       switchVersion(next);
     });
 
@@ -324,6 +344,7 @@
       showReader(nextEssay);
       window.scrollTo({ top: previousScrollY, behavior: 'auto' });
       await restoreReadingPosition(readingPosition);
+      rememberPreferredVersion(version);
 
       document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
         detail: { essayId: id, version }
@@ -358,11 +379,14 @@
     }
 
     const rendered = currentRenderedVersion();
-    let desired = versionByEssay.get(id) || rendered;
-    if (desired !== 'ja' && !availableVersions.includes(desired)) desired = 'ja';
-    if (desired === 'ja' && rendered !== 'ja' && availableVersions.includes(rendered)) desired = rendered;
+    const preferred = preferredVersion();
+    let desired = rendered;
+    if (!switchInFlight) {
+      desired = preferred === 'ja' || availableVersions.includes(preferred) ? preferred : 'ja';
+    }
     versionByEssay.set(id, desired);
     renderDisclosure(switcher, availableVersions, desired);
+    if (!switchInFlight && desired !== rendered) switchVersion(desired);
   }
 
   function syncAfterRender() {
@@ -394,7 +418,7 @@
     const id = currentEssayId();
     const switcher = document.getElementById('readerLanguageSwitch');
     setDisclosureOpen(switcher, false);
-    if (id && !versionByEssay.has(id)) versionByEssay.set(id, 'ja');
+    if (id && !versionByEssay.has(id)) versionByEssay.set(id, preferredVersion());
     requestAnimationFrame(ensureVersionSwitch);
   });
   window.addEventListener('pageshow', () => requestAnimationFrame(ensureVersionSwitch));
