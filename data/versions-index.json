@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "impulse-epoche-direction": {"en-mix": "english-mix/impulse-epoche-direction.md"},
     "antigravity-gemini-flash-pair-programming": {"en-mix": "english-mix/antigravity-gemini-flash-pair-programming.md"},
     "design-literacy-grid-shared-coordinate-system": {"en-mix": "english-mix/design-literacy-grid-shared-coordinate-system.md"},
     "design-literacy-measure-line-length-reading-distance": {"en-mix": "english-mix/design-literacy-measure-line-length-reading-distance.md"},
