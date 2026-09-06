@@ -139,8 +139,8 @@
     el.id = 'japaneseReferencePanel';
     el.className = 'japanese-reference-panel';
     el.hidden = true;
-    el.setAttribute('aria-label', '日本語版の対応箇所');
-    el.innerHTML = '<div class="japanese-reference-handle" aria-hidden="true"></div><div class="japanese-reference-head"><div><p class="japanese-reference-kicker">JAPANESE ORIGINAL</p><h2>日本語版</h2></div><button class="japanese-reference-close" type="button" aria-label="日本語版を閉じる">×</button></div><p class="japanese-reference-status" aria-live="polite"></p><div class="japanese-reference-text"></div>';
+    el.setAttribute('aria-label', '選択したEnglish Mixと日本語版の比較');
+    el.innerHTML = '<div class="japanese-reference-handle" aria-hidden="true"></div><div class="japanese-reference-head"><div><p class="japanese-reference-kicker">BILINGUAL COMPARE</p><h2>選択箇所</h2></div><button class="japanese-reference-close" type="button" aria-label="比較を閉じる">×</button></div><p class="japanese-reference-status" aria-live="polite"></p><section class="japanese-reference-block japanese-reference-selected"><p class="japanese-reference-label">SELECTED · ENGLISH MIX</p><div class="japanese-reference-selected-text"></div></section><section class="japanese-reference-block japanese-reference-original"><p class="japanese-reference-label">JAPANESE ORIGINAL</p><div class="japanese-reference-text"></div></section>';
     view.appendChild(el);
     el.querySelector('.japanese-reference-close').addEventListener('click', () => { el.hidden = true; });
     return el;
@@ -151,16 +151,21 @@
     if (el) el.hidden = true;
   }
 
-  function show(reference) {
+  function show(reference, selectedText) {
     const el = panel();
     const status = el.querySelector('.japanese-reference-status');
+    const selected = el.querySelector('.japanese-reference-selected-text');
     const body = el.querySelector('.japanese-reference-text');
+    const originalBlock = el.querySelector('.japanese-reference-original');
+    selected.textContent = selectedText || '';
     if (!reference?.text) {
       status.textContent = '対応する日本語を特定できませんでした';
-      body.textContent = ''; body.hidden = true;
+      body.textContent = '';
+      originalBlock.hidden = true;
     } else {
       status.textContent = reference.confidence.includes('interpolated') ? '対応する日本語段落（位置から推定）' : '対応する日本語段落';
-      body.textContent = reference.text; body.hidden = false;
+      body.textContent = reference.text;
+      originalBlock.hidden = false;
     }
     el.hidden = false;
   }
@@ -188,20 +193,40 @@
     }
   }
 
-  function selectedBlock() {
+  function closestBlock(node) {
+    let element = node;
+    if (element?.nodeType === Node.TEXT_NODE) element = element.parentElement;
+    return element?.closest?.('p,li,h2,h3') || null;
+  }
+
+  function selectionContext() {
     const selection = window.getSelection();
-    if (!selection || selection.isCollapsed || !selection.rangeCount || !selection.toString().trim()) return null;
-    let node = selection.getRangeAt(0).startContainer;
-    if (node.nodeType === Node.TEXT_NODE) node = node.parentElement;
-    const block = node?.closest?.('p,li,h2,h3');
-    return block && content.contains(block) ? block : null;
+    if (!selection || selection.isCollapsed || !selection.rangeCount) return null;
+    const text = selection.toString().trim();
+    if (!text) return null;
+    const range = selection.getRangeAt(0);
+    const startBlock = closestBlock(range.startContainer);
+    const endBlock = closestBlock(range.endContainer);
+    const touchesContent = Boolean(
+      (startBlock && content.contains(startBlock)) ||
+      (endBlock && content.contains(endBlock))
+    );
+    if (!touchesContent) return null;
+    if (!startBlock || !endBlock || startBlock !== endBlock || !content.contains(startBlock)) {
+      return { invalid: true };
+    }
+    return { block: startBlock, text };
   }
 
   function resolve() {
     clearTimeout(timer);
     if (view.hidden || version !== 'en-mix' || essayId !== (content.dataset.readerEssayId || essayId)) return;
-    const block = selectedBlock();
-    if (block) show(refs.get(block) || null);
+    const selection = selectionContext();
+    if (selection?.invalid) {
+      closePanel();
+      return;
+    }
+    if (selection?.block) show(refs.get(selection.block) || null, selection.text);
   }
 
   const schedule = delay => { clearTimeout(timer); timer = setTimeout(resolve, delay); };
