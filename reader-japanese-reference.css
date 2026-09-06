@@ -3,7 +3,7 @@
   z-index: 60;
   top: 96px;
   right: 18px;
-  width: min(310px, calc(100vw - 36px));
+  width: min(336px, calc(100vw - 36px));
   max-height: calc(100dvh - 128px);
   overflow: auto;
   padding: 16px 16px 18px;
@@ -15,7 +15,8 @@
   overscroll-behavior: contain;
 }
 
-.japanese-reference-panel[hidden] { display: none; }
+.japanese-reference-panel[hidden],
+.japanese-reference-block[hidden] { display: none; }
 .japanese-reference-handle { display: none; }
 .japanese-reference-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .japanese-reference-kicker { margin: 0 0 5px; color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .13em; }
@@ -23,8 +24,14 @@
 .japanese-reference-close { display: grid; place-items: center; flex: 0 0 auto; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--muted); font-size: 18px; line-height: 1; }
 .japanese-reference-close:hover,
 .japanese-reference-close:focus-visible { background: rgba(255,255,255,.76); color: var(--ink); outline: 0; }
-.japanese-reference-status { margin: 13px 0 8px; color: var(--muted); font-size: 10px; line-height: 1.5; }
-.japanese-reference-text { white-space: pre-wrap; color: var(--ink); font: 15px/1.9 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
+.japanese-reference-status { margin: 11px 0 10px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.japanese-reference-block { padding: 12px 13px 13px; border: 1px solid rgba(39, 32, 24, .08); border-radius: 12px; }
+.japanese-reference-block + .japanese-reference-block { margin-top: 9px; }
+.japanese-reference-selected { background: rgba(255,255,255,.52); }
+.japanese-reference-original { background: rgba(255,255,255,.78); }
+.japanese-reference-label { margin: 0 0 7px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .1em; }
+.japanese-reference-selected-text { white-space: pre-wrap; color: var(--ink); font-size: 13.5px; line-height: 1.72; overflow-wrap: anywhere; }
+.japanese-reference-text { white-space: pre-wrap; color: var(--ink); font: 15px/1.88 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
 .reader-shell.note-is-open .japanese-reference-panel { visibility: hidden; pointer-events: none; }
 
 @media (max-width: 980px) {
@@ -34,7 +41,7 @@
     right: 10px;
     bottom: calc(68px + env(safe-area-inset-bottom));
     width: auto;
-    max-height: min(40dvh, 360px);
+    max-height: min(44dvh, 380px);
     padding: 10px 15px 16px;
     border-radius: 18px 18px 14px 14px;
     box-shadow: 0 -14px 44px rgba(39, 32, 24, .16);
@@ -48,6 +55,8 @@
     background: var(--line);
   }
   .japanese-reference-head h2 { font-size: 19px; }
-  .japanese-reference-status { margin-top: 10px; }
-  .japanese-reference-text { font-size: 15px; line-height: 1.82; }
+  .japanese-reference-status { margin-top: 9px; }
+  .japanese-reference-block { padding: 10px 11px 11px; }
+  .japanese-reference-selected-text { font-size: 13px; line-height: 1.68; }
+  .japanese-reference-text { font-size: 15px; line-height: 1.8; }
 }
