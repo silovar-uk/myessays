@@ -3,7 +3,7 @@ id: design-literacy-similarity-predictable-meaning
 title: "Similarity――『見た目を揃える』目的は、意味を予測可能にすること"
 subtitle: "Design Literacy #13｜類同からVisual Languageへ"
 created: "2026-09-04"
-updated: "2026-09-04"
+updated: "2026-09-06"
 type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Gestalt", "Similarity", "Visual Language", "Consistency", "Accessibility", "UI", "Design System"]
@@ -60,6 +60,16 @@ UIで同じ色、同じ形、同じタイポグラフィを繰り返すと、画
 **同じ視覚的特徴を繰り返すと、それらを同じカテゴリー・役割・ルールに属するものとして学習しやすくなる。**
 
 Similarityは「見た目を揃える技術」ではなく、**意味の分類を視覚化する技術**として使える。
+
+<div class="dl-visual" role="group" aria-label="等間隔に並ぶ丸と四角が形のSimilarityによって別のまとまりとして見えやすい例">
+<p class="dl-visual-kicker">VISUAL LESSON 01</p>
+<p class="dl-visual-title"><strong>距離が同じでも、似た形は別のfamilyとして見えやすい。</strong></p>
+<div class="dl-demo-card" role="img" aria-label="丸と四角が等間隔で交互に並ぶ二行の図">
+<p class="dl-event">●　■　●　■　●　■</p>
+<p class="dl-event">●　■　●　■　●　■</p>
+</div>
+<p class="dl-visual-note">ここでは各markの距離はほぼ同じ。それでも丸同士、四角同士という共通性を拾いやすい。これは「同じUIなら同じ動作を期待する」という直接的な歴史事実を示す図ではなく、Similarityによるperceptual groupingを体験するための単純化した例。</p>
+</div>
 
 ## 2. 仕組み：Similarityは色だけではない
 
@@ -155,6 +165,34 @@ color
 
 **どの属性を共通化し、どの属性に意味の差を担わせるかを設計する技術**だ。
 
+<div class="dl-visual" role="group" aria-label="同じカテゴリーラベルをばらばらに表現する場合と共通のvisual ruleを持たせる場合の比較">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>揃える対象と、差を担わせる属性を分ける。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — EVERY LABEL SPEAKS DIFFERENTLY</p>
+<div class="dl-demo-card">
+<p class="dl-event">EVENT</p>
+<p class="dl-meta">[ NEWS ]</p>
+<p class="dl-meta">TICKET →</p>
+<p class="dl-meta">【 ACADEMY 】</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — SHARED CATEGORY LANGUAGE</p>
+<div class="dl-demo-card">
+<div class="dl-actions">
+<span class="dl-action dl-action-primary">EVENT</span>
+<span class="dl-action dl-action-primary">NEWS</span>
+<span class="dl-action dl-action-primary">TICKET</span>
+<span class="dl-action dl-action-primary">ACADEMY</span>
+</div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">AFTERの目的は四つを完全に同一化することではない。shape・padding・typography・placementなどに「category label」という共通語彙を持たせ、そのうえで必要な差分だけ別の属性へ担当させる。</p>
+</div>
+
 ## 4. そのまま使える制作・修正指示
 
 「デザインを統一してください」では、なぜ揃えるのかが残らない。
@@ -244,6 +282,31 @@ W3CのTechnique G182も、色に加えてunderline、font styleなど別のvisua
 
 [W3C — G182: Additional visual cues beyond color](https://www.w3.org/WAI/WCAG22/Techniques/general/G182)
 
+<div class="dl-visual" role="group" aria-label="色だけで状態を伝える例と、文字や記号など複数のcueを重ねる例の比較">
+<p class="dl-visual-kicker">VISUAL LESSON 03</p>
+<p class="dl-visual-title"><strong>意味を一つのcueだけに背負わせない。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">COLOR ONLY</p>
+<div class="dl-demo-card" role="img" aria-label="緑、黄、赤の丸だけで三つの状態を区別する例">
+<p class="dl-event">🟢　🟡　🔴</p>
+<p class="dl-meta">色が見分けにくいと、どのmarkerが何を意味するか分かりにくい。</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">MULTIPLE CUES</p>
+<div class="dl-demo-card">
+<div class="dl-actions">
+<span class="dl-action dl-action-primary">✓ 発売中</span>
+<span class="dl-action">! 残り僅か</span>
+<span class="dl-action">× 完売</span>
+</div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">WCAG 1.4.1の要件は「Similarityをこう作れ」ではなく、colorを唯一の視覚的手段にしないこと。文字・記号・形など別のcueを重ねると、意味の伝達経路を一つに依存しにくくできる。 citeturn696964search4turn696964search0</p>
+</div>
+
 ## 7. 誤解しやすい点：「同じ意味ならpixel-perfectで同じ見た目」にしない
 
 同じactionでもcontextによってpresentationは変わる。
@@ -281,6 +344,21 @@ interaction feedback
 **Consistency is not pixel sameness.**
 
 同じ意味に必要なのは、完全一致ではなく、共通性を読み取れるだけの十分なSimilarityだ。
+
+<div class="dl-visual" role="group" aria-label="同じ購入actionがHero、Card、Mobile Stickyという異なるcontextへ展開される例">
+<p class="dl-visual-kicker">VISUAL LESSON 04</p>
+<p class="dl-visual-title"><strong>同じruleは、同じpixelを意味しない。</strong></p>
+<div class="dl-propagation">
+<div class="dl-propagation-source">PURCHASE ACTION<br>shared family cues</div>
+<div class="dl-propagation-arrow" aria-hidden="true">↓</div>
+<div class="dl-propagation-targets">
+<div class="dl-propagation-target">HERO<br>チケット購入</div>
+<div class="dl-propagation-target">CARD<br>購入</div>
+<div class="dl-propagation-target">MOBILE STICKY<br>チケットを購入する</div>
+</div>
+</div>
+<p class="dl-visual-note">contextが変われば幅やlabelの長さは変わる。それでもcolor role、shape family、label convention、interaction feedbackなどを共有すれば、完全一致なしでも同じaction familyとして読ませられる。</p>
+</div>
 
 ## 8. 以前の学びとの接続：Proximityは近距離、Similarityは遠距離もつなげる
 
@@ -326,6 +404,8 @@ Information Structure
 となる。
 
 位置、距離、見た目は別々の装飾ではなく、情報構造を伝える複数のchannelとして働いている。
+
+<div class="dl-chain" aria-label="Grid、Proximity、SimilarityがInformation Structureへ接続する概念の流れ"><span>Grid / Where</span><span>Proximity / What belongs nearby</span><span>Similarity / What belongs to the same kind</span><span>Information Structure</span></div>
 
 ## 9. 30秒でできる観察
 
