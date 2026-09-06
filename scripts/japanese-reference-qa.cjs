@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'design-literacy-progressive-disclosure-information-timing';
+const MIX_TARGET = 'But that creates an obvious tension.';
+const EXPECTED_JAPANESE = '矛盾';
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -19,15 +21,10 @@ async function ensureEnglishMix(page) {
   await page.waitForFunction(() => document.querySelector('.reader-language-current')?.textContent?.trim() === 'EN MIX');
 }
 
-async function selectEnglishParagraph(page) {
-  const selected = await page.evaluate(() => {
+async function selectTranslatedEnglishParagraph(page) {
+  const selected = await page.evaluate(targetText => {
     const paragraphs = Array.from(document.querySelectorAll('#readerContent p'));
-    const target = paragraphs.find(paragraph => {
-      const text = (paragraph.textContent || '').trim();
-      const latin = (text.match(/[A-Za-z]/g) || []).length;
-      const japanese = (text.match(/[\u3040-\u30ff\u3400-\u9fff]/g) || []).length;
-      return text.length >= 24 && text.length <= 420 && latin >= 18 && latin > japanese;
-    });
+    const target = paragraphs.find(paragraph => (paragraph.textContent || '').includes(targetText));
     if (!target) return null;
     const range = document.createRange();
     range.selectNodeContents(target);
@@ -36,9 +33,22 @@ async function selectEnglishParagraph(page) {
     selection.addRange(range);
     document.dispatchEvent(new Event('selectionchange', { bubbles: true }));
     return target.textContent.trim();
-  });
-  assert.ok(selected, 'English Mix should contain a selectable English-heavy paragraph');
+  }, MIX_TARGET);
+  assert.ok(selected, `English Mix should contain regression target: ${MIX_TARGET}`);
   return selected;
+}
+
+async function assertJapaneseReference(page) {
+  await page.waitForSelector('#japaneseReferencePanel:not([hidden])');
+  await page.waitForFunction(expected => {
+    const panel = document.querySelector('#japaneseReferencePanel');
+    const body = panel?.querySelector('.japanese-reference-text')?.textContent || '';
+    const status = panel?.querySelector('.japanese-reference-status')?.textContent || '';
+    return body.includes(expected) && !status.includes('特定できません');
+  }, EXPECTED_JAPANESE);
+
+  const japaneseText = (await page.locator('.japanese-reference-text').innerText()).trim();
+  assert.match(japaneseText, /矛盾/, 'translated English Mix paragraph should reveal its Japanese canonical paragraph');
 }
 
 (async () => {
@@ -50,18 +60,8 @@ async function selectEnglishParagraph(page) {
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await ensureEnglishMix(page);
-  await selectEnglishParagraph(page);
-
-  await page.waitForSelector('#japaneseReferencePanel:not([hidden])');
-  await page.waitForFunction(() => {
-    const panel = document.querySelector('#japaneseReferencePanel');
-    const body = panel?.querySelector('.japanese-reference-text')?.textContent || '';
-    const status = panel?.querySelector('.japanese-reference-status')?.textContent || '';
-    return /[\u3040-\u30ff\u3400-\u9fff]/.test(body) && !status.includes('特定できません');
-  });
-
-  const japaneseText = (await page.locator('.japanese-reference-text').innerText()).trim();
-  assert.match(japaneseText, /[\u3040-\u30ff\u3400-\u9fff]/, 'selected English Mix paragraph should reveal Japanese text');
+  await selectTranslatedEnglishParagraph(page);
+  await assertJapaneseReference(page);
 
   const panelBox = await page.locator('#japaneseReferencePanel').boundingBox();
   const tocBox = await page.locator('#readerAside').boundingBox();
@@ -86,9 +86,8 @@ async function selectEnglishParagraph(page) {
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await ensureEnglishMix(page);
-  await selectEnglishParagraph(page);
-  await page.waitForSelector('#japaneseReferencePanel:not([hidden])');
-  await page.waitForFunction(() => /[\u3040-\u30ff\u3400-\u9fff]/.test(document.querySelector('.japanese-reference-text')?.textContent || ''));
+  await selectTranslatedEnglishParagraph(page);
+  await assertJapaneseReference(page);
 
   const mobileBox = await page.locator('#japaneseReferencePanel').boundingBox();
   assert.ok(mobileBox, 'Japanese reference bottom sheet should be visible on mobile');
