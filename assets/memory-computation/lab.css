@@ -1,0 +1,48 @@
+.memory-lab {
+  --lab-ink: #173a38;
+  --lab-line: #bfcfc9;
+  --lab-accent: #176759;
+  margin: 1.5rem 0;
+  padding: clamp(16px, 4vw, 26px);
+  border: 1px solid var(--lab-line);
+  border-radius: 14px;
+  background: #f2f7f4;
+  color: var(--lab-ink);
+  font: 15px/1.65 Inter, "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+.memory-lab .memory-lab-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+.memory-lab .memory-lab-kicker { font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.memory-lab p.memory-lab-guide { margin: 12px 0 20px; font: inherit; }
+.memory-lab .memory-lab-surface { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px; }
+.memory-lab .memory-lab-inputs { display: grid; gap: 8px; }
+.memory-lab button { min-height: 48px; width: 100%; padding: 10px 12px; border: 1px solid var(--lab-line); border-radius: 8px; color: var(--lab-ink); background: #fff; font: inherit; text-align: left; touch-action: manipulation; white-space: normal; }
+.memory-lab .memory-lab-inputs button:not(.memory-lab-release) { display: grid; gap: 4px; }
+.memory-lab button b { font: 700 13px/1.4 ui-monospace, monospace; }
+.memory-lab button[aria-pressed="true"] { background: var(--lab-accent); border-color: var(--lab-accent); color: #fff; }
+.memory-lab button:hover:not(:disabled) { border-color: var(--lab-ink); }
+.memory-lab button:focus-visible { outline: 3px solid #b84928; outline-offset: 3px; }
+.memory-lab button:disabled { opacity: .5; cursor: not-allowed; }
+.memory-lab .memory-lab-release { background: #e6eeea; }
+.memory-lab .memory-lab-value { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-width: 0; border: 1px solid var(--lab-line); border-radius: 10px; padding: 16px 10px; text-align: center; }
+.memory-lab .memory-lab-value > span { font-size: 12px; }
+.memory-lab .memory-lab-value > strong { font: 700 66px/1.2 ui-monospace, monospace; }
+.memory-lab[data-value="1"] .memory-lab-value { background: #d7f0a8; border-color: #728f49; }
+.memory-lab[data-value="unknown"] .memory-lab-value > strong { font-family: inherit; font-size: 19px; line-height: 1.5; }
+.memory-lab .memory-lab-value small { font-size: 13px; }
+.memory-lab p.memory-lab-status { min-height: 3.5em; margin: 16px 0 12px; font: inherit; font-weight: 600; }
+.memory-lab .memory-lab-secondary { display: flex; flex-wrap: wrap; gap: 8px; }
+.memory-lab .memory-lab-secondary button { flex: 1 1 160px; font-size: 13px; }
+.memory-lab p.memory-lab-note { margin: 14px 0 0; font-size: 12px; line-height: 1.7; color: #47635b; }
+.memory-lab .memory-lab-history { margin-top: 16px; border-top: 1px solid var(--lab-line); padding-top: 8px; }
+.memory-lab .memory-lab-history summary { min-height: 44px; padding: 10px 0; font-size: 13px; cursor: pointer; }
+.memory-lab .memory-lab-history ol { padding-left: 22px; margin: 8px 0; font-size: 12px; line-height: 1.8; }
+@media (max-width: 480px) {
+  .memory-lab { padding: 15px; font-size: 14px; }
+  .memory-lab .memory-lab-surface { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .memory-lab .memory-lab-value { min-height: 132px; }
+  .memory-lab .memory-lab-value > strong { font-size: 50px; }
+}
+@media print {
+  .memory-lab { display: none; }
+}

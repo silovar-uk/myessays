@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="440" viewBox="0 0 680 440" role="img" aria-labelledby="title desc">
+  <title id="title">NOR型SRラッチ：二つの出力が互いに入力になる</title>
+  <desc id="desc">上側のNORはRとQバーを受けてQを出力し、下側のNORはSとQを受けてQバーを出力する。二本のフィードバック線が交差するところは接続しない。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#176759"/></marker>
+  </defs>
+  <rect x="1" y="1" width="678" height="438" rx="16" fill="#f2f7f4" stroke="#bfcfc9"/>
+  <g fill="#173a38" font-family="system-ui, sans-serif">
+    <text x="28" y="38" font-size="14" font-weight="700" letter-spacing="1">FEEDBACK / SR LATCH</text>
+    <text x="28" y="66" font-size="18">出力が、相手の入力になる。</text>
+    <rect x="250" y="107" width="142" height="80" rx="8" fill="#fff" stroke="#71958b" stroke-width="2"/>
+    <rect x="250" y="269" width="142" height="80" rx="8" fill="#fff" stroke="#71958b" stroke-width="2"/>
+    <text x="321" y="149" text-anchor="middle" font-size="26" font-weight="700">NOR</text>
+    <text x="321" y="173" text-anchor="middle" font-size="13">OR → NOT</text>
+    <text x="321" y="311" text-anchor="middle" font-size="26" font-weight="700">NOR</text>
+    <text x="321" y="335" text-anchor="middle" font-size="13">OR → NOT</text>
+    <text x="40" y="127" font-size="24" font-weight="700">R</text>
+    <text x="40" y="150" font-size="13">Reset</text>
+    <text x="40" y="317" font-size="24" font-weight="700">S</text>
+    <text x="40" y="340" font-size="13">Set</text>
+    <text x="572" y="149" font-size="26" font-weight="700">Q</text>
+    <text x="558" y="174" font-size="13">記憶する値</text>
+    <text x="572" y="318" font-size="26" font-weight="700">Q̄</text>
+    <text x="28" y="395" font-size="15">矢印：信号の依存方向　／　中央の交差：接続なし</text>
+    <text x="28" y="420" font-size="13" fill="#47635b">電源・素子内部は省略。通常の安定状態では、QとQ̄は互いに反転。</text>
+  </g>
+  <g fill="none" stroke="#176759" stroke-width="3" stroke-linejoin="round" marker-end="url(#arrow)">
+    <path d="M104 127H245"/>
+    <path d="M104 329H245"/>
+    <path d="M392 147H548"/>
+    <path d="M392 309H548"/>
+    <path d="M450 147V201L192 255V289H245"/>
+    <path d="M450 309V255L192 201V167H245" stroke="#f2f7f4" stroke-width="10" marker-end="none"/>
+    <path d="M450 309V255L192 201V167H245"/>
+  </g>
+  <g fill="#176759"><circle cx="450" cy="147" r="5"/><circle cx="450" cy="309" r="5"/></g>
+</svg>

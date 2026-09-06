@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "memory-computation-feedback-state": {"en-mix": "english-mix/memory-computation-feedback-state.md"},
     "design-literacy-progressive-disclosure-information-timing": {"en-mix": "english-mix/design-literacy-progressive-disclosure-information-timing.md"},
     "design-literacy-ulm-method-system-critique": {"en-mix": "english-mix/design-literacy-ulm-method-system-critique.md"},
     "npb-posting-system-mobility-mechanism": {"en-mix": "english-mix/npb-posting-system-mobility-mechanism.md"},

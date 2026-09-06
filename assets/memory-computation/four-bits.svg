@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="270" viewBox="0 0 680 270" role="img" aria-labelledby="title desc">
+  <title id="title">1001は十進数の9</title>
+  <desc id="desc">ビットの重みは左から8、4、2、1。1001では8と1を足して9になる。</desc>
+  <rect x="1" y="1" width="678" height="268" rx="16" fill="#f2f7f4" stroke="#bfcfc9"/>
+  <g font-family="system-ui, sans-serif" fill="#173a38" text-anchor="middle">
+    <text x="28" y="34" text-anchor="start" font-size="14" font-weight="700" letter-spacing="1">FOUR BITS / 16 POSSIBILITIES</text>
+    <g font-size="15"><text x="116" y="70">8の位</text><text x="266" y="70">4の位</text><text x="416" y="70">2の位</text><text x="566" y="70">1の位</text></g>
+    <g stroke="#bfcfc9"><rect x="57" y="85" width="118" height="88" rx="9" fill="#d7f0a8"/><rect x="207" y="85" width="118" height="88" rx="9" fill="#fff"/><rect x="357" y="85" width="118" height="88" rx="9" fill="#fff"/><rect x="507" y="85" width="118" height="88" rx="9" fill="#d7f0a8"/></g>
+    <g font-size="48" font-weight="700"><text x="116" y="146">1</text><text x="266" y="146">0</text><text x="416" y="146">0</text><text x="566" y="146">1</text></g>
+    <text x="340" y="217" font-size="26" font-weight="700">8 ＋ 0 ＋ 0 ＋ 1 ＝ 9</text>
+    <text x="340" y="246" font-size="14">1になっている桁の重みを足す。</text>
+  </g>
+</svg>
