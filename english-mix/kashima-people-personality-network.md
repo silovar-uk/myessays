@@ -1,4 +1,5 @@
 ---
+id: kashima-people-personality-network
 title: "鹿島のGK、好きなアーティストが安西幸輝。 / Reading Kashima through people"
 subtitle: "公式Q&Aと指導歴から見えてきた、a club that keeps watching people"
 abstract: "早川友基の『好きなアーティスト』は安西幸輝。安西は早川を『芦田愛菜に似ている』という理由で推している。そこから2026/27シーズンの公式Q&Aを横断し、player-to-player ‘push’ networkを作り、鬼木達・柳沢敦・曽ケ端準・中後雅喜のcareer pathsまで追った。戦術ではなく人間関係から鹿島を見ると、observation, development, returnという別のクラブ像が見えてくる。"
