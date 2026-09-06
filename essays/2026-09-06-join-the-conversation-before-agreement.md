@@ -511,8 +511,8 @@ Advice
   https://www.guilford.com/add/linehan6_old/lin-c-handouts.pdf?t=1
 - Edmond, S. N. et al. (2015). *Validating pain communication: Current state of the science*.  
   https://pmc.ncbi.nlm.nih.gov/articles/PMC4477266/
-- Yagil, D. et al. / Japanese AELS study: *Reliability and validity of the Japanese version of the active-empathic listening scale*.  
-  https://pmc.ncbi.nlm.nih.gov/articles/PMC7291695/
+- Asai, K., Hiraizumi, T. & Hanzawa, R. (2020). *Reliability and validity of the Japanese version of the active-emphatic listening scale*. BMC Psychology, 8, 59.  
+  https://doi.org/10.1186/s40359-020-00422-4
 - Feng, B., Jang, J. Y., Kim, I., & Wang, B. (2017). *Explaining the Effectiveness of the Integrated Model of Advice-Giving in Supportive Interactions*. Communication Quarterly, 65(4), 402–418.  
   https://doi.org/10.1080/01463373.2017.1279676
 - Shaw, C. et al. (2015). *Managing the Moral Implications of Advice in Informal Interaction*.  
