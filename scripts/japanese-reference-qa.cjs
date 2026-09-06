@@ -38,7 +38,7 @@ async function selectTranslatedEnglishParagraph(page) {
   return selected;
 }
 
-async function assertJapaneseReference(page) {
+async function assertJapaneseReference(page, expectedSelected) {
   await page.waitForSelector('#japaneseReferencePanel:not([hidden])');
   await page.waitForFunction(expected => {
     const panel = document.querySelector('#japaneseReferencePanel');
@@ -47,8 +47,29 @@ async function assertJapaneseReference(page) {
     return body.includes(expected) && !status.includes('特定できません');
   }, EXPECTED_JAPANESE);
 
+  const selectedText = (await page.locator('.japanese-reference-selected-text').innerText()).trim();
+  assert.equal(selectedText, expectedSelected, 'comparison panel should preserve the exact English Mix selection');
+
   const japaneseText = (await page.locator('.japanese-reference-text').innerText()).trim();
   assert.match(japaneseText, /矛盾/, 'translated English Mix paragraph should reveal its Japanese canonical paragraph');
+}
+
+async function assertCrossParagraphSelectionCloses(page) {
+  await page.evaluate(() => {
+    const paragraphs = Array.from(document.querySelectorAll('#readerContent p')).filter(p => (p.textContent || '').trim());
+    const first = paragraphs.find(p => (p.textContent || '').includes('But that creates an obvious tension.'));
+    const index = paragraphs.indexOf(first);
+    const second = paragraphs[index + 1];
+    if (!first || !second) return;
+    const range = document.createRange();
+    range.setStart(first, 0);
+    range.setEnd(second, second.childNodes.length);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.dispatchEvent(new Event('selectionchange', { bubbles: true }));
+  });
+  await page.waitForFunction(() => document.querySelector('#japaneseReferencePanel')?.hidden === true);
 }
 
 (async () => {
@@ -60,14 +81,18 @@ async function assertJapaneseReference(page) {
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await ensureEnglishMix(page);
-  await selectTranslatedEnglishParagraph(page);
-  await assertJapaneseReference(page);
+  const desktopSelected = await selectTranslatedEnglishParagraph(page);
+  await assertJapaneseReference(page, desktopSelected);
 
   const panelBox = await page.locator('#japaneseReferencePanel').boundingBox();
   const tocBox = await page.locator('#readerAside').boundingBox();
   assert.ok(panelBox, 'Japanese reference panel should be visible on desktop');
   assert.ok(panelBox.x > 1280 / 2, `desktop panel should use the right-side lane: ${JSON.stringify(panelBox)}`);
   if (tocBox) assert.equal(overlaps(panelBox, tocBox), false, 'Japanese reference panel must not cover the reader TOC');
+
+  await assertCrossParagraphSelectionCloses(page);
+  const desktopSelectedAgain = await selectTranslatedEnglishParagraph(page);
+  await assertJapaneseReference(page, desktopSelectedAgain);
 
   await page.locator('#noteTab').click();
   await page.waitForFunction(() => document.querySelector('#readerView')?.classList.contains('note-is-open'));
@@ -86,8 +111,8 @@ async function assertJapaneseReference(page) {
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await ensureEnglishMix(page);
-  await selectTranslatedEnglishParagraph(page);
-  await assertJapaneseReference(page);
+  const mobileSelected = await selectTranslatedEnglishParagraph(page);
+  await assertJapaneseReference(page, mobileSelected);
 
   const mobileBox = await page.locator('#japaneseReferencePanel').boundingBox();
   assert.ok(mobileBox, 'Japanese reference bottom sheet should be visible on mobile');
