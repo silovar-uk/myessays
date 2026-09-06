@@ -104,6 +104,17 @@ When is this needed?
 
 という問いにある。
 
+<div class="dl-visual" role="group" aria-label="情報を削除せず必要になるタイミングに応じて段階的に見せる構造">
+<p class="dl-visual-kicker">VISUAL LESSON 01</p>
+<p class="dl-visual-title"><strong>情報量ではなく、情報が現れる時間を変える。</strong></p>
+<div class="dl-chain" role="img" aria-label="今必要な情報から入口を経て必要時に詳細情報を開示する流れ">
+<span>NOW<br>通知・テーマ・言語</span>
+<span>DISCLOSURE CONTROL<br>詳細設定</span>
+<span>WHEN NEEDED<br>同期・バックアップ・API</span>
+</div>
+<p class="dl-visual-note">右側の情報は消えていない。最初から判断させるのではなく、必要になった時点へ表示を移している。Progressive Disclosureの中心は「何を隠すか」より「いつ必要になるか」。</p>
+</div>
+
 ## 2. 仕組み：三つの判断に分ける
 
 Progressive Disclosureを実務で使うなら、「詳細設定に入れるかどうか」だけで考えない方がいい。
@@ -163,6 +174,21 @@ WHAT do I expect to find there?
 ```
 
 の三つをセットで考える。
+
+<div class="dl-visual" role="group" aria-label="Progressive Disclosureを三つの設計判断に分解した図">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>「隠す／見せる」の二択ではなく、三つの判断に分ける。</strong></p>
+<div class="dl-propagation">
+<div class="dl-propagation-source">PROGRESSIVE DISCLOSURE<br>information timing</div>
+<div class="dl-propagation-arrow" aria-hidden="true">↓</div>
+<div class="dl-propagation-targets">
+<div class="dl-propagation-target">INITIAL VISIBILITY<br>今、何を見せる？</div>
+<div class="dl-propagation-target">DISCLOSURE PATH<br>どうやって開く？</div>
+<div class="dl-propagation-target">INFORMATION SCENT<br>何があると予測できる？</div>
+</div>
+</div>
+<p class="dl-visual-note">初期表示だけを最適化しても不十分。隠れた情報への入口が見つかり、その先を予測できて初めて一つのDisclosure設計になる。</p>
+</div>
 
 ## 3. Before → After：機能一覧から、作業の順番へ
 
@@ -229,6 +255,32 @@ noindex
 **The interface started following the task sequence.**
 
 機能一覧だったUIが、作業の順番を持ち始めた。
+
+<div class="dl-visual" role="group" aria-label="すべての投稿設定を一度に見せる画面と主要タスクから詳細設定へ段階化した画面の比較">
+<p class="dl-visual-kicker">VISUAL LESSON 03</p>
+<p class="dl-visual-title"><strong>機能を減らさず、task hierarchyをつくる。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — FEATURE LIST</p>
+<div class="dl-demo-card">
+<p class="dl-event">記事を書く</p>
+<p class="dl-meta">タイトル / 本文 / カテゴリー / タグ / 公開日時 / OG画像 / SEOタイトル / SEO説明 / canonical URL / noindex / SNSカード / スラッグ</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — TASK SEQUENCE</p>
+<div class="dl-demo-card">
+<p class="dl-event">記事を書く</p>
+<p class="dl-meta">タイトル / 本文 / カテゴリー</p>
+<div class="dl-actions">
+<span class="dl-action dl-action-primary">公開設定</span>
+<span class="dl-action dl-action-secondary">SEO・詳細設定</span>
+</div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">AFTERでも機能は残っている。違うのは、主要タスクとsecondary / advancedな判断を同時に要求せず、作業の順番へ合わせていること。</p>
+</div>
 
 ## 4. そのまま使える制作・修正指示
 
@@ -349,6 +401,29 @@ discoverability
 
 頻繁に使わなくても、その機能の存在を知っていること自体が重要な場合もある。
 
+<div class="dl-visual" role="group" aria-label="画面を単純にすることと隠れた機能の発見可能性の緊張関係">
+<p class="dl-visual-kicker">VISUAL LESSON 04</p>
+<p class="dl-visual-title"><strong>隠すほど単純になる、とは限らない。</strong></p>
+<div class="dl-tension">
+<div class="dl-panel">
+<p class="dl-panel-label">SIMPLICITY</p>
+<div class="dl-demo-card">
+<p class="dl-event">今のタスクへ集中できる</p>
+<p class="dl-meta">secondaryな選択肢を後段へ送り、最初の判断量を減らす。</p>
+</div>
+</div>
+<div class="dl-tension-mark" aria-hidden="true">↔</div>
+<div class="dl-panel">
+<p class="dl-panel-label">DISCOVERABILITY</p>
+<div class="dl-demo-card">
+<p class="dl-event">必要な機能の存在に気づける</p>
+<p class="dl-meta">隠しすぎると、使える機能自体が見つからなくなる。</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">frequencyだけでは決められない。importance、risk、context、user expertise、discoverabilityも含め、初期表示から外すコストを評価する。</p>
+</div>
+
 ## 8. 以前の学びとの接続：RecognitionとProgressive Disclosureは対立していない
 
 Design Literacy #18では、Recognition over Recallとして、選択肢や意味を画面上の手掛かりから認識できるようにすることを見た。
@@ -397,6 +472,17 @@ Progressive Disclosure
 ```
 
 になる。
+
+<div class="dl-visual" role="group" aria-label="Pictogram、Recognition、Progressive Disclosureが意味の圧縮、識別、開示タイミングという異なる設計判断を担当する関係">
+<p class="dl-visual-kicker">VISUAL LESSON 05</p>
+<p class="dl-visual-title"><strong>意味には「どう表すか」「どう気づくか」「いつ見せるか」がある。</strong></p>
+<div class="dl-chain">
+<span>PICTOGRAM<br>HOW TO COMPRESS</span>
+<span>RECOGNITION<br>HOW TO IDENTIFY</span>
+<span>PROGRESSIVE DISCLOSURE<br>WHEN TO REVEAL</span>
+</div>
+<p class="dl-visual-note">三つは同じ問題の言い換えではない。表現、認識、表示タイミングという別のdesign decisionとして分けると、UIを「置かれている情報」だけでなく「現れる情報」として見られる。</p>
+</div>
 
 UIは、情報の内容や配置だけでなく、**情報が現れる時間まで設計している**。
 
