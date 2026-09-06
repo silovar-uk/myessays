@@ -304,7 +304,7 @@ W3CのTechnique G182も、色に加えてunderline、font styleなど別のvisua
 </div>
 </div>
 </div>
-<p class="dl-visual-note">WCAG 1.4.1の要件は「Similarityをこう作れ」ではなく、colorを唯一の視覚的手段にしないこと。文字・記号・形など別のcueを重ねると、意味の伝達経路を一つに依存しにくくできる。 citeturn696964search4turn696964search0</p>
+<p class="dl-visual-note">WCAG 1.4.1の要件は「Similarityをこう作れ」ではなく、colorを唯一の視覚的手段にしないこと。文字・記号・形など別のcueを重ねると、意味の伝達経路を一つに依存しにくくできる。</p>
 </div>
 
 ## 7. 誤解しやすい点：「同じ意味ならpixel-perfectで同じ見た目」にしない
