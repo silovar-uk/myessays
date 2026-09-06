@@ -1,5 +1,5 @@
 ---
-id: urawa-kashima-long-way-back-2016-en-mix
+id: urawa-kashima-long-way-back-2016
 title: "浦和が鹿島のホームでリーグ戦に勝ったのは、2016年7月23日以来だった。｜The long way back to a win in Kashima"
 subtitle: "李忠成の2ゴール、明本と槙野、9,975人の埼スタ。今日の1-0から、勝てなかった時間を逆向きにたどる"
 created: "2026-09-06"
