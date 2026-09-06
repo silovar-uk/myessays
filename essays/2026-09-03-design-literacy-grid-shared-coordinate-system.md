@@ -70,7 +70,7 @@ abstract: "Grid Systemを、単に要素をきれいに揃えるための線で�
 </div>
 <div class="dl-grid-margin">MARGIN</div>
 </div>
-<p class="dl-visual-note">中央の領域がColumn、そのColumn同士の間隔がGutter、外側の余白がMargin。ModuleやBaselineはさらに縦方向の基準を加える。Gridは「何列あるか」ではなく、複数の空間ルールが一緒に働く構造として見る。</p>
+<p class="dl-visual-note">中央の領域がColumn、そのColumn同士の間隔がGutter、外側の余白がMargin。Moduleは縦横の分割が交差して生まれる単位で、Baselineは文字の垂直方向のリズムを揃える基準になる。Gridは「何列あるか」ではなく、複数の空間ルールが一緒に働く構造として見る。</p>
 </div>
 
 こうした共通の土台があれば、見出し、本文、写真、注釈、アクションボタンといった見た目も役割も異なる要素たちが、それぞれ別の形を保ちながらも、同じ空間の秩序に従って共存できるようになる。
@@ -137,11 +137,11 @@ TEXT
 <div class="dl-panel dl-panel-after">
 <p class="dl-panel-label">AFTER — SHARED COORDINATES</p>
 <div class="dl-grid-use" aria-label="六つのColumnを共有した配置例">
-<div class="dl-grid-bar" data-cols="1-3">TITLE</div>
-<div class="dl-grid-bar" data-cols="1-3">TEXT</div>
-<div class="dl-grid-bar" data-cols="5-6">IMAGE</div>
-<div class="dl-grid-bar" data-cols="5-6">NOTE</div>
-<div class="dl-grid-bar" data-cols="4-5">BUTTON</div>
+<div class="dl-grid-bar dl-cols-1-3">TITLE</div>
+<div class="dl-grid-bar dl-cols-1-3">TEXT</div>
+<div class="dl-grid-bar dl-cols-5-6">IMAGE</div>
+<div class="dl-grid-bar dl-cols-5-6">NOTE</div>
+<div class="dl-grid-bar dl-cols-4-5">BUTTON</div>
 </div>
 </div>
 </div>
@@ -177,10 +177,10 @@ AFTERでは、すべての要素が6分割の共通座標系に寄り添って�
 <div class="dl-panel">
 <p class="dl-panel-label">DESKTOP RELATION</p>
 <div class="dl-grid-use">
-<div class="dl-grid-bar" data-cols="1-3">TITLE</div>
-<div class="dl-grid-bar" data-cols="1-3">TEXT</div>
-<div class="dl-grid-bar" data-cols="5-6">IMAGE</div>
-<div class="dl-grid-bar" data-cols="5-6">NOTE</div>
+<div class="dl-grid-bar dl-cols-1-3">TITLE</div>
+<div class="dl-grid-bar dl-cols-1-3">TEXT</div>
+<div class="dl-grid-bar dl-cols-5-6">IMAGE</div>
+<div class="dl-grid-bar dl-cols-5-6">NOTE</div>
 </div>
 </div>
 <div class="dl-panel dl-panel-after">
@@ -193,7 +193,7 @@ AFTERでは、すべての要素が6分割の共通座標系に寄り添って�
 </div>
 </div>
 </div>
-<p class="dl-visual-note">守る対象は「6Column」という数値ではない。TITLE→TEXT→IMAGE→NOTEという優先順位や、どの情報同士を近く扱うかという関係を、Mobileに適したGridで再構成する。</p>
+<p class="dl-visual-note">守る対象は「6Column」という数値ではない。この例ではTITLE→TEXT→IMAGE→NOTEという優先順位や、どの情報同士を近く扱うかという関係を、Mobileに適したGridで再構成している。</p>
 </div>
 
 ---
@@ -257,10 +257,10 @@ TEXT
 <p class="dl-visual-kicker">VISUAL LESSON 04</p>
 <p class="dl-visual-title"><strong>Order is not symmetry.</strong></p>
 <div class="dl-grid-use" aria-label="六Column上の非対称レイアウト">
-<div class="dl-grid-bar" data-cols="1-2">TITLE</div>
-<div class="dl-grid-bar" data-cols="5-6">IMAGE</div>
-<div class="dl-grid-bar" data-cols="1-3">TEXT</div>
-<div class="dl-grid-bar" data-cols="4-5">CAPTION</div>
+<div class="dl-grid-bar dl-cols-1-2">TITLE</div>
+<div class="dl-grid-bar dl-cols-5-6">IMAGE</div>
+<div class="dl-grid-bar dl-cols-1-3">TEXT</div>
+<div class="dl-grid-bar dl-cols-4-5">CAPTION</div>
 </div>
 <p class="dl-visual-note">左と右の量は揃っていない。それでもTITLE・IMAGE・TEXT・CAPTIONは同じ六つのColumnを参照している。Gridが作るのは左右対称ではなく、異なる要素の間で説明可能な秩序である。</p>
 </div>
