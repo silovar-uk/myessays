@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 60;
   top: 96px;
-  left: 18px;
+  right: 18px;
   width: min(310px, calc(100vw - 36px));
   max-height: calc(100dvh - 128px);
   overflow: auto;
