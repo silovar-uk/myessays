@@ -185,6 +185,9 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
+.reader-content .dl-reading-samples-vertical {
+  grid-template-columns: 1fr;
+}
 .reader-content .dl-reading-sample {
   min-width: 0;
   padding: 14px;
@@ -216,6 +219,15 @@
 .reader-content .dl-reading-sample-loose .dl-reading-lines {
   line-height: 2.2;
 }
+.reader-content .dl-reading-measure-short,
+.reader-content .dl-reading-measure-balanced,
+.reader-content .dl-reading-measure-long {
+  box-sizing: border-box;
+  margin-inline: auto;
+}
+.reader-content .dl-reading-measure-short { width: 58%; }
+.reader-content .dl-reading-measure-balanced { width: 76%; }
+.reader-content .dl-reading-measure-long { width: 100%; }
 .reader-content .dl-grid-anatomy {
   display: grid;
   grid-template-columns: minmax(46px, .7fr) minmax(0, 4fr) minmax(46px, .7fr);
@@ -298,6 +310,8 @@
   .reader-content .dl-tension-mark { min-width: 0; min-height: 24px; transform: rotate(90deg); }
   .reader-content .dl-propagation-targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reader-content .dl-reading-samples { grid-template-columns: 1fr; }
+  .reader-content .dl-reading-measure-short { width: 72%; }
+  .reader-content .dl-reading-measure-balanced { width: 88%; }
   .reader-content .dl-grid-anatomy { grid-template-columns: 34px minmax(0, 1fr) 34px; gap: 6px; }
   .reader-content .dl-grid-columns { gap: 6px; }
   .reader-content .dl-grid-margin,
