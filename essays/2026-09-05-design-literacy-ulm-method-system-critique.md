@@ -3,7 +3,7 @@ id: design-literacy-ulm-method-system-critique
 title: "Ulm School――デザインを『完成品』ではなく『判断の仕組み』として見る"
 subtitle: "Design Literacy #16｜方法化と、その限界をめぐる学校"
 created: "2026-09-05"
-updated: "2026-09-05"
+updated: "2026-09-06"
 type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Ulm School", "HfG Ulm", "Design Methodology", "Systems Thinking", "Visual Identity", "Design System", "Otl Aicher", "Tomás Maldonado"]
@@ -141,6 +141,38 @@ Rule
 [予約する]
 ```
 
+<div class="dl-visual" role="group" aria-label="画面ごとの個別判断と再利用可能な判断ルールの比較">
+<p class="dl-visual-kicker">VISUAL LESSON 01</p>
+<p class="dl-visual-title"><strong>見た目をそろえる前に、判断を上流へ移す。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — ONE-OFF DECISIONS</p>
+<div class="dl-demo-card">
+<p class="dl-event">画面ごとに決める</p>
+<p class="dl-meta">同じPrimary Actionでも判断が独立</p>
+<div class="dl-actions">
+<span class="dl-action">購入する — 赤 / 48px / r8</span>
+<span class="dl-action">送信する — 青 / 44px / r4</span>
+<span class="dl-action">予約する — 黒 / 52px / r12</span>
+</div>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — REUSABLE DECISION</p>
+<div class="dl-demo-card">
+<p class="dl-event">PRIMARY ACTION RULE</p>
+<p class="dl-meta">color role / height / typography / spacing / states / accessibility</p>
+<div class="dl-actions">
+<span class="dl-action dl-action-primary">購入する</span>
+<span class="dl-action dl-action-primary">送信する</span>
+<span class="dl-action dl-action-primary">予約する</span>
+</div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">変化の中心は「三つのボタンが同じ見た目になったこと」ではない。画面ごとの判断を、複数画面・複数担当者が参照できる共通ルールへ移したことにある。</p>
+</div>
+
 ここで変わったのは、単に見た目が統一されたことではない。
 
 **one-off decisions became reusable decisions.**
@@ -184,6 +216,35 @@ Ulm
   「方法だけで十分か？」も内部で争った学校
 ```
 
+<div class="dl-visual" role="group" aria-label="Ulmにおける方法化と方法への批判の緊張関係">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>方法化したからこそ、方法そのものも問い直された。</strong></p>
+<div class="dl-tension">
+<div class="dl-panel">
+<p class="dl-panel-label">METHODIZATION</p>
+<div class="dl-demo-card">
+<p class="dl-event">判断を説明可能にする</p>
+<p class="dl-meta">analysis</p>
+<p class="dl-meta">scientific methods</p>
+<p class="dl-meta">ergonomics</p>
+<p class="dl-meta">reproducibility</p>
+</div>
+</div>
+<span class="dl-tension-mark" aria-hidden="true">↔</span>
+<div class="dl-panel">
+<p class="dl-panel-label">CRITIQUE OF METHOD</p>
+<div class="dl-demo-card">
+<p class="dl-event">方法だけで十分かを問う</p>
+<p class="dl-meta">design is more than analysis</p>
+<p class="dl-meta">purpose and context</p>
+<p class="dl-meta">limits of method</p>
+<p class="dl-meta">room for revision</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">これは「科学 vs 感性」という単純な二項対立ではない。方法を使って判断を組み立てながら、その方法が目的に合っているかも批判の対象にする、という緊張関係として読む。</p>
+</div>
+
 つまり歴史から受け取れるのは、単なる「システム化せよ」という命令ではない。
 
 **Methods themselves must remain open to criticism.**
@@ -220,6 +281,32 @@ application rules
 
 ここから現代のDesign Systemとの構造的な類似が見える。
 
+<div class="dl-visual" role="group" aria-label="Visual IdentityとDesign Systemの構造的な類似の比較">
+<p class="dl-visual-kicker">VISUAL LESSON 03</p>
+<p class="dl-visual-title"><strong>共通するのは、未来の制作へ再利用可能な判断を渡す構造。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">VISUAL IDENTITY</p>
+<div class="dl-demo-card">
+<p class="dl-event">組織の見え方を複数媒体へ渡す</p>
+<p class="dl-meta">mark / type / color</p>
+<p class="dl-meta">layout / signage</p>
+<p class="dl-meta">application rules</p>
+</div>
+</div>
+<div class="dl-panel">
+<p class="dl-panel-label">DESIGN SYSTEM</p>
+<div class="dl-demo-card">
+<p class="dl-event">UIの判断を複数画面・実装へ渡す</p>
+<p class="dl-meta">tokens / components</p>
+<p class="dl-meta">states / interaction rules</p>
+<p class="dl-meta">implementation and governance</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note"><strong>STRUCTURAL SIMILARITY — NOT DIRECT LINEAGE.</strong> 歴史的な直系関係を示す図ではない。single artifactではなく、まだ作られていない成果物にもrulesを渡すという問題構造の類似を示している。</p>
+</div>
+
 ただし、**UlmやLufthansa identityを現在のDesign Systemの直接的な起源と断定することはしない。** 技術、組織、媒体、開発工程が違うからだ。
 
 接続できるのは、single artifactではなく**reusable rules**を設計対象にするという問題構造である。
@@ -239,6 +326,22 @@ bad rule
 =
 100 consistent problems
 ```
+
+<div class="dl-visual" role="group" aria-label="悪いルールが複数画面へ一貫して再生産される構造">
+<p class="dl-visual-kicker">VISUAL LESSON 04</p>
+<p class="dl-visual-title"><strong>Consistencyは、良い判断だけを増幅するわけではない。</strong></p>
+<div class="dl-propagation">
+<div class="dl-propagation-source">BAD RULE</div>
+<div class="dl-propagation-arrow" aria-hidden="true">↓</div>
+<div class="dl-propagation-targets">
+<div class="dl-propagation-target">SCREEN A<br>same problem</div>
+<div class="dl-propagation-target">SCREEN B<br>same problem</div>
+<div class="dl-propagation-target">SCREEN C<br>same problem</div>
+<div class="dl-propagation-target">SCREEN D<br>same problem</div>
+</div>
+</div>
+<p class="dl-visual-note">システム化そのものが悪いのではない。再利用の効率が高いほど、良いruleだけでなく悪いruleも速く広がる。だから「一貫しているか」と「そのruleは正しいか」は別々に評価する。</p>
+</div>
 
 だからDesign Systemの評価で、
 
@@ -289,6 +392,8 @@ Ulm
   ＋
   方法そのものを問い直す
 ```
+
+<div class="dl-chain" aria-label="Design Literacyの概念接続"><span>Grid / Spatial Rule</span><span>Similarity / Perceptual Rule</span><span>Tap Target・Fitts’s Law / Interaction Rule</span><span>Ulm / Method + Critique</span></div>
 
 ここで前より解像度が上がる。
 
