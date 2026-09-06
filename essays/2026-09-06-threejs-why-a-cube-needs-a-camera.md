@@ -6,6 +6,8 @@ created: "2026-09-06"
 updated: "2026-09-06"
 type: "Essay"
 status: "完成"
+series: "ブラウザーに3D世界を作ると何が変なのか"
+seriesOrder: 1
 tags: ["Web開発", "JavaScript", "Three.js", "3D", "WebGL"]
 keywords: ["Three.js", "WebGL", "WebGPU", "Scene", "Camera", "Renderer", "Mesh", "BoxGeometry", "PerspectiveCamera", "OrthographicCamera", "Scene Graph", "renderer.info", "glTF"]
 favorite: 4
