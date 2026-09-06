@@ -3,7 +3,7 @@ id: design-literacy-measure-line-length-reading-distance
 title: "Measure / Line Length――本文幅は「箱の幅」ではなく「読む距離」"
 subtitle: "Design Literacy #10｜横方向のReading Rhythmを設計する"
 created: "2026-09-03"
-updated: "2026-09-03"
+updated: "2026-09-06"
 type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Typography", "Measure", "Line Length", "Readability", "Accessibility", "Swiss Style", "Responsive Design", "UI"]
@@ -40,15 +40,27 @@ abstract: "Measure / Line Lengthを、単なる本文コンテナの幅ではな
 
 逆に短すぎると、改行と復帰が頻発する。
 
-つまりMeasureは、
+<div class="dl-visual" role="group" aria-label="同じ文章を短い、中程度、長い三つの本文幅で比較">
+<p class="dl-visual-kicker">VISUAL LESSON 01</p>
+<p class="dl-visual-title"><strong>Measureは、横幅そのものではなく「行頭から行末まで、どれだけ目を運ぶか」を変える。</strong></p>
+<div class="dl-reading-samples dl-reading-samples-vertical">
+<div class="dl-reading-sample dl-reading-sample-balanced dl-reading-measure-short">
+<p class="dl-reading-sample-label">SHORT — FREQUENT RETURN</p>
+<p class="dl-reading-lines">試合は序盤から激しい展開となり、両チームが中盤でボールを奪い合いながら、浦和は徐々に保持する時間を増やしていった。</p>
+</div>
+<div class="dl-reading-sample dl-reading-sample-balanced dl-reading-measure-balanced">
+<p class="dl-reading-sample-label">BALANCED EXAMPLE</p>
+<p class="dl-reading-lines">試合は序盤から激しい展開となり、両チームが中盤でボールを奪い合いながら、浦和は徐々に保持する時間を増やしていった。</p>
+</div>
+<div class="dl-reading-sample dl-reading-sample-balanced dl-reading-measure-long">
+<p class="dl-reading-sample-label">LONG — LONG TRAVEL</p>
+<p class="dl-reading-lines">試合は序盤から激しい展開となり、両チームが中盤でボールを奪い合いながら、浦和は徐々に保持する時間を増やしていった。</p>
+</div>
+</div>
+<p class="dl-visual-note">中央を普遍的な正解として示しているわけではない。短すぎれば行頭への復帰が増え、長すぎれば1行の移動距離が伸びる。その間を、書体・文字サイズ・line-height・言語と合わせて調整する。</p>
+</div>
 
-```text
-Long Travel
-    ↕
-Frequent Return
-```
-
-の間を調整する設計。
+つまりMeasureは、**Long Travel**と**Frequent Return**の間を調整する設計。
 
 **「本文を何pxにするか」より先に、「どれくらいのreading movementを要求するか」を見る。**
 
@@ -69,37 +81,37 @@ USWDSのcharacter countは、英語・Latin alphabetを中心とする実務ガ�
 
 ## 3. Before → After：viewportと本文幅を切り離す
 
-### BEFORE
-
-```text
-Desktop 1440px
-
-|--------------------------------------------------------------|
-| 試合は序盤から激しい展開となり、両チームが中盤でボールを奪い合いながら浦和は徐々に… |
-|--------------------------------------------------------------|
-```
+<div class="dl-visual" role="group" aria-label="広いviewportいっぱいに本文を伸ばした状態と、reading distanceを制約した状態の比較">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>Viewportが広がっても、Reading Measureまで無制限に伸ばす必要はない。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — VIEWPORT = TEXT WIDTH</p>
+<div class="dl-reading-sample dl-reading-sample-balanced dl-reading-measure-long">
+<p class="dl-reading-sample-label">1440PX VIEWPORT / FULL-WIDTH TEXT</p>
+<p class="dl-reading-lines">試合は序盤から激しい展開となり、両チームが中盤でボールを奪い合いながら、浦和は徐々にボールを保持する時間を増やしていった。</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — VIEWPORT ≠ READING MEASURE</p>
+<div class="dl-reading-sample dl-reading-sample-balanced dl-reading-measure-balanced">
+<p class="dl-reading-sample-label">1440PX VIEWPORT / CONSTRAINED TEXT</p>
+<p class="dl-reading-lines">試合は序盤から激しい展開となり、両チームが中盤でボールを奪い合いながら、浦和は徐々にボールを保持する時間を増やしていった。</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">右側の余白は「高級感を出すため」に足したものではない。reading distanceを制約した結果として生まれた余白であり、余白は原因ではなく結果。</p>
+</div>
 
 問題は「画面が広いこと」ではない。
 
 **viewportが広がるほどreading distanceまで無制限に伸びていること**。
 
-### AFTER
-
-```text
-Desktop 1440px
-
-             |--------------------------|
-             | 試合は序盤から激しい展開 |
-             | となり、両チームが中盤で |
-             | ボールを奪い合いながら… |
-             |--------------------------|
-```
-
 結果として左右に余白が生まれる。
 
 でもこの余白は、「高級感を出すためのwhite space」ではない。
 
-**読みやすい距離へ本文を制約した結果として生まれた余白**や。
+**読みやすい距離へ本文を制約した結果として生まれた余白**だ。
 
 ## 4. そのまま使える制作・修正指示
 
@@ -127,6 +139,28 @@ CSS Values and Units Level 4では、`ch`はそのfontにおける**「0」のad
 
 [W3C — CSS Values and Units Module Level 4](https://www.w3.org/TR/css-values-4/)
 
+<div class="dl-visual" role="group" aria-label="CSSのchとicが文字数カウンターではなくfont-relative length unitであることを示す比較">
+<p class="dl-visual-kicker">VISUAL LESSON 03</p>
+<p class="dl-visual-title"><strong>`ch`と`ic`は「文字数」ではなく、fontに基づく長さの単位。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">CH</p>
+<div class="dl-demo-card">
+<p class="dl-event">基準："0"</p>
+<p class="dl-meta">そのfontにおける「0」のadvance measureを基準にする。`65ch`を「厳密に65文字」と読むことはできない。</p>
+</div>
+</div>
+<div class="dl-panel">
+<p class="dl-panel-label">IC</p>
+<div class="dl-demo-card">
+<p class="dl-event">基準："水"</p>
+<p class="dl-meta">CJKの全角文字を代表する「水」のadvance measureを基準にするfont-relative length unit。</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">どちらも文字数カウンターではない。Measure設計では、単位の意味と実際の文章の見え方を分けて確認する。</p>
+</div>
+
 つまり`ch`は便利な近似であって、文字数カウンターではない。
 
 ## 5. 歴史との接続：Swiss Styleは「狭い本文」のルールではなく、情報を構造化する態度
@@ -147,7 +181,7 @@ Swiss National Libraryも、この流れを**typographic gridを使い、情報�
 
 **画面いっぱいを使えることと、使うべきことは同じではない。情報の役割に応じて幅を制約すること自体が、構造を作る設計判断になる**
 
-ということや。
+ということだ。
 
 `max-width`は単なるCSSテクニックではなく、ページにルールを与える操作として見られる。
 
@@ -165,13 +199,27 @@ Technique C20も、デフォルト表示を常に80文字以下へ固定せよ�
 
 [W3C — Technique C20](https://www.w3.org/WAI/WCAG22/Techniques/css/C20)
 
-```text
-USWDS
-→ authored typographyの実務的なstarting point
-
-WCAG 1.4.8
-→ userが読みやすい表示へ調整できるaccessibility requirement
-```
+<div class="dl-visual" role="group" aria-label="USWDSのMeasureガイドとWCAG 1.4.8の要件の違い">
+<p class="dl-visual-kicker">VISUAL LESSON 04</p>
+<p class="dl-visual-title"><strong>同じLine Lengthの数字でも、何のための数字かが違う。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">USWDS — DESIGN GUIDANCE</p>
+<div class="dl-demo-card">
+<p class="dl-event">45–90 characters / long text ≈ 66 target</p>
+<p class="dl-meta">author側が本文のMeasureを検討するときの実務的なstarting point。書体、line-height、用途などと合わせて調整する。</p>
+</div>
+</div>
+<div class="dl-panel">
+<p class="dl-panel-label">WCAG 1.4.8 — ACCESSIBILITY REQUIREMENT</p>
+<div class="dl-demo-card">
+<p class="dl-event">≤80 glyphs / CJK ≤40 glyphs</p>
+<p class="dl-meta">ユーザーが読みやすい表示状態を実現できるmechanismを求めるLevel AAA要件。デフォルト幅をその数値へ固定する命令ではない。</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note"><strong>SAME TOPIC, DIFFERENT PURPOSE.</strong>数字だけを取り出して同じルールとして扱わない。</p>
+</div>
 
 同じ「行の長さ」の話でも、目的が違う。
 
