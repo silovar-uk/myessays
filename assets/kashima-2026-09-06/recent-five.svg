@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">鹿島アントラーズ 2026/27 J1 開幕5試合</title>
+  <desc id="desc">横浜FMに4対3、名古屋に2対1、福岡に3対2、東京Vに2対0、水戸に2対4。4勝1敗、13得点10失点。</desc>
+  <rect width="1200" height="720" rx="40" fill="#f5f2ea"/>
+  <text x="72" y="92" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#222">RECENT FIVE · J1 2026/27</text>
+  <text x="72" y="142" font-family="system-ui, sans-serif" font-size="48" font-weight="800" fill="#8c1d2c">4 wins, 1 loss · 13 scored / 10 conceded</text>
+  <line x1="70" y1="600" x2="1130" y2="600" stroke="#b9b2a7" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif" text-anchor="middle">
+    <g transform="translate(155,0)"><rect x="-54" y="320" width="48" height="280" rx="12" fill="#8c1d2c"/><rect x="8" y="390" width="48" height="210" rx="12" fill="#4f5560"/><text x="-30" y="305" font-size="28" font-weight="800" fill="#8c1d2c">4</text><text x="32" y="375" font-size="28" font-weight="800" fill="#4f5560">3</text><text x="0" y="646" font-size="24" font-weight="700" fill="#222">横浜FM</text><text x="0" y="680" font-size="20" fill="#666">4–3 · W</text></g>
+    <g transform="translate(365,0)"><rect x="-54" y="460" width="48" height="140" rx="12" fill="#8c1d2c"/><rect x="8" y="530" width="48" height="70" rx="12" fill="#4f5560"/><text x="-30" y="445" font-size="28" font-weight="800" fill="#8c1d2c">2</text><text x="32" y="515" font-size="28" font-weight="800" fill="#4f5560">1</text><text x="0" y="646" font-size="24" font-weight="700" fill="#222">名古屋</text><text x="0" y="680" font-size="20" fill="#666">2–1 · W</text></g>
+    <g transform="translate(575,0)"><rect x="-54" y="390" width="48" height="210" rx="12" fill="#8c1d2c"/><rect x="8" y="460" width="48" height="140" rx="12" fill="#4f5560"/><text x="-30" y="375" font-size="28" font-weight="800" fill="#8c1d2c">3</text><text x="32" y="445" font-size="28" font-weight="800" fill="#4f5560">2</text><text x="0" y="646" font-size="24" font-weight="700" fill="#222">福岡</text><text x="0" y="680" font-size="20" fill="#666">3–2 · W</text></g>
+    <g transform="translate(785,0)"><rect x="-54" y="460" width="48" height="140" rx="12" fill="#8c1d2c"/><rect x="8" y="600" width="48" height="0" rx="12" fill="#4f5560"/><text x="-30" y="445" font-size="28" font-weight="800" fill="#8c1d2c">2</text><text x="32" y="575" font-size="28" font-weight="800" fill="#4f5560">0</text><text x="0" y="646" font-size="24" font-weight="700" fill="#222">東京V</text><text x="0" y="680" font-size="20" fill="#666">2–0 · W</text></g>
+    <g transform="translate(995,0)"><rect x="-54" y="460" width="48" height="140" rx="12" fill="#8c1d2c"/><rect x="8" y="320" width="48" height="280" rx="12" fill="#4f5560"/><text x="-30" y="445" font-size="28" font-weight="800" fill="#8c1d2c">2</text><text x="32" y="305" font-size="28" font-weight="800" fill="#4f5560">4</text><text x="0" y="646" font-size="24" font-weight="700" fill="#222">水戸</text><text x="0" y="680" font-size="20" fill="#666">2–4 · L</text></g>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="20"><circle cx="84" cy="212" r="9" fill="#8c1d2c"/><text x="104" y="220" fill="#444">鹿島得点</text><circle cx="225" cy="212" r="9" fill="#4f5560"/><text x="245" y="220" fill="#444">相手得点</text></g>
+</svg>
