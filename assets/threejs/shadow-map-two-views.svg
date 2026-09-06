@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="500" viewBox="0 0 880 500" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Mapの二つの視点</title>
+  <desc id="desc">ライト側のCameraで深度を記録し、本番Cameraから描画するときにその深度と比較して影を判定する流れ。</desc>
+  <rect width="880" height="500" rx="24" fill="#f4f1ea"/>
+  <text x="44" y="58" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1c3338">SHADOW MAP = TWO VIEWS OF THE SAME WORLD</text>
+  <text x="44" y="84" font-family="system-ui, sans-serif" font-size="14" fill="#637276">同じSceneを、ライト側と本番Camera側から見る</text>
+
+  <g transform="translate(42 120)">
+    <rect width="236" height="300" rx="18" fill="#fff" stroke="#c8d3d2"/>
+    <text x="20" y="34" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#9a5b2d">1 / LIGHT VIEW</text>
+    <circle cx="118" cy="76" r="20" fill="#e2a93b"/>
+    <path d="M118 98 L54 224 M118 98 L182 224" stroke="#d5a245" stroke-width="3" stroke-dasharray="6 7"/>
+    <rect x="89" y="154" width="58" height="58" rx="6" fill="#29464b"/>
+    <rect x="28" y="224" width="180" height="12" rx="6" fill="#c7cec9"/>
+    <text x="20" y="268" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1c3338">Shadow Camera</text>
+    <text x="20" y="291" font-family="system-ui, sans-serif" font-size="12" fill="#637276">nearest depthを記録</text>
+  </g>
+
+  <g transform="translate(322 120)">
+    <rect width="236" height="300" rx="18" fill="#fff" stroke="#c8d3d2"/>
+    <text x="20" y="34" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#365f67">2 / SHADOW MAP</text>
+    <rect x="30" y="64" width="176" height="176" rx="8" fill="#1b292c"/>
+    <g fill="#53666a">
+      <rect x="44" y="78" width="22" height="22"/><rect x="70" y="78" width="22" height="22"/><rect x="96" y="78" width="22" height="22"/><rect x="122" y="78" width="22" height="22"/><rect x="148" y="78" width="22" height="22"/>
+      <rect x="44" y="104" width="22" height="22"/><rect x="70" y="104" width="22" height="22"/><rect x="96" y="104" width="22" height="22" fill="#b5c4c3"/><rect x="122" y="104" width="22" height="22" fill="#9cacab"/><rect x="148" y="104" width="22" height="22"/>
+      <rect x="44" y="130" width="22" height="22"/><rect x="70" y="130" width="22" height="22" fill="#a9b9b7"/><rect x="96" y="130" width="22" height="22" fill="#e6ece9"/><rect x="122" y="130" width="22" height="22" fill="#c6d2cf"/><rect x="148" y="130" width="22" height="22"/>
+      <rect x="44" y="156" width="22" height="22"/><rect x="70" y="156" width="22" height="22"/><rect x="96" y="156" width="22" height="22" fill="#bac8c6"/><rect x="122" y="156" width="22" height="22"/><rect x="148" y="156" width="22" height="22"/>
+      <rect x="44" y="182" width="22" height="22"/><rect x="70" y="182" width="22" height="22"/><rect x="96" y="182" width="22" height="22"/><rect x="122" y="182" width="22" height="22"/><rect x="148" y="182" width="22" height="22"/>
+    </g>
+    <text x="20" y="268" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1c3338">Depth texture</text>
+    <text x="20" y="291" font-family="system-ui, sans-serif" font-size="12" fill="#637276">光から最初に見えた距離</text>
+  </g>
+
+  <g transform="translate(602 120)">
+    <rect width="236" height="300" rx="18" fill="#fff" stroke="#c8d3d2"/>
+    <text x="20" y="34" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#35576f">3 / VIEWER CAMERA</text>
+    <path d="M33 190 L82 166 L82 214 Z" fill="#35576f"/>
+    <path d="M82 190 L148 152 M82 190 L148 228" stroke="#81979a" stroke-width="2" stroke-dasharray="6 6"/>
+    <rect x="139" y="139" width="48" height="48" rx="5" fill="#29464b"/>
+    <ellipse cx="162" cy="221" rx="58" ry="16" fill="#7b817b" opacity=".5"/>
+    <rect x="94" y="238" width="118" height="10" rx="5" fill="#c7cec9"/>
+    <text x="20" y="268" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1c3338">Compare depth</text>
+    <text x="20" y="291" font-family="system-ui, sans-serif" font-size="12" fill="#637276">奥なら「遮られている」→ shadow</text>
+  </g>
+
+  <path d="M286 270 H314" stroke="#6f8587" stroke-width="2"/>
+  <path d="M306 263 L316 270 L306 277" fill="none" stroke="#6f8587" stroke-width="2"/>
+  <path d="M566 270 H594" stroke="#6f8587" stroke-width="2"/>
+  <path d="M586 263 L596 270 L586 277" fill="none" stroke="#6f8587" stroke-width="2"/>
+
+  <text x="44" y="462" font-family="system-ui, sans-serif" font-size="13" fill="#637276">A shadow is not stored as “black paint”; it emerges from a visibility/depth comparison.</text>
+</svg>
