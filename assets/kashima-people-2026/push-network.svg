@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">鹿島選手プロフィールの推しネットワーク</title>
+  <desc id="desc">鹿島公式プロフィールの「推しのチームメイト」回答を矢印で結んだ概念図。安西幸輝にレオセアラ、エウベル、ヤンマテウス、チャヴリッチから矢印が集まる。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 z" fill="#8c1d2c"/></marker>
+    <style>
+      .t{font-family:system-ui,-apple-system,'Noto Sans JP',sans-serif;fill:#252525}.small{font-size:20px}.name{font-size:23px;font-weight:700}.note{font-size:17px;fill:#666}.line{stroke:#8c1d2c;stroke-width:3;fill:none;marker-end:url(#arrow)}.node{fill:#fff;stroke:#cfc9be;stroke-width:2}.hub{fill:#fff2f3;stroke:#8c1d2c;stroke-width:3}
+    </style>
+  </defs>
+  <rect width="1200" height="820" rx="36" fill="#f6f3ec"/>
+  <text x="60" y="70" class="t" font-size="25" font-weight="700">OFFICIAL PROFILE / “推しのチームメイト”</text>
+  <text x="60" y="118" class="t" font-size="38" font-weight="800">矢印を引いたら、安西幸輝に集まりすぎた。</text>
+  <text x="60" y="154" class="note">公開Q&amp;Aの回答のみ。実際の交友関係や中心性を測る図ではない。</text>
+
+  <path class="line" d="M260 270 C420 230 510 260 610 335"/>
+  <path class="line" d="M250 390 C420 380 500 360 610 350"/>
+  <path class="line" d="M260 520 C430 500 515 430 620 370"/>
+  <path class="line" d="M280 650 C470 630 560 500 650 390"/>
+  <path class="line" d="M760 350 C885 310 945 275 1020 260"/>
+  <path class="line" d="M1020 320 C970 390 940 430 910 465"/>
+  <path class="line" d="M910 525 C850 570 805 595 740 625"/>
+  <path class="line" d="M690 625 C625 650 560 665 500 675"/>
+  <path class="line" d="M935 600 C965 620 985 650 1000 690"/>
+
+  <rect x="75" y="220" width="190" height="92" rx="20" class="node"/><text x="170" y="258" text-anchor="middle" class="name t">レオ セアラ</text><text x="170" y="286" text-anchor="middle" class="note">「常に楽しそう」</text>
+  <rect x="70" y="340" width="190" height="92" rx="20" class="node"/><text x="165" y="378" text-anchor="middle" class="name t">エウベル</text><text x="165" y="406" text-anchor="middle" class="note">「盛り上げてくれる」</text>
+  <rect x="75" y="470" width="190" height="92" rx="20" class="node"/><text x="170" y="508" text-anchor="middle" class="name t">ヤン マテウス</text><text x="170" y="536" text-anchor="middle" class="note">「陽気で面白い」</text>
+  <rect x="75" y="600" width="210" height="92" rx="20" class="node"/><text x="180" y="638" text-anchor="middle" class="name t">チャヴリッチ</text><text x="180" y="666" text-anchor="middle" class="note">推し4人の一人</text>
+
+  <rect x="600" y="295" width="220" height="110" rx="24" class="hub"/><text x="710" y="340" text-anchor="middle" class="t" font-size="29" font-weight="850">安西 幸輝</text><text x="710" y="374" text-anchor="middle" class="note">なぜか矢印が集まる</text>
+
+  <rect x="965" y="205" width="185" height="92" rx="20" class="node"/><text x="1057" y="243" text-anchor="middle" class="name t">早川 友基</text><text x="1057" y="271" text-anchor="middle" class="note">→ 千田</text>
+  <rect x="835" y="430" width="185" height="92" rx="20" class="node"/><text x="927" y="468" text-anchor="middle" class="name t">千田 海人</text><text x="927" y="496" text-anchor="middle" class="note">→ 樋口</text>
+  <rect x="675" y="585" width="185" height="92" rx="20" class="node"/><text x="767" y="623" text-anchor="middle" class="name t">樋口 雄太</text><text x="767" y="651" text-anchor="middle" class="note">→ 津久井</text>
+  <rect x="390" y="635" width="185" height="92" rx="20" class="node"/><text x="482" y="673" text-anchor="middle" class="name t">津久井 佳祐</text><text x="482" y="701" text-anchor="middle" class="note">「今年は津久井の年」</text>
+
+  <rect x="865" y="565" width="170" height="82" rx="20" class="node"/><text x="950" y="600" text-anchor="middle" class="name t">柴崎 岳</text><text x="950" y="626" text-anchor="middle" class="note">→ 大川</text>
+  <rect x="950" y="670" width="170" height="82" rx="20" class="node"/><text x="1035" y="705" text-anchor="middle" class="name t">大川 佑梧</text><text x="1035" y="731" text-anchor="middle" class="note">→ 藤井</text>
+
+  <text x="60" y="785" class="note">※安西→早川の理由は「芦田愛菜に似ている」。早川の「好きなアーティスト」は安西幸輝。</text>
+</svg>
