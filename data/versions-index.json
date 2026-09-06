@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "threejs-why-a-cube-needs-a-camera": {"en-mix": "english-mix/threejs-why-a-cube-needs-a-camera.md"},
     "kashima-antlers-urawa-match-scout": {"en-mix": "english-mix/kashima-antlers-urawa-match-scout.md"},
     "memory-computation-feedback-state": {"en-mix": "english-mix/memory-computation-feedback-state.md"},
     "design-literacy-progressive-disclosure-information-timing": {"en-mix": "english-mix/design-literacy-progressive-disclosure-information-timing.md"},
@@ -100,7 +101,7 @@
     "tsubaki-factory-history-layered-cohorts": {"en-mix": "english-mix/tsubaki-factory-history-layered-cohorts.md"},
     "kobushi-factory-history-reconstruction": {"en-mix": "english-mix/kobushi-factory-history-reconstruction.md"},
     "juice-juice-history-capability-pipeline": {"en-mix": "english-mix/juice-juice-history-capability-pipeline.md"},
-    "smileage-angerme-history-renewal-capacity": {"en-mix": "english-mix/smileage-angerme-history-renewal-capacity.md"},
+    "smileage-angerme-history-renewal-capacity": {"en-mix": "english-mix/smileage-angerme-renewal-capacity.md"},
     "buono-history-autonomous-side-project": {"en-mix": "english-mix/buono-history-autonomous-side-project.md"},
     "cute-history-performance-standard": {"en-mix": "english-mix/cute-history-performance-standard.md"},
     "berryz-kobo-history-shared-time": {"en-mix": "english-mix/berryz-kobo-history-shared-time.md"},
