@@ -3,7 +3,7 @@ id: design-literacy-grid-shared-coordinate-system
 title: "Grid System――グリッドは『揃える線』ではなく『判断を共有する座標系』"
 subtitle: "Design Literacy #11｜個別配置を再利用可能なルールへ変える"
 created: "2026-09-03"
-updated: "2026-09-04"
+updated: "2026-09-06"
 type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Grid System", "Swiss Style", "International Typographic Style", "Layout", "Alignment", "Typography", "Responsive Design", "Design System"]
@@ -58,6 +58,21 @@ abstract: "Grid Systemを、単に要素をきれいに揃えるための線で�
 | margin | col | gut | col | gut | col | margin |
 ```
 
+<div class="dl-visual" role="group" aria-label="Margin、Column、Gutterの関係を示すGridの基本構造">
+<p class="dl-visual-kicker">VISUAL LESSON 01</p>
+<p class="dl-visual-title"><strong>Columnだけを見ると、Gridの半分しか見えていない。</strong></p>
+<div class="dl-grid-anatomy">
+<div class="dl-grid-margin">MARGIN</div>
+<div class="dl-grid-columns" aria-label="三つのColumnと、その間のGutter">
+<div class="dl-grid-column">COLUMN 1</div>
+<div class="dl-grid-column">COLUMN 2</div>
+<div class="dl-grid-column">COLUMN 3</div>
+</div>
+<div class="dl-grid-margin">MARGIN</div>
+</div>
+<p class="dl-visual-note">中央の領域がColumn、そのColumn同士の間隔がGutter、外側の余白がMargin。ModuleやBaselineはさらに縦方向の基準を加える。Gridは「何列あるか」ではなく、複数の空間ルールが一緒に働く構造として見る。</p>
+</div>
+
 こうした共通の土台があれば、見出し、本文、写真、注釈、アクションボタンといった見た目も役割も異なる要素たちが、それぞれ別の形を保ちながらも、同じ空間の秩序に従って共存できるようになる。
 
 **Consistency does not require sameness.**（一貫性とは、すべてを同じ形に揃えることではない。）
@@ -105,6 +120,34 @@ TEXT
             |---|
 ```
 
+<div class="dl-visual" role="group" aria-label="個別配置と共有座標系による配置の比較">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>要素を同じ形にするのではなく、同じreference lineを使えるようにする。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — INDIVIDUAL PLACEMENT</p>
+<div class="dl-demo-card">
+<p class="dl-event">各要素が独立して判断する</p>
+<p class="dl-meta">TITLE — この辺り</p>
+<p class="dl-meta">IMAGE — 少し右へ</p>
+<p class="dl-meta">TEXT — 前回くらいの幅</p>
+<p class="dl-meta">NOTE / BUTTON — 個別に微調整</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — SHARED COORDINATES</p>
+<div class="dl-grid-use" aria-label="六つのColumnを共有した配置例">
+<div class="dl-grid-bar" data-cols="1-3">TITLE</div>
+<div class="dl-grid-bar" data-cols="1-3">TEXT</div>
+<div class="dl-grid-bar" data-cols="5-6">IMAGE</div>
+<div class="dl-grid-bar" data-cols="5-6">NOTE</div>
+<div class="dl-grid-bar" data-cols="4-5">BUTTON</div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">AFTERでも要素の幅や位置は同じではない。変わったのは、位置を説明するための共通座標ができたこと。異なる形の要素が同じreference lineを再利用できる。</p>
+</div>
+
 AFTERでは、すべての要素が6分割の共通座標系に寄り添っている。
 
 ここで注目すべきなのは、「すべての要素が左右対称になったわけではない」という点だ。タイトルと本文は左の3カラムを使い、画像は右寄りの2カラムを使い、注釈とボタンはその下の特定カラムに収まっている。重要なのは形を揃えることではなく、**複数の異なる要素が同じ基準線（reference lines）を再利用できるようになったこと**だ。
@@ -126,6 +169,32 @@ AFTERでは、すべての要素が6分割の共通座標系に寄り添って�
 **Responsive grid is not a smaller desktop grid.**（レスポンシブグリッドとは、単にデスクトップのグリッドを小さく縮小したものではない。）
 
 画面幅が変わったときに守るべきなのは、カラムの数という表面的な数値ではなく、情報同士の階層構造と関係性そのものなのだ。
+
+<div class="dl-visual" role="group" aria-label="DesktopとMobileでカラム数ではなく情報の関係を保つレスポンシブGridの比較">
+<p class="dl-visual-kicker">VISUAL LESSON 03</p>
+<p class="dl-visual-title"><strong>Responsiveは「小さくする」ではなく、関係を別の座標系へ移す。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">DESKTOP RELATION</p>
+<div class="dl-grid-use">
+<div class="dl-grid-bar" data-cols="1-3">TITLE</div>
+<div class="dl-grid-bar" data-cols="1-3">TEXT</div>
+<div class="dl-grid-bar" data-cols="5-6">IMAGE</div>
+<div class="dl-grid-bar" data-cols="5-6">NOTE</div>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">MOBILE RELATION</p>
+<div class="dl-grid-use dl-grid-use-mobile-model">
+<div class="dl-grid-bar">TITLE</div>
+<div class="dl-grid-bar">TEXT</div>
+<div class="dl-grid-bar">IMAGE</div>
+<div class="dl-grid-bar">NOTE</div>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">守る対象は「6Column」という数値ではない。TITLE→TEXT→IMAGE→NOTEという優先順位や、どの情報同士を近く扱うかという関係を、Mobileに適したGridで再構成する。</p>
+</div>
 
 ---
 
@@ -184,6 +253,18 @@ TEXT
 |---|---|---|
 ```
 
+<div class="dl-visual" role="group" aria-label="左右非対称でも同じGridを共有できる配置例">
+<p class="dl-visual-kicker">VISUAL LESSON 04</p>
+<p class="dl-visual-title"><strong>Order is not symmetry.</strong></p>
+<div class="dl-grid-use" aria-label="六Column上の非対称レイアウト">
+<div class="dl-grid-bar" data-cols="1-2">TITLE</div>
+<div class="dl-grid-bar" data-cols="5-6">IMAGE</div>
+<div class="dl-grid-bar" data-cols="1-3">TEXT</div>
+<div class="dl-grid-bar" data-cols="4-5">CAPTION</div>
+</div>
+<p class="dl-visual-note">左と右の量は揃っていない。それでもTITLE・IMAGE・TEXT・CAPTIONは同じ六つのColumnを参照している。Gridが作るのは左右対称ではなく、異なる要素の間で説明可能な秩序である。</p>
+</div>
+
 この配置は明らかに左右非対称であり、ダイナミックなリズムを持っている。それでも画面が散漫にならず安定して見えるのは、すべての要素が同一の6カラムという座標系を共有しているからだ。
 
 **Order is not the same as symmetry.**（秩序と対称性は同義ではない。）
@@ -200,6 +281,8 @@ TEXT
 - **Measure**: 行頭から行末までの水平方向の読書距離を制御する
 - **Alignment**: 異なる要素同士の視覚的な関係線を結ぶ
 - **Grid**: それらの距離と関係性を、画面全体・サービス全体で再利用可能な仕組みへと引き上げる
+
+<div class="dl-chain" aria-label="局所的な空間調整から共有Gridへ進むDesign Literacyの概念接続"><span>Line Height / Vertical Distance</span><span>Measure / Reading Width</span><span>Alignment / Relationship Line</span><span>Grid / Shared Coordinates</span></div>
 
 ミクロな距離の調整から、マクロな空間構造へ。ここで解像度が一段引き上がる。
 
