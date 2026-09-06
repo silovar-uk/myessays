@@ -86,9 +86,11 @@ async function assertCrossParagraphSelectionCloses(page) {
 
   const panelBox = await page.locator('#japaneseReferencePanel').boundingBox();
   const tocBox = await page.locator('#readerAside').boundingBox();
+  const languageBox = await page.locator('.reader-language-trigger').boundingBox();
   assert.ok(panelBox, 'Japanese reference panel should be visible on desktop');
   assert.ok(panelBox.x > 1280 / 2, `desktop panel should use the right-side lane: ${JSON.stringify(panelBox)}`);
   if (tocBox) assert.equal(overlaps(panelBox, tocBox), false, 'Japanese reference panel must not cover the reader TOC');
+  if (languageBox) assert.equal(overlaps(panelBox, languageBox), false, 'Japanese reference panel must not cover the language switch');
 
   await assertCrossParagraphSelectionCloses(page);
   const desktopSelectedAgain = await selectTranslatedEnglishParagraph(page);
