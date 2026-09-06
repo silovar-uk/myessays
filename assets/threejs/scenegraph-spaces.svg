@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" role="img" aria-labelledby="title desc">
+  <title id="title">Scene Graph as nested coordinate spaces</title>
+  <desc id="desc">World Space contains Parent Local Space, which contains Child Local Space. Each space has its own origin and axes.</desc>
+  <rect width="800" height="470" rx="28" fill="#f4f1ea"/>
+  <rect x="44" y="54" width="712" height="360" rx="22" fill="#fff" stroke="#243b40" stroke-width="2"/>
+  <text x="70" y="89" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#243b40">WORLD SPACE</text>
+  <text x="70" y="115" font-family="system-ui,sans-serif" font-size="13" fill="#66797c">origin (0, 0, 0) / 世界全体の座標</text>
+  <line x1="102" y1="362" x2="215" y2="362" stroke="#b84a3b" stroke-width="4"/>
+  <line x1="102" y1="362" x2="102" y2="255" stroke="#4a8b57" stroke-width="4"/>
+  <line x1="102" y1="362" x2="151" y2="318" stroke="#4267a8" stroke-width="4"/>
+  <circle cx="102" cy="362" r="6" fill="#243b40"/>
+  <rect x="240" y="132" width="448" height="235" rx="20" fill="#edf3f1" stroke="#72898a" stroke-width="2"/>
+  <text x="266" y="165" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#243b40">PARENT LOCAL SPACE</text>
+  <text x="266" y="190" font-family="system-ui,sans-serif" font-size="13" fill="#66797c">Parentが作る原点・向き・縮尺</text>
+  <g transform="translate(300 318) rotate(-18)">
+    <line x1="0" y1="0" x2="98" y2="0" stroke="#b84a3b" stroke-width="4"/>
+    <line x1="0" y1="0" x2="0" y2="-88" stroke="#4a8b57" stroke-width="4"/>
+    <line x1="0" y1="0" x2="44" y2="-38" stroke="#4267a8" stroke-width="4"/>
+    <circle cx="0" cy="0" r="6" fill="#243b40"/>
+  </g>
+  <rect x="416" y="210" width="220" height="110" rx="16" fill="#fff7d8" stroke="#b38a22" stroke-width="2"/>
+  <text x="438" y="242" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#4d421f">CHILD LOCAL SPACE</text>
+  <text x="438" y="268" font-family="ui-monospace,monospace" font-size="13" fill="#6d5b25">position.x = 2</text>
+  <text x="438" y="292" font-family="system-ui,sans-serif" font-size="12" fill="#6d5b25">「誰から見て？」→ Parentから</text>
+  <path d="M365 325 C395 325 400 286 416 270" fill="none" stroke="#243b40" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="68" y="440" font-family="system-ui,sans-serif" font-size="14" fill="#243b40">Scene Graph = objectsの木、でも同時に coordinate spaces の入れ子</text>
+</svg>
