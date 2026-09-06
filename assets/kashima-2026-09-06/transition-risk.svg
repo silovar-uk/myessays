@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">鹿島の攻撃時配置とボールロスト後のスペース</title>
+  <desc id="desc">鹿島がサイドバックや中盤を高く押し上げた状態でボールを失うと、サイドバック背後とセンターバック脇にスペースが生まれる。浦和が奪った直後の最初の前向きなパスでその空間を使うイメージ。</desc>
+  <defs>
+    <marker id="redArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 z" fill="#8c1d2c"/></marker>
+    <marker id="darkArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 z" fill="#252a31"/></marker>
+  </defs>
+  <rect width="1200" height="760" rx="40" fill="#f5f2ea"/>
+  <text x="64" y="76" font-family="system-ui, sans-serif" font-size="27" font-weight="700" fill="#222">THE SAME STRENGTH CREATES THE RISK</text>
+  <text x="64" y="122" font-family="system-ui, sans-serif" font-size="39" font-weight="800" fill="#8c1d2c">前へ出られる。だから、失った瞬間だけ後ろが広い。</text>
+
+  <rect x="80" y="176" width="1040" height="500" rx="26" fill="#dfe9df" stroke="#9baa9b" stroke-width="3"/>
+  <line x1="600" y1="176" x2="600" y2="676" stroke="#fff" stroke-width="3" stroke-dasharray="12 10"/>
+  <circle cx="600" cy="426" r="72" fill="none" stroke="#fff" stroke-width="3"/>
+
+  <g font-family="system-ui, sans-serif">
+    <text x="116" y="216" font-size="20" font-weight="800" fill="#555">KASHIMA IN POSSESSION</text>
+    <text x="816" y="216" font-size="20" font-weight="800" fill="#555">AFTER TURNOVER</text>
+  </g>
+
+  <!-- Kashima high structure -->
+  <g fill="#8c1d2c" stroke="#fff" stroke-width="3">
+    <circle cx="450" cy="278" r="26"/><circle cx="520" cy="320" r="26"/><circle cx="365" cy="330" r="24"/><circle cx="535" cy="410" r="24"/>
+    <circle cx="310" cy="430" r="24"/><circle cx="500" cy="505" r="24"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#333">
+    <text x="270" y="472">SB high</text><text x="458" y="548">SB high</text>
+  </g>
+  <g stroke="#8c1d2c" stroke-width="6" fill="none" marker-end="url(#redArrow)">
+    <path d="M310 500 C300 460 303 448 308 441"/>
+    <path d="M505 576 C505 548 503 531 501 518"/>
+  </g>
+
+  <!-- turnover -->
+  <circle cx="602" cy="425" r="54" fill="#fff" stroke="#252a31" stroke-width="4"/>
+  <text x="602" y="416" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="900" fill="#252a31">BALL</text>
+  <text x="602" y="440" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#8c1d2c">LOST</text>
+
+  <!-- space -->
+  <path d="M670 265 C775 225 890 235 1005 295 L970 400 C850 365 750 370 670 410 Z" fill="#fff2cc" opacity=".88" stroke="#d0a62a" stroke-width="3" stroke-dasharray="10 8"/>
+  <path d="M690 480 C790 440 895 455 1000 525 L960 625 C845 575 760 572 685 610 Z" fill="#fff2cc" opacity=".88" stroke="#d0a62a" stroke-width="3" stroke-dasharray="10 8"/>
+  <g font-family="system-ui, sans-serif" fill="#6c5717" font-weight="800">
+    <text x="835" y="318" text-anchor="middle" font-size="22">SPACE BEHIND SB</text>
+    <text x="838" y="555" text-anchor="middle" font-size="22">CB SIDE / CHANNEL</text>
+  </g>
+
+  <!-- Urawa regain and first pass -->
+  <g fill="#252a31" stroke="#fff" stroke-width="3"><circle cx="675" cy="425" r="25"/><circle cx="825" cy="350" r="25"/><circle cx="840" cy="535" r="25"/></g>
+  <g stroke="#252a31" stroke-width="8" fill="none" marker-end="url(#darkArrow)">
+    <path d="M699 411 C745 380 775 363 798 354"/>
+    <path d="M697 441 C748 482 786 510 813 525"/>
+  </g>
+  <text x="715" y="392" font-family="system-ui, sans-serif" font-size="18" font-weight="800" fill="#252a31">FIRST PASS →</text>
+
+  <rect x="120" y="620" width="960" height="92" rx="20" fill="#fff" opacity=".93"/>
+  <text x="154" y="655" font-family="system-ui, sans-serif" font-size="21" fill="#333"><tspan font-weight="900">浦和の狙い：</tspan> 奪ったあと横へ安全に逃がすだけでなく、鹿島の守備ブロックが前向きに整う前に1本目を出す。</text>
+  <text x="154" y="689" font-family="system-ui, sans-serif" font-size="18" fill="#666">Concept diagram — 実際の選手位置や当日先発を示すものではない。</text>
+</svg>
