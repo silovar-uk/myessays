@@ -247,6 +247,164 @@
   letter-spacing: .03em;
 }
 
+/* Lived-time comparison: identical measured duration, different experiential placement. */
+.reader-content .ph-time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 8px 0 18px;
+}
+
+.reader-content .ph-time-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--ph-line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.48);
+}
+
+.reader-content .ph-time-card-signal {
+  border-top: 5px solid #e2b4ad;
+}
+
+.reader-content .ph-time-card-read {
+  border-top: 5px solid #b9d2e3;
+}
+
+.reader-content .ph-time-card-video {
+  border-top: 5px solid #bfd9c5;
+}
+
+.reader-content .ph-time-scene {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 64px;
+}
+
+.reader-content .ph-time-scene strong {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.reader-content .ph-time-thought {
+  color: var(--ph-soft);
+  font-size: 10px;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.reader-content .ph-time-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 44px;
+  border: 1.5px solid var(--ph-ink);
+}
+
+.reader-content .ph-time-icon-signal {
+  width: 18px;
+  border-radius: 9px;
+  background:
+    radial-gradient(circle at 50% 22%, #d9796b 0 3px, transparent 4px),
+    radial-gradient(circle at 50% 50%, #d9b968 0 3px, transparent 4px),
+    radial-gradient(circle at 50% 78%, #79a87d 0 3px, transparent 4px);
+}
+
+.reader-content .ph-time-icon-phone {
+  border-radius: 6px;
+  background: linear-gradient(#eef5f8 0 72%, #fff 72% 100%);
+}
+
+.reader-content .ph-time-icon-video {
+  width: 48px;
+  height: 31px;
+  border-radius: 4px;
+}
+
+.reader-content .ph-time-icon-video::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+}
+
+.reader-content .ph-time-track {
+  position: relative;
+  height: 10px;
+  margin: 13px 0 6px;
+  overflow: hidden;
+  border: 1px solid var(--ph-ink);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.reader-content .ph-time-track::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(39,36,31,.13), rgba(39,36,31,.03));
+}
+
+.reader-content .ph-time-scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ph-soft);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.reader-content .ph-time-focus {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--ph-line);
+  color: var(--ph-soft);
+  font-size: 10.5px;
+  line-height: 1.65;
+}
+
+.reader-content .ph-time-focus strong {
+  color: var(--ph-ink);
+}
+
+.reader-content .ph-time-shift {
+  margin: 4px 0 18px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  background: var(--ph-yellow);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.reader-content .ph-time-caution {
+  margin: 0 0 14px;
+  color: var(--ph-soft);
+  font-size: 10.5px;
+  line-height: 1.65;
+}
+
+.reader-content .ph-time-next {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border: 1px dashed #9d927e;
+  border-radius: 12px;
+  background: rgba(255,255,255,.35);
+  color: var(--ph-soft);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.reader-content .ph-time-next strong {
+  color: var(--ph-ink);
+}
+
 @media (max-width: 720px) {
   .reader-content .ph-viz {
     margin-left: 0;
@@ -284,6 +442,37 @@
     border-radius: 15px;
     line-height: 1.6;
   }
+
+  .reader-content .ph-time-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reader-content .ph-time-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 1fr);
+    column-gap: 14px;
+    align-items: center;
+  }
+
+  .reader-content .ph-time-scene,
+  .reader-content .ph-time-focus {
+    grid-column: 1;
+  }
+
+  .reader-content .ph-time-track,
+  .reader-content .ph-time-scale {
+    grid-column: 2;
+  }
+
+  .reader-content .ph-time-track {
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .reader-content .ph-time-scale {
+    grid-row: 2;
+    align-self: start;
+  }
 }
 
 @media (max-width: 430px) {
@@ -310,6 +499,14 @@
 
   .reader-content .ph-viz-foot {
     display: block;
+  }
+
+  .reader-content .ph-time-card {
+    display: block;
+  }
+
+  .reader-content .ph-time-track {
+    margin-top: 12px;
   }
 }
 
