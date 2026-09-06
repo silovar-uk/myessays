@@ -42,6 +42,53 @@ abstract: "赤信号の10秒と好きな動画の10秒は、時計では同じ�
 
 **そもそも時間は、私たちにどう経験されているのか。**
 
+<section class="ph-viz ph-viz-time" aria-label="同じ10秒を異なる場面で比べる視覚図">
+  <div class="ph-viz-head">
+    <div>
+      <p class="ph-viz-kicker">Phenomenology 05 / Visual Comparison</p>
+      <h3>Same 10 seconds, different lived time.</h3>
+    </div>
+    <p class="ph-viz-note">計測時間を変えずに、経験の中で「どこへ注意が向くか」だけを比べる。</p>
+  </div>
+  <div class="ph-time-grid">
+    <div class="ph-time-card ph-time-card-signal">
+      <div class="ph-time-scene">
+        <div class="ph-time-icon ph-time-icon-signal" aria-hidden="true"></div>
+        <div><strong>信号待ち</strong><p class="ph-time-thought">「まだ……？」</p></div>
+      </div>
+      <div class="ph-time-track" aria-hidden="true"></div>
+      <div class="ph-time-scale"><span>0</span><span>10 sec</span></div>
+      <p class="ph-time-focus"><strong>注意：</strong>次の「青」へ向かいやすい。まだ来ない未来が前景化する。</p>
+    </div>
+    <div class="ph-time-card ph-time-card-read">
+      <div class="ph-time-scene">
+        <div class="ph-time-icon ph-time-icon-phone" aria-hidden="true"></div>
+        <div><strong>既読・返信待ち</strong><p class="ph-time-thought">「……まだかな」</p></div>
+      </div>
+      <div class="ph-time-track" aria-hidden="true"></div>
+      <div class="ph-time-scale"><span>0</span><span>10 sec</span></div>
+      <p class="ph-time-focus"><strong>注意：</strong>結果へ向かいやすい。時間そのものが意識に上がることがある。</p>
+    </div>
+    <div class="ph-time-card ph-time-card-video">
+      <div class="ph-time-scene">
+        <div class="ph-time-icon ph-time-icon-video" aria-hidden="true"></div>
+        <div><strong>動画視聴</strong><p class="ph-time-thought">「もう10秒？」</p></div>
+      </div>
+      <div class="ph-time-track" aria-hidden="true"></div>
+      <div class="ph-time-scale"><span>0</span><span>10 sec</span></div>
+      <p class="ph-time-focus"><strong>注意：</strong>現在の内容にとどまりやすい。時刻への注意が薄れることがある。</p>
+    </div>
+  </div>
+  <p class="ph-time-shift">時計の上では、全部おなじ10秒。<br>でも経験のなかでの「10秒の置かれ方」は同じとは限らない。</p>
+  <p class="ph-time-caution">※「信号は必ず長く、動画は必ず短く感じる」という主張ではない。ここで比べたいのは、同じ計測時間でも経験の構造が一様ではないこと。</p>
+  <div class="ph-viz-question">
+    <span>QUESTION</span>
+    <p>10秒を数えるとき、あなたは「時間そのもの」を見ている？ それとも、その先に来る何かを待っている？</p>
+  </div>
+  <p class="ph-time-next"><strong>次の発展：</strong>実際に10秒だけ体験するボタンを作り、終了後に「長かった／だいたい10秒／短かった」を選べる小実験へ。</p>
+  <div class="ph-viz-foot"><span>COMPARISON → SHIFT → QUESTION</span><span>静止図 / Minimum Version</span></div>
+</section>
+
 ---
 
 ## 1. 「いま」が本当に一点なら、メロディは聞こえない
