@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "ichiro-weekly-habit-return-path": {"en-mix": "english-mix/ichiro-weekly-habit-return-path.md"},
     "kashima-people-personality-network": {"en-mix": "english-mix/kashima-people-personality-network.md"},
     "threejs-why-a-cube-needs-a-camera": {"en-mix": "english-mix/threejs-why-a-cube-needs-a-camera.md"},
     "kashima-antlers-urawa-match-scout": {"en-mix": "english-mix/kashima-antlers-urawa-match-scout.md"},
