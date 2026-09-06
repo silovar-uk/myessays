@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" role="img" aria-labelledby="title desc">
+  <title id="title">Three.jsで立方体が画面に出るまで</title>
+  <desc id="desc">シーン内の立方体をカメラが投影し、レンダラーが二次元のキャンバスへ描く流れ。立方体の各面は三角形に分かれている。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#315f67"/></marker>
+  </defs>
+  <rect x="1" y="1" width="758" height="428" rx="18" fill="#f3f7f7" stroke="#c9d6d7"/>
+  <g font-family="system-ui, sans-serif" fill="#18333a">
+    <text x="30" y="40" font-size="13" font-weight="700" letter-spacing="1.4">WHY DOES A CUBE NEED A CAMERA?</text>
+    <text x="30" y="68" font-size="20" font-weight="700">3Dの「物」は、そのまま画面に置けない。</text>
+
+    <text x="82" y="112" font-size="12" font-weight="700" letter-spacing="1">SCENE / WORLD</text>
+    <g transform="translate(70 145)" fill="none" stroke="#315f67" stroke-width="3" stroke-linejoin="round">
+      <path d="M40 30L112 8L168 48L96 72Z" fill="#dbe8e9"/>
+      <path d="M40 30V112L96 154V72Z" fill="#c6d9db"/>
+      <path d="M96 72V154L168 128V48Z" fill="#b4cdd0"/>
+      <path d="M40 30L96 72L168 48M96 72L96 154"/>
+      <path d="M68 20L126 62M139 20L82 65M40 70L96 112M96 112L168 88" stroke="#8fb2b7" stroke-width="1.6"/>
+    </g>
+    <text x="76" y="334" font-size="14" font-weight="700">Geometry + Material = Mesh</text>
+    <text x="76" y="357" font-size="12" fill="#5f7478">GPUが扱う基本単位は三角形</text>
+
+    <g transform="translate(300 176)">
+      <path d="M0 54L72 20V88Z" fill="#18333a"/>
+      <circle cx="82" cy="54" r="18" fill="#fff" stroke="#18333a" stroke-width="3"/>
+      <circle cx="82" cy="54" r="7" fill="#315f67"/>
+      <path d="M98 54L178 14M98 54L178 94" stroke="#9bb9bd" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="45" y="128" font-size="12" font-weight="700" letter-spacing="1">CAMERA</text>
+      <text x="15" y="151" font-size="12" fill="#5f7478">3D → 2D の投影</text>
+    </g>
+
+    <path d="M252 228H294" stroke="#315f67" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M478 228H522" stroke="#315f67" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <g transform="translate(535 124)">
+      <rect x="0" y="0" width="165" height="205" rx="10" fill="#10191c" stroke="#315f67" stroke-width="3"/>
+      <g transform="translate(43 48) scale(.48)" fill="none" stroke="#d6eef1" stroke-width="5" stroke-linejoin="round">
+        <path d="M40 30L112 8L168 48L96 72Z"/>
+        <path d="M40 30V112L96 154V72Z"/>
+        <path d="M96 72V154L168 128V48Z"/>
+        <path d="M40 30L96 72L168 48M96 72L96 154"/>
+      </g>
+      <text x="82" y="178" text-anchor="middle" font-size="12" fill="#fff" font-weight="700" letter-spacing="1">CANVAS</text>
+    </g>
+    <text x="535" y="356" font-size="14" font-weight="700">Renderer</text>
+    <text x="535" y="378" font-size="12" fill="#5f7478">WebGL / WebGPUへ仕事を渡す</text>
+
+    <text x="30" y="405" font-size="12" fill="#5f7478">Three.jsは「立方体を描く魔法」より、世界・視点・材質・投影・描画の役割分担を管理する道具、と考えると分かりやすい。</text>
+  </g>
+</svg>
