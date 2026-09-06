@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">浦和の直近2勝における得点時間</title>
+  <desc id="desc">横浜F・マリノス戦とアビスパ福岡戦の6得点のうち4得点が64分以降に生まれていることを示すタイムライン。</desc>
+  <rect width="1200" height="760" rx="38" fill="#f5f2ea"/>
+  <text x="70" y="82" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#2c2c2c">URAWA / MATCH KEY 03</text>
+  <text x="70" y="136" font-family="system-ui,sans-serif" font-size="42" font-weight="800" fill="#a71930">最近の浦和は、60分からもう一度始まる。</text>
+  <text x="70" y="190" font-family="system-ui,sans-serif" font-size="22" fill="#555">直近2試合の6得点中、4得点が64分以降。</text>
+  <line x1="120" y1="410" x2="1080" y2="410" stroke="#b9b2a8" stroke-width="6" stroke-linecap="round"/>
+  <g font-family="system-ui,sans-serif" font-size="19" fill="#666">
+    <text x="120" y="452" text-anchor="middle">0'</text><text x="333" y="452" text-anchor="middle">20'</text><text x="547" y="452" text-anchor="middle">40'</text><text x="760" y="452" text-anchor="middle">60'</text><text x="973" y="452" text-anchor="middle">80'</text><text x="1080" y="452" text-anchor="middle">90'</text>
+  </g>
+  <rect x="742" y="278" width="350" height="180" rx="24" fill="#a71930" opacity="0.09"/>
+  <text x="917" y="310" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="800" fill="#a71930">LATE-GAME ZONE</text>
+  <g font-family="system-ui,sans-serif" font-weight="800">
+    <circle cx="195" cy="410" r="28" fill="#a71930"/><text x="195" y="418" text-anchor="middle" font-size="18" fill="#fff">7'</text>
+    <circle cx="547" cy="410" r="28" fill="#a71930"/><text x="547" y="418" text-anchor="middle" font-size="17" fill="#fff">40'</text>
+    <circle cx="803" cy="410" r="31" fill="#a71930"/><text x="803" y="418" text-anchor="middle" font-size="17" fill="#fff">64'</text>
+    <circle cx="878" cy="410" r="31" fill="#a71930"/><text x="878" y="418" text-anchor="middle" font-size="17" fill="#fff">71'</text>
+    <circle cx="1005" cy="410" r="31" fill="#a71930"/><text x="1005" y="418" text-anchor="middle" font-size="17" fill="#fff">83'</text>
+    <circle cx="1026" cy="338" r="31" fill="#a71930"/><text x="1026" y="346" text-anchor="middle" font-size="17" fill="#fff">85'</text>
+  </g>
+  <g font-family="system-ui,sans-serif" font-size="19" fill="#31363b">
+    <text x="547" y="525" text-anchor="middle">横浜FM戦：40' / 64' / 71'</text>
+    <text x="780" y="563" text-anchor="middle">福岡戦：7' / 83' / 85'</text>
+  </g>
+  <rect x="145" y="612" width="910" height="82" rx="20" fill="#fff" stroke="#d4cec2" stroke-width="2"/>
+  <text x="600" y="663" text-anchor="middle" font-family="system-ui,sans-serif" font-size="26" font-weight="700" fill="#2d2d2d">鹿島戦も、交代カードを含めた「後半のもう一段」が勝負になる。</text>
+</svg>
