@@ -1,0 +1,53 @@
+.japanese-reference-panel {
+  position: fixed;
+  z-index: 60;
+  top: 96px;
+  left: 18px;
+  width: min(310px, calc(100vw - 36px));
+  max-height: calc(100dvh - 128px);
+  overflow: auto;
+  padding: 16px 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(250, 248, 242, .98);
+  box-shadow: 0 18px 52px rgba(39, 32, 24, .14);
+  backdrop-filter: blur(14px);
+  overscroll-behavior: contain;
+}
+
+.japanese-reference-panel[hidden] { display: none; }
+.japanese-reference-handle { display: none; }
+.japanese-reference-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.japanese-reference-kicker { margin: 0 0 5px; color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+.japanese-reference-head h2 { margin: 0; font: 700 21px/1.2 Georgia, "Yu Mincho", serif; }
+.japanese-reference-close { display: grid; place-items: center; flex: 0 0 auto; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--muted); font-size: 18px; line-height: 1; }
+.japanese-reference-close:hover,
+.japanese-reference-close:focus-visible { background: rgba(255,255,255,.76); color: var(--ink); outline: 0; }
+.japanese-reference-status { margin: 13px 0 8px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.japanese-reference-text { white-space: pre-wrap; color: var(--ink); font: 15px/1.9 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
+.reader-shell.note-is-open .japanese-reference-panel { visibility: hidden; pointer-events: none; }
+
+@media (max-width: 980px) {
+  .japanese-reference-panel {
+    top: auto;
+    left: 10px;
+    right: 10px;
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    width: auto;
+    max-height: min(40dvh, 360px);
+    padding: 10px 15px 16px;
+    border-radius: 18px 18px 14px 14px;
+    box-shadow: 0 -14px 44px rgba(39, 32, 24, .16);
+  }
+  .japanese-reference-handle {
+    display: block;
+    width: 36px;
+    height: 4px;
+    margin: 0 auto 9px;
+    border-radius: 999px;
+    background: var(--line);
+  }
+  .japanese-reference-head h2 { font-size: 19px; }
+  .japanese-reference-status { margin-top: 10px; }
+  .japanese-reference-text { font-size: 15px; line-height: 1.82; }
+}
