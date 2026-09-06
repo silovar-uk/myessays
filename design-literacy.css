@@ -127,10 +127,66 @@
   margin-left: 8px;
   color: var(--muted);
 }
+.reader-content .dl-tension {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 10px;
+}
+.reader-content .dl-tension-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  color: var(--muted);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+.reader-content .dl-propagation {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+.reader-content .dl-propagation-source {
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #24221f;
+  color: #fff;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.reader-content .dl-propagation-arrow {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+}
+.reader-content .dl-propagation-targets {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+.reader-content .dl-propagation-target {
+  min-width: 0;
+  padding: 12px 8px;
+  border: 1px solid rgba(33, 31, 28, .14);
+  border-radius: 10px;
+  background: #f7f4ed;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
 @media (max-width: 620px) {
   .reader-content .dl-visual { padding: 16px; }
   .reader-content .dl-compare { grid-template-columns: 1fr; }
   .reader-content .dl-figure-ground { min-height: 170px; }
+  .reader-content .dl-tension { grid-template-columns: 1fr; }
+  .reader-content .dl-tension-mark { min-width: 0; min-height: 24px; transform: rotate(90deg); }
+  .reader-content .dl-propagation-targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .reader-content .dl-visual * { scroll-behavior: auto; }
