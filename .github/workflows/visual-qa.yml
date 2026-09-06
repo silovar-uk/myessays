@@ -65,6 +65,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node scripts/reading-versions-qa.cjs
 
+      - name: Run Japanese reference browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/japanese-reference-qa.cjs
+
       - name: Run Argument Structure browser QA
         env:
           BASE_URL: http://127.0.0.1:4173
