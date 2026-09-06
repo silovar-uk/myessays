@@ -1,10 +1,12 @@
+.reader-language-switch { z-index: 62; }
+
 .japanese-reference-panel {
   position: fixed;
   z-index: 60;
-  top: 96px;
+  top: max(96px, calc(39dvh + 8px));
   right: 18px;
   width: min(336px, calc(100vw - 36px));
-  max-height: calc(100dvh - 128px);
+  max-height: min(520px, calc(61dvh - 28px));
   overflow: auto;
   padding: 16px 16px 18px;
   border: 1px solid var(--line);
