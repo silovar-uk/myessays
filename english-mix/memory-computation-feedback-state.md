@@ -12,6 +12,8 @@ mix_unit: "sentence"
 abstract: "The input returns to zero, but the output stays on.二つのNORゲートがつくる1ビットの記憶を、操作できる実験と図で追う。From circuits to AI and the brain,『同じ部品でつくれる』と『同じ働きである』の距離を考える。"
 ---
 
+# スイッチを切ったのに、覚えている。記憶と計算の意外な関係
+
 Turn the switch on. The light comes on. Then turn the switch off.
 
 ランプは、ついたまま。
