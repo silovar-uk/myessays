@@ -3,7 +3,7 @@ id: design-literacy-line-height-reading-rhythm
 title: "Line Height――行間は『空白』ではなく、行を分けながら文章をつなぐ距離"
 subtitle: "Design Literacy #9｜Typographyを情報設計として見る"
 created: "2026-09-03"
-updated: "2026-09-03"
+updated: "2026-09-06"
 type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Typography", "Line Height", "Leading", "Readability", "Accessibility", "UI"]
@@ -32,27 +32,29 @@ Webの本文を見て「ちょっと詰まっているな」と感じると、�
 
 たとえば、同じ16pxの本文でもline-heightが違うと、文字の見え方は大きく変わる。
 
-```text
-TIGHT
-
-これは本文ですこれは本文です
-これは本文ですこれは本文です
-これは本文ですこれは本文です
-```
+<div class="dl-visual" role="group" aria-label="同じ文字サイズで行間だけを狭い、適度、広いの三段階に変えた比較">
+<p class="dl-visual-kicker">VISUAL LESSON 01</p>
+<p class="dl-visual-title"><strong>行間は「多いほど良い」ではなく、行とparagraphの距離を調整する。</strong></p>
+<div class="dl-reading-samples">
+<div class="dl-reading-sample dl-reading-sample-tight">
+<p class="dl-reading-sample-label">TIGHT — 1.15</p>
+<p class="dl-reading-lines"><span>これは本文ですこれは本文です</span><span>これは本文ですこれは本文です</span><span>これは本文ですこれは本文です</span></p>
+</div>
+<div class="dl-reading-sample dl-reading-sample-balanced">
+<p class="dl-reading-sample-label">BALANCED EXAMPLE — 1.6</p>
+<p class="dl-reading-lines"><span>これは本文ですこれは本文です</span><span>これは本文ですこれは本文です</span><span>これは本文ですこれは本文です</span></p>
+</div>
+<div class="dl-reading-sample dl-reading-sample-loose">
+<p class="dl-reading-sample-label">LOOSE — 2.2</p>
+<p class="dl-reading-lines"><span>これは本文ですこれは本文です</span><span>これは本文ですこれは本文です</span><span>これは本文ですこれは本文です</span></p>
+</div>
+</div>
+<p class="dl-visual-note">中央の1.6を普遍的な正解として示しているわけではない。同じ文字・同じ情報量でも、line-heightだけで「各行の識別」と「paragraphのまとまり」のバランスが変わることを見るための比較。</p>
+</div>
 
 行同士が近すぎると、一つ一つの行を追いにくくなる。
 
 逆に、広げすぎると、
-
-```text
-LOOSE
-
-これは本文ですこれは本文です
-
-これは本文ですこれは本文です
-
-これは本文ですこれは本文です
-```
 
 各行が別々のブロックのように見え始める。
 
@@ -105,31 +107,29 @@ Line Height
 
 たとえばニュース記事。
 
-### BEFORE
-
-```text
-16px / line-height 1.15
-
-試合は序盤から激しい展開となり、
-両チームが中盤でボールを奪い合う
-時間が続いた。浦和は徐々にボールを
-保持する時間を増やしていった。
-```
+<div class="dl-visual" role="group" aria-label="同じ16pxのニュース本文をline-height 1.15と1.6で比較">
+<p class="dl-visual-kicker">VISUAL LESSON 02</p>
+<p class="dl-visual-title"><strong>文字サイズも情報量も変えず、line-heightだけを変える。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BEFORE — 16PX / LINE-HEIGHT 1.15</p>
+<div class="dl-reading-sample dl-reading-sample-tight">
+<p class="dl-reading-lines"><span>試合は序盤から激しい展開となり、</span><span>両チームが中盤でボールを奪い合う</span><span>時間が続いた。浦和は徐々にボールを</span><span>保持する時間を増やしていった。</span></p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">AFTER — 16PX / LINE-HEIGHT 1.6</p>
+<div class="dl-reading-sample dl-reading-sample-balanced">
+<p class="dl-reading-lines"><span>試合は序盤から激しい展開となり、</span><span>両チームが中盤でボールを奪い合う</span><span>時間が続いた。浦和は徐々にボールを</span><span>保持する時間を増やしていった。</span></p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">改善しているのは「余白の量」だけではない。各行を独立したreading unitとして追いやすくしつつ、同じparagraphに見える範囲を探している。</p>
+</div>
 
 ここで問題なのは「なんとなく窮屈」だけではない。
 
 **各行の境界が弱く、次の行を独立したreading unitとして追いにくい。**
-
-### AFTER
-
-```text
-16px / line-height 1.6
-
-試合は序盤から激しい展開となり、
-両チームが中盤でボールを奪い合う
-時間が続いた。浦和は徐々にボールを
-保持する時間を増やしていった。
-```
 
 文字サイズも情報量も変えていない。
 
@@ -195,13 +195,27 @@ W3C自身が、contentはこれらの値を使う必要はなく、**userがspac
 
 つまり、
 
-```text
-USWDS
-→ authored typographyの実践的guidance
-
-WCAG 1.4.12
-→ user-defined spacingに耐えられるadaptability
-```
+<div class="dl-visual" role="group" aria-label="USWDSのline-heightガイドとWCAG 1.4.12の要件の違い">
+<p class="dl-visual-kicker">VISUAL LESSON 03</p>
+<p class="dl-visual-title"><strong>同じ「1.5」でも、何のための数字かが違う。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">USWDS — DESIGN GUIDANCE</p>
+<div class="dl-demo-card">
+<p class="dl-event">Authored typography</p>
+<p class="dl-meta">長いrunning textでは1.5以上を一つのガイドとして検証する。実際の書体・本文幅・用途と合わせて調整する。</p>
+</div>
+</div>
+<div class="dl-panel">
+<p class="dl-panel-label">WCAG 1.4.12 — ADAPTABILITY</p>
+<div class="dl-demo-card">
+<p class="dl-event">User-defined spacing</p>
+<p class="dl-meta">ユーザーがline heightを1.5倍以上などへoverrideしても、contentやfunctionalityが失われない状態を求める。</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">USWDSは著者側のtypography設計を考えるガイド。WCAG 1.4.12はユーザーによるspacing変更へ耐えられることの要件。WCAGがデフォルト値を1.5に固定するよう求めているわけではない。</p>
+</div>
 
 であり、目的が違う。
 
@@ -215,16 +229,28 @@ line heightを増やすと、画面は少し上品で静かに見えやすい。
 
 でも、各行の間が広がりすぎるとProximityが弱くなり、paragraphとしてのまとまりが失われる。
 
-```text
-近すぎる
-→ 行同士を区別しにくい
-
-遠すぎる
-→ 同じparagraphとしてまとまりにくい
-
-適切
-→ 行は分かれるが、paragraphはつながる
-```
+<div class="dl-visual" role="group" aria-label="Line Heightで各行の識別とparagraphのまとまりを両立させる関係">
+<p class="dl-visual-kicker">VISUAL LESSON 04</p>
+<p class="dl-visual-title"><strong>Line Heightは、SeparationとGroupingのどちらかを最大化する操作ではない。</strong></p>
+<div class="dl-tension">
+<div class="dl-panel">
+<p class="dl-panel-label">SEPARATION</p>
+<div class="dl-demo-card">
+<p class="dl-event">各行を区別したい</p>
+<p class="dl-meta">近すぎると行同士の境界が弱くなり、次の行を追いにくい。</p>
+</div>
+</div>
+<div class="dl-tension-mark" aria-hidden="true">↔</div>
+<div class="dl-panel">
+<p class="dl-panel-label">GROUPING</p>
+<div class="dl-demo-card">
+<p class="dl-event">同じparagraphに見せたい</p>
+<p class="dl-meta">遠すぎるとProximityが弱くなり、各行が別々のblockに見え始める。</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">目標は中央の固定値ではない。「行は分かれるが、paragraphはつながる」という関係を、書体・行長・用途に合わせて探す。</p>
+</div>
 
 Line Heightは「white spaceを増やす技法」ではなく、**情報単位の距離を調整する技法**や。
 
@@ -238,17 +264,14 @@ Line Heightは「white spaceを増やす技法」ではなく、**情報単位�
 
 これを文字レベルまで縮小すると、
 
-```text
-Character
-↓
-Word
-↓
-Line
-↓
-Paragraph
-↓
-Section
-```
+<div class="dl-visual" role="group" aria-label="文字からセクションまで情報単位が段階的にまとまる構造">
+<p class="dl-visual-kicker">VISUAL LESSON 05</p>
+<p class="dl-visual-title"><strong>Typographyにも、情報単位の階層とGroupingがある。</strong></p>
+<div class="dl-chain" role="img" aria-label="CharacterからWord、Line、Paragraph、Sectionへまとまりが大きくなる">
+<span>CHARACTER</span><span>WORD</span><span>LINE</span><span>PARAGRAPH</span><span>SECTION</span>
+</div>
+<p class="dl-visual-note">Line HeightはLineとLineの距離を触っているが、その結果はParagraphという一段大きな情報単位のまとまりにも影響する。Typographyを小さなInformation Architectureとして見る理由がここにある。</p>
+</div>
 
 すべてに距離によるGroupingが存在する。
 
