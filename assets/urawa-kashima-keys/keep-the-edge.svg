@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">浦和の現在地：攻撃の尖りを残し、失点につながる粗さだけを削る</title>
+  <desc id="desc">浦和の5試合11得点という攻撃力を維持しながら、15失点につながっている局面の粗さを減らすことが鹿島戦の鍵であることを示す図。</desc>
+  <rect width="1200" height="760" rx="38" fill="#f5f2ea"/>
+  <text x="70" y="82" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#2c2c2c">URAWA / MATCH KEY 01</text>
+  <text x="70" y="136" font-family="system-ui,sans-serif" font-size="42" font-weight="800" fill="#a71930">火を消すな。粗さだけ削る。</text>
+  <line x1="105" y1="360" x2="1090" y2="360" stroke="#c8c2b7" stroke-width="4"/>
+  <circle cx="330" cy="360" r="126" fill="#a71930"/>
+  <text x="330" y="337" text-anchor="middle" font-family="system-ui,sans-serif" font-size="34" font-weight="800" fill="#fff">11 GOALS</text>
+  <text x="330" y="382" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#fff">5試合 / 2.2得点</text>
+  <text x="330" y="425" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#fff">KEEP THE EDGE</text>
+  <path d="M470 360 C550 360 590 360 660 360" stroke="#2e3439" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <polygon points="660,360 626,340 626,380" fill="#2e3439"/>
+  <circle cx="860" cy="360" r="126" fill="#343a40"/>
+  <text x="860" y="337" text-anchor="middle" font-family="system-ui,sans-serif" font-size="34" font-weight="800" fill="#fff">15 GA</text>
+  <text x="860" y="382" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#fff">5試合 / 3.0失点</text>
+  <text x="860" y="425" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#fff">CUT THE ERRORS</text>
+  <rect x="135" y="548" width="930" height="120" rx="22" fill="#fff" stroke="#d4cec2" stroke-width="2"/>
+  <text x="600" y="592" text-anchor="middle" font-family="system-ui,sans-serif" font-size="25" font-weight="800" fill="#2b2b2b">今日の目標</text>
+  <text x="600" y="635" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" font-weight="700" fill="#a71930">攻撃を弱めて守るのではなく、失点になる最後の1プレーを減らす。</text>
+</svg>
