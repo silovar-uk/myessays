@@ -30,7 +30,42 @@ abstract: "机の上のコップを見るとき、実際に目へ入っている
 
 よく考えると、かなり大胆である。
 
-目に入っていない部分のほうが多いのに、脳内ではもう一個まるごと完成している。
+目に入っていない部分のほうが多いのに、経験としてはもう**「一個まるごとのコップ」**として現れている。
+
+<section class="ph-viz ph-viz-cup" aria-label="コップの見えている面と見えていない面を比べる視覚図">
+  <div class="ph-viz-head">
+    <div>
+      <p class="ph-viz-kicker">Phenomenology 01 / Visual Observation</p>
+      <h3>見えていないのに、なぜ「全部」がある？</h3>
+    </div>
+    <p class="ph-viz-note">コップという、ありふれたものから「見ること」を考えてみる。</p>
+  </div>
+  <div class="ph-cup-observation">
+    <div class="ph-cup-label ph-cup-label-visible">
+      <strong>いま直接見えている</strong>
+      形、色、手前の輪郭、光の反射。
+    </div>
+    <div class="ph-cup-stage" aria-hidden="true">
+      <div class="ph-cup-shape"><span class="ph-cup-split"></span></div>
+    </div>
+    <div class="ph-cup-label ph-cup-label-unseen">
+      <strong>現在は直接見えない</strong>
+      背面、取っ手の裏側、向こう側の輪郭。
+    </div>
+  </div>
+  <p class="ph-cup-shift">それでも、一つのコップとして経験している。</p>
+  <div class="ph-cup-angles" aria-label="角度を変えた同じコップの例">
+    <div class="ph-cup-angle"><div class="ph-mini-cup" aria-hidden="true"></div><span>A / 正面寄り</span></div>
+    <div class="ph-cup-angle"><div class="ph-mini-cup ph-mini-cup-b" aria-hidden="true"></div><span>B / 取っ手が隠れる</span></div>
+    <div class="ph-cup-angle"><div class="ph-mini-cup ph-mini-cup-c" aria-hidden="true"></div><span>C / 反対側へ</span></div>
+  </div>
+  <p class="ph-cup-continuity">見え方は変わる。でも「同じもの」として続いている。</p>
+  <div class="ph-viz-question">
+    <span>QUESTION</span>
+    <p>今見えていない側も、あなたの経験から完全に消えている？</p>
+  </div>
+  <div class="ph-viz-foot"><span>OBSERVATION → SHIFT → QUESTION</span><span>静止図 / Minimum Version</span></div>
+</section>
 
 現象学は、こういう「普段は一秒も気にしないが、言われると妙な経験」を真面目に調べる哲学だ。
 
