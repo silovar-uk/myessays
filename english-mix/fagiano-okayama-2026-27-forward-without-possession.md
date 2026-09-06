@@ -345,6 +345,6 @@ The better question is simpler.
 - [Fagiano Okayama｜JEF United Chiba match comments, 2 Sep 2026](https://www.fagiano-okayama.com/news/202609022230/)
 - [J.LEAGUE｜Fagiano Okayama 3-2 Sanfrecce Hiroshima, 6 Sep 2026](https://www.jleague.jp/match/j1/2026/090606/)
 - [Fagiano Okayama｜Sanfrecce Hiroshima match comments, 6 Sep 2026](https://www.fagiano-okayama.com/news/202609062130/)
-- [Urawa Reds｜Maciej Skorża? No: 曺貴裁監督 鹿島戦試合後会見, 6 Sep 2026](https://www.urawa-reds.co.jp/topteamtopics/245452/)
+- [Urawa Reds｜曺貴裁監督 鹿島戦試合後会見, 6 Sep 2026](https://www.urawa-reds.co.jp/topteamtopics/245452/)
 - [Urawa Reds｜Kashima 0-1 Urawa, 6 Sep 2026](https://www.urawa-reds.co.jp/topteamtopics/245446/)
 - [J.LEAGUE｜Urawa vs Fagiano Okayama, 13 Sep 2026](https://www.jleague.jp/match/j1/2026/091303/)
