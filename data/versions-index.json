@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "join-the-conversation-before-agreement": {"en-mix": "english-mix/join-the-conversation-before-agreement.md"},
     "urawa-kashima-long-way-back-2016": {"en-mix": "english-mix/urawa-kashima-long-way-back-2016.md"},
     "design-literacy-arts-and-crafts-ornament-production-meaning": {"en-mix": "english-mix/design-literacy-arts-and-crafts-ornament-production-meaning.md"},
     "threejs-scenegraph-whose-position-is-two": {"en-mix": "english-mix/threejs-scenegraph-whose-position-is-two.md"},
