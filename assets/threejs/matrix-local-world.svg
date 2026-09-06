@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" role="img" aria-labelledby="title desc">
+  <title id="title">From local transform to matrixWorld</title>
+  <desc id="desc">Position, rotation, and scale are composed into the local matrix. Parent hierarchy transforms combine with it to form matrixWorld.</desc>
+  <rect width="800" height="430" rx="28" fill="#f4f1ea"/>
+  <text x="50" y="58" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#243b40">LOCAL → WORLD</text>
+  <g font-family="system-ui,sans-serif">
+    <rect x="52" y="92" width="188" height="62" rx="14" fill="#fff" stroke="#7c9091" stroke-width="2"/>
+    <text x="76" y="119" font-size="14" font-weight="700" fill="#243b40">position / rotation / scale</text>
+    <text x="76" y="140" font-size="12" fill="#66797c">local properties</text>
+    <path d="M146 154 V190" stroke="#243b40" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="62" y="196" width="168" height="66" rx="14" fill="#e9f0ef" stroke="#567173" stroke-width="2"/>
+    <text x="111" y="224" font-size="17" font-weight="700" fill="#243b40">matrix</text>
+    <text x="86" y="246" font-size="12" fill="#66797c">親から見たtransform</text>
+    <path d="M230 229 H330" stroke="#243b40" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="342" y="180" width="196" height="96" rx="16" fill="#fff" stroke="#7c9091" stroke-width="2"/>
+    <text x="378" y="210" font-size="15" font-weight="700" fill="#243b40">PARENT HIERARCHY</text>
+    <text x="370" y="234" font-size="12" fill="#66797c">parent.matrixWorld</text>
+    <text x="370" y="255" font-size="12" fill="#66797c">祖先の移動・回転・scale</text>
+    <path d="M538 229 H625" stroke="#243b40" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="635" y="194" width="126" height="70" rx="14" fill="#fff7d8" stroke="#b38a22" stroke-width="2"/>
+    <text x="652" y="224" font-size="17" font-weight="700" fill="#4d421f">matrixWorld</text>
+    <text x="652" y="246" font-size="12" fill="#6d5b25">世界から見た結果</text>
+    <text x="62" y="326" font-size="14" fill="#243b40">同じ local matrix でも、parent hierarchy が変われば matrixWorld は変わる。</text>
+    <text x="62" y="356" font-size="13" fill="#66797c">Three.jsは通常これを自動更新するため、便利なぶん「どの空間の値か」を忘れやすい。</text>
+  </g>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#243b40"/>
+    </marker>
+  </defs>
+</svg>
