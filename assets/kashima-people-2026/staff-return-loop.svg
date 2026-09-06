@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">鹿島トップチームスタッフの選手・育成・トップ指導の循環</title>
+  <desc id="desc">鬼木達、柳沢敦、曽ケ端準、中後雅喜について、選手経験から育成年代や他クラブでの指導を経てトップチーム指導へ至る流れを比較した概念図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 z" fill="#30343b"/></marker>
+    <style>.t{font-family:system-ui,-apple-system,'Noto Sans JP',sans-serif;fill:#252525}.head{font-size:23px;font-weight:800}.small{font-size:18px;fill:#5f6368}.box{fill:#fff;stroke:#cbc5ba;stroke-width:2}.accent{fill:#fff0f2;stroke:#8c1d2c;stroke-width:2.5}.line{stroke:#30343b;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1200" height="760" rx="38" fill="#f6f3ec"/>
+  <text x="58" y="70" class="t" font-size="25" font-weight="700">CAREER PATH / COACHING STAFF</text>
+  <text x="58" y="118" class="t" font-size="38" font-weight="850">「OBが戻った」だけではない。育成を通って戻っている。</text>
+  <text x="58" y="154" class="small">現在のトップチームスタッフの一部を、経歴の流れとして整理。</text>
+
+  <text x="65" y="222" class="head t">鬼木 達</text>
+  <rect x="190" y="188" width="225" height="72" rx="18" class="box"/><text x="302" y="218" text-anchor="middle" class="head t">鹿島でプロ開始</text><text x="302" y="244" text-anchor="middle" class="small">1993</text>
+  <path d="M415 224 H480" class="line"/>
+  <rect x="490" y="188" width="245" height="72" rx="18" class="box"/><text x="612" y="218" text-anchor="middle" class="head t">川崎 育成→コーチ</text><text x="612" y="244" text-anchor="middle" class="small">U-12 / U-18 / Top</text>
+  <path d="M735 224 H800" class="line"/>
+  <rect x="810" y="188" width="300" height="72" rx="18" class="accent"/><text x="960" y="218" text-anchor="middle" class="head t">鹿島トップ監督</text><text x="960" y="244" text-anchor="middle" class="small">2025–</text>
+
+  <text x="65" y="342" class="head t">柳沢 敦</text>
+  <rect x="190" y="308" width="225" height="72" rx="18" class="box"/><text x="302" y="338" text-anchor="middle" class="head t">鹿島のFW</text><text x="302" y="364" text-anchor="middle" class="small">選手としてクラブの象徴</text>
+  <path d="M415 344 H480" class="line"/>
+  <rect x="490" y="308" width="245" height="72" rx="18" class="box"/><text x="612" y="338" text-anchor="middle" class="head t">鹿島ユース監督</text><text x="612" y="364" text-anchor="middle" class="small">2021–2024</text>
+  <path d="M735 344 H800" class="line"/>
+  <rect x="810" y="308" width="300" height="72" rx="18" class="accent"/><text x="960" y="338" text-anchor="middle" class="head t">トップチームコーチ</text><text x="960" y="364" text-anchor="middle" class="small">2025–</text>
+
+  <text x="65" y="462" class="head t">曽ケ端 準</text>
+  <rect x="190" y="428" width="225" height="72" rx="18" class="box"/><text x="302" y="458" text-anchor="middle" class="head t">鹿島一筋のGK</text><text x="302" y="484" text-anchor="middle" class="small">長期在籍</text>
+  <path d="M415 464 H480" class="line"/>
+  <rect x="490" y="428" width="245" height="72" rx="18" class="box"/><text x="612" y="458" text-anchor="middle" class="head t">鹿島ユースGKコーチ</text><text x="612" y="484" text-anchor="middle" class="small">育成年代を担当</text>
+  <path d="M735 464 H800" class="line"/>
+  <rect x="810" y="428" width="300" height="72" rx="18" class="accent"/><text x="960" y="458" text-anchor="middle" class="head t">トップGKコーチ</text><text x="960" y="484" text-anchor="middle" class="small">2025–</text>
+
+  <text x="65" y="582" class="head t">中後 雅喜</text>
+  <rect x="190" y="548" width="225" height="72" rx="18" class="box"/><text x="302" y="578" text-anchor="middle" class="head t">鹿島でプレー</text><text x="302" y="604" text-anchor="middle" class="small">2005–2008</text>
+  <path d="M415 584 H480" class="line"/>
+  <rect x="490" y="548" width="245" height="72" rx="18" class="box"/><text x="612" y="578" text-anchor="middle" class="head t">東京Vアカデミー</text><text x="612" y="604" text-anchor="middle" class="small">ジュニア〜ユース監督</text>
+  <path d="M735 584 H800" class="line"/>
+  <rect x="810" y="548" width="300" height="72" rx="18" class="accent"/><text x="960" y="578" text-anchor="middle" class="head t">鹿島トップコーチ</text><text x="960" y="604" text-anchor="middle" class="small">2024–</text>
+
+  <rect x="58" y="666" width="1055" height="56" rx="16" fill="#ebe6dc"/><text x="585" y="701" text-anchor="middle" class="t" font-size="21" font-weight="700">共通点：名選手→即トップ指導ではなく、「若い選手を見る時間」を経由している。</text>
+</svg>
