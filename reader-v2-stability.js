@@ -3,7 +3,10 @@
 
   const MOBILE_BREAKPOINT = 820;
   const READING_PREFIX = 'myessays:reading-state:';
+  const READING_LINE_RATIO = 0.28;
   let syncFrame = 0;
+  let pendingModeLocation = null;
+  let restoreFrame = 0;
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -42,6 +45,93 @@
     } catch {
       return {};
     }
+  }
+
+  function clamp(value, min = 0, max = 1) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function readingLineY() {
+    const header = document.querySelector('.reader-v2-header');
+    const minimum = header?.getBoundingClientRect().height
+      ? header.getBoundingClientRect().height + 24
+      : 0;
+    return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
+  }
+
+  function cssEscape(value = '') {
+    if (window.CSS?.escape) return CSS.escape(String(value));
+    return String(value).replace(/(["\\#.;?+*~':!^$\[\]()=>|/@])/g, '\\$1');
+  }
+
+  function captureModeLocation(event) {
+    const option = event.target instanceof Element
+      ? event.target.closest('[data-reader-mode-version],[data-reader-version]')
+      : null;
+    if (!option || !readerOpen()) return;
+
+    const nextVersion = option.dataset.readerModeVersion || option.dataset.readerVersion || '';
+    const currentVersion = window.MyEssaysReaderVersions?.currentVersion?.() || 'ja';
+    if (!nextVersion || nextVersion === currentVersion) return;
+
+    const locationValue = window.MyEssaysReadingLocation?.current?.();
+    const block = locationValue?.block;
+    const locator = locationValue?.locator || block?.dataset?.readingLocator || '';
+    if (!locator) return;
+
+    const rect = block?.getBoundingClientRect?.();
+    const progress = rect && rect.height > 0
+      ? clamp((readingLineY() - rect.top) / rect.height)
+      : 0;
+
+    pendingModeLocation = {
+      essayId: currentEssayId(),
+      locator,
+      progress
+    };
+  }
+
+  function exactLocatorTarget(locator) {
+    const content = readerContent();
+    if (!content || !locator) return null;
+    const matches = [...content.querySelectorAll(
+      `[data-reading-locator="${cssEscape(locator)}"]`
+    )];
+    return matches[0] || null;
+  }
+
+  function restoreExactModeLocation(event) {
+    if (!readerOpen()) return;
+    const eventEssayId = event?.detail?.essayId || currentEssayId();
+    const eventPairId = event?.detail?.pairId || '';
+    const captured = pendingModeLocation && pendingModeLocation.essayId === eventEssayId
+      ? pendingModeLocation
+      : null;
+    pendingModeLocation = null;
+
+    const locator = captured?.locator || eventPairId;
+    if (!locator) return;
+
+    window.cancelAnimationFrame(restoreFrame);
+    restoreFrame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          restoreFrame = 0;
+          if (!readerOpen() || currentEssayId() !== eventEssayId) return;
+          const target = exactLocatorTarget(locator);
+          if (!target) return;
+
+          const rect = target.getBoundingClientRect();
+          const progress = captured?.progress ?? 0;
+          const pagePoint = rect.top + window.scrollY + (rect.height * clamp(progress));
+          window.scrollTo({
+            top: Math.max(0, pagePoint - readingLineY()),
+            behavior: 'auto'
+          });
+          window.MyEssaysReadingLocation?.refresh?.();
+        });
+      });
+    });
   }
 
   function element(tag, className = '', text = '') {
@@ -159,11 +249,18 @@
   }
 
   function init() {
+    document.addEventListener('click', captureModeLocation, true);
     document.addEventListener('myessays:reader-rendered', schedule);
     document.addEventListener('myessays:reader-ready', schedule);
-    document.addEventListener('myessays:reader-version-changed', schedule);
+    document.addEventListener('myessays:reader-version-changed', event => {
+      schedule();
+      restoreExactModeLocation(event);
+    });
     document.addEventListener('myessays:reader-language-changed', schedule);
-    window.addEventListener('hashchange', () => window.setTimeout(schedule, 0));
+    window.addEventListener('hashchange', () => {
+      pendingModeLocation = null;
+      window.setTimeout(schedule, 0);
+    });
 
     const content = readerContent();
     if (content) {
