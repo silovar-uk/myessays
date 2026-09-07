@@ -12,6 +12,7 @@
   const EN_RE = /[A-Za-z][A-Za-z0-9_-]{3,}/g;
   const NUM_RE = /\d+(?:[.,]\d+)*/g;
   const BLOCK_SELECTOR = 'h2,h3,p,li';
+  const LOCATOR_BLOCK_SELECTOR = 'p,ul,ol,blockquote,figure';
 
   const norm = value => String(value || '').normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
 
@@ -46,9 +47,9 @@
     return Math.max(0, Math.min(targetCount - 1, Math.round((index * (targetCount - 1)) / (sourceCount - 1))));
   }
 
-  // Keep this alignment helper conservative and backward-compatible. It is
-  // useful as an evidence layer, while DOM pairing below can apply a stronger
-  // structural fallback without changing the public/tested contract.
+  // Keep the alignment helper conservative and backward-compatible. It is an
+  // evidence layer. User-facing DOM pairing may apply a stronger structural
+  // fallback without changing this public/tested contract.
   function anchors(source, target) {
     const dp = Array.from({ length: source.length + 1 }, () => Array(target.length + 1).fill(0));
     const step = Array.from({ length: source.length + 1 }, () => Array(target.length + 1).fill(''));
@@ -169,7 +170,35 @@
     return `s${section}-b${String(blockIndex).padStart(3, '0')}`;
   }
 
+  function locatorLabel(sectionIndex, canonicalIndex) {
+    const section = sectionIndex < 0 ? '0' : String(sectionIndex + 1);
+    return `${section}-${canonicalIndex + 1}`;
+  }
+
+  // Scratch roots created from the canonical Japanese Markdown do not pass
+  // through reading-locators.js. Reproduce its canonical locator labels so the
+  // same coordinate system is available in comparison/lens roots too.
+  function ensureCanonicalReadingLocators(root) {
+    if (!root) return root;
+    let sectionIndex = -1;
+    const countBySection = new Map();
+    [...root.children].forEach(element => {
+      if (element.matches('h2')) {
+        sectionIndex += 1;
+        return;
+      }
+      if (!element.matches(LOCATOR_BLOCK_SELECTOR)) return;
+      const count = countBySection.get(sectionIndex) || 0;
+      if (!element.dataset.readingLocator) {
+        element.dataset.readingLocator = locatorLabel(sectionIndex, count);
+      }
+      countBySection.set(sectionIndex, count + 1);
+    });
+    return root;
+  }
+
   function annotateCanonical(root) {
+    ensureCanonicalReadingLocators(root);
     const canonicalSections = sections(root);
     canonicalSections.forEach((section, sectionIndex) => {
       if (section.heading) {
@@ -177,8 +206,10 @@
         section.heading.dataset.pairConfidence = 'canonical';
       }
       section.blocks.forEach((block, blockIndex) => {
-        block.dataset.pairId = block.dataset.pairId || pairKey(sectionIndex, blockIndex);
-        block.dataset.pairConfidence = 'canonical';
+        // Paragraph-level identity reuses the existing Reading Locator. Pair ID
+        // is only a compatibility alias, not a second paragraph coordinate.
+        block.dataset.pairId = block.dataset.readingLocator || block.dataset.pairId || pairKey(sectionIndex, blockIndex);
+        block.dataset.pairConfidence = block.dataset.readingLocator ? 'reading-locator' : 'canonical';
       });
     });
     return root;
@@ -191,6 +222,20 @@
     const canonicalSections = sections(canonicalRoot);
     const count = Math.min(sourceSections.length, canonicalSections.length);
 
+    // The rendered alternate version already has canonicalized
+    // data-reading-locator values from reading-locators.js. Use those first.
+    const canonicalByLocator = new Map(
+      eligibleBlocks(canonicalRoot)
+        .filter(block => block.dataset.readingLocator)
+        .map(block => [block.dataset.readingLocator, block])
+    );
+    eligibleBlocks(root).forEach(block => {
+      const locator = block.dataset.readingLocator;
+      if (!locator || !canonicalByLocator.has(locator)) return;
+      block.dataset.pairId = locator;
+      block.dataset.pairConfidence = 'reading-locator';
+    });
+
     for (let s = 0; s < count; s += 1) {
       const source = sourceSections[s];
       const canonical = canonicalSections[s];
@@ -199,12 +244,14 @@
         source.heading.dataset.pairConfidence = 'heading';
       }
 
-      // Authoring contract: alternate Reading Modes normally preserve block
-      // count/order. In that normal case identity is structural, not textual.
-      // This is deliberately outside align(), whose conservative semantics are
-      // retained for diagnostics and compatibility.
+      const sourceUnpaired = source.blocks.filter(block => !block.dataset.pairId);
+      if (!sourceUnpaired.length) continue;
+
+      // Normal authoring contract: alternate modes preserve section block
+      // count/order. Use structure directly even if the text is fully changed.
       if (source.blocks.length === canonical.blocks.length && source.blocks.length) {
         source.blocks.forEach((sourceBlock, index) => {
+          if (sourceBlock.dataset.pairId) return;
           const canonicalBlock = canonical.blocks[index];
           sourceBlock.dataset.pairId = canonicalBlock.dataset.pairId;
           sourceBlock.dataset.pairConfidence = 'pair-order';
@@ -215,17 +262,17 @@
       const mapping = align(source.blocks.map(textOf), canonical.blocks.map(textOf));
       mapping.forEach((match, index) => {
         const sourceBlock = source.blocks[index];
+        if (!sourceBlock || sourceBlock.dataset.pairId) return;
         const canonicalBlock = match ? canonical.blocks[match.ja] : null;
-        if (!sourceBlock || !canonicalBlock) return;
+        if (!canonicalBlock) return;
         sourceBlock.dataset.pairId = canonicalBlock.dataset.pairId;
         sourceBlock.dataset.pairConfidence = match.confidence || 'pair';
       });
     }
 
-    // UX fallback: if structures genuinely differ, every remaining readable
-    // block still receives a monotonic positional identity. This prevents a
-    // wording change from becoming a user-facing "could not identify" error,
-    // while align() itself remains conservative about uncertain evidence.
+    // UX fallback for truly mismatched structures. Unresolved readable blocks
+    // receive a monotonic positional alias so a translation cannot surface a
+    // user-facing lookup failure. The conservative align() result stays intact.
     const sourceAll = eligibleBlocks(root);
     const canonicalAll = eligibleBlocks(canonicalRoot);
     sourceAll.forEach((block, index) => {
@@ -240,7 +287,7 @@
 
   function findByPairId(root, pairId) {
     if (!root || !pairId) return null;
-    return eligibleBlocks(root).find(block => block.dataset.pairId === pairId) || null;
+    return eligibleBlocks(root).find(block => block.dataset.pairId === pairId || block.dataset.readingLocator === pairId) || null;
   }
 
   const pairApi = Object.freeze({
@@ -248,9 +295,11 @@
     align,
     projectedIndex,
     pairKey,
+    locatorLabel,
     textOf,
     eligibleBlocks,
     sections,
+    ensureCanonicalReadingLocators,
     annotateCanonical,
     annotateAgainstCanonical,
     findByPairId
