@@ -3,11 +3,11 @@
 
   const INDEX_URL = 'data/versions-index.json';
   const LANGUAGE_STORAGE_KEY = 'myessays:reader-language';
-  const VERSION_DEFINITIONS = {
-    ja: { label: '日本語', badge: 'JA' },
-    'en-mix': { label: 'English Mix', badge: 'EN MIX' },
-    'es-mix': { label: 'Español Mix', badge: 'ES MIX' }
-  };
+  const VERSION_DEFINITIONS = Object.freeze({
+    ja: { label: '日本語', badge: 'JA', lang: 'ja' },
+    'en-mix': { label: 'English Mix', badge: 'EN MIX', lang: 'en' },
+    'es-mix': { label: 'Español Mix', badge: 'ES MIX', lang: 'es' }
+  });
   const DISPLAY_META_KEYS = ['title', 'subtitle', 'abstract'];
   const READING_BLOCK_SELECTOR = 'h2, h3, p, ul, ol, blockquote, figure, .essay-table-wrap, hr';
   const READING_LINE_RATIO = 0.28;
@@ -71,6 +71,11 @@
   }
 
   async function versionDocument(id, version) {
+    if (version === 'ja') {
+      const original = originalEssay(id);
+      return original ? { meta: original, body: original.body } : null;
+    }
+
     const key = `${id}:${version}`;
     if (versionCache.has(key)) return versionCache.get(key);
 
@@ -128,6 +133,12 @@
     catch {}
   }
 
+  async function availableVersions(id = currentEssayId()) {
+    if (!id) return [];
+    const index = await versionsIndex();
+    return Object.keys(index?.articles?.[id] || {}).filter(key => VERSION_DEFINITIONS[key]);
+  }
+
   function clamp(value, min = 0, max = 1) {
     return Math.min(max, Math.max(min, value));
   }
@@ -138,6 +149,14 @@
 
   function readingBlocks(content) {
     return content ? [...content.querySelectorAll(READING_BLOCK_SELECTOR)] : [];
+  }
+
+  function pairBlocks(content) {
+    if (!content) return [];
+    return [...content.querySelectorAll('[data-pair-id]')].filter(block => {
+      if (block.closest('.reader-mode-bar,.reader-compare-view,.language-lens-panel')) return false;
+      return true;
+    });
   }
 
   function contentPointForViewport(content, viewportY) {
@@ -170,7 +189,7 @@
   }
 
   function nearestReadingBlock(blocks, viewportY) {
-    if (!blocks.length) return { index: -1, progress: 0 };
+    if (!blocks.length) return { index: -1, progress: 0, block: null };
     let bestIndex = 0;
     let bestDistance = Infinity;
     blocks.forEach((block, index) => {
@@ -182,9 +201,11 @@
         bestIndex = index;
       }
     });
-    const rect = blocks[bestIndex].getBoundingClientRect();
+    const block = blocks[bestIndex];
+    const rect = block.getBoundingClientRect();
     return {
       index: bestIndex,
+      block,
       progress: clamp((viewportY - rect.top) / Math.max(rect.height, 1))
     };
   }
@@ -193,15 +214,22 @@
     const content = readerContent();
     if (!content) return null;
     const viewportY = window.innerHeight * READING_LINE_RATIO;
-    const headings = [...content.querySelectorAll('h2')];
-    const blocks = readingBlocks(content);
+
+    const paired = nearestReadingBlock(pairBlocks(content), viewportY);
+    const pairId = paired.block?.dataset?.pairId || '';
+
+    const headings = [...content.querySelectorAll('h2')].filter(h => !h.closest('.reader-mode-bar,.reader-compare-view'));
+    const blocks = readingBlocks(content).filter(block => !block.closest('.reader-mode-bar,.reader-compare-view'));
     const sectionIndex = activeSectionIndex(headings, viewportY);
     const sectionBlocks = blocksInSection(blocks, headings, sectionIndex);
     const current = nearestReadingBlock(sectionBlocks, viewportY);
     const blockRatio = current.index >= 0 && sectionBlocks.length
       ? clamp((current.index + current.progress) / sectionBlocks.length)
       : 0;
+
     return {
+      pairId,
+      pairProgress: paired.progress,
       sectionIndex,
       blockRatio,
       articleProgress: contentPointForViewport(content, viewportY),
@@ -210,11 +238,28 @@
     };
   }
 
+  function findPairBlock(content, pairId) {
+    if (!content || !pairId) return null;
+    return pairBlocks(content).find(block => block.dataset.pairId === pairId) || null;
+  }
+
   function targetPointFromSnapshot(snapshot) {
     const content = readerContent();
     if (!content || !snapshot) return null;
-    const headings = [...content.querySelectorAll('h2')];
-    const blocks = readingBlocks(content);
+
+    if (snapshot.pairId) {
+      const pair = findPairBlock(content, snapshot.pairId);
+      if (pair) {
+        const rect = pair.getBoundingClientRect();
+        return {
+          pageY: rect.top + window.scrollY + (rect.height * clamp(snapshot.pairProgress)),
+          pair
+        };
+      }
+    }
+
+    const headings = [...content.querySelectorAll('h2')].filter(h => !h.closest('.reader-mode-bar,.reader-compare-view'));
+    const blocks = readingBlocks(content).filter(block => !block.closest('.reader-mode-bar,.reader-compare-view'));
     if (snapshot.sectionIndex < headings.length) {
       const sectionBlocks = blocksInSection(blocks, headings, snapshot.sectionIndex);
       if (sectionBlocks.length) {
@@ -222,11 +267,20 @@
         const index = Math.min(sectionBlocks.length - 1, Math.floor(scaled));
         const progress = clamp(scaled - index);
         const rect = sectionBlocks[index].getBoundingClientRect();
-        return rect.top + window.scrollY + (rect.height * progress);
+        return { pageY: rect.top + window.scrollY + (rect.height * progress), pair: null };
       }
     }
     const rect = content.getBoundingClientRect();
-    return rect.top + window.scrollY + (rect.height * clamp(snapshot.articleProgress));
+    return { pageY: rect.top + window.scrollY + (rect.height * clamp(snapshot.articleProgress)), pair: null };
+  }
+
+  function flashPair(block) {
+    if (!block) return;
+    block.classList.remove('is-language-switch-target');
+    requestAnimationFrame(() => {
+      block.classList.add('is-language-switch-target');
+      window.setTimeout(() => block.classList.remove('is-language-switch-target'), 720);
+    });
   }
 
   function restoreReadingPosition(snapshot) {
@@ -241,12 +295,35 @@
           window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' });
           return resolve();
         }
-        const targetPageY = targetPointFromSnapshot(snapshot);
-        if (targetPageY == null) return resolve();
+        const target = targetPointFromSnapshot(snapshot);
+        if (!target) return resolve();
         const desiredViewportY = window.innerHeight * READING_LINE_RATIO;
-        window.scrollTo({ top: Math.max(0, targetPageY - desiredViewportY), behavior: 'auto' });
+        window.scrollTo({ top: Math.max(0, target.pageY - desiredViewportY), behavior: 'auto' });
+        flashPair(target.pair);
         resolve();
       }));
+    });
+  }
+
+  function waitForPairIdentity(id) {
+    const content = readerContent();
+    if (!content) return Promise.resolve();
+    if (content.dataset.pairIdentity === 'ready' && content.dataset.readerEssayId === id) return Promise.resolve();
+
+    return new Promise(resolve => {
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        document.removeEventListener('myessays:pair-identity-ready', onReady);
+        window.clearTimeout(timeout);
+        resolve();
+      };
+      const onReady = event => {
+        if (event.detail?.essayId === id) finish();
+      };
+      const timeout = window.setTimeout(finish, 500);
+      document.addEventListener('myessays:pair-identity-ready', onReady);
     });
   }
 
@@ -304,12 +381,12 @@
     return switcher;
   }
 
-  function renderDisclosure(switcher, availableVersions, activeVersion) {
+  function renderDisclosure(switcher, available, activeVersion) {
     const triggerCurrent = switcher.querySelector('.reader-language-current');
     const options = switcher.querySelector('.reader-language-options');
     if (!triggerCurrent || !options) return;
 
-    const versions = ['ja', ...availableVersions.filter(key => key !== 'ja' && VERSION_DEFINITIONS[key])];
+    const versions = ['ja', ...available.filter(key => key !== 'ja' && VERSION_DEFINITIONS[key])];
     const activeDefinition = VERSION_DEFINITIONS[activeVersion] || VERSION_DEFINITIONS.ja;
     triggerCurrent.textContent = activeDefinition.badge;
     switcher.querySelector('.reader-language-trigger')?.setAttribute('aria-label', `表示言語: ${activeDefinition.label}`);
@@ -321,37 +398,49 @@
     }).join('');
   }
 
-  async function switchVersion(version) {
-    if (switchInFlight) return;
+  async function switchVersion(version, options = {}) {
+    if (switchInFlight || !VERSION_DEFINITIONS[version]) return false;
     const id = currentEssayId();
-    if (!id) return;
+    if (!id) return false;
     const original = originalEssay(id);
-    if (!original || typeof showReader !== 'function') return;
+    if (!original || typeof showReader !== 'function') return false;
+
+    if (version === currentRenderedVersion()) {
+      rememberPreferredVersion(version);
+      versionByEssay.set(id, version);
+      return true;
+    }
 
     switchInFlight = true;
     try {
       let nextEssay = original;
       if (version !== 'ja') {
-        const versionDoc = await versionDocument(id, version);
-        if (!versionDoc || id !== currentEssayId()) return;
-        nextEssay = buildVersionEssay(original, versionDoc, version);
-        if (!nextEssay) return;
+        const document = await versionDocument(id, version);
+        if (!document || id !== currentEssayId()) return false;
+        nextEssay = buildVersionEssay(original, document, version);
+        if (!nextEssay) return false;
       }
 
-      const readingPosition = captureReadingPosition();
+      const readingPosition = options.snapshot || captureReadingPosition();
       const previousScrollY = window.scrollY;
       versionByEssay.set(id, version);
+
+      const content = readerContent();
+      if (content) content.dataset.pairIdentity = '';
       showReader(nextEssay);
       window.scrollTo({ top: previousScrollY, behavior: 'auto' });
+
+      await waitForPairIdentity(id);
       await restoreReadingPosition(readingPosition);
       rememberPreferredVersion(version);
 
       document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
-        detail: { essayId: id, version }
+        detail: { essayId: id, version, pairId: readingPosition?.pairId || '' }
       }));
       document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {
-        detail: { essayId: id, mode: version }
+        detail: { essayId: id, mode: version, pairId: readingPosition?.pairId || '' }
       }));
+      return true;
     } finally {
       switchInFlight = false;
     }
@@ -368,10 +457,9 @@
       return;
     }
 
-    const index = await versionsIndex();
+    const available = await availableVersions(id);
     if (id !== currentEssayId()) return;
-    const availableVersions = Object.keys(index?.articles?.[id] || {}).filter(key => VERSION_DEFINITIONS[key]);
-    const hasAlternative = availableVersions.length > 0;
+    const hasAlternative = available.length > 0;
     switcher.hidden = !hasAlternative;
     if (!hasAlternative) {
       setDisclosureOpen(switcher, false);
@@ -382,12 +470,48 @@
     const preferred = preferredVersion();
     let desired = rendered;
     if (!switchInFlight) {
-      desired = preferred === 'ja' || availableVersions.includes(preferred) ? preferred : 'ja';
+      desired = preferred === 'ja' || available.includes(preferred) ? preferred : 'ja';
     }
     versionByEssay.set(id, desired);
-    renderDisclosure(switcher, availableVersions, desired);
+    renderDisclosure(switcher, available, desired);
     if (!switchInFlight && desired !== rendered) switchVersion(desired);
   }
+
+  function renderRoot(markdown) {
+    const root = document.createElement('div');
+    const render = window.MyEssaysMarkdown?.render || window.renderMarkdown;
+    if (typeof render === 'function') root.innerHTML = render(markdown || '');
+    return root;
+  }
+
+  async function rootForVersion(id, version) {
+    const original = originalEssay(id);
+    if (!original) return null;
+    const canonicalRoot = renderRoot(original.body || '');
+    window.MyEssaysPairIdentity?.annotateCanonical?.(canonicalRoot);
+    if (version === 'ja') return canonicalRoot;
+
+    const document = await versionDocument(id, version);
+    if (!document?.body) return null;
+    const root = renderRoot(document.body);
+    window.MyEssaysPairIdentity?.annotateAgainstCanonical?.(root, canonicalRoot);
+    return root;
+  }
+
+  const publicApi = Object.freeze({
+    definitions: VERSION_DEFINITIONS,
+    currentEssayId,
+    currentVersion: currentRenderedVersion,
+    preferredVersion,
+    availableVersions,
+    getVersionDocument: versionDocument,
+    rootForVersion,
+    captureReadingPosition,
+    restoreReadingPosition,
+    switchVersion,
+    isSwitching: () => switchInFlight
+  });
+  window.MyEssaysReaderVersions = publicApi;
 
   function syncAfterRender() {
     const id = currentEssayId();
