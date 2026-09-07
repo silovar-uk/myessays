@@ -1,0 +1,49 @@
+/* Compatibility overrides for Reader V2 over the existing reader DOM. */
+
+/* Title/subtitle stay direct children so reading-locators.js keeps its canonical H2 structure. */
+.reader-v2-open .reader-content > h1 {
+  margin-bottom: 12px;
+}
+
+.reader-v2-open .reader-content > h2.reader-v2-subtitle {
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #57534d;
+  font: 500 14px/1.75 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif !important;
+  letter-spacing: .01em !important;
+  text-wrap: pretty;
+}
+
+.reader-v2-open .reader-content > .reader-v2-intro {
+  margin: 0 0 34px;
+}
+
+/* Desktop already has a persistent Reader Map rail; the header trigger is mobile-only. */
+.reader-v2-header .reader-v2-map-toggle {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .reader-v2-header .reader-v2-map-toggle {
+    display: inline-flex;
+  }
+
+  .reader-v2-header .back-button {
+    width: 44px;
+    min-width: 44px;
+    font-size: 0;
+    color: var(--muted);
+  }
+
+  .reader-v2-header .back-button::before {
+    content: '←';
+    font-size: 16px;
+    line-height: 1;
+    color: var(--muted);
+  }
+
+  .reader-v2-open .reader-content > h2.reader-v2-subtitle {
+    font-size: 13px !important;
+  }
+}
