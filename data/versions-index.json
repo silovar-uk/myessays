@@ -1,6 +1,7 @@
 {
   "version": 1,
   "articles": {
+    "shape-partners-resource-economics": {"en-mix": "english-mix/shape-partners-resource-economics.md"},
     "la-traviata-where-did-camellia-go": {"en-mix": "english-mix/la-traviata-where-did-camellia-go.md"},
     "kimiyasu-kudo-01-29-years-reinvention": {"en-mix": "english-mix/kimiyasu-kudo-01-29-years-reinvention.md"},
     "kimiyasu-kudo-02-three-pennants-five-japan-titles": {"en-mix": "english-mix/kimiyasu-kudo-02-three-pennants-five-japan-titles.md"},
@@ -135,7 +136,7 @@
     "berryz-kobo-history-shared-time": {"en-mix": "english-mix/berryz-kobo-history-shared-time.md"},
     "matsuura-aya-history-solo-persona": {"en-mix": "english-mix/matsuura-aya-history-solo-persona.md"},
     "minimoni-history-format-ip": {"en-mix": "english-mix/minimoni-history-format-ip.md"},
-    "melon-kinenbi-history-live-community": {"en-mix": "english-mix/melon-kinenbi-history-live-community.md"},
+    "melon-kinenbi-live-community": {"en-mix": "english-mix/melon-kinenbi-live-community.md"},
     "country-musume-country-girls-history-brand-redefinition": {"en-mix": "english-mix/country-musume-country-girls-history-brand-redefinition.md"},
     "taiyo-ciscomoon-history-compressed-legacy": {"en-mix": "english-mix/taiyo-ciscomoon-history-compressed-legacy.md"},
     "morning-musume-history-renewal-system": {"en-mix": "english-mix/morning-musume-history-renewal-system.md"},
