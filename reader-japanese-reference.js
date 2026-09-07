@@ -45,116 +45,112 @@
     return Math.max(0, Math.min(targetCount - 1, Math.round((index * (targetCount - 1)) / (sourceCount - 1))));
   }
 
-  function anchors(mix, ja) {
-    const dp = Array.from({ length: mix.length + 1 }, () => Array(ja.length + 1).fill(0));
-    const step = Array.from({ length: mix.length + 1 }, () => Array(ja.length + 1).fill(''));
-    for (let i = 1; i <= mix.length; i += 1) {
-      for (let j = 1; j <= ja.length; j += 1) {
-        const score = similarity(mix[i - 1], ja[j - 1]);
+  function anchors(source, target) {
+    const dp = Array.from({ length: source.length + 1 }, () => Array(target.length + 1).fill(0));
+    const step = Array.from({ length: source.length + 1 }, () => Array(target.length + 1).fill(''));
+    for (let i = 1; i <= source.length; i += 1) {
+      for (let j = 1; j <= target.length; j += 1) {
+        const score = similarity(source[i - 1], target[j - 1]);
         const diag = score >= CONFIG.anchor ? dp[i - 1][j - 1] + score : -Infinity;
         if (diag >= dp[i - 1][j] && diag >= dp[i][j - 1]) {
-          dp[i][j] = diag; step[i][j] = 'd';
+          dp[i][j] = diag;
+          step[i][j] = 'd';
         } else if (dp[i - 1][j] >= dp[i][j - 1]) {
-          dp[i][j] = dp[i - 1][j]; step[i][j] = 'u';
+          dp[i][j] = dp[i - 1][j];
+          step[i][j] = 'u';
         } else {
-          dp[i][j] = dp[i][j - 1]; step[i][j] = 'l';
+          dp[i][j] = dp[i][j - 1];
+          step[i][j] = 'l';
         }
       }
     }
+
     const found = [];
-    let i = mix.length, j = ja.length;
+    let i = source.length;
+    let j = target.length;
     while (i && j) {
       if (step[i][j] === 'd') {
-        found.push({ mix: i - 1, ja: j - 1, score: similarity(mix[i - 1], ja[j - 1]) });
-        i -= 1; j -= 1;
+        found.push({ source: i - 1, target: j - 1, score: similarity(source[i - 1], target[j - 1]) });
+        i -= 1;
+        j -= 1;
       } else if (step[i][j] === 'u') i -= 1;
       else j -= 1;
     }
     return found.reverse();
   }
 
-  function fillGap(result, mix, ja, ms, me, js, je, bounded) {
-    const mc = me - ms, jc = je - js;
-    if (mc <= 0 || jc <= 0) return;
+  function fillGap(result, source, target, ss, se, ts, te, bounded) {
+    const sc = se - ss;
+    const tc = te - ts;
+    if (sc <= 0 || tc <= 0) return;
 
-    // Paragraph identity is structural first: if both versions kept the same
-    // number and order of blocks in this gap, pair them directly regardless
-    // of how much the wording/language changed.
-    if (mc === jc) {
-      for (let k = 0; k < mc; k += 1) result[ms + k] = { ja: js + k, confidence: bounded ? 'pair-sequence' : 'pair-sequence-edge' };
-      return;
-    }
-
-    if (Math.abs(mc - jc) <= 1 && Math.max(mc, jc) <= CONFIG.maxNearGap) {
-      for (let k = 0; k < mc; k += 1) {
-        const projected = Math.max(0, Math.min(jc - 1, Math.round((((k + .5) * jc) / mc) - .5)));
-        result[ms + k] = { ja: js + projected, confidence: bounded ? 'pair-near' : 'pair-near-edge' };
+    // Paragraph identity is structural first. If a translated section keeps
+    // the same number and order of blocks, wording similarity is irrelevant.
+    if (sc === tc) {
+      for (let k = 0; k < sc; k += 1) {
+        result[ss + k] = { target: ts + k, confidence: bounded ? 'pair-sequence' : 'pair-sequence-edge' };
       }
       return;
     }
 
-    for (let mi = ms; mi < me; mi += 1) {
+    if (Math.abs(sc - tc) <= 1 && Math.max(sc, tc) <= CONFIG.maxNearGap) {
+      for (let k = 0; k < sc; k += 1) {
+        const projected = Math.max(0, Math.min(tc - 1, Math.round((((k + .5) * tc) / sc) - .5)));
+        result[ss + k] = { target: ts + projected, confidence: bounded ? 'pair-near' : 'pair-near-edge' };
+      }
+      return;
+    }
+
+    for (let si = ss; si < se; si += 1) {
       let best = null;
-      for (let ji = js; ji < je; ji += 1) {
-        const score = similarity(mix[mi], ja[ji]);
-        if (!best || score > best.score) best = { ja: ji, score };
+      for (let ti = ts; ti < te; ti += 1) {
+        const score = similarity(source[si], target[ti]);
+        if (!best || score > best.score) best = { target: ti, score };
       }
-      if (best?.score >= CONFIG.weak) result[mi] = { ja: best.ja, confidence: 'text-signal' };
+      if (best?.score >= CONFIG.weak) result[si] = { target: best.target, confidence: 'text-anchor' };
     }
   }
 
-  function completeByPosition(result, mix, ja) {
-    if (!ja.length) return result;
+  function completeByPosition(result, source, target) {
+    if (!target.length) return result;
     for (let i = 0; i < result.length; i += 1) {
       if (result[i]) continue;
       result[i] = {
-        ja: projectedIndex(i, mix.length, ja.length),
+        target: projectedIndex(i, source.length, target.length),
         confidence: 'pair-position'
       };
     }
     return result;
   }
 
-  function align(mix = [], ja = []) {
-    const result = Array(mix.length).fill(null);
-    if (!mix.length || !ja.length) return result;
+  function align(source = [], target = []) {
+    const result = Array(source.length).fill(null);
+    if (!source.length || !target.length) return result;
 
-    // The normal English Mix authoring contract preserves paragraph order.
-    // Equal block counts therefore mean identity by position, not similarity.
-    if (mix.length === ja.length) {
-      return mix.map((_, index) => ({ ja: index, confidence: 'pair-order' }));
+    if (source.length === target.length) {
+      return source.map((_, index) => ({ target: index, confidence: 'pair-order' }));
     }
 
-    // Mismatched structures use text only as an anchor, then preserve sequence
-    // around those anchors. Any remaining block receives a monotonic positional
-    // fallback so a wording change never becomes a user-facing lookup failure.
-    const fixed = anchors(mix, ja);
-    fixed.forEach(item => { result[item.mix] = { ja: item.ja, confidence: item.score >= .82 ? 'exact' : 'text-anchor' }; });
-    const bounds = [{ mix: -1, ja: -1, edge: true }, ...fixed, { mix: mix.length, ja: ja.length, edge: true }];
+    const fixed = anchors(source, target);
+    fixed.forEach(item => {
+      result[item.source] = {
+        target: item.target,
+        confidence: item.score >= .82 ? 'exact' : 'text-anchor'
+      };
+    });
+
+    const bounds = [
+      { source: -1, target: -1, edge: true },
+      ...fixed,
+      { source: source.length, target: target.length, edge: true }
+    ];
     for (let i = 0; i < bounds.length - 1; i += 1) {
-      const a = bounds[i], b = bounds[i + 1];
-      fillGap(result, mix, ja, a.mix + 1, b.mix, a.ja + 1, b.ja, !a.edge && !b.edge);
+      const a = bounds[i];
+      const b = bounds[i + 1];
+      fillGap(result, source, target, a.source + 1, b.source, a.target + 1, b.target, !a.edge && !b.edge);
     }
-    return completeByPosition(result, mix, ja);
+    return completeByPosition(result, source, target);
   }
-
-  function pairKey(sectionIndex, blockIndex, type = 'block') {
-    const section = String(sectionIndex).padStart(2, '0');
-    if (type === 'heading') return `s${section}-heading`;
-    return `s${section}-b${String(blockIndex).padStart(3, '0')}`;
-  }
-
-  const pairApi = { similarity, align, pairKey, projectedIndex };
-  if (typeof module !== 'undefined' && module.exports) module.exports = pairApi;
-  if (typeof window !== 'undefined') window.MyEssaysPairIdentity = pairApi;
-  if (typeof document === 'undefined') return;
-
-  const view = document.getElementById('readerView');
-  const content = document.getElementById('readerContent');
-  if (!view || !content) return;
-
-  const refs = new WeakMap();
-  let version = 'ja', essayId = '', timer = 0;
 
   function textOf(element) {
     const clone = element.cloneNode(true);
@@ -163,9 +159,11 @@
   }
 
   function eligibleBlocks(root) {
+    if (!root) return [];
     return [...root.querySelectorAll(BLOCK_SELECTOR)].filter(el => {
       if (el.closest('.footnotes')) return false;
       if (el.tagName === 'LI' && el.querySelector(':scope > p')) return false;
+      if (el.closest('.reader-mode-bar,.reader-compare-view,.language-lens-panel')) return false;
       return true;
     });
   }
@@ -179,17 +177,102 @@
     return list;
   }
 
-  function setPairIdentity(mixBlock, jaBlock, id, confidence) {
-    if (!mixBlock || !jaBlock) return;
-    const canonicalId = jaBlock.dataset.pairId || id;
-    jaBlock.dataset.pairId = canonicalId;
-    mixBlock.dataset.pairId = canonicalId;
-    mixBlock.dataset.pairConfidence = confidence || 'pair';
-    refs.set(mixBlock, {
-      text: textOf(jaBlock),
-      confidence: confidence || 'pair',
-      pairId: canonicalId
+  function pairKey(sectionIndex, blockIndex, type = 'block') {
+    const section = String(sectionIndex).padStart(2, '0');
+    if (type === 'heading') return `s${section}-heading`;
+    return `s${section}-b${String(blockIndex).padStart(3, '0')}`;
+  }
+
+  function annotateCanonical(root) {
+    const canonicalSections = sections(root);
+    canonicalSections.forEach((section, sectionIndex) => {
+      if (section.heading) {
+        section.heading.dataset.pairId = section.heading.dataset.pairId || pairKey(sectionIndex, 0, 'heading');
+        section.heading.dataset.pairConfidence = 'canonical';
+      }
+      section.blocks.forEach((block, blockIndex) => {
+        block.dataset.pairId = block.dataset.pairId || pairKey(sectionIndex, blockIndex);
+        block.dataset.pairConfidence = 'canonical';
+      });
     });
+    return root;
+  }
+
+  function annotateAgainstCanonical(root, canonicalRoot) {
+    if (!root || !canonicalRoot) return root;
+    annotateCanonical(canonicalRoot);
+    const sourceSections = sections(root);
+    const canonicalSections = sections(canonicalRoot);
+    const count = Math.min(sourceSections.length, canonicalSections.length);
+
+    for (let s = 0; s < count; s += 1) {
+      const source = sourceSections[s];
+      const canonical = canonicalSections[s];
+      if (source.heading && canonical.heading) {
+        source.heading.dataset.pairId = canonical.heading.dataset.pairId;
+        source.heading.dataset.pairConfidence = 'heading';
+      }
+      const mapping = align(source.blocks.map(textOf), canonical.blocks.map(textOf));
+      mapping.forEach((match, index) => {
+        const sourceBlock = source.blocks[index];
+        const canonicalBlock = match ? canonical.blocks[match.target] : null;
+        if (!sourceBlock || !canonicalBlock) return;
+        sourceBlock.dataset.pairId = canonicalBlock.dataset.pairId;
+        sourceBlock.dataset.pairConfidence = match.confidence || 'pair';
+      });
+    }
+
+    // If heading structures differ, recover any still-unpaired block from the
+    // document-wide reading order. This is the final compatibility fallback.
+    const sourceAll = eligibleBlocks(root);
+    const canonicalAll = eligibleBlocks(canonicalRoot);
+    sourceAll.forEach((block, index) => {
+      if (block.dataset.pairId || !canonicalAll.length) return;
+      const targetIndex = projectedIndex(index, sourceAll.length, canonicalAll.length);
+      const canonicalBlock = canonicalAll[targetIndex];
+      block.dataset.pairId = canonicalBlock?.dataset.pairId || `doc-b${String(targetIndex).padStart(4, '0')}`;
+      block.dataset.pairConfidence = 'pair-position';
+    });
+    return root;
+  }
+
+  function findByPairId(root, pairId) {
+    if (!root || !pairId) return null;
+    return eligibleBlocks(root).find(block => block.dataset.pairId === pairId) || null;
+  }
+
+  const pairApi = Object.freeze({
+    similarity,
+    align,
+    projectedIndex,
+    pairKey,
+    textOf,
+    eligibleBlocks,
+    sections,
+    annotateCanonical,
+    annotateAgainstCanonical,
+    findByPairId
+  });
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = pairApi;
+  if (typeof window !== 'undefined') window.MyEssaysPairIdentity = pairApi;
+  if (typeof document === 'undefined') return;
+
+  const view = document.getElementById('readerView');
+  const content = document.getElementById('readerContent');
+  if (!view || !content) return;
+
+  const references = new WeakMap();
+  let version = 'ja';
+  let essayId = '';
+  let timer = 0;
+
+  function renderRoot(markdown) {
+    const root = document.createElement('div');
+    const render = window.MyEssaysMarkdown?.render || window.renderMarkdown;
+    if (typeof render !== 'function') return root;
+    root.innerHTML = render(markdown || '');
+    return root;
   }
 
   function panel() {
@@ -199,10 +282,10 @@
     el.id = 'japaneseReferencePanel';
     el.className = 'japanese-reference-panel';
     el.hidden = true;
-    el.setAttribute('aria-label', '選択したEnglish Mixと日本語版の比較');
-    el.innerHTML = '<div class="japanese-reference-handle" aria-hidden="true"></div><div class="japanese-reference-head"><div><p class="japanese-reference-kicker">BILINGUAL COMPARE</p><h2>選択箇所</h2></div><button class="japanese-reference-close" type="button" aria-label="比較を閉じる">×</button></div><p class="japanese-reference-status" aria-live="polite"></p><section class="japanese-reference-block japanese-reference-selected"><p class="japanese-reference-label">SELECTED · ENGLISH MIX</p><div class="japanese-reference-selected-text"></div></section><section class="japanese-reference-block japanese-reference-original"><p class="japanese-reference-label">JAPANESE ORIGINAL</p><div class="japanese-reference-text"></div></section>';
+    el.setAttribute('aria-label', '選択した外国語Mixと日本語版の比較');
+    el.innerHTML = '<div class="japanese-reference-handle" aria-hidden="true"></div><div class="japanese-reference-head"><div><p class="japanese-reference-kicker">BILINGUAL COMPARE</p><h2>選択箇所</h2></div><button class="japanese-reference-close" type="button" aria-label="比較を閉じる">×</button></div><p class="japanese-reference-status" aria-live="polite"></p><section class="japanese-reference-block japanese-reference-selected"><p class="japanese-reference-label">SELECTED</p><div class="japanese-reference-selected-text"></div></section><section class="japanese-reference-block japanese-reference-original"><p class="japanese-reference-label">JAPANESE ORIGINAL</p><div class="japanese-reference-text"></div></section>';
     view.appendChild(el);
-    el.querySelector('.japanese-reference-close').addEventListener('click', () => { el.hidden = true; });
+    el.querySelector('.japanese-reference-close')?.addEventListener('click', () => { el.hidden = true; });
     return el;
   }
 
@@ -235,41 +318,35 @@
 
   function mount(ctx) {
     essayId = ctx.essayId;
-    try { version = state?.currentEssay?.__readingVersion || 'ja'; } catch { version = 'ja'; }
+    try { version = state?.currentEssay?.__readingVersion || 'ja'; }
+    catch { version = 'ja'; }
     closePanel();
+    references.clear?.();
     content.dataset.pairIdentity = '';
-    if (version !== 'en-mix') return;
 
-    const canonical = document.createElement('div');
-    const render = window.MyEssaysMarkdown?.render || window.renderMarkdown;
-    if (typeof render !== 'function') return;
-    canonical.innerHTML = render(ctx.essay?.body || '');
-    const mixSections = sections(ctx.root), jaSections = sections(canonical);
-    const count = Math.min(mixSections.length, jaSections.length);
+    const canonicalRoot = renderRoot(ctx.essay?.body || '');
+    annotateCanonical(canonicalRoot);
 
-    for (let s = 0; s < count; s += 1) {
-      const mix = mixSections[s], ja = jaSections[s];
-      if (mix.heading && ja.heading) {
-        setPairIdentity(mix.heading, ja.heading, pairKey(s, 0, 'heading'), 'heading');
-      }
-      const mapping = align(mix.blocks.map(textOf), ja.blocks.map(textOf));
-      mapping.forEach((match, i) => {
-        if (!match || !ja.blocks[match.ja]) return;
-        setPairIdentity(mix.blocks[i], ja.blocks[match.ja], pairKey(s, match.ja), match.confidence);
+    if (version === 'ja') {
+      annotateCanonical(ctx.root);
+    } else {
+      annotateAgainstCanonical(ctx.root, canonicalRoot);
+      eligibleBlocks(ctx.root).forEach(block => {
+        const pairId = block.dataset.pairId;
+        const canonicalBlock = findByPairId(canonicalRoot, pairId);
+        if (!canonicalBlock) return;
+        references.set(block, {
+          text: textOf(canonicalBlock),
+          confidence: block.dataset.pairConfidence || 'pair',
+          pairId
+        });
       });
     }
 
-    // If heading structures differ, recover any still-unpaired block from the
-    // document-wide reading order. This is intentionally the last resort.
-    const mixAll = eligibleBlocks(ctx.root);
-    const jaAll = eligibleBlocks(canonical);
-    mixAll.forEach((block, index) => {
-      if (refs.has(block) || !jaAll.length) return;
-      const jaIndex = projectedIndex(index, mixAll.length, jaAll.length);
-      setPairIdentity(block, jaAll[jaIndex], `doc-b${String(jaIndex).padStart(4, '0')}`, 'pair-position');
-    });
-
     content.dataset.pairIdentity = 'ready';
+    document.dispatchEvent(new CustomEvent('myessays:pair-identity-ready', {
+      detail: { essayId, version }
+    }));
   }
 
   function closestBlock(node) {
@@ -291,33 +368,46 @@
       (endBlock && content.contains(endBlock))
     );
     if (!touchesContent) return null;
-    if (!startBlock || !endBlock || startBlock !== endBlock || !content.contains(startBlock)) {
-      return { invalid: true };
-    }
+    if (!startBlock || !endBlock || startBlock !== endBlock || !content.contains(startBlock)) return { invalid: true };
     return { block: startBlock, text };
   }
 
   function resolve() {
     clearTimeout(timer);
-    if (view.hidden || version !== 'en-mix' || essayId !== (content.dataset.readerEssayId || essayId)) return;
+    if (view.hidden || version === 'ja' || essayId !== (content.dataset.readerEssayId || essayId)) return;
     const selection = selectionContext();
     if (selection?.invalid) {
       closePanel();
       return;
     }
-    if (selection?.block) show(refs.get(selection.block) || null, selection.text);
+    if (selection?.block) show(references.get(selection.block) || null, selection.text);
   }
 
-  const schedule = delay => { clearTimeout(timer); timer = setTimeout(resolve, delay); };
-  content.addEventListener('pointerup', event => { if (event.pointerType !== 'touch') schedule(50); });
+  const schedule = delay => {
+    clearTimeout(timer);
+    timer = setTimeout(resolve, delay);
+  };
+
+  content.addEventListener('pointerup', event => {
+    if (event.pointerType !== 'touch') schedule(50);
+  });
   content.addEventListener('touchend', () => schedule(240), { passive: true });
   document.addEventListener('selectionchange', () => {
-    if (!view.hidden && version === 'en-mix') schedule(matchMedia(`(max-width:${CONFIG.breakpoint}px)`).matches ? 240 : 180);
+    if (!view.hidden && version !== 'ja') {
+      schedule(matchMedia(`(max-width:${CONFIG.breakpoint}px)`).matches ? 240 : 180);
+    }
   });
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closePanel(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closePanel();
+  });
   window.addEventListener('hashchange', closePanel);
-  document.addEventListener('myessays:reader-version-changed', event => { if (event.detail?.version !== 'en-mix') closePanel(); });
+  document.addEventListener('myessays:reader-version-changed', event => {
+    if (event.detail?.version === 'ja') closePanel();
+  });
 
-  if (window.MyEssaysReaderRuntime?.register) window.MyEssaysReaderRuntime.register('japanese-reference', mount, { priority: 8 });
-  else document.addEventListener('myessays:reader-ready', event => mount(event.detail));
+  if (window.MyEssaysReaderRuntime?.register) {
+    window.MyEssaysReaderRuntime.register('pair-identity', mount, { priority: 8 });
+  } else {
+    document.addEventListener('myessays:reader-ready', event => mount(event.detail));
+  }
 })();
