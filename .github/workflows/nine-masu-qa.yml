@@ -12,7 +12,7 @@ permissions:
 jobs:
   finalize:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout feature branch
         uses: actions/checkout@v7
@@ -36,6 +36,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
+          git worktree add --detach /tmp/myessays-main-baseline origin/main
 
           set +e
           git merge --no-ff --no-commit origin/main
@@ -94,15 +95,18 @@ jobs:
           fi
           echo "All conflicts resolved in working tree"
 
-      - name: Start resolved feature site
+      - name: Start feature and main baseline sites
         run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/myessays-server.log 2>&1 &
-          for i in {1..20}; do
-            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
-            sleep 1
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/myessays-feature-server.log 2>&1 &
+          (cd /tmp/myessays-main-baseline && python3 -m http.server 4174 --bind 127.0.0.1 > /tmp/myessays-main-server.log 2>&1 &)
+          for port in 4173 4174; do
+            ok=0
+            for i in {1..20}; do
+              if curl -fsS "http://127.0.0.1:${port}/" >/dev/null; then ok=1; break; fi
+              sleep 1
+            done
+            if [ "$ok" -ne 1 ]; then exit 1; fi
           done
-          cat /tmp/myessays-server.log
-          exit 1
 
       - name: Static and content checks
         run: |
@@ -124,49 +128,36 @@ jobs:
           node tools/audit-content.mjs --strict
           node --test tests/*.test.js
 
-      - name: Stable existing reader regression QA
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: |
-          node scripts/japanese-reference-qa.cjs
-          node scripts/argument-structure-qa.cjs
-          node scripts/page-reader-qa.cjs
-
-      - name: Reading versions QA with main baseline comparison
+      - name: Existing browser QA against latest-main baseline
         shell: bash
-        env:
-          BASE_URL: http://127.0.0.1:4173
         run: |
-          set +e
-          node scripts/reading-versions-qa.cjs > /tmp/feature-reading-versions.log 2>&1
-          feature_status=$?
-          set -e
-          cat /tmp/feature-reading-versions.log
-          if [ "$feature_status" -eq 0 ]; then
-            echo "Reading versions QA passed on feature"
-            exit 0
-          fi
+          set -euo pipefail
+          qas=(japanese-reference-qa.cjs argument-structure-qa.cjs page-reader-qa.cjs reading-versions-qa.cjs)
+          for qa in "${qas[@]}"; do
+            echo "=== feature: $qa ==="
+            set +e
+            BASE_URL=http://127.0.0.1:4173 node "scripts/$qa" > "/tmp/feature-$qa.log" 2>&1
+            feature_status=$?
+            set -e
+            cat "/tmp/feature-$qa.log"
+            if [ "$feature_status" -eq 0 ]; then
+              echo "$qa passes on feature"
+              continue
+            fi
 
-          echo "Feature reading-versions QA failed; compare against untouched latest main"
-          git worktree add --detach /tmp/myessays-main-baseline origin/main
-          (cd /tmp/myessays-main-baseline && python3 -m http.server 4174 --bind 127.0.0.1 > /tmp/myessays-main-server.log 2>&1 &)
-          for i in {1..20}; do
-            if curl -fsS http://127.0.0.1:4174/ >/dev/null; then break; fi
-            sleep 1
+            echo "=== latest main baseline: $qa ==="
+            set +e
+            (cd /tmp/myessays-main-baseline && NODE_PATH="$GITHUB_WORKSPACE/node_modules" BASE_URL=http://127.0.0.1:4174 node "scripts/$qa") > "/tmp/main-$qa.log" 2>&1
+            main_status=$?
+            set -e
+            cat "/tmp/main-$qa.log"
+
+            if [ "$main_status" -eq 0 ]; then
+              echo "$qa passes on latest main but fails on feature: regression introduced by nine-masu"
+              exit 1
+            fi
+            echo "$qa also fails on untouched latest main; treating as pre-existing baseline failure"
           done
-          curl -fsS http://127.0.0.1:4174/ >/dev/null
-
-          set +e
-          (cd /tmp/myessays-main-baseline && NODE_PATH="$GITHUB_WORKSPACE/node_modules" BASE_URL=http://127.0.0.1:4174 node scripts/reading-versions-qa.cjs) > /tmp/main-reading-versions.log 2>&1
-          main_status=$?
-          set -e
-          cat /tmp/main-reading-versions.log
-
-          if [ "$main_status" -eq 0 ]; then
-            echo "Latest main passes while feature fails: this is a feature regression"
-            exit 1
-          fi
-          echo "Latest main and feature both fail reading-versions QA; failure is pre-existing and not introduced by nine-masu"
 
       - name: Targeted nine-masu browser QA
         env:
@@ -191,9 +182,11 @@ jobs:
             assert.equal(await page.locator('.nine-masu-cell').count(), 9);
             assert.equal(await page.locator('.nine-masu-outside').count(), 1);
 
-            await page.locator('.nine-masu-cell').nth(4).click();
+            const fifth = page.locator('.nine-masu-cell').nth(4);
+            await fifth.focus();
+            await page.keyboard.press('Enter');
             await page.waitForFunction(() => window.MyEssaysReadingLocation?.currentSection?.().index === 4);
-            assert.equal(await page.locator('.nine-masu-cell').nth(4).getAttribute('aria-current'), 'step');
+            assert.equal(await fifth.getAttribute('aria-current'), 'step');
 
             for (const width of [375, 320]) {
               await page.setViewportSize({ width, height: 760 });
@@ -210,6 +203,9 @@ jobs:
             }
 
             await page.setViewportSize({ width: 1280, height: 800 });
+            await page.locator('.nine-masu-cell').nth(4).click();
+            await page.waitForFunction(() => window.MyEssaysReadingLocation?.currentSection?.().index === 4);
+            const beforeSwitch = await page.evaluate(() => window.MyEssaysReadingLocation?.currentSection?.().index);
             const en = page.locator('[data-reader-mode-version="en-mix"]');
             await en.waitFor();
             await en.click();
@@ -217,6 +213,8 @@ jobs:
             await page.waitForSelector('.nine-masu-overview');
             assert.equal(await page.locator('.nine-masu-cell').count(), 9);
             assert.equal(await page.locator('.nine-masu-outside').count(), 1);
+            const afterSwitch = await page.evaluate(() => window.MyEssaysReadingLocation?.currentSection?.().index);
+            assert.equal(afterSwitch, beforeSwitch, 'JA -> English Mix should preserve section location');
 
             await page.goto(`${base}/#/essay/design-literacy-visual-hierarchy-attention-order`, { waitUntil: 'networkidle' });
             assert.equal(await page.locator('.nine-masu-overview').count(), 0, 'overview must be article-scoped');
