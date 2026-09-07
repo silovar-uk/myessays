@@ -165,11 +165,11 @@
   function yieldLegacyVersionLocatorCapture(event) {
     if (!readerOpen()) return;
     const target = event.target instanceof Element
-      ? event.target.closest('[data-reader-mode-version][data-reader-version]')
+      ? event.target.closest('[data-reader-mode-version]')
       : null;
     if (!target) return;
     pendingPivotViewportAnchor = capturePivotViewportAnchor();
-    target.removeAttribute('data-reader-version');
+    if (target.hasAttribute('data-reader-version')) target.removeAttribute('data-reader-version');
   }
 
   function normalizeSubtitlelessLayoutBeforeRestore(essayId) {
@@ -179,10 +179,6 @@
       const essay = canonicalEssay();
       if (!content || !essay || String(essay.subtitle || '').trim()) return;
 
-      // Reader V2's render frame may temporarily classify the first real H2 as
-      // a subtitle. Correct that in the same frame, before Reading Versions
-      // measures/restores the canonical position, so no post-scroll layout
-      // shift is introduced by the compatibility repair.
       const intro = content.querySelector(':scope > .reader-v2-intro');
       const h1 = content.querySelector(':scope > h1');
       const rebuilt = rebuildMapForSubtitlelessEssay(content);
@@ -230,10 +226,6 @@
         pendingPivotViewportAnchor = null;
         const top = pivotAdjustedScrollTop(anchor);
         if (top != null) {
-          // Canonical continuity is a position restore, not a navigation
-          // animation. `auto` can inherit CSS smooth scrolling, leaving the
-          // reader a few pixels short when consumers observe at 300ms.
-          // `instant` makes this single owner scroll deterministic.
           return nativeScrollTo({ top, behavior: 'instant' });
         }
       }
