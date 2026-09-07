@@ -5,6 +5,7 @@
     breakpoint: 980,
     anchor: 0.46,
     weak: 0.28,
+    maxEqualGap: 8,
     maxNearGap: 5
   });
   const JA_RE = /[\u3040-\u30ff\u3400-\u9fff々〆ヵヶ]{2,}/g;
@@ -45,6 +46,9 @@
     return Math.max(0, Math.min(targetCount - 1, Math.round((index * (targetCount - 1)) / (sourceCount - 1))));
   }
 
+  // Keep this alignment helper conservative and backward-compatible. It is
+  // useful as an evidence layer, while DOM pairing below can apply a stronger
+  // structural fallback without changing the public/tested contract.
   function anchors(source, target) {
     const dp = Array.from({ length: source.length + 1 }, () => Array(target.length + 1).fill(0));
     const step = Array.from({ length: source.length + 1 }, () => Array(target.length + 1).fill(''));
@@ -70,7 +74,7 @@
     let j = target.length;
     while (i && j) {
       if (step[i][j] === 'd') {
-        found.push({ source: i - 1, target: j - 1, score: similarity(source[i - 1], target[j - 1]) });
+        found.push({ mix: i - 1, ja: j - 1, score: similarity(source[i - 1], target[j - 1]) });
         i -= 1;
         j -= 1;
       } else if (step[i][j] === 'u') i -= 1;
@@ -79,77 +83,59 @@
     return found.reverse();
   }
 
-  function fillGap(result, source, target, ss, se, ts, te, bounded) {
-    const sc = se - ss;
-    const tc = te - ts;
-    if (sc <= 0 || tc <= 0) return;
+  function fillGap(result, source, target, ms, me, js, je, bounded) {
+    const mc = me - ms;
+    const jc = je - js;
+    if (mc <= 0 || jc <= 0) return;
 
-    // Paragraph identity is structural first. If a translated section keeps
-    // the same number and order of blocks, wording similarity is irrelevant.
-    if (sc === tc) {
-      for (let k = 0; k < sc; k += 1) {
-        result[ss + k] = { target: ts + k, confidence: bounded ? 'pair-sequence' : 'pair-sequence-edge' };
+    if (mc === jc && mc <= CONFIG.maxEqualGap) {
+      for (let k = 0; k < mc; k += 1) {
+        result[ms + k] = { ja: js + k, confidence: bounded ? 'sequence' : 'sequence-edge' };
       }
       return;
     }
 
-    if (Math.abs(sc - tc) <= 1 && Math.max(sc, tc) <= CONFIG.maxNearGap) {
-      for (let k = 0; k < sc; k += 1) {
-        const projected = Math.max(0, Math.min(tc - 1, Math.round((((k + .5) * tc) / sc) - .5)));
-        result[ss + k] = { target: ts + projected, confidence: bounded ? 'pair-near' : 'pair-near-edge' };
+    if (Math.abs(mc - jc) <= 1 && Math.max(mc, jc) <= CONFIG.maxNearGap) {
+      for (let k = 0; k < mc; k += 1) {
+        const projected = Math.max(0, Math.min(jc - 1, Math.round((((k + .5) * jc) / mc) - .5)));
+        result[ms + k] = { ja: js + projected, confidence: bounded ? 'interpolated' : 'interpolated-edge' };
       }
       return;
     }
 
-    for (let si = ss; si < se; si += 1) {
+    for (let mi = ms; mi < me; mi += 1) {
       let best = null;
-      for (let ti = ts; ti < te; ti += 1) {
-        const score = similarity(source[si], target[ti]);
-        if (!best || score > best.score) best = { target: ti, score };
+      for (let ji = js; ji < je; ji += 1) {
+        const score = similarity(source[mi], target[ji]);
+        if (!best || score > best.score) best = { ja: ji, score };
       }
-      if (best?.score >= CONFIG.weak) result[si] = { target: best.target, confidence: 'text-anchor' };
+      if (best?.score >= CONFIG.weak) result[mi] = { ja: best.ja, confidence: 'text-signal' };
     }
-  }
-
-  function completeByPosition(result, source, target) {
-    if (!target.length) return result;
-    for (let i = 0; i < result.length; i += 1) {
-      if (result[i]) continue;
-      result[i] = {
-        target: projectedIndex(i, source.length, target.length),
-        confidence: 'pair-position'
-      };
-    }
-    return result;
   }
 
   function align(source = [], target = []) {
     const result = Array(source.length).fill(null);
     if (!source.length || !target.length) return result;
 
-    if (source.length === target.length) {
-      return source.map((_, index) => ({ target: index, confidence: 'pair-order' }));
-    }
-
     const fixed = anchors(source, target);
     fixed.forEach(item => {
-      result[item.source] = {
-        target: item.target,
+      result[item.mix] = {
+        ja: item.ja,
         confidence: item.score >= .82 ? 'exact' : 'text-anchor'
       };
     });
 
     const bounds = [
-      { source: -1, target: -1, edge: true },
+      { mix: -1, ja: -1, edge: true },
       ...fixed,
-      { source: source.length, target: target.length, edge: true }
+      { mix: source.length, ja: target.length, edge: true }
     ];
     for (let i = 0; i < bounds.length - 1; i += 1) {
       const a = bounds[i];
       const b = bounds[i + 1];
-      fillGap(result, source, target, a.source + 1, b.source, a.target + 1, b.target, !a.edge && !b.edge);
+      fillGap(result, source, target, a.mix + 1, b.mix, a.ja + 1, b.ja, !a.edge && !b.edge);
     }
-    return completeByPosition(result, source, target);
+    return result;
   }
 
   function textOf(element) {
@@ -212,18 +198,34 @@
         source.heading.dataset.pairId = canonical.heading.dataset.pairId;
         source.heading.dataset.pairConfidence = 'heading';
       }
+
+      // Authoring contract: alternate Reading Modes normally preserve block
+      // count/order. In that normal case identity is structural, not textual.
+      // This is deliberately outside align(), whose conservative semantics are
+      // retained for diagnostics and compatibility.
+      if (source.blocks.length === canonical.blocks.length && source.blocks.length) {
+        source.blocks.forEach((sourceBlock, index) => {
+          const canonicalBlock = canonical.blocks[index];
+          sourceBlock.dataset.pairId = canonicalBlock.dataset.pairId;
+          sourceBlock.dataset.pairConfidence = 'pair-order';
+        });
+        continue;
+      }
+
       const mapping = align(source.blocks.map(textOf), canonical.blocks.map(textOf));
       mapping.forEach((match, index) => {
         const sourceBlock = source.blocks[index];
-        const canonicalBlock = match ? canonical.blocks[match.target] : null;
+        const canonicalBlock = match ? canonical.blocks[match.ja] : null;
         if (!sourceBlock || !canonicalBlock) return;
         sourceBlock.dataset.pairId = canonicalBlock.dataset.pairId;
         sourceBlock.dataset.pairConfidence = match.confidence || 'pair';
       });
     }
 
-    // If heading structures differ, recover any still-unpaired block from the
-    // document-wide reading order. This is the final compatibility fallback.
+    // UX fallback: if structures genuinely differ, every remaining readable
+    // block still receives a monotonic positional identity. This prevents a
+    // wording change from becoming a user-facing "could not identify" error,
+    // while align() itself remains conservative about uncertain evidence.
     const sourceAll = eligibleBlocks(root);
     const canonicalAll = eligibleBlocks(canonicalRoot);
     sourceAll.forEach((block, index) => {
@@ -321,7 +323,6 @@
     try { version = state?.currentEssay?.__readingVersion || 'ja'; }
     catch { version = 'ja'; }
     closePanel();
-    references.clear?.();
     content.dataset.pairIdentity = '';
 
     const canonicalRoot = renderRoot(ctx.essay?.body || '');
