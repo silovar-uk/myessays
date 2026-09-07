@@ -252,6 +252,28 @@
     return ['ja', ...available.filter(version => version !== 'ja')];
   }
 
+  function syncMobileCompareShortcut(bar) {
+    const head = document.querySelector('.reader-v2-map-head');
+    if (!head) return;
+    let button = head.querySelector('.reader-mobile-compare');
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'reader-mobile-compare';
+      button.innerHTML = '<span aria-hidden="true">⇄</span><span>比較</span>';
+      button.addEventListener('click', () => {
+        const source = document.querySelector('.reader-mode-bar [data-reader-mode-compare]');
+        source?.click();
+        window.MyEssaysReaderV2?.setMapOpen?.(false);
+      });
+      const close = head.querySelector('.reader-v2-map-close');
+      if (close) close.before(button);
+      else head.append(button);
+    }
+    button.classList.toggle('is-active', view.classList.contains('language-compare-mode'));
+    button.hidden = !bar.querySelector('[data-reader-mode-compare]');
+  }
+
   async function syncModeBar() {
     const token = ++modeBarSyncToken;
     const bar = document.querySelector('.reader-mode-bar');
@@ -272,7 +294,10 @@
     const compareActive = view.classList.contains('language-compare-mode');
     const signature = [id, current, next, available.join(','), compareActive ? 'compare' : 'read'].join('|');
 
-    if (bar.dataset.pivotCycleSignature === signature && bar.querySelector('.reader-language-cycle')) return;
+    if (bar.dataset.pivotCycleSignature === signature && bar.querySelector('.reader-language-cycle')) {
+      syncMobileCompareShortcut(bar);
+      return;
+    }
     bar.dataset.pivotCycleSignature = signature;
     bar.classList.add('is-language-cycle-bar');
     bar.innerHTML = `
@@ -283,6 +308,8 @@
       <button type="button" class="reader-mode-button reader-mode-compare${compareActive ? ' is-active' : ''}" data-reader-mode-compare data-short-label="⇄" aria-label="日本語と外国語Mixを比較" aria-pressed="${compareActive}">比較</button>`;
 
     observeModeBar(bar);
+    requestAnimationFrame(() => syncMobileCompareShortcut(bar));
+    window.setTimeout(() => syncMobileCompareShortcut(bar), 180);
   }
 
   function observeModeBar(bar) {
