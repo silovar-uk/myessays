@@ -7,6 +7,8 @@
   const VERSION_SCROLL_SUPPRESS_MS = 260;
   let syncFrame = 0;
   let suppressScrollByUntil = 0;
+  let pendingPivotViewportAnchor = null;
+  let canonicalScrollAdjustmentReady = false;
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -143,16 +145,36 @@
     target.append(proxy);
   }
 
+  function capturePivotViewportAnchor() {
+    const content = readerContent();
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || pivot?.dataset?.readingLocator || '';
+    if (!content || !pivot || !locator || !content.contains(pivot)) return null;
+    if (window.scrollY <= 32) return null;
+
+    const blocks = [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')]
+      .filter(block => block.dataset.readingLocator === locator);
+    return {
+      essayId: currentEssayId(),
+      locator,
+      clusterIndex: Math.max(0, blocks.indexOf(pivot)),
+      viewportTop: pivot.getBoundingClientRect().top
+    };
+  }
+
   // The one-tap mode bar is owned by reader-language-lab.js via
   // data-reader-mode-version. Remove the legacy alias before Reader V2's
   // document-capture listener sees the click, so Reader V2 does not schedule a
-  // second locator restoration for the same transition.
+  // second locator restoration for the same transition. Capture Pivot geometry
+  // here too, while the old mode is still rendered.
   function yieldLegacyVersionLocatorCapture(event) {
     if (!readerOpen()) return;
     const target = event.target instanceof Element
       ? event.target.closest('[data-reader-mode-version][data-reader-version]')
       : null;
-    target?.removeAttribute('data-reader-version');
+    if (!target) return;
+    pendingPivotViewportAnchor = capturePivotViewportAnchor();
+    target.removeAttribute('data-reader-version');
   }
 
   // Reading Pivot preserves semantic identity, but Reading Versions owns the
@@ -161,13 +183,46 @@
   function markCanonicalPositionOwnership(event) {
     if (event.detail?.positionOwner !== VERSION_POSITION_OWNER) return;
     suppressScrollByUntil = performance.now() + VERSION_SCROLL_SUPPRESS_MS;
+    canonicalScrollAdjustmentReady = Boolean(
+      pendingPivotViewportAnchor &&
+      pendingPivotViewportAnchor.essayId === event.detail?.essayId
+    );
+  }
+
+  function pivotAdjustedScrollTop(anchor) {
+    const content = readerContent();
+    if (!content || !anchor?.locator) return null;
+    const blocks = [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')]
+      .filter(block => block.dataset.readingLocator === anchor.locator);
+    if (!blocks.length) return null;
+    const target = blocks[Math.min(anchor.clusterIndex || 0, blocks.length - 1)];
+    const targetPageY = target.getBoundingClientRect().top + window.scrollY;
+    return Math.max(0, targetPageY - anchor.viewportTop);
   }
 
   function installScrollOwnershipGuard() {
     const nativeScrollBy = window.scrollBy.bind(window);
+    const nativeScrollTo = window.scrollTo.bind(window);
+
     window.scrollBy = (...args) => {
       if (performance.now() < suppressScrollByUntil) return;
       return nativeScrollBy(...args);
+    };
+
+    window.scrollTo = (...args) => {
+      if (canonicalScrollAdjustmentReady) {
+        canonicalScrollAdjustmentReady = false;
+        const anchor = pendingPivotViewportAnchor;
+        pendingPivotViewportAnchor = null;
+        const top = pivotAdjustedScrollTop(anchor);
+        if (top != null) {
+          if (typeof args[0] === 'object' && args[0] !== null) {
+            return nativeScrollTo({ ...args[0], top, behavior: 'auto' });
+          }
+          return nativeScrollTo(Number(args[0]) || 0, top);
+        }
+      }
+      return nativeScrollTo(...args);
     };
   }
 
@@ -198,7 +253,11 @@
     document.addEventListener('myessays:reader-ready', schedule);
     document.addEventListener('myessays:reader-version-changed', schedule);
     document.addEventListener('myessays:reader-language-changed', schedule);
-    window.addEventListener('hashchange', () => window.setTimeout(schedule, 0));
+    window.addEventListener('hashchange', () => {
+      pendingPivotViewportAnchor = null;
+      canonicalScrollAdjustmentReady = false;
+      window.setTimeout(schedule, 0);
+    });
 
     const content = readerContent();
     if (content) {
