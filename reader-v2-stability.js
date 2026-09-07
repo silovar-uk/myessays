@@ -230,10 +230,11 @@
         pendingPivotViewportAnchor = null;
         const top = pivotAdjustedScrollTop(anchor);
         if (top != null) {
-          if (typeof args[0] === 'object' && args[0] !== null) {
-            return nativeScrollTo({ ...args[0], top, behavior: 'auto' });
-          }
-          return nativeScrollTo(Number(args[0]) || 0, top);
+          // Canonical continuity is a position restore, not a navigation
+          // animation. `auto` can inherit CSS smooth scrolling, leaving the
+          // reader a few pixels short when consumers observe at 300ms.
+          // `instant` makes this single owner scroll deterministic.
+          return nativeScrollTo({ top, behavior: 'instant' });
         }
       }
       return nativeScrollTo(...args);
