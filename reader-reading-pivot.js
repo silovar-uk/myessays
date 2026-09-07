@@ -9,7 +9,8 @@
 
   const VISIBLE_RATIO = 0.28;
   const PIVOT_SETTLE_MS = 110;
-  const SWITCH_LOCK_MS = 520;
+  const SWITCH_LOCK_MS = 180;
+  const USER_SCROLL_RELEASE_PX = 8;
   const SWITCH_CORRECTION_TOLERANCE = 0.75;
   const OBSERVER_THRESHOLDS = [0, .1, .28, .5, .75, 1];
 
@@ -23,6 +24,8 @@
   let lastScrollY = window.scrollY;
   let lastEssayId = '';
   let pendingSwitchAnchor = null;
+  let holdPivotUntilUserScroll = false;
+  let switchBaselineScrollY = window.scrollY;
   let modeBarObserver = null;
   let modeBarSyncToken = 0;
 
@@ -109,10 +112,11 @@
     pivot = block;
     pivot.classList.add('is-reading-pivot');
     if (settle) {
-      pivot.classList.remove('is-pivot-language-settling');
-      void pivot.offsetWidth;
-      pivot.classList.add('is-pivot-language-settling');
-      window.setTimeout(() => pivot?.classList.remove('is-pivot-language-settling'), 190);
+      const settlingPivot = pivot;
+      settlingPivot.classList.remove('is-pivot-language-settling');
+      void settlingPivot.offsetWidth;
+      settlingPivot.classList.add('is-pivot-language-settling');
+      window.setTimeout(() => settlingPivot.classList.remove('is-pivot-language-settling'), 190);
     }
     clearPending();
     document.dispatchEvent(new CustomEvent('myessays:reading-pivot-changed', {
@@ -127,13 +131,13 @@
 
   function commitCandidate(candidate) {
     if (!candidate || candidate === pivot) return clearPending();
-    if (Date.now() < lockUntil || versions()?.isSwitching?.()) return;
+    if (holdPivotUntilUserScroll || Date.now() < lockUntil || versions()?.isSwitching?.()) return;
     setPivot(candidate, { reason: 'scroll' });
   }
 
   function evaluatePivot({ immediate = false } = {}) {
     evaluationFrame = 0;
-    if (!readerOpen() || Date.now() < lockUntil || versions()?.isSwitching?.()) return;
+    if (!readerOpen() || holdPivotUntilUserScroll || Date.now() < lockUntil || versions()?.isSwitching?.()) return;
     const candidate = candidatePivot();
     if (!candidate) return;
     if (!pivot || immediate) return void setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
@@ -186,6 +190,7 @@
       viewportTop: current.getBoundingClientRect().top,
       capturedAt: performance.now()
     };
+    holdPivotUntilUserScroll = true;
     lockUntil = Date.now() + 2400;
     return { ...pendingSwitchAnchor };
   }
@@ -201,6 +206,7 @@
   function restoreSwitchAnchor(event) {
     const anchor = pendingSwitchAnchor;
     if (!anchor || anchor.essayId !== event.detail?.essayId) {
+      holdPivotUntilUserScroll = false;
       lockUntil = 0;
       return scheduleEvaluate({ immediate: true });
     }
@@ -210,6 +216,7 @@
         const target = findSwitchTarget(anchor);
         if (!target) {
           pendingSwitchAnchor = null;
+          holdPivotUntilUserScroll = false;
           lockUntil = 0;
           connectObserver();
           return scheduleEvaluate({ immediate: true });
@@ -221,9 +228,10 @@
         }
         setPivot(target, { reason: 'language-switch', settle: true });
         pendingSwitchAnchor = null;
+        switchBaselineScrollY = window.scrollY;
+        holdPivotUntilUserScroll = true;
         lockUntil = Date.now() + SWITCH_LOCK_MS;
         connectObserver();
-        window.setTimeout(() => scheduleEvaluate(), SWITCH_LOCK_MS + 20);
       }, 0);
     }));
   }
@@ -278,6 +286,7 @@
       observer?.disconnect();
       if (pivot) pivot.classList.remove('is-reading-pivot', 'is-pivot-language-settling');
       pivot = null;
+      holdPivotUntilUserScroll = false;
       clearPending();
       return;
     }
@@ -288,6 +297,7 @@
       lastEssayId = id;
       hasScrolled = false;
       pendingSwitchAnchor = null;
+      holdPivotUntilUserScroll = false;
       lockUntil = 0;
     }
 
@@ -334,7 +344,17 @@
 
   window.addEventListener('scroll', () => {
     const nextY = window.scrollY;
-    if (Math.abs(nextY - lastScrollY) > 2) hasScrolled = true;
+    const frameDelta = Math.abs(nextY - lastScrollY);
+    if (frameDelta > 2) hasScrolled = true;
+    if (
+      holdPivotUntilUserScroll
+      && !versions()?.isSwitching?.()
+      && Date.now() >= lockUntil
+      && Math.abs(nextY - switchBaselineScrollY) >= USER_SCROLL_RELEASE_PX
+    ) {
+      holdPivotUntilUserScroll = false;
+      clearPending();
+    }
     lastScrollY = nextY;
     scheduleEvaluate();
   }, { passive: true });
@@ -346,6 +366,7 @@
   });
 
   window.addEventListener('hashchange', () => {
+    holdPivotUntilUserScroll = false;
     clearPending();
     requestAnimationFrame(initialize);
   });
