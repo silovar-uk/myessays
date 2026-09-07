@@ -147,6 +147,14 @@
     return document.getElementById('readerContent');
   }
 
+  function readingLineY() {
+    const header = document.querySelector('.reader-v2-header');
+    const minimum = header?.getBoundingClientRect().height
+      ? header.getBoundingClientRect().height + 24
+      : 0;
+    return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
+  }
+
   function readingBlocks(content) {
     return content ? [...content.querySelectorAll(READING_BLOCK_SELECTOR)] : [];
   }
@@ -154,6 +162,14 @@
   function pairBlocks(content) {
     if (!content) return [];
     return [...content.querySelectorAll('[data-pair-id]')].filter(block => {
+      if (block.closest('.reader-mode-bar,.reader-compare-view,.language-lens-panel')) return false;
+      return true;
+    });
+  }
+
+  function locatorBlocks(content) {
+    if (!content) return [];
+    return [...content.querySelectorAll('[data-reading-locator]')].filter(block => {
       if (block.closest('.reader-mode-bar,.reader-compare-view,.language-lens-panel')) return false;
       return true;
     });
@@ -213,8 +229,10 @@
   function captureReadingPosition() {
     const content = readerContent();
     if (!content) return null;
-    const viewportY = window.innerHeight * READING_LINE_RATIO;
+    const viewportY = readingLineY();
 
+    const located = nearestReadingBlock(locatorBlocks(content), viewportY);
+    const locator = located.block?.dataset?.readingLocator || '';
     const paired = nearestReadingBlock(pairBlocks(content), viewportY);
     const pairId = paired.block?.dataset?.pairId || '';
 
@@ -228,6 +246,8 @@
       : 0;
 
     return {
+      locator,
+      locatorProgress: located.progress,
       pairId,
       pairProgress: paired.progress,
       sectionIndex,
@@ -238,6 +258,11 @@
     };
   }
 
+  function findLocatorBlock(content, locator) {
+    if (!content || !locator) return null;
+    return locatorBlocks(content).find(block => block.dataset.readingLocator === locator) || null;
+  }
+
   function findPairBlock(content, pairId) {
     if (!content || !pairId) return null;
     return pairBlocks(content).find(block => block.dataset.pairId === pairId) || null;
@@ -246,6 +271,17 @@
   function targetPointFromSnapshot(snapshot) {
     const content = readerContent();
     if (!content || !snapshot) return null;
+
+    if (snapshot.locator) {
+      const located = findLocatorBlock(content, snapshot.locator);
+      if (located) {
+        const rect = located.getBoundingClientRect();
+        return {
+          pageY: rect.top + window.scrollY + (rect.height * clamp(snapshot.locatorProgress)),
+          pair: located
+        };
+      }
+    }
 
     if (snapshot.pairId) {
       const pair = findPairBlock(content, snapshot.pairId);
@@ -297,8 +333,7 @@
         }
         const target = targetPointFromSnapshot(snapshot);
         if (!target) return resolve();
-        const desiredViewportY = window.innerHeight * READING_LINE_RATIO;
-        window.scrollTo({ top: Math.max(0, target.pageY - desiredViewportY), behavior: 'auto' });
+        window.scrollTo({ top: Math.max(0, target.pageY - readingLineY()), behavior: 'auto' });
         flashPair(target.pair);
         resolve();
       }));
@@ -431,14 +466,32 @@
       window.scrollTo({ top: previousScrollY, behavior: 'auto' });
 
       await waitForPairIdentity(id);
-      await restoreReadingPosition(readingPosition);
       rememberPreferredVersion(version);
 
       document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
-        detail: { essayId: id, version, pairId: readingPosition?.pairId || '' }
+        detail: {
+          essayId: id,
+          version,
+          locator: readingPosition?.locator || '',
+          pairId: readingPosition?.pairId || '',
+          positionOwner: 'reader-versions'
+        }
       }));
+
+      // Reader V2 and language plugins rebuild themselves from the version event.
+      // Restore after those event handlers have scheduled their work so one
+      // canonical exact-locator restoration wins the transition lifecycle.
+      await restoreReadingPosition(readingPosition);
+      window.MyEssaysReadingLocation?.refresh?.();
+
       document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {
-        detail: { essayId: id, mode: version, pairId: readingPosition?.pairId || '' }
+        detail: {
+          essayId: id,
+          mode: version,
+          locator: readingPosition?.locator || '',
+          pairId: readingPosition?.pairId || '',
+          positionOwner: 'reader-versions'
+        }
       }));
       return true;
     } finally {
