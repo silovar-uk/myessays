@@ -3,11 +3,6 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
-const VERSION_BADGES = {
-  ja: 'JA',
-  'en-mix': 'EN MIX',
-  'es-mix': 'ES MIX'
-};
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -31,32 +26,14 @@ function overlaps(a, b) {
 
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
-  await page.waitForSelector('#readerLanguageSwitch:not([hidden])');
+  await page.waitForSelector('.reader-mode-bar');
+  await page.waitForSelector('[data-reader-mode-version="ja"]');
+  await page.waitForSelector('[data-reader-mode-version="en-mix"]');
+  await page.waitForSelector('[data-reader-mode-version="es-mix"]');
+  await page.waitForSelector('[data-reader-mode-compare]');
 
-  const trigger = page.locator('.reader-language-trigger');
-  const menu = page.locator('#readerLanguageMenu');
-  const current = page.locator('.reader-language-current');
-
-  assert.equal(await trigger.getAttribute('aria-expanded'), 'false');
-  assert.equal(await menu.isHidden(), true, 'language menu should start collapsed');
-  assert.equal((await current.innerText()).trim(), 'JA');
-
-  await trigger.click();
-  assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
-  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
-  for (const version of ['ja', 'en-mix', 'es-mix']) {
-    await page.waitForSelector(`[data-reader-version="${version}"]`);
-  }
-
-  await page.keyboard.press('Escape');
-  await page.waitForFunction(() => document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded') === 'false');
-  assert.equal(await menu.isHidden(), true, 'Escape should close language menu');
-
-  await trigger.click();
-  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
-  await page.locator('#readerContent h1').click();
-  await page.waitForFunction(() => document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded') === 'false');
-  assert.equal(await menu.isHidden(), true, 'outside click should close language menu');
+  assert.equal(await page.locator('[data-reader-mode-version="ja"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should yield to the unified mode bar');
 
   const canonicalKey = `myessays:reading-state:${ESSAY_ID}`;
   await page.evaluate(({ key }) => {
@@ -64,32 +41,38 @@ function overlaps(a, b) {
   }, { key: canonicalKey });
 
   const switchTo = async version => {
-    const expectedBadge = VERSION_BADGES[version];
-    assert.ok(expectedBadge, `unknown version ${version}`);
-
-    if (await menu.isHidden()) await trigger.click();
-    await page.waitForSelector('#readerLanguageMenu:not([hidden])');
-    await page.click(`[data-reader-version="${version}"]`);
-    await page.waitForFunction(({ expectedVersion, badge }) => {
-      const option = document.querySelector(`[data-reader-version="${expectedVersion}"]`);
-      const currentBadge = document.querySelector('.reader-language-current')?.textContent?.trim();
-      const expanded = document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded');
-      return option?.getAttribute('aria-checked') === 'true' && currentBadge === badge && expanded === 'false';
-    }, { expectedVersion: version, badge: expectedBadge });
+    await page.locator(`[data-reader-mode-version="${version}"]`).click();
+    await page.waitForFunction(expectedVersion => {
+      const option = document.querySelector(`[data-reader-mode-version="${expectedVersion}"]`);
+      return option?.getAttribute('aria-pressed') === 'true';
+    }, version);
   };
 
   await page.evaluate(() => window.scrollTo({ top: Math.max(500, document.documentElement.scrollHeight * 0.42), behavior: 'auto' }));
-  const scrollBeforeSwitch = await page.evaluate(() => window.scrollY);
-  assert.ok(scrollBeforeSwitch > 300, `expected a meaningful reading position before switch, got ${scrollBeforeSwitch}`);
+  await page.waitForTimeout(120);
+  const before = await page.evaluate(() => {
+    const location = window.MyEssaysReadingLocation?.current?.();
+    const block = location?.block;
+    return {
+      locator: location?.locator || '',
+      top: block?.getBoundingClientRect?.().top ?? null,
+      scrollY: window.scrollY
+    };
+  });
+  assert.ok(before.scrollY > 300, `expected a meaningful reading position before switch, got ${before.scrollY}`);
+  assert.ok(before.locator, 'a canonical Reading Locator should exist before switching');
 
   await switchTo('en-mix');
-  const scrollAfterEnglishMix = await page.evaluate(() => window.scrollY);
-  assert.ok(scrollAfterEnglishMix > 200, `English Mix switch reset reading position: ${scrollAfterEnglishMix}`);
+  await page.waitForTimeout(160);
+  const englishLocation = await page.evaluate(() => window.MyEssaysReadingLocation?.current?.().locator || '');
+  assert.equal(englishLocation, before.locator, 'English Mix should preserve the exact canonical Reading Locator');
+  assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'English Mix switch must not reset reading position');
 
   await switchTo('es-mix');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
-  const scrollAfterSpanishMix = await page.evaluate(() => window.scrollY);
-  assert.ok(scrollAfterSpanishMix > 200, `Español Mix switch reset reading position: ${scrollAfterSpanishMix}`);
+  await page.waitForTimeout(160);
+  const spanishLocation = await page.evaluate(() => window.MyEssaysReadingLocation?.current?.().locator || '');
+  assert.equal(spanishLocation, before.locator, 'Español Mix should preserve the exact canonical Reading Locator');
   const spanishMixText = await page.locator('#readerContent').innerText();
   assert.match(spanishMixText, /日本語＋Español Mix/);
   assert.match(spanishMixText, /Sabemos que es importante/);
@@ -97,7 +80,18 @@ function overlaps(a, b) {
 
   await switchTo('ja');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('知っているだけでは、まだ遠い'));
-  assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'returning to Japanese should preserve a meaningful reading position');
+  await page.waitForTimeout(160);
+  const returnedLocation = await page.evaluate(() => window.MyEssaysReadingLocation?.current?.().locator || '');
+  assert.equal(returnedLocation, before.locator, 'returning to Japanese should preserve the same locator');
+
+  await page.locator('[data-reader-mode-compare]').click();
+  await page.waitForSelector('.reader-compare-view');
+  await page.waitForSelector('.reader-compare-row');
+  const compareCells = await page.locator('.reader-compare-row .reader-compare-cell').count();
+  assert.ok(compareCells >= 2, 'Compare view should render paired JA / alternate cells');
+  assert.equal(await page.locator('[data-reader-mode-compare]').getAttribute('aria-pressed'), 'true');
+  await page.locator('[data-reader-mode-version="ja"]').click();
+  await page.waitForFunction(() => !document.querySelector('.reader-compare-view'));
 
   for (let i = 0; i < 2; i += 1) {
     await switchTo('en-mix');
@@ -117,22 +111,26 @@ function overlaps(a, b) {
 
   await page.setViewportSize({ width: 320, height: 700 });
   await page.reload({ waitUntil: 'networkidle' });
-  await page.waitForSelector('#readerLanguageSwitch:not([hidden])');
-  assert.equal(await page.locator('#readerLanguageMenu').isHidden(), true, 'mobile language menu should remain collapsed by default');
-  const switchBox = await page.locator('#readerLanguageSwitch').boundingBox();
-  assert.ok(switchBox, 'language switch should be visible on mobile');
-  assert.ok(switchBox.x >= 0 && switchBox.x + switchBox.width <= 320.5, `language switch overflows mobile viewport: ${JSON.stringify(switchBox)}`);
+  await page.waitForSelector('.reader-mode-bar');
+  const modeBox = await page.locator('.reader-mode-bar').boundingBox();
+  assert.ok(modeBox, 'reading mode bar should be visible on mobile');
+  assert.ok(modeBox.x >= 0 && modeBox.x + modeBox.width <= 320.5, `mode bar overflows mobile viewport: ${JSON.stringify(modeBox)}`);
 
   const noteBox = await page.locator('#noteTab').boundingBox();
-  assert.ok(noteBox, 'note tab should remain visible on mobile');
-  assert.equal(overlaps(switchBox, noteBox), false, `language switch overlaps note tab: switch=${JSON.stringify(switchBox)} note=${JSON.stringify(noteBox)}`);
+  assert.ok(noteBox, 'note action should remain visible on mobile');
+  assert.equal(overlaps(modeBox, noteBox), false, `mode bar overlaps note action: mode=${JSON.stringify(modeBox)} note=${JSON.stringify(noteBox)}`);
 
-  await page.locator('.reader-language-trigger').click();
-  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
-  const menuBox = await page.locator('#readerLanguageMenu').boundingBox();
-  assert.ok(menuBox, 'language menu should open on mobile');
-  assert.ok(menuBox.x >= 0 && menuBox.x + menuBox.width <= 320.5, `language menu overflows mobile viewport: ${JSON.stringify(menuBox)}`);
-  await page.keyboard.press('Escape');
+  const legacyBox = await page.locator('#readerLanguageSwitch').boundingBox();
+  assert.equal(legacyBox, null, 'legacy switch must stay visually hidden when unified modes are active');
+
+  await page.locator('[data-reader-mode-version="en-mix"]').click();
+  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="en-mix"]')?.getAttribute('aria-pressed') === 'true');
+  const paragraph = page.locator('#readerContent [data-reading-locator]').filter({ hasText: /./ }).first();
+  await paragraph.click();
+  await page.waitForSelector('#paragraphLanguageDock:not([hidden])');
+  const dockBox = await page.locator('#paragraphLanguageDock button').boundingBox();
+  assert.ok(dockBox, 'mobile paragraph language action should appear after selecting a paragraph');
+  assert.ok(dockBox.x >= 0 && dockBox.x + dockBox.width <= 320.5, `paragraph action overflows mobile viewport: ${JSON.stringify(dockBox)}`);
 
   const tocSafety = await page.evaluate(async () => {
     window.__myessaysTocProbe = 0;
@@ -148,7 +146,7 @@ function overlaps(a, b) {
       metrics: { charCount: 1, minutes: 1 },
       body: '## &lt;img src=x onerror="window.__myessaysTocProbe=1"&gt;'
     });
-    await new Promise(resolve => setTimeout(resolve, 80));
+    await new Promise(resolve => setTimeout(resolve, 120));
     const nav = document.querySelector('#readerAside nav');
     return {
       executed: window.__myessaysTocProbe,
