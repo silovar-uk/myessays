@@ -62,6 +62,11 @@ jobs:
           set -o pipefail
           node --test tests/*.test.js 2>&1 | tee qa-artifacts/static-tests.log
 
+      - name: Run reading locator diagnostic
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/reading-locator-diagnostic.cjs
+
       - name: Run reading versions browser QA
         env:
           BASE_URL: http://127.0.0.1:4173
