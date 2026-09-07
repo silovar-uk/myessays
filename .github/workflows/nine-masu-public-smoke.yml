@@ -1,0 +1,52 @@
+name: Nine Masu Public Smoke
+
+on:
+  push:
+    branches: [feat/consulting-nine-masu]
+    paths:
+      - '.github/workflows/nine-masu-public-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify published GitHub Pages assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://silovar-uk.github.io/myessays'
+          nonce="${GITHUB_RUN_ID}"
+
+          fetch() {
+            local path="$1"
+            curl --fail --silent --show-error --location \
+              --retry 30 --retry-delay 3 --retry-all-errors \
+              --connect-timeout 10 --max-time 20 \
+              "${base}/${path}?smoke=${nonce}"
+          }
+
+          fetch '' > /tmp/index.html
+          grep -F 'reader-nine-masu.css?v=20260908-1' /tmp/index.html
+          grep -F 'reader-nine-masu.js?v=20260908-1' /tmp/index.html
+
+          fetch 'reader-nine-masu.js' > /tmp/nine.js
+          grep -F "const ARTICLE_ID = 'consulting-nine-masu-storyboard';" /tmp/nine.js
+          grep -F "MyEssaysReadingLocation" /tmp/nine.js
+
+          fetch 'essays/2026-09-07-consulting-nine-masu-storyboard.md' > /tmp/ja.md
+          grep -F '9マス' /tmp/ja.md
+
+          fetch 'english-mix/consulting-nine-masu-storyboard.md' > /tmp/en.md
+          grep -F 'storyboard' /tmp/en.md
+
+          fetch 'data/index.json' > /tmp/index.json
+          grep -F 'essays/2026-09-07-consulting-nine-masu-storyboard.md' /tmp/index.json
+
+          fetch 'data/versions-index.json' > /tmp/versions.json
+          grep -F 'english-mix/consulting-nine-masu-storyboard.md' /tmp/versions.json
+
+          echo 'PUBLIC_SMOKE_OK'
