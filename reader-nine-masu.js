@@ -21,14 +21,13 @@
 
   function contentSections(context) {
     const headings = directH2(context.root);
-    const subtitle = String(context.essay?.subtitle || '').trim();
-    const sections = headings.filter((heading, index) => {
-      const text = heading.textContent?.trim() || '';
-      if (heading.classList.contains('reader-v2-subtitle')) return false;
-      return !(index === 0 && subtitle && text === subtitle);
-    });
 
+    // This article intentionally has a subtitle as the first direct H2 in both
+    // Japanese and English Mix. Do not depend on the translated subtitle text
+    // or on Reader V2 having decorated it yet; drop that structural H2 first.
+    const sections = headings.slice(1);
     const outside = sections.findIndex(heading => /OUTSIDE THE GRID/i.test(heading.textContent || ''));
+
     return {
       main: sections.slice(0, 9),
       outside: outside >= 0 ? { heading: sections[outside], index: outside } : null
@@ -126,8 +125,7 @@
     stage.append(grid, outside);
     overview.append(heading, stage);
 
-    const firstSection = sections.main[0];
-    context.root.insertBefore(overview, firstSection);
+    context.root.insertBefore(overview, sections.main[0]);
 
     const current = window.MyEssaysReadingLocation?.currentSection?.();
     setActive(overview, current?.index ?? -1);
