@@ -162,11 +162,6 @@
     };
   }
 
-  // The one-tap mode bar is owned by reader-language-lab.js via
-  // data-reader-mode-version. Remove the legacy alias before Reader V2's
-  // document-capture listener sees the click, so Reader V2 does not schedule a
-  // second locator restoration for the same transition. Capture Pivot geometry
-  // here too, while the old mode is still rendered.
   function yieldLegacyVersionLocatorCapture(event) {
     if (!readerOpen()) return;
     const target = event.target instanceof Element
@@ -177,9 +172,27 @@
     target.removeAttribute('data-reader-version');
   }
 
-  // Reading Pivot preserves semantic identity, but Reading Versions owns the
-  // physical scroll position. Its old viewport-top correction uses scrollBy;
-  // suppress only that correction during the canonical restoration window.
+  function normalizeSubtitlelessLayoutBeforeRestore(essayId) {
+    requestAnimationFrame(() => {
+      if (!readerOpen() || currentEssayId() !== essayId) return;
+      const content = readerContent();
+      const essay = canonicalEssay();
+      if (!content || !essay || String(essay.subtitle || '').trim()) return;
+
+      // Reader V2's render frame may temporarily classify the first real H2 as
+      // a subtitle. Correct that in the same frame, before Reading Versions
+      // measures/restores the canonical position, so no post-scroll layout
+      // shift is introduced by the compatibility repair.
+      const intro = content.querySelector(':scope > .reader-v2-intro');
+      const h1 = content.querySelector(':scope > h1');
+      const rebuilt = rebuildMapForSubtitlelessEssay(content);
+      if (intro && h1 && h1.nextElementSibling !== intro) {
+        h1.insertAdjacentElement('afterend', intro);
+      }
+      if (rebuilt) window.MyEssaysReadingLocation?.refresh?.();
+    });
+  }
+
   function markCanonicalPositionOwnership(event) {
     if (event.detail?.positionOwner !== VERSION_POSITION_OWNER) return;
     suppressScrollByUntil = performance.now() + VERSION_SCROLL_SUPPRESS_MS;
@@ -187,6 +200,7 @@
       pendingPivotViewportAnchor &&
       pendingPivotViewportAnchor.essayId === event.detail?.essayId
     );
+    normalizeSubtitlelessLayoutBeforeRestore(event.detail?.essayId || '');
   }
 
   function pivotAdjustedScrollTop(anchor) {
@@ -214,23 +228,13 @@
         canonicalScrollAdjustmentReady = false;
         const anchor = pendingPivotViewportAnchor;
         pendingPivotViewportAnchor = null;
-
-        // Reader Versions remains the sole physical scroll owner. Defer that
-        // one native scroll by a single frame, then remeasure the derived-mode
-        // Pivot after Reader V2 / mode-bar layout work has settled.
-        requestAnimationFrame(() => {
-          const top = pivotAdjustedScrollTop(anchor);
-          if (top != null) {
-            if (typeof args[0] === 'object' && args[0] !== null) {
-              nativeScrollTo({ ...args[0], top, behavior: 'auto' });
-            } else {
-              nativeScrollTo(Number(args[0]) || 0, top);
-            }
-            return;
+        const top = pivotAdjustedScrollTop(anchor);
+        if (top != null) {
+          if (typeof args[0] === 'object' && args[0] !== null) {
+            return nativeScrollTo({ ...args[0], top, behavior: 'auto' });
           }
-          nativeScrollTo(...args);
-        });
-        return;
+          return nativeScrollTo(Number(args[0]) || 0, top);
+        }
       }
       return nativeScrollTo(...args);
     };
