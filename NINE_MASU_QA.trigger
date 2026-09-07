@@ -1,1 +1,1 @@
-run targeted and regression QA v2
+run final merge resolution and QA v3
