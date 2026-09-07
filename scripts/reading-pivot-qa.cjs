@@ -1,3 +1,4 @@
+// Production-wired Reading Pivot acceptance test.
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 
