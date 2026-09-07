@@ -161,7 +161,7 @@ function overlaps(a, b) {
 
   const tocSafety = await page.evaluate(async () => {
     window.__myessaysTocProbe = 0;
-    showReader({
+    const probe = {
       id: 'toc-security-probe',
       title: 'TOC safety probe',
       type: 'Essay',
@@ -172,7 +172,9 @@ function overlaps(a, b) {
       tags: [],
       metrics: { charCount: 1, minutes: 1 },
       body: '## &lt;img src=x onerror="window.__myessaysTocProbe=1"&gt;'
-    });
+    };
+    history.replaceState(null, '', '#/essay/toc-security-probe');
+    showReader(probe);
     await new Promise(resolve => setTimeout(resolve, 120));
     const nav = document.querySelector('#readerAside nav');
     return {
