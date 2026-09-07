@@ -1,0 +1,59 @@
+name: One-shot register no-input time essay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-register-no-input-time.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Register canonical article and English Mix
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          essay_path = 'essays/2026-09-08-no-input-time-leave-space-unfilled.md'
+          article_id = 'no-input-time-leave-space-unfilled'
+          en_mix_path = 'english-mix/no-input-time-leave-space-unfilled.md'
+
+          index_path = Path('data/index.json')
+          index_data = json.loads(index_path.read_text(encoding='utf-8'))
+          essays = index_data.setdefault('essays', [])
+          if essay_path in essays:
+              essays.remove(essay_path)
+          essays.insert(0, essay_path)
+          index_path.write_text(json.dumps(index_data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          versions_path = Path('data/versions-index.json')
+          versions_data = json.loads(versions_path.read_text(encoding='utf-8'))
+          old_articles = versions_data.setdefault('articles', {})
+          old_articles.pop(article_id, None)
+          versions_data['articles'] = {article_id: {'en-mix': en_mix_path}, **old_articles}
+          versions_path.write_text(json.dumps(versions_data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate JSON
+        run: |
+          python3 -m json.tool data/index.json >/dev/null
+          python3 -m json.tool data/versions-index.json >/dev/null
+
+      - name: Commit registration and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json
+          git rm .github/workflows/one-shot-register-no-input-time.yml
+          git commit -m "外部入力を止める時間の記事をライブラリへ登録"
+          git push
