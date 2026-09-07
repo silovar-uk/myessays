@@ -5,12 +5,12 @@
     breakpoint: 980,
     anchor: 0.46,
     weak: 0.28,
-    maxEqualGap: 8,
     maxNearGap: 5
   });
   const JA_RE = /[\u3040-\u30ff\u3400-\u9fff々〆ヵヶ]{2,}/g;
   const EN_RE = /[A-Za-z][A-Za-z0-9_-]{3,}/g;
   const NUM_RE = /\d+(?:[.,]\d+)*/g;
+  const BLOCK_SELECTOR = 'h2,h3,p,li';
 
   const norm = value => String(value || '').normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
 
@@ -38,6 +38,11 @@
     const dice = (2 * common) / (aa.size + bb.size);
     const evidence = common >= 3 ? 1 : common === 2 ? .88 : .56;
     return Math.min(1, ((containment * .72) + (dice * .28)) * evidence);
+  }
+
+  function projectedIndex(index, sourceCount, targetCount) {
+    if (targetCount <= 1 || sourceCount <= 1) return 0;
+    return Math.max(0, Math.min(targetCount - 1, Math.round((index * (targetCount - 1)) / (sourceCount - 1))));
   }
 
   function anchors(mix, ja) {
@@ -71,17 +76,23 @@
   function fillGap(result, mix, ja, ms, me, js, je, bounded) {
     const mc = me - ms, jc = je - js;
     if (mc <= 0 || jc <= 0) return;
-    if (mc === jc && mc <= CONFIG.maxEqualGap) {
-      for (let k = 0; k < mc; k += 1) result[ms + k] = { ja: js + k, confidence: bounded ? 'sequence' : 'sequence-edge' };
+
+    // Paragraph identity is structural first: if both versions kept the same
+    // number and order of blocks in this gap, pair them directly regardless
+    // of how much the wording/language changed.
+    if (mc === jc) {
+      for (let k = 0; k < mc; k += 1) result[ms + k] = { ja: js + k, confidence: bounded ? 'pair-sequence' : 'pair-sequence-edge' };
       return;
     }
+
     if (Math.abs(mc - jc) <= 1 && Math.max(mc, jc) <= CONFIG.maxNearGap) {
       for (let k = 0; k < mc; k += 1) {
         const projected = Math.max(0, Math.min(jc - 1, Math.round((((k + .5) * jc) / mc) - .5)));
-        result[ms + k] = { ja: js + projected, confidence: bounded ? 'interpolated' : 'interpolated-edge' };
+        result[ms + k] = { ja: js + projected, confidence: bounded ? 'pair-near' : 'pair-near-edge' };
       }
       return;
     }
+
     for (let mi = ms; mi < me; mi += 1) {
       let best = null;
       for (let ji = js; ji < je; ji += 1) {
@@ -92,9 +103,31 @@
     }
   }
 
+  function completeByPosition(result, mix, ja) {
+    if (!ja.length) return result;
+    for (let i = 0; i < result.length; i += 1) {
+      if (result[i]) continue;
+      result[i] = {
+        ja: projectedIndex(i, mix.length, ja.length),
+        confidence: 'pair-position'
+      };
+    }
+    return result;
+  }
+
   function align(mix = [], ja = []) {
     const result = Array(mix.length).fill(null);
     if (!mix.length || !ja.length) return result;
+
+    // The normal English Mix authoring contract preserves paragraph order.
+    // Equal block counts therefore mean identity by position, not similarity.
+    if (mix.length === ja.length) {
+      return mix.map((_, index) => ({ ja: index, confidence: 'pair-order' }));
+    }
+
+    // Mismatched structures use text only as an anchor, then preserve sequence
+    // around those anchors. Any remaining block receives a monotonic positional
+    // fallback so a wording change never becomes a user-facing lookup failure.
     const fixed = anchors(mix, ja);
     fixed.forEach(item => { result[item.mix] = { ja: item.ja, confidence: item.score >= .82 ? 'exact' : 'text-anchor' }; });
     const bounds = [{ mix: -1, ja: -1, edge: true }, ...fixed, { mix: mix.length, ja: ja.length, edge: true }];
@@ -102,10 +135,18 @@
       const a = bounds[i], b = bounds[i + 1];
       fillGap(result, mix, ja, a.mix + 1, b.mix, a.ja + 1, b.ja, !a.edge && !b.edge);
     }
-    return result;
+    return completeByPosition(result, mix, ja);
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = { similarity, align };
+  function pairKey(sectionIndex, blockIndex, type = 'block') {
+    const section = String(sectionIndex).padStart(2, '0');
+    if (type === 'heading') return `s${section}-heading`;
+    return `s${section}-b${String(blockIndex).padStart(3, '0')}`;
+  }
+
+  const pairApi = { similarity, align, pairKey, projectedIndex };
+  if (typeof module !== 'undefined' && module.exports) module.exports = pairApi;
+  if (typeof window !== 'undefined') window.MyEssaysPairIdentity = pairApi;
   if (typeof document === 'undefined') return;
 
   const view = document.getElementById('readerView');
@@ -121,15 +162,34 @@
     return String(clone.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
   }
 
+  function eligibleBlocks(root) {
+    return [...root.querySelectorAll(BLOCK_SELECTOR)].filter(el => {
+      if (el.closest('.footnotes')) return false;
+      if (el.tagName === 'LI' && el.querySelector(':scope > p')) return false;
+      return true;
+    });
+  }
+
   function sections(root) {
     const list = [{ heading: null, blocks: [] }];
-    root.querySelectorAll('h2,h3,p,li').forEach(el => {
-      if (el.closest('.footnotes')) return;
-      if (el.tagName === 'LI' && el.querySelector(':scope > p')) return;
+    eligibleBlocks(root).forEach(el => {
       if (el.tagName === 'H2') list.push({ heading: el, blocks: [] });
       else list[list.length - 1].blocks.push(el);
     });
     return list;
+  }
+
+  function setPairIdentity(mixBlock, jaBlock, id, confidence) {
+    if (!mixBlock || !jaBlock) return;
+    const canonicalId = jaBlock.dataset.pairId || id;
+    jaBlock.dataset.pairId = canonicalId;
+    mixBlock.dataset.pairId = canonicalId;
+    mixBlock.dataset.pairConfidence = confidence || 'pair';
+    refs.set(mixBlock, {
+      text: textOf(jaBlock),
+      confidence: confidence || 'pair',
+      pairId: canonicalId
+    });
   }
 
   function panel() {
@@ -158,12 +218,15 @@
     const body = el.querySelector('.japanese-reference-text');
     const originalBlock = el.querySelector('.japanese-reference-original');
     selected.textContent = selectedText || '';
+    el.dataset.pairId = reference?.pairId || '';
+
     if (!reference?.text) {
-      status.textContent = '対応する日本語を特定できませんでした';
+      status.textContent = 'この位置に対応する日本語段落がありません';
       body.textContent = '';
       originalBlock.hidden = true;
     } else {
-      status.textContent = reference.confidence.includes('interpolated') ? '対応する日本語段落（位置から推定）' : '対応する日本語段落';
+      const positional = reference.confidence === 'pair-position';
+      status.textContent = positional ? '対応する日本語段落（段落位置で対応）' : '対応する日本語段落';
       body.textContent = reference.text;
       originalBlock.hidden = false;
     }
@@ -174,6 +237,7 @@
     essayId = ctx.essayId;
     try { version = state?.currentEssay?.__readingVersion || 'ja'; } catch { version = 'ja'; }
     closePanel();
+    content.dataset.pairIdentity = '';
     if (version !== 'en-mix') return;
 
     const canonical = document.createElement('div');
@@ -185,18 +249,33 @@
 
     for (let s = 0; s < count; s += 1) {
       const mix = mixSections[s], ja = jaSections[s];
-      if (mix.heading && ja.heading) refs.set(mix.heading, { text: textOf(ja.heading), confidence: 'heading' });
+      if (mix.heading && ja.heading) {
+        setPairIdentity(mix.heading, ja.heading, pairKey(s, 0, 'heading'), 'heading');
+      }
       const mapping = align(mix.blocks.map(textOf), ja.blocks.map(textOf));
       mapping.forEach((match, i) => {
-        if (match && ja.blocks[match.ja]) refs.set(mix.blocks[i], { text: textOf(ja.blocks[match.ja]), confidence: match.confidence });
+        if (!match || !ja.blocks[match.ja]) return;
+        setPairIdentity(mix.blocks[i], ja.blocks[match.ja], pairKey(s, match.ja), match.confidence);
       });
     }
+
+    // If heading structures differ, recover any still-unpaired block from the
+    // document-wide reading order. This is intentionally the last resort.
+    const mixAll = eligibleBlocks(ctx.root);
+    const jaAll = eligibleBlocks(canonical);
+    mixAll.forEach((block, index) => {
+      if (refs.has(block) || !jaAll.length) return;
+      const jaIndex = projectedIndex(index, mixAll.length, jaAll.length);
+      setPairIdentity(block, jaAll[jaIndex], `doc-b${String(jaIndex).padStart(4, '0')}`, 'pair-position');
+    });
+
+    content.dataset.pairIdentity = 'ready';
   }
 
   function closestBlock(node) {
     let element = node;
     if (element?.nodeType === Node.TEXT_NODE) element = element.parentElement;
-    return element?.closest?.('p,li,h2,h3') || null;
+    return element?.closest?.(BLOCK_SELECTOR) || null;
   }
 
   function selectionContext() {
