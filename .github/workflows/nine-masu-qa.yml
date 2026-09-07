@@ -1,0 +1,137 @@
+name: Nine Masu QA
+
+on:
+  push:
+    branches: [feat/consulting-nine-masu]
+    paths:
+      - 'NINE_MASU_QA.trigger'
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/myessays-server.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/myessays-server.log
+          exit 1
+
+      - name: Static and content checks
+        run: |
+          node --check reader-nine-masu.js
+          node - <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const index = JSON.parse(fs.readFileSync('data/index.json', 'utf8'));
+          const versions = JSON.parse(fs.readFileSync('data/versions-index.json', 'utf8'));
+          assert.equal(index.essays[0], 'essays/2026-09-07-consulting-nine-masu-storyboard.md');
+          assert.equal(index.essays.filter(x => x === 'essays/2026-09-07-consulting-nine-masu-storyboard.md').length, 1);
+          assert.equal(versions.articles['consulting-nine-masu-storyboard']['en-mix'], 'english-mix/consulting-nine-masu-storyboard.md');
+          console.log('Nine-masu indexes OK');
+          NODE
+          node tools/audit-content.mjs --strict
+          node --test tests/*.test.js
+
+      - name: Existing reader regression QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: |
+          node scripts/reading-locator-diagnostic.cjs
+          node scripts/reading-versions-qa.cjs
+          node scripts/japanese-reference-qa.cjs
+          node scripts/argument-structure-qa.cjs
+          node scripts/page-reader-qa.cjs
+
+      - name: Targeted nine-masu browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: |
+          mkdir -p qa-artifacts
+          node - <<'NODE'
+          const assert = require('node:assert/strict');
+          const { chromium } = require('playwright');
+          const base = process.env.BASE_URL;
+          const id = 'consulting-nine-masu-storyboard';
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+            const errors = [];
+            page.on('pageerror', error => errors.push(String(error)));
+            page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+
+            await page.goto(`${base}/#/essay/${id}`, { waitUntil: 'networkidle' });
+            await page.waitForSelector('.nine-masu-overview');
+            assert.equal(await page.locator('.nine-masu-cell').count(), 9);
+            assert.equal(await page.locator('.nine-masu-outside').count(), 1);
+
+            await page.locator('.nine-masu-cell').nth(4).click();
+            await page.waitForFunction(() => window.MyEssaysReadingLocation?.currentSection?.().index === 4);
+            assert.equal(await page.locator('.nine-masu-cell').nth(4).getAttribute('aria-current'), 'step');
+
+            for (const width of [375, 320]) {
+              await page.setViewportSize({ width, height: 760 });
+              await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+              const overview = await page.locator('.nine-masu-overview').boundingBox();
+              assert.ok(overview && overview.x >= -0.5 && overview.x + overview.width <= width + 0.5, `overview overflow at ${width}: ${JSON.stringify(overview)}`);
+              const boxes = await page.locator('.nine-masu-cell').evaluateAll(nodes => nodes.map(node => {
+                const r = node.getBoundingClientRect();
+                return { left: r.left, right: r.right, height: r.height };
+              }));
+              assert.ok(boxes.every(box => box.left >= -0.5 && box.right <= width + 0.5), `cell overflow at ${width}`);
+              assert.ok(boxes.every(box => box.height >= 44), `touch target too short at ${width}`);
+              await page.screenshot({ path: `qa-artifacts/nine-masu-${width}.png`, fullPage: false });
+            }
+
+            await page.setViewportSize({ width: 1280, height: 800 });
+            const en = page.locator('[data-reader-mode-version="en-mix"]');
+            await en.waitFor();
+            await en.click();
+            await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="en-mix"]')?.getAttribute('aria-pressed') === 'true');
+            await page.waitForSelector('.nine-masu-overview');
+            assert.equal(await page.locator('.nine-masu-cell').count(), 9, 'overview should remount in English Mix');
+            assert.equal(await page.locator('.nine-masu-outside').count(), 1, 'outside should remount in English Mix');
+
+            await page.goto(`${base}/#/essay/design-literacy-visual-hierarchy-attention-order`, { waitUntil: 'networkidle' });
+            assert.equal(await page.locator('.nine-masu-overview').count(), 0, 'overview must be article-scoped');
+            assert.deepEqual(errors, []);
+
+            await browser.close();
+            console.log('Targeted nine-masu browser QA passed');
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: nine-masu-qa
+          path: qa-artifacts/
+          if-no-files-found: warn
+          retention-days: 7
