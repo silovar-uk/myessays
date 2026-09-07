@@ -63,13 +63,15 @@ async function cycleTo(page, expected) {
   assert.ok(await page.locator('[data-reader-mode-compare]').isVisible(), 'Compare should remain a separate secondary action');
   assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should remain hidden');
 
-  await page.evaluate(() => {
+  const scrollDelta = await page.evaluate(() => {
     const blocks = [...document.querySelectorAll('#readerContent > .reader-locator-block[data-reading-locator]')];
     const target = blocks[Math.min(4, blocks.length - 1)];
-    const pageTop = target.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: Math.max(0, pageTop - 300), behavior: 'auto' });
+    const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 300);
+    return Math.max(450, targetY - window.scrollY);
   });
-  await page.waitForTimeout(320);
+  await page.mouse.move(640, 400);
+  await page.mouse.wheel(0, scrollDelta);
+  await page.waitForTimeout(420);
 
   const readingOrder = await page.evaluate(() => {
     const header = document.querySelector('.reader-v2-header');
