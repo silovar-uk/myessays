@@ -60,7 +60,7 @@ async function cycleTo(page, expected) {
 
   assert.equal(await page.locator('.reader-language-cycle').getAttribute('data-current-version'), 'ja');
   assert.equal(await page.locator('.reader-language-cycle').getAttribute('data-next-version'), 'en-mix');
-  assert.ok(await page.locator('[data-reader-mode-compare]').isVisible(), 'Compare should remain a separate secondary action');
+  assert.ok(await page.locator('[data-reader-mode-compare]').isVisible(), 'Compare should remain a separate secondary action on desktop');
   assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should remain hidden');
 
   const scrollDelta = await page.evaluate(() => {
@@ -128,20 +128,31 @@ async function cycleTo(page, expected) {
   await page.waitForSelector('.reader-language-cycle');
   await page.waitForSelector('#readerContent > .reader-locator-block.is-reading-pivot');
 
-  const cycleBox = await page.locator('.reader-language-cycle').boundingBox();
-  const compareBox = await page.locator('[data-reader-mode-compare]').boundingBox();
-  const noteBox = await page.locator('#noteTab').boundingBox();
-  assert.ok(cycleBox && compareBox && noteBox, 'mobile language, compare, and note controls should all remain visible');
-  assert.ok(cycleBox.x >= 0 && cycleBox.x + cycleBox.width <= 390.5, `language cycle overflows mobile viewport: ${JSON.stringify(cycleBox)}`);
-  assert.equal(overlaps(cycleBox, noteBox), false, 'language cycle must not overlap the note action');
-  assert.equal(overlaps(compareBox, noteBox), false, 'Compare must not overlap the note action');
-
   const mobileInitial = await page.evaluate(() => {
     const first = document.querySelector('#readerContent > .reader-locator-block[data-reading-locator]');
     const pivot = document.querySelector('#readerContent > .reader-locator-block.is-reading-pivot');
     return [first?.dataset.readingLocator || '', pivot?.dataset.readingLocator || ''];
   });
   assert.equal(mobileInitial[1], mobileInitial[0], 'mobile should also begin with the first readable block as Pivot');
+
+  const cycleBox = await page.locator('.reader-language-cycle').boundingBox();
+  const noteBox = await page.locator('#noteTab').boundingBox();
+  assert.ok(cycleBox && noteBox, 'mobile language cycle and note control should remain visible');
+  assert.ok(cycleBox.x >= 0 && cycleBox.x + cycleBox.width <= 390.5, `language cycle overflows mobile viewport: ${JSON.stringify(cycleBox)}`);
+  assert.equal(overlaps(cycleBox, noteBox), false, 'language cycle must not overlap the note action');
+  assert.equal(await page.locator('[data-reader-mode-compare]').isHidden(), true, 'desktop Compare action should leave the mobile Reader Header');
+
+  await page.locator('.reader-v2-map-toggle').click();
+  await page.waitForSelector('#readerAside.is-open');
+  await page.waitForSelector('.reader-mobile-compare:not([hidden])');
+  const mobileCompareBox = await page.locator('.reader-mobile-compare').boundingBox();
+  assert.ok(mobileCompareBox, 'Compare should remain available from the mobile Reader Map');
+  assert.ok(mobileCompareBox.x >= 0 && mobileCompareBox.x + mobileCompareBox.width <= 390.5, `mobile Reader Map Compare overflows viewport: ${JSON.stringify(mobileCompareBox)}`);
+  await page.locator('.reader-mobile-compare').click();
+  await page.waitForSelector('.reader-compare-view');
+  await page.waitForFunction(() => !document.querySelector('#readerAside')?.classList.contains('is-open'));
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('.reader-compare-view'));
 
   assert.deepEqual(pageErrors, [], `browser page errors: ${pageErrors.join(' | ')}`);
   assert.deepEqual(consoleErrors, [], `browser console errors: ${consoleErrors.join(' | ')}`);
