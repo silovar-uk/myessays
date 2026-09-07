@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
 
-function state(label, wanted = '') {
+function state({ label, wanted = '' }) {
   const content = document.getElementById('readerContent');
   const pivot = window.MyEssaysReadingPivot?.current?.();
   const reading = window.MyEssaysReadingLocation?.current?.();
@@ -67,16 +67,16 @@ async function switchTo(page, version) {
       top: pivot?.getBoundingClientRect?.().top ?? null
     };
   });
-  console.log('ES_LOCATOR_DIAGNOSTIC JA', JSON.stringify(await page.evaluate(state, 'ja', before.locator)));
+  console.log('ES_LOCATOR_DIAGNOSTIC JA', JSON.stringify(await page.evaluate(state, { label: 'ja', wanted: before.locator })));
 
   await switchTo(page, 'en-mix');
   await page.waitForTimeout(320);
-  console.log('ES_LOCATOR_DIAGNOSTIC EN', JSON.stringify(await page.evaluate(state, 'en-mix', before.locator)));
+  console.log('ES_LOCATOR_DIAGNOSTIC EN', JSON.stringify(await page.evaluate(state, { label: 'en-mix', wanted: before.locator })));
 
   await switchTo(page, 'es-mix');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
   await page.waitForTimeout(320);
-  console.log('ES_LOCATOR_DIAGNOSTIC ES', JSON.stringify(await page.evaluate(state, 'es-mix', before.locator)));
+  console.log('ES_LOCATOR_DIAGNOSTIC ES', JSON.stringify(await page.evaluate(state, { label: 'es-mix', wanted: before.locator })));
 
   await browser.close();
 })().catch(error => {
