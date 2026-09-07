@@ -16,6 +16,9 @@
   let pendingVersionLocator = '';
   let lastLocationSignature = '';
   let currentRouteEssayId = '';
+  let lastKnownLocation = null;
+  let contentObserver = null;
+  let bodyObserver = null;
 
   const $ = id => document.getElementById(id);
 
@@ -108,18 +111,21 @@
   function sectionHeadings() {
     const content = readerContent();
     if (!content) return [];
-    return [...content.querySelectorAll('h2')].filter(heading => !heading.classList.contains('reader-v2-subtitle'));
+    return [...content.querySelectorAll(':scope > h2')]
+      .filter(heading => !heading.classList.contains('reader-v2-subtitle'));
   }
 
   function readingBlocks() {
     const content = readerContent();
     if (!content) return [];
-    return [...content.querySelectorAll('.reader-locator-block[data-reading-locator]')];
+    return [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')];
   }
 
   function readingY() {
     const header = document.querySelector('.reader-v2-header');
-    const minimum = header?.getBoundingClientRect().height ? header.getBoundingClientRect().height + 24 : 0;
+    const minimum = header?.getBoundingClientRect().height
+      ? header.getBoundingClientRect().height + 24
+      : 0;
     return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
   }
 
@@ -143,7 +149,7 @@
 
   function sectionForBlock(block) {
     const headings = sectionHeadings();
-    if (!headings.length) return { index: -1, id: '', title: '' };
+    if (!headings.length) return { index: -1, id: '', title: 'Introduction' };
     const targetY = block?.getBoundingClientRect().top ?? readingY();
     let active = -1;
     headings.forEach((heading, index) => {
@@ -161,11 +167,16 @@
   function progressRatio() {
     const content = readerContent();
     if (!content) return 0;
-    const rect = content.getBoundingClientRect();
-    const pageTop = rect.top + window.scrollY;
-    const pageBottom = pageTop + rect.height;
+    const blocks = readingBlocks();
+    const contentRect = content.getBoundingClientRect();
+    const start = contentRect.top + window.scrollY;
+    let end = start + contentRect.height;
+    if (blocks.length) {
+      const lastRect = blocks.at(-1).getBoundingClientRect();
+      end = Math.max(start + 1, lastRect.bottom + window.scrollY);
+    }
     const point = window.scrollY + readingY();
-    return Math.min(1, Math.max(0, (point - pageTop) / Math.max(1, pageBottom - pageTop)));
+    return Math.min(1, Math.max(0, (point - start) / Math.max(1, end - start)));
   }
 
   function currentLocation() {
@@ -226,23 +237,6 @@
   function scrollToSection(index, options = {}) {
     const target = sectionHeadings()[Number(index)];
     return scrollElementIntoReadingPosition(target, options.behavior || 'smooth');
-  }
-
-  function locationApi() {
-    return {
-      current: currentLocation,
-      currentSection: () => {
-        const location = currentLocation();
-        return {
-          index: location.sectionIndex,
-          id: location.sectionId,
-          title: location.sectionTitle
-        };
-      },
-      scrollToLocator,
-      scrollToSection,
-      refresh: scheduleLocationSync
-    };
   }
 
   function ensureBackdrop() {
@@ -312,7 +306,7 @@
     const next = Boolean(open && readerOpen());
     aside?.classList.toggle('is-open', next);
     toggle?.setAttribute('aria-expanded', String(next));
-    aside?.setAttribute('aria-hidden', String(mobile && !next));
+    if (aside) aside.setAttribute('aria-hidden', String(mobile && !next));
     backdrop.hidden = !(mobile && next);
     document.body.classList.toggle('reader-v2-map-open', mobile && next);
   }
@@ -322,7 +316,7 @@
     const essay = currentEssay();
     if (!content || !essay) return;
     content.querySelectorAll('.reader-v2-subtitle').forEach(element => element.classList.remove('reader-v2-subtitle'));
-    const h1 = content.querySelector('h1');
+    const h1 = content.querySelector(':scope > h1');
     const candidate = h1?.nextElementSibling;
     if (candidate?.tagName === 'H2') {
       const candidateText = candidate.textContent?.trim() || '';
@@ -337,20 +331,19 @@
     if (!content || !essay) return null;
     markSubtitle();
 
-    let intro = content.querySelector('.reader-v2-intro');
+    let intro = content.querySelector(':scope > .reader-v2-intro');
     if (!intro) {
       intro = document.createElement('section');
       intro.className = 'reader-v2-intro';
       intro.setAttribute('aria-label', '記事情報');
-      const h1 = content.querySelector('h1');
-      const subtitle = content.querySelector('h2.reader-v2-subtitle');
-      const stats = content.querySelector('.reading-stats');
-      const anchor = h1 || stats || content.firstElementChild;
-      if (anchor) anchor.insertAdjacentElement('beforebegin', intro);
-      if (h1) intro.append(h1);
-      if (subtitle) intro.append(subtitle);
-      stats?.remove();
+      const subtitle = content.querySelector(':scope > h2.reader-v2-subtitle');
+      const h1 = content.querySelector(':scope > h1');
+      const anchor = subtitle || h1 || content.querySelector(':scope > .reading-stats') || content.firstElementChild;
+      if (anchor) anchor.insertAdjacentElement('afterend', intro);
+      else content.prepend(intro);
     }
+
+    content.querySelector(':scope > .reading-stats')?.remove();
 
     let meta = intro.querySelector('.reader-v2-intro-meta');
     if (!meta) {
@@ -400,9 +393,9 @@
   function ensureResumePrompt(previousState) {
     const content = readerContent();
     const essay = currentEssay();
-    const intro = content?.querySelector('.reader-v2-intro');
+    const intro = content?.querySelector(':scope > .reader-v2-intro');
     if (!content || !essay || !intro) return;
-    content.querySelector('.reader-v2-resume')?.remove();
+    content.querySelector(':scope > .reader-v2-resume')?.remove();
 
     const stateValue = previousState || readingState(essay.id);
     const nearTop = Number(stateValue.lastProgressRatio || 0) < 0.08;
@@ -425,9 +418,7 @@
   function mapHost() {
     const aside = $('readerAside');
     if (!aside) return null;
-    const existingContents = aside.querySelector('#argumentContentsPanel');
-    if (existingContents) return existingContents;
-    return aside;
+    return aside.querySelector('#argumentContentsPanel') || aside;
   }
 
   function buildReaderMap() {
@@ -436,14 +427,16 @@
     aside.classList.add('reader-v2-map');
     aside.setAttribute('aria-label', 'Reader Map');
 
-    const hasArgumentUi = Boolean(aside.querySelector('.argument-aside-tabs') && aside.querySelector('#argumentContentsPanel'));
+    const hasArgumentUi = Boolean(
+      aside.querySelector('.argument-aside-tabs') && aside.querySelector('#argumentContentsPanel')
+    );
     if (!hasArgumentUi) aside.innerHTML = '';
     else aside.querySelector('.meta-block')?.remove();
 
     const host = mapHost();
     if (!host) return;
     host.querySelector('.reader-v2-map-body')?.remove();
-    host.querySelector('nav')?.remove();
+    host.querySelector(':scope > nav')?.remove();
 
     const wrapper = document.createElement('div');
     wrapper.className = 'reader-v2-map-body';
@@ -462,6 +455,11 @@
 
     wrapper.querySelector('.reader-v2-map-close')?.addEventListener('click', () => setMapOpen(false));
     renderReaderMapItems();
+    if (window.innerWidth <= MOBILE_BREAKPOINT && !aside.classList.contains('is-open')) {
+      aside.setAttribute('aria-hidden', 'true');
+    } else {
+      aside.setAttribute('aria-hidden', 'false');
+    }
   }
 
   function renderReaderMapItems() {
@@ -471,7 +469,9 @@
     const anchors = noteAnchors();
     const headings = sectionHeadings();
     nav.innerHTML = headings.map((heading, index) => {
-      const sectionHasNote = anchors.some(anchor => Number(anchor.sectionIndex) === index || (anchor.sectionId && anchor.sectionId === heading.id));
+      const sectionHasNote = anchors.some(anchor =>
+        Number(anchor.sectionIndex) === index || (anchor.sectionId && anchor.sectionId === heading.id)
+      );
       const wasLast = stored.lastSectionId
         ? stored.lastSectionId === heading.id
         : Number(stored.lastSection) === index;
@@ -500,57 +500,66 @@
     if (notes) notes.textContent = String(anchors.length);
   }
 
-  function updateReaderMap(location) {
+  function updateReaderMap(locationValue) {
     const items = [...document.querySelectorAll('.reader-v2-map-item')];
     items.forEach((item, index) => {
-      const current = index === location.sectionIndex;
-      const passed = location.sectionIndex >= 0 && index < location.sectionIndex;
-      item.classList.toggle('is-current', current);
+      const isCurrent = index === locationValue.sectionIndex;
+      const passed = locationValue.sectionIndex >= 0 && index < locationValue.sectionIndex;
+      item.classList.toggle('is-current', isCurrent);
       item.classList.toggle('is-passed', passed);
-      item.setAttribute('aria-current', current ? 'location' : 'false');
+      if (isCurrent) item.setAttribute('aria-current', 'location');
+      else item.removeAttribute('aria-current');
     });
     const percent = document.querySelector('.reader-v2-map-percent');
-    if (percent) percent.textContent = `${Math.round(location.progressRatio * 100)}%`;
+    if (percent) percent.textContent = `${Math.round(locationValue.progressRatio * 100)}%`;
   }
 
-  function updateHeader(location) {
+  function updateHeader(locationValue) {
     const header = ensureHeader();
     if (!header) return;
     const title = header.querySelector('.reader-v2-current-title');
     const progress = header.querySelector('.reader-v2-header-progress span');
-    if (title) title.textContent = location.sectionTitle || 'Introduction';
-    if (progress) progress.style.transform = `scaleX(${Math.min(1, Math.max(0, location.progressRatio))})`;
+    if (title) title.textContent = locationValue.sectionTitle || 'Introduction';
+    if (progress) {
+      progress.style.transform = `scaleX(${Math.min(1, Math.max(0, locationValue.progressRatio))})`;
+    }
   }
 
-  function persistLocation(location) {
-    if (!location.essayId || !location.locator || Date.now() < initialPersistUntil) return;
-    mergeReadingState(location.essayId, {
-      lastLocator: location.locator,
-      lastSection: location.sectionIndex,
-      lastSectionId: location.sectionId,
-      lastSectionTitle: location.sectionTitle,
-      lastProgressRatio: location.progressRatio,
+  function persistLocation(locationValue, { force = false } = {}) {
+    if (!locationValue?.essayId || !locationValue.locator) return;
+    if (!force && Date.now() < initialPersistUntil) return;
+    mergeReadingState(locationValue.essayId, {
+      lastLocator: locationValue.locator,
+      lastSection: locationValue.sectionIndex,
+      lastSectionId: locationValue.sectionId,
+      lastSectionTitle: locationValue.sectionTitle,
+      lastProgressRatio: locationValue.progressRatio,
       lastSeenAt: new Date().toISOString()
     });
   }
 
-  function queuePersist(location) {
+  function queuePersist(locationValue) {
     window.clearTimeout(persistTimer);
-    persistTimer = window.setTimeout(() => persistLocation(location), PERSIST_DELAY_MS);
+    persistTimer = window.setTimeout(() => persistLocation(locationValue), PERSIST_DELAY_MS);
   }
 
-  function dispatchLocation(location) {
-    const signature = [location.essayId, location.locator, location.sectionIndex, Math.round(location.progressRatio * 100)].join(':');
+  function dispatchLocation(locationValue) {
+    const signature = [
+      locationValue.essayId,
+      locationValue.locator,
+      locationValue.sectionIndex,
+      Math.round(locationValue.progressRatio * 100)
+    ].join(':');
     if (signature === lastLocationSignature) return;
     lastLocationSignature = signature;
     document.dispatchEvent(new CustomEvent('myessays:reading-location-changed', {
       detail: {
-        essayId: location.essayId,
-        locator: location.locator,
-        sectionIndex: location.sectionIndex,
-        sectionId: location.sectionId,
-        sectionTitle: location.sectionTitle,
-        progressRatio: location.progressRatio
+        essayId: locationValue.essayId,
+        locator: locationValue.locator,
+        sectionIndex: locationValue.sectionIndex,
+        sectionId: locationValue.sectionId,
+        sectionTitle: locationValue.sectionTitle,
+        progressRatio: locationValue.progressRatio
       }
     }));
   }
@@ -558,11 +567,12 @@
   function syncLocation() {
     scrollFrame = 0;
     if (!readerOpen()) return;
-    const location = currentLocation();
-    updateHeader(location);
-    updateReaderMap(location);
-    dispatchLocation(location);
-    queuePersist(location);
+    const locationValue = currentLocation();
+    lastKnownLocation = locationValue;
+    updateHeader(locationValue);
+    updateReaderMap(locationValue);
+    dispatchLocation(locationValue);
+    queuePersist(locationValue);
   }
 
   function scheduleLocationSync() {
@@ -574,17 +584,19 @@
     const clean = String(text || '').trim();
     const id = currentEssayId();
     if (!clean || !id) return;
-    const location = currentLocation();
-    if (!location.locator) return;
+    const locationValue = currentLocation();
+    if (!locationValue.locator) return;
     const entries = noteAnchors(id);
-    const duplicate = entries.some(entry => entry.locator === location.locator && entry.selectedText === clean);
+    const duplicate = entries.some(entry =>
+      entry.locator === locationValue.locator && entry.selectedText === clean
+    );
     if (!duplicate) {
       entries.push({
         id: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-        locator: location.locator,
-        sectionIndex: location.sectionIndex,
-        sectionId: location.sectionId,
-        sectionTitle: location.sectionTitle,
+        locator: locationValue.locator,
+        sectionIndex: locationValue.sectionIndex,
+        sectionId: locationValue.sectionId,
+        sectionTitle: locationValue.sectionTitle,
         selectedText: clean,
         createdAt: new Date().toISOString()
       });
@@ -596,7 +608,7 @@
   function ensureAfterReading() {
     const content = readerContent();
     if (!content) return;
-    let zone = content.querySelector('.reader-v2-after-reading');
+    let zone = content.querySelector(':scope > .reader-v2-after-reading');
     if (!zone) {
       zone = document.createElement('section');
       zone.className = 'reader-v2-after-reading';
@@ -626,6 +638,7 @@
       currentRouteEssayId = id;
       initialPersistUntil = Date.now() + INITIAL_PERSIST_GRACE_MS;
       lastLocationSignature = '';
+      lastKnownLocation = null;
     }
 
     ensureHeader();
@@ -635,6 +648,7 @@
     ensureAfterReading();
     moveLanguageSwitchIntoHeader();
     relocateCopyButton();
+    observeDynamicReaderUi();
     scheduleLocationSync();
 
     window.setTimeout(() => {
@@ -647,14 +661,39 @@
     }, 120);
   }
 
-  function flushLocation() {
+  function observeDynamicReaderUi() {
+    const content = readerContent();
+    if (content && !contentObserver) {
+      contentObserver = new MutationObserver(() => {
+        requestAnimationFrame(() => {
+          relocateCopyButton();
+          ensureAfterReading();
+        });
+      });
+      contentObserver.observe(content, { childList: true });
+    }
+    if (!bodyObserver) {
+      bodyObserver = new MutationObserver(mutations => {
+        if (mutations.some(mutation => [...mutation.addedNodes].some(node =>
+          node instanceof Element && (node.id === 'readerLanguageSwitch' || node.querySelector?.('#readerLanguageSwitch'))
+        ))) {
+          requestAnimationFrame(() => moveLanguageSwitchIntoHeader());
+        }
+      });
+      bodyObserver.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  function flushLocation({ force = true } = {}) {
     window.clearTimeout(persistTimer);
-    if (!readerOpen()) return;
-    persistLocation(currentLocation());
+    const locationValue = readerOpen() ? currentLocation() : lastKnownLocation;
+    if (locationValue) persistLocation(locationValue, { force });
   }
 
   function captureVersionLocator(event) {
-    const option = event.target instanceof Element ? event.target.closest('[data-reader-version]') : null;
+    const option = event.target instanceof Element
+      ? event.target.closest('[data-reader-version]')
+      : null;
     if (!option || !readerOpen()) return;
     pendingVersionLocator = currentLocation().locator || '';
   }
@@ -671,22 +710,38 @@
 
   function onReaderRendered() {
     requestAnimationFrame(() => {
-      const allowResume = !pendingVersionLocator;
-      syncReaderV2({ allowResume });
+      syncReaderV2({ allowResume: !pendingVersionLocator });
     });
   }
 
   function onHashChange() {
-    flushLocation();
+    flushLocation({ force: true });
     window.setTimeout(() => {
       syncBodyState();
       if (readerOpen()) syncReaderV2({ allowResume: true });
-      else currentRouteEssayId = '';
+      else {
+        currentRouteEssayId = '';
+        lastKnownLocation = null;
+      }
     }, 0);
   }
 
   function init() {
-    window.MyEssaysReadingLocation = Object.freeze(locationApi());
+    window.MyEssaysReadingLocation = Object.freeze({
+      current: currentLocation,
+      currentSection: () => {
+        const locationValue = currentLocation();
+        return {
+          index: locationValue.sectionIndex,
+          id: locationValue.sectionId,
+          title: locationValue.sectionTitle
+        };
+      },
+      scrollToLocator,
+      scrollToSection,
+      refresh: scheduleLocationSync
+    });
+
     window.MyEssaysReaderV2 = Object.freeze({
       installed: true,
       sync: syncReaderV2,
@@ -696,6 +751,7 @@
 
     ensureBackdrop();
     syncBodyState();
+    observeDynamicReaderUi();
 
     document.addEventListener('myessays:reader-rendered', onReaderRendered);
     document.addEventListener('myessays:reader-ready', onReaderRendered);
@@ -706,20 +762,20 @@
     document.addEventListener('myessays:reader-language-changed', scheduleLocationSync);
     document.addEventListener('click', captureVersionLocator, true);
 
-    const content = readerContent();
-    content?.addEventListener('myessays:add-note-quote', event => {
+    readerContent()?.addEventListener('myessays:add-note-quote', event => {
       storeNoteAnchor(event.detail?.text);
     }, true);
 
     window.addEventListener('scroll', scheduleLocationSync, { passive: true });
     window.addEventListener('resize', () => {
       if (window.innerWidth > MOBILE_BREAKPOINT) setMapOpen(false);
+      else if (!$('readerAside')?.classList.contains('is-open')) $('readerAside')?.setAttribute('aria-hidden', 'true');
       scheduleLocationSync();
     });
     window.addEventListener('hashchange', onHashChange);
-    window.addEventListener('pagehide', flushLocation);
+    window.addEventListener('pagehide', () => flushLocation({ force: true }));
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) flushLocation();
+      if (document.hidden) flushLocation({ force: true });
       else scheduleLocationSync();
     });
     window.addEventListener('keydown', event => {
