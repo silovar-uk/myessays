@@ -10,9 +10,10 @@
   const VISIBLE_RATIO = 0.28;
   const PIVOT_SETTLE_MS = 110;
   const SWITCH_LOCK_MS = 180;
-  const USER_SCROLL_RELEASE_PX = 8;
+  const USER_SCROLL_INTENT_MS = 900;
   const SWITCH_CORRECTION_TOLERANCE = 0.75;
   const OBSERVER_THRESHOLDS = [0, .1, .28, .5, .75, 1];
+  const SCROLL_KEYS = new Set(['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ']);
 
   let pivot = null;
   let observer = null;
@@ -25,7 +26,7 @@
   let lastEssayId = '';
   let pendingSwitchAnchor = null;
   let holdPivotUntilUserScroll = false;
-  let switchBaselineScrollY = window.scrollY;
+  let userScrollIntentUntil = 0;
   let modeBarObserver = null;
   let modeBarSyncToken = 0;
 
@@ -173,6 +174,16 @@
     return readingBlocks().filter(block => block.dataset.readingLocator === locator);
   }
 
+  function markUserScrollIntent() {
+    if (!readerOpen()) return;
+    userScrollIntentUntil = Date.now() + USER_SCROLL_INTENT_MS;
+    hasScrolled = true;
+    if (holdPivotUntilUserScroll && !versions()?.isSwitching?.()) {
+      holdPivotUntilUserScroll = false;
+      clearPending();
+    }
+  }
+
   function captureSwitchAnchor() {
     if (!readerOpen()) return null;
     const blocks = readingBlocks();
@@ -191,6 +202,7 @@
       capturedAt: performance.now()
     };
     holdPivotUntilUserScroll = true;
+    userScrollIntentUntil = 0;
     lockUntil = Date.now() + 2400;
     return { ...pendingSwitchAnchor };
   }
@@ -228,7 +240,7 @@
         }
         setPivot(target, { reason: 'language-switch', settle: true });
         pendingSwitchAnchor = null;
-        switchBaselineScrollY = window.scrollY;
+        userScrollIntentUntil = 0;
         holdPivotUntilUserScroll = true;
         lockUntil = Date.now() + SWITCH_LOCK_MS;
         connectObserver();
@@ -287,6 +299,7 @@
       if (pivot) pivot.classList.remove('is-reading-pivot', 'is-pivot-language-settling');
       pivot = null;
       holdPivotUntilUserScroll = false;
+      userScrollIntentUntil = 0;
       clearPending();
       return;
     }
@@ -298,6 +311,7 @@
       hasScrolled = false;
       pendingSwitchAnchor = null;
       holdPivotUntilUserScroll = false;
+      userScrollIntentUntil = 0;
       lockUntil = 0;
     }
 
@@ -342,21 +356,19 @@
   });
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncModeBar));
 
+  window.addEventListener('wheel', markUserScrollIntent, { passive: true });
+  window.addEventListener('touchmove', markUserScrollIntent, { passive: true });
+  document.addEventListener('keydown', event => {
+    if (SCROLL_KEYS.has(event.key) && !event.metaKey && !event.ctrlKey && !event.altKey) markUserScrollIntent();
+  }, true);
+
   window.addEventListener('scroll', () => {
     const nextY = window.scrollY;
     const frameDelta = Math.abs(nextY - lastScrollY);
-    if (frameDelta > 2) hasScrolled = true;
-    if (
-      holdPivotUntilUserScroll
-      && !versions()?.isSwitching?.()
-      && Date.now() >= lockUntil
-      && Math.abs(nextY - switchBaselineScrollY) >= USER_SCROLL_RELEASE_PX
-    ) {
-      holdPivotUntilUserScroll = false;
-      clearPending();
-    }
+    const userDriven = Date.now() <= userScrollIntentUntil;
+    if (frameDelta > 2 && userDriven) hasScrolled = true;
     lastScrollY = nextY;
-    scheduleEvaluate();
+    if (userDriven) scheduleEvaluate();
   }, { passive: true });
 
   window.addEventListener('resize', () => {
@@ -367,6 +379,7 @@
 
   window.addEventListener('hashchange', () => {
     holdPivotUntilUserScroll = false;
+    userScrollIntentUntil = 0;
     clearPending();
     requestAnimationFrame(initialize);
   });
