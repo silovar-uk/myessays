@@ -16,6 +16,7 @@
   const SCROLL_KEYS = new Set(['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ']);
 
   let pivot = null;
+  let logicalPivotLocator = '';
   let observer = null;
   let pendingPivot = null;
   let pendingTimer = 0;
@@ -107,10 +108,39 @@
     pendingTimer = 0;
   }
 
-  function setPivot(block, { reason = 'scroll', settle = false } = {}) {
+  function physicalLocator(block) {
+    return block?.dataset?.readingLocator || '';
+  }
+
+  function parseLocator(locator) {
+    const match = String(locator || '').match(/^(\d+)-(\d+)$/);
+    return match ? { section: Number(match[1]), block: Number(match[2]) } : null;
+  }
+
+  function nearestCanonicalBlock(locator) {
+    const wanted = parseLocator(locator);
+    if (!wanted) return null;
+    const sameSection = readingBlocks()
+      .map(block => ({ block, locator: parseLocator(physicalLocator(block)) }))
+      .filter(item => item.locator?.section === wanted.section);
+    if (!sameSection.length) return null;
+    return sameSection.reduce((best, item) => {
+      const distance = Math.abs(item.locator.block - wanted.block);
+      return !best || distance < best.distance ? { block: item.block, distance } : best;
+    }, null)?.block || null;
+  }
+
+  function currentLogicalLocator() {
+    return logicalPivotLocator || physicalLocator(pivot);
+  }
+
+  function setPivot(block, { reason = 'scroll', settle = false, logicalLocator = '' } = {}) {
     if (!block || !content.contains(block)) return false;
-    if (pivot && pivot !== block) pivot.classList.remove('is-reading-pivot', 'is-pivot-language-settling');
+    const sameBlock = pivot === block;
+    if (pivot && !sameBlock) pivot.classList.remove('is-reading-pivot', 'is-pivot-language-settling');
     pivot = block;
+    if (logicalLocator) logicalPivotLocator = logicalLocator;
+    else if (!sameBlock || !logicalPivotLocator) logicalPivotLocator = physicalLocator(block);
     pivot.classList.add('is-reading-pivot');
     if (settle) {
       const settlingPivot = pivot;
@@ -123,7 +153,8 @@
     document.dispatchEvent(new CustomEvent('myessays:reading-pivot-changed', {
       detail: {
         essayId: essayId(),
-        locator: pivot.dataset.readingLocator || '',
+        locator: currentLogicalLocator(),
+        physicalLocator: physicalLocator(pivot),
         reason
       }
     }));
@@ -171,7 +202,7 @@
 
   function matchingLocatorBlocks(locator) {
     if (!locator) return [];
-    return readingBlocks().filter(block => block.dataset.readingLocator === locator);
+    return readingBlocks().filter(block => physicalLocator(block) === locator);
   }
 
   function markUserScrollIntent() {
@@ -192,7 +223,7 @@
     if (!current) return null;
     if (current !== pivot) setPivot(current, { reason: 'switch-capture' });
 
-    const locator = current.dataset.readingLocator || '';
+    const locator = current === pivot ? currentLogicalLocator() : physicalLocator(current);
     const cluster = matchingLocatorBlocks(locator);
     pendingSwitchAnchor = {
       essayId: essayId(),
@@ -211,8 +242,9 @@
     if (!anchor?.locator) return null;
     const cluster = matchingLocatorBlocks(anchor.locator);
     if (cluster.length) return cluster[Math.min(anchor.clusterIndex || 0, cluster.length - 1)];
-    return [...content.querySelectorAll(':scope > [data-pair-id]')]
-      .find(block => block.dataset.pairId === anchor.locator) || null;
+    const paired = [...content.querySelectorAll(':scope > [data-pair-id]')]
+      .find(block => block.dataset.pairId === anchor.locator);
+    return paired || nearestCanonicalBlock(anchor.locator);
   }
 
   function restoreSwitchAnchor(event) {
@@ -238,7 +270,11 @@
         if (Math.abs(delta) > SWITCH_CORRECTION_TOLERANCE) {
           window.scrollBy({ top: delta, behavior: 'auto' });
         }
-        setPivot(target, { reason: 'language-switch', settle: true });
+        setPivot(target, {
+          reason: 'language-switch',
+          settle: true,
+          logicalLocator: anchor.locator
+        });
         pendingSwitchAnchor = null;
         userScrollIntentUntil = 0;
         holdPivotUntilUserScroll = true;
@@ -325,6 +361,7 @@
       observer?.disconnect();
       if (pivot) pivot.classList.remove('is-reading-pivot', 'is-pivot-language-settling');
       pivot = null;
+      logicalPivotLocator = '';
       holdPivotUntilUserScroll = false;
       userScrollIntentUntil = 0;
       clearPending();
@@ -337,6 +374,7 @@
       lastEssayId = id;
       hasScrolled = false;
       pendingSwitchAnchor = null;
+      logicalPivotLocator = '';
       holdPivotUntilUserScroll = false;
       userScrollIntentUntil = 0;
       lockUntil = 0;
@@ -369,7 +407,8 @@
   window.MyEssaysReadingPivot = Object.freeze({
     installed: true,
     current: () => pivot,
-    locator: () => pivot?.dataset.readingLocator || '',
+    locator: () => currentLogicalLocator(),
+    physicalLocator: () => physicalLocator(pivot),
     captureForSwitch: captureSwitchAnchor,
     hasPendingSwitchAnchor: () => Boolean(pendingSwitchAnchor),
     refresh: initialize
@@ -407,6 +446,7 @@
   window.addEventListener('hashchange', () => {
     holdPivotUntilUserScroll = false;
     userScrollIntentUntil = 0;
+    logicalPivotLocator = '';
     clearPending();
     requestAnimationFrame(initialize);
   });
