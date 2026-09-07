@@ -12,13 +12,18 @@ function overlaps(a, b) {
 }
 
 async function ensureEnglishMix(page) {
-  await page.waitForSelector('#readerLanguageSwitch:not([hidden])');
-  const current = (await page.locator('.reader-language-current').innerText()).trim();
-  if (current === 'EN MIX') return;
-  await page.locator('.reader-language-trigger').click();
-  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
-  await page.locator('[data-reader-version="en-mix"]').click();
-  await page.waitForFunction(() => document.querySelector('.reader-language-current')?.textContent?.trim() === 'EN MIX');
+  await page.waitForSelector('.reader-mode-bar');
+  const button = page.locator('[data-reader-mode-version="en-mix"]');
+  if ((await button.getAttribute('aria-pressed')) === 'true') return;
+  await button.click();
+  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="en-mix"]')?.getAttribute('aria-pressed') === 'true');
+  await page.waitForFunction(target => document.querySelector('#readerContent')?.textContent?.includes(target), MIX_TARGET);
+}
+
+async function targetParagraph(page) {
+  const locator = page.locator('#readerContent p', { hasText: MIX_TARGET }).first();
+  assert.ok(await locator.count(), `English Mix should contain regression target: ${MIX_TARGET}`);
+  return locator;
 }
 
 async function selectTranslatedEnglishParagraph(page) {
@@ -54,6 +59,31 @@ async function assertJapaneseReference(page, expectedSelected) {
   assert.match(japaneseText, /矛盾/, 'translated English Mix paragraph should reveal its Japanese canonical paragraph');
 }
 
+async function assertLanguageLens(page) {
+  const paragraph = await targetParagraph(page);
+  await paragraph.hover();
+  await page.waitForSelector('#paragraphLanguagePeek:not([hidden])');
+  await page.locator('#paragraphLanguagePeek').click();
+  await page.waitForSelector('#languageLensPanel:not([hidden])');
+  await page.waitForFunction(expected => {
+    const panel = document.querySelector('#languageLensPanel');
+    const counterpart = panel?.querySelector('.language-lens-counterpart-copy')?.textContent || '';
+    const status = panel?.querySelector('.language-lens-status')?.textContent || '';
+    return counterpart.includes(expected) && !status.includes('対応版なし');
+  }, EXPECTED_JAPANESE);
+
+  const pair = await page.evaluate(() => ({
+    lens: document.querySelector('#languageLensPanel')?.dataset.pairId || '',
+    current: Array.from(document.querySelectorAll('#readerContent [data-reading-locator]'))
+      .find(el => (el.textContent || '').includes('But that creates an obvious tension.'))?.dataset.readingLocator || ''
+  }));
+  assert.ok(pair.current, 'translated paragraph should have a canonical Reading Locator');
+  assert.equal(pair.lens, pair.current, 'Language Lens must use the same Reading Locator as the paragraph');
+
+  await page.locator('.language-lens-close').click();
+  await page.waitForFunction(() => document.querySelector('#languageLensPanel')?.hidden === true);
+}
+
 async function assertCrossParagraphSelectionCloses(page) {
   await page.evaluate(() => {
     const paragraphs = Array.from(document.querySelectorAll('#readerContent p')).filter(p => (p.textContent || '').trim());
@@ -81,16 +111,21 @@ async function assertCrossParagraphSelectionCloses(page) {
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await ensureEnglishMix(page);
+
+  // Primary new UX: paragraph-level Language Lens works without text selection.
+  await assertLanguageLens(page);
+
+  // Compatibility UX: selecting translated text still reveals canonical Japanese.
   const desktopSelected = await selectTranslatedEnglishParagraph(page);
   await assertJapaneseReference(page, desktopSelected);
 
   const panelBox = await page.locator('#japaneseReferencePanel').boundingBox();
   const tocBox = await page.locator('#readerAside').boundingBox();
-  const languageBox = await page.locator('.reader-language-trigger').boundingBox();
+  const modeBox = await page.locator('.reader-mode-bar').boundingBox();
   assert.ok(panelBox, 'Japanese reference panel should be visible on desktop');
   assert.ok(panelBox.x > 1280 / 2, `desktop panel should use the right-side lane: ${JSON.stringify(panelBox)}`);
-  if (tocBox) assert.equal(overlaps(panelBox, tocBox), false, 'Japanese reference panel must not cover the reader TOC');
-  if (languageBox) assert.equal(overlaps(panelBox, languageBox), false, 'Japanese reference panel must not cover the language switch');
+  if (tocBox) assert.equal(overlaps(panelBox, tocBox), false, 'Japanese reference panel must not cover the Reader Map');
+  if (modeBox) assert.equal(overlaps(panelBox, modeBox), false, 'Japanese reference panel must not cover the reading mode control');
 
   await assertCrossParagraphSelectionCloses(page);
   const desktopSelectedAgain = await selectTranslatedEnglishParagraph(page);
@@ -102,11 +137,8 @@ async function assertCrossParagraphSelectionCloses(page) {
   assert.equal(visibilityWithNote, 'hidden', 'Japanese reference should yield to the reading note panel');
   await page.locator('#closeNote').click();
 
-  const trigger = page.locator('.reader-language-trigger');
-  await trigger.click();
-  await page.waitForSelector('#readerLanguageMenu:not([hidden])');
-  await page.locator('[data-reader-version="ja"]').click();
-  await page.waitForFunction(() => document.querySelector('.reader-language-current')?.textContent?.trim() === 'JA');
+  await page.locator('[data-reader-mode-version="ja"]').click();
+  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="ja"]')?.getAttribute('aria-pressed') === 'true');
   assert.equal(await page.locator('#japaneseReferencePanel').isHidden(), true, 'switching back to Japanese should close the reference panel');
 
   await page.setViewportSize({ width: 390, height: 844 });
@@ -120,11 +152,26 @@ async function assertCrossParagraphSelectionCloses(page) {
   assert.ok(mobileBox, 'Japanese reference bottom sheet should be visible on mobile');
   assert.ok(mobileBox.x >= 0 && mobileBox.x + mobileBox.width <= 390.5, `bottom sheet overflows horizontally: ${JSON.stringify(mobileBox)}`);
   assert.ok(mobileBox.y >= 0 && mobileBox.y + mobileBox.height <= 844.5, `bottom sheet overflows vertically: ${JSON.stringify(mobileBox)}`);
-  assert.ok(mobileBox.y + mobileBox.height <= 790, `bottom sheet should stay above the selection controls: ${JSON.stringify(mobileBox)}`);
+  assert.ok(mobileBox.y + mobileBox.height <= 790, `bottom sheet should stay above the bottom controls: ${JSON.stringify(mobileBox)}`);
+
+  await page.evaluate(() => {
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    document.dispatchEvent(new Event('selectionchange', { bubbles: true }));
+  });
+  await page.waitForFunction(() => document.querySelector('#japaneseReferencePanel')?.hidden === true);
+  const mobileParagraph = await targetParagraph(page);
+  await mobileParagraph.click();
+  await page.waitForSelector('#paragraphLanguageDock:not([hidden])');
+  await page.locator('#paragraphLanguageDock button').click();
+  await page.waitForSelector('#languageLensPanel:not([hidden])');
+  const lensBox = await page.locator('#languageLensPanel').boundingBox();
+  assert.ok(lensBox, 'Language Lens bottom sheet should be visible on mobile');
+  assert.ok(lensBox.x >= 0 && lensBox.x + lensBox.width <= 390.5, `Language Lens overflows mobile viewport: ${JSON.stringify(lensBox)}`);
 
   assert.deepEqual(pageErrors, [], `browser page errors: ${pageErrors.join(' | ')}`);
   await browser.close();
-  console.log('Japanese reference browser QA passed');
+  console.log('Japanese reference + Language Lens browser QA passed');
 })().catch(error => {
   console.error(error);
   process.exit(1);
