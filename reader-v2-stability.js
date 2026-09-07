@@ -3,10 +3,12 @@
 
   const MOBILE_BREAKPOINT = 820;
   const READING_PREFIX = 'myessays:reading-state:';
-  const READING_LINE_RATIO = 0.28;
+  const VERSION_POSITION_OWNER = 'reader-versions';
+  const VERSION_SCROLL_SUPPRESS_MS = 260;
   let syncFrame = 0;
-  let pendingModeLocation = null;
-  let restoreFrame = 0;
+  let suppressScrollByUntil = 0;
+  let pendingPivotViewportAnchor = null;
+  let canonicalScrollAdjustmentReady = false;
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -45,93 +47,6 @@
     } catch {
       return {};
     }
-  }
-
-  function clamp(value, min = 0, max = 1) {
-    return Math.min(max, Math.max(min, value));
-  }
-
-  function readingLineY() {
-    const header = document.querySelector('.reader-v2-header');
-    const minimum = header?.getBoundingClientRect().height
-      ? header.getBoundingClientRect().height + 24
-      : 0;
-    return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
-  }
-
-  function cssEscape(value = '') {
-    if (window.CSS?.escape) return CSS.escape(String(value));
-    return String(value).replace(/(["\\#.;?+*~':!^$\[\]()=>|/@])/g, '\\$1');
-  }
-
-  function captureModeLocation(event) {
-    const option = event.target instanceof Element
-      ? event.target.closest('[data-reader-mode-version],[data-reader-version]')
-      : null;
-    if (!option || !readerOpen()) return;
-
-    const nextVersion = option.dataset.readerModeVersion || option.dataset.readerVersion || '';
-    const currentVersion = window.MyEssaysReaderVersions?.currentVersion?.() || 'ja';
-    if (!nextVersion || nextVersion === currentVersion) return;
-
-    const locationValue = window.MyEssaysReadingLocation?.current?.();
-    const block = locationValue?.block;
-    const locator = locationValue?.locator || block?.dataset?.readingLocator || '';
-    if (!locator) return;
-
-    const rect = block?.getBoundingClientRect?.();
-    const progress = rect && rect.height > 0
-      ? clamp((readingLineY() - rect.top) / rect.height)
-      : 0;
-
-    pendingModeLocation = {
-      essayId: currentEssayId(),
-      locator,
-      progress
-    };
-  }
-
-  function exactLocatorTarget(locator) {
-    const content = readerContent();
-    if (!content || !locator) return null;
-    const matches = [...content.querySelectorAll(
-      `[data-reading-locator="${cssEscape(locator)}"]`
-    )];
-    return matches[0] || null;
-  }
-
-  function restoreExactModeLocation(event) {
-    if (!readerOpen()) return;
-    const eventEssayId = event?.detail?.essayId || currentEssayId();
-    const eventPairId = event?.detail?.pairId || '';
-    const captured = pendingModeLocation && pendingModeLocation.essayId === eventEssayId
-      ? pendingModeLocation
-      : null;
-    pendingModeLocation = null;
-
-    const locator = captured?.locator || eventPairId;
-    if (!locator) return;
-
-    window.cancelAnimationFrame(restoreFrame);
-    restoreFrame = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          restoreFrame = 0;
-          if (!readerOpen() || currentEssayId() !== eventEssayId) return;
-          const target = exactLocatorTarget(locator);
-          if (!target) return;
-
-          const rect = target.getBoundingClientRect();
-          const progress = captured?.progress ?? 0;
-          const pagePoint = rect.top + window.scrollY + (rect.height * clamp(progress));
-          window.scrollTo({
-            top: Math.max(0, pagePoint - readingLineY()),
-            behavior: 'auto'
-          });
-          window.MyEssaysReadingLocation?.refresh?.();
-        });
-      });
-    });
   }
 
   function element(tag, className = '', text = '') {
@@ -230,6 +145,94 @@
     target.append(proxy);
   }
 
+  function capturePivotViewportAnchor() {
+    const content = readerContent();
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || pivot?.dataset?.readingLocator || '';
+    if (!content || !pivot || !locator || !content.contains(pivot)) return null;
+    if (window.scrollY <= 32) return null;
+
+    const blocks = [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')]
+      .filter(block => block.dataset.readingLocator === locator);
+    return {
+      essayId: currentEssayId(),
+      locator,
+      clusterIndex: Math.max(0, blocks.indexOf(pivot)),
+      viewportTop: pivot.getBoundingClientRect().top
+    };
+  }
+
+  function yieldLegacyVersionLocatorCapture(event) {
+    if (!readerOpen()) return;
+    const target = event.target instanceof Element
+      ? event.target.closest('[data-reader-mode-version]')
+      : null;
+    if (!target) return;
+    pendingPivotViewportAnchor = capturePivotViewportAnchor();
+    if (target.hasAttribute('data-reader-version')) target.removeAttribute('data-reader-version');
+  }
+
+  function normalizeSubtitlelessLayoutBeforeRestore(essayId) {
+    requestAnimationFrame(() => {
+      if (!readerOpen() || currentEssayId() !== essayId) return;
+      const content = readerContent();
+      const essay = canonicalEssay();
+      if (!content || !essay || String(essay.subtitle || '').trim()) return;
+
+      const intro = content.querySelector(':scope > .reader-v2-intro');
+      const h1 = content.querySelector(':scope > h1');
+      const rebuilt = rebuildMapForSubtitlelessEssay(content);
+      if (intro && h1 && h1.nextElementSibling !== intro) {
+        h1.insertAdjacentElement('afterend', intro);
+      }
+      if (rebuilt) window.MyEssaysReadingLocation?.refresh?.();
+    });
+  }
+
+  function markCanonicalPositionOwnership(event) {
+    if (event.detail?.positionOwner !== VERSION_POSITION_OWNER) return;
+    suppressScrollByUntil = performance.now() + VERSION_SCROLL_SUPPRESS_MS;
+    canonicalScrollAdjustmentReady = Boolean(
+      pendingPivotViewportAnchor &&
+      pendingPivotViewportAnchor.essayId === event.detail?.essayId
+    );
+    normalizeSubtitlelessLayoutBeforeRestore(event.detail?.essayId || '');
+  }
+
+  function pivotAdjustedScrollTop(anchor) {
+    const content = readerContent();
+    if (!content || !anchor?.locator) return null;
+    const blocks = [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')]
+      .filter(block => block.dataset.readingLocator === anchor.locator);
+    if (!blocks.length) return null;
+    const target = blocks[Math.min(anchor.clusterIndex || 0, blocks.length - 1)];
+    const targetPageY = target.getBoundingClientRect().top + window.scrollY;
+    return Math.max(0, targetPageY - anchor.viewportTop);
+  }
+
+  function installScrollOwnershipGuard() {
+    const nativeScrollBy = window.scrollBy.bind(window);
+    const nativeScrollTo = window.scrollTo.bind(window);
+
+    window.scrollBy = (...args) => {
+      if (performance.now() < suppressScrollByUntil) return;
+      return nativeScrollBy(...args);
+    };
+
+    window.scrollTo = (...args) => {
+      if (canonicalScrollAdjustmentReady) {
+        canonicalScrollAdjustmentReady = false;
+        const anchor = pendingPivotViewportAnchor;
+        pendingPivotViewportAnchor = null;
+        const top = pivotAdjustedScrollTop(anchor);
+        if (top != null) {
+          return nativeScrollTo({ top, behavior: 'instant' });
+        }
+      }
+      return nativeScrollTo(...args);
+    };
+  }
+
   function stabilize() {
     syncFrame = 0;
     if (!readerOpen()) return;
@@ -249,16 +252,17 @@
   }
 
   function init() {
-    document.addEventListener('click', captureModeLocation, true);
+    installScrollOwnershipGuard();
+    window.addEventListener('click', yieldLegacyVersionLocatorCapture, true);
+    document.addEventListener('myessays:reader-version-changed', markCanonicalPositionOwnership, true);
+
     document.addEventListener('myessays:reader-rendered', schedule);
     document.addEventListener('myessays:reader-ready', schedule);
-    document.addEventListener('myessays:reader-version-changed', event => {
-      schedule();
-      restoreExactModeLocation(event);
-    });
+    document.addEventListener('myessays:reader-version-changed', schedule);
     document.addEventListener('myessays:reader-language-changed', schedule);
     window.addEventListener('hashchange', () => {
-      pendingModeLocation = null;
+      pendingPivotViewportAnchor = null;
+      canonicalScrollAdjustmentReady = false;
       window.setTimeout(schedule, 0);
     });
 

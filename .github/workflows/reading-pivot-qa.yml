@@ -1,0 +1,55 @@
+name: Reading Pivot QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'reader-reading-pivot.js'
+      - 'reader-reading-pivot.css'
+      - 'reader-language-lab.js'
+      - 'reader-v2.js'
+      - 'reader-v2-stability.js'
+      - 'reader-versions.js'
+      - 'reading-locators.js'
+      - 'scripts/reading-pivot-qa.cjs'
+      - '.github/workflows/reading-pivot-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reading-pivot-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/myessays-pivot-server.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/myessays-pivot-server.log
+          exit 1
+
+      - name: Run Reading Pivot browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/reading-pivot-qa.cjs

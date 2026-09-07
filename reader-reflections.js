@@ -144,7 +144,7 @@
 
   function render(context) {
     const view=context?.view||document.getElementById('readerView'),content=context?.root||document.getElementById('readerContent');if(!view||!content||view.hidden)return;
-    const essay=context?.essay||essayNow(),old=content.querySelector(ROOT);if(!essay){old?.remove();return;}if(old?.dataset.essayId===essay.id){refresh(old,essay);return;}saveActiveDraft?.();old?.remove();const root=build(essay),nav=content.querySelector('.reader-end-navigation');nav?content.insertBefore(root,nav):content.append(root);
+    const essay=context?.essay||essayNow(),old=content.querySelector(ROOT);if(!essay){old?.remove();return;}if(old?.dataset.essayId===essay.id){refresh(old,essay);return;}saveActiveDraft?.();old?.remove();const root=build(essay),nav=content.querySelector('.reader-end-navigation');nav?.parentElement?nav.parentElement.insertBefore(root,nav):content.append(root);
   }
 
   window.MyEssaysReaderReflections=Object.freeze({render,readEntries,readDraft,plainCopy,detailedCopy,formatRelativeDateTime:relativeTime});

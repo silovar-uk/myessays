@@ -1,0 +1,55 @@
+name: One-shot fix Reader V2 after-reading order
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-fix-after-reading-order.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Preserve reflection insertion order
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('reader-v2.js')
+          text = path.read_text()
+          old = """    ['.reading-completion-zone', '.reader-reflections', '.reader-end-navigation'].forEach(selector => {
+      const element = content.querySelector(`:scope > ${selector}`);
+      if (element && element.parentElement !== zone) zone.append(element);
+    });"""
+          new = """    ['.reading-completion-zone', '.reader-reflections'].forEach(selector => {
+      const element = content.querySelector(`:scope > ${selector}`);
+      if (element && element.parentElement !== zone) zone.append(element);
+    });
+
+    // Reflections inserts itself immediately before the legacy end navigation.
+    // Keep that navigation as a direct content child until Reflections exists,
+    // then move both into the consolidated After Reading zone.
+    const reflections = content.querySelector(':scope > .reader-reflections')
+      || zone.querySelector(':scope > .reader-reflections');
+    const navigation = content.querySelector(':scope > .reader-end-navigation');
+    if (navigation && reflections) zone.append(navigation);"""
+          if old not in text:
+              raise SystemExit('After Reading anchor not found')
+          path.write_text(text.replace(old, new, 1))
+          PY
+
+      - name: Commit repair and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reader-v2.js
+          git rm .github/workflows/one-shot-fix-after-reading-order.yml
+          git commit -m "Preserve Reflections insertion order in Reader V2"
+          git push

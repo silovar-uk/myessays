@@ -27,13 +27,13 @@ function overlaps(a, b) {
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await page.waitForSelector('.reader-mode-bar');
-  await page.waitForSelector('[data-reader-mode-version="ja"]');
-  await page.waitForSelector('[data-reader-mode-version="en-mix"]');
-  await page.waitForSelector('[data-reader-mode-version="es-mix"]');
+  await page.waitForSelector('.reader-language-cycle');
   await page.waitForSelector('[data-reader-mode-compare]');
+  await page.waitForSelector('#readerContent > .reader-locator-block.is-reading-pivot');
 
-  assert.equal(await page.locator('[data-reader-mode-version="ja"]').getAttribute('aria-pressed'), 'true');
-  assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should yield to the unified mode bar');
+  assert.equal(await page.locator('.reader-language-cycle').getAttribute('data-current-version'), 'ja');
+  assert.equal(await page.locator('.reader-language-cycle').getAttribute('data-next-version'), 'en-mix');
+  assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should yield to the one-tap language cycle');
 
   const canonicalKey = `myessays:reading-state:${ESSAY_ID}`;
   await page.evaluate(({ key }) => {
@@ -41,38 +41,54 @@ function overlaps(a, b) {
   }, { key: canonicalKey });
 
   const switchTo = async version => {
-    await page.locator(`[data-reader-mode-version="${version}"]`).click();
-    await page.waitForFunction(expectedVersion => {
-      const option = document.querySelector(`[data-reader-mode-version="${expectedVersion}"]`);
-      return option?.getAttribute('aria-pressed') === 'true';
-    }, version);
+    for (let attempt = 0; attempt < 4; attempt += 1) {
+      const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
+      if (current === version) return;
+      const button = page.locator('.reader-language-cycle');
+      const next = await button.getAttribute('data-next-version');
+      assert.ok(next, 'language cycle should always expose its next version');
+      await button.click();
+      await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, next);
+      await page.waitForFunction(expected => document.querySelector('.reader-language-cycle')?.dataset.currentVersion === expected, next);
+    }
+    assert.equal(await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.()), version, `could not cycle to ${version}`);
   };
 
-  await page.evaluate(() => window.scrollTo({ top: Math.max(500, document.documentElement.scrollHeight * 0.42), behavior: 'auto' }));
-  await page.waitForTimeout(120);
+  const scrollDelta = await page.evaluate(() => Math.max(700, document.documentElement.scrollHeight * 0.35));
+  await page.mouse.move(640, 400);
+  await page.mouse.wheel(0, scrollDelta);
+  await page.waitForTimeout(420);
+
   const before = await page.evaluate(() => {
-    const location = window.MyEssaysReadingLocation?.current?.();
-    const block = location?.block;
+    const pivot = window.MyEssaysReadingPivot?.current?.();
     return {
-      locator: location?.locator || '',
-      top: block?.getBoundingClientRect?.().top ?? null,
+      locator: window.MyEssaysReadingPivot?.locator?.() || '',
+      top: pivot?.getBoundingClientRect?.().top ?? null,
       scrollY: window.scrollY
     };
   });
   assert.ok(before.scrollY > 300, `expected a meaningful reading position before switch, got ${before.scrollY}`);
-  assert.ok(before.locator, 'a canonical Reading Locator should exist before switching');
+  assert.ok(before.locator, 'a canonical Reading Pivot locator should exist before switching');
 
   await switchTo('en-mix');
-  await page.waitForTimeout(160);
-  const englishLocation = await page.evaluate(() => window.MyEssaysReadingLocation?.current?.().locator || '');
-  assert.equal(englishLocation, before.locator, 'English Mix should preserve the exact canonical Reading Locator');
+  await page.waitForTimeout(300);
+  const english = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
+  });
+  assert.equal(english.locator, before.locator, 'English Mix should preserve the exact Reading Pivot locator');
+  assert.ok(Math.abs(english.top - before.top) <= 3, `English Mix Pivot top drifted by ${english.top - before.top}px`);
   assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'English Mix switch must not reset reading position');
 
   await switchTo('es-mix');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
-  await page.waitForTimeout(160);
-  const spanishLocation = await page.evaluate(() => window.MyEssaysReadingLocation?.current?.().locator || '');
-  assert.equal(spanishLocation, before.locator, 'Español Mix should preserve the exact canonical Reading Locator');
+  await page.waitForTimeout(300);
+  const spanish = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
+  });
+  assert.equal(spanish.locator, before.locator, 'Español Mix should preserve the exact Reading Pivot locator');
+  assert.ok(Math.abs(spanish.top - before.top) <= 3, `Español Mix Pivot top drifted by ${spanish.top - before.top}px`);
   const spanishMixText = await page.locator('#readerContent').innerText();
   assert.match(spanishMixText, /日本語＋Español Mix/);
   assert.match(spanishMixText, /Sabemos que es importante/);
@@ -80,9 +96,13 @@ function overlaps(a, b) {
 
   await switchTo('ja');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('知っているだけでは、まだ遠い'));
-  await page.waitForTimeout(160);
-  const returnedLocation = await page.evaluate(() => window.MyEssaysReadingLocation?.current?.().locator || '');
-  assert.equal(returnedLocation, before.locator, 'returning to Japanese should preserve the same locator');
+  await page.waitForTimeout(300);
+  const returned = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
+  });
+  assert.equal(returned.locator, before.locator, 'returning to Japanese should preserve the same Pivot locator');
+  assert.ok(Math.abs(returned.top - before.top) <= 3, `round-trip Pivot top drifted by ${returned.top - before.top}px`);
 
   await page.locator('[data-reader-mode-compare]').click();
   await page.waitForSelector('.reader-compare-view');
@@ -90,7 +110,7 @@ function overlaps(a, b) {
   const compareCells = await page.locator('.reader-compare-row .reader-compare-cell').count();
   assert.ok(compareCells >= 2, 'Compare view should render paired JA / alternate cells');
   assert.equal(await page.locator('[data-reader-mode-compare]').getAttribute('aria-pressed'), 'true');
-  await page.locator('[data-reader-mode-version="ja"]').click();
+  await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('.reader-compare-view'));
 
   for (let i = 0; i < 2; i += 1) {
@@ -98,6 +118,13 @@ function overlaps(a, b) {
     await switchTo('es-mix');
     await switchTo('ja');
   }
+
+  const finalPivot = await page.evaluate(() => ({
+    locator: window.MyEssaysReadingPivot?.locator?.() || '',
+    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
+  }));
+  assert.equal(finalPivot.locator, before.locator, 'repeated language cycles should not change the Pivot locator');
+  assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `repeated language cycles drifted Pivot top by ${finalPivot.top - before.top}px`);
 
   const storageKeys = await page.evaluate(() => Object.keys(localStorage));
   assert.ok(storageKeys.includes(canonicalKey));
@@ -112,6 +139,7 @@ function overlaps(a, b) {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForSelector('.reader-mode-bar');
+  await page.waitForSelector('.reader-language-cycle');
   const modeBox = await page.locator('.reader-mode-bar').boundingBox();
   assert.ok(modeBox, 'reading mode bar should be visible on mobile');
   assert.ok(modeBox.x >= 0 && modeBox.x + modeBox.width <= 320.5, `mode bar overflows mobile viewport: ${JSON.stringify(modeBox)}`);
@@ -123,8 +151,7 @@ function overlaps(a, b) {
   const legacyBox = await page.locator('#readerLanguageSwitch').boundingBox();
   assert.equal(legacyBox, null, 'legacy switch must stay visually hidden when unified modes are active');
 
-  await page.locator('[data-reader-mode-version="en-mix"]').click();
-  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="en-mix"]')?.getAttribute('aria-pressed') === 'true');
+  await switchTo('en-mix');
   const paragraph = page.locator('#readerContent [data-reading-locator]').filter({ hasText: /./ }).first();
   await paragraph.click();
   await page.waitForSelector('#paragraphLanguageDock:not([hidden])');
@@ -134,7 +161,7 @@ function overlaps(a, b) {
 
   const tocSafety = await page.evaluate(async () => {
     window.__myessaysTocProbe = 0;
-    showReader({
+    const probe = {
       id: 'toc-security-probe',
       title: 'TOC safety probe',
       type: 'Essay',
@@ -145,7 +172,9 @@ function overlaps(a, b) {
       tags: [],
       metrics: { charCount: 1, minutes: 1 },
       body: '## &lt;img src=x onerror="window.__myessaysTocProbe=1"&gt;'
-    });
+    };
+    history.replaceState(null, '', '#/essay/toc-security-probe');
+    showReader(probe);
     await new Promise(resolve => setTimeout(resolve, 120));
     const nav = document.querySelector('#readerAside nav');
     return {
