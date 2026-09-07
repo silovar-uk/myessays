@@ -214,13 +214,23 @@
         canonicalScrollAdjustmentReady = false;
         const anchor = pendingPivotViewportAnchor;
         pendingPivotViewportAnchor = null;
-        const top = pivotAdjustedScrollTop(anchor);
-        if (top != null) {
-          if (typeof args[0] === 'object' && args[0] !== null) {
-            return nativeScrollTo({ ...args[0], top, behavior: 'auto' });
+
+        // Reader Versions remains the sole physical scroll owner. Defer that
+        // one native scroll by a single frame, then remeasure the derived-mode
+        // Pivot after Reader V2 / mode-bar layout work has settled.
+        requestAnimationFrame(() => {
+          const top = pivotAdjustedScrollTop(anchor);
+          if (top != null) {
+            if (typeof args[0] === 'object' && args[0] !== null) {
+              nativeScrollTo({ ...args[0], top, behavior: 'auto' });
+            } else {
+              nativeScrollTo(Number(args[0]) || 0, top);
+            }
+            return;
           }
-          return nativeScrollTo(Number(args[0]) || 0, top);
-        }
+          nativeScrollTo(...args);
+        });
+        return;
       }
       return nativeScrollTo(...args);
     };
