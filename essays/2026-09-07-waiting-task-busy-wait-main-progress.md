@@ -376,7 +376,7 @@ DEADLINE  明日15:00。未着なら確認連絡
   https://www.sciencedirect.com/science/article/pii/S0749597809000399
 - Sam J. Gilbert et al., “Strategic offloading of delayed intentions into the external environment” (2015)  
   https://pmc.ncbi.nlm.nih.gov/articles/PMC4448673/
-- Matthias Kliegel et al. / time-based prospective memory and external control, PubMed record (2014)  
+- Tracy Huang, Shayne Loft, Michael S. Humphreys, “Internalizing versus externalizing control: different ways to perform a time-based prospective memory task” (2014)  
   https://pubmed.ncbi.nlm.nih.gov/24548325/
 - B. Hunter Ball et al., “The role of offloading intentions on future-oriented thinking” (2024)  
   https://pmc.ncbi.nlm.nih.gov/articles/PMC11246708/
