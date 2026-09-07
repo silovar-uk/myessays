@@ -3,53 +3,47 @@ const { chromium } = require('playwright');
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
 
-function snapshot(label) {
-  const readingLocation = window.MyEssaysReadingLocation?.current?.();
-  const pivot = window.MyEssaysReadingPivot?.current?.();
+function state(label, wanted = '') {
   const content = document.getElementById('readerContent');
-  const header = document.querySelector('.reader-v2-header');
-  const modeBar = document.querySelector('.reader-mode-bar');
-  const intro = content?.querySelector(':scope > .reader-v2-intro');
-  const h1 = content?.querySelector(':scope > h1');
-  const firstH2 = content?.querySelector(':scope > h2');
-  const rect = element => {
-    const r = element?.getBoundingClientRect?.();
-    return r ? {
-      top: Number(r.top.toFixed(3)),
-      bottom: Number(r.bottom.toFixed(3)),
-      height: Number(r.height.toFixed(3))
-    } : null;
-  };
-  const pivotRect = pivot?.getBoundingClientRect?.();
-  const contentRect = content?.getBoundingClientRect?.();
-  const headerRect = header?.getBoundingClientRect?.();
-  const readingY = Math.max(
-    window.innerHeight * 0.28,
-    (headerRect?.height || 0) + 24
-  );
-
+  const pivot = window.MyEssaysReadingPivot?.current?.();
+  const reading = window.MyEssaysReadingLocation?.current?.();
+  const blocks = [...(content?.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]') || [])]
+    .map((block, index) => {
+      const rect = block.getBoundingClientRect();
+      return {
+        index,
+        locator: block.dataset.readingLocator || '',
+        top: Number(rect.top.toFixed(3)),
+        bottom: Number(rect.bottom.toFixed(3)),
+        text: (block.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 90)
+      };
+    });
   return {
     label,
     version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
     scrollY: Number(window.scrollY.toFixed(3)),
-    documentHeight: document.documentElement.scrollHeight,
-    readingY: Number(readingY.toFixed(3)),
-    readingLocationLocator: readingLocation?.locator || '',
+    wanted,
     pivotLocator: window.MyEssaysReadingPivot?.locator?.() || pivot?.dataset?.readingLocator || '',
-    pivotTop: pivotRect ? Number(pivotRect.top.toFixed(3)) : null,
-    pivotPageY: pivotRect ? Number((pivotRect.top + window.scrollY).toFixed(3)) : null,
-    contentTop: contentRect ? Number(contentRect.top.toFixed(3)) : null,
-    contentPageY: contentRect ? Number((contentRect.top + window.scrollY).toFixed(3)) : null,
-    header: rect(header),
-    modeBar: rect(modeBar),
-    h1: rect(h1),
-    intro: rect(intro),
-    firstH2: {
-      ...rect(firstH2),
-      subtitleClass: Boolean(firstH2?.classList?.contains('reader-v2-subtitle')),
-      text: firstH2?.textContent?.trim()?.slice(0, 60) || ''
-    }
+    pivotTop: pivot ? Number(pivot.getBoundingClientRect().top.toFixed(3)) : null,
+    readingLocator: reading?.locator || '',
+    exact: wanted ? blocks.filter(block => block.locator === wanted) : [],
+    section4: blocks.filter(block => block.locator.startsWith('4-')),
+    section5: blocks.filter(block => block.locator.startsWith('5-'))
   };
+}
+
+async function switchTo(page, version) {
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
+    if (current === version) return;
+    const button = page.locator('.reader-language-cycle');
+    const next = await button.getAttribute('data-next-version');
+    if (!next) throw new Error('language cycle has no next version');
+    await button.click();
+    await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, next);
+    await page.waitForFunction(expected => document.querySelector('.reader-language-cycle')?.dataset.currentVersion === expected, next);
+  }
+  throw new Error(`could not switch to ${version}`);
 }
 
 (async () => {
@@ -60,46 +54,29 @@ function snapshot(label) {
   await page.waitForSelector('.reader-language-cycle');
   await page.waitForSelector('#readerContent > .reader-locator-block.is-reading-pivot');
 
-  await page.evaluate(() => {
-    window.__pivotGeometryEvents = [];
-    const record = type => event => {
-      const pivot = window.MyEssaysReadingPivot?.current?.();
-      const r = pivot?.getBoundingClientRect?.();
-      window.__pivotGeometryEvents.push({
-        type,
-        at: Number(performance.now().toFixed(1)),
-        version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
-        scrollY: Number(window.scrollY.toFixed(3)),
-        locator: window.MyEssaysReadingPivot?.locator?.() || '',
-        pivotTop: r ? Number(r.top.toFixed(3)) : null,
-        owner: event?.detail?.positionOwner || '',
-        reason: event?.detail?.reason || ''
-      });
-    };
-    window.addEventListener('scroll', record('scroll'), { passive: true });
-    document.addEventListener('myessays:reader-version-changed', record('version-changed'));
-    document.addEventListener('myessays:reader-language-changed', record('language-changed'));
-    document.addEventListener('myessays:reading-pivot-changed', record('pivot-changed'));
-    document.addEventListener('myessays:reading-location-changed', record('location-changed'));
-  });
-
-  // Match reading-versions-qa.cjs rather than using an arbitrary diagnostic position.
+  // Exactly match reading-versions-qa.cjs: deep position at 35% of document height.
   const scrollDelta = await page.evaluate(() => Math.max(700, document.documentElement.scrollHeight * 0.35));
   await page.mouse.move(640, 400);
   await page.mouse.wheel(0, scrollDelta);
   await page.waitForTimeout(420);
 
-  console.log('PIVOT_GEOMETRY before', JSON.stringify(await page.evaluate(snapshot, 'before')));
+  const before = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    return {
+      locator: window.MyEssaysReadingPivot?.locator?.() || '',
+      top: pivot?.getBoundingClientRect?.().top ?? null
+    };
+  });
+  console.log('ES_LOCATOR_DIAGNOSTIC JA', JSON.stringify(await page.evaluate(state, 'ja', before.locator)));
 
-  await page.locator('.reader-language-cycle').click();
-  await page.waitForFunction(() => window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix');
+  await switchTo(page, 'en-mix');
+  await page.waitForTimeout(320);
+  console.log('ES_LOCATOR_DIAGNOSTIC EN', JSON.stringify(await page.evaluate(state, 'en-mix', before.locator)));
 
-  for (const [label, wait] of [['immediate', 0], ['40ms', 40], ['80ms', 40], ['120ms', 40], ['180ms', 60], ['300ms', 120], ['450ms', 150], ['700ms', 250]]) {
-    if (wait) await page.waitForTimeout(wait);
-    console.log(`PIVOT_GEOMETRY ${label}`, JSON.stringify(await page.evaluate(snapshot, label)));
-  }
-
-  console.log('PIVOT_GEOMETRY events', JSON.stringify(await page.evaluate(() => window.__pivotGeometryEvents || [])));
+  await switchTo(page, 'es-mix');
+  await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
+  await page.waitForTimeout(320);
+  console.log('ES_LOCATOR_DIAGNOSTIC ES', JSON.stringify(await page.evaluate(state, 'es-mix', before.locator)));
 
   await browser.close();
 })().catch(error => {
