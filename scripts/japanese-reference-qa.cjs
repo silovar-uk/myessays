@@ -11,12 +11,23 @@ function overlaps(a, b) {
   return !(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y);
 }
 
+async function switchVersion(page, version) {
+  await page.waitForSelector('.reader-language-cycle');
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
+    if (current === version) return;
+    const button = page.locator('.reader-language-cycle');
+    const next = await button.getAttribute('data-next-version');
+    assert.ok(next, 'language cycle should always expose its next version');
+    await button.click();
+    await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, next);
+    await page.waitForFunction(expected => document.querySelector('.reader-language-cycle')?.dataset.currentVersion === expected, next);
+  }
+  assert.equal(await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.()), version, `could not cycle to ${version}`);
+}
+
 async function ensureEnglishMix(page) {
-  await page.waitForSelector('.reader-mode-bar');
-  const button = page.locator('[data-reader-mode-version="en-mix"]');
-  if ((await button.getAttribute('aria-pressed')) === 'true') return;
-  await button.click();
-  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="en-mix"]')?.getAttribute('aria-pressed') === 'true');
+  await switchVersion(page, 'en-mix');
   await page.waitForFunction(target => document.querySelector('#readerContent')?.textContent?.includes(target), MIX_TARGET);
 }
 
@@ -137,8 +148,8 @@ async function assertCrossParagraphSelectionCloses(page) {
   assert.equal(visibilityWithNote, 'hidden', 'Japanese reference should yield to the reading note panel');
   await page.locator('#closeNote').click();
 
-  await page.locator('[data-reader-mode-version="ja"]').click();
-  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="ja"]')?.getAttribute('aria-pressed') === 'true');
+  await switchVersion(page, 'ja');
+  await page.waitForFunction(() => window.MyEssaysReaderVersions?.currentVersion?.() === 'ja');
   assert.equal(await page.locator('#japaneseReferencePanel').isHidden(), true, 'switching back to Japanese should close the reference panel');
 
   await page.setViewportSize({ width: 390, height: 844 });
