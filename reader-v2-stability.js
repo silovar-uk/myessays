@@ -3,7 +3,10 @@
 
   const MOBILE_BREAKPOINT = 820;
   const READING_PREFIX = 'myessays:reading-state:';
+  const VERSION_POSITION_OWNER = 'reader-versions';
+  const VERSION_SCROLL_SUPPRESS_MS = 260;
   let syncFrame = 0;
+  let suppressScrollByUntil = 0;
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -140,6 +143,34 @@
     target.append(proxy);
   }
 
+  // The one-tap mode bar is owned by reader-language-lab.js via
+  // data-reader-mode-version. Remove the legacy alias before Reader V2's
+  // document-capture listener sees the click, so Reader V2 does not schedule a
+  // second locator restoration for the same transition.
+  function yieldLegacyVersionLocatorCapture(event) {
+    if (!readerOpen()) return;
+    const target = event.target instanceof Element
+      ? event.target.closest('[data-reader-mode-version][data-reader-version]')
+      : null;
+    target?.removeAttribute('data-reader-version');
+  }
+
+  // Reading Pivot preserves semantic identity, but Reading Versions owns the
+  // physical scroll position. Its old viewport-top correction uses scrollBy;
+  // suppress only that correction during the canonical restoration window.
+  function markCanonicalPositionOwnership(event) {
+    if (event.detail?.positionOwner !== VERSION_POSITION_OWNER) return;
+    suppressScrollByUntil = performance.now() + VERSION_SCROLL_SUPPRESS_MS;
+  }
+
+  function installScrollOwnershipGuard() {
+    const nativeScrollBy = window.scrollBy.bind(window);
+    window.scrollBy = (...args) => {
+      if (performance.now() < suppressScrollByUntil) return;
+      return nativeScrollBy(...args);
+    };
+  }
+
   function stabilize() {
     syncFrame = 0;
     if (!readerOpen()) return;
@@ -159,6 +190,10 @@
   }
 
   function init() {
+    installScrollOwnershipGuard();
+    window.addEventListener('click', yieldLegacyVersionLocatorCapture, true);
+    document.addEventListener('myessays:reader-version-changed', markCanonicalPositionOwnership, true);
+
     document.addEventListener('myessays:reader-rendered', schedule);
     document.addEventListener('myessays:reader-ready', schedule);
     document.addEventListener('myessays:reader-version-changed', schedule);
