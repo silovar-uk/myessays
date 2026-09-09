@@ -18,7 +18,7 @@ test('reading pivot uses the actual second visible paragraph', () => {
 test('reading pivot exposes direct one-tap Reading Mode choices', () => {
   const instant = read('reader-language-instant.js');
   assert.match(instant, /readerLanguageInstantDirect/);
-  assert.match(instant, /role=\"radiogroup\"/);
+  assert.match(instant, /setAttribute\('role', 'radiogroup'\)/);
   assert.match(instant, /role=\"radio\"/);
   assert.match(instant, /data-reading-mode-intent=\"\$\{version\}\"/);
   assert.match(instant, /aria-checked=\"false\"/);
