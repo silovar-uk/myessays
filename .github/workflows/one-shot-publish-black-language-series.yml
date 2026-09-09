@@ -1,0 +1,66 @@
+name: One-shot publish Black language series indexes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-publish-black-language-series.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish-indexes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepend series to indexes and validate JSON
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          index_path = Path('data/index.json')
+          versions_path = Path('data/versions-index.json')
+
+          index = json.loads(index_path.read_text(encoding='utf-8'))
+          new_essays = [
+              'essays/2026-09-10-black-word-not-automatically-slur.md',
+              'essays/2026-09-10-race-history-category-social-reality.md',
+              'essays/2026-09-10-tall-black-person-five-tests.md',
+          ]
+          existing = [p for p in index.get('essays', []) if p not in new_essays]
+          index['essays'] = new_essays + existing
+          index_path.write_text(json.dumps(index, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          versions = json.loads(versions_path.read_text(encoding='utf-8'))
+          old_articles = versions.get('articles', {})
+          new_versions = {
+              'black-word-not-automatically-slur': {'en-mix': 'english-mix/black-word-not-automatically-slur.md'},
+              'race-history-category-social-reality': {'en-mix': 'english-mix/race-history-category-social-reality.md'},
+              'tall-black-person-five-tests': {'en-mix': 'english-mix/tall-black-person-five-tests.md'},
+          }
+          merged = dict(new_versions)
+          for key, value in old_articles.items():
+              if key not in new_versions:
+                  merged[key] = value
+          versions['articles'] = merged
+          versions_path.write_text(json.dumps(versions, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          json.loads(index_path.read_text(encoding='utf-8'))
+          json.loads(versions_path.read_text(encoding='utf-8'))
+          print('JSON validation passed')
+          PY
+
+      - name: Commit indexes and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json
+          git rm .github/workflows/one-shot-publish-black-language-series.yml
+          git commit -m "「黒人」という語を考える3本連載を索引へ追加"
+          git push
