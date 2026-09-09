@@ -51,7 +51,10 @@
       if (!candidate) return;
       const active = candidate === version;
       button.classList.toggle('is-active', active);
-      if (button.getAttribute('role') === 'radio') button.setAttribute('aria-checked', String(active));
+      if (button.getAttribute('role') === 'radio') {
+        button.setAttribute('aria-checked', String(active));
+        button.tabIndex = active ? 0 : -1;
+      }
       if (button.hasAttribute('aria-pressed')) button.setAttribute('aria-pressed', String(active));
     });
 
@@ -175,7 +178,7 @@
       const defs = api.definitions || {};
       control.innerHTML = order.map(version => {
         const definition = defs[version] || { label: version, badge: version.toUpperCase() };
-        return `<button type="button" role="radio" class="reader-mode-button reader-language-direct-option" data-reading-mode-intent="${version}" aria-checked="false" aria-label="${definition.label}">${shortBadge(definition, version)}</button>`;
+        return `<button type="button" role="radio" tabindex="-1" class="reader-mode-button reader-language-direct-option" data-reading-mode-intent="${version}" aria-checked="false" aria-label="${definition.label}">${shortBadge(definition, version)}</button>`;
       }).join('');
       controlEssayId = id;
       controlSignature = signature;
@@ -273,6 +276,32 @@
     requestVersion(next, source);
   }
 
+  function handleRadioKeydown(event) {
+    const current = event.target instanceof Element
+      ? event.target.closest(`#${CONTROL_ID} [data-reading-mode-intent][role="radio"]`)
+      : null;
+    if (!current) return;
+
+    const control = current.closest(`#${CONTROL_ID}`);
+    const buttons = control
+      ? [...control.querySelectorAll('[data-reading-mode-intent][role="radio"]')]
+      : [];
+    const index = buttons.indexOf(current);
+    if (index < 0 || !buttons.length) return;
+
+    let targetIndex = -1;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') targetIndex = (index + 1) % buttons.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') targetIndex = (index - 1 + buttons.length) % buttons.length;
+    else if (event.key === 'Home') targetIndex = 0;
+    else if (event.key === 'End') targetIndex = buttons.length - 1;
+    else return;
+
+    event.preventDefault();
+    const target = buttons[targetIndex];
+    target.focus();
+    target.click();
+  }
+
   function handleStable(event) {
     if (!transitionActive) return;
     const id = currentEssayId();
@@ -322,6 +351,7 @@
   }
 
   document.addEventListener('click', handleIntentClick, true);
+  document.addEventListener('keydown', handleRadioKeydown, true);
   document.addEventListener('pointerover', event => {
     const target = event.target instanceof Element
       ? event.target.closest('[data-reading-mode-intent],[data-reader-mode-version],[data-reader-version]')
