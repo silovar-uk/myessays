@@ -5,8 +5,9 @@
   const LOCATOR_BLOCK_SELECTOR = 'p, ul, ol, blockquote, figure';
   const READING_LINE_RATIO = 0.28;
   const FLASH_DURATION_MS = 1800;
+  const MIN_SEMANTIC_FRAGMENT_LENGTH = 3;
 
-  const canonicalCountsCache = new Map();
+  const canonicalSectionsCache = new Map();
   let indexPromise = null;
   let flashTimer = 0;
 
@@ -62,8 +63,12 @@
     return sections;
   }
 
-  function canonicalSectionCounts(id) {
-    if (canonicalCountsCache.has(id)) return canonicalCountsCache.get(id);
+  function normalizeText(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function canonicalSections(id) {
+    if (canonicalSectionsCache.has(id)) return canonicalSectionsCache.get(id);
 
     const essay = originalEssay(id);
     if (!essay || typeof renderMarkdown !== 'function') return new Map();
@@ -71,15 +76,25 @@
     const scratch = document.createElement('div');
     scratch.innerHTML = renderMarkdown(essay.body || '');
 
-    const counts = new Map(
+    const sections = new Map(
       [...collectSectionBlocks(scratch)].map(([sectionIndex, blocks]) => [
         sectionIndex,
-        blocks.length
+        blocks.map((block, canonicalIndex) => ({
+          canonicalIndex,
+          text: String(block.textContent || '').trim(),
+          normalized: normalizeText(block.textContent)
+        }))
       ])
     );
 
-    canonicalCountsCache.set(id, counts);
-    return counts;
+    canonicalSectionsCache.set(id, sections);
+    return sections;
+  }
+
+  function canonicalSectionCounts(id) {
+    return new Map(
+      [...canonicalSections(id)].map(([sectionIndex, blocks]) => [sectionIndex, blocks.length])
+    );
   }
 
   function locatorLabel(sectionIndex, canonicalIndex) {
@@ -87,18 +102,55 @@
     return `${section}-${canonicalIndex + 1}`;
   }
 
+  function parseLocator(locator) {
+    const match = String(locator || '').match(/^(\d+)-(\d+)$/);
+    if (!match) return null;
+    const sectionNumber = Number(match[1]);
+    const blockNumber = Number(match[2]);
+    return {
+      sectionIndex: sectionNumber === 0 ? -1 : sectionNumber - 1,
+      canonicalIndex: blockNumber - 1
+    };
+  }
+
   function mappedCanonicalIndex(currentIndex, currentCount, canonicalCount) {
     if (canonicalCount <= 1 || currentCount <= 1) return 0;
 
-    // Japanese is the canonical structure. Derived reading versions can split
-    // or merge paragraphs, so raw DOM ordinals are not stable across versions.
-    // Map each rendered block back onto the canonical paragraph sequence by
-    // relative position within the section.
     const midpoint = (currentIndex + 0.5) / currentCount;
     return Math.min(
       canonicalCount - 1,
       Math.max(0, Math.floor(midpoint * canonicalCount))
     );
+  }
+
+  function canonicalTextForLocator(locator, id = currentEssayId()) {
+    const parsed = parseLocator(locator);
+    if (!parsed || !id) return '';
+    return canonicalSections(id).get(parsed.sectionIndex)?.[parsed.canonicalIndex]?.text || '';
+  }
+
+  function uniqueCanonicalFragments(sectionBlocks) {
+    const counts = new Map();
+    sectionBlocks.forEach(item => {
+      if (!item.normalized) return;
+      counts.set(item.normalized, (counts.get(item.normalized) || 0) + 1);
+    });
+    return sectionBlocks.filter(item =>
+      item.normalized.length >= MIN_SEMANTIC_FRAGMENT_LENGTH && counts.get(item.normalized) === 1
+    );
+  }
+
+  function semanticCoverage(block, sectionIndex, mappedIndex, canonicalBlocks) {
+    const rendered = normalizeText(block.textContent);
+    const covered = new Set([mappedIndex]);
+
+    uniqueCanonicalFragments(canonicalBlocks).forEach(item => {
+      if (rendered.includes(item.normalized)) covered.add(item.canonicalIndex);
+    });
+
+    return [...covered]
+      .sort((a, b) => a - b)
+      .map(index => locatorLabel(sectionIndex, index));
   }
 
   function clearLocators(content) {
@@ -109,6 +161,7 @@
         'is-language-switch-target'
       );
       delete block.dataset.readingLocator;
+      delete block.dataset.readingLocatorCoverage;
     });
   }
 
@@ -119,10 +172,12 @@
 
     clearLocators(content);
 
+    const canonical = canonicalSections(id);
     const canonicalCounts = canonicalSectionCounts(id);
     const renderedSections = collectSectionBlocks(content);
 
     renderedSections.forEach((blocks, sectionIndex) => {
+      const canonicalBlocks = canonical.get(sectionIndex) || [];
       const canonicalCount = canonicalCounts.get(sectionIndex) || blocks.length;
       let previousLabel = '';
 
@@ -133,17 +188,125 @@
           canonicalCount
         );
         const label = locatorLabel(sectionIndex, canonicalIndex);
+        const coverage = semanticCoverage(block, sectionIndex, canonicalIndex, canonicalBlocks);
 
         block.dataset.readingLocator = label;
+        block.dataset.readingLocatorCoverage = coverage.join(' ');
         block.classList.add('reader-locator-block');
 
-        // A derived version can expand one canonical Japanese paragraph into
-        // several rendered blocks. Keep duplicate landmarks visually quiet,
-        // while retaining a locator on every block for switch feedback.
         if (label === previousLabel) block.classList.add('reader-locator-repeat');
         previousLabel = label;
       });
     });
+
+    content.dataset.semanticLocators = 'ready';
+    document.dispatchEvent(new CustomEvent('myessays:semantic-locators-ready', {
+      detail: { essayId: id }
+    }));
+  }
+
+  function coverageList(block) {
+    return String(block?.dataset?.readingLocatorCoverage || '')
+      .split(/\s+/)
+      .filter(Boolean);
+  }
+
+  function blockCoversLocator(block, locator) {
+    return Boolean(locator && block && (
+      block.dataset.readingLocator === locator || coverageList(block).includes(locator)
+    ));
+  }
+
+  function findContainingBlock(locator, { paragraphOnly = false } = {}) {
+    const content = readerContent();
+    if (!content || !locator) return null;
+    const selector = paragraphOnly
+      ? ':scope > p.reader-locator-block[data-reading-locator]'
+      : ':scope > .reader-locator-block[data-reading-locator]';
+    return [...content.querySelectorAll(selector)]
+      .find(block => blockCoversLocator(block, locator)) || null;
+  }
+
+  function rangeForExactText(block, text) {
+    const needle = String(text || '').trim();
+    if (!block || !needle) return null;
+    const fullText = String(block.textContent || '');
+    const startOffset = fullText.indexOf(needle);
+    if (startOffset < 0) return null;
+    const endOffset = startOffset + needle.length;
+
+    const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+    let node = walker.nextNode();
+    let cursor = 0;
+    let startNode = null;
+    let startInNode = 0;
+    let endNode = null;
+    let endInNode = 0;
+
+    while (node) {
+      const length = node.nodeValue?.length || 0;
+      const next = cursor + length;
+      if (!startNode && startOffset >= cursor && startOffset <= next) {
+        startNode = node;
+        startInNode = Math.min(length, Math.max(0, startOffset - cursor));
+      }
+      if (endOffset >= cursor && endOffset <= next) {
+        endNode = node;
+        endInNode = Math.min(length, Math.max(0, endOffset - cursor));
+        break;
+      }
+      cursor = next;
+      node = walker.nextNode();
+    }
+
+    if (!startNode || !endNode) return null;
+    try {
+      const range = document.createRange();
+      range.setStart(startNode, startInNode);
+      range.setEnd(endNode, endInNode);
+      return range;
+    } catch {
+      return null;
+    }
+  }
+
+  function semanticRect(locator, block = null) {
+    const target = block || findContainingBlock(locator);
+    if (!target) return null;
+
+    const canonicalText = canonicalTextForLocator(locator);
+    if (canonicalText && blockCoversLocator(target, locator)) {
+      const range = rangeForExactText(target, canonicalText);
+      const rect = range?.getBoundingClientRect?.();
+      if (rect && (rect.height > 0 || rect.width > 0)) {
+        return {
+          top: rect.top,
+          bottom: rect.bottom,
+          left: rect.left,
+          right: rect.right,
+          width: rect.width,
+          height: rect.height,
+          exactText: true,
+          physicalLocator: target.dataset.readingLocator || ''
+        };
+      }
+    }
+
+    const rect = target.getBoundingClientRect();
+    return {
+      top: rect.top,
+      bottom: rect.bottom,
+      left: rect.left,
+      right: rect.right,
+      width: rect.width,
+      height: rect.height,
+      exactText: false,
+      physicalLocator: target.dataset.readingLocator || ''
+    };
+  }
+
+  function semanticTop(locator, block = null) {
+    return semanticRect(locator, block)?.top ?? null;
   }
 
   async function syncAlternateState() {
@@ -213,6 +376,16 @@
     assignLocators();
     syncAlternateState();
   }
+
+  window.MyEssaysReadingLocators = Object.freeze({
+    assign: assignLocators,
+    canonicalText: canonicalTextForLocator,
+    coverage: coverageList,
+    covers: blockCoversLocator,
+    findContainingBlock,
+    semanticRect,
+    semanticTop
+  });
 
   document.addEventListener('myessays:reader-rendered', syncReaderLocators);
   document.addEventListener('myessays:reader-ready', syncReaderLocators);
