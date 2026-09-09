@@ -38,6 +38,10 @@ async function readingFocusState(page) {
       .sort((a, b) => a.rect.top - b.rect.top);
     const expected = visible[1]?.block || visible[0]?.block || null;
     const actual = content.querySelector(':scope > p.is-reading-pivot');
+    const logicalLocator = window.MyEssaysReadingPivot?.locator?.() || actual?.dataset.readingLocator || '';
+    const semanticTop = actual
+      ? (window.MyEssaysReadingLocators?.semanticTop?.(logicalLocator, actual) ?? actual.getBoundingClientRect().top)
+      : null;
     const style = actual ? getComputedStyle(actual) : null;
     const color = style?.backgroundColor || '';
     const alphaMatch = color.match(/rgba?\([^)]*[,\s]([\d.]+)\)$/);
@@ -45,13 +49,14 @@ async function readingFocusState(page) {
     return {
       sameNode: Boolean(expected && actual && expected === actual),
       expectedLocator: expected?.dataset.readingLocator || '',
-      actualLocator: window.MyEssaysReadingPivot?.locator?.() || actual?.dataset.readingLocator || '',
+      actualLocator: logicalLocator,
       physicalLocator: actual?.dataset.readingLocator || '',
       visibleCount: visible.length,
       alpha,
       backgroundColor: color,
       boxShadow: style?.boxShadow || '',
-      actualTop: actual?.getBoundingClientRect().top ?? null
+      actualTop: semanticTop,
+      physicalTop: actual?.getBoundingClientRect().top ?? null
     };
   });
 }
@@ -147,6 +152,8 @@ async function burst(page, sequence, gap = 18) {
   await page.evaluate(() => {
     window.__readingModeTrace = [];
     const record = (name, event) => {
+      const pivot = window.MyEssaysReadingPivot?.current?.();
+      const locator = window.MyEssaysReadingPivot?.locator?.() || '';
       window.__readingModeTrace.push({
         name,
         version: event.detail?.version || event.detail?.mode || '',
@@ -156,6 +163,8 @@ async function burst(page, sequence, gap = 18) {
         switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
         transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
         desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+        physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+        semanticTop: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
         checked: [...document.querySelectorAll('#readerLanguageInstantDirect [data-reading-mode-intent]')]
           .filter(button => button.getAttribute('aria-checked') === 'true')
           .map(button => button.dataset.readingModeIntent),
@@ -180,28 +189,40 @@ async function burst(page, sequence, gap = 18) {
   await burst(page, ['en-mix', 'es-mix'], 18);
   await waitForMode(page, 'es-mix');
   await page.waitForTimeout(180);
-  const afterBurst = await page.evaluate(() => ({
-    locator: window.MyEssaysReadingPivot?.locator?.() || '',
-    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect().top ?? null,
-    active: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
-    missing: window.__readingModeMissing || [],
-    intents: (window.__readingModeTrace || []).filter(item => item.name === 'myessays:reader-version-intent').map(item => item.version)
-  }));
+  const afterBurst = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+    return {
+      locator,
+      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
+      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+      active: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
+      missing: window.__readingModeMissing || [],
+      intents: (window.__readingModeTrace || []).filter(item => item.name === 'myessays:reader-version-intent').map(item => item.version),
+      trace: window.__readingModeTrace || []
+    };
+  });
   assert.deepEqual(afterBurst.missing, [], 'persistent control must remain connected throughout rapid switching');
   assert.deepEqual(afterBurst.intents, ['en-mix', 'es-mix'], 'each user choice should produce exactly one intent event');
   assert.equal(afterBurst.active, 'es-mix', 'latest rapid intent must own the active control');
   assert.equal(afterBurst.locator, beforeLocator, 'rapid switch must preserve the canonical semantic locator');
+  if (Math.abs(afterBurst.top - beforeTop) > 3) console.error('RAPID_SEMANTIC_TRACE', JSON.stringify({ before, afterBurst }));
   assert.ok(Math.abs(afterBurst.top - beforeTop) <= 3, `rapid switch moved the semantic eye-line by ${afterBurst.top - beforeTop}px`);
 
   await page.evaluate(() => { window.__readingModeTrace = []; });
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
   await page.waitForTimeout(180);
-  const returned = await page.evaluate(() => ({
-    locator: window.MyEssaysReadingPivot?.locator?.() || '',
-    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect().top ?? null,
-    missing: window.__readingModeMissing || []
-  }));
+  const returned = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+    return {
+      locator,
+      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
+      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+      missing: window.__readingModeMissing || []
+    };
+  });
   assert.deepEqual(returned.missing, [], 'rapid round trip must keep persistent controls mounted');
   assert.equal(returned.locator, beforeLocator, 'rapid round trip must preserve semantic locator');
   assert.ok(Math.abs(returned.top - beforeTop) <= 3, `rapid round trip moved eye-line by ${returned.top - beforeTop}px`);
