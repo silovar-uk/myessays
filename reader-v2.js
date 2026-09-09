@@ -13,7 +13,6 @@
   let persistTimer = 0;
   let scrollFrame = 0;
   let initialPersistUntil = 0;
-  let pendingVersionLocator = '';
   let lastLocationSignature = '';
   let currentRouteEssayId = '';
   let lastKnownLocation = null;
@@ -644,7 +643,7 @@
     ensureHeader();
     ensureArticleIntro();
     buildReaderMap();
-    if (allowResume && !pendingVersionLocator) ensureResumePrompt(previousState);
+    if (allowResume) ensureResumePrompt(previousState);
     ensureAfterReading();
     moveLanguageSwitchIntoHeader();
     relocateCopyButton();
@@ -690,27 +689,9 @@
     if (locationValue) persistLocation(locationValue, { force });
   }
 
-  function captureVersionLocator(event) {
-    const option = event.target instanceof Element
-      ? event.target.closest('[data-reader-version]')
-      : null;
-    if (!option || !readerOpen()) return;
-    pendingVersionLocator = currentLocation().locator || '';
-  }
-
-  function restoreVersionLocator() {
-    const locator = pendingVersionLocator;
-    pendingVersionLocator = '';
-    if (!locator) return;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      scrollToLocator(locator, { behavior: 'auto' });
-      scheduleLocationSync();
-    }));
-  }
-
   function onReaderRendered() {
     requestAnimationFrame(() => {
-      syncReaderV2({ allowResume: !pendingVersionLocator });
+      syncReaderV2({ allowResume: !window.MyEssaysReaderVersions?.isSwitching?.() });
     });
   }
 
@@ -757,10 +738,9 @@
     document.addEventListener('myessays:reader-ready', onReaderRendered);
     document.addEventListener('myessays:reader-version-changed', () => {
       requestAnimationFrame(() => syncReaderV2({ allowResume: false }));
-      restoreVersionLocator();
+      scheduleLocationSync();
     });
     document.addEventListener('myessays:reader-language-changed', scheduleLocationSync);
-    document.addEventListener('click', captureVersionLocator, true);
 
     readerContent()?.addEventListener('myessays:add-note-quote', event => {
       storeNoteAnchor(event.detail?.text);
