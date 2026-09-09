@@ -300,6 +300,15 @@
         }
       }
     }
+
+    document.dispatchEvent(new CustomEvent('myessays:reading-mode-stable', {
+      detail: {
+        essayId: currentEssayId(),
+        version: window.MyEssaysReaderVersions?.currentVersion?.() || 'ja',
+        locator: event.detail?.locator || '',
+        physicalLocator: event.detail?.physicalLocator || ''
+      }
+    }));
   }
 
   async function syncAlternateState() {
