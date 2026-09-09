@@ -16,13 +16,13 @@ test('reading pivot uses the actual second visible paragraph', () => {
 });
 
 test('reading pivot exposes direct one-tap Reading Mode choices', () => {
-  const pivot = read('reader-reading-pivot.js');
-  assert.match(pivot, /reader-language-direct/);
-  assert.match(pivot, /role=\"radiogroup\"/);
-  assert.match(pivot, /role=\"radio\"/);
-  assert.match(pivot, /data-reader-mode-version=\"\$\{version\}\"/);
-  assert.match(pivot, /aria-checked=\"\$\{active\}\"/);
-  assert.doesNotMatch(pivot, /reader-language-cycle/);
+  const instant = read('reader-language-instant.js');
+  assert.match(instant, /readerLanguageInstantDirect/);
+  assert.match(instant, /role=\"radiogroup\"/);
+  assert.match(instant, /role=\"radio\"/);
+  assert.match(instant, /data-reading-mode-intent=\"\$\{version\}\"/);
+  assert.match(instant, /aria-checked=\"false\"/);
+  assert.doesNotMatch(instant, /reader-language-cycle/);
 });
 
 test('reading pivot preserves semantic identity across Reading Mode switches', () => {
@@ -36,7 +36,8 @@ test('reading pivot preserves semantic identity across Reading Mode switches', (
 
 test('reading focus highlight is perceptible, background-only, and legacy disclosure is hidden', () => {
   const css = read('reader-reading-pivot.css');
-  assert.match(css, /\.reader-language-switch\s*\{[\s\S]*?display:\s*none !important/);
+  assert.match(css, /\.reader-language-switch,/);
+  assert.match(css, /\.reader-mode-bar \.reader-language-direct/);
   assert.match(css, /is-reading-pivot\s*\{[\s\S]*?background-color:\s*rgba\(180, 62, 49, \.085\)/);
   assert.match(css, /@media \(max-width: 820px\)[\s\S]*?is-reading-pivot[\s\S]*?rgba\(180, 62, 49, \.072\)/);
   assert.match(css, /is-language-switch-target[\s\S]*?box-shadow:\s*none/);
@@ -53,12 +54,23 @@ test('direct Reading Mode control supports keyboard radio navigation', () => {
   assert.match(pivot, /target\.click\(\)/);
 });
 
-test('instant Reading Mode controller preloads versions and keeps only latest rapid intent', () => {
+test('instant Reading Mode controller is the only latest-intent owner', () => {
   const instant = read('reader-language-instant.js');
-  assert.match(instant, /getVersionDocument/);
-  assert.match(instant, /pendingVersion = next/);
-  assert.match(instant, /event\.stopImmediatePropagation\(\)/);
+  const locators = read('reading-locators.js');
+  assert.match(instant, /let desiredVersion = ''/);
+  assert.match(instant, /let transitionActive = false/);
+  assert.match(instant, /function requestVersion\(/);
   assert.match(instant, /myessays:reader-version-intent/);
-  assert.match(instant, /replayLatestIntent/);
-  assert.match(instant, /requestAnimationFrame/);
+  assert.match(instant, /myessays:reading-mode-stable/);
+  assert.match(instant, /event\.stopImmediatePropagation\(\)/);
+  assert.match(instant, /getVersionDocument/);
+  assert.doesNotMatch(locators, /queuedSwitchVersion|pendingVersion/);
+});
+
+test('semantic locator layer emits stable only after semantic eye-line correction', () => {
+  const locators = read('reading-locators.js');
+  const correction = locators.indexOf('window.scrollBy({ top: delta');
+  const stable = locators.indexOf("myessays:reading-mode-stable");
+  assert.ok(correction >= 0 && stable > correction, 'stable boundary must follow semantic correction');
+  assert.match(locators, /captureForSwitch: captureSemanticAnchorNow/);
 });
