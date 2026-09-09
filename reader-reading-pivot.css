@@ -18,6 +18,7 @@ html.is-reading-mode-switching {
 .reader-content > p.reader-locator-block[data-reading-locator].is-reading-pivot {
   transition: none;
   background-color: rgba(180, 62, 49, .085);
+  box-shadow: none;
 }
 
 /* The language switch target and the persistent reading pivot both use only a
