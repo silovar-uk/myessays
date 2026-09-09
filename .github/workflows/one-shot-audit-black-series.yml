@@ -1,0 +1,71 @@
+name: One-shot audit Black language series
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-audit-black-series.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  revise:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Strengthen Japan race-history sourcing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              Path('essays/2026-09-10-race-history-category-social-reality.md'): [
+                  (
+                      'そして日本側も近代化の中で、西洋由来の人種概念を受容し、翻訳し、再編してきた。',
+                      'さらに竹沢泰子は、明治前期の教科書・地理書を分析し、欧米から導入されたrace概念が日本語へ翻訳され、そのなかで日本人自身の人種的位置づけも組み替えられていった過程を示している。'
+                  ),
+                  (
+                      '- Rotem Kowner (2000), *‘Lighter than Yellow, but Not Enough’:',
+                      '- Yasuko Takezawa (2015), *Translating and Transforming ‘Race’: Early Meiji Period Textbooks*: https://www.tandfonline.com/doi/abs/10.1080/10371397.2015.1041219\n- Rotem Kowner (2000), *‘Lighter than Yellow, but Not Enough’:'
+                  ),
+              ],
+              Path('english-mix/race-history-category-social-reality.md'): [
+                  (
+                      'そして近代日本も、西洋由来の人種概念を翻訳し、受容し、再編してきた。',
+                      'さらにYasuko Takezawa’s study of early Meiji textbooks shows that concepts of race introduced from Europe and the United States were translated into Japanese and transformed as Japanese writers repositioned Japan in relation to other groups.'
+                  ),
+                  (
+                      '- Rotem Kowner (2000), *‘Lighter than Yellow, but Not Enough’:',
+                      '- Yasuko Takezawa (2015), *Translating and Transforming ‘Race’: Early Meiji Period Textbooks*: https://www.tandfonline.com/doi/abs/10.1080/10371397.2015.1041219\n- Rotem Kowner (2000), *‘Lighter than Yellow, but Not Enough’:'
+                  ),
+              ],
+          }
+
+          for path, reps in replacements.items():
+              text = path.read_text(encoding='utf-8')
+              for old, new in reps:
+                  if old not in text:
+                      raise SystemExit(f'Expected text not found in {path}: {old}')
+                  text = text.replace(old, new, 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Verify revised claims and links
+        run: |
+          grep -q 'Yasuko Takezawa (2015)' essays/2026-09-10-race-history-category-social-reality.md
+          grep -q 'Yasuko Takezawa (2015)' english-mix/race-history-category-social-reality.md
+          grep -q '日本人自身の人種的位置づけ' essays/2026-09-10-race-history-category-social-reality.md
+          grep -q 'translated into Japanese and transformed' english-mix/race-history-category-social-reality.md
+
+      - name: Commit revision and remove workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add essays/2026-09-10-race-history-category-social-reality.md english-mix/race-history-category-social-reality.md
+          git rm .github/workflows/one-shot-audit-black-series.yml
+          git commit -m '黒人連載の日本における人種概念史を補強'
+          git push
