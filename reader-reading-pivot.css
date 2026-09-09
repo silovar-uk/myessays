@@ -13,11 +13,11 @@ html.is-reading-mode-switching {
 }
 
 .reader-content > p.reader-locator-block[data-reading-locator] {
-  transition: background-color .14s ease;
+  transition: background-color .1s ease;
 }
 
 .reader-content > p.reader-locator-block[data-reading-locator].is-reading-pivot {
-  background-color: rgba(180, 62, 49, .045);
+  background-color: rgba(180, 62, 49, .085);
 }
 
 /* The language switch target and the persistent reading pivot both use only a
@@ -25,7 +25,7 @@ html.is-reading-mode-switching {
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target,
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target.is-reading-pivot {
   animation: none;
-  background-color: rgba(180, 62, 49, .055);
+  background-color: rgba(180, 62, 49, .095);
   box-shadow: none;
 }
 
@@ -101,7 +101,7 @@ html.is-reading-mode-switching {
 
 @media (max-width: 820px) {
   .reader-content > p.reader-locator-block[data-reading-locator].is-reading-pivot {
-    background-color: rgba(180, 62, 49, .038);
+    background-color: rgba(180, 62, 49, .072);
   }
 
   .reader-v2-header .reader-mode-bar.is-language-direct-bar,
