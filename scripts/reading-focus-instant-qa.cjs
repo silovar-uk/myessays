@@ -64,6 +64,13 @@ async function assertSecondVisibleFocus(page, label) {
   return state;
 }
 
+async function waitForPreload(page, versions) {
+  await page.waitForFunction(expected => {
+    const api = window.MyEssaysInstantReadingModes;
+    return expected.every(version => api?.isPreloaded?.(version));
+  }, versions);
+}
+
 async function waitForMode(page, version) {
   await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, version);
   await page.waitForFunction(expected => {
@@ -96,11 +103,7 @@ async function burst(page, sequence, gap = 18) {
   await openEssay(page, THREE_MODE_ID);
   await page.waitForSelector('.reader-language-direct');
   assert.equal(await page.locator('.reader-language-direct-option').count(), 3, 'three-mode article should expose JA / EN / ES');
-  await page.waitForFunction(() => {
-    const urls = performance.getEntriesByType('resource').map(entry => entry.name);
-    return urls.some(url => url.includes('/english-mix/confucius-knowing-liking-enjoying.md')) &&
-      urls.some(url => url.includes('/spanish-mix/confucius-knowing-liking-enjoying.md'));
-  });
+  await waitForPreload(page, ['en-mix', 'es-mix']);
 
   await scrollIntoBody(page, 0.36);
   const before = await assertSecondVisibleFocus(page, 'three-mode desktop');
@@ -141,7 +144,7 @@ async function burst(page, sequence, gap = 18) {
   await openEssay(page, TWO_MODE_ID);
   await page.waitForSelector('.reader-language-direct');
   assert.equal(await page.locator('.reader-language-direct-option').count(), 2, 'JA+EN article should expose exactly two direct modes');
-  await page.waitForFunction(() => performance.getEntriesByType('resource').some(entry => entry.name.includes('/english-mix/watanabe-hisanobu-same-baseball-different-chair.md')));
+  await waitForPreload(page, ['en-mix']);
   await scrollIntoBody(page, 0.32);
   const watanabeBefore = await assertSecondVisibleFocus(page, 'JA+EN desktop');
   await burst(page, ['en-mix', 'ja'], 18);
