@@ -261,12 +261,14 @@
         reason: 'language-switch',
         logicalLocator: anchor.locator || physicalLocator(target)
       });
+
+      // Do not immediately re-derive “the second visible paragraph” from the
+      // translated layout. Different line wrapping can make a neighbouring
+      // paragraph become second-visible even though the semantic target is
+      // correct. Keep the corresponding paragraph as the Ghost Anchor until
+      // the reader actually scrolls (or resizes) again.
       lockUntil = Date.now() + SWITCH_LOCK_MS;
       connectObserver();
-      window.setTimeout(() => {
-        lockUntil = 0;
-        scheduleEvaluate({ immediate: true });
-      }, SWITCH_LOCK_MS + 20);
     }));
   }
 
