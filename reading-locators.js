@@ -10,6 +10,7 @@
   const canonicalSectionsCache = new Map();
   let indexPromise = null;
   let flashTimer = 0;
+  let semanticSwitchAnchor = null;
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -23,9 +24,7 @@
       return typeof state !== 'undefined' && Array.isArray(state.essays)
         ? state.essays.find(essay => essay.id === id) || null
         : null;
-    } catch {
-      return null;
-    }
+    } catch { return null; }
   }
 
   function readerContent() {
@@ -49,7 +48,6 @@
   function collectSectionBlocks(root) {
     const sections = new Map();
     let sectionIndex = -1;
-
     [...root.children].forEach(element => {
       if (element.matches('h2')) {
         sectionIndex += 1;
@@ -59,7 +57,6 @@
       if (!sections.has(sectionIndex)) sections.set(sectionIndex, []);
       sections.get(sectionIndex).push(element);
     });
-
     return sections;
   }
 
@@ -69,13 +66,10 @@
 
   function canonicalSections(id) {
     if (canonicalSectionsCache.has(id)) return canonicalSectionsCache.get(id);
-
     const essay = originalEssay(id);
     if (!essay || typeof renderMarkdown !== 'function') return new Map();
-
     const scratch = document.createElement('div');
     scratch.innerHTML = renderMarkdown(essay.body || '');
-
     const sections = new Map(
       [...collectSectionBlocks(scratch)].map(([sectionIndex, blocks]) => [
         sectionIndex,
@@ -86,15 +80,12 @@
         }))
       ])
     );
-
     canonicalSectionsCache.set(id, sections);
     return sections;
   }
 
   function canonicalSectionCounts(id) {
-    return new Map(
-      [...canonicalSections(id)].map(([sectionIndex, blocks]) => [sectionIndex, blocks.length])
-    );
+    return new Map([...canonicalSections(id)].map(([sectionIndex, blocks]) => [sectionIndex, blocks.length]));
   }
 
   function locatorLabel(sectionIndex, canonicalIndex) {
@@ -106,21 +97,16 @@
     const match = String(locator || '').match(/^(\d+)-(\d+)$/);
     if (!match) return null;
     const sectionNumber = Number(match[1]);
-    const blockNumber = Number(match[2]);
     return {
       sectionIndex: sectionNumber === 0 ? -1 : sectionNumber - 1,
-      canonicalIndex: blockNumber - 1
+      canonicalIndex: Number(match[2]) - 1
     };
   }
 
   function mappedCanonicalIndex(currentIndex, currentCount, canonicalCount) {
     if (canonicalCount <= 1 || currentCount <= 1) return 0;
-
     const midpoint = (currentIndex + 0.5) / currentCount;
-    return Math.min(
-      canonicalCount - 1,
-      Math.max(0, Math.floor(midpoint * canonicalCount))
-    );
+    return Math.min(canonicalCount - 1, Math.max(0, Math.floor(midpoint * canonicalCount)));
   }
 
   function canonicalTextForLocator(locator, id = currentEssayId()) {
@@ -132,8 +118,7 @@
   function uniqueCanonicalFragments(sectionBlocks) {
     const counts = new Map();
     sectionBlocks.forEach(item => {
-      if (!item.normalized) return;
-      counts.set(item.normalized, (counts.get(item.normalized) || 0) + 1);
+      if (item.normalized) counts.set(item.normalized, (counts.get(item.normalized) || 0) + 1);
     });
     return sectionBlocks.filter(item =>
       item.normalized.length >= MIN_SEMANTIC_FRAGMENT_LENGTH && counts.get(item.normalized) === 1
@@ -143,23 +128,15 @@
   function semanticCoverage(block, sectionIndex, mappedIndex, canonicalBlocks) {
     const rendered = normalizeText(block.textContent);
     const covered = new Set([mappedIndex]);
-
     uniqueCanonicalFragments(canonicalBlocks).forEach(item => {
       if (rendered.includes(item.normalized)) covered.add(item.canonicalIndex);
     });
-
-    return [...covered]
-      .sort((a, b) => a - b)
-      .map(index => locatorLabel(sectionIndex, index));
+    return [...covered].sort((a, b) => a - b).map(index => locatorLabel(sectionIndex, index));
   }
 
   function clearLocators(content) {
     directChildrenMatching(content, LOCATOR_BLOCK_SELECTOR).forEach(block => {
-      block.classList.remove(
-        'reader-locator-block',
-        'reader-locator-repeat',
-        'is-language-switch-target'
-      );
+      block.classList.remove('reader-locator-block', 'reader-locator-repeat', 'is-language-switch-target');
       delete block.dataset.readingLocator;
       delete block.dataset.readingLocatorCoverage;
     });
@@ -169,7 +146,6 @@
     const content = readerContent();
     const id = currentEssayId();
     if (!content || !id) return;
-
     clearLocators(content);
 
     const canonical = canonicalSections(id);
@@ -180,20 +156,17 @@
       const canonicalBlocks = canonical.get(sectionIndex) || [];
       const canonicalCount = canonicalCounts.get(sectionIndex) || blocks.length;
       let previousLabel = '';
-
       blocks.forEach((block, index) => {
-        const canonicalIndex = mappedCanonicalIndex(
-          index,
-          blocks.length,
-          canonicalCount
-        );
+        const canonicalIndex = mappedCanonicalIndex(index, blocks.length, canonicalCount);
         const label = locatorLabel(sectionIndex, canonicalIndex);
-        const coverage = semanticCoverage(block, sectionIndex, canonicalIndex, canonicalBlocks);
-
         block.dataset.readingLocator = label;
-        block.dataset.readingLocatorCoverage = coverage.join(' ');
+        block.dataset.readingLocatorCoverage = semanticCoverage(
+          block,
+          sectionIndex,
+          canonicalIndex,
+          canonicalBlocks
+        ).join(' ');
         block.classList.add('reader-locator-block');
-
         if (label === previousLabel) block.classList.add('reader-locator-repeat');
         previousLabel = label;
       });
@@ -206,9 +179,7 @@
   }
 
   function coverageList(block) {
-    return String(block?.dataset?.readingLocatorCoverage || '')
-      .split(/\s+/)
-      .filter(Boolean);
+    return String(block?.dataset?.readingLocatorCoverage || '').split(/\s+/).filter(Boolean);
   }
 
   function blockCoversLocator(block, locator) {
@@ -223,8 +194,7 @@
     const selector = paragraphOnly
       ? ':scope > p.reader-locator-block[data-reading-locator]'
       : ':scope > .reader-locator-block[data-reading-locator]';
-    return [...content.querySelectorAll(selector)]
-      .find(block => blockCoversLocator(block, locator)) || null;
+    return [...content.querySelectorAll(selector)].find(block => blockCoversLocator(block, locator)) || null;
   }
 
   function rangeForExactText(block, text) {
@@ -234,7 +204,6 @@
     const startOffset = fullText.indexOf(needle);
     if (startOffset < 0) return null;
     const endOffset = startOffset + needle.length;
-
     const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
     let node = walker.nextNode();
     let cursor = 0;
@@ -265,15 +234,12 @@
       range.setStart(startNode, startInNode);
       range.setEnd(endNode, endInNode);
       return range;
-    } catch {
-      return null;
-    }
+    } catch { return null; }
   }
 
   function semanticRect(locator, block = null) {
     const target = block || findContainingBlock(locator);
     if (!target) return null;
-
     const canonicalText = canonicalTextForLocator(locator);
     if (canonicalText && blockCoversLocator(target, locator)) {
       const range = rangeForExactText(target, canonicalText);
@@ -291,7 +257,6 @@
         };
       }
     }
-
     const rect = target.getBoundingClientRect();
     return {
       top: rect.top,
@@ -309,35 +274,61 @@
     return semanticRect(locator, block)?.top ?? null;
   }
 
+  function captureSemanticSwitchAnchor(event) {
+    const target = event.target instanceof Element
+      ? event.target.closest('[data-reader-mode-version],[data-reader-version],.language-lens-full')
+      : null;
+    if (!target) return;
+
+    const versions = window.MyEssaysReaderVersions;
+    let next = target.dataset.readerModeVersion || target.dataset.readerVersion || '';
+    if (target.classList.contains('language-lens-full')) {
+      next = document.getElementById('languageLensPanel')?.dataset.targetVersion || '';
+    }
+    if (!next || next === versions?.currentVersion?.()) return;
+
+    const pivotApi = window.MyEssaysReadingPivot;
+    const locator = pivotApi?.locator?.() || '';
+    const block = pivotApi?.current?.() || findContainingBlock(locator, { paragraphOnly: true });
+    const top = locator && block ? semanticTop(locator, block) : null;
+    semanticSwitchAnchor = locator && block && top != null
+      ? { essayId: currentEssayId(), locator, viewportTop: top }
+      : null;
+  }
+
+  function restoreSemanticEyeLine(event) {
+    if (event.detail?.reason !== 'language-switch') return;
+    const anchor = semanticSwitchAnchor;
+    semanticSwitchAnchor = null;
+    if (!anchor || anchor.essayId !== currentEssayId()) return;
+    if (event.detail?.locator !== anchor.locator) return;
+
+    const target = findContainingBlock(anchor.locator, { paragraphOnly: true });
+    if (!target) return;
+    const targetTop = semanticTop(anchor.locator, target);
+    if (targetTop == null) return;
+    const delta = targetTop - anchor.viewportTop;
+    if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'auto' });
+  }
+
   async function syncAlternateState() {
     const content = readerContent();
     const id = currentEssayId();
     if (!content || !id) return;
-
     const index = await versionsIndex();
     if (id !== currentEssayId()) return;
-
     const versions = index?.articles?.[id] || {};
-    content.classList.toggle(
-      'has-language-alternate',
-      Object.keys(versions).length > 0
-    );
+    content.classList.toggle('has-language-alternate', Object.keys(versions).length > 0);
   }
 
   function nearestLocatorBlock() {
     const content = readerContent();
     if (!content) return null;
-
-    const blocks = directChildrenMatching(
-      content,
-      '.reader-locator-block[data-reading-locator]'
-    );
+    const blocks = directChildrenMatching(content, '.reader-locator-block[data-reading-locator]');
     if (!blocks.length) return null;
-
     const readingY = window.innerHeight * READING_LINE_RATIO;
     let nearest = blocks[0];
     let bestDistance = Infinity;
-
     blocks.forEach(block => {
       const rect = block.getBoundingClientRect();
       const closestY = Math.min(rect.bottom, Math.max(rect.top, readingY));
@@ -347,29 +338,21 @@
         nearest = block;
       }
     });
-
     return nearest;
   }
 
   function flashCurrentLocator() {
     const content = readerContent();
     if (!content || !content.classList.contains('has-language-alternate')) return;
-
     const target = nearestLocatorBlock();
     if (!target) return;
-
     content.querySelectorAll('.is-language-switch-target')
       .forEach(element => element.classList.remove('is-language-switch-target'));
-
     window.clearTimeout(flashTimer);
-
     target.classList.remove('is-language-switch-target');
     void target.offsetWidth;
     target.classList.add('is-language-switch-target');
-
-    flashTimer = window.setTimeout(() => {
-      target.classList.remove('is-language-switch-target');
-    }, FLASH_DURATION_MS);
+    flashTimer = window.setTimeout(() => target.classList.remove('is-language-switch-target'), FLASH_DURATION_MS);
   }
 
   function syncReaderLocators() {
@@ -387,6 +370,8 @@
     semanticTop
   });
 
+  document.addEventListener('click', captureSemanticSwitchAnchor, true);
+  document.addEventListener('myessays:reading-pivot-changed', restoreSemanticEyeLine);
   document.addEventListener('myessays:reader-rendered', syncReaderLocators);
   document.addEventListener('myessays:reader-ready', syncReaderLocators);
   document.addEventListener('myessays:reader-version-changed', () => {
@@ -397,13 +382,8 @@
     });
   });
 
-  window.addEventListener('hashchange', () => {
-    requestAnimationFrame(syncReaderLocators);
-  });
-
-  window.addEventListener('pageshow', () => {
-    requestAnimationFrame(syncReaderLocators);
-  });
+  window.addEventListener('hashchange', () => requestAnimationFrame(syncReaderLocators));
+  window.addEventListener('pageshow', () => requestAnimationFrame(syncReaderLocators));
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', syncReaderLocators);
