@@ -6,6 +6,8 @@
   let pendingVersion = '';
   let preloadToken = 0;
   let handoffFrame = 0;
+  let preloadEssayId = '';
+  const preloadedVersions = new Set();
 
   const versions = () => window.MyEssaysReaderVersions;
 
@@ -49,22 +51,53 @@
     }));
   }
 
+  function resetPreloadState(id = '') {
+    preloadEssayId = id;
+    preloadedVersions.clear();
+  }
+
   async function preloadCurrentArticle() {
     const api = versions();
     const id = api?.currentEssayId?.() || '';
-    if (!api || !id || !api.availableVersions || !api.getVersionDocument) return;
+    if (!api || !id || !api.availableVersions || !api.getVersionDocument) return [];
 
+    if (preloadEssayId !== id) resetPreloadState(id);
     const token = ++preloadToken;
     const available = await api.availableVersions(id);
-    if (token !== preloadToken || id !== api.currentEssayId?.()) return;
+    if (token !== preloadToken || id !== api.currentEssayId?.()) return [];
 
-    available.forEach(version => {
-      if (version !== 'ja') api.getVersionDocument(id, version);
-    });
+    const derived = available.filter(version => version !== 'ja');
+    const results = await Promise.allSettled(derived.map(async version => {
+      const document = await api.getVersionDocument(id, version);
+      if (document && token === preloadToken && id === api.currentEssayId?.()) {
+        preloadedVersions.add(version);
+        return version;
+      }
+      return '';
+    }));
+
+    if (token === preloadToken && id === api.currentEssayId?.()) {
+      document.dispatchEvent(new CustomEvent('myessays:reader-versions-preloaded', {
+        detail: { essayId: id, versions: [...preloadedVersions] }
+      }));
+    }
+
+    return results
+      .filter(result => result.status === 'fulfilled' && result.value)
+      .map(result => result.value);
   }
 
   function schedulePreload() {
     requestAnimationFrame(() => preloadCurrentArticle());
+  }
+
+  function warmVersion(version) {
+    const api = versions();
+    const id = api?.currentEssayId?.() || '';
+    if (!id || !version || version === 'ja' || preloadedVersions.has(version)) return;
+    Promise.resolve(api?.getVersionDocument?.(id, version)).then(document => {
+      if (document && id === api?.currentEssayId?.()) preloadedVersions.add(version);
+    });
   }
 
   function handleIntentClick(event) {
@@ -153,19 +186,13 @@
     const target = event.target instanceof Element
       ? event.target.closest('[data-reader-mode-version],[data-reader-version]')
       : null;
-    const next = requestedVersion(target);
-    const api = versions();
-    const id = api?.currentEssayId?.() || '';
-    if (id && next && next !== 'ja') api?.getVersionDocument?.(id, next);
+    warmVersion(requestedVersion(target));
   }, true);
   document.addEventListener('focusin', event => {
     const target = event.target instanceof Element
       ? event.target.closest('[data-reader-mode-version],[data-reader-version]')
       : null;
-    const next = requestedVersion(target);
-    const api = versions();
-    const id = api?.currentEssayId?.() || '';
-    if (id && next && next !== 'ja') api?.getVersionDocument?.(id, next);
+    warmVersion(requestedVersion(target));
   });
 
   document.addEventListener('myessays:reader-ready', schedulePreload);
@@ -179,6 +206,7 @@
   window.addEventListener('hashchange', () => {
     pendingVersion = '';
     preloadToken += 1;
+    resetPreloadState('');
     window.cancelAnimationFrame(handoffFrame);
     handoffFrame = 0;
     schedulePreload();
@@ -189,6 +217,15 @@
     installed: true,
     pendingVersion: () => pendingVersion,
     preload: preloadCurrentArticle,
+    preloadedVersions: () => [...preloadedVersions],
+    isPreloaded: version => version === 'ja' || preloadedVersions.has(version),
     applyIntent
   });
+
+  // Do not rely solely on lifecycle events: a fast hash-route render can occur
+  // before this plugin is installed. DOMContentLoaded/current-ready startup
+  // scheduling closes that gap without blocking initial article rendering.
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', schedulePreload, { once: true })
+    : schedulePreload();
 })();
