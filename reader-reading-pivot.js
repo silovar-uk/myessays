@@ -250,9 +250,9 @@
         return scheduleEvaluate({ immediate: true });
       }
 
-      // reader-versions owns semantic restoration. This tiny correction keeps
-      // the selected paragraph at the same viewport height without introducing
-      // another paragraph identity model.
+      // reader-versions owns semantic restoration. This tiny correction runs
+      // only after its canonical restoration has completed, and keeps the
+      // selected semantic paragraph at the same viewport height.
       const delta = target.getBoundingClientRect().top - anchor.viewportTop;
       if (Math.abs(delta) > SWITCH_CORRECTION_TOLERANCE) {
         window.scrollBy({ top: delta, behavior: 'auto' });
@@ -430,10 +430,8 @@
   document.addEventListener('click', handlePotentialLanguageSwitch, true);
   document.addEventListener('keydown', handleLanguageRadioKeydown, true);
   document.addEventListener('myessays:reader-ready', () => requestAnimationFrame(initialize));
-  document.addEventListener('myessays:reader-version-changed', event => {
-    restoreSwitchAnchor(event);
-    requestAnimationFrame(syncModeBar);
-  });
+  document.addEventListener('myessays:reader-version-changed', () => requestAnimationFrame(syncModeBar));
+  document.addEventListener('myessays:reader-language-changed', restoreSwitchAnchor);
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncModeBar));
 
   window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });
