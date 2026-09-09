@@ -146,9 +146,18 @@
     return true;
   }
 
+  function handoffScrollActive() {
+    return document.documentElement.classList.contains('is-reading-mode-switching');
+  }
+
   function evaluatePivot({ immediate = false } = {}) {
     evaluationFrame = 0;
-    if (!readerOpen() || Date.now() < lockUntil || versions()?.isSwitching?.()) return;
+    if (
+      !readerOpen() ||
+      Date.now() < lockUntil ||
+      versions()?.isSwitching?.() ||
+      handoffScrollActive()
+    ) return;
     const candidate = candidatePivot();
     if (!candidate) return;
     if (!pivot || immediate || candidate !== pivot) {
@@ -236,8 +245,9 @@
         logicalLocator: anchor.locator || physicalLocator(target)
       });
 
-      // Keep the corresponding semantic paragraph through the handoff. The
-      // next genuine scroll/resize returns control to the second-visible rule.
+      // Keep the corresponding semantic paragraph through programmatic handoff
+      // scrolls. The next real wheel/touch gesture releases the scroll guard and
+      // returns control to the second-visible paragraph rule.
       lockUntil = Date.now() + SWITCH_LOCK_MS;
     }));
   }
@@ -340,7 +350,7 @@
     }
 
     refreshReadingBlocks();
-    if (!versions()?.isSwitching?.()) {
+    if (!versions()?.isSwitching?.() && !handoffScrollActive()) {
       const candidate = candidatePivot();
       if (candidate) setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
     }
