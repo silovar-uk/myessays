@@ -138,7 +138,7 @@ APAはraceを、知覚された身体的特徴にもとづき人々を分類し�
 
 つまり日本人自身も、近代において「どの人種として分類されるのか」を外側から論じられてきた。
 
-そして日本側も近代化の中で、西洋由来の人種概念を受容し、翻訳し、再編してきた。
+さらに竹沢泰子は、明治前期の教科書・地理書を分析し、欧米から導入されたrace概念が日本語へ翻訳され、そのなかで日本人自身の人種的位置づけも組み替えられていった過程を示している。
 
 日本語の「黒人」は英語のBlackと同一ではない。
 
@@ -237,6 +237,7 @@ APAはraceを、知覚された身体的特徴にもとづき人々を分類し�
 - American Association of Biological Anthropologists, *AABA Statement on Race & Racism*: https://bioanth.org/about/aaba-statement-on-race-racism/
 - American Psychological Association, *The power of inclusive language for promoting racial equity*: https://www.apa.org/monitor/2024/11/inclusive-language-guide-race-power
 - 伊藤千尋（2021）「高校地理教科書における『人種』に関する記述の問題点―差別・偏見を生まない地理教育に向けて―」『E-journal GEO』16巻2号: https://www.jstage.jst.go.jp/article/ejgeo/16/2/16_327/_article/-char/ja
+- Yasuko Takezawa (2015), *Translating and Transforming ‘Race’: Early Meiji Period Textbooks*: https://www.tandfonline.com/doi/abs/10.1080/10371397.2015.1041219
 - Rotem Kowner (2000), *‘Lighter than Yellow, but Not Enough’: Western Discourse on the Japanese ‘Race’, 1854–1904*, The Historical Journal 43(1): https://www.cambridge.org/core/journals/historical-journal/article/abs/lighter-than-yellow-but-not-enough-western-discourse-on-the-japanese-race-18541904/D58149FD94507F81146A1FF07F519FB5
 - Sayaka Osanami Törngren (2022), *Racial appraisal and constraints of identity among multiracial and multiethnic persons in Sweden and Japan*: https://journals.sagepub.com/doi/10.1177/1468796821997473
 

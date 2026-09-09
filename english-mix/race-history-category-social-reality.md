@@ -126,7 +126,7 @@ Historian Rotem Kowner studied Western discourse about the Japanese “race” f
 
 Japanese people themselves were racialized by others.
 
-そして近代日本も、西洋由来の人種概念を翻訳し、受容し、再編してきた。
+さらにYasuko Takezawa’s study of early Meiji textbooks shows that concepts of race introduced from Europe and the United States were translated into Japanese and transformed as Japanese writers repositioned Japan in relation to other groups.
 
 So 「黒人」 and English Black are not identical.
 
@@ -235,5 +235,6 @@ So the goal is not to become silent about race.
 - American Association of Biological Anthropologists, *AABA Statement on Race & Racism*: https://bioanth.org/about/aaba-statement-on-race-racism/
 - American Psychological Association, *The power of inclusive language for promoting racial equity*: https://www.apa.org/monitor/2024/11/inclusive-language-guide-race-power
 - 伊藤千尋（2021）「高校地理教科書における『人種』に関する記述の問題点―差別・偏見を生まない地理教育に向けて―」: https://www.jstage.jst.go.jp/article/ejgeo/16/2/16_327/_article/-char/ja
+- Yasuko Takezawa (2015), *Translating and Transforming ‘Race’: Early Meiji Period Textbooks*: https://www.tandfonline.com/doi/abs/10.1080/10371397.2015.1041219
 - Rotem Kowner (2000), *‘Lighter than Yellow, but Not Enough’: Western Discourse on the Japanese ‘Race’, 1854–1904*: https://www.cambridge.org/core/journals/historical-journal/article/abs/lighter-than-yellow-but-not-enough-western-discourse-on-the-japanese-race-18541904/D58149FD94507F81146A1FF07F519FB5
 - Sayaka Osanami Törngren (2022), *Racial appraisal and constraints of identity among multiracial and multiethnic persons in Sweden and Japan*: https://journals.sagepub.com/doi/10.1177/1468796821997473
