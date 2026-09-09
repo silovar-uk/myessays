@@ -71,13 +71,33 @@ async function waitForPreload(page, versions) {
   }, versions);
 }
 
+async function modeDebugState(page) {
+  return page.evaluate(() => ({
+    current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+    switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
+    pending: window.MyEssaysInstantReadingModes?.pendingVersion?.() || '',
+    pivot: window.MyEssaysReadingPivot?.locator?.() || '',
+    guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
+    desired: document.querySelector('.reader-mode-bar')?.dataset.desiredVersion || '',
+    checked: [...document.querySelectorAll('.reader-language-direct-option')]
+      .filter(button => button.getAttribute('aria-checked') === 'true')
+      .map(button => button.dataset.readerVersion),
+    trace: window.__readingModeTrace || []
+  }));
+}
+
 async function waitForMode(page, version) {
-  await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, version);
-  await page.waitForFunction(expected => {
-    const button = document.querySelector(`.reader-language-direct-option[data-reader-version="${expected}"]`);
-    return button?.getAttribute('aria-checked') === 'true';
-  }, version);
-  await page.waitForFunction(() => !window.MyEssaysInstantReadingModes?.pendingVersion?.());
+  try {
+    await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, version, { timeout: 6000 });
+    await page.waitForFunction(expected => {
+      const button = document.querySelector(`.reader-language-direct-option[data-reader-version="${expected}"]`);
+      return button?.getAttribute('aria-checked') === 'true';
+    }, version, { timeout: 6000 });
+    await page.waitForFunction(() => !window.MyEssaysInstantReadingModes?.pendingVersion?.(), null, { timeout: 6000 });
+  } catch (error) {
+    console.error('RAPID_MODE_DEBUG', JSON.stringify(await modeDebugState(page)));
+    throw error;
+  }
 }
 
 async function burst(page, sequence, gap = 18) {
@@ -98,12 +118,31 @@ async function burst(page, sequence, gap = 18) {
   page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
   page.on('pageerror', error => pageErrors.push(String(error)));
 
-  // Three-mode stress sample: preload, perceptible second-visible focus, and
-  // rapid latest-intent-wins switching without awaiting intermediate modes.
   await openEssay(page, THREE_MODE_ID);
   await page.waitForSelector('.reader-language-direct');
   assert.equal(await page.locator('.reader-language-direct-option').count(), 3, 'three-mode article should expose JA / EN / ES');
   await waitForPreload(page, ['en-mix', 'es-mix']);
+
+  await page.evaluate(() => {
+    window.__readingModeTrace = [];
+    const record = (name, event) => {
+      window.__readingModeTrace.push({
+        name,
+        version: event.detail?.version || event.detail?.mode || '',
+        reason: event.detail?.reason || '',
+        locator: event.detail?.locator || '',
+        current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+        switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
+        pending: window.MyEssaysInstantReadingModes?.pendingVersion?.() || '',
+        checked: [...document.querySelectorAll('.reader-language-direct-option')]
+          .filter(button => button.getAttribute('aria-checked') === 'true')
+          .map(button => button.dataset.readerVersion),
+        t: Math.round(performance.now())
+      });
+    };
+    ['myessays:reader-version-intent', 'myessays:reader-version-changed', 'myessays:reader-language-changed', 'myessays:reading-pivot-changed']
+      .forEach(name => document.addEventListener(name, event => record(name, event)));
+  });
 
   await scrollIntoBody(page, 0.36);
   const before = await assertSecondVisibleFocus(page, 'three-mode desktop');
@@ -132,15 +171,11 @@ async function burst(page, sequence, gap = 18) {
   assert.equal(returned.locator, beforeLocator, 'rapid round trip must preserve semantic locator');
   assert.ok(Math.abs(returned.top - beforeTop) <= 3, `rapid round trip moved eye-line by ${returned.top - beforeTop}px`);
 
-  // One real user gesture ends semantic handoff mode; after that, Reading Focus
-  // must again be the actual second visible paragraph in the current layout.
   await page.mouse.move(640, 400);
   await page.mouse.wheel(0, 180);
   await page.waitForTimeout(120);
   await assertSecondVisibleFocus(page, 'three-mode after user scroll');
 
-  // User's original target class: JA + EN only. No article-specific code should
-  // be required, and direct controls should contain exactly the available modes.
   await openEssay(page, TWO_MODE_ID);
   await page.waitForSelector('.reader-language-direct');
   assert.equal(await page.locator('.reader-language-direct-option').count(), 2, 'JA+EN article should expose exactly two direct modes');
@@ -152,13 +187,11 @@ async function burst(page, sequence, gap = 18) {
   await page.waitForTimeout(420);
   assert.equal(await page.evaluate(() => window.MyEssaysReadingPivot?.locator?.() || ''), watanabeBefore.actualLocator, 'JA+EN rapid round trip must preserve locator');
 
-  // JA-only articles still get Reading Focus even though there is no language UI.
   await openEssay(page, JA_ONLY_ID);
   await scrollIntoBody(page, 0.30);
   await assertSecondVisibleFocus(page, 'JA-only desktop');
   assert.equal(await page.locator('.reader-language-direct').count(), 0, 'JA-only article should not invent language controls');
 
-  // Mobile uses the same second-visible rule and a still-visible background.
   await page.setViewportSize({ width: 320, height: 700 });
   await openEssay(page, TWO_MODE_ID);
   await scrollIntoBody(page, 0.34);
