@@ -11,6 +11,19 @@ function overlaps(a, b) {
   return !(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y);
 }
 
+async function pivotState(page, includeScrollY = false) {
+  return page.evaluate(includeScroll => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+    return {
+      locator,
+      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
+      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+      ...(includeScroll ? { scrollY: window.scrollY } : {})
+    };
+  }, includeScrollY);
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
@@ -73,34 +86,21 @@ function overlaps(a, b) {
   await page.mouse.wheel(0, scrollDelta);
   await page.waitForFunction(() => Boolean(window.MyEssaysReadingPivot?.locator?.()));
 
-  const before = await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    return {
-      locator: window.MyEssaysReadingPivot?.locator?.() || '',
-      top: pivot?.getBoundingClientRect?.().top ?? null,
-      scrollY: window.scrollY
-    };
-  });
+  const before = await pivotState(page, true);
   assert.ok(before.scrollY > 300, `expected a meaningful reading position before switch, got ${before.scrollY}`);
   assert.ok(before.locator, 'a canonical Reading Pivot locator should exist before switching');
 
   await switchTo('en-mix');
-  const english = await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
-  });
+  const english = await pivotState(page);
   assert.equal(english.locator, before.locator, 'English Mix should preserve the exact Reading Pivot locator');
-  assert.ok(Math.abs(english.top - before.top) <= 3, `English Mix Pivot top drifted by ${english.top - before.top}px`);
+  assert.ok(Math.abs(english.top - before.top) <= 3, `English Mix semantic top drifted by ${english.top - before.top}px`);
   assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'English Mix switch must not reset reading position');
 
   await switchTo('es-mix');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
-  const spanish = await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
-  });
+  const spanish = await pivotState(page);
   assert.equal(spanish.locator, before.locator, 'Español Mix should preserve the exact Reading Pivot locator');
-  assert.ok(Math.abs(spanish.top - before.top) <= 3, `Español Mix Pivot top drifted by ${spanish.top - before.top}px`);
+  assert.ok(Math.abs(spanish.top - before.top) <= 3, `Español Mix semantic top drifted by ${spanish.top - before.top}px (physical top ${spanish.physicalTop})`);
   const spanishMixText = await page.locator('#readerContent').innerText();
   assert.match(spanishMixText, /日本語＋Español Mix/);
   assert.match(spanishMixText, /Sabemos que es importante/);
@@ -108,12 +108,9 @@ function overlaps(a, b) {
 
   await switchTo('ja');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('知っているだけでは、まだ遠い'));
-  const returned = await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
-  });
+  const returned = await pivotState(page);
   assert.equal(returned.locator, before.locator, 'returning to Japanese should preserve the same Pivot locator');
-  assert.ok(Math.abs(returned.top - before.top) <= 3, `round-trip Pivot top drifted by ${returned.top - before.top}px`);
+  assert.ok(Math.abs(returned.top - before.top) <= 3, `round-trip semantic top drifted by ${returned.top - before.top}px`);
 
   await page.locator('[data-reader-mode-compare]').click();
   await page.waitForSelector('.reader-compare-view');
@@ -131,12 +128,9 @@ function overlaps(a, b) {
     await switchTo('ja');
   }
 
-  let finalPivot = await page.evaluate(() => ({
-    locator: window.MyEssaysReadingPivot?.locator?.() || '',
-    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
-  }));
+  let finalPivot = await pivotState(page);
   assert.equal(finalPivot.locator, before.locator, 'repeated direct language switches should not change the Pivot locator');
-  assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `repeated direct language switches drifted Pivot top by ${finalPivot.top - before.top}px`);
+  assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `repeated direct language switches drifted semantic top by ${finalPivot.top - before.top}px`);
 
   // Rapid intent handoff: the second click happens while the first transition is
   // still active. The latest desired language must win after the stable boundary.
@@ -153,28 +147,30 @@ function overlaps(a, b) {
   await page.locator(optionSelector('es-mix')).click();
   await waitSettled('es-mix');
 
-  const rapid = await page.evaluate(() => ({
-    version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
-    desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
-    transitioning: window.MyEssaysInstantReadingModes?.isTransitioning?.() || false,
-    intents: window.__readingModeIntentLog || [],
-    locator: window.MyEssaysReadingPivot?.locator?.() || '',
-    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
-  }));
+  const rapid = await page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+    return {
+      version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+      desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+      transitioning: window.MyEssaysInstantReadingModes?.isTransitioning?.() || false,
+      intents: window.__readingModeIntentLog || [],
+      locator,
+      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
+      physicalTop: pivot?.getBoundingClientRect?.().top ?? null
+    };
+  });
   assert.equal(rapid.version, 'es-mix', 'rapid switch should settle on the latest requested language');
   assert.equal(rapid.desired, 'es-mix', 'desired language should converge to the latest request');
   assert.equal(rapid.transitioning, false, 'rapid switch should reach a stable state');
   assert.deepEqual(rapid.intents.slice(-2), ['en-mix', 'es-mix'], 'each rapid user click should produce exactly one intent in order');
   assert.equal(rapid.locator, before.locator, 'rapid switch should preserve the exact Reading Pivot locator');
-  assert.ok(Math.abs(rapid.top - before.top) <= 3, `rapid switch drifted Pivot top by ${rapid.top - before.top}px`);
+  assert.ok(Math.abs(rapid.top - before.top) <= 3, `rapid switch drifted semantic top by ${rapid.top - before.top}px (physical top ${rapid.physicalTop})`);
   await switchTo('ja');
 
-  finalPivot = await page.evaluate(() => ({
-    locator: window.MyEssaysReadingPivot?.locator?.() || '',
-    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
-  }));
+  finalPivot = await pivotState(page);
   assert.equal(finalPivot.locator, before.locator, 'post-rapid return should keep the Pivot locator');
-  assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `post-rapid return drifted Pivot top by ${finalPivot.top - before.top}px`);
+  assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `post-rapid return drifted semantic top by ${finalPivot.top - before.top}px`);
 
   const storageKeys = await page.evaluate(() => Object.keys(localStorage));
   assert.ok(storageKeys.includes(canonicalKey));
