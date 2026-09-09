@@ -7,17 +7,13 @@
   const view = document.getElementById('readerView');
   if (!content || !view) return;
 
-  const VISIBLE_RATIO = 0.35;
-  const PIVOT_SETTLE_MS = 110;
-  const SWITCH_LOCK_MS = 180;
+  const MIN_VISIBLE_PX = 20;
+  const SWITCH_LOCK_MS = 120;
   const SWITCH_CORRECTION_TOLERANCE = 0.75;
-  const OBSERVER_THRESHOLDS = [0, .15, .35, .6, 1];
 
   let pivot = null;
   let logicalPivotLocator = '';
-  let observer = null;
-  let pendingPivot = null;
-  let pendingTimer = 0;
+  let readingBlocksCache = [];
   let evaluationFrame = 0;
   let lockUntil = 0;
   let lastEssayId = '';
@@ -38,11 +34,16 @@
     return Boolean(essayId() && !view.hidden);
   }
 
-  // The reading pivot is intentionally paragraph-only. Headings, lists,
-  // quotes, figures and reader UI never count as the “second visible paragraph”.
-  function readingBlocks() {
-    return [...content.querySelectorAll(':scope > p.reader-locator-block[data-reading-locator]')]
+  // Reading Focus is intentionally paragraph-only. Headings, lists, quotes,
+  // figures and Reader UI never count as the “second visible paragraph”.
+  function refreshReadingBlocks() {
+    readingBlocksCache = [...content.querySelectorAll(':scope > p.reader-locator-block[data-reading-locator]')]
       .filter(block => !block.classList.contains('language-source-hidden'));
+    return readingBlocksCache;
+  }
+
+  function readingBlocks() {
+    return readingBlocksCache.length ? readingBlocksCache : refreshReadingBlocks();
   }
 
   function headerBottom() {
@@ -54,12 +55,13 @@
   function viewportBand() {
     const top = headerBottom() + 8;
     const bottom = Math.max(top + 1, window.innerHeight - 18);
-    return { top, bottom, height: Math.max(1, bottom - top) };
+    return { top, bottom };
   }
 
   function readingRailY() {
     const band = viewportBand();
-    return Math.min(band.bottom, band.top + Math.min(142, Math.max(76, band.height * .16)));
+    const height = Math.max(1, band.bottom - band.top);
+    return Math.min(band.bottom, band.top + Math.min(142, Math.max(76, height * .16)));
   }
 
   function visibility(block) {
@@ -68,13 +70,7 @@
     const visibleTop = Math.max(rect.top, band.top);
     const visibleBottom = Math.min(rect.bottom, band.bottom);
     const visiblePx = Math.max(0, visibleBottom - visibleTop);
-    const comparableHeight = Math.max(1, Math.min(Math.max(1, rect.height), band.height));
-    return {
-      block,
-      rect,
-      visiblePx,
-      ratio: Math.min(1, visiblePx / comparableHeight)
-    };
+    return { block, rect, visiblePx };
   }
 
   function nearestToRail(blocks) {
@@ -91,20 +87,17 @@
     const blocks = readingBlocks();
     if (!blocks.length) return null;
 
+    // “Visible” is perceptual, not proportional. Requiring a percentage of a
+    // paragraph penalises long paragraphs. One visible line (about 20px) is
+    // enough to count; genuinely short paragraphs only need their own height.
     const visible = blocks
       .map(visibility)
-      .filter(item => item.visiblePx > 0 && item.ratio >= VISIBLE_RATIO)
+      .filter(item => item.visiblePx >= Math.min(MIN_VISIBLE_PX, Math.max(1, item.rect.height)))
       .sort((a, b) => a.rect.top - b.rect.top);
 
     if (visible.length >= 2) return visible[1].block;
     if (visible.length === 1) return visible[0].block;
     return nearestToRail(blocks);
-  }
-
-  function clearPending() {
-    pendingPivot = null;
-    window.clearTimeout(pendingTimer);
-    pendingTimer = 0;
   }
 
   function physicalLocator(block) {
@@ -141,7 +134,7 @@
     if (logicalLocator) logicalPivotLocator = logicalLocator;
     else if (!sameBlock || !logicalPivotLocator) logicalPivotLocator = physicalLocator(block);
     pivot.classList.add('is-reading-pivot');
-    clearPending();
+
     document.dispatchEvent(new CustomEvent('myessays:reading-pivot-changed', {
       detail: {
         essayId: essayId(),
@@ -153,44 +146,19 @@
     return true;
   }
 
-  function commitCandidate(candidate) {
-    if (!candidate || candidate === pivot) return clearPending();
-    if (Date.now() < lockUntil || versions()?.isSwitching?.()) return;
-    setPivot(candidate, { reason: 'scroll' });
-  }
-
   function evaluatePivot({ immediate = false } = {}) {
     evaluationFrame = 0;
     if (!readerOpen() || Date.now() < lockUntil || versions()?.isSwitching?.()) return;
     const candidate = candidatePivot();
     if (!candidate) return;
-    if (!pivot || immediate) return void setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
-    if (candidate === pivot) return clearPending();
-
-    if (pendingPivot !== candidate) {
-      clearPending();
-      pendingPivot = candidate;
-      pendingTimer = window.setTimeout(() => {
-        const latest = candidatePivot();
-        if (latest === pendingPivot) commitCandidate(latest);
-        else clearPending();
-      }, PIVOT_SETTLE_MS);
+    if (!pivot || immediate || candidate !== pivot) {
+      setPivot(candidate, { reason: pivot ? (immediate ? 'sync' : 'scroll') : 'initial' });
     }
   }
 
   function scheduleEvaluate(options = {}) {
     if (evaluationFrame) return;
     evaluationFrame = requestAnimationFrame(() => evaluatePivot(options));
-  }
-
-  function connectObserver() {
-    observer?.disconnect();
-    if (typeof IntersectionObserver !== 'function') return;
-    observer = new IntersectionObserver(() => scheduleEvaluate(), {
-      root: null,
-      threshold: OBSERVER_THRESHOLDS
-    });
-    readingBlocks().forEach(block => observer.observe(block));
   }
 
   function matchingLocatorBlocks(locator) {
@@ -200,7 +168,7 @@
 
   function captureSwitchAnchor() {
     if (!readerOpen()) return null;
-    const blocks = readingBlocks();
+    const blocks = refreshReadingBlocks();
     if (!blocks.length) return null;
     const current = pivot && content.contains(pivot) ? pivot : candidatePivot() || blocks[0];
     if (!current) return null;
@@ -213,8 +181,7 @@
       locator,
       pairId: current.dataset.pairId || '',
       clusterIndex: Math.max(0, cluster.indexOf(current)),
-      viewportTop: current.getBoundingClientRect().top,
-      capturedAt: performance.now()
+      viewportTop: current.getBoundingClientRect().top
     };
     lockUntil = Date.now() + 2400;
     return { ...pendingSwitchAnchor };
@@ -222,6 +189,15 @@
 
   function findSwitchTarget(anchor) {
     if (!anchor) return null;
+
+    // Semantic coverage wins over physical locator equality. This is what lets
+    // canonical 4-8 stay meaningful when a translated paragraph merges 4-7–4-9.
+    const semantic = window.MyEssaysReadingLocators?.findContainingBlock?.(
+      anchor.locator,
+      { paragraphOnly: true }
+    );
+    if (semantic) return semantic;
+
     if (anchor.locator) {
       const cluster = matchingLocatorBlocks(anchor.locator);
       if (cluster.length) return cluster[Math.min(anchor.clusterIndex || 0, cluster.length - 1)];
@@ -238,21 +214,19 @@
     const anchor = pendingSwitchAnchor;
     if (!anchor || anchor.essayId !== event.detail?.essayId) {
       lockUntil = 0;
+      refreshReadingBlocks();
       return scheduleEvaluate({ immediate: true });
     }
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
+      refreshReadingBlocks();
       const target = findSwitchTarget(anchor);
       pendingSwitchAnchor = null;
       if (!target) {
         lockUntil = 0;
-        connectObserver();
         return scheduleEvaluate({ immediate: true });
       }
 
-      // reader-versions owns semantic restoration. This tiny correction runs
-      // only after its canonical restoration has completed, and keeps the
-      // selected semantic paragraph at the same viewport height.
       const delta = target.getBoundingClientRect().top - anchor.viewportTop;
       if (Math.abs(delta) > SWITCH_CORRECTION_TOLERANCE) {
         window.scrollBy({ top: delta, behavior: 'auto' });
@@ -262,13 +236,9 @@
         logicalLocator: anchor.locator || physicalLocator(target)
       });
 
-      // Do not immediately re-derive “the second visible paragraph” from the
-      // translated layout. Different line wrapping can make a neighbouring
-      // paragraph become second-visible even though the semantic target is
-      // correct. Keep the corresponding paragraph as the Ghost Anchor until
-      // the reader actually scrolls (or resizes) again.
+      // Keep the corresponding semantic paragraph through the handoff. The
+      // next genuine scroll/resize returns control to the second-visible rule.
       lockUntil = Date.now() + SWITCH_LOCK_MS;
-      connectObserver();
     }));
   }
 
@@ -341,7 +311,6 @@
 
     observeModeBar(bar);
     requestAnimationFrame(() => syncMobileCompareShortcut(bar));
-    window.setTimeout(() => syncMobileCompareShortcut(bar), 180);
   }
 
   function observeModeBar(bar) {
@@ -354,11 +323,10 @@
 
   function initialize() {
     if (!readerOpen()) {
-      observer?.disconnect();
       if (pivot) pivot.classList.remove('is-reading-pivot');
       pivot = null;
       logicalPivotLocator = '';
-      clearPending();
+      readingBlocksCache = [];
       return;
     }
 
@@ -371,7 +339,7 @@
       lockUntil = 0;
     }
 
-    connectObserver();
+    refreshReadingBlocks();
     if (!versions()?.isSwitching?.()) {
       const candidate = candidatePivot();
       if (candidate) setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
@@ -424,26 +392,32 @@
     physicalLocator: () => physicalLocator(pivot),
     captureForSwitch: captureSwitchAnchor,
     hasPendingSwitchAnchor: () => Boolean(pendingSwitchAnchor),
+    candidate: candidatePivot,
     refresh: initialize
   });
 
   document.addEventListener('click', handlePotentialLanguageSwitch, true);
   document.addEventListener('keydown', handleLanguageRadioKeydown, true);
   document.addEventListener('myessays:reader-ready', () => requestAnimationFrame(initialize));
-  document.addEventListener('myessays:reader-version-changed', () => requestAnimationFrame(syncModeBar));
+  document.addEventListener('myessays:reader-rendered', () => requestAnimationFrame(initialize));
+  document.addEventListener('myessays:semantic-locators-ready', () => requestAnimationFrame(initialize));
+  document.addEventListener('myessays:reader-version-changed', () => {
+    refreshReadingBlocks();
+    requestAnimationFrame(syncModeBar);
+  });
   document.addEventListener('myessays:reader-language-changed', restoreSwitchAnchor);
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncModeBar));
 
   window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });
   window.addEventListener('resize', () => {
-    connectObserver();
+    refreshReadingBlocks();
     scheduleEvaluate({ immediate: true });
     requestAnimationFrame(syncModeBar);
   });
 
   window.addEventListener('hashchange', () => {
     logicalPivotLocator = '';
-    clearPending();
+    readingBlocksCache = [];
     requestAnimationFrame(initialize);
   });
 
