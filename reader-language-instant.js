@@ -117,19 +117,18 @@
       return;
     }
 
-    // Visual intent is immediate, even while the previous semantic handoff is
-    // still completing. This makes the control feel responsive without letting
-    // two DOM replacements race each other.
+    // The control acknowledges the latest intent immediately. DOM replacement
+    // stays serialized so semantic position restoration never races itself.
     applyIntent(next);
 
     if (!api.isSwitching?.()) {
       pendingVersion = '';
-      return; // normal click continues through the existing semantic pipeline
+      return; // normal click continues through the shared Reading Mode pipeline
     }
 
-    // Latest intent wins. Do not let the older locator queue or mode-bar click
-    // handler capture an unstable intermediate DOM. Only the newest request is
-    // replayed after the current semantic handoff is complete.
+    // Latest intent wins. Suppress downstream click handlers while the current
+    // DOM is transitional; the newest request is replayed only after the Pivot
+    // confirms that semantic handoff has finished.
     pendingVersion = next;
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -144,8 +143,6 @@
       if (!api || !next) return;
 
       if (api.isSwitching?.()) {
-        // The language-changed event is synchronous inside switchVersion; one
-        // frame later the finally block should have released the transition.
         replayLatestIntent();
         return;
       }
@@ -198,9 +195,13 @@
   document.addEventListener('myessays:reader-ready', schedulePreload);
   document.addEventListener('myessays:reader-rendered', schedulePreload);
   document.addEventListener('myessays:reader-version-changed', syncAfterActualVersion);
-  document.addEventListener('myessays:reader-language-changed', event => {
-    syncAfterActualVersion(event);
-    if (pendingVersion) replayLatestIntent();
+  document.addEventListener('myessays:reader-language-changed', syncAfterActualVersion);
+  document.addEventListener('myessays:reading-pivot-changed', event => {
+    // reader-language-changed fires inside switchVersion before its finally
+    // block releases switchInFlight. The Pivot's language-switch event occurs
+    // after the semantic target has actually been restored, so this is the one
+    // safe boundary for replaying the latest rapid user intent.
+    if (event.detail?.reason === 'language-switch' && pendingVersion) replayLatestIntent();
   });
 
   window.addEventListener('hashchange', () => {
