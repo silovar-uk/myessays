@@ -18,8 +18,6 @@
   let lockUntil = 0;
   let lastEssayId = '';
   let pendingSwitchAnchor = null;
-  let modeBarObserver = null;
-  let modeBarSyncToken = 0;
 
   const versions = () => window.MyEssaysReaderVersions;
 
@@ -87,9 +85,6 @@
     const blocks = readingBlocks();
     if (!blocks.length) return null;
 
-    // “Visible” is perceptual, not proportional. Requiring a percentage of a
-    // paragraph penalises long paragraphs. One visible line (about 20px) is
-    // enough to count; genuinely short paragraphs only need their own height.
     const visible = blocks
       .map(visibility)
       .filter(item => item.visiblePx >= Math.min(MIN_VISIBLE_PX, Math.max(1, item.rect.height)))
@@ -199,8 +194,6 @@
   function findSwitchTarget(anchor) {
     if (!anchor) return null;
 
-    // Semantic coverage wins over physical locator equality. This is what lets
-    // canonical 4-8 stay meaningful when a translated paragraph merges 4-7–4-9.
     const semantic = window.MyEssaysReadingLocators?.findContainingBlock?.(
       anchor.locator,
       { paragraphOnly: true }
@@ -244,23 +237,8 @@
         reason: 'language-switch',
         logicalLocator: anchor.locator || physicalLocator(target)
       });
-
-      // Keep the corresponding semantic paragraph through programmatic handoff
-      // scrolls. The next real wheel/touch gesture releases the scroll guard and
-      // returns control to the second-visible paragraph rule.
       lockUntil = Date.now() + SWITCH_LOCK_MS;
     }));
-  }
-
-  function versionOrder(available) {
-    return ['ja', ...available.filter(version => version !== 'ja')];
-  }
-
-  function shortBadge(definition, version) {
-    if (version === 'ja') return 'JA';
-    if (version === 'en-mix') return 'EN';
-    if (version === 'es-mix') return 'ES';
-    return String(definition?.badge || version).replace(/\s*MIX$/i, '').slice(0, 3).toUpperCase();
   }
 
   function syncMobileCompareShortcut(bar) {
@@ -281,54 +259,28 @@
       if (close) close.before(button);
       else head.append(button);
     }
+    const compare = bar?.querySelector('[data-reader-mode-compare]');
     button.classList.toggle('is-active', view.classList.contains('language-compare-mode'));
-    button.hidden = !bar.querySelector('[data-reader-mode-compare]');
+    button.hidden = !compare;
   }
 
-  async function syncModeBar() {
-    const token = ++modeBarSyncToken;
+  function syncCompareUI() {
     const bar = document.querySelector('.reader-mode-bar');
-    const id = essayId();
-    if (!bar || !id || !versions()?.availableVersions) return;
+    if (!bar) return;
 
-    const available = await versions().availableVersions(id);
-    if (token !== modeBarSyncToken || id !== essayId() || !document.contains(bar)) return;
-    if (!available.length) return;
+    // Reading Mode choices belong exclusively to the persistent Instant
+    // Controller. Pivot never creates a second language control in the mode bar.
+    bar.querySelectorAll('.reader-language-direct,[data-reader-mode-version],[data-reader-version]')
+      .forEach(node => node.remove());
+    bar.classList.remove('is-language-cycle-bar', 'is-language-direct-bar');
 
-    const order = versionOrder(available);
-    const current = versions().currentVersion();
-    const defs = versions().definitions || {};
+    const compare = bar.querySelector('[data-reader-mode-compare]');
     const compareActive = view.classList.contains('language-compare-mode');
-    const signature = [id, current, order.join(','), compareActive ? 'compare' : 'read'].join('|');
-
-    if (bar.dataset.pivotDirectSignature === signature && bar.querySelector('.reader-language-direct')) {
-      syncMobileCompareShortcut(bar);
-      return;
+    if (compare) {
+      compare.classList.toggle('is-active', compareActive);
+      compare.setAttribute('aria-pressed', String(compareActive));
     }
-
-    bar.dataset.pivotDirectSignature = signature;
-    bar.classList.remove('is-language-cycle-bar');
-    bar.classList.add('is-language-direct-bar');
-    bar.innerHTML = `
-      <div class="reader-language-direct" role="radiogroup" aria-label="表示言語">
-        ${order.map(version => {
-          const definition = defs[version] || { label: version, badge: version.toUpperCase() };
-          const active = version === current;
-          return `<button type="button" role="radio" class="reader-mode-button reader-language-direct-option${active ? ' is-active' : ''}" data-reader-mode-version="${version}" data-reader-version="${version}" aria-checked="${active}" aria-label="${definition.label}">${shortBadge(definition, version)}</button>`;
-        }).join('')}
-      </div>
-      <button type="button" class="reader-mode-button reader-mode-compare${compareActive ? ' is-active' : ''}" data-reader-mode-compare data-short-label="⇄" aria-label="日本語と外国語Mixを比較" aria-pressed="${compareActive}">比較</button>`;
-
-    observeModeBar(bar);
-    requestAnimationFrame(() => syncMobileCompareShortcut(bar));
-  }
-
-  function observeModeBar(bar) {
-    if (modeBarObserver?.__bar === bar) return;
-    modeBarObserver?.disconnect();
-    modeBarObserver = new MutationObserver(() => requestAnimationFrame(syncModeBar));
-    modeBarObserver.__bar = bar;
-    modeBarObserver.observe(bar, { childList: true });
+    syncMobileCompareShortcut(bar);
   }
 
   function initialize() {
@@ -354,45 +306,7 @@
       const candidate = candidatePivot();
       if (candidate) setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
     }
-    requestAnimationFrame(syncModeBar);
-  }
-
-  function handlePotentialLanguageSwitch(event) {
-    const target = event.target instanceof Element
-      ? event.target.closest('[data-reader-mode-version],[data-reader-version],.language-lens-full')
-      : null;
-    if (!target || !readerOpen()) return;
-
-    let next = target.dataset.readerModeVersion || target.dataset.readerVersion || '';
-    if (target.classList.contains('language-lens-full')) {
-      next = document.getElementById('languageLensPanel')?.dataset.targetVersion || '';
-    }
-    if (!next || next === versions()?.currentVersion?.()) return;
-    captureSwitchAnchor();
-  }
-
-  function handleLanguageRadioKeydown(event) {
-    const current = event.target instanceof Element
-      ? event.target.closest('.reader-language-direct-option[role="radio"]')
-      : null;
-    if (!current) return;
-    const group = current.closest('.reader-language-direct');
-    const buttons = group ? [...group.querySelectorAll('.reader-language-direct-option[role="radio"]')] : [];
-    if (!buttons.length) return;
-    const index = buttons.indexOf(current);
-    if (index < 0) return;
-
-    let targetIndex = -1;
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') targetIndex = (index + 1) % buttons.length;
-    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') targetIndex = (index - 1 + buttons.length) % buttons.length;
-    else if (event.key === 'Home') targetIndex = 0;
-    else if (event.key === 'End') targetIndex = buttons.length - 1;
-    else return;
-
-    event.preventDefault();
-    const target = buttons[targetIndex];
-    target.focus();
-    target.click();
+    requestAnimationFrame(syncCompareUI);
   }
 
   window.MyEssaysReadingPivot = Object.freeze({
@@ -406,23 +320,21 @@
     refresh: initialize
   });
 
-  document.addEventListener('click', handlePotentialLanguageSwitch, true);
-  document.addEventListener('keydown', handleLanguageRadioKeydown, true);
   document.addEventListener('myessays:reader-ready', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:reader-rendered', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:semantic-locators-ready', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:reader-version-changed', () => {
     refreshReadingBlocks();
-    requestAnimationFrame(syncModeBar);
+    requestAnimationFrame(syncCompareUI);
   });
   document.addEventListener('myessays:reader-language-changed', restoreSwitchAnchor);
-  document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncModeBar));
+  document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));
 
   window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });
   window.addEventListener('resize', () => {
     refreshReadingBlocks();
     scheduleEvaluate({ immediate: true });
-    requestAnimationFrame(syncModeBar);
+    requestAnimationFrame(syncCompareUI);
   });
 
   window.addEventListener('hashchange', () => {
