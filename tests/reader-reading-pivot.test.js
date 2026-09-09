@@ -74,3 +74,10 @@ test('semantic locator layer emits stable only after semantic eye-line correctio
   assert.ok(correction >= 0 && stable > correction, 'stable boundary must follow semantic correction');
   assert.match(locators, /captureForSwitch: captureSemanticAnchorNow/);
 });
+
+test('scroll guard owns lifecycle only, never a competing eye-line coordinate', () => {
+  const guard = read('reader-reading-pivot-scroll-guard.js');
+  assert.match(guard, /myessays:reader-version-intent/);
+  assert.match(guard, /myessays:reading-mode-stable/);
+  assert.doesNotMatch(guard, /anchorTop|correctEyeLine|window\.scrollBy|setTimeout/);
+});
