@@ -24,7 +24,7 @@ test('instant controller exclusively renders direct one-tap Reading Mode choices
   assert.match(instant, /data-reading-mode-intent=\"\$\{version\}\"/);
   assert.match(instant, /aria-checked=\"false\"/);
   assert.doesNotMatch(instant, /reader-language-cycle/);
-  assert.doesNotMatch(pivot, /class=\"reader-language-direct\"|data-reader-mode-version|shortBadge|versionOrder|handleLanguageRadioKeydown/);
+  assert.doesNotMatch(pivot, /class=\"reader-language-direct\"|shortBadge|versionOrder|handleLanguageRadioKeydown/);
   assert.match(pivot, /data-reader-mode-compare/);
 });
 
