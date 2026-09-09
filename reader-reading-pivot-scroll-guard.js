@@ -5,17 +5,20 @@
 
   const root = document.documentElement;
   let releaseTimer = 0;
-  let correctionTimer = 0;
+  let earlyCorrectionTimer = 0;
+  let lateCorrectionTimer = 0;
   let safetyTimer = 0;
   let anchorTop = null;
   let correctionCancelled = false;
 
   function clearTimers() {
     window.clearTimeout(releaseTimer);
-    window.clearTimeout(correctionTimer);
+    window.clearTimeout(earlyCorrectionTimer);
+    window.clearTimeout(lateCorrectionTimer);
     window.clearTimeout(safetyTimer);
     releaseTimer = 0;
-    correctionTimer = 0;
+    earlyCorrectionTimer = 0;
+    lateCorrectionTimer = 0;
     safetyTimer = 0;
   }
 
@@ -42,7 +45,6 @@
   }
 
   function correctEyeLine() {
-    correctionTimer = 0;
     if (correctionCancelled || anchorTop == null) return;
     const pivot = window.MyEssaysReadingPivot?.current?.();
     const rect = pivot?.getBoundingClientRect?.();
@@ -54,13 +56,22 @@
   }
 
   function scheduleRelease() {
-    window.clearTimeout(correctionTimer);
+    window.clearTimeout(earlyCorrectionTimer);
+    window.clearTimeout(lateCorrectionTimer);
     window.clearTimeout(releaseTimer);
-    // reader-reading-pivot performs its semantic handoff two animation frames
-    // after reader-language-changed. A small follow-up correction absorbs late
-    // line-wrap/layout settling without changing which paragraph is the anchor.
-    correctionTimer = window.setTimeout(correctEyeLine, 120);
-    releaseTimer = window.setTimeout(release, 220);
+
+    // Reading Mode text can settle twice: first when the semantic target is
+    // restored, then again after translated line wrapping/layout stabilises.
+    // Correct both phases while keeping the same semantic Ghost Anchor.
+    earlyCorrectionTimer = window.setTimeout(() => {
+      earlyCorrectionTimer = 0;
+      correctEyeLine();
+    }, 90);
+    lateCorrectionTimer = window.setTimeout(() => {
+      lateCorrectionTimer = 0;
+      correctEyeLine();
+    }, 250);
+    releaseTimer = window.setTimeout(release, 360);
   }
 
   function intendedVersionFromClick(event) {
