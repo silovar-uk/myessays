@@ -1,0 +1,81 @@
+name: Publish Sep 10 Nikkei headlines essay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-2026-09-10-nikkei-headlines.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Register canonical article and English Mix
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          article_id = 'nikkei-headlines-four-vectors'
+          canonical = 'essays/2026-09-10-nikkei-headlines-four-vectors.md'
+          en_mix = 'english-mix/nikkei-headlines-four-vectors.md'
+
+          for required in (canonical, en_mix):
+              if not Path(required).exists():
+                  raise SystemExit(f'missing article file: {required}')
+
+          canonical_text = Path(canonical).read_text(encoding='utf-8')
+          mix_text = Path(en_mix).read_text(encoding='utf-8')
+          expected = f'id: {article_id}'
+          if expected not in canonical_text or expected not in mix_text:
+              raise SystemExit('article id mismatch')
+
+          index_path = Path('data/index.json')
+          index = json.loads(index_path.read_text(encoding='utf-8'))
+          essays = index.setdefault('essays', [])
+          essays[:] = [p for p in essays if p != canonical]
+          essays.insert(0, canonical)
+          index_path.write_text(
+              json.dumps(index, ensure_ascii=False, separators=(',', ':')) + '\n',
+              encoding='utf-8'
+          )
+
+          versions_path = Path('data/versions-index.json')
+          versions = json.loads(versions_path.read_text(encoding='utf-8'))
+          articles = versions.setdefault('articles', {})
+          existing = dict(articles.get(article_id, {}))
+          existing['en-mix'] = en_mix
+          versions['articles'] = {
+              article_id: existing,
+              **{k: v for k, v in articles.items() if k != article_id}
+          }
+          versions_path.write_text(
+              json.dumps(versions, ensure_ascii=False, separators=(',', ':')) + '\n',
+              encoding='utf-8'
+          )
+
+          # Final integrity checks before commit.
+          check_index = json.loads(index_path.read_text(encoding='utf-8'))
+          check_versions = json.loads(versions_path.read_text(encoding='utf-8'))
+          if check_index['essays'][0] != canonical:
+              raise SystemExit('canonical index registration failed')
+          if check_versions['articles'][article_id].get('en-mix') != en_mix:
+              raise SystemExit('English Mix registration failed')
+          PY
+
+      - name: Commit registration and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json
+          git rm .github/workflows/publish-2026-09-10-nikkei-headlines.yml
+          git commit -m "Register Sep 10 Nikkei headlines essay"
+          git push
