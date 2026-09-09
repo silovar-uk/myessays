@@ -103,10 +103,15 @@
   document.addEventListener('myessays:reader-language-changed', scheduleRelease);
   document.addEventListener('myessays:reader-version-missing', release);
 
-  // Never fight an explicit reading gesture during the short handoff window.
-  const cancelCorrection = () => { correctionCancelled = true; };
-  window.addEventListener('wheel', cancelCorrection, { passive: true });
-  window.addEventListener('touchmove', cancelCorrection, { passive: true });
+  // Programmatic handoff scrolls must not cause Reading Focus to re-elect a
+  // neighbouring paragraph. A genuine wheel/touch gesture ends the handoff
+  // immediately, so the following scroll event can resume second-visible focus.
+  const releaseForReaderGesture = () => {
+    correctionCancelled = true;
+    release();
+  };
+  window.addEventListener('wheel', releaseForReaderGesture, { passive: true });
+  window.addEventListener('touchmove', releaseForReaderGesture, { passive: true });
   window.addEventListener('hashchange', release);
   window.addEventListener('pagehide', release);
 
