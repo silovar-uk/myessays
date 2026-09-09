@@ -36,9 +36,12 @@ test('superseded reading implementations stay removed', () => {
   assert.match(html, /reading-state-ui\.js/);
 });
 
-test('recent reader fixes use refreshed cache keys', () => {
+test('current Reading Focus runtime assets use September cache keys', () => {
   const html = read('index.html');
-  assert.match(html, /app\.js\?v=20260829-/);
-  assert.match(html, /reader-navigation\.js\?v=20260829-/);
-  assert.match(html, /reading-locators\.js\?v=20260829-/);
+  assert.match(html, /reading-locators\.js\?v=20260909-/);
+  assert.match(html, /reader-language-instant\.js\?v=20260909-/);
+  assert.match(html, /reader-reading-pivot\.js\?v=20260909-/);
+  assert.match(html, /reader-reading-pivot\.css\?v=20260909-/);
+  assert.match(html, /reader-reading-pivot-scroll-guard\.js\?v=20260909-/);
+  assert.doesNotMatch(html, /reading-locators\.js\?v=20260829-/);
 });
