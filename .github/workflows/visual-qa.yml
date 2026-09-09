@@ -67,6 +67,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node scripts/reading-locator-diagnostic.cjs
 
+      - name: Run Reading Focus and instant language QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/reading-focus-instant-qa.cjs
+
       - name: Run reading versions browser QA
         env:
           BASE_URL: http://127.0.0.1:4173
