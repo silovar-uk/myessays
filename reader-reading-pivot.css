@@ -6,9 +6,12 @@ html.is-reading-mode-switching {
   scroll-behavior: auto !important;
 }
 
-/* The unified Reader V2 mode bar is the primary language control. Keep the
-   legacy floating disclosure out of the way so language choice stays one tap. */
-.reader-language-switch {
+/* The unified persistent direct control is the primary language switch. Keep
+   legacy language controls out of the way while preserving Compare in the
+   reader-mode bar. */
+.reader-language-switch,
+.reader-mode-bar .reader-language-direct,
+.reader-mode-bar > [data-reader-mode-version] {
   display: none !important;
 }
 
@@ -43,7 +46,8 @@ html.is-reading-mode-switching {
   overflow: visible;
 }
 
-.reader-language-direct {
+.reader-language-direct,
+.reader-language-instant-direct {
   display: inline-grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(34px, auto);
@@ -54,7 +58,13 @@ html.is-reading-mode-switching {
   background: rgba(255, 255, 255, .52);
 }
 
-.reader-mode-bar.is-language-direct-bar .reader-language-direct-option {
+.reader-language-instant-direct {
+  flex: 0 0 auto;
+  z-index: 2;
+}
+
+.reader-mode-bar.is-language-direct-bar .reader-language-direct-option,
+.reader-language-instant-direct .reader-language-direct-option {
   min-width: 34px;
   min-height: 30px;
   padding: 6px 8px;
@@ -68,19 +78,24 @@ html.is-reading-mode-switching {
 }
 
 .reader-mode-bar.is-language-direct-bar .reader-language-direct-option:hover,
-.reader-mode-bar.is-language-direct-bar .reader-language-direct-option:focus-visible {
+.reader-mode-bar.is-language-direct-bar .reader-language-direct-option:focus-visible,
+.reader-language-instant-direct .reader-language-direct-option:hover,
+.reader-language-instant-direct .reader-language-direct-option:focus-visible {
   color: var(--ink);
   background: rgba(255, 255, 255, .76);
 }
 
 .reader-mode-bar.is-language-direct-bar .reader-language-direct-option.is-active,
-.reader-mode-bar.is-language-direct-bar .reader-language-direct-option[aria-checked="true"] {
+.reader-mode-bar.is-language-direct-bar .reader-language-direct-option[aria-checked="true"],
+.reader-language-instant-direct .reader-language-direct-option.is-active,
+.reader-language-instant-direct .reader-language-direct-option[aria-checked="true"] {
   color: var(--ink);
   background: rgba(255, 255, 255, .98);
   box-shadow: 0 1px 4px rgba(39, 32, 24, .07);
 }
 
-.reader-mode-bar.is-language-direct-bar .reader-language-direct-option:focus-visible {
+.reader-mode-bar.is-language-direct-bar .reader-language-direct-option:focus-visible,
+.reader-language-instant-direct .reader-language-direct-option:focus-visible {
   outline: 2px solid rgba(180, 62, 49, .30);
   outline-offset: 2px;
 }
@@ -106,7 +121,7 @@ html.is-reading-mode-switching {
 
   .reader-v2-header .reader-mode-bar.is-language-direct-bar,
   .reader-mode-bar.is-reader-v2-header.is-language-direct-bar {
-    max-width: 128px;
+    max-width: 52px;
   }
 
   .reader-v2-header .reader-mode-bar.is-language-direct-bar .reader-mode-button {
@@ -118,7 +133,8 @@ html.is-reading-mode-switching {
     content: none;
   }
 
-  .reader-v2-header .reader-mode-bar.is-language-direct-bar .reader-language-direct-option {
+  .reader-v2-header .reader-mode-bar.is-language-direct-bar .reader-language-direct-option,
+  .reader-language-instant-direct .reader-language-direct-option {
     min-width: 32px;
     min-height: 32px;
     padding-inline: 7px;
