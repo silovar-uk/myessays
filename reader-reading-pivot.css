@@ -15,10 +15,6 @@ html.is-reading-mode-switching {
   display: none !important;
 }
 
-.reader-content > p.reader-locator-block[data-reading-locator] {
-  transition: background-color .1s ease;
-}
-
 .reader-content > p.reader-locator-block[data-reading-locator].is-reading-pivot {
   background-color: rgba(180, 62, 49, .085);
 }
@@ -165,11 +161,5 @@ html.is-reading-mode-switching {
     border-color: rgba(180, 62, 49, .22);
     color: var(--accent);
     background: rgba(180, 62, 49, .06);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reader-content > p.reader-locator-block[data-reading-locator] {
-    transition: none;
   }
 }
