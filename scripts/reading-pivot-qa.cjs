@@ -4,7 +4,8 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
-const VISIBLE_RATIO = 0.35;
+const CONTROL = '#readerLanguageInstantDirect';
+const MIN_VISIBLE_PX = 20;
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -13,24 +14,28 @@ function overlaps(a, b) {
 
 async function pivotState(page) {
   return page.evaluate(() => {
-    const pivot = document.querySelector('#readerContent > p.reader-locator-block.is-reading-pivot[data-reading-locator]');
-    return pivot ? {
-      locator: pivot.dataset.readingLocator || '',
-      top: pivot.getBoundingClientRect().top,
+    const pivot = window.MyEssaysReadingPivot?.current?.()
+      || document.querySelector('#readerContent > p.reader-locator-block.is-reading-pivot[data-reading-locator]');
+    if (!pivot) return null;
+    const locator = window.MyEssaysReadingPivot?.locator?.() || pivot.dataset.readingLocator || '';
+    return {
+      locator,
+      physicalLocator: pivot.dataset.readingLocator || '',
+      top: window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top,
+      physicalTop: pivot.getBoundingClientRect().top,
       text: (pivot.textContent || '').trim().slice(0, 80),
       backgroundColor: getComputedStyle(pivot).backgroundColor,
       boxShadow: getComputedStyle(pivot).boxShadow
-    } : null;
+    };
   });
 }
 
 async function expectedPivotLocator(page) {
-  return page.evaluate(visibleRatio => {
+  return page.evaluate(minVisiblePx => {
     const header = document.querySelector('.reader-v2-header');
     const headerBottom = header?.getBoundingClientRect().height ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
     const topEdge = headerBottom + 8;
     const bottomEdge = Math.max(topEdge + 1, window.innerHeight - 18);
-    const bandHeight = Math.max(1, bottomEdge - topEdge);
     const paragraphs = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')]
       .filter(block => !block.classList.contains('language-source-hidden'));
 
@@ -39,13 +44,14 @@ async function expectedPivotLocator(page) {
       const visibleTop = Math.max(rect.top, topEdge);
       const visibleBottom = Math.min(rect.bottom, bottomEdge);
       const visiblePx = Math.max(0, visibleBottom - visibleTop);
-      const comparableHeight = Math.max(1, Math.min(Math.max(1, rect.height), bandHeight));
-      return { block, top: rect.top, ratio: Math.min(1, visiblePx / comparableHeight), visiblePx };
-    }).filter(item => item.visiblePx > 0 && item.ratio >= visibleRatio).sort((a, b) => a.top - b.top);
+      return { block, top: rect.top, visiblePx, height: rect.height };
+    }).filter(item => item.visiblePx >= Math.min(minVisiblePx, Math.max(1, item.height)))
+      .sort((a, b) => a.top - b.top);
 
     if (visible.length >= 2) return visible[1].block.dataset.readingLocator || '';
     if (visible.length === 1) return visible[0].block.dataset.readingLocator || '';
 
+    const bandHeight = Math.max(1, bottomEdge - topEdge);
     const rail = Math.min(bottomEdge, topEdge + Math.min(142, Math.max(76, bandHeight * .16)));
     const nearest = paragraphs.reduce((best, block) => {
       const rect = block.getBoundingClientRect();
@@ -54,18 +60,19 @@ async function expectedPivotLocator(page) {
       return !best || distance < best.distance ? { block, distance } : best;
     }, null)?.block;
     return nearest?.dataset.readingLocator || '';
-  }, VISIBLE_RATIO);
+  }, MIN_VISIBLE_PX);
 }
 
 async function switchTo(page, expected) {
-  const button = page.locator(`.reader-language-direct-option[data-reader-version="${expected}"]`);
+  const button = page.locator(`${CONTROL} [data-reading-mode-intent="${expected}"]`);
   await button.click();
   await page.waitForFunction(version => {
-    const button = document.querySelector(`.reader-language-direct-option[data-reader-version="${version}"]`);
+    const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${version}"]`);
     return window.MyEssaysReaderVersions?.currentVersion?.() === version
+      && window.MyEssaysInstantReadingModes?.desiredVersion?.() === version
+      && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
       && button?.getAttribute('aria-checked') === 'true';
-  }, expected);
-  await page.waitForTimeout(700);
+  }, expected, { timeout: 8000 });
 }
 
 (async () => {
@@ -78,59 +85,58 @@ async function switchTo(page, expected) {
 
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
-  await page.waitForSelector('.reader-language-direct');
+  await page.waitForSelector(CONTROL);
   await page.waitForSelector('#readerContent > p.reader-locator-block[data-reading-locator]');
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
-  await page.waitForTimeout(180);
+  await page.waitForTimeout(120);
 
   const initialExpected = await expectedPivotLocator(page);
   const initial = await pivotState(page);
   assert.ok(initialExpected, 'an expected paragraph Pivot should be derivable on initial render');
-  assert.equal(initial?.locator, initialExpected, 'initial Pivot should be the second sufficiently visible paragraph when available');
+  assert.equal(initial?.physicalLocator, initialExpected, 'initial Pivot should be the actual second sufficiently visible paragraph when available');
   assert.notEqual(initial?.backgroundColor, 'rgba(0, 0, 0, 0)', 'Pivot should have a faint background highlight');
   assert.equal(initial?.boxShadow, 'none', 'Pivot highlight should not use a line/glow/shadow');
 
-  const directButtons = page.locator('.reader-language-direct-option');
+  const directButtons = page.locator(`${CONTROL} [data-reading-mode-intent]`);
   assert.equal(await directButtons.count(), 3, 'JA / EN / ES should all be visible as direct choices for the sample article');
-  assert.equal(await page.locator('.reader-language-direct').getAttribute('role'), 'radiogroup');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="ja"]').getAttribute('aria-checked'), 'true');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="en-mix"]').textContent(), 'EN');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="es-mix"]').textContent(), 'ES');
+  assert.equal(await page.locator(CONTROL).getAttribute('role'), 'radiogroup');
+  assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent="ja"]`).getAttribute('aria-checked'), 'true');
+  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="en-mix"]`).textContent()).trim(), 'EN');
+  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="es-mix"]`).textContent()).trim(), 'ES');
+  assert.equal(await page.locator('.reader-mode-bar .reader-language-direct').count(), 0, 'Pivot must not create a duplicate language selector in the mode bar');
+  assert.equal(await page.locator('.reader-mode-bar [data-reader-mode-version]').count(), 0, 'the visible mode bar must not contain legacy language choices');
   assert.ok(await page.locator('[data-reader-mode-compare]').isVisible(), 'Compare should remain a separate secondary action on desktop');
   assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should remain hidden');
 
-  const scrollDelta = await page.evaluate(() => {
-    const blocks = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')];
-    const target = blocks[Math.min(4, blocks.length - 1)];
-    const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 300);
-    return Math.max(450, targetY - window.scrollY);
+  await page.evaluate(() => {
+    const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+    scrollTo({ top: max * 0.34, behavior: 'instant' });
   });
-  await page.mouse.move(640, 400);
-  await page.mouse.wheel(0, scrollDelta);
-  await page.waitForTimeout(420);
+  await page.waitForFunction(() => scrollY > 500);
+  await page.waitForTimeout(80);
 
   const readingExpected = await expectedPivotLocator(page);
   const readingPivot = await pivotState(page);
   assert.ok(readingExpected, 'a visible paragraph should be selected after scrolling');
-  assert.equal(readingPivot?.locator, readingExpected, 'Reading Pivot should settle on the second sufficiently visible paragraph');
+  assert.equal(readingPivot?.physicalLocator, readingExpected, 'Reading Pivot should settle on the second sufficiently visible paragraph');
 
   const beforeSwitch = await pivotState(page);
-  assert.ok(beforeSwitch?.locator, 'a Reading Pivot locator should exist before language switching');
+  assert.ok(beforeSwitch?.locator, 'a logical Reading Pivot locator should exist before language switching');
 
   await switchTo(page, 'en-mix');
   const english = await pivotState(page);
-  assert.equal(english?.locator, beforeSwitch.locator, 'JA → EN must preserve the exact Pivot locator');
-  assert.ok(Math.abs(english.top - beforeSwitch.top) <= 3, `JA → EN Pivot top drifted by ${english.top - beforeSwitch.top}px`);
+  assert.equal(english?.locator, beforeSwitch.locator, 'JA → EN must preserve the exact logical Pivot locator');
+  assert.ok(Math.abs(english.top - beforeSwitch.top) <= 3, `JA → EN semantic Pivot top drifted by ${english.top - beforeSwitch.top}px`);
 
   await switchTo(page, 'es-mix');
   const spanish = await pivotState(page);
-  assert.equal(spanish?.locator, beforeSwitch.locator, 'EN → ES must preserve the exact Pivot locator');
-  assert.ok(Math.abs(spanish.top - beforeSwitch.top) <= 3, `EN → ES Pivot top drifted by ${spanish.top - beforeSwitch.top}px`);
+  assert.equal(spanish?.locator, beforeSwitch.locator, 'EN → ES must preserve the exact logical Pivot locator');
+  assert.ok(Math.abs(spanish.top - beforeSwitch.top) <= 3, `EN → ES semantic Pivot top drifted by ${spanish.top - beforeSwitch.top}px`);
 
   await switchTo(page, 'ja');
   const returned = await pivotState(page);
-  assert.equal(returned?.locator, beforeSwitch.locator, 'ES → JA must preserve the exact Pivot locator');
-  assert.ok(Math.abs(returned.top - beforeSwitch.top) <= 3, `round-trip Pivot top drifted by ${returned.top - beforeSwitch.top}px`);
+  assert.equal(returned?.locator, beforeSwitch.locator, 'ES → JA must preserve the exact logical Pivot locator');
+  assert.ok(Math.abs(returned.top - beforeSwitch.top) <= 3, `round-trip semantic Pivot top drifted by ${returned.top - beforeSwitch.top}px`);
 
   for (let i = 0; i < 2; i += 1) {
     await switchTo(page, 'en-mix');
@@ -139,31 +145,30 @@ async function switchTo(page, expected) {
   }
   const afterCycles = await pivotState(page);
   assert.equal(afterCycles?.locator, beforeSwitch.locator, 'repeated direct language switches must not drift to another semantic paragraph');
-  assert.ok(Math.abs(afterCycles.top - beforeSwitch.top) <= 3, `repeated switches drifted Pivot top by ${afterCycles.top - beforeSwitch.top}px`);
+  assert.ok(Math.abs(afterCycles.top - beforeSwitch.top) <= 3, `repeated switches drifted semantic Pivot top by ${afterCycles.top - beforeSwitch.top}px`);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload({ waitUntil: 'networkidle' });
-  await page.waitForSelector('.reader-language-direct');
+  await page.waitForSelector(CONTROL);
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
-  await page.waitForTimeout(180);
+  await page.waitForTimeout(120);
 
   const mobileExpected = await expectedPivotLocator(page);
   const mobilePivot = await pivotState(page);
-  assert.equal(mobilePivot?.locator, mobileExpected, 'mobile should use the same second-visible-paragraph Pivot rule');
+  assert.equal(mobilePivot?.physicalLocator, mobileExpected, 'mobile should use the same second-visible-paragraph Pivot rule');
 
-  const directBox = await page.locator('.reader-language-direct').boundingBox();
+  const directBox = await page.locator(CONTROL).boundingBox();
   const noteBox = await page.locator('#noteTab').boundingBox();
   assert.ok(directBox && noteBox, 'mobile direct language choices and note control should remain visible');
   assert.ok(directBox.x >= 0 && directBox.x + directBox.width <= 390.5, `direct language control overflows mobile viewport: ${JSON.stringify(directBox)}`);
   assert.equal(overlaps(directBox, noteBox), false, 'direct language control must not overlap the note action');
   assert.equal(await page.locator('[data-reader-mode-compare]').isHidden(), true, 'desktop Compare action should leave the mobile Reader Header');
 
-  // Keyboard radio semantics: ArrowRight moves focus and performs the switch.
-  const jaButton = page.locator('.reader-language-direct-option[data-reader-version="ja"]');
+  const jaButton = page.locator(`${CONTROL} [data-reading-mode-intent="ja"]`);
   await jaButton.focus();
   await page.keyboard.press('ArrowRight');
   await page.waitForFunction(() => window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="en-mix"]').getAttribute('aria-checked'), 'true');
+  assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent="en-mix"]`).getAttribute('aria-checked'), 'true');
 
   await page.locator('.reader-v2-map-toggle').click();
   await page.waitForSelector('#readerAside.is-open');
