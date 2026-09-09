@@ -1,5 +1,11 @@
 /* Reading Pivot: a quiet, paragraph-only indication of the current reading unit. */
 
+/* Reading Mode handoff is a state replacement, not navigation. The site keeps
+   smooth scrolling elsewhere, but semantic position restoration must be instant. */
+html.is-reading-mode-switching {
+  scroll-behavior: auto !important;
+}
+
 /* The unified Reader V2 mode bar is the primary language control. Keep the
    legacy floating disclosure out of the way so language choice stays one tap. */
 .reader-language-switch {
