@@ -20,10 +20,14 @@ test('semantic eye-line can target text inside a merged physical paragraph', () 
   assert.match(source, /semanticTop\(/);
 });
 
-test('language switching corrects the semantic eye-line after the pivot handoff', () => {
-  assert.match(source, /captureSemanticSwitchAnchor/);
+test('language switching corrects the semantic eye-line before declaring Reading Mode stable', () => {
+  assert.match(source, /captureForSwitch: captureSemanticAnchorNow/);
   assert.match(source, /myessays:reading-pivot-changed/);
   assert.match(source, /event\.detail\?\.reason !== 'language-switch'/);
   assert.match(source, /targetTop - anchor\.viewportTop/);
+  assert.match(source, /myessays:reading-mode-stable/);
+  const correction = source.indexOf('window.scrollBy({ top: delta');
+  const stable = source.indexOf("myessays:reading-mode-stable");
+  assert.ok(correction >= 0 && stable > correction, 'stable must be emitted after semantic eye-line correction');
   assert.doesNotMatch(source, /setTimeout\([^)]*restoreSemanticEyeLine/);
 });
