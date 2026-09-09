@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
+const CONTROL = '#readerLanguageInstantDirect';
+const optionSelector = version => `${CONTROL} .reader-language-direct-option[data-reading-mode-intent="${version}"]`;
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -27,14 +29,15 @@ function overlaps(a, b) {
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#readerView:not([hidden])');
   await page.waitForSelector('.reader-mode-bar');
-  await page.waitForSelector('.reader-language-direct');
+  await page.waitForSelector(CONTROL, { state: 'visible' });
   await page.waitForSelector('[data-reader-mode-compare]');
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
 
-  assert.equal(await page.locator('.reader-language-direct').getAttribute('role'), 'radiogroup');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="ja"]').getAttribute('aria-checked'), 'true');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="en-mix"]').textContent(), 'EN');
-  assert.equal(await page.locator('.reader-language-direct-option[data-reader-version="es-mix"]').textContent(), 'ES');
+  assert.equal(await page.locator(CONTROL).count(), 1, 'there should be one persistent language control');
+  assert.equal(await page.locator(CONTROL).getAttribute('role'), 'radiogroup');
+  assert.equal(await page.locator(optionSelector('ja')).getAttribute('aria-checked'), 'true');
+  assert.equal(await page.locator(optionSelector('en-mix')).textContent(), 'EN');
+  assert.equal(await page.locator(optionSelector('es-mix')).textContent(), 'ES');
   assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should yield to the one-tap direct language choices');
 
   const canonicalKey = `myessays:reading-state:${ESSAY_ID}`;
@@ -42,23 +45,33 @@ function overlaps(a, b) {
     localStorage.setItem(key, JSON.stringify({ openedAt: '2026-08-30T00:00:00.000Z' }));
   }, { key: canonicalKey });
 
+  const waitSettled = async version => {
+    await page.waitForFunction(expected => {
+      const actual = window.MyEssaysReaderVersions?.currentVersion?.();
+      const controller = window.MyEssaysInstantReadingModes;
+      const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+      return actual === expected
+        && !controller?.isTransitioning?.()
+        && button?.getAttribute('aria-checked') === 'true';
+    }, version);
+  };
+
   const switchTo = async version => {
     const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
-    if (current === version) return;
-    const button = page.locator(`.reader-language-direct-option[data-reader-version="${version}"]`);
-    assert.equal(await button.count(), 1, `direct language choice should exist for ${version}`);
+    if (current === version) {
+      await waitSettled(version);
+      return;
+    }
+    const button = page.locator(optionSelector(version));
+    assert.equal(await button.count(), 1, `persistent language choice should exist for ${version}`);
     await button.click();
-    await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, version);
-    await page.waitForFunction(expected => {
-      const button = document.querySelector(`.reader-language-direct-option[data-reader-version="${expected}"]`);
-      return button?.getAttribute('aria-checked') === 'true';
-    }, version);
+    await waitSettled(version);
   };
 
   const scrollDelta = await page.evaluate(() => Math.max(700, document.documentElement.scrollHeight * 0.35));
   await page.mouse.move(640, 400);
   await page.mouse.wheel(0, scrollDelta);
-  await page.waitForTimeout(420);
+  await page.waitForFunction(() => Boolean(window.MyEssaysReadingPivot?.locator?.()));
 
   const before = await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
@@ -72,7 +85,6 @@ function overlaps(a, b) {
   assert.ok(before.locator, 'a canonical Reading Pivot locator should exist before switching');
 
   await switchTo('en-mix');
-  await page.waitForTimeout(300);
   const english = await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
     return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
@@ -83,7 +95,6 @@ function overlaps(a, b) {
 
   await switchTo('es-mix');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
-  await page.waitForTimeout(300);
   const spanish = await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
     return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
@@ -97,7 +108,6 @@ function overlaps(a, b) {
 
   await switchTo('ja');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('知っているだけでは、まだ遠い'));
-  await page.waitForTimeout(300);
   const returned = await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
     return { locator: window.MyEssaysReadingPivot?.locator?.() || '', top: pivot?.getBoundingClientRect?.().top ?? null };
@@ -114,18 +124,57 @@ function overlaps(a, b) {
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('.reader-compare-view'));
 
+  // Sequential round-trips must preserve the same semantic eye-line.
   for (let i = 0; i < 2; i += 1) {
     await switchTo('en-mix');
     await switchTo('es-mix');
     await switchTo('ja');
   }
 
-  const finalPivot = await page.evaluate(() => ({
+  let finalPivot = await page.evaluate(() => ({
     locator: window.MyEssaysReadingPivot?.locator?.() || '',
     top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
   }));
   assert.equal(finalPivot.locator, before.locator, 'repeated direct language switches should not change the Pivot locator');
   assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `repeated direct language switches drifted Pivot top by ${finalPivot.top - before.top}px`);
+
+  // Rapid intent handoff: the second click happens while the first transition is
+  // still active. The latest desired language must win after the stable boundary.
+  const intentLog = await page.evaluate(() => {
+    window.__readingModeIntentLog = [];
+    document.addEventListener('myessays:reader-version-intent', event => {
+      window.__readingModeIntentLog.push(event.detail?.version || '');
+    });
+    return true;
+  });
+  assert.equal(intentLog, true);
+  await page.locator(optionSelector('en-mix')).click();
+  await page.waitForTimeout(18);
+  await page.locator(optionSelector('es-mix')).click();
+  await waitSettled('es-mix');
+
+  const rapid = await page.evaluate(() => ({
+    version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+    desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+    transitioning: window.MyEssaysInstantReadingModes?.isTransitioning?.() || false,
+    intents: window.__readingModeIntentLog || [],
+    locator: window.MyEssaysReadingPivot?.locator?.() || '',
+    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
+  }));
+  assert.equal(rapid.version, 'es-mix', 'rapid switch should settle on the latest requested language');
+  assert.equal(rapid.desired, 'es-mix', 'desired language should converge to the latest request');
+  assert.equal(rapid.transitioning, false, 'rapid switch should reach a stable state');
+  assert.deepEqual(rapid.intents.slice(-2), ['en-mix', 'es-mix'], 'each rapid user click should produce exactly one intent in order');
+  assert.equal(rapid.locator, before.locator, 'rapid switch should preserve the exact Reading Pivot locator');
+  assert.ok(Math.abs(rapid.top - before.top) <= 3, `rapid switch drifted Pivot top by ${rapid.top - before.top}px`);
+  await switchTo('ja');
+
+  finalPivot = await page.evaluate(() => ({
+    locator: window.MyEssaysReadingPivot?.locator?.() || '',
+    top: window.MyEssaysReadingPivot?.current?.()?.getBoundingClientRect?.().top ?? null
+  }));
+  assert.equal(finalPivot.locator, before.locator, 'post-rapid return should keep the Pivot locator');
+  assert.ok(Math.abs(finalPivot.top - before.top) <= 3, `post-rapid return drifted Pivot top by ${finalPivot.top - before.top}px`);
 
   const storageKeys = await page.evaluate(() => Object.keys(localStorage));
   assert.ok(storageKeys.includes(canonicalKey));
@@ -140,7 +189,7 @@ function overlaps(a, b) {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForSelector('.reader-mode-bar');
-  await page.waitForSelector('.reader-language-direct');
+  await page.waitForSelector(CONTROL, { state: 'visible' });
   const modeBox = await page.locator('.reader-mode-bar').boundingBox();
   assert.ok(modeBox, 'reading mode bar should be visible on mobile');
   assert.ok(modeBox.x >= 0 && modeBox.x + modeBox.width <= 320.5, `mode bar overflows mobile viewport: ${JSON.stringify(modeBox)}`);
