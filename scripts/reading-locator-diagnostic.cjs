@@ -2,6 +2,7 @@ const { chromium } = require('playwright');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
+const CONTROL = '#readerLanguageInstantDirect';
 
 function state({ label, wanted = '' }) {
   const content = document.getElementById('readerContent');
@@ -35,12 +36,15 @@ function state({ label, wanted = '' }) {
 async function switchTo(page, version) {
   const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
   if (current === version) return;
-  const button = page.locator(`.reader-language-direct-option[data-reader-version="${version}"]`);
+  const button = page.locator(`${CONTROL} .reader-language-direct-option[data-reading-mode-intent="${version}"]`);
   await button.click();
-  await page.waitForFunction(expected => window.MyEssaysReaderVersions?.currentVersion?.() === expected, version);
   await page.waitForFunction(expected => {
-    const button = document.querySelector(`.reader-language-direct-option[data-reader-version="${expected}"]`);
-    return button?.getAttribute('aria-checked') === 'true';
+    const actual = window.MyEssaysReaderVersions?.currentVersion?.();
+    const controller = window.MyEssaysInstantReadingModes;
+    const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+    return actual === expected
+      && !controller?.isTransitioning?.()
+      && button?.getAttribute('aria-checked') === 'true';
   }, version);
 }
 
@@ -49,7 +53,7 @@ async function switchTo(page, version) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
-  await page.waitForSelector('.reader-language-direct');
+  await page.waitForSelector(CONTROL, { state: 'visible' });
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
 
   // Match the deep-position continuity check while allowing the Reading Pivot
@@ -57,7 +61,7 @@ async function switchTo(page, version) {
   const scrollDelta = await page.evaluate(() => Math.max(700, document.documentElement.scrollHeight * 0.35));
   await page.mouse.move(640, 400);
   await page.mouse.wheel(0, scrollDelta);
-  await page.waitForTimeout(420);
+  await page.waitForFunction(() => !window.MyEssaysReaderVersions?.isSwitching?.());
 
   const before = await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
@@ -69,12 +73,10 @@ async function switchTo(page, version) {
   console.log('ES_LOCATOR_DIAGNOSTIC JA', JSON.stringify(await page.evaluate(state, { label: 'ja', wanted: before.locator })));
 
   await switchTo(page, 'en-mix');
-  await page.waitForTimeout(320);
   console.log('ES_LOCATOR_DIAGNOSTIC EN', JSON.stringify(await page.evaluate(state, { label: 'en-mix', wanted: before.locator })));
 
   await switchTo(page, 'es-mix');
   await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
-  await page.waitForTimeout(320);
   console.log('ES_LOCATOR_DIAGNOSTIC ES', JSON.stringify(await page.evaluate(state, { label: 'es-mix', wanted: before.locator })));
 
   await browser.close();
