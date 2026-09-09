@@ -203,6 +203,83 @@ So the practical rule is:
 
 最初の試作では、一変数だけ外して、その差にmeaningがあるかを見る。
 
+<div class="dl-visual" role="group" aria-label="Rule Break Lab comparing a baseline, one controlled deviation, and multiple simultaneous deviations">
+<p class="dl-visual-kicker">RULE BREAK LAB</p>
+<p class="dl-visual-title"><strong>Don’t only ask what you broke. Ask what you kept.</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BASELINE — RULES VISIBLE</p>
+<div class="dl-demo-card">
+<p class="dl-event">URAWA REDS</p>
+<p class="dl-meta">9.19 SAT</p>
+<p class="dl-event">VS TOKYO V</p>
+<p class="dl-meta">SPECIAL EVENT</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">ONE DEVIATION — POSITION</p>
+<div class="dl-demo-card">
+<p class="dl-event">URAWA REDS</p>
+<p class="dl-meta">9.19 SAT</p>
+<p class="dl-event">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VS TOKYO V</p>
+<p class="dl-meta">SPECIAL EVENT</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">Start with only these two. The right-hand version changes Position, while Grid, Typeface and Hierarchy remain visible. That is why the shift reads as a decision rather than random noise.</p>
+
+<details class="dl-panel">
+<summary><strong>Position</strong> — move only the position</summary>
+<pre>URAWA REDS
+9.19 SAT
+        VS TOKYO V
+SPECIAL EVENT</pre>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Position ／ <strong>KEPT:</strong> Grid, Typeface, Hierarchy</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Angle</strong> — change only the direction</summary>
+<pre>URAWA REDS
+9.19 SAT
+      / VS TOKYO V /
+SPECIAL EVENT</pre>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Angle ／ <strong>KEPT:</strong> Position, Typeface, Hierarchy</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Size</strong> — amplify only scale</summary>
+<div class="dl-demo-card">
+<p class="dl-meta">URAWA REDS</p>
+<p class="dl-meta">9.19 SAT</p>
+<h4>VS TOKYO V</h4>
+<p class="dl-meta">SPECIAL EVENT</p>
+</div>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Size ／ <strong>KEPT:</strong> Position, Direction, Typeface</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Spacing</strong> — change only letter spacing</summary>
+<pre>URAWA REDS
+9.19 SAT
+V S   T O K Y O   V
+SPECIAL EVENT</pre>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Letter Spacing ／ <strong>KEPT:</strong> Position, Size, Direction</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Compare with chaos</strong> — move several variables at once</summary>
+<pre>     URAWA
+ REDS
+        9.19
+   / SAT
+VS
+      TOKYO V
+ SPECIAL
+       EVENT</pre>
+<p class="dl-visual-note">Moving Position, Angle, Size and Spacing together may create a strong composition, but it becomes harder to diagnose which difference created which effect. This is not labelled a failure; it is a comparison with lower experimental clarity.</p>
+</details>
+</div>
+
 ---
 
 ## 5. 制作・修正指示へ翻訳する
