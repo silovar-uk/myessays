@@ -11,6 +11,7 @@
   let indexPromise = null;
   let flashTimer = 0;
   let semanticSwitchAnchor = null;
+  let queuedSwitchVersion = '';
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -274,6 +275,26 @@
     return semanticRect(locator, block)?.top ?? null;
   }
 
+  function requestedVersion(target) {
+    if (!target) return '';
+    if (target.classList.contains('language-lens-full')) {
+      return document.getElementById('languageLensPanel')?.dataset.targetVersion || '';
+    }
+    return target.dataset.readerModeVersion || target.dataset.readerVersion || '';
+  }
+
+  function captureSemanticAnchorNow({ capturePivot = false } = {}) {
+    const pivotApi = window.MyEssaysReadingPivot;
+    if (capturePivot) pivotApi?.captureForSwitch?.();
+    const locator = pivotApi?.locator?.() || '';
+    const block = pivotApi?.current?.() || findContainingBlock(locator, { paragraphOnly: true });
+    const top = locator && block ? semanticTop(locator, block) : null;
+    semanticSwitchAnchor = locator && block && top != null
+      ? { essayId: currentEssayId(), locator, viewportTop: top }
+      : null;
+    return semanticSwitchAnchor;
+  }
+
   function captureSemanticSwitchAnchor(event) {
     const target = event.target instanceof Element
       ? event.target.closest('[data-reader-mode-version],[data-reader-version],.language-lens-full')
@@ -281,34 +302,61 @@
     if (!target) return;
 
     const versions = window.MyEssaysReaderVersions;
-    let next = target.dataset.readerModeVersion || target.dataset.readerVersion || '';
-    if (target.classList.contains('language-lens-full')) {
-      next = document.getElementById('languageLensPanel')?.dataset.targetVersion || '';
-    }
+    const next = requestedVersion(target);
     if (!next || next === versions?.currentVersion?.()) return;
 
-    const pivotApi = window.MyEssaysReadingPivot;
-    const locator = pivotApi?.locator?.() || '';
-    const block = pivotApi?.current?.() || findContainingBlock(locator, { paragraphOnly: true });
-    const top = locator && block ? semanticTop(locator, block) : null;
-    semanticSwitchAnchor = locator && block && top != null
-      ? { essayId: currentEssayId(), locator, viewportTop: top }
-      : null;
+    // A Reading Mode transition is a serialized semantic handoff. If the next
+    // request arrives before the current handoff is complete, keep only the
+    // latest requested mode and prevent downstream click handlers from
+    // capturing an unstable DOM position. The queued transition starts from
+    // the finalized Ghost Anchor after myessays:reading-pivot-changed.
+    if (versions?.isSwitching?.()) {
+      queuedSwitchVersion = next;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    captureSemanticAnchorNow();
+  }
+
+  function startQueuedSwitchAfterHandoff() {
+    const next = queuedSwitchVersion;
+    if (!next) return;
+    queuedSwitchVersion = '';
+
+    queueMicrotask(() => {
+      const versions = window.MyEssaysReaderVersions;
+      if (!versions || next === versions.currentVersion?.()) return;
+      if (versions.isSwitching?.()) {
+        // reader-language-changed is dispatched before switchVersion's finally
+        // block. The Pivot handoff normally runs after that point, but retain
+        // the intent defensively if another owner is still completing.
+        queuedSwitchVersion = next;
+        return;
+      }
+      captureSemanticAnchorNow({ capturePivot: true });
+      versions.switchVersion?.(next);
+    });
   }
 
   function restoreSemanticEyeLine(event) {
     if (event.detail?.reason !== 'language-switch') return;
     const anchor = semanticSwitchAnchor;
     semanticSwitchAnchor = null;
-    if (!anchor || anchor.essayId !== currentEssayId()) return;
-    if (event.detail?.locator !== anchor.locator) return;
 
-    const target = findContainingBlock(anchor.locator, { paragraphOnly: true });
-    if (!target) return;
-    const targetTop = semanticTop(anchor.locator, target);
-    if (targetTop == null) return;
-    const delta = targetTop - anchor.viewportTop;
-    if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'auto' });
+    if (anchor && anchor.essayId === currentEssayId() && event.detail?.locator === anchor.locator) {
+      const target = findContainingBlock(anchor.locator, { paragraphOnly: true });
+      if (target) {
+        const targetTop = semanticTop(anchor.locator, target);
+        if (targetTop != null) {
+          const delta = targetTop - anchor.viewportTop;
+          if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'auto' });
+        }
+      }
+    }
+
+    startQueuedSwitchAfterHandoff();
   }
 
   async function syncAlternateState() {
@@ -367,7 +415,8 @@
     covers: blockCoversLocator,
     findContainingBlock,
     semanticRect,
-    semanticTop
+    semanticTop,
+    queuedVersion: () => queuedSwitchVersion
   });
 
   document.addEventListener('click', captureSemanticSwitchAnchor, true);
@@ -382,7 +431,11 @@
     });
   });
 
-  window.addEventListener('hashchange', () => requestAnimationFrame(syncReaderLocators));
+  window.addEventListener('hashchange', () => {
+    queuedSwitchVersion = '';
+    semanticSwitchAnchor = null;
+    requestAnimationFrame(syncReaderLocators);
+  });
   window.addEventListener('pageshow', () => requestAnimationFrame(syncReaderLocators));
 
   if (document.readyState === 'loading') {
