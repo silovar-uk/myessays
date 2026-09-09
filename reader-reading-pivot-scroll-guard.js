@@ -5,34 +5,62 @@
 
   const root = document.documentElement;
   let releaseTimer = 0;
+  let correctionTimer = 0;
   let safetyTimer = 0;
+  let anchorTop = null;
+  let correctionCancelled = false;
 
   function clearTimers() {
     window.clearTimeout(releaseTimer);
+    window.clearTimeout(correctionTimer);
     window.clearTimeout(safetyTimer);
     releaseTimer = 0;
+    correctionTimer = 0;
     safetyTimer = 0;
   }
 
   function release() {
     clearTimers();
     root.classList.remove('is-reading-mode-switching');
+    anchorTop = null;
+    correctionCancelled = false;
   }
 
-  function engage() {
+  function captureAnchorTop() {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const rect = pivot?.getBoundingClientRect?.();
+    anchorTop = Number.isFinite(rect?.top) ? rect.top : null;
+    correctionCancelled = false;
+  }
+
+  function engage({ preserveAnchor = true } = {}) {
     clearTimers();
+    if (!preserveAnchor || anchorTop == null) captureAnchorTop();
     root.classList.add('is-reading-mode-switching');
     // Defensive escape hatch for failed or interrupted switches.
     safetyTimer = window.setTimeout(release, 3200);
   }
 
+  function correctEyeLine() {
+    correctionTimer = 0;
+    if (correctionCancelled || anchorTop == null) return;
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const rect = pivot?.getBoundingClientRect?.();
+    if (!Number.isFinite(rect?.top)) return;
+    const delta = rect.top - anchorTop;
+    if (Math.abs(delta) > 0.75) {
+      window.scrollBy({ top: delta, behavior: 'auto' });
+    }
+  }
+
   function scheduleRelease() {
+    window.clearTimeout(correctionTimer);
     window.clearTimeout(releaseTimer);
-    // reader-reading-pivot performs its final semantic eye-line correction
-    // two animation frames after reader-language-changed. Keep scrolling
-    // immediate through that handoff, then restore the site's normal smooth
-    // navigation behavior.
-    releaseTimer = window.setTimeout(release, 180);
+    // reader-reading-pivot performs its semantic handoff two animation frames
+    // after reader-language-changed. A small follow-up correction absorbs late
+    // line-wrap/layout settling without changing which paragraph is the anchor.
+    correctionTimer = window.setTimeout(correctEyeLine, 120);
+    releaseTimer = window.setTimeout(release, 220);
   }
 
   function intendedVersionFromClick(event) {
@@ -49,14 +77,25 @@
   document.addEventListener('click', event => {
     const next = intendedVersionFromClick(event);
     const current = window.MyEssaysReaderVersions?.currentVersion?.() || '';
-    if (next && next !== current) engage();
+    if (next && next !== current) {
+      captureAnchorTop();
+      engage({ preserveAnchor: true });
+    }
   }, true);
 
   // This event fires immediately before reader-versions restores the canonical
-  // reading position, so programmatic switches get the same instant handoff.
-  document.addEventListener('myessays:reader-version-changed', engage);
+  // reading position. For direct UI switches the pre-click eye-line is already
+  // captured; programmatic switches fall back to the current Pivot position.
+  document.addEventListener('myessays:reader-version-changed', () => {
+    engage({ preserveAnchor: anchorTop != null });
+  });
   document.addEventListener('myessays:reader-language-changed', scheduleRelease);
   document.addEventListener('myessays:reader-version-missing', release);
+
+  // Never fight an explicit reading gesture during the short handoff window.
+  const cancelCorrection = () => { correctionCancelled = true; };
+  window.addEventListener('wheel', cancelCorrection, { passive: true });
+  window.addEventListener('touchmove', cancelCorrection, { passive: true });
   window.addEventListener('hashchange', release);
   window.addEventListener('pagehide', release);
 
