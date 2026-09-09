@@ -15,11 +15,14 @@ async function openEssay(page, id) {
 }
 
 async function scrollIntoBody(page, ratio = 0.34) {
-  await page.evaluate(value => {
+  const target = await page.evaluate(value => {
     const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
-    scrollTo({ top: max * value, behavior: 'auto' });
+    const next = max * value;
+    scrollTo({ top: next, behavior: 'instant' });
+    return next;
   }, ratio);
-  await page.waitForTimeout(120);
+  await page.waitForFunction(expected => Math.abs(window.scrollY - expected) <= 2, target);
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 }
 
 async function readingFocusState(page) {
