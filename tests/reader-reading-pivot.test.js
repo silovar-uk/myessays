@@ -15,14 +15,17 @@ test('reading pivot uses the actual second visible paragraph', () => {
   assert.doesNotMatch(pivot, /VISIBLE_RATIO|PIVOT_SETTLE_MS/);
 });
 
-test('reading pivot exposes direct one-tap Reading Mode choices', () => {
+test('instant controller exclusively renders direct one-tap Reading Mode choices', () => {
   const instant = read('reader-language-instant.js');
+  const pivot = read('reader-reading-pivot.js');
   assert.match(instant, /readerLanguageInstantDirect/);
   assert.match(instant, /setAttribute\('role', 'radiogroup'\)/);
   assert.match(instant, /role=\"radio\"/);
   assert.match(instant, /data-reading-mode-intent=\"\$\{version\}\"/);
   assert.match(instant, /aria-checked=\"false\"/);
   assert.doesNotMatch(instant, /reader-language-cycle/);
+  assert.doesNotMatch(pivot, /class=\"reader-language-direct\"|data-reader-mode-version|shortBadge|versionOrder|handleLanguageRadioKeydown/);
+  assert.match(pivot, /data-reader-mode-compare/);
 });
 
 test('reading pivot preserves semantic identity across Reading Mode switches', () => {
@@ -34,24 +37,22 @@ test('reading pivot preserves semantic identity across Reading Mode switches', (
   assert.match(pivot, /nearestCanonicalBlock\(anchor\.locator\)/);
 });
 
-test('reading focus highlight is perceptible, background-only, and legacy disclosure is hidden', () => {
+test('reading focus highlight is immediate, perceptible and background-only', () => {
   const css = read('reader-reading-pivot.css');
-  assert.match(css, /\.reader-language-switch,/);
-  assert.match(css, /\.reader-mode-bar \.reader-language-direct/);
-  assert.match(css, /is-reading-pivot\s*\{[\s\S]*?background-color:\s*rgba\(180, 62, 49, \.085\)/);
+  assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*rgba\(180, 62, 49, \.085\)/);
   assert.match(css, /@media \(max-width: 820px\)[\s\S]*?is-reading-pivot[\s\S]*?rgba\(180, 62, 49, \.072\)/);
   assert.match(css, /is-language-switch-target[\s\S]*?box-shadow:\s*none/);
 });
 
-test('direct Reading Mode control supports keyboard radio navigation', () => {
-  const pivot = read('reader-reading-pivot.js');
-  assert.match(pivot, /ArrowRight/);
-  assert.match(pivot, /ArrowLeft/);
-  assert.match(pivot, /ArrowDown/);
-  assert.match(pivot, /ArrowUp/);
-  assert.match(pivot, /event\.key === 'Home'/);
-  assert.match(pivot, /event\.key === 'End'/);
-  assert.match(pivot, /target\.click\(\)/);
+test('persistent direct Reading Mode control supports keyboard radio navigation', () => {
+  const instant = read('reader-language-instant.js');
+  assert.match(instant, /ArrowRight/);
+  assert.match(instant, /ArrowLeft/);
+  assert.match(instant, /ArrowDown/);
+  assert.match(instant, /ArrowUp/);
+  assert.match(instant, /event\.key === 'Home'/);
+  assert.match(instant, /event\.key === 'End'/);
+  assert.match(instant, /target\.click\(\)/);
 });
 
 test('instant Reading Mode controller is the only latest-intent owner', () => {
