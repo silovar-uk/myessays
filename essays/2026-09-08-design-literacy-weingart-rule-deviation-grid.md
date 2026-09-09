@@ -3,7 +3,7 @@ id: design-literacy-weingart-rule-deviation-grid
 title: "グリッドを破るには、まずグリッドが見えていないといけない――Wolfgang Weingart"
 subtitle: "Design Literacy #26｜ルールを壊すのではなく、基準との差分を設計する"
 created: "2026-09-08"
-updated: "2026-09-08"
+updated: "2026-09-09"
 type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Wolfgang Weingart", "Swiss Typography", "New Wave", "Grid", "Typography", "Constraint", "Deviation", "Basel School of Design"]
@@ -207,6 +207,83 @@ position、angle、size、spacingを同時に動かす。
 最初の試作では、一度に全部を崩さない。
 
 一変数を外し、その差が意味を持ったかを見る。
+
+<div class="dl-visual" role="group" aria-label="同じイベント告知で基準、一変数の逸脱、複数変数の逸脱を比較するRule Break Lab">
+<p class="dl-visual-kicker">RULE BREAK LAB</p>
+<p class="dl-visual-title"><strong>何を壊したかより、何を残したかを見る。</strong></p>
+<div class="dl-compare">
+<div class="dl-panel">
+<p class="dl-panel-label">BASELINE — RULES VISIBLE</p>
+<div class="dl-demo-card">
+<p class="dl-event">URAWA REDS</p>
+<p class="dl-meta">9.19 SAT</p>
+<p class="dl-event">VS TOKYO V</p>
+<p class="dl-meta">SPECIAL EVENT</p>
+</div>
+</div>
+<div class="dl-panel dl-panel-after">
+<p class="dl-panel-label">ONE DEVIATION — POSITION</p>
+<div class="dl-demo-card">
+<p class="dl-event">URAWA REDS</p>
+<p class="dl-meta">9.19 SAT</p>
+<p class="dl-event">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VS TOKYO V</p>
+<p class="dl-meta">SPECIAL EVENT</p>
+</div>
+</div>
+</div>
+<p class="dl-visual-note">まずは2枚だけ比較する。右で変えたのはPositionだけ。Grid、typeface、hierarchyが残っているから、「ズレ」が差分として読める。</p>
+
+<details class="dl-panel">
+<summary><strong>Position</strong> — 位置だけ変える</summary>
+<pre>URAWA REDS
+9.19 SAT
+        VS TOKYO V
+SPECIAL EVENT</pre>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Position ／ <strong>KEPT:</strong> Grid, Typeface, Hierarchy</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Angle</strong> — 方向だけ変える</summary>
+<pre>URAWA REDS
+9.19 SAT
+      ／ VS TOKYO V ／
+SPECIAL EVENT</pre>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Angle ／ <strong>KEPT:</strong> Position, Typeface, Hierarchy</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Size</strong> — サイズ差だけ強くする</summary>
+<div class="dl-demo-card">
+<p class="dl-meta">URAWA REDS</p>
+<p class="dl-meta">9.19 SAT</p>
+<h4>VS TOKYO V</h4>
+<p class="dl-meta">SPECIAL EVENT</p>
+</div>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Size ／ <strong>KEPT:</strong> Position, Direction, Typeface</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Spacing</strong> — 字間だけ変える</summary>
+<pre>URAWA REDS
+9.19 SAT
+V S   T O K Y O   V
+SPECIAL EVENT</pre>
+<p class="dl-visual-note"><strong>BROKEN:</strong> Letter Spacing ／ <strong>KEPT:</strong> Position, Size, Direction</p>
+</details>
+
+<details class="dl-panel">
+<summary><strong>Compare with chaos</strong> — 複数変数を同時に動かす</summary>
+<pre>     URAWA
+ REDS
+        9.19
+   / SAT
+VS
+      TOKYO V
+ SPECIAL
+       EVENT</pre>
+<p class="dl-visual-note">Position、Angle、Size、Spacingを一度に変えると、強い表現にはなり得る一方、「どの差が何を効かせたか」を診断しにくくなる。これは失敗例ではなく、検証可能性が下がる比較例。</p>
+</details>
+</div>
 
 ---
 
