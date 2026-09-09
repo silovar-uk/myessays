@@ -11,7 +11,6 @@
   let indexPromise = null;
   let flashTimer = 0;
   let semanticSwitchAnchor = null;
-  let queuedSwitchVersion = '';
 
   function currentEssayId() {
     const match = location.hash.match(/^#\/essay\/(.+)$/);
@@ -275,69 +274,15 @@
     return semanticRect(locator, block)?.top ?? null;
   }
 
-  function requestedVersion(target) {
-    if (!target) return '';
-    if (target.classList.contains('language-lens-full')) {
-      return document.getElementById('languageLensPanel')?.dataset.targetVersion || '';
-    }
-    return target.dataset.readerModeVersion || target.dataset.readerVersion || '';
-  }
-
-  function captureSemanticAnchorNow({ capturePivot = false } = {}) {
+  function captureSemanticAnchorNow() {
     const pivotApi = window.MyEssaysReadingPivot;
-    if (capturePivot) pivotApi?.captureForSwitch?.();
     const locator = pivotApi?.locator?.() || '';
     const block = pivotApi?.current?.() || findContainingBlock(locator, { paragraphOnly: true });
     const top = locator && block ? semanticTop(locator, block) : null;
     semanticSwitchAnchor = locator && block && top != null
       ? { essayId: currentEssayId(), locator, viewportTop: top }
       : null;
-    return semanticSwitchAnchor;
-  }
-
-  function captureSemanticSwitchAnchor(event) {
-    const target = event.target instanceof Element
-      ? event.target.closest('[data-reader-mode-version],[data-reader-version],.language-lens-full')
-      : null;
-    if (!target) return;
-
-    const versions = window.MyEssaysReaderVersions;
-    const next = requestedVersion(target);
-    if (!next || next === versions?.currentVersion?.()) return;
-
-    // A Reading Mode transition is a serialized semantic handoff. If the next
-    // request arrives before the current handoff is complete, keep only the
-    // latest requested mode and prevent downstream click handlers from
-    // capturing an unstable DOM position. The queued transition starts from
-    // the finalized Ghost Anchor after myessays:reading-pivot-changed.
-    if (versions?.isSwitching?.()) {
-      queuedSwitchVersion = next;
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      return;
-    }
-
-    captureSemanticAnchorNow();
-  }
-
-  function startQueuedSwitchAfterHandoff() {
-    const next = queuedSwitchVersion;
-    if (!next) return;
-    queuedSwitchVersion = '';
-
-    queueMicrotask(() => {
-      const versions = window.MyEssaysReaderVersions;
-      if (!versions || next === versions.currentVersion?.()) return;
-      if (versions.isSwitching?.()) {
-        // reader-language-changed is dispatched before switchVersion's finally
-        // block. The Pivot handoff normally runs after that point, but retain
-        // the intent defensively if another owner is still completing.
-        queuedSwitchVersion = next;
-        return;
-      }
-      captureSemanticAnchorNow({ capturePivot: true });
-      versions.switchVersion?.(next);
-    });
+    return semanticSwitchAnchor ? { ...semanticSwitchAnchor } : null;
   }
 
   function restoreSemanticEyeLine(event) {
@@ -355,8 +300,6 @@
         }
       }
     }
-
-    startQueuedSwitchAfterHandoff();
   }
 
   async function syncAlternateState() {
@@ -416,10 +359,10 @@
     findContainingBlock,
     semanticRect,
     semanticTop,
-    queuedVersion: () => queuedSwitchVersion
+    captureForSwitch: captureSemanticAnchorNow,
+    hasSwitchAnchor: () => Boolean(semanticSwitchAnchor)
   });
 
-  document.addEventListener('click', captureSemanticSwitchAnchor, true);
   document.addEventListener('myessays:reading-pivot-changed', restoreSemanticEyeLine);
   document.addEventListener('myessays:reader-rendered', syncReaderLocators);
   document.addEventListener('myessays:reader-ready', syncReaderLocators);
@@ -432,7 +375,6 @@
   });
 
   window.addEventListener('hashchange', () => {
-    queuedSwitchVersion = '';
     semanticSwitchAnchor = null;
     requestAnimationFrame(syncReaderLocators);
   });
