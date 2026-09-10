@@ -35,11 +35,18 @@ function createNavigationHarness() {
     },
     addEventListener() {}
   };
-  const window = { addEventListener() {} };
+  const window = {
+    addEventListener() {},
+    MyEssaysRoute: {
+      parse() {
+        return { type: 'essay', articleId: 'current', lang: 'ja', hasLang: true, langValid: true };
+      }
+    }
+  };
   const sandbox = {
     document,
     window,
-    location: { hash: '#/essay/current' },
+    location: { hash: '#/essay/current?lang=ja' },
     state: {
       essays: [
         { id: 'current', title: 'Current essay', tags: ['UX'], created: '2026-08-16' },
