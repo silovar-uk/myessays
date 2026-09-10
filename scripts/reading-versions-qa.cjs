@@ -84,7 +84,24 @@ async function pivotState(page, includeScrollY = false) {
   const scrollDelta = await page.evaluate(() => Math.max(700, document.documentElement.scrollHeight * 0.35));
   await page.mouse.move(640, 400);
   await page.mouse.wheel(0, scrollDelta);
-  await page.waitForFunction(() => Boolean(window.MyEssaysReadingPivot?.locator?.()));
+  try {
+    await page.waitForFunction(() => (
+      window.scrollY > 300 && Boolean(window.MyEssaysReadingPivot?.locator?.())
+    ), null, { timeout: 4000 });
+  } catch (error) {
+    const debug = await page.evaluate(() => ({
+      scrollY: window.scrollY,
+      maxScroll: Math.max(0, document.documentElement.scrollHeight - innerHeight),
+      pivot: window.MyEssaysReadingPivot?.locator?.() || '',
+      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
+      current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+      desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+      transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
+      route: window.MyEssaysRoute?.parse?.() || null
+    }));
+    console.error('READING_VERSIONS_SCROLL_DEBUG', JSON.stringify(debug));
+    throw error;
+  }
 
   const before = await pivotState(page, true);
   assert.ok(before.scrollY > 300, `expected a meaningful reading position before switch, got ${before.scrollY}`);
