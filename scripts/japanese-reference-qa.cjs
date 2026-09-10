@@ -73,6 +73,10 @@ async function assertJapaneseReference(page, expectedSelected) {
 
 async function assertLanguageLens(page) {
   const paragraph = await targetParagraph(page);
+  const readingLocator = await paragraph.getAttribute('data-reading-locator');
+  assert.ok(readingLocator, 'Language Lens target should carry a canonical Reading Locator');
+  await paragraph.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await paragraph.hover();
   await page.waitForSelector('#paragraphLanguagePeek:not([hidden])');
   await page.locator('#paragraphLanguagePeek').click();
