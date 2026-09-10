@@ -9,9 +9,21 @@ const CONTROL = '#readerLanguageInstantDirect';
 
 async function openEssay(page, id) {
   await page.goto(`${BASE_URL}/#/essay/${id}`, { waitUntil: 'networkidle' });
-  await page.waitForSelector('#readerView:not([hidden])');
-  await page.waitForSelector('#readerContent > p.reader-locator-block');
-  await page.waitForFunction(() => Boolean(window.MyEssaysReadingPivot?.current?.()));
+  await page.waitForFunction(expectedId => {
+    const routeId = window.MyEssaysRoute?.parse?.().articleId || '';
+    const stateId = typeof state !== 'undefined' ? state.currentEssay?.id || '' : '';
+    const content = document.getElementById('readerContent');
+    return routeId === expectedId
+      && stateId === expectedId
+      && content?.dataset.readerEssayId === expectedId
+      && !document.getElementById('readerView')?.hidden
+      && Boolean(content.querySelector(':scope > p.reader-locator-block'));
+  }, id, { timeout: 10000 });
+  await page.waitForFunction(() => {
+    const content = document.getElementById('readerContent');
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    return Boolean(pivot && pivot.isConnected && content?.contains(pivot));
+  }, null, { timeout: 10000 });
 }
 
 async function scrollIntoBody(page, ratio = 0.34) {
