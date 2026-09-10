@@ -11,6 +11,8 @@
   let indexPromise = null;
   let flashTimer = 0;
   let semanticSwitchAnchor = null;
+  let semanticEyeLineReference = null;
+  let semanticRestoreActive = false;
 
   function currentEssayId() {
     return window.MyEssaysRoute?.parse?.().articleId || '';
@@ -271,15 +273,36 @@
     return semanticRect(locator, block)?.top ?? null;
   }
 
+  function clearSemanticEyeLineReference() {
+    semanticEyeLineReference = null;
+  }
+
   function captureSemanticAnchorNow() {
     const pivotApi = window.MyEssaysReadingPivot;
+    const id = currentEssayId();
     const locator = pivotApi?.locator?.() || '';
     const block = pivotApi?.current?.() || findContainingBlock(locator, { paragraphOnly: true });
     const top = locator && block ? semanticTop(locator, block) : null;
-    semanticSwitchAnchor = locator && block && top != null
-      ? { essayId: currentEssayId(), locator, viewportTop: top }
-      : null;
-    return semanticSwitchAnchor ? { ...semanticSwitchAnchor } : null;
+    if (!id || !locator || !block || top == null) {
+      semanticSwitchAnchor = null;
+      semanticRestoreActive = false;
+      return null;
+    }
+
+    const reusable = semanticEyeLineReference
+      && semanticEyeLineReference.essayId === id
+      && semanticEyeLineReference.locator === locator;
+    if (!reusable) {
+      semanticEyeLineReference = { essayId: id, locator, viewportTop: top };
+    }
+
+    semanticSwitchAnchor = {
+      essayId: id,
+      locator,
+      viewportTop: semanticEyeLineReference.viewportTop
+    };
+    semanticRestoreActive = true;
+    return { ...semanticSwitchAnchor };
   }
 
   function correctSemanticEyeLine(anchor) {
@@ -318,14 +341,40 @@
 
     if (matches) correctSemanticEyeLine(anchor);
 
-    // The Reading Mode stable boundary belongs after the browser has applied
-    // the semantic scroll correction. Recheck once on the next frame to absorb
-    // any layout/scroll commit that landed after the first correction, then
-    // publish stability only after that residual correction has painted.
+    // A mode-only transition keeps the first semantic viewport target until
+    // the reader actually moves. This prevents sub-pixel scroll quantization
+    // from becoming a new baseline on every JA/EN/ES round trip.
     requestAnimationFrame(() => {
       if (matches && anchor.essayId === currentEssayId()) correctSemanticEyeLine(anchor);
-      requestAnimationFrame(() => dispatchReadingModeStable(event));
+      requestAnimationFrame(() => {
+        if (matches && anchor.essayId === currentEssayId()) {
+          semanticEyeLineReference = {
+            essayId: anchor.essayId,
+            locator: anchor.locator,
+            viewportTop: anchor.viewportTop
+          };
+        }
+        dispatchReadingModeStable(event);
+        requestAnimationFrame(() => { semanticRestoreActive = false; });
+      });
     });
+  }
+
+  function readerMoved() {
+    if (semanticRestoreActive) return;
+    if (document.documentElement.classList.contains('is-reading-mode-switching')) return;
+    clearSemanticEyeLineReference();
+  }
+
+  function readerGesture() {
+    clearSemanticEyeLineReference();
+  }
+
+  function keyboardMayMoveReader(event) {
+    if (event.defaultPrevented) return false;
+    const target = event.target;
+    if (target instanceof HTMLElement && target.closest('input, textarea, select, [contenteditable="true"]')) return false;
+    return ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key);
   }
 
   async function syncAlternateState() {
@@ -386,7 +435,8 @@
     semanticRect,
     semanticTop,
     captureForSwitch: captureSemanticAnchorNow,
-    hasSwitchAnchor: () => Boolean(semanticSwitchAnchor)
+    hasSwitchAnchor: () => Boolean(semanticSwitchAnchor),
+    eyeLineReference: () => semanticEyeLineReference ? { ...semanticEyeLineReference } : null
   });
 
   document.addEventListener('myessays:reading-pivot-changed', restoreSemanticEyeLine);
@@ -399,9 +449,18 @@
       flashCurrentLocator();
     });
   });
+  document.addEventListener('myessays:reading-location-changed', clearSemanticEyeLineReference);
 
+  window.addEventListener('wheel', readerGesture, { passive: true });
+  window.addEventListener('touchmove', readerGesture, { passive: true });
+  window.addEventListener('scroll', readerMoved, { passive: true });
+  window.addEventListener('keydown', event => {
+    if (keyboardMayMoveReader(event)) readerGesture();
+  }, true);
   window.addEventListener('hashchange', () => {
     semanticSwitchAnchor = null;
+    semanticEyeLineReference = null;
+    semanticRestoreActive = false;
     requestAnimationFrame(syncReaderLocators);
   });
   window.addEventListener('pageshow', () => requestAnimationFrame(syncReaderLocators));
