@@ -299,10 +299,13 @@
     const id = essayId();
     const routeChanged = id !== lastEssayId;
     if (routeChanged) {
+      const sameEssayHandoff = pendingSwitchAnchor?.essayId === id;
       lastEssayId = id;
-      pendingSwitchAnchor = null;
-      logicalPivotLocator = '';
-      lockUntil = 0;
+      if (!sameEssayHandoff) {
+        pendingSwitchAnchor = null;
+        logicalPivotLocator = '';
+        lockUntil = 0;
+      }
     }
 
     refreshReadingBlocks();
