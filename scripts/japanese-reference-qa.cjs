@@ -5,18 +5,30 @@ const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'design-literacy-progressive-disclosure-information-timing';
 const MIX_TARGET = 'But that creates an obvious tension.';
 const EXPECTED_JAPANESE = '矛盾';
+const CONTROL = '#readerLanguageInstantDirect';
+const modeSelector = version => `${CONTROL} [data-reading-mode-intent="${version}"]`;
 
 function overlaps(a, b) {
   if (!a || !b) return false;
   return !(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y);
 }
 
+async function switchMode(page, version) {
+  await page.waitForSelector(CONTROL, { state: 'visible' });
+  const button = page.locator(modeSelector(version));
+  assert.equal(await button.count(), 1, `Reading Mode choice should exist for ${version}`);
+  if ((await button.getAttribute('aria-checked')) !== 'true') await button.click();
+  await page.waitForFunction(expected => {
+    const option = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+    return window.MyEssaysReaderVersions?.currentVersion?.() === expected
+      && window.MyEssaysInstantReadingModes?.desiredVersion?.() === expected
+      && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
+      && option?.getAttribute('aria-checked') === 'true';
+  }, version);
+}
+
 async function ensureEnglishMix(page) {
-  await page.waitForSelector('.reader-mode-bar');
-  const button = page.locator('[data-reader-mode-version="en-mix"]');
-  if ((await button.getAttribute('aria-pressed')) === 'true') return;
-  await button.click();
-  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="en-mix"]')?.getAttribute('aria-pressed') === 'true');
+  await switchMode(page, 'en-mix');
   await page.waitForFunction(target => document.querySelector('#readerContent')?.textContent?.includes(target), MIX_TARGET);
 }
 
@@ -137,8 +149,7 @@ async function assertCrossParagraphSelectionCloses(page) {
   assert.equal(visibilityWithNote, 'hidden', 'Japanese reference should yield to the reading note panel');
   await page.locator('#closeNote').click();
 
-  await page.locator('[data-reader-mode-version="ja"]').click();
-  await page.waitForFunction(() => document.querySelector('[data-reader-mode-version="ja"]')?.getAttribute('aria-pressed') === 'true');
+  await switchMode(page, 'ja');
   assert.equal(await page.locator('#japaneseReferencePanel').isHidden(), true, 'switching back to Japanese should close the reference panel');
 
   await page.setViewportSize({ width: 390, height: 844 });
