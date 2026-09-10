@@ -65,7 +65,10 @@ test('reading focus zone is subtle, continuous, non-animated and leaves Pivot vi
   assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.018\)/);
   assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.006\)/);
   assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.015\)/);
-  assert.doesNotMatch(css, /has-reading-focus-zone[\s\S]*?transition:/);
+  const zoneRules = [...css.matchAll(/\.reader-content\.has-reading-focus-zone\s*\{([\s\S]*?)\}/g)]
+    .map(match => match[1]);
+  assert.equal(zoneRules.length, 2, 'desktop and mobile Reading Zone rules should both exist');
+  zoneRules.forEach(rule => assert.doesNotMatch(rule, /transition:/));
   assert.match(css, /is-language-switch-target[\s\S]*?box-shadow:\s*none/);
 });
 
