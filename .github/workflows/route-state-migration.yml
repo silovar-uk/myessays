@@ -3,7 +3,7 @@ name: Route State Migration
 on:
   push:
     paths:
-      - 'tools/apply-route-state-migration-v4.py'
+      - 'tools/apply-route-state-migration-v5.py'
 
 permissions:
   contents: write
@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Apply route state migration
-        run: python3 tools/apply-route-state-migration-v4.py
+        run: python3 tools/apply-route-state-migration-v5.py
       - name: Run static tests
         run: node --test tests/*.test.js
       - name: Commit migration
