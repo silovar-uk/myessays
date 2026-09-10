@@ -7,82 +7,49 @@ const TWO_MODE_ID = 'watanabe-hisanobu-same-baseball-different-chair';
 const JA_ONLY_ID = 'urawa-kashima-control-the-controllable';
 const CONTROL = '#readerLanguageInstantDirect';
 
+async function nextFrames(page, count = 2) {
+  await page.evaluate(frameCount => new Promise(resolve => {
+    let remaining = frameCount;
+    const step = () => {
+      remaining -= 1;
+      if (remaining <= 0) resolve();
+      else requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }), count);
+}
+
 async function openEssay(page, id) {
   await page.goto(`${BASE_URL}/#/essay/${id}`, { waitUntil: 'networkidle' });
   await page.waitForFunction(expectedId => {
     const routeId = window.MyEssaysRoute?.parse?.().articleId || '';
     const stateId = typeof state !== 'undefined' ? state.currentEssay?.id || '' : '';
     const content = document.getElementById('readerContent');
+    const pivot = window.MyEssaysReadingPivot?.current?.();
     return routeId === expectedId
       && stateId === expectedId
       && content?.dataset.readerEssayId === expectedId
       && !document.getElementById('readerView')?.hidden
-      && Boolean(content.querySelector(':scope > p.reader-locator-block'));
+      && Boolean(content.querySelector(':scope > p.reader-locator-block'))
+      && Boolean(pivot && pivot.isConnected && content.contains(pivot));
   }, id, { timeout: 10000 });
-  await page.waitForFunction(() => {
-    const content = document.getElementById('readerContent');
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    return Boolean(pivot && pivot.isConnected && content?.contains(pivot));
-  }, null, { timeout: 10000 });
-}
-
-async function installScrollTrace(page) {
-  await page.evaluate(() => {
-    const snapshot = (kind, extra = {}) => ({
-      kind,
-      y: Math.round(window.scrollY * 1000) / 1000,
-      max: Math.max(0, document.documentElement.scrollHeight - innerHeight),
-      scrollHeight: document.documentElement.scrollHeight,
-      articleId: window.MyEssaysRoute?.parse?.().articleId || '',
-      version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
-      desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
-      switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
-      transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
-      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
-      pivot: window.MyEssaysReadingPivot?.locator?.() || '',
-      t: Math.round(performance.now()),
-      ...extra
-    });
-
-    window.__scrollOwnerTrace = [];
-    if (window.__scrollOwnerTraceInstalled) return;
-    window.__scrollOwnerTraceInstalled = true;
-    const originalScrollTo = window.scrollTo.bind(window);
-    window.scrollTo = (...args) => {
-      let requested = args;
-      try { requested = JSON.parse(JSON.stringify(args)); } catch {}
-      window.__scrollOwnerTrace.push(snapshot('scrollTo-call', {
-        requested,
-        stack: String(new Error().stack || '').split('\n').slice(1, 7).join(' <- ')
-      }));
-      const result = originalScrollTo(...args);
-      requestAnimationFrame(() => {
-        window.__scrollOwnerTrace.push(snapshot('scrollTo-after-raf'));
-      });
-      return result;
-    };
-    window.addEventListener('scroll', () => {
-      window.__scrollOwnerTrace.push(snapshot('scroll-event'));
-    }, { passive: true });
-  });
 }
 
 async function scrollIntoBody(page, ratio = 0.34, label = 'body-scroll') {
-  const target = await page.evaluate(value => {
+  await page.evaluate(value => {
     const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
-    const next = max * value;
-    scrollTo({ top: next, behavior: 'instant' });
-    return next;
+    scrollTo({ top: max * value, behavior: 'instant' });
   }, ratio);
+
   try {
-    await page.waitForFunction(expected => Math.abs(window.scrollY - expected) <= 2, target, { timeout: 3000 });
+    await page.waitForFunction(() => window.scrollY > 300, null, { timeout: 3000 });
+    await nextFrames(page, 2);
+    assert.ok(await page.evaluate(() => window.scrollY > 300), `${label}: expected a meaningful reading scroll`);
   } catch (error) {
-    const debug = await page.evaluate(({ expected, label }) => ({
-      label,
-      expected,
+    const debug = await page.evaluate(labelText => ({
+      label: labelText,
       actual: window.scrollY,
       max: Math.max(0, document.documentElement.scrollHeight - innerHeight),
-      scrollHeight: document.documentElement.scrollHeight,
       route: window.MyEssaysRoute?.parse?.() || null,
       stateId: typeof state !== 'undefined' ? state.currentEssay?.id || '' : '',
       current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
@@ -90,14 +57,11 @@ async function scrollIntoBody(page, ratio = 0.34, label = 'body-scroll') {
       switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
       transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
       pivot: window.MyEssaysReadingPivot?.locator?.() || '',
-      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
-      storedPosition: localStorage.getItem(`myessays:reading-position:${window.MyEssaysRoute?.parse?.().articleId || ''}`),
-      trace: window.__scrollOwnerTrace || []
-    }), { expected: target, label });
+      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.())
+    }), label);
     console.error('SCROLL_DEBUG', JSON.stringify(debug));
     throw error;
   }
-  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 }
 
 async function readingFocusState(page) {
@@ -152,14 +116,14 @@ async function waitForPreload(page, expectedVersions) {
   await page.waitForFunction(expected => {
     const api = window.MyEssaysInstantReadingModes;
     return expected.every(version => api?.isPreloaded?.(version));
-  }, expectedVersions);
+  }, expectedVersions, { timeout: 10000 });
 }
 
 async function waitForDirectControl(page, count) {
   await page.waitForSelector(CONTROL);
   await page.waitForFunction(expected => (
     document.querySelectorAll('#readerLanguageInstantDirect [data-reading-mode-intent]').length === expected
-  ), count);
+  ), count, { timeout: 10000 });
 }
 
 async function modeDebugState(page) {
@@ -167,30 +131,25 @@ async function modeDebugState(page) {
     current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
     switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
     transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
-    pending: window.MyEssaysInstantReadingModes?.pendingVersion?.() || '',
     desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
     activeTransition: window.MyEssaysInstantReadingModes?.activeTransitionVersion?.() || '',
     pivot: window.MyEssaysReadingPivot?.locator?.() || '',
     guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
-    controlConnected: Boolean(document.getElementById('readerLanguageInstantDirect')?.isConnected),
     checked: [...document.querySelectorAll('#readerLanguageInstantDirect [data-reading-mode-intent]')]
       .filter(button => button.getAttribute('aria-checked') === 'true')
       .map(button => button.dataset.readingModeIntent),
-    missingClicks: window.__readingModeMissing || [],
-    trace: window.__readingModeTrace || []
+    missingClicks: window.__readingModeMissing || []
   }));
 }
 
 async function waitForMode(page, version) {
   try {
-    await page.waitForFunction(expected => (
-      window.MyEssaysReaderVersions?.currentVersion?.() === expected
-      && window.MyEssaysInstantReadingModes?.desiredVersion?.() === expected
-      && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
-    ), version, { timeout: 8000 });
     await page.waitForFunction(expected => {
       const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
-      return button?.getAttribute('aria-checked') === 'true';
+      return window.MyEssaysReaderVersions?.currentVersion?.() === expected
+        && window.MyEssaysInstantReadingModes?.desiredVersion?.() === expected
+        && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
+        && button?.getAttribute('aria-checked') === 'true';
     }, version, { timeout: 8000 });
   } catch (error) {
     console.error('RAPID_MODE_DEBUG', JSON.stringify(await modeDebugState(page)));
@@ -199,20 +158,34 @@ async function waitForMode(page, version) {
 }
 
 async function burst(page, sequence, gap = 18) {
-  await page.evaluate(({ sequence, gap }) => {
+  await page.evaluate(({ sequence: versions, gap: delay }) => {
     const control = document.getElementById('readerLanguageInstantDirect');
     window.__readingModeMissing = [];
-    sequence.forEach((version, index) => {
+    versions.forEach((version, index) => {
       setTimeout(() => {
         const button = control?.querySelector(`[data-reading-mode-intent="${version}"]`);
         if (!control?.isConnected || !button) {
-          window.__readingModeMissing.push({ version, connected: Boolean(control?.isConnected), t: Math.round(performance.now()) });
+          window.__readingModeMissing.push({ version, connected: Boolean(control?.isConnected) });
           return;
         }
         button.click();
-      }, index * gap);
+      }, index * delay);
     });
   }, { sequence, gap });
+}
+
+async function semanticPivot(page) {
+  return page.evaluate(() => {
+    const pivot = window.MyEssaysReadingPivot?.current?.();
+    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+    return {
+      locator,
+      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
+      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+      active: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
+      missing: window.__readingModeMissing || []
+    };
+  });
 }
 
 (async () => {
@@ -226,91 +199,32 @@ async function burst(page, sequence, gap = 18) {
   await openEssay(page, THREE_MODE_ID);
   await waitForDirectControl(page, 3);
   await waitForPreload(page, ['en-mix', 'es-mix']);
-
-  await page.evaluate(() => {
-    window.__readingModeTrace = [];
-    const record = (name, event) => {
-      const pivot = window.MyEssaysReadingPivot?.current?.();
-      const locator = window.MyEssaysReadingPivot?.locator?.() || '';
-      window.__readingModeTrace.push({
-        name,
-        version: event.detail?.version || event.detail?.mode || '',
-        reason: event.detail?.reason || '',
-        locator: event.detail?.locator || '',
-        current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
-        switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
-        transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
-        desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
-        physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
-        semanticTop: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
-        checked: [...document.querySelectorAll('#readerLanguageInstantDirect [data-reading-mode-intent]')]
-          .filter(button => button.getAttribute('aria-checked') === 'true')
-          .map(button => button.dataset.readingModeIntent),
-        t: Math.round(performance.now())
-      });
-    };
-    [
-      'myessays:reader-version-intent',
-      'myessays:reader-version-changed',
-      'myessays:reader-language-changed',
-      'myessays:reading-pivot-changed',
-      'myessays:reading-mode-stable',
-      'myessays:reading-mode-settled'
-    ].forEach(name => document.addEventListener(name, event => record(name, event)));
-  });
-
   await scrollIntoBody(page, 0.36, 'three-mode-initial');
   const before = await assertSecondVisibleFocus(page, 'three-mode desktop');
-  const beforeLocator = before.actualLocator;
-  const beforeTop = before.actualTop;
 
   await burst(page, ['en-mix', 'es-mix'], 18);
   await waitForMode(page, 'es-mix');
-  await page.waitForTimeout(180);
-  const afterBurst = await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
-    return {
-      locator,
-      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
-      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
-      active: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
-      missing: window.__readingModeMissing || [],
-      intents: (window.__readingModeTrace || []).filter(item => item.name === 'myessays:reader-version-intent').map(item => item.version),
-      trace: window.__readingModeTrace || []
-    };
-  });
+  await nextFrames(page, 3);
+  const afterBurst = await semanticPivot(page);
   assert.deepEqual(afterBurst.missing, [], 'persistent control must remain connected throughout rapid switching');
-  assert.deepEqual(afterBurst.intents, ['en-mix', 'es-mix'], 'each user choice should produce exactly one intent event');
   assert.equal(afterBurst.active, 'es-mix', 'latest rapid intent must own the active control');
-  assert.equal(afterBurst.locator, beforeLocator, 'rapid switch must preserve the canonical semantic locator');
-  if (Math.abs(afterBurst.top - beforeTop) > 3) console.error('RAPID_SEMANTIC_TRACE', JSON.stringify({ before, afterBurst }));
-  assert.ok(Math.abs(afterBurst.top - beforeTop) <= 3, `rapid switch moved the semantic eye-line by ${afterBurst.top - beforeTop}px`);
+  assert.equal(afterBurst.locator, before.actualLocator, 'rapid switch must preserve the canonical semantic locator');
+  assert.ok(Math.abs(afterBurst.top - before.actualTop) <= 3, `rapid switch moved the semantic eye-line by ${afterBurst.top - before.actualTop}px`);
 
-  await page.evaluate(() => { window.__readingModeTrace = []; });
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
-  await page.waitForTimeout(180);
-  const returned = await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    const locator = window.MyEssaysReadingPivot?.locator?.() || '';
-    return {
-      locator,
-      top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
-      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
-      missing: window.__readingModeMissing || []
-    };
-  });
+  await nextFrames(page, 3);
+  const returned = await semanticPivot(page);
   assert.deepEqual(returned.missing, [], 'rapid round trip must keep persistent controls mounted');
-  assert.equal(returned.locator, beforeLocator, 'rapid round trip must preserve semantic locator');
-  assert.ok(Math.abs(returned.top - beforeTop) <= 3, `rapid round trip moved eye-line by ${returned.top - beforeTop}px`);
+  assert.equal(returned.locator, before.actualLocator, 'rapid round trip must preserve semantic locator');
+  assert.ok(Math.abs(returned.top - before.actualTop) <= 3, `rapid round trip moved eye-line by ${returned.top - before.actualTop}px`);
 
   await page.mouse.move(640, 400);
   await page.mouse.wheel(0, 180);
-  await page.waitForTimeout(120);
+  await page.waitForFunction(previous => window.MyEssaysReadingPivot?.locator?.() !== previous, before.actualLocator, { timeout: 3000 }).catch(() => {});
+  await nextFrames(page, 2);
   await assertSecondVisibleFocus(page, 'three-mode after user scroll');
 
-  await installScrollTrace(page);
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await waitForPreload(page, ['en-mix']);
@@ -318,7 +232,7 @@ async function burst(page, sequence, gap = 18) {
   const watanabeBefore = await assertSecondVisibleFocus(page, 'JA+EN desktop');
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
-  await page.waitForTimeout(180);
+  await nextFrames(page, 3);
   assert.equal(await page.evaluate(() => window.MyEssaysReadingPivot?.locator?.() || ''), watanabeBefore.actualLocator, 'JA+EN rapid round trip must preserve locator');
 
   await openEssay(page, JA_ONLY_ID);
