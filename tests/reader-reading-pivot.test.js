@@ -6,23 +6,25 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('reading pivot uses the actual third visible paragraph', () => {
+test('reading pivot uses the third paragraph in flow from the top visible reading paragraph', () => {
   const pivot = read('reader-reading-pivot.js');
   assert.match(pivot, /const MIN_VISIBLE_PX = 20/);
   assert.match(pivot, /const FOCUS_START_INDEX = 2/);
   assert.match(pivot, /:scope > p\.reader-locator-block\[data-reading-locator\]/);
   assert.match(pivot, /item\.visiblePx >= Math\.min\(MIN_VISIBLE_PX/);
-  assert.match(pivot, /visible\.length > FOCUS_START_INDEX/);
-  assert.match(pivot, /return visible\[FOCUS_START_INDEX\]\.block/);
-  assert.doesNotMatch(pivot, /if \(visible\.length >= 2\) return visible\[1\]\.block/);
+  assert.match(pivot, /const topBlock = visible\[0\]\?\.block \|\| null/);
+  assert.match(pivot, /blocks\.slice\(topIndex \+ FOCUS_START_INDEX, topIndex \+ FOCUS_START_INDEX \+ FOCUS_RANGE_LENGTH\)/);
+  assert.match(pivot, /if \(flow\.focusBlocks\.length\) return flow\.focusBlocks\[0\]/);
+  assert.doesNotMatch(pivot, /return visible\[FOCUS_START_INDEX\]\.block/);
   assert.doesNotMatch(pivot, /VISIBLE_RATIO|PIVOT_SETTLE_MS/);
 });
 
-test('Reading Focus is one visual zone spanning third through fifth visible paragraphs', () => {
+test('Reading Focus is one visual zone spanning third through fifth paragraphs in reading flow', () => {
   const pivot = read('reader-reading-pivot.js');
   const css = read('reader-reading-pivot.css');
   assert.match(pivot, /const FOCUS_RANGE_LENGTH = 3/);
-  assert.match(pivot, /visible\.slice\(FOCUS_START_INDEX, FOCUS_START_INDEX \+ FOCUS_RANGE_LENGTH\)/);
+  assert.match(pivot, /function readingFlowFromTop/);
+  assert.match(pivot, /flow\.focusBlocks\.map\(block => \(\{ block, rect: block\.getBoundingClientRect\(\) \}\)\)/);
   assert.match(pivot, /has-reading-focus-zone/);
   assert.match(pivot, /--reading-zone-top/);
   assert.match(pivot, /--reading-zone-bottom/);
