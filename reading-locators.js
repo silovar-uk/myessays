@@ -282,30 +282,50 @@
     return semanticSwitchAnchor ? { ...semanticSwitchAnchor } : null;
   }
 
-  function restoreSemanticEyeLine(event) {
-    if (event.detail?.reason !== 'language-switch') return;
-    const anchor = semanticSwitchAnchor;
-    semanticSwitchAnchor = null;
+  function correctSemanticEyeLine(anchor) {
+    if (!anchor || anchor.essayId !== currentEssayId()) return false;
+    const target = findContainingBlock(anchor.locator, { paragraphOnly: true });
+    if (!target) return false;
+    const targetTop = semanticTop(anchor.locator, target);
+    if (targetTop == null) return false;
+    const delta = targetTop - anchor.viewportTop;
+    if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'auto' });
+    return true;
+  }
 
-    if (anchor && anchor.essayId === currentEssayId() && event.detail?.locator === anchor.locator) {
-      const target = findContainingBlock(anchor.locator, { paragraphOnly: true });
-      if (target) {
-        const targetTop = semanticTop(anchor.locator, target);
-        if (targetTop != null) {
-          const delta = targetTop - anchor.viewportTop;
-          if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'auto' });
-        }
-      }
-    }
-
+  function dispatchReadingModeStable(event) {
+    const id = currentEssayId();
+    if (event.detail?.essayId && event.detail.essayId !== id) return;
     document.dispatchEvent(new CustomEvent('myessays:reading-mode-stable', {
       detail: {
-        essayId: currentEssayId(),
+        essayId: id,
         version: window.MyEssaysReaderVersions?.currentVersion?.() || 'ja',
         locator: event.detail?.locator || '',
         physicalLocator: event.detail?.physicalLocator || ''
       }
     }));
+  }
+
+  function restoreSemanticEyeLine(event) {
+    if (event.detail?.reason !== 'language-switch') return;
+    const anchor = semanticSwitchAnchor;
+    semanticSwitchAnchor = null;
+    const matches = Boolean(
+      anchor
+      && anchor.essayId === currentEssayId()
+      && event.detail?.locator === anchor.locator
+    );
+
+    if (matches) correctSemanticEyeLine(anchor);
+
+    // The Reading Mode stable boundary belongs after the browser has applied
+    // the semantic scroll correction. Recheck once on the next frame to absorb
+    // any layout/scroll commit that landed after the first correction, then
+    // publish stability only after that residual correction has painted.
+    requestAnimationFrame(() => {
+      if (matches && anchor.essayId === currentEssayId()) correctSemanticEyeLine(anchor);
+      requestAnimationFrame(() => dispatchReadingModeStable(event));
+    });
   }
 
   async function syncAlternateState() {
