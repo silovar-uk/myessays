@@ -10,10 +10,14 @@
   const MIN_VISIBLE_PX = 20;
   const SWITCH_LOCK_MS = 120;
   const SWITCH_CORRECTION_TOLERANCE = 0.75;
+  const FOCUS_START_INDEX = 2;
+  const FOCUS_RANGE_LENGTH = 3;
+  const FOCUS_FADE_PX = 30;
 
   let pivot = null;
   let logicalPivotLocator = '';
   let readingBlocksCache = [];
+  let focusZoneBlocks = [];
   let evaluationFrame = 0;
   let lockUntil = 0;
   let lastEssayId = '';
@@ -30,7 +34,7 @@
   }
 
   // Reading Focus is intentionally paragraph-only. Headings, lists, quotes,
-  // figures and Reader UI never count as the “second visible paragraph”.
+  // figures and Reader UI never count toward the visible paragraph order.
   function refreshReadingBlocks() {
     readingBlocksCache = [...content.querySelectorAll(':scope > p.reader-locator-block[data-reading-locator]')]
       .filter(block => !block.classList.contains('language-source-hidden'));
@@ -68,6 +72,13 @@
     return { block, rect, visiblePx };
   }
 
+  function visibleReadingItems() {
+    return readingBlocks()
+      .map(visibility)
+      .filter(item => item.visiblePx >= Math.min(MIN_VISIBLE_PX, Math.max(1, item.rect.height)))
+      .sort((a, b) => a.rect.top - b.rect.top);
+  }
+
   function nearestToRail(blocks) {
     const rail = readingRailY();
     return blocks.reduce((best, block) => {
@@ -78,18 +89,56 @@
     }, null)?.block || null;
   }
 
-  function candidatePivot() {
+  function candidatePivot(visible = visibleReadingItems()) {
     const blocks = readingBlocks();
     if (!blocks.length) return null;
-
-    const visible = blocks
-      .map(visibility)
-      .filter(item => item.visiblePx >= Math.min(MIN_VISIBLE_PX, Math.max(1, item.rect.height)))
-      .sort((a, b) => a.rect.top - b.rect.top);
-
-    if (visible.length >= 2) return visible[1].block;
-    if (visible.length === 1) return visible[0].block;
+    if (visible.length > FOCUS_START_INDEX) return visible[FOCUS_START_INDEX].block;
+    if (visible.length) return nearestToRail(visible.map(item => item.block));
     return nearestToRail(blocks);
+  }
+
+  function clearReadingZone() {
+    focusZoneBlocks = [];
+    content.classList.remove('has-reading-focus-zone');
+    delete content.dataset.readingFocusCount;
+    delete content.dataset.readingFocusStart;
+    delete content.dataset.readingFocusEnd;
+    [
+      '--reading-zone-fade-start',
+      '--reading-zone-top',
+      '--reading-zone-mid',
+      '--reading-zone-bottom',
+      '--reading-zone-fade-end'
+    ].forEach(name => content.style.removeProperty(name));
+  }
+
+  function syncReadingZone(visible = visibleReadingItems()) {
+    const focusItems = visible.slice(FOCUS_START_INDEX, FOCUS_START_INDEX + FOCUS_RANGE_LENGTH);
+    if (!focusItems.length) {
+      clearReadingZone();
+      return [];
+    }
+
+    const contentRect = content.getBoundingClientRect();
+    const first = focusItems[0];
+    const last = focusItems[focusItems.length - 1];
+    const zoneTop = Math.max(0, first.rect.top - contentRect.top);
+    const zoneBottom = Math.max(zoneTop + 1, last.rect.bottom - contentRect.top);
+    const zoneMid = zoneTop + ((zoneBottom - zoneTop) * .52);
+    const fadeStart = Math.max(0, zoneTop - FOCUS_FADE_PX);
+    const fadeEnd = zoneBottom + FOCUS_FADE_PX;
+
+    content.style.setProperty('--reading-zone-fade-start', `${fadeStart.toFixed(2)}px`);
+    content.style.setProperty('--reading-zone-top', `${zoneTop.toFixed(2)}px`);
+    content.style.setProperty('--reading-zone-mid', `${zoneMid.toFixed(2)}px`);
+    content.style.setProperty('--reading-zone-bottom', `${zoneBottom.toFixed(2)}px`);
+    content.style.setProperty('--reading-zone-fade-end', `${fadeEnd.toFixed(2)}px`);
+    content.classList.add('has-reading-focus-zone');
+    content.dataset.readingFocusCount = String(focusItems.length);
+    content.dataset.readingFocusStart = focusItems[0].block.dataset.readingLocator || '';
+    content.dataset.readingFocusEnd = focusItems[focusItems.length - 1].block.dataset.readingLocator || '';
+    focusZoneBlocks = focusItems.map(item => item.block);
+    return [...focusZoneBlocks];
   }
 
   function physicalLocator(block) {
@@ -150,7 +199,9 @@
       versions()?.isSwitching?.() ||
       handoffScrollActive()
     ) return;
-    const candidate = candidatePivot();
+    const visible = visibleReadingItems();
+    syncReadingZone(visible);
+    const candidate = candidatePivot(visible);
     if (!candidate) return;
     if (!pivot || immediate || candidate !== pivot) {
       setPivot(candidate, { reason: pivot ? (immediate ? 'sync' : 'scroll') : 'initial' });
@@ -241,6 +292,7 @@
         reason: 'language-switch',
         logicalLocator: anchor.locator || physicalLocator(target)
       });
+      syncReadingZone(visibleReadingItems());
       lockUntil = Date.now() + SWITCH_LOCK_MS;
     }));
   }
@@ -293,6 +345,7 @@
       pivot = null;
       logicalPivotLocator = '';
       readingBlocksCache = [];
+      clearReadingZone();
       return;
     }
 
@@ -310,7 +363,9 @@
 
     refreshReadingBlocks();
     if (!versions()?.isSwitching?.() && !handoffScrollActive()) {
-      const candidate = candidatePivot();
+      const visible = visibleReadingItems();
+      syncReadingZone(visible);
+      const candidate = candidatePivot(visible);
       if (candidate) setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
     }
     requestAnimationFrame(syncCompareUI);
@@ -321,6 +376,7 @@
     current: () => pivot,
     locator: () => currentLogicalLocator(),
     physicalLocator: () => physicalLocator(pivot),
+    focusBlocks: () => [...focusZoneBlocks],
     captureForSwitch: captureSwitchAnchor,
     hasPendingSwitchAnchor: () => Boolean(pendingSwitchAnchor),
     candidate: candidatePivot,
@@ -331,10 +387,15 @@
   document.addEventListener('myessays:reader-rendered', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:semantic-locators-ready', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:reader-version-changed', () => {
+    clearReadingZone();
     refreshReadingBlocks();
     requestAnimationFrame(syncCompareUI);
   });
   document.addEventListener('myessays:reader-language-changed', restoreSwitchAnchor);
+  document.addEventListener('myessays:reading-mode-stable', () => {
+    refreshReadingBlocks();
+    scheduleEvaluate({ immediate: true });
+  });
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));
 
   window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });
@@ -347,6 +408,7 @@
   window.addEventListener('hashchange', () => {
     logicalPivotLocator = '';
     readingBlocksCache = [];
+    clearReadingZone();
     requestAnimationFrame(initialize);
   });
 
