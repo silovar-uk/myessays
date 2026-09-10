@@ -1,0 +1,54 @@
+name: Register Design Literacy 32
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/register-design-literacy-32.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Register canonical article and English Mix
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          article_path = 'essays/2026-09-10-design-literacy-memphis-function-expression.md'
+          article_id = 'design-literacy-memphis-function-expression'
+          mix_path = 'english-mix/design-literacy-memphis-function-expression.md'
+
+          index_path = Path('data/index.json')
+          index = json.loads(index_path.read_text(encoding='utf-8'))
+          essays = index.setdefault('essays', [])
+          if article_path in essays:
+              essays.remove(article_path)
+          essays.insert(0, article_path)
+          index_path.write_text(json.dumps(index, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          versions_path = Path('data/versions-index.json')
+          versions = json.loads(versions_path.read_text(encoding='utf-8'))
+          articles = versions.setdefault('articles', {})
+          current = articles.get(article_id, {})
+          current['en-mix'] = mix_path
+          articles[article_id] = current
+          versions_path.write_text(json.dumps(versions, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit registration and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json
+          git rm .github/workflows/register-design-literacy-32.yml
+          git commit -m "Register Design Literacy #32"
+          git push
