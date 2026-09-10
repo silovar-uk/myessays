@@ -15,14 +15,36 @@ html.is-reading-mode-switching {
   display: none !important;
 }
 
+/* Reading Focus is one continuous paper-tone zone, not three highlighted cards.
+   The Primary Pivot remains a semantic state marker only; it has no individual
+   visual treatment. The zone itself lives on the content background so it never
+   changes layout or captures pointer input. */
+.reader-content {
+  background-repeat: no-repeat;
+}
+
+.reader-content.has-reading-focus-zone {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent var(--reading-zone-fade-start),
+    rgba(180, 62, 49, 0) var(--reading-zone-fade-start),
+    rgba(180, 62, 49, .018) var(--reading-zone-top),
+    rgba(180, 62, 49, .012) var(--reading-zone-mid),
+    rgba(180, 62, 49, .006) var(--reading-zone-bottom),
+    rgba(180, 62, 49, 0) var(--reading-zone-fade-end),
+    transparent 100%
+  );
+}
+
 .reader-content > p.reader-locator-block[data-reading-locator].is-reading-pivot {
   transition: none;
-  background-color: rgba(180, 62, 49, .085);
+  background-color: transparent;
   box-shadow: none;
 }
 
-/* The language switch target and the persistent reading pivot both use only a
-   faint background. No left rule, glow, shadow or pulse competes with reading. */
+/* Language-switch feedback stays separate from Reading Focus. It is temporary
+   switch feedback, not part of the persistent reading-zone treatment. */
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target,
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target.is-reading-pivot {
   animation: none;
@@ -113,8 +135,18 @@ html.is-reading-mode-switching {
 }
 
 @media (max-width: 820px) {
-  .reader-content > p.reader-locator-block[data-reading-locator].is-reading-pivot {
-    background-color: rgba(180, 62, 49, .072);
+  .reader-content.has-reading-focus-zone {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent var(--reading-zone-fade-start),
+      rgba(180, 62, 49, 0) var(--reading-zone-fade-start),
+      rgba(180, 62, 49, .015) var(--reading-zone-top),
+      rgba(180, 62, 49, .010) var(--reading-zone-mid),
+      rgba(180, 62, 49, .005) var(--reading-zone-bottom),
+      rgba(180, 62, 49, 0) var(--reading-zone-fade-end),
+      transparent 100%
+    );
   }
 
   .reader-v2-header .reader-mode-bar.is-language-direct-bar,
