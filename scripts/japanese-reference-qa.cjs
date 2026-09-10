@@ -169,12 +169,16 @@ async function assertCrossParagraphSelectionCloses(page) {
   assert.ok(mobileBox.y >= 0 && mobileBox.y + mobileBox.height <= 844.5, `bottom sheet overflows vertically: ${JSON.stringify(mobileBox)}`);
   assert.ok(mobileBox.y + mobileBox.height <= 790, `bottom sheet should stay above the bottom controls: ${JSON.stringify(mobileBox)}`);
 
+  // Japanese Reference intentionally persists after selection. Close it through
+  // its own control before exercising the separate paragraph Language Lens.
+  await page.locator('.japanese-reference-close').click();
+  await page.waitForFunction(() => document.querySelector('#japaneseReferencePanel')?.hidden === true);
   await page.evaluate(() => {
     const selection = window.getSelection();
     selection?.removeAllRanges();
     document.dispatchEvent(new Event('selectionchange', { bubbles: true }));
   });
-  await page.waitForFunction(() => document.querySelector('#japaneseReferencePanel')?.hidden === true);
+
   const mobileParagraph = await targetParagraph(page);
   await mobileParagraph.click();
   await page.waitForSelector('#paragraphLanguageDock:not([hidden])');
