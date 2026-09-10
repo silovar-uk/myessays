@@ -34,7 +34,7 @@
   }
 
   // Reading Focus is intentionally paragraph-only. Headings, lists, quotes,
-  // figures and Reader UI never count toward the visible paragraph order.
+  // figures and Reader UI never count toward the reading-flow order.
   function refreshReadingBlocks() {
     readingBlocksCache = [...content.querySelectorAll(':scope > p.reader-locator-block[data-reading-locator]')]
       .filter(block => !block.classList.contains('language-source-hidden'));
@@ -79,6 +79,21 @@
       .sort((a, b) => a.rect.top - b.rect.top);
   }
 
+  function readingFlowFromTop(visible = visibleReadingItems()) {
+    const blocks = readingBlocks();
+    const topBlock = visible[0]?.block || null;
+    const topIndex = topBlock ? blocks.indexOf(topBlock) : -1;
+    return {
+      blocks,
+      visible,
+      topBlock,
+      topIndex,
+      focusBlocks: topIndex >= 0
+        ? blocks.slice(topIndex + FOCUS_START_INDEX, topIndex + FOCUS_START_INDEX + FOCUS_RANGE_LENGTH)
+        : []
+    };
+  }
+
   function nearestToRail(blocks) {
     const rail = readingRailY();
     return blocks.reduce((best, block) => {
@@ -90,11 +105,11 @@
   }
 
   function candidatePivot(visible = visibleReadingItems()) {
-    const blocks = readingBlocks();
-    if (!blocks.length) return null;
-    if (visible.length > FOCUS_START_INDEX) return visible[FOCUS_START_INDEX].block;
-    if (visible.length) return nearestToRail(visible.map(item => item.block));
-    return nearestToRail(blocks);
+    const flow = readingFlowFromTop(visible);
+    if (!flow.blocks.length) return null;
+    if (flow.focusBlocks.length) return flow.focusBlocks[0];
+    if (flow.visible.length) return nearestToRail(flow.visible.map(item => item.block));
+    return nearestToRail(flow.blocks);
   }
 
   function clearReadingZone() {
@@ -113,7 +128,8 @@
   }
 
   function syncReadingZone(visible = visibleReadingItems()) {
-    const focusItems = visible.slice(FOCUS_START_INDEX, FOCUS_START_INDEX + FOCUS_RANGE_LENGTH);
+    const flow = readingFlowFromTop(visible);
+    const focusItems = flow.focusBlocks.map(block => ({ block, rect: block.getBoundingClientRect() }));
     if (!focusItems.length) {
       clearReadingZone();
       return [];
