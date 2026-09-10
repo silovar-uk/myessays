@@ -24,6 +24,45 @@ async function pivotState(page, includeScrollY = false) {
   }, includeScrollY);
 }
 
+async function installRapidTrace(page) {
+  await page.evaluate(() => {
+    const trace = [];
+    const sample = (type, detail = null) => {
+      const pivot = window.MyEssaysReadingPivot?.current?.();
+      const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+      trace.push({
+        t: Number(performance.now().toFixed(2)),
+        type,
+        detail,
+        current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+        desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+        transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
+        switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
+        locator,
+        top: pivot ? Number((window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top).toFixed(3)) : null,
+        physicalTop: pivot ? Number(pivot.getBoundingClientRect().top.toFixed(3)) : null,
+        scrollY: Number(window.scrollY.toFixed(3)),
+        guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
+        locatorAnchor: Boolean(window.MyEssaysReadingLocators?.hasSwitchAnchor?.()),
+        pivotAnchor: Boolean(window.MyEssaysReadingPivot?.hasPendingSwitchAnchor?.())
+      });
+      if (trace.length > 160) trace.shift();
+    };
+    const events = [
+      'myessays:reader-version-intent',
+      'myessays:reader-version-changed',
+      'myessays:reader-language-changed',
+      'myessays:reading-pivot-changed',
+      'myessays:reading-mode-stable',
+      'myessays:reading-mode-settled'
+    ];
+    events.forEach(name => document.addEventListener(name, event => sample(name, event.detail || null)));
+    window.addEventListener('scroll', () => sample('scroll'), { passive: true });
+    window.__rapidSemanticTrace = trace;
+    sample('trace-start');
+  });
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
@@ -159,6 +198,7 @@ async function pivotState(page, includeScrollY = false) {
     return true;
   });
   assert.equal(intentLog, true);
+  await installRapidTrace(page);
   await page.locator(optionSelector('en-mix')).click();
   await page.waitForTimeout(18);
   await page.locator(optionSelector('es-mix')).click();
@@ -174,9 +214,11 @@ async function pivotState(page, includeScrollY = false) {
       intents: window.__readingModeIntentLog || [],
       locator,
       top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
-      physicalTop: pivot?.getBoundingClientRect?.().top ?? null
+      physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+      trace: window.__rapidSemanticTrace || []
     };
   });
+  console.log('RAPID_SEMANTIC_TRACE', JSON.stringify(rapid.trace));
   assert.equal(rapid.version, 'es-mix', 'rapid switch should settle on the latest requested language');
   assert.equal(rapid.desired, 'es-mix', 'desired language should converge to the latest request');
   assert.equal(rapid.transitioning, false, 'rapid switch should reach a stable state');
