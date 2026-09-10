@@ -26,14 +26,77 @@ async function openEssay(page, id) {
   }, null, { timeout: 10000 });
 }
 
-async function scrollIntoBody(page, ratio = 0.34) {
+async function installScrollTrace(page) {
+  await page.evaluate(() => {
+    const snapshot = (kind, extra = {}) => ({
+      kind,
+      y: Math.round(window.scrollY * 1000) / 1000,
+      max: Math.max(0, document.documentElement.scrollHeight - innerHeight),
+      scrollHeight: document.documentElement.scrollHeight,
+      articleId: window.MyEssaysRoute?.parse?.().articleId || '',
+      version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+      desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+      switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
+      transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
+      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
+      pivot: window.MyEssaysReadingPivot?.locator?.() || '',
+      t: Math.round(performance.now()),
+      ...extra
+    });
+
+    window.__scrollOwnerTrace = [];
+    if (window.__scrollOwnerTraceInstalled) return;
+    window.__scrollOwnerTraceInstalled = true;
+    const originalScrollTo = window.scrollTo.bind(window);
+    window.scrollTo = (...args) => {
+      let requested = args;
+      try { requested = JSON.parse(JSON.stringify(args)); } catch {}
+      window.__scrollOwnerTrace.push(snapshot('scrollTo-call', {
+        requested,
+        stack: String(new Error().stack || '').split('\n').slice(1, 7).join(' <- ')
+      }));
+      const result = originalScrollTo(...args);
+      requestAnimationFrame(() => {
+        window.__scrollOwnerTrace.push(snapshot('scrollTo-after-raf'));
+      });
+      return result;
+    };
+    window.addEventListener('scroll', () => {
+      window.__scrollOwnerTrace.push(snapshot('scroll-event'));
+    }, { passive: true });
+  });
+}
+
+async function scrollIntoBody(page, ratio = 0.34, label = 'body-scroll') {
   const target = await page.evaluate(value => {
     const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
     const next = max * value;
     scrollTo({ top: next, behavior: 'instant' });
     return next;
   }, ratio);
-  await page.waitForFunction(expected => Math.abs(window.scrollY - expected) <= 2, target);
+  try {
+    await page.waitForFunction(expected => Math.abs(window.scrollY - expected) <= 2, target, { timeout: 3000 });
+  } catch (error) {
+    const debug = await page.evaluate(({ expected, label }) => ({
+      label,
+      expected,
+      actual: window.scrollY,
+      max: Math.max(0, document.documentElement.scrollHeight - innerHeight),
+      scrollHeight: document.documentElement.scrollHeight,
+      route: window.MyEssaysRoute?.parse?.() || null,
+      stateId: typeof state !== 'undefined' ? state.currentEssay?.id || '' : '',
+      current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+      desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+      switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
+      transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
+      pivot: window.MyEssaysReadingPivot?.locator?.() || '',
+      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
+      storedPosition: localStorage.getItem(`myessays:reading-position:${window.MyEssaysRoute?.parse?.().articleId || ''}`),
+      trace: window.__scrollOwnerTrace || []
+    }), { expected: target, label });
+    console.error('SCROLL_DEBUG', JSON.stringify(debug));
+    throw error;
+  }
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 }
 
@@ -196,7 +259,7 @@ async function burst(page, sequence, gap = 18) {
     ].forEach(name => document.addEventListener(name, event => record(name, event)));
   });
 
-  await scrollIntoBody(page, 0.36);
+  await scrollIntoBody(page, 0.36, 'three-mode-initial');
   const before = await assertSecondVisibleFocus(page, 'three-mode desktop');
   const beforeLocator = before.actualLocator;
   const beforeTop = before.actualTop;
@@ -247,10 +310,11 @@ async function burst(page, sequence, gap = 18) {
   await page.waitForTimeout(120);
   await assertSecondVisibleFocus(page, 'three-mode after user scroll');
 
+  await installScrollTrace(page);
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await waitForPreload(page, ['en-mix']);
-  await scrollIntoBody(page, 0.32);
+  await scrollIntoBody(page, 0.32, 'watanabe-initial');
   const watanabeBefore = await assertSecondVisibleFocus(page, 'JA+EN desktop');
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
@@ -258,14 +322,14 @@ async function burst(page, sequence, gap = 18) {
   assert.equal(await page.evaluate(() => window.MyEssaysReadingPivot?.locator?.() || ''), watanabeBefore.actualLocator, 'JA+EN rapid round trip must preserve locator');
 
   await openEssay(page, JA_ONLY_ID);
-  await scrollIntoBody(page, 0.30);
+  await scrollIntoBody(page, 0.30, 'ja-only-initial');
   await assertSecondVisibleFocus(page, 'JA-only desktop');
   assert.equal(await page.locator(CONTROL).count(), 0, 'JA-only article should not invent language controls');
 
   await page.setViewportSize({ width: 320, height: 700 });
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
-  await scrollIntoBody(page, 0.34);
+  await scrollIntoBody(page, 0.34, 'watanabe-mobile');
   const mobile = await assertSecondVisibleFocus(page, 'JA+EN mobile');
   assert.ok(mobile.alpha >= 0.06, `mobile Reading Focus should remain perceptible (${mobile.backgroundColor})`);
 
