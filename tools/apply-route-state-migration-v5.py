@@ -14,7 +14,13 @@ def replace_once(path, old, new, label):
     file.write_text(text.replace(old, new, 1), encoding='utf-8')
 
 
-# Navigation fallback listener had a second compact parser after getCurrentEssay.
+# Navigation has two legacy readers: getCurrentEssay and its fallback listener.
+replace_once(
+    'reader-navigation.js',
+    """    const rawId = location.hash.match(/^#\\/essay\\/(.+)$/)?.[1];\n    if (!rawId) return null;\n    let id = rawId;\n    try { id = decodeURIComponent(rawId); } catch {}\n    return getAllEssays().find(essay => essay.id === id) || null;""",
+    """    const id = window.MyEssaysRoute?.parse?.().articleId || '';\n    if (!id) return null;\n    return getAllEssays().find(essay => essay.id === id) || null;""",
+    'reader-navigation current essay route parser'
+)
 replace_once(
     'reader-navigation.js',
     """      const id = location.hash.match(/^#\\/essay\\/(.+)$/)?.[1];\n      const root = document.getElementById('readerContent');\n      if (!id || !root) return;\n      const decoded = decodeURIComponent(id);\n      const essay = getAllEssays().find(item => item.id === decoded);""",
