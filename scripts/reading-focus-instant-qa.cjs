@@ -78,37 +78,72 @@ async function readingFocusState(page) {
       return { block, rect, visiblePx };
     }).filter(item => item.visiblePx >= Math.min(20, Math.max(1, item.rect.height)))
       .sort((a, b) => a.rect.top - b.rect.top);
-    const expected = visible[1]?.block || visible[0]?.block || null;
+
+    const expected = visible[2]?.block || null;
+    const expectedZone = visible.slice(2, 5);
     const actual = content.querySelector(':scope > p.is-reading-pivot');
     const logicalLocator = window.MyEssaysReadingPivot?.locator?.() || actual?.dataset.readingLocator || '';
     const semanticTop = actual
       ? (window.MyEssaysReadingLocators?.semanticTop?.(logicalLocator, actual) ?? actual.getBoundingClientRect().top)
       : null;
-    const style = actual ? getComputedStyle(actual) : null;
-    const color = style?.backgroundColor || '';
-    const alphaMatch = color.match(/rgba?\([^)]*[,\s]([\d.]+)\)$/);
-    const alpha = color.startsWith('rgba') && alphaMatch ? Number(alphaMatch[1]) : (color.startsWith('rgb') ? 1 : 0);
+    const contentRect = content.getBoundingClientRect();
+    const expectedZoneTop = expectedZone[0] ? expectedZone[0].rect.top - contentRect.top : null;
+    const expectedZoneBottom = expectedZone.length ? expectedZone[expectedZone.length - 1].rect.bottom - contentRect.top : null;
+    const contentStyle = getComputedStyle(content);
+    const pivotStyle = actual ? getComputedStyle(actual) : null;
+    const zoneTop = parseFloat(contentStyle.getPropertyValue('--reading-zone-top'));
+    const zoneBottom = parseFloat(contentStyle.getPropertyValue('--reading-zone-bottom'));
+    const gradient = contentStyle.backgroundImage || '';
+    const alphaValues = [...gradient.matchAll(/rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)/g)]
+      .map(match => Number(match[1]))
+      .filter(Number.isFinite);
+    const pivotColor = pivotStyle?.backgroundColor || '';
+    const pivotAlphaMatch = pivotColor.match(/rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)/);
+    const pivotAlpha = pivotColor === 'transparent'
+      ? 0
+      : (pivotAlphaMatch ? Number(pivotAlphaMatch[1]) : (pivotColor.startsWith('rgb(') ? 1 : 0));
+
     return {
       sameNode: Boolean(expected && actual && expected === actual),
       expectedLocator: expected?.dataset.readingLocator || '',
       actualLocator: logicalLocator,
       physicalLocator: actual?.dataset.readingLocator || '',
       visibleCount: visible.length,
-      alpha,
-      backgroundColor: color,
-      boxShadow: style?.boxShadow || '',
+      expectedFocusCount: expectedZone.length,
+      focusCount: Number(content.dataset.readingFocusCount || 0),
+      expectedFocusStart: expectedZone[0]?.block.dataset.readingLocator || '',
+      expectedFocusEnd: expectedZone[expectedZone.length - 1]?.block.dataset.readingLocator || '',
+      focusStart: content.dataset.readingFocusStart || '',
+      focusEnd: content.dataset.readingFocusEnd || '',
+      zoneTop,
+      zoneBottom,
+      expectedZoneTop,
+      expectedZoneBottom,
+      gradient,
+      maxZoneAlpha: alphaValues.length ? Math.max(...alphaValues) : 0,
+      pivotAlpha,
+      pivotBoxShadow: pivotStyle?.boxShadow || '',
       actualTop: semanticTop,
       physicalTop: actual?.getBoundingClientRect().top ?? null
     };
   });
 }
 
-async function assertSecondVisibleFocus(page, label) {
+async function assertThirdVisibleFocus(page, label, { maxZoneAlpha = 0.03, requireUnpaintedPivot = false } = {}) {
   const state = await readingFocusState(page);
-  assert.ok(state.visibleCount >= 2, `${label}: expected at least two visible body paragraphs`);
-  assert.equal(state.sameNode, true, `${label}: Reading Focus must be the actual second visible paragraph; expected ${state.expectedLocator}, got physical ${state.physicalLocator}`);
-  assert.ok(state.alpha >= 0.06, `${label}: Reading Focus is too faint (${state.backgroundColor})`);
-  assert.ok(state.boxShadow === 'none' || state.boxShadow === '', `${label}: Reading Focus must remain background-only`);
+  assert.ok(state.visibleCount >= 3, `${label}: expected at least three visible body paragraphs`);
+  assert.equal(state.sameNode, true, `${label}: Primary Pivot must be the actual third visible paragraph; expected ${state.expectedLocator}, got physical ${state.physicalLocator}`);
+  assert.equal(state.focusCount, state.expectedFocusCount, `${label}: Reading Zone must cover only the available third-through-fifth visible paragraphs`);
+  assert.equal(state.focusStart, state.expectedFocusStart, `${label}: Reading Zone must begin at the third visible paragraph`);
+  assert.equal(state.focusEnd, state.expectedFocusEnd, `${label}: Reading Zone must end at the fifth visible paragraph when available`);
+  assert.ok(Number.isFinite(state.zoneTop) && Math.abs(state.zoneTop - state.expectedZoneTop) <= 1, `${label}: Reading Zone top drifted from the third visible paragraph (${state.zoneTop} vs ${state.expectedZoneTop})`);
+  assert.ok(Number.isFinite(state.zoneBottom) && Math.abs(state.zoneBottom - state.expectedZoneBottom) <= 1, `${label}: Reading Zone bottom drifted from the last focus paragraph (${state.zoneBottom} vs ${state.expectedZoneBottom})`);
+  assert.notEqual(state.gradient, 'none', `${label}: Reading Zone should exist as one continuous background layer`);
+  assert.ok(state.maxZoneAlpha > 0 && state.maxZoneAlpha <= maxZoneAlpha, `${label}: Reading Zone should remain deliberately subtle (max alpha ${state.maxZoneAlpha})`);
+  if (requireUnpaintedPivot) {
+    assert.equal(state.pivotAlpha, 0, `${label}: Primary Pivot must not receive its own background highlight`);
+  }
+  assert.ok(state.pivotBoxShadow === 'none' || state.pivotBoxShadow === '', `${label}: Primary Pivot must remain free of focus shadows`);
   return state;
 }
 
@@ -200,7 +235,7 @@ async function semanticPivot(page) {
   await waitForDirectControl(page, 3);
   await waitForPreload(page, ['en-mix', 'es-mix']);
   await scrollIntoBody(page, 0.36, 'three-mode-initial');
-  const before = await assertSecondVisibleFocus(page, 'three-mode desktop');
+  const before = await assertThirdVisibleFocus(page, 'three-mode desktop', { requireUnpaintedPivot: true });
 
   await burst(page, ['en-mix', 'es-mix'], 18);
   await waitForMode(page, 'es-mix');
@@ -223,13 +258,13 @@ async function semanticPivot(page) {
   await page.mouse.wheel(0, 180);
   await page.waitForFunction(previous => window.MyEssaysReadingPivot?.locator?.() !== previous, before.actualLocator, { timeout: 3000 }).catch(() => {});
   await nextFrames(page, 2);
-  await assertSecondVisibleFocus(page, 'three-mode after user scroll');
+  await assertThirdVisibleFocus(page, 'three-mode after user scroll');
 
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await waitForPreload(page, ['en-mix']);
   await scrollIntoBody(page, 0.32, 'watanabe-initial');
-  const watanabeBefore = await assertSecondVisibleFocus(page, 'JA+EN desktop');
+  const watanabeBefore = await assertThirdVisibleFocus(page, 'JA+EN desktop', { requireUnpaintedPivot: true });
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
   await nextFrames(page, 3);
@@ -237,15 +272,14 @@ async function semanticPivot(page) {
 
   await openEssay(page, JA_ONLY_ID);
   await scrollIntoBody(page, 0.30, 'ja-only-initial');
-  await assertSecondVisibleFocus(page, 'JA-only desktop');
+  await assertThirdVisibleFocus(page, 'JA-only desktop', { requireUnpaintedPivot: true });
   assert.equal(await page.locator(CONTROL).count(), 0, 'JA-only article should not invent language controls');
 
   await page.setViewportSize({ width: 320, height: 700 });
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await scrollIntoBody(page, 0.34, 'watanabe-mobile');
-  const mobile = await assertSecondVisibleFocus(page, 'JA+EN mobile');
-  assert.ok(mobile.alpha >= 0.06, `mobile Reading Focus should remain perceptible (${mobile.backgroundColor})`);
+  await assertThirdVisibleFocus(page, 'JA+EN mobile', { maxZoneAlpha: 0.02, requireUnpaintedPivot: true });
 
   assert.deepEqual(pageErrors, [], `page errors: ${pageErrors.join(' | ')}`);
   assert.deepEqual(consoleErrors, [], `console errors: ${consoleErrors.join(' | ')}`);
