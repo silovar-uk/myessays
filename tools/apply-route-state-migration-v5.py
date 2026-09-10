@@ -1,3 +1,4 @@
+# Rerun after navigation fixture adopted the shared route state.
 from pathlib import Path
 import runpy
 
