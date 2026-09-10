@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'tools/apply-route-state-migration-v5.py'
+      - '.github/workflows/route-state-migration.yml'
 
 permissions:
   contents: write
