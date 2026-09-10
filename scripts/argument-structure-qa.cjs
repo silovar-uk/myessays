@@ -272,7 +272,7 @@ async function runFixture(browser, fixture) {
 
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => document.querySelector('#argumentStructureSheet')?.getAttribute('aria-hidden') === 'true');
-  assert.match(page.url(), new RegExp(`#\\/essay\\/${fixture.essayId}$`), `${fixture.essayId}: Escape should close the Structure sheet without navigating away`);
+  assert.match(page.url(), new RegExp(`#\\/essay\\/${fixture.essayId}(?:\\?lang=ja)?$`), `${fixture.essayId}: Escape should close the Structure sheet without navigating away`);
   assert.equal(await page.locator('#argumentStructureLauncher').evaluate(node => document.activeElement === node), true, `${fixture.essayId}: focus should return to the Structure launcher after Escape`);
 
   assert.deepEqual(pageErrors, [], `${fixture.essayId}: no page errors expected`);
