@@ -81,3 +81,15 @@ test('invalid language tokens are detectable before JA normalization', () => {
   assert.equal(invalid.langValid, false);
   assert.equal(api.normalizeLang('EN'), 'en');
 });
+
+
+test('runtime modules use the shared essay route parser instead of parsing essay hashes independently', () => {
+  const runtimeFiles = fs.readdirSync(root).filter(file => file.endsWith('.js') && file !== 'route-state.js');
+  for (const file of runtimeFiles) {
+    const text = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.equal(text.includes("location.hash.match(/^#\\/essay\\/"), false, `${file} still owns essay route parsing`);
+  }
+  const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+  assert.match(app, /MyEssaysRoute\.parse\(\)/);
+  assert.match(app, /MyEssaysRoute\.navigateEssay\(id\)/);
+});

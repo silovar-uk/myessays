@@ -12,17 +12,21 @@
   let preloadEssayId = '';
   let controlEssayId = '';
   let controlSignature = '';
+  let routeSyncToken = 0;
   const preloadedVersions = new Set();
 
   const versions = () => window.MyEssaysReaderVersions;
+  const routeApi = () => window.MyEssaysRoute;
+
+  function syncUrlToVersion(version) {
+    const router = routeApi();
+    const id = currentEssayId();
+    if (!router || !id) return false;
+    return router.replaceEssayLanguage(router.langForVersion(version), id);
+  }
 
   function currentEssayId() {
-    return versions()?.currentEssayId?.() || (() => {
-      const match = location.hash.match(/^#\/essay\/(.+)$/);
-      if (!match) return '';
-      try { return decodeURIComponent(match[1]); }
-      catch { return match[1]; }
-    })();
+    return versions()?.currentEssayId?.() || routeApi()?.parse?.().articleId || '';
   }
 
   function requestedVersion(target) {
@@ -204,6 +208,7 @@
     transitionActive = false;
     activeTransitionVersion = '';
     renderIntent(actual);
+    syncUrlToVersion(actual);
   }
 
   function startTransition(version) {
@@ -226,7 +231,7 @@
         transitionActive = false;
         activeTransitionVersion = '';
         const actual = api.currentVersion?.() || 'ja';
-        if (desiredVersion && desiredVersion !== actual) startTransition(desiredVersion);
+        if (desiredVersion && desiredVersion !== version && desiredVersion !== actual) startTransition(desiredVersion);
         else settleToActual();
       }
     }).catch(() => {
@@ -234,7 +239,7 @@
       transitionActive = false;
       activeTransitionVersion = '';
       const actual = api.currentVersion?.() || 'ja';
-      if (desiredVersion && desiredVersion !== actual) startTransition(desiredVersion);
+      if (desiredVersion && desiredVersion !== version && desiredVersion !== actual) startTransition(desiredVersion);
       else settleToActual();
     });
     return true;
@@ -246,6 +251,7 @@
 
     desiredVersion = version;
     renderIntent(version);
+    syncUrlToVersion(version);
     dispatchIntent(version, source);
     warmVersion(version);
 
@@ -320,6 +326,7 @@
 
     desiredVersion = actual;
     renderIntent(actual);
+    syncUrlToVersion(actual);
     document.dispatchEvent(new CustomEvent('myessays:reading-mode-settled', {
       detail: {
         essayId: id,
@@ -336,10 +343,50 @@
     schedulePersistentControl();
   }
 
+  async function syncFromRoute() {
+    const api = versions();
+    const router = routeApi();
+    const routeState = router?.parse?.();
+    const id = routeState?.articleId || '';
+    const view = document.getElementById('readerView');
+    if (!api || !router || routeState?.type !== 'essay' || !id || !view || view.hidden || !api.availableVersions) return false;
+
+    const token = ++routeSyncToken;
+    const available = await api.availableVersions(id);
+    if (token !== routeSyncToken || id !== currentEssayId()) return false;
+    const allowed = new Set(['ja', ...available]);
+
+    let target = 'ja';
+    if (routeState.hasLang) {
+      target = routeState.langValid ? router.versionForLang(routeState.lang) : 'ja';
+    } else {
+      const preferred = api.preferredVersion?.() || 'ja';
+      target = allowed.has(preferred) ? preferred : 'ja';
+    }
+    if (!allowed.has(target)) target = 'ja';
+
+    desiredVersion = target;
+    renderIntent(target);
+    router.replaceEssayLanguage(router.langForVersion(target), id);
+    warmVersion(target);
+
+    if (transitionActive || api.isSwitching?.()) return true;
+    if (target === api.currentVersion?.()) {
+      settleToActual();
+      return true;
+    }
+    return startTransition(target);
+  }
+
+  function scheduleRouteSync() {
+    requestAnimationFrame(() => syncFromRoute());
+  }
+
   function resetForRoute() {
     transitionActive = false;
     activeTransitionVersion = '';
     desiredVersion = '';
+    routeSyncToken += 1;
     preloadToken += 1;
     controlToken += 1;
     resetPreloadState('');
@@ -348,6 +395,7 @@
     document.getElementById(CONTROL_ID)?.remove();
     schedulePreload();
     schedulePersistentControl();
+    scheduleRouteSync();
   }
 
   document.addEventListener('click', handleIntentClick, true);
@@ -368,8 +416,12 @@
   document.addEventListener('myessays:reader-ready', () => {
     schedulePreload();
     schedulePersistentControl();
+    scheduleRouteSync();
   });
-  document.addEventListener('myessays:reader-rendered', schedulePersistentControl);
+  document.addEventListener('myessays:reader-rendered', () => {
+    schedulePersistentControl();
+    scheduleRouteSync();
+  });
   document.addEventListener('myessays:reader-version-changed', syncAfterActualVersion);
   document.addEventListener('myessays:reader-language-changed', syncAfterActualVersion);
   document.addEventListener('myessays:reading-mode-stable', handleStable);
@@ -396,16 +448,19 @@
     preloadedVersions: () => [...preloadedVersions],
     isPreloaded: version => version === 'ja' || preloadedVersions.has(version),
     renderIntent,
-    syncControl: syncPersistentControl
+    syncControl: syncPersistentControl,
+    syncFromRoute
   });
 
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', () => {
         schedulePreload();
         schedulePersistentControl();
+        scheduleRouteSync();
       }, { once: true })
     : (() => {
         schedulePreload();
         schedulePersistentControl();
+        scheduleRouteSync();
       })();
 })();

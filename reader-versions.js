@@ -18,10 +18,7 @@
   let switchInFlight = false;
 
   function currentEssayId() {
-    const match = location.hash.match(/^#\/essay\/(.+)$/);
-    if (!match) return '';
-    try { return decodeURIComponent(match[1]); }
-    catch { return match[1]; }
+    return window.MyEssaysRoute?.parse?.().articleId || '';
   }
 
   function originalEssay(id) {
@@ -520,7 +517,11 @@
     }
 
     const rendered = currentRenderedVersion();
-    const preferred = preferredVersion();
+    const routeState = window.MyEssaysRoute?.parse?.();
+    const routeVersion = routeState?.type === 'essay' && routeState.articleId === id && routeState.hasLang
+      ? (routeState.langValid ? window.MyEssaysRoute.versionForLang(routeState.lang) : 'ja')
+      : '';
+    const preferred = routeVersion || preferredVersion();
     let desired = rendered;
     if (!switchInFlight) {
       desired = preferred === 'ja' || available.includes(preferred) ? preferred : 'ja';

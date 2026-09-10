@@ -22,10 +22,7 @@
   const $ = id => document.getElementById(id);
 
   function currentEssayId() {
-    const match = location.hash.match(/^#\/essay\/(.+)$/);
-    if (!match) return '';
-    try { return decodeURIComponent(match[1]); }
-    catch { return match[1]; }
+    return window.MyEssaysRoute?.parse?.().articleId || '';
   }
 
   function currentEssay() {

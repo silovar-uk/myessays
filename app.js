@@ -340,7 +340,7 @@ function openSearch() {
   setSearchOpen(true);
 }
 
-function openEssay(id) { location.hash = `#/essay/${encodeURIComponent(id)}`; }
+function openEssay(id) { window.MyEssaysRoute.navigateEssay(id); }
 
 function markAcademicSections() {
   const headings = [...els.readerContent.querySelectorAll('h2, h3')];
@@ -497,9 +497,9 @@ function showLibrary() {
 }
 
 function route() {
-  const match = location.hash.match(/^#\/essay\/(.+)$/);
-  if (!match) { showLibrary(); return; }
-  const essay = state.essays.find(e => e.id === decodeURIComponent(match[1]));
+  const currentRoute = window.MyEssaysRoute.parse();
+  if (currentRoute.type !== 'essay' || !currentRoute.articleId) { showLibrary(); return; }
+  const essay = state.essays.find(e => e.id === currentRoute.articleId);
   essay ? showReader(essay) : showLibrary();
 }
 

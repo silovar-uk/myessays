@@ -6,11 +6,7 @@
   const prompts = ['一番残ったことは？','読み終わって、最初に浮かんだことは？','自分に持ち帰るなら？','まだ引っかかっていることは？'];
   let saveActiveDraft = null, undo = null;
 
-  const idFromHash = () => {
-    const m = location.hash.match(/^#\/essay\/(.+)$/);
-    if (!m) return '';
-    try { return decodeURIComponent(m[1]); } catch { return m[1]; }
-  };
+  const idFromHash = () => window.MyEssaysRoute?.parse?.().articleId || '';
   const essayNow = () => {
     const id = idFromHash();
     return id && typeof state !== 'undefined' && Array.isArray(state.essays) ? state.essays.find(x => x.id === id) || null : null;

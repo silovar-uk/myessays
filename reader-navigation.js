@@ -30,10 +30,8 @@
     try {
       if (typeof state !== 'undefined' && state.currentEssay?.id) return state.currentEssay;
     } catch {}
-    const rawId = location.hash.match(/^#\/essay\/(.+)$/)?.[1];
-    if (!rawId) return null;
-    let id = rawId;
-    try { id = decodeURIComponent(rawId); } catch {}
+    const id = window.MyEssaysRoute?.parse?.().articleId || '';
+    if (!id) return null;
     return getAllEssays().find(essay => essay.id === id) || null;
   }
 
@@ -190,11 +188,10 @@
     }
 
     document.addEventListener('myessays:reader-rendered', () => {
-      const id = location.hash.match(/^#\/essay\/(.+)$/)?.[1];
+      const id = window.MyEssaysRoute?.parse?.().articleId || '';
       const root = document.getElementById('readerContent');
       if (!id || !root) return;
-      const decoded = decodeURIComponent(id);
-      const essay = getAllEssays().find(item => item.id === decoded);
+      const essay = getAllEssays().find(item => item.id === id);
       if (essay) renderReaderEndNavigation({ root, essay });
     });
   }

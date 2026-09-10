@@ -61,8 +61,7 @@
   }
 
   function currentEssayId() {
-    const match = location.hash.match(/^#\/essay\/(.+)$/);
-    return match ? decodeURIComponent(match[1]) : '';
+    return window.MyEssaysRoute?.parse?.().articleId || '';
   }
 
   function updateHeaderMode() {

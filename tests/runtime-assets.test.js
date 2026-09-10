@@ -36,12 +36,16 @@ test('superseded reading implementations stay removed', () => {
   assert.match(html, /reading-state-ui\.js/);
 });
 
-test('current Reading Focus runtime assets use September cache keys', () => {
+test('shareable Reading Mode runtime assets use current cache keys and route state loads first', () => {
   const html = read('index.html');
-  assert.match(html, /reading-locators\.js\?v=20260909-/);
-  assert.match(html, /reader-language-instant\.js\?v=20260909-/);
-  assert.match(html, /reader-reading-pivot\.js\?v=20260909-/);
+  assert.match(html, /route-state\.js\?v=20260910-/);
+  assert.match(html, /app\.js\?v=20260910-/);
+  assert.match(html, /reading-locators\.js\?v=20260910-/);
+  assert.match(html, /reader-language-instant\.js\?v=20260910-/);
+  assert.match(html, /reader-versions\.js\?v=20260910-/);
+  assert.match(html, /reader-v2\.js\?v=20260910-/);
+  assert.match(html, /reader-reading-pivot\.js\?v=20260910-/);
   assert.match(html, /reader-reading-pivot\.css\?v=20260909-/);
   assert.match(html, /reader-reading-pivot-scroll-guard\.js\?v=20260909-/);
-  assert.doesNotMatch(html, /reading-locators\.js\?v=20260829-/);
+  assert.ok(html.indexOf('route-state.js') < html.indexOf('app.js'), 'route-state.js must load before app.js');
 });

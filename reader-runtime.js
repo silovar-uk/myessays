@@ -7,10 +7,7 @@
   let currentContext = null;
 
   function essayIdFromHash() {
-    const match = location.hash.match(/^#\/essay\/(.+)$/);
-    if (!match) return '';
-    try { return decodeURIComponent(match[1]); }
-    catch { return match[1]; }
+    return window.MyEssaysRoute?.parse?.().articleId || '';
   }
 
   function findEssay(id) {
