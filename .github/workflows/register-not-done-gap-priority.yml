@@ -1,0 +1,51 @@
+name: Register Not Done Gap Priority Essay
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-not-done-gap-priority.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register canonical essay and English Mix
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const essayPath = 'essays/2026-09-10-not-done-gap-priority.md';
+          const id = 'not-done-gap-priority';
+          const mixPath = 'english-mix/not-done-gap-priority.md';
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          if (!index.essays.includes(essayPath)) index.essays.unshift(essayPath);
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          versions.articles[id] ||= {};
+          versions.articles[id]['en-mix'] = mixPath;
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+          NODE
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'Register Not Done gap essay'
+          git push
