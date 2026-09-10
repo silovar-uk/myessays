@@ -376,6 +376,13 @@
   });
   window.MyEssaysReaderVersions = publicApi;
 
+  function syncCoordinatorAfterInstall() {
+    const coordinator = window.MyEssaysInstantReadingModes;
+    coordinator?.syncControl?.();
+    coordinator?.preload?.();
+    coordinator?.syncFromRoute?.();
+  }
+
   function syncAfterRender() {
     if (!currentEssayId()) return;
     requestAnimationFrame(ensureVersionSwitch);
@@ -406,6 +413,7 @@
   });
   window.addEventListener('pageshow', () => requestAnimationFrame(ensureVersionSwitch));
 
+  requestAnimationFrame(syncCoordinatorAfterInstall);
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', ensureVersionSwitch)
     : ensureVersionSwitch();
