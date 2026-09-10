@@ -3,7 +3,7 @@ name: Route State Migration
 on:
   push:
     paths:
-      - 'tools/apply-route-state-migration-v2.py'
+      - 'tools/apply-route-state-migration-v3.py'
 
 permissions:
   contents: write
@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Apply route state migration
-        run: python3 tools/apply-route-state-migration-v2.py
+        run: python3 tools/apply-route-state-migration-v3.py
       - name: Run static tests
         run: node --test tests/*.test.js
       - name: Commit migration
@@ -27,6 +27,6 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add app.js reader-versions.js reader-language-instant.js reading-locators.js reader-reading-pivot.js reader-v2.js index.html tests/route-state.test.js tests/runtime-assets.test.js scripts/reading-mode-url-qa.cjs .github/workflows/visual-qa.yml
+          git add app.js reader-versions.js reader-language-instant.js reading-locators.js reader-reading-pivot.js reader-v2.js reader-gpt-bridge.js index.html tests/route-state.test.js tests/runtime-assets.test.js scripts/reading-mode-url-qa.cjs .github/workflows/visual-qa.yml
           git commit -m 'Add shareable Reading Mode URLs'
           git push
