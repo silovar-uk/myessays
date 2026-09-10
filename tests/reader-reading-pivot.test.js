@@ -6,13 +6,29 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('reading pivot uses the actual second visible paragraph', () => {
+test('reading pivot uses the actual third visible paragraph', () => {
   const pivot = read('reader-reading-pivot.js');
   assert.match(pivot, /const MIN_VISIBLE_PX = 20/);
+  assert.match(pivot, /const FOCUS_START_INDEX = 2/);
   assert.match(pivot, /:scope > p\.reader-locator-block\[data-reading-locator\]/);
   assert.match(pivot, /item\.visiblePx >= Math\.min\(MIN_VISIBLE_PX/);
-  assert.match(pivot, /if \(visible\.length >= 2\) return visible\[1\]\.block/);
+  assert.match(pivot, /visible\.length > FOCUS_START_INDEX/);
+  assert.match(pivot, /return visible\[FOCUS_START_INDEX\]\.block/);
+  assert.doesNotMatch(pivot, /if \(visible\.length >= 2\) return visible\[1\]\.block/);
   assert.doesNotMatch(pivot, /VISIBLE_RATIO|PIVOT_SETTLE_MS/);
+});
+
+test('Reading Focus is one visual zone spanning third through fifth visible paragraphs', () => {
+  const pivot = read('reader-reading-pivot.js');
+  const css = read('reader-reading-pivot.css');
+  assert.match(pivot, /const FOCUS_RANGE_LENGTH = 3/);
+  assert.match(pivot, /visible\.slice\(FOCUS_START_INDEX, FOCUS_START_INDEX \+ FOCUS_RANGE_LENGTH\)/);
+  assert.match(pivot, /has-reading-focus-zone/);
+  assert.match(pivot, /--reading-zone-top/);
+  assert.match(pivot, /--reading-zone-bottom/);
+  assert.match(css, /\.reader-content\.has-reading-focus-zone\s*\{[\s\S]*?linear-gradient/);
+  assert.doesNotMatch(pivot, /is-reading-focus(?:-range)?/);
+  assert.doesNotMatch(css, /\.is-reading-focus(?:-range)?/);
 });
 
 test('instant controller exclusively renders direct one-tap Reading Mode choices', () => {
@@ -43,10 +59,13 @@ test('same-essay rerenders preserve an active Pivot handoff anchor', () => {
   assert.match(pivot, /if \(!sameEssayHandoff\) \{[\s\S]*?pendingSwitchAnchor = null/);
 });
 
-test('reading focus highlight is immediate, perceptible and background-only', () => {
+test('reading focus zone is subtle, continuous, non-animated and leaves Pivot visually unpainted', () => {
   const css = read('reader-reading-pivot.css');
-  assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*rgba\(180, 62, 49, \.085\)/);
-  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?is-reading-pivot[\s\S]*?rgba\(180, 62, 49, \.072\)/);
+  assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*transparent;[\s\S]*?box-shadow:\s*none/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.018\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.006\)/);
+  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.015\)/);
+  assert.doesNotMatch(css, /has-reading-focus-zone[\s\S]*?transition:/);
   assert.match(css, /is-language-switch-target[\s\S]*?box-shadow:\s*none/);
 });
 
