@@ -79,8 +79,13 @@ async function readingFocusState(page) {
     }).filter(item => item.visiblePx >= Math.min(20, Math.max(1, item.rect.height)))
       .sort((a, b) => a.rect.top - b.rect.top);
 
-    const expected = visible[2]?.block || null;
-    const expectedZone = visible.slice(2, 5);
+    const topAnchor = visible[0]?.block || null;
+    const topAnchorIndex = topAnchor ? paragraphs.indexOf(topAnchor) : -1;
+    const expectedZoneBlocks = topAnchorIndex >= 0
+      ? paragraphs.slice(topAnchorIndex + 2, topAnchorIndex + 5)
+      : [];
+    const expectedZone = expectedZoneBlocks.map(block => ({ block, rect: block.getBoundingClientRect() }));
+    const expected = expectedZoneBlocks[0] || null;
     const actual = content.querySelector(':scope > p.is-reading-pivot');
     const logicalLocator = window.MyEssaysReadingPivot?.locator?.() || actual?.dataset.readingLocator || '';
     const semanticTop = actual
@@ -105,6 +110,8 @@ async function readingFocusState(page) {
 
     return {
       sameNode: Boolean(expected && actual && expected === actual),
+      topAnchorLocator: topAnchor?.dataset.readingLocator || '',
+      topAnchorIndex,
       expectedLocator: expected?.dataset.readingLocator || '',
       actualLocator: logicalLocator,
       physicalLocator: actual?.dataset.readingLocator || '',
@@ -129,14 +136,15 @@ async function readingFocusState(page) {
   });
 }
 
-async function assertThirdVisibleFocus(page, label, { maxZoneAlpha = 0.03, requireUnpaintedPivot = false } = {}) {
+async function assertThirdFromTopFocus(page, label, { maxZoneAlpha = 0.03, requireUnpaintedPivot = false } = {}) {
   const state = await readingFocusState(page);
-  assert.ok(state.visibleCount >= 3, `${label}: expected at least three visible body paragraphs`);
-  assert.equal(state.sameNode, true, `${label}: Primary Pivot must be the actual third visible paragraph; expected ${state.expectedLocator}, got physical ${state.physicalLocator}`);
-  assert.equal(state.focusCount, state.expectedFocusCount, `${label}: Reading Zone must cover only the available third-through-fifth visible paragraphs`);
-  assert.equal(state.focusStart, state.expectedFocusStart, `${label}: Reading Zone must begin at the third visible paragraph`);
-  assert.equal(state.focusEnd, state.expectedFocusEnd, `${label}: Reading Zone must end at the fifth visible paragraph when available`);
-  assert.ok(Number.isFinite(state.zoneTop) && Math.abs(state.zoneTop - state.expectedZoneTop) <= 1, `${label}: Reading Zone top drifted from the third visible paragraph (${state.zoneTop} vs ${state.expectedZoneTop})`);
+  assert.ok(state.visibleCount >= 1, `${label}: expected a top visible reading paragraph to anchor the flow`);
+  assert.ok(state.expectedFocusCount >= 1, `${label}: test position should leave a third paragraph downstream from ${state.topAnchorLocator}`);
+  assert.equal(state.sameNode, true, `${label}: Primary Pivot must be the third paragraph in flow from the top reading paragraph; expected ${state.expectedLocator}, got physical ${state.physicalLocator}`);
+  assert.equal(state.focusCount, state.expectedFocusCount, `${label}: Reading Zone must cover the available third-through-fifth paragraphs in reading flow`);
+  assert.equal(state.focusStart, state.expectedFocusStart, `${label}: Reading Zone must begin at the third paragraph in reading flow`);
+  assert.equal(state.focusEnd, state.expectedFocusEnd, `${label}: Reading Zone must end at the fifth paragraph in reading flow when available`);
+  assert.ok(Number.isFinite(state.zoneTop) && Math.abs(state.zoneTop - state.expectedZoneTop) <= 1, `${label}: Reading Zone top drifted from the third flow paragraph (${state.zoneTop} vs ${state.expectedZoneTop})`);
   assert.ok(Number.isFinite(state.zoneBottom) && Math.abs(state.zoneBottom - state.expectedZoneBottom) <= 1, `${label}: Reading Zone bottom drifted from the last focus paragraph (${state.zoneBottom} vs ${state.expectedZoneBottom})`);
   assert.notEqual(state.gradient, 'none', `${label}: Reading Zone should exist as one continuous background layer`);
   assert.ok(state.maxZoneAlpha > 0 && state.maxZoneAlpha <= maxZoneAlpha, `${label}: Reading Zone should remain deliberately subtle (max alpha ${state.maxZoneAlpha})`);
@@ -235,7 +243,7 @@ async function semanticPivot(page) {
   await waitForDirectControl(page, 3);
   await waitForPreload(page, ['en-mix', 'es-mix']);
   await scrollIntoBody(page, 0.36, 'three-mode-initial');
-  const before = await assertThirdVisibleFocus(page, 'three-mode desktop', { requireUnpaintedPivot: true });
+  const before = await assertThirdFromTopFocus(page, 'three-mode desktop', { requireUnpaintedPivot: true });
 
   await burst(page, ['en-mix', 'es-mix'], 18);
   await waitForMode(page, 'es-mix');
@@ -258,13 +266,13 @@ async function semanticPivot(page) {
   await page.mouse.wheel(0, 180);
   await page.waitForFunction(previous => window.MyEssaysReadingPivot?.locator?.() !== previous, before.actualLocator, { timeout: 3000 }).catch(() => {});
   await nextFrames(page, 2);
-  await assertThirdVisibleFocus(page, 'three-mode after user scroll');
+  await assertThirdFromTopFocus(page, 'three-mode after user scroll');
 
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await waitForPreload(page, ['en-mix']);
   await scrollIntoBody(page, 0.32, 'watanabe-initial');
-  const watanabeBefore = await assertThirdVisibleFocus(page, 'JA+EN desktop', { requireUnpaintedPivot: true });
+  const watanabeBefore = await assertThirdFromTopFocus(page, 'JA+EN desktop', { requireUnpaintedPivot: true });
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
   await nextFrames(page, 3);
@@ -272,14 +280,14 @@ async function semanticPivot(page) {
 
   await openEssay(page, JA_ONLY_ID);
   await scrollIntoBody(page, 0.30, 'ja-only-initial');
-  await assertThirdVisibleFocus(page, 'JA-only desktop', { requireUnpaintedPivot: true });
+  await assertThirdFromTopFocus(page, 'JA-only desktop', { requireUnpaintedPivot: true });
   assert.equal(await page.locator(CONTROL).count(), 0, 'JA-only article should not invent language controls');
 
   await page.setViewportSize({ width: 320, height: 700 });
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await scrollIntoBody(page, 0.34, 'watanabe-mobile');
-  await assertThirdVisibleFocus(page, 'JA+EN mobile', { maxZoneAlpha: 0.02, requireUnpaintedPivot: true });
+  await assertThirdFromTopFocus(page, 'JA+EN mobile', { maxZoneAlpha: 0.02, requireUnpaintedPivot: true });
 
   assert.deepEqual(pageErrors, [], `page errors: ${pageErrors.join(' | ')}`);
   assert.deepEqual(consoleErrors, [], `console errors: ${consoleErrors.join(' | ')}`);
