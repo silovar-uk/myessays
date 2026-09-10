@@ -13,15 +13,43 @@ async function openCase(browser, { id, lang, preferred, expectedVersion, expecte
   if (preferred) await context.addInitScript(value => localStorage.setItem('myessays:reader-language', value), preferred);
   const page = await context.newPage();
   const suffix = lang === undefined ? '' : `?lang=${encodeURIComponent(lang)}`;
+  const label = `${id} lang=${lang === undefined ? '(none)' : lang} preferred=${preferred || '(none)'} -> ${expectedVersion}/${expectedLang}`;
+  console.log('URL_CASE', label);
   await page.goto(`${BASE_URL}/#/essay/${encodeURIComponent(id)}${suffix}`, { waitUntil: 'domcontentloaded' });
-  await page.waitForFunction(({ expectedVersion, expectedLang, id }) => {
-    const route = window.MyEssaysRoute?.parse?.();
-    return route?.articleId === id
-      && route?.lang === expectedLang
-      && window.MyEssaysReaderVersions?.currentVersion?.() === expectedVersion
-      && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
-      && !document.getElementById('readerView')?.hidden;
-  }, { expectedVersion, expectedLang, id }, { timeout: 10000 });
+  try {
+    await page.waitForFunction(({ expectedVersion, expectedLang, id }) => {
+      const route = window.MyEssaysRoute?.parse?.();
+      return route?.articleId === id
+        && route?.lang === expectedLang
+        && window.MyEssaysReaderVersions?.currentVersion?.() === expectedVersion
+        && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
+        && !document.getElementById('readerView')?.hidden;
+    }, { expectedVersion, expectedLang, id }, { timeout: 10000 });
+  } catch (error) {
+    const debug = await page.evaluate(requested => ({
+      requested,
+      hash: location.hash,
+      route: window.MyEssaysRoute?.parse?.() || null,
+      readerHidden: document.getElementById('readerView')?.hidden ?? null,
+      stateId: typeof state !== 'undefined' ? state.currentEssay?.id || '' : '',
+      readerEssayId: document.getElementById('readerContent')?.dataset.readerEssayId || '',
+      pairIdentity: document.getElementById('readerContent')?.dataset.pairIdentity || '',
+      semanticLocators: document.getElementById('readerContent')?.dataset.semanticLocators || '',
+      current: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+      switching: Boolean(window.MyEssaysReaderVersions?.isSwitching?.()),
+      desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+      transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
+      activeTransition: window.MyEssaysInstantReadingModes?.activeTransitionVersion?.() || '',
+      checked: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
+      pivot: window.MyEssaysReadingPivot?.locator?.() || '',
+      locatorAnchor: Boolean(window.MyEssaysReadingLocators?.hasSwitchAnchor?.()),
+      pivotAnchor: Boolean(window.MyEssaysReadingPivot?.hasPendingSwitchAnchor?.()),
+      guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.())
+    }), { id, lang, preferred, expectedVersion, expectedLang });
+    console.error('URL_MODE_DEBUG', JSON.stringify(debug));
+    await context.close();
+    throw error;
+  }
   const state = await page.evaluate(() => ({
     route: window.MyEssaysRoute.parse(),
     current: window.MyEssaysReaderVersions.currentVersion(),
