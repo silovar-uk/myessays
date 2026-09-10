@@ -6,6 +6,8 @@ const ESSAY_ID = process.env.ESSAY_ID || 'utsunomiya-takasaki-shonan-shinjuku-ue
 const TITLE = '湘南新宿ラインと上野東京ラインが混ざる理由';
 const MIX_SENTINEL = 'These four names are easy to mix up.';
 const OUTPUT_DIR = 'qa-artifacts';
+const CONTROL = '#readerLanguageInstantDirect';
+const modeSelector = version => `${CONTROL} [data-reading-mode-intent="${version}"]`;
 
 await mkdir(OUTPUT_DIR, { recursive: true });
 
@@ -53,22 +55,24 @@ try {
       TITLE,
       { timeout: 15_000 }
     );
-    await page.waitForSelector('#readerLanguageSwitch:not([hidden])', { timeout: 15_000 });
-
-    const trigger = page.locator('.reader-language-trigger');
-    const menu = page.locator('#readerLanguageMenu');
+    await page.waitForSelector(CONTROL, { state: 'visible', timeout: 15_000 });
 
     const jaState = await page.evaluate(() => {
       const reader = document.querySelector('#readerContent');
-      const switcher = document.querySelector('#readerLanguageSwitch');
-      const trigger = document.querySelector('.reader-language-trigger');
-      const mixButton = document.querySelector('[data-reader-version="en-mix"]');
+      const control = document.querySelector('#readerLanguageInstantDirect');
+      const legacy = document.querySelector('#readerLanguageSwitch');
+      const jaButton = control?.querySelector('[data-reading-mode-intent="ja"]');
+      const mixButton = control?.querySelector('[data-reading-mode-intent="en-mix"]');
       return {
         title: document.title,
         readerVisible: Boolean(reader && reader.textContent.trim().length > 0),
-        switchVisible: Boolean(switcher && !switcher.hidden),
-        disclosureExpanded: trigger?.getAttribute('aria-expanded') === 'true',
+        controlCount: document.querySelectorAll('#readerLanguageInstantDirect').length,
+        controlVisible: Boolean(control && !control.hidden && getComputedStyle(control).display !== 'none'),
+        legacyVisible: Boolean(legacy && !legacy.hidden && getComputedStyle(legacy).display !== 'none'),
+        jaSelected: jaButton?.getAttribute('aria-checked') === 'true',
         mixAvailable: Boolean(mixButton && !mixButton.disabled),
+        currentVersion: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+        desiredVersion: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
         horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
         scrollWidth: document.documentElement.scrollWidth,
         innerWidth: window.innerWidth
@@ -76,8 +80,11 @@ try {
     });
 
     if (!jaState.readerVisible) throw new Error(`${config.name}: reader content is empty`);
-    if (!jaState.switchVisible) throw new Error(`${config.name}: reading version switch is not visible`);
-    if (jaState.disclosureExpanded) throw new Error(`${config.name}: language disclosure should start collapsed`);
+    if (jaState.controlCount !== 1 || !jaState.controlVisible) throw new Error(`${config.name}: persistent Reading Mode control is not uniquely visible`);
+    if (jaState.legacyVisible) throw new Error(`${config.name}: legacy language disclosure should remain hidden`);
+    if (!jaState.jaSelected || jaState.currentVersion !== 'ja' || jaState.desiredVersion !== 'ja') {
+      throw new Error(`${config.name}: Japanese Reading Mode did not start settled`);
+    }
     if (!jaState.mixAvailable) throw new Error(`${config.name}: English Mix option is unavailable`);
     if (jaState.horizontalOverflow) {
       throw new Error(`${config.name}: horizontal overflow (${jaState.scrollWidth}px > ${jaState.innerWidth}px)`);
@@ -88,35 +95,41 @@ try {
       fullPage: true
     });
 
-    await trigger.click();
-    await page.waitForSelector('#readerLanguageMenu:not([hidden])', { timeout: 5_000 });
-    await page.locator('[data-reader-version="en-mix"]').click();
-    await page.waitForFunction(
-      expected => document.querySelector('#readerContent')?.textContent?.includes(expected),
-      MIX_SENTINEL,
-      { timeout: 15_000 }
-    );
-    await page.waitForFunction(() => document.querySelector('.reader-language-trigger')?.getAttribute('aria-expanded') === 'false');
+    const mixButton = page.locator(modeSelector('en-mix'));
+    if (await mixButton.count() !== 1) throw new Error(`${config.name}: persistent English Mix option should exist exactly once`);
+    await mixButton.click();
+    await page.waitForFunction(expected => {
+      const option = document.querySelector('#readerLanguageInstantDirect [data-reading-mode-intent="en-mix"]');
+      return window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix'
+        && window.MyEssaysInstantReadingModes?.desiredVersion?.() === 'en-mix'
+        && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
+        && option?.getAttribute('aria-checked') === 'true'
+        && document.querySelector('#readerContent')?.textContent?.includes(expected);
+    }, MIX_SENTINEL, { timeout: 15_000 });
 
     const mixState = await page.evaluate(() => {
-      const mixButton = document.querySelector('[data-reader-version="en-mix"]');
-      const current = document.querySelector('.reader-language-current')?.textContent?.trim();
+      const control = document.querySelector('#readerLanguageInstantDirect');
+      const mixButton = control?.querySelector('[data-reading-mode-intent="en-mix"]');
+      const legacy = document.querySelector('#readerLanguageSwitch');
       return {
         mixSelected: mixButton?.getAttribute('aria-checked') === 'true',
-        currentBadge: current,
+        currentVersion: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+        desiredVersion: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+        transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
+        legacyVisible: Boolean(legacy && !legacy.hidden && getComputedStyle(legacy).display !== 'none'),
         horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
         scrollWidth: document.documentElement.scrollWidth,
         innerWidth: window.innerWidth
       };
     });
 
-    if (!mixState.mixSelected) throw new Error(`${config.name}: English Mix did not become active`);
-    if (mixState.currentBadge !== 'EN MIX') throw new Error(`${config.name}: language chip did not update to EN MIX`);
+    if (!mixState.mixSelected || mixState.currentVersion !== 'en-mix' || mixState.desiredVersion !== 'en-mix' || mixState.transitioning) {
+      throw new Error(`${config.name}: English Mix did not settle through the persistent control`);
+    }
+    if (mixState.legacyVisible) throw new Error(`${config.name}: legacy language disclosure became visible after selection`);
     if (mixState.horizontalOverflow) {
       throw new Error(`${config.name} mix: horizontal overflow (${mixState.scrollWidth}px > ${mixState.innerWidth}px)`);
     }
-
-    if (!await menu.isHidden()) throw new Error(`${config.name}: language disclosure stayed open after selection`);
 
     await page.screenshot({
       path: `${OUTPUT_DIR}/${config.name}-mix.png`,
