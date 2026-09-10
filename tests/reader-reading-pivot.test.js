@@ -37,6 +37,12 @@ test('reading pivot preserves semantic identity across Reading Mode switches', (
   assert.match(pivot, /nearestCanonicalBlock\(anchor\.locator\)/);
 });
 
+test('same-essay rerenders preserve an active Pivot handoff anchor', () => {
+  const pivot = read('reader-reading-pivot.js');
+  assert.match(pivot, /const sameEssayHandoff = pendingSwitchAnchor\?\.essayId === id/);
+  assert.match(pivot, /if \(!sameEssayHandoff\) \{[\s\S]*?pendingSwitchAnchor = null/);
+});
+
 test('reading focus highlight is immediate, perceptible and background-only', () => {
   const css = read('reader-reading-pivot.css');
   assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*rgba\(180, 62, 49, \.085\)/);
