@@ -9,10 +9,6 @@
     'es-mix': { label: 'Español Mix', badge: 'ES MIX', lang: 'es' }
   });
   const DISPLAY_META_KEYS = ['title', 'subtitle', 'abstract'];
-  const READING_BLOCK_SELECTOR = 'h2, h3, p, ul, ol, blockquote, figure, .essay-table-wrap, hr';
-  const READING_LINE_RATIO = 0.28;
-  const READING_EDGE_TOLERANCE = 32;
-  const versionByEssay = new Map();
   const versionCache = new Map();
   let indexPromise = null;
   let switchInFlight = false;
@@ -136,218 +132,23 @@
     return Object.keys(index?.articles?.[id] || {}).filter(key => VERSION_DEFINITIONS[key]);
   }
 
-  function clamp(value, min = 0, max = 1) {
-    return Math.min(max, Math.max(min, value));
-  }
-
   function readerContent() {
     return document.getElementById('readerContent');
   }
 
-  function readingLineY() {
-    const header = document.querySelector('.reader-v2-header');
-    const minimum = header?.getBoundingClientRect().height
-      ? header.getBoundingClientRect().height + 24
-      : 0;
-    return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
-  }
-
-  function readingBlocks(content) {
-    return content ? [...content.querySelectorAll(READING_BLOCK_SELECTOR)] : [];
-  }
-
-  function pairBlocks(content) {
-    if (!content) return [];
-    return [...content.querySelectorAll('[data-pair-id]')].filter(block => {
-      if (block.closest('.reader-mode-bar,.reader-compare-view,.language-lens-panel')) return false;
-      return true;
-    });
-  }
-
-  function locatorBlocks(content) {
-    if (!content) return [];
-    return [...content.querySelectorAll('[data-reading-locator]')].filter(block => {
-      if (block.closest('.reader-mode-bar,.reader-compare-view,.language-lens-panel')) return false;
-      return true;
-    });
-  }
-
-  function contentPointForViewport(content, viewportY) {
-    const rect = content.getBoundingClientRect();
-    return clamp((viewportY - rect.top) / Math.max(rect.height, 1));
-  }
-
-  function activeSectionIndex(headings, viewportY) {
-    let index = -1;
-    for (let i = 0; i < headings.length; i += 1) {
-      if (headings[i].getBoundingClientRect().top <= viewportY) index = i;
-      else break;
-    }
-    return index;
-  }
-
-  function blocksInSection(blocks, headings, sectionIndex) {
-    if (!blocks.length) return [];
-    if (sectionIndex < 0) {
-      const firstHeadingIndex = headings[0] ? blocks.indexOf(headings[0]) : -1;
-      return firstHeadingIndex >= 0 ? blocks.slice(0, firstHeadingIndex) : blocks;
-    }
-    const startHeading = headings[sectionIndex];
-    if (!startHeading) return [];
-    const start = blocks.indexOf(startHeading);
-    if (start < 0) return [];
-    const nextHeading = headings[sectionIndex + 1];
-    const end = nextHeading ? blocks.indexOf(nextHeading) : blocks.length;
-    return blocks.slice(start, end >= 0 ? end : blocks.length);
-  }
-
-  function nearestReadingBlock(blocks, viewportY) {
-    if (!blocks.length) return { index: -1, progress: 0, block: null };
-    let bestIndex = 0;
-    let bestDistance = Infinity;
-    blocks.forEach((block, index) => {
-      const rect = block.getBoundingClientRect();
-      const point = clamp(viewportY, rect.top, rect.bottom);
-      const distance = Math.abs(viewportY - point);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        bestIndex = index;
-      }
-    });
-    const block = blocks[bestIndex];
-    const rect = block.getBoundingClientRect();
-    return {
-      index: bestIndex,
-      block,
-      progress: clamp((viewportY - rect.top) / Math.max(rect.height, 1))
-    };
-  }
-
-  function captureReadingPosition() {
-    const content = readerContent();
-    if (!content) return null;
-    const viewportY = readingLineY();
-
-    const located = nearestReadingBlock(locatorBlocks(content), viewportY);
-    const locator = located.block?.dataset?.readingLocator || '';
-    const paired = nearestReadingBlock(pairBlocks(content), viewportY);
-    const pairId = paired.block?.dataset?.pairId || '';
-
-    const headings = [...content.querySelectorAll('h2')].filter(h => !h.closest('.reader-mode-bar,.reader-compare-view'));
-    const blocks = readingBlocks(content).filter(block => !block.closest('.reader-mode-bar,.reader-compare-view'));
-    const sectionIndex = activeSectionIndex(headings, viewportY);
-    const sectionBlocks = blocksInSection(blocks, headings, sectionIndex);
-    const current = nearestReadingBlock(sectionBlocks, viewportY);
-    const blockRatio = current.index >= 0 && sectionBlocks.length
-      ? clamp((current.index + current.progress) / sectionBlocks.length)
-      : 0;
-
-    return {
-      locator,
-      locatorProgress: located.progress,
-      pairId,
-      pairProgress: paired.progress,
-      sectionIndex,
-      blockRatio,
-      articleProgress: contentPointForViewport(content, viewportY),
-      atTop: window.scrollY <= READING_EDGE_TOLERANCE,
-      atBottom: window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - READING_EDGE_TOLERANCE
-    };
-  }
-
-  function findLocatorBlock(content, locator) {
-    if (!content || !locator) return null;
-    return locatorBlocks(content).find(block => block.dataset.readingLocator === locator) || null;
-  }
-
-  function findPairBlock(content, pairId) {
-    if (!content || !pairId) return null;
-    return pairBlocks(content).find(block => block.dataset.pairId === pairId) || null;
-  }
-
-  function targetPointFromSnapshot(snapshot) {
-    const content = readerContent();
-    if (!content || !snapshot) return null;
-
-    if (snapshot.locator) {
-      const located = findLocatorBlock(content, snapshot.locator);
-      if (located) {
-        const rect = located.getBoundingClientRect();
-        return {
-          pageY: rect.top + window.scrollY + (rect.height * clamp(snapshot.locatorProgress)),
-          pair: located
-        };
-      }
-    }
-
-    if (snapshot.pairId) {
-      const pair = findPairBlock(content, snapshot.pairId);
-      if (pair) {
-        const rect = pair.getBoundingClientRect();
-        return {
-          pageY: rect.top + window.scrollY + (rect.height * clamp(snapshot.pairProgress)),
-          pair
-        };
-      }
-    }
-
-    const headings = [...content.querySelectorAll('h2')].filter(h => !h.closest('.reader-mode-bar,.reader-compare-view'));
-    const blocks = readingBlocks(content).filter(block => !block.closest('.reader-mode-bar,.reader-compare-view'));
-    if (snapshot.sectionIndex < headings.length) {
-      const sectionBlocks = blocksInSection(blocks, headings, snapshot.sectionIndex);
-      if (sectionBlocks.length) {
-        const scaled = clamp(snapshot.blockRatio) * sectionBlocks.length;
-        const index = Math.min(sectionBlocks.length - 1, Math.floor(scaled));
-        const progress = clamp(scaled - index);
-        const rect = sectionBlocks[index].getBoundingClientRect();
-        return { pageY: rect.top + window.scrollY + (rect.height * progress), pair: null };
-      }
-    }
-    const rect = content.getBoundingClientRect();
-    return { pageY: rect.top + window.scrollY + (rect.height * clamp(snapshot.articleProgress)), pair: null };
-  }
-
-  function flashPair(block) {
-    if (!block) return;
-    block.classList.remove('is-language-switch-target');
-    requestAnimationFrame(() => {
-      block.classList.add('is-language-switch-target');
-      window.setTimeout(() => block.classList.remove('is-language-switch-target'), 720);
-    });
-  }
-
-  function restoreReadingPosition(snapshot) {
-    return new Promise(resolve => {
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (!snapshot) return resolve();
-        if (snapshot.atTop) {
-          window.scrollTo({ top: 0, behavior: 'auto' });
-          return resolve();
-        }
-        if (snapshot.atBottom) {
-          window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' });
-          return resolve();
-        }
-        const target = targetPointFromSnapshot(snapshot);
-        if (!target) return resolve();
-        window.scrollTo({ top: Math.max(0, target.pageY - readingLineY()), behavior: 'auto' });
-        flashPair(target.pair);
-        resolve();
-      }));
-    });
-  }
-
-  function waitForPairIdentity(id) {
+  function waitForReadySignal({ id, datasetKey, datasetValue, eventName }) {
     const content = readerContent();
     if (!content) return Promise.resolve();
-    if (content.dataset.pairIdentity === 'ready' && content.dataset.readerEssayId === id) return Promise.resolve();
+    if (content.dataset[datasetKey] === datasetValue && content.dataset.readerEssayId === id) {
+      return Promise.resolve();
+    }
 
     return new Promise(resolve => {
       let finished = false;
       const finish = () => {
         if (finished) return;
         finished = true;
-        document.removeEventListener('myessays:pair-identity-ready', onReady);
+        document.removeEventListener(eventName, onReady);
         window.clearTimeout(timeout);
         resolve();
       };
@@ -355,7 +156,25 @@
         if (event.detail?.essayId === id) finish();
       };
       const timeout = window.setTimeout(finish, 500);
-      document.addEventListener('myessays:pair-identity-ready', onReady);
+      document.addEventListener(eventName, onReady);
+    });
+  }
+
+  function waitForPairIdentity(id) {
+    return waitForReadySignal({
+      id,
+      datasetKey: 'pairIdentity',
+      datasetValue: 'ready',
+      eventName: 'myessays:pair-identity-ready'
+    });
+  }
+
+  function waitForSemanticLocators(id) {
+    return waitForReadySignal({
+      id,
+      datasetKey: 'semanticLocators',
+      datasetValue: 'ready',
+      eventName: 'myessays:semantic-locators-ready'
     });
   }
 
@@ -368,6 +187,19 @@
     if (trigger) trigger.setAttribute('aria-expanded', String(nextOpen));
     if (menu) menu.hidden = !nextOpen;
     if (!nextOpen && focusTrigger) trigger?.focus();
+  }
+
+  function requestLegacyVersion(version) {
+    if (!VERSION_DEFINITIONS[version]) return false;
+    const coordinator = window.MyEssaysInstantReadingModes;
+    if (coordinator?.requestVersion) return coordinator.requestVersion(version, 'legacy-switch');
+
+    // Compatibility fallback for pages that load Reader Versions without the
+    // Instant coordinator. Capture semantic ownership before the DOM swap, but
+    // leave all actual eye-line correction to Pivot / Reading Locators.
+    window.MyEssaysReadingPivot?.captureForSwitch?.();
+    window.MyEssaysReadingLocators?.captureForSwitch?.();
+    return switchVersion(version);
   }
 
   function ensureSwitchElement() {
@@ -403,10 +235,9 @@
       setDisclosureOpen(switcher, false);
       if (next === currentRenderedVersion()) {
         rememberPreferredVersion(next);
-        versionByEssay.set(currentEssayId(), next);
         return;
       }
-      switchVersion(next);
+      requestLegacyVersion(next);
     });
 
     document.body.append(switcher);
@@ -430,7 +261,7 @@
     }).join('');
   }
 
-  async function switchVersion(version, options = {}) {
+  async function switchVersion(version) {
     if (switchInFlight || !VERSION_DEFINITIONS[version]) return false;
     const id = currentEssayId();
     if (!id) return false;
@@ -439,7 +270,6 @@
 
     if (version === currentRenderedVersion()) {
       rememberPreferredVersion(version);
-      versionByEssay.set(id, version);
       return true;
     }
 
@@ -453,42 +283,32 @@
         if (!nextEssay) return false;
       }
 
-      const readingPosition = options.snapshot || captureReadingPosition();
-      const previousScrollY = window.scrollY;
-      versionByEssay.set(id, version);
-
+      const locator = window.MyEssaysReadingPivot?.locator?.() || '';
+      const pairId = window.MyEssaysReadingPivot?.current?.()?.dataset?.pairId || '';
       const content = readerContent();
-      if (content) content.dataset.pairIdentity = '';
+      if (content) {
+        content.dataset.pairIdentity = '';
+        content.dataset.semanticLocators = '';
+      }
+
+      // Reader Versions owns only the content swap. showReader may reset the
+      // page while rebuilding the DOM; semantic eye-line restoration belongs
+      // exclusively to Reading Pivot + Reading Locators after readiness.
       showReader(nextEssay);
-      window.scrollTo({ top: previousScrollY, behavior: 'auto' });
 
-      await waitForPairIdentity(id);
+      await Promise.all([
+        waitForPairIdentity(id),
+        waitForSemanticLocators(id)
+      ]);
+      if (id !== currentEssayId()) return false;
+
       rememberPreferredVersion(version);
-
       document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
-        detail: {
-          essayId: id,
-          version,
-          locator: readingPosition?.locator || '',
-          pairId: readingPosition?.pairId || '',
-          positionOwner: 'reader-versions'
-        }
+        detail: { essayId: id, version, locator, pairId }
       }));
 
-      // Reader V2 and language plugins rebuild themselves from the version event.
-      // Restore after those event handlers have scheduled their work so one
-      // canonical exact-locator restoration wins the transition lifecycle.
-      await restoreReadingPosition(readingPosition);
-      window.MyEssaysReadingLocation?.refresh?.();
-
       document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {
-        detail: {
-          essayId: id,
-          mode: version,
-          locator: readingPosition?.locator || '',
-          pairId: readingPosition?.pairId || '',
-          positionOwner: 'reader-versions'
-        }
+        detail: { essayId: id, mode: version, locator, pairId }
       }));
       return true;
     } finally {
@@ -516,19 +336,10 @@
       return;
     }
 
-    const rendered = currentRenderedVersion();
-    const routeState = window.MyEssaysRoute?.parse?.();
-    const routeVersion = routeState?.type === 'essay' && routeState.articleId === id && routeState.hasLang
-      ? (routeState.langValid ? window.MyEssaysRoute.versionForLang(routeState.lang) : 'ja')
-      : '';
-    const preferred = routeVersion || preferredVersion();
-    let desired = rendered;
-    if (!switchInFlight) {
-      desired = preferred === 'ja' || available.includes(preferred) ? preferred : 'ja';
-    }
-    versionByEssay.set(id, desired);
-    renderDisclosure(switcher, available, desired);
-    if (!switchInFlight && desired !== rendered) switchVersion(desired);
+    // This legacy disclosure mirrors the actual rendered version only. Route
+    // intent, saved preference, rapid clicks and all transition starts belong
+    // to the Instant coordinator.
+    renderDisclosure(switcher, available, currentRenderedVersion());
   }
 
   function renderRoot(markdown) {
@@ -560,17 +371,13 @@
     availableVersions,
     getVersionDocument: versionDocument,
     rootForVersion,
-    captureReadingPosition,
-    restoreReadingPosition,
     switchVersion,
     isSwitching: () => switchInFlight
   });
   window.MyEssaysReaderVersions = publicApi;
 
   function syncAfterRender() {
-    const id = currentEssayId();
-    if (!id) return;
-    if (!versionByEssay.has(id)) versionByEssay.set(id, currentRenderedVersion());
+    if (!currentEssayId()) return;
     requestAnimationFrame(ensureVersionSwitch);
   }
 
@@ -593,10 +400,8 @@
   document.addEventListener('myessays:reader-ready', ensureVersionSwitch);
   document.addEventListener('myessays:reader-version-changed', ensureVersionSwitch);
   window.addEventListener('hashchange', () => {
-    const id = currentEssayId();
     const switcher = document.getElementById('readerLanguageSwitch');
     setDisclosureOpen(switcher, false);
-    if (id && !versionByEssay.has(id)) versionByEssay.set(id, preferredVersion());
     requestAnimationFrame(ensureVersionSwitch);
   });
   window.addEventListener('pageshow', () => requestAnimationFrame(ensureVersionSwitch));
