@@ -340,6 +340,14 @@
     if (event.key?.startsWith(READING_PREFIX)) syncDiscoverySoon();
   });
 
+  // Restore a newly opened article synchronously after its DOM is complete,
+  // before ReaderRuntime publishes its ready state on the next animation frame.
+  // Version switches keep the same essay id, so semantic language restoration
+  // remains owned by the Reading Mode locator pipeline.
+  document.addEventListener('myessays:reader-rendered', () => {
+    restoreReadingPosition();
+  });
+
   // Clicking the brand while already on #/ does not fire hashchange, so make
   // the same "TOP means top" rule apply there as well.
   document.addEventListener('click', event => {
