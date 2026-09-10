@@ -68,6 +68,15 @@ test('instant Reading Mode controller is the only latest-intent owner', () => {
   assert.doesNotMatch(locators, /queuedSwitchVersion|pendingVersion/);
 });
 
+test('Reader Versions owns content swaps, never semantic eye-line restoration', () => {
+  const versions = read('reader-versions.js');
+  assert.doesNotMatch(versions, /captureReadingPosition|restoreReadingPosition/);
+  assert.doesNotMatch(versions, /positionOwner:\s*['\"]reader-versions/);
+  assert.doesNotMatch(versions, /window\.scroll(?:To|By)\s*\(/);
+  assert.match(versions, /waitForSemanticLocators/);
+  assert.match(versions, /myessays:reader-language-changed/);
+});
+
 test('semantic locator layer emits stable only after semantic eye-line correction', () => {
   const locators = read('reading-locators.js');
   const correction = locators.indexOf('window.scrollBy({ top: delta');
