@@ -226,9 +226,16 @@
         return scheduleEvaluate({ immediate: true });
       }
 
-      const delta = target.getBoundingClientRect().top - anchor.viewportTop;
-      if (Math.abs(delta) > SWITCH_CORRECTION_TOLERANCE) {
-        window.scrollBy({ top: delta, behavior: 'auto' });
+      // Semantic eye-line continuity is owned by ReadingLocators. Pivot only
+      // resolves which physical paragraph represents the logical locator. Keep
+      // this physical fallback solely for switch paths where no semantic anchor
+      // could be captured.
+      const semanticRestoreOwned = Boolean(window.MyEssaysReadingLocators?.hasSwitchAnchor?.());
+      if (!semanticRestoreOwned) {
+        const delta = target.getBoundingClientRect().top - anchor.viewportTop;
+        if (Math.abs(delta) > SWITCH_CORRECTION_TOLERANCE) {
+          window.scrollBy({ top: delta, behavior: 'auto' });
+        }
       }
       setPivot(target, {
         reason: 'language-switch',
