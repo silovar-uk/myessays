@@ -1,57 +1,180 @@
-name: One-shot View Transition skip handling
+name: One-shot paragraph selection context
 
 on:
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/one-shot-reading-surface.yml'
+    paths: ['.github/workflows/one-shot-reading-surface.yml']
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  stabilize:
+  migrate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Consume expected skipped-transition AbortError
+      - uses: actions/checkout@v7
+        with: { fetch-depth: 0 }
+      - name: Upgrade selected text to paragraph comparison
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
-          def replace_once(text, old, new, label):
-              count = text.count(old)
-              if count != 1:
-                  raise SystemExit(f'{label}: expected exactly one anchor, got {count}')
-              return text.replace(old, new, 1)
+          def once(s,a,b,label):
+              if s.count(a)!=1: raise SystemExit(f'{label}: {s.count(a)} anchors')
+              return s.replace(a,b,1)
+          def block(s,a,b,new,label):
+              i=s.find(a); j=s.find(b,i)
+              if i<0 or j<0: raise SystemExit(f'{label}: anchor missing')
+              return s[:i]+new+s[j:]
 
-          path = Path('reader-versions.js')
-          source = path.read_text()
-          old = """        const transition = document.startViewTransition(update);\n        await transition.updateCallbackDone;\n        // View Transition snapshots may continue affecting document geometry\n        // after the DOM callback is complete. Semantic restoration must target\n        // the final live layout, not the intermediate transition geometry.\n        await transition.finished;\n"""
-          new = """        const transition = document.startViewTransition(update);\n        // Rapid Reading Mode changes intentionally supersede the previous Ink\n        // Dissolve. Chromium reports that normal cancellation through\n        // transition.ready as AbortError; consume only that expected signal.\n        const transitionReady = transition.ready.catch(error => {\n          if (error?.name === 'AbortError') return false;\n          throw error;\n        });\n        await transition.updateCallbackDone;\n        await transitionReady;\n        // View Transition snapshots may continue affecting document geometry\n        // after the DOM callback is complete. Semantic restoration must target\n        // the final live layout, not the intermediate transition geometry.\n        await transition.finished;\n"""
-          source = replace_once(source, old, new, 'View Transition ready handling')
-          path.write_text(source)
+          p=Path('reader-japanese-reference.js'); s=p.read_text()
+          s=once(s,"el.setAttribute('aria-label', '選択した外国語Mixと日本語版の比較');","el.setAttribute('aria-label', '選択した表現を含む段落と日本語版の比較');",'aria')
+          s=once(s,'<h2>選択箇所</h2>','<h2>この段落</h2>','heading')
+          s=once(s,'>SELECTED</p>','>CURRENT PARAGRAPH</p>','label')
+          show=r'''  function renderSelectedParagraph(target, context) {
+    target.replaceChildren();
+    const text = String(context?.paragraphText || '');
+    if (!text) return;
+    const start = Math.max(0, Math.min(text.length, Number(context?.startOffset) || 0));
+    const end = Math.max(start, Math.min(text.length, Number(context?.endOffset) || start));
+    if (start) target.appendChild(document.createTextNode(text.slice(0, start)));
+    if (end > start) {
+      const mark = document.createElement('mark');
+      mark.className = 'japanese-reference-selection-mark';
+      mark.textContent = text.slice(start, end);
+      target.appendChild(mark);
+    }
+    if (end < text.length) target.appendChild(document.createTextNode(text.slice(end)));
+    if (!target.childNodes.length) target.textContent = text;
+  }
 
-          test_path = Path('tests/reader-reading-pivot.test.js')
-          tests = test_path.read_text()
-          marker = "test('rapid mode supersession consumes only expected View Transition AbortError', () => {"
-          if marker not in tests:
-              tests += """\n\ntest('rapid mode supersession consumes only expected View Transition AbortError', () => {\n  const versions = read('reader-versions.js');\n  const start = versions.indexOf('const transition = document.startViewTransition(update)');\n  const ready = versions.indexOf('transition.ready.catch', start);\n  const abort = versions.indexOf(\"error?.name === 'AbortError'\", ready);\n  const rethrow = versions.indexOf('throw error', abort);\n  const updateDone = versions.indexOf('await transition.updateCallbackDone', rethrow);\n  const readyAwait = versions.indexOf('await transitionReady', updateDone);\n  const finished = versions.indexOf('await transition.finished', readyAwait);\n  assert.ok(start >= 0 && ready > start, 'ready rejection handler should attach immediately after transition creation');\n  assert.ok(abort > ready && rethrow > abort, 'only AbortError may be treated as an expected skip');\n  assert.ok(updateDone > rethrow && readyAwait > updateDone && finished > readyAwait, 'DOM update, ready handling and final geometry should remain ordered');\n});\n"""
-              test_path.write_text(tests)
+  function show(reference, selection) {
+    const el = panel();
+    const status = el.querySelector('.japanese-reference-status');
+    const selected = el.querySelector('.japanese-reference-selected-text');
+    const body = el.querySelector('.japanese-reference-text');
+    const originalBlock = el.querySelector('.japanese-reference-original');
+    renderSelectedParagraph(selected, selection);
+    el.dataset.pairId = selection?.pairId || reference?.pairId || '';
+    if (!reference?.text) {
+      status.textContent = 'この位置に対応する日本語段落がありません';
+      body.textContent = '';
+      originalBlock.hidden = true;
+    } else {
+      const positional = reference.confidence === 'pair-position';
+      status.textContent = positional ? '同じ読書位置の日本語段落（段落位置で対応）' : '同じ読書位置の日本語段落';
+      body.textContent = reference.text;
+      originalBlock.hidden = false;
+    }
+    el.hidden = false;
+  }
+
+'''
+          s=block(s,'  function show(reference, selectedText) {','  function mount(ctx) {',show,'show')
+          ctx=r'''  function offsetWithinBlock(block, node, offset) {
+    if (!block || !node) return null;
+    if (node !== block && !block.contains(node)) return null;
+    const probe = document.createRange();
+    probe.selectNodeContents(block);
+    try { probe.setEnd(node, offset); } catch { return null; }
+    return probe.toString().length;
+  }
+
+  function selectionContext() {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed || !selection.rangeCount || !selection.toString().trim()) return null;
+    const range = selection.getRangeAt(0);
+    const startBlock = closestBlock(range.startContainer);
+    if (!startBlock || !content.contains(startBlock)) return null;
+    const endBlock = closestBlock(range.endContainer);
+    const paragraphText = String(startBlock.textContent || '');
+    const startOffset = offsetWithinBlock(startBlock, range.startContainer, range.startOffset);
+    const endOffset = startBlock === endBlock ? offsetWithinBlock(startBlock, range.endContainer, range.endOffset) : paragraphText.length;
+    if (startOffset == null) return null;
+    return {
+      block: startBlock,
+      pairId: startBlock.dataset.readingLocator || startBlock.dataset.pairId || '',
+      paragraphText,
+      startOffset,
+      endOffset: endOffset == null ? paragraphText.length : endOffset
+    };
+  }
+
+'''
+          s=block(s,'  function selectionContext() {','  function resolve() {',ctx,'selection')
+          old="""    if (selection?.invalid) {
+      closePanel();
+      return;
+    }
+    if (selection?.block) show(references.get(selection.block) || null, selection.text);"""
+          s=once(s,old,"    if (selection?.block) show(references.get(selection.block) || null, selection);",'resolve')
+          p.write_text(s)
+
+          p=Path('reader-japanese-reference.css'); c=p.read_text()
+          c=once(c,'.japanese-reference-selected-text { white-space: pre-wrap; color: var(--ink); font-size: 13.5px; line-height: 1.72; overflow-wrap: anywhere; }','.japanese-reference-selected-text { white-space: pre-wrap; color: var(--ink); font: 14.5px/1.82 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }\n.japanese-reference-selection-mark { padding: 0 .05em; border-radius: .2em; background: rgba(164, 45, 38, .12); color: inherit; box-decoration-break: clone; -webkit-box-decoration-break: clone; }','css')
+          c=c.replace('.japanese-reference-selected-text { font-size: 13px; line-height: 1.68; }','.japanese-reference-selected-text { font-size: 14px; line-height: 1.76; }')
+          p.write_text(c)
+
+          p=Path('scripts/japanese-reference-qa.cjs'); q=p.read_text()
+          cross=r'''async function assertCrossParagraphSelectionUsesStartParagraph(page) {
+  await page.evaluate(() => {
+    const ps = [...document.querySelectorAll('#readerContent p')].filter(p => (p.textContent || '').trim());
+    const first = ps.find(p => (p.textContent || '').includes('But that creates an obvious tension.'));
+    const second = ps[ps.indexOf(first) + 1];
+    if (!first || !second) return;
+    const range = document.createRange();
+    range.setStart(first, 0);
+    range.setEnd(second, second.childNodes.length);
+    const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range);
+    document.dispatchEvent(new Event('selectionchange', { bubbles: true }));
+  });
+  await page.waitForSelector('#japaneseReferencePanel:not([hidden])');
+  assert.match((await page.locator('.japanese-reference-selected-text').innerText()).trim(), /But that creates an obvious tension\./);
+  assert.ok((await page.locator('.japanese-reference-selection-mark').innerText()).trim().length > 0);
+}
+'''
+          q=block(q,'async function assertCrossParagraphSelectionCloses(page) {','\n\n(async () => {',cross,'cross QA')
+          q=q.replace('await assertCrossParagraphSelectionCloses(page);','await assertCrossParagraphSelectionUsesStartParagraph(page);')
+          p.write_text(q)
+
+          Path('tests/selection-paragraph-comparison.test.js').write_text(r'''const test=require('node:test'); const assert=require('node:assert/strict'); const fs=require('node:fs');
+const read=f=>fs.readFileSync(require('node:path').join(__dirname,'..',f),'utf8');
+test('selection uses start paragraph and exact range offsets',()=>{ const s=read('reader-japanese-reference.js'); assert.match(s,/closestBlock\(range\.startContainer\)/); assert.match(s,/offsetWithinBlock/); assert.match(s,/probe\.setEnd\(node, offset\)/); assert.match(s,/startBlock === endBlock/); assert.doesNotMatch(s,/return \{ invalid: true \}/); });
+test('panel renders paragraph context and marks only selection',()=>{ const s=read('reader-japanese-reference.js'); assert.match(s,/renderSelectedParagraph\(selected, selection\)/); assert.match(s,/japanese-reference-selection-mark/); assert.match(s,/references\.get\(selection\.block\)/); });
+''')
+
+          Path('scripts/selection-paragraph-qa.cjs').write_text(r'''const {chromium}=require('playwright'); const assert=require('node:assert/strict');
+const BASE=process.env.BASE_URL||'http://127.0.0.1:4173', ID='design-literacy-progressive-disclosure-information-timing', TARGET='But that creates an obvious tension.', PHRASE='obvious tension';
+async function english(page){await page.waitForSelector('#readerModeShell',{state:'visible'});const b=page.locator('#readerModeShell [data-reading-mode-intent="en-mix"]');if(await b.getAttribute('aria-checked')!=='true')await b.click();await page.waitForFunction(()=>window.MyEssaysReaderVersions?.currentVersion?.()==='en-mix'&&!window.MyEssaysInstantReadingModes?.isTransitioning?.());}
+async function select(page,occ=0){return page.evaluate(({TARGET,PHRASE,occ})=>{const p=[...document.querySelectorAll('#readerContent p')].find(x=>(x.textContent||'').includes(TARGET));if(!p)return null;const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let n,seen=0;while(n=w.nextNode()){let from=0;for(;;){const i=n.data.indexOf(PHRASE,from);if(i<0)break;if(seen++===occ){const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+PHRASE.length);const s=getSelection();s.removeAllRanges();s.addRange(r);document.dispatchEvent(new Event('selectionchange',{bubbles:true}));return {text:p.textContent,pair:p.dataset.readingLocator||p.dataset.pairId||''};}from=i+PHRASE.length;}}return null;},{TARGET,PHRASE,occ});}
+async function check(page,e){await page.waitForSelector('#japaneseReferencePanel:not([hidden])');const current=await page.locator('.japanese-reference-selected-text').innerText(), mark=await page.locator('.japanese-reference-selection-mark').innerText();assert.equal(current.trim(),e.text.trim());assert.equal(mark.trim(),PHRASE);assert.equal(await page.locator('#japaneseReferencePanel').getAttribute('data-pair-id'),e.pair);assert.ok(current.trim().length>mark.trim().length);assert.match(await page.locator('.japanese-reference-text').innerText(),/矛盾/);}
+(async()=>{const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1280,height:800}});await page.goto(`${BASE}/#/essay/${ID}`,{waitUntil:'networkidle'});await page.waitForSelector('#readerView:not([hidden])');await english(page);let e=await select(page);assert.ok(e);await check(page,e);
+await page.evaluate(({TARGET,PHRASE})=>{const p=[...document.querySelectorAll('#readerContent p')].find(x=>(x.textContent||'').includes(TARGET));const n=[...p.childNodes].find(x=>x.nodeType===Node.TEXT_NODE&&x.data.includes(PHRASE));if(n)n.data=`${PHRASE} / ${n.data}`;},{TARGET,PHRASE});e=await select(page,1);assert.ok(e);await page.waitForFunction(p=>document.querySelector('.japanese-reference-selection-mark')?.textContent===p,PHRASE);const before=await page.locator('.japanese-reference-selected-text').evaluate(el=>{const m=el.querySelector('mark'),r=document.createRange();r.selectNodeContents(el);r.setEndBefore(m);return r.toString();});assert.ok(before.includes(PHRASE));
+await page.setViewportSize({width:390,height:844});await page.reload({waitUntil:'networkidle'});await page.waitForSelector('#readerView:not([hidden])');await english(page);e=await select(page);await check(page,e);const box=await page.locator('#japaneseReferencePanel').boundingBox();assert.ok(box&&box.x>=0&&box.x+box.width<=390.5);await browser.close();console.log('Selection paragraph comparison QA passed');})().catch(e=>{console.error(e);process.exit(1);});
+''')
+
+          p=Path('.github/workflows/visual-qa.yml'); v=p.read_text(); anchor="""      - name: Run Japanese reference browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/japanese-reference-qa.cjs
+"""; add=anchor+"""
+      - name: Run selection paragraph comparison QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/selection-paragraph-qa.cjs
+"""
+          if 'Run selection paragraph comparison QA' not in v: v=once(v,anchor,add,'visual step')
+          p.write_text(v)
+
+          p=Path('index.html'); h=p.read_text(); h=once(h,'reader-japanese-reference.css?v=20260906-3','reader-japanese-reference.css?v=20260911-1','css cache'); h=once(h,'reader-japanese-reference.js?v=20260907-2','reader-japanese-reference.js?v=20260911-1','js cache'); p.write_text(h)
           PY
-
-      - name: Run static tests
+      - name: Static QA
         run: node --test tests/*.test.js
-
-      - name: Commit skip handling
+      - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reader-versions.js tests/reader-reading-pivot.test.js
-          git commit -m "Handle expected Reading Mode transition skips"
+          git add reader-japanese-reference.js reader-japanese-reference.css index.html scripts/japanese-reference-qa.cjs scripts/selection-paragraph-qa.cjs tests/selection-paragraph-comparison.test.js .github/workflows/visual-qa.yml
+          git commit -m "Compare selections in full paragraph context"
           git push
