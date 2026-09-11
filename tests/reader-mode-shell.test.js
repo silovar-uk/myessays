@@ -68,3 +68,14 @@ test('Reading Surface hands semantic restoration the final live geometry', () =>
   assert.ok(updateDone >= 0 && finished > updateDone, 'Ink Dissolve should reach its final geometry boundary');
   assert.ok(languageHandoff > finished, 'semantic restoration should start only after final transition geometry');
 });
+
+test('superseded Ink Dissolve consumes only the expected AbortError', () => {
+  const versions = read('reader-versions.js');
+  const ready = versions.indexOf('transition.ready.catch');
+  const abort = versions.indexOf("error?.name === 'AbortError'", ready);
+  const rethrow = versions.indexOf('throw error', abort);
+  const finished = versions.indexOf('await transition.finished', rethrow);
+  assert.ok(ready >= 0 && abort > ready, 'skipped transition readiness should be handled immediately');
+  assert.ok(rethrow > abort, 'unexpected transition errors must still propagate');
+  assert.ok(finished > rethrow, 'rapid cancellation handling must not skip the final geometry boundary');
+});
