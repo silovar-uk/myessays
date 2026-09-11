@@ -1,4 +1,4 @@
-name: One-shot final-geometry semantic restore
+name: One-shot View Transition skip handling
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Restore semantic eye-line only after final transition geometry
+      - name: Consume expected skipped-transition AbortError
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -32,38 +32,26 @@ jobs:
 
           path = Path('reader-versions.js')
           source = path.read_text()
-
-          source = replace_once(
-              source,
-              """    document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {\n      detail: { essayId: id, version, locator, pairId }\n    }));\n    document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {\n      detail: { essayId: id, mode: version, locator, pairId }\n    }));\n    return true;\n  }\n\n  function waitForReadySignal""",
-              """    document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {\n      detail: { essayId: id, version, locator, pairId }\n    }));\n    return true;\n  }\n\n  function dispatchLanguageChanged({ id, version, locator, pairId }) {\n    if (id !== currentEssayId()) return false;\n    document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {\n      detail: { essayId: id, mode: version, locator, pairId }\n    }));\n    return true;\n  }\n\n  function waitForReadySignal""",
-              'separate language-changed from DOM commit'
-          )
-
-          source = replace_once(
-              source,
-              """      if (canAnimateReadingSurface()) {\n        document.activeViewTransition?.skipTransition?.();\n        const transition = document.startViewTransition(update);\n        await transition.updateCallbackDone;\n      } else {\n        await update();\n      }\n      return completed;\n""",
-              """      if (canAnimateReadingSurface()) {\n        document.activeViewTransition?.skipTransition?.();\n        const transition = document.startViewTransition(update);\n        await transition.updateCallbackDone;\n        // View Transition snapshots may continue affecting document geometry\n        // after the DOM callback is complete. Semantic restoration must target\n        // the final live layout, not the intermediate transition geometry.\n        await transition.finished;\n      } else {\n        await update();\n      }\n      if (!completed || id !== currentEssayId()) return false;\n      return dispatchLanguageChanged({ id, version, locator, pairId });\n""",
-              'wait for final transition geometry before semantic restore'
-          )
-
+          old = """        const transition = document.startViewTransition(update);\n        await transition.updateCallbackDone;\n        // View Transition snapshots may continue affecting document geometry\n        // after the DOM callback is complete. Semantic restoration must target\n        // the final live layout, not the intermediate transition geometry.\n        await transition.finished;\n"""
+          new = """        const transition = document.startViewTransition(update);\n        // Rapid Reading Mode changes intentionally supersede the previous Ink\n        // Dissolve. Chromium reports that normal cancellation through\n        // transition.ready as AbortError; consume only that expected signal.\n        const transitionReady = transition.ready.catch(error => {\n          if (error?.name === 'AbortError') return false;\n          throw error;\n        });\n        await transition.updateCallbackDone;\n        await transitionReady;\n        // View Transition snapshots may continue affecting document geometry\n        // after the DOM callback is complete. Semantic restoration must target\n        // the final live layout, not the intermediate transition geometry.\n        await transition.finished;\n"""
+          source = replace_once(source, old, new, 'View Transition ready handling')
           path.write_text(source)
 
           test_path = Path('tests/reader-reading-pivot.test.js')
           tests = test_path.read_text()
-          marker = "test('semantic restore begins only after View Transition final geometry', () => {"
+          marker = "test('rapid mode supersession consumes only expected View Transition AbortError', () => {"
           if marker not in tests:
-              tests += """\n\ntest('semantic restore begins only after View Transition final geometry', () => {\n  const versions = read('reader-versions.js');\n  const updateDone = versions.indexOf('await transition.updateCallbackDone');\n  const finished = versions.indexOf('await transition.finished', updateDone);\n  const languageDispatch = versions.indexOf('return dispatchLanguageChanged({ id, version, locator, pairId })', finished);\n  assert.ok(updateDone >= 0, 'View Transition DOM update boundary should exist');\n  assert.ok(finished > updateDone, 'final geometry must wait for transition.finished');\n  assert.ok(languageDispatch > finished, 'semantic language handoff must start after transition.finished');\n  const commitStart = versions.indexOf('async function commitVersionSwap');\n  const helperStart = versions.indexOf('function dispatchLanguageChanged', commitStart);\n  const commitBody = versions.slice(commitStart, helperStart);\n  assert.doesNotMatch(commitBody, /reader-language-changed/);\n});\n"""
+              tests += """\n\ntest('rapid mode supersession consumes only expected View Transition AbortError', () => {\n  const versions = read('reader-versions.js');\n  const start = versions.indexOf('const transition = document.startViewTransition(update)');\n  const ready = versions.indexOf('transition.ready.catch', start);\n  const abort = versions.indexOf(\"error?.name === 'AbortError'\", ready);\n  const rethrow = versions.indexOf('throw error', abort);\n  const updateDone = versions.indexOf('await transition.updateCallbackDone', rethrow);\n  const readyAwait = versions.indexOf('await transitionReady', updateDone);\n  const finished = versions.indexOf('await transition.finished', readyAwait);\n  assert.ok(start >= 0 && ready > start, 'ready rejection handler should attach immediately after transition creation');\n  assert.ok(abort > ready && rethrow > abort, 'only AbortError may be treated as an expected skip');\n  assert.ok(updateDone > rethrow && readyAwait > updateDone && finished > readyAwait, 'DOM update, ready handling and final geometry should remain ordered');\n});\n"""
               test_path.write_text(tests)
           PY
 
       - name: Run static tests
         run: node --test tests/*.test.js
 
-      - name: Commit final-geometry boundary
+      - name: Commit skip handling
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reader-versions.js tests/reader-reading-pivot.test.js
-          git commit -m "Restore semantic eye-line after View Transition finishes"
+          git commit -m "Handle expected Reading Mode transition skips"
           git push
