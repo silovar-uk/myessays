@@ -496,7 +496,7 @@ AIが意味をどんどん軽く運べるようになるほど、身体にしか
   https://pubmed.ncbi.nlm.nih.gov/23244397/
 - Aradhna Krishna (2024), “A review of touch research in consumer psychology,” *Journal of Consumer Psychology*.  
   https://myscp.onlinelibrary.wiley.com/doi/full/10.1002/jcpy.1413
-- Carlos Flavián, Sergio Ibáñez-Sánchez & Carlos Orús (2019), “The impact of virtual, augmented and mixed reality technologies on the customer experience,” 関連領域としてのデジタル感覚研究。オンライン環境における感覚入力の制約については *Digital Sensory Marketing: Integrating New Technologies Into Multisensory Online Experience*, *Journal of Interactive Marketing*, 45, 42–61.  
+- Olivia Petit, Carlos Velasco & Charles Spence (2019), “Digital Sensory Marketing: Integrating New Technologies Into Multisensory Online Experience,” *Journal of Interactive Marketing*, 45, 42–61.  
   https://www.sciencedirect.com/science/article/pii/S1094996818300513
 - Giulia Lara Poerio et al. (2018), “More than a feeling: Autonomous sensory meridian response (ASMR) is characterized by reliable changes in affect and physiology,” *PLOS ONE*, 13(6), e0196645.  
   https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0196645
