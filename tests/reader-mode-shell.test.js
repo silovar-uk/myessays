@@ -59,3 +59,12 @@ test('semantic focus feedback respects reduced motion', () => {
   assert.match(css, /animation-duration:\s*\.8s/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
 });
+
+test('Reading Surface hands semantic restoration the final live geometry', () => {
+  const versions = read('reader-versions.js');
+  const updateDone = versions.indexOf('await transition.updateCallbackDone');
+  const finished = versions.indexOf('await transition.finished', updateDone);
+  const languageHandoff = versions.indexOf('dispatchLanguageChanged({ id, version, locator, pairId })', finished);
+  assert.ok(updateDone >= 0 && finished > updateDone, 'Ink Dissolve should reach its final geometry boundary');
+  assert.ok(languageHandoff > finished, 'semantic restoration should start only after final transition geometry');
+});
