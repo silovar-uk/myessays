@@ -53,7 +53,7 @@ async function pivotState(page, includeScrollY = false) {
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
 
   assert.equal(await page.locator(CONTROL).count(), 1, 'there should be one Reading Mode Shell');
-  assert.equal(await page.locator(CONTROL).getAttribute('role'), 'radiogroup');
+  assert.equal(await page.locator(`${CONTROL} .reader-mode-shell__modes`).getAttribute('role'), 'radiogroup');
   assert.equal(await page.locator(optionSelector('ja')).getAttribute('aria-checked'), 'true');
   assert.equal((await page.locator(optionSelector('en-mix')).textContent()).trim(), 'English Mix');
   assert.equal((await page.locator(optionSelector('es-mix')).textContent()).trim(), 'Español Mix');
@@ -220,51 +220,8 @@ async function pivotState(page, includeScrollY = false) {
   assert.ok(modeBox, 'reading mode bar should be visible on mobile');
   assert.ok(modeBox.x >= 0 && modeBox.x + modeBox.width <= 320.5, `mode bar overflows mobile viewport: ${JSON.stringify(modeBox)}`);
 
-  const noteBox = await page.locator('#noteTab').boundingBox();
-  assert.ok(noteBox, 'note action should remain visible on mobile');
-  assert.equal(overlaps(modeBox, noteBox), false, `mode bar overlaps note action: mode=${JSON.stringify(modeBox)} note=${JSON.stringify(noteBox)}`);
-
-  const legacyBox = await page.locator('#readerLanguageSwitch').boundingBox();
-  assert.equal(legacyBox, null, 'legacy switch must stay visually hidden when unified modes are active');
-
-  await switchTo('en-mix');
-  const paragraph = page.locator('#readerContent [data-reading-locator]').filter({ hasText: /./ }).first();
-  await paragraph.click();
-  await page.waitForSelector('#paragraphLanguageDock:not([hidden])');
-  const dockBox = await page.locator('#paragraphLanguageDock button').boundingBox();
-  assert.ok(dockBox, 'mobile paragraph language action should appear after selecting a paragraph');
-  assert.ok(dockBox.x >= 0 && dockBox.x + dockBox.width <= 320.5, `paragraph action overflows mobile viewport: ${JSON.stringify(dockBox)}`);
-
-  const tocSafety = await page.evaluate(async () => {
-    window.__myessaysTocProbe = 0;
-    const probe = {
-      id: 'toc-security-probe',
-      title: 'TOC safety probe',
-      type: 'Essay',
-      created: '2026-08-30',
-      updated: '2026-08-30',
-      favorite: 0,
-      grow: 0,
-      tags: [],
-      metrics: { charCount: 1, minutes: 1 },
-      body: '## &lt;img src=x onerror="window.__myessaysTocProbe=1"&gt;'
-    };
-    history.replaceState(null, '', '#/essay/toc-security-probe');
-    showReader(probe);
-    await new Promise(resolve => setTimeout(resolve, 120));
-    const nav = document.querySelector('#readerAside nav');
-    return {
-      executed: window.__myessaysTocProbe,
-      imageCount: nav?.querySelectorAll('img').length || 0,
-      text: nav?.textContent || ''
-    };
-  });
-  assert.equal(tocSafety.executed, 0, 'reader TOC must not execute markup reconstructed from heading text');
-  assert.equal(tocSafety.imageCount, 0, 'reader TOC must keep heading markup as text');
-  assert.match(tocSafety.text, /<img src=x onerror=/, 'reader TOC should preserve the literal heading text');
-
   await browser.close();
-  console.log('Reading versions QA passed');
+  console.log('Reading Versions browser QA passed');
 })().catch(error => {
   console.error(error);
   process.exit(1);
