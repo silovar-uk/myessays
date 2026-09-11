@@ -335,7 +335,15 @@
       if (canAnimateReadingSurface()) {
         document.activeViewTransition?.skipTransition?.();
         const transition = document.startViewTransition(update);
+        // Rapid Reading Mode changes intentionally supersede the previous Ink
+        // Dissolve. Chromium reports that normal cancellation through
+        // transition.ready as AbortError; consume only that expected signal.
+        const transitionReady = transition.ready.catch(error => {
+          if (error?.name === 'AbortError') return false;
+          throw error;
+        });
         await transition.updateCallbackDone;
+        await transitionReady;
         // View Transition snapshots may continue affecting document geometry
         // after the DOM callback is complete. Semantic restoration must target
         // the final live layout, not the intermediate transition geometry.

@@ -188,3 +188,18 @@ test('semantic restore begins only after View Transition final geometry', () => 
   const commitBody = versions.slice(commitStart, helperStart);
   assert.doesNotMatch(commitBody, /reader-language-changed/);
 });
+
+
+test('rapid mode supersession consumes only expected View Transition AbortError', () => {
+  const versions = read('reader-versions.js');
+  const start = versions.indexOf('const transition = document.startViewTransition(update)');
+  const ready = versions.indexOf('transition.ready.catch', start);
+  const abort = versions.indexOf("error?.name === 'AbortError'", ready);
+  const rethrow = versions.indexOf('throw error', abort);
+  const updateDone = versions.indexOf('await transition.updateCallbackDone', rethrow);
+  const readyAwait = versions.indexOf('await transitionReady', updateDone);
+  const finished = versions.indexOf('await transition.finished', readyAwait);
+  assert.ok(start >= 0 && ready > start, 'ready rejection handler should attach immediately after transition creation');
+  assert.ok(abort > ready && rethrow > abort, 'only AbortError may be treated as an expected skip');
+  assert.ok(updateDone > rethrow && readyAwait > updateDone && finished > readyAwait, 'DOM update, ready handling and final geometry should remain ordered');
+});
