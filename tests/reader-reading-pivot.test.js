@@ -153,6 +153,7 @@ test('stable language handoff keeps the restored Pivot until user scroll', () =>
   const stableHandler = pivot.slice(stableStart, stableEnd);
   assert.match(stableHandler, /refreshReadingBlocks\(\)/);
   assert.match(stableHandler, /syncReadingZone\(visibleReadingItems\(\)\)/);
+  assert.match(stableHandler, /requestAnimationFrame\(syncCompareUI\)/);
   assert.doesNotMatch(stableHandler, /scheduleEvaluate|candidatePivot|setPivot/);
   assert.match(pivot, /window\.addEventListener\('scroll', \(\) => scheduleEvaluate\(\)/);
 });
