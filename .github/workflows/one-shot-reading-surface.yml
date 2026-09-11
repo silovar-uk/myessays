@@ -19,16 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Apply migration
-        run: python3 tools/migrate-reading-surface.py
+      - name: Apply shell migration
+        run: python3 tools/migrate-reading-surface-shell.py
 
       - name: Run static tests
         run: node --test tests/*.test.js
 
-      - name: Commit migration
+      - name: Commit shell migration
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app.js ui-enhancements.js reading-locators.js reader-v2.js reader-reading-pivot.js reader-reading-pivot.css reader-versions.js reader-language-instant.js tests/reader-reading-pivot.test.js scripts/reading-focus-instant-qa.cjs scripts/reading-versions-qa.cjs
-          git commit -m "Unify MyEssays Reading Surface"
+          git add reader-v2.js reader-mode-shell.js reader-mode-shell.css tests/reader-reading-pivot.test.js tests/reader-mode-shell.test.js scripts/reading-locator-diagnostic.cjs scripts/reading-focus-instant-qa.cjs scripts/reading-versions-qa.cjs scripts/japanese-reference-qa.cjs scripts/reading-mode-url-qa.cjs
+          git commit -m "Make Reading Mode Shell the sole progress surface"
           git push
