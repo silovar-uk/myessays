@@ -144,3 +144,15 @@ test('scroll guard owns lifecycle only, never a competing eye-line coordinate', 
   assert.match(guard, /myessays:reading-mode-stable/);
   assert.doesNotMatch(guard, /anchorTop|correctEyeLine|window\.scrollBy|setTimeout/);
 });
+
+test('stable language handoff keeps the restored Pivot until user scroll', () => {
+  const pivot = read('reader-reading-pivot.js');
+  const stableStart = pivot.indexOf("document.addEventListener('myessays:reading-mode-stable'");
+  const stableEnd = pivot.indexOf("document.addEventListener('myessays:reading-location-changed'", stableStart);
+  assert.ok(stableStart >= 0 && stableEnd > stableStart, 'stable handler should be inspectable');
+  const stableHandler = pivot.slice(stableStart, stableEnd);
+  assert.match(stableHandler, /refreshReadingBlocks\(\)/);
+  assert.match(stableHandler, /syncReadingZone\(visibleReadingItems\(\)\)/);
+  assert.doesNotMatch(stableHandler, /scheduleEvaluate|candidatePivot|setPivot/);
+  assert.match(pivot, /window\.addEventListener\('scroll', \(\) => scheduleEvaluate\(\)/);
+});

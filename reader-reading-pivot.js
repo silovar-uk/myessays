@@ -408,8 +408,12 @@
   });
   document.addEventListener('myessays:reader-language-changed', restoreSwitchAnchor);
   document.addEventListener('myessays:reading-mode-stable', () => {
+    // A language switch changes the DOM, not the reader's semantic position.
+    // Keep the restored Primary Pivot fixed until the next real user scroll;
+    // only recompute the Reading Zone against the new physical paragraphs.
     refreshReadingBlocks();
-    scheduleEvaluate({ immediate: true });
+    syncReadingZone(visibleReadingItems());
+    requestAnimationFrame(syncCompareUI);
   });
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));
 
