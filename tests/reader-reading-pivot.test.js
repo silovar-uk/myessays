@@ -168,6 +168,7 @@ test('semantic handoff ignores layout scroll until a real reader gesture', () =>
   assert.match(pivot, /window\.addEventListener\('wheel', releaseSemanticHandoffHold/);
   assert.match(pivot, /window\.addEventListener\('touchmove', releaseSemanticHandoffHold/);
   assert.match(pivot, /keyboardMayMoveReader/);
+  assert.doesNotMatch(locators, /function readerMoved/);
   assert.doesNotMatch(locators, /addEventListener\('scroll', readerMoved/);
   assert.match(locators, /addEventListener\('wheel', readerGesture/);
   assert.match(locators, /addEventListener\('touchmove', readerGesture/);
