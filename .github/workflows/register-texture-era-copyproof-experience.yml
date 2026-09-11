@@ -1,0 +1,69 @@
+name: Register Texture Era Copyproof Experience Essay
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-texture-era-copyproof-experience.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register canonical essay and English Mix
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const essayPath = 'essays/2026-09-11-texture-era-copyproof-experience.md';
+          const id = 'texture-era-copyproof-experience';
+          const mixPath = 'english-mix/texture-era-copyproof-experience.md';
+
+          // Correct a bibliography attribution found during final verification.
+          let essay = fs.readFileSync(essayPath, 'utf8');
+          essay = essay.replace(
+            '- Carlos Flavián, Sergio Ibáñez-Sánchez & Carlos Orús (2019), “The impact of virtual, augmented and mixed reality technologies on the customer experience,” 関連領域としてのデジタル感覚研究。オンライン環境における感覚入力の制約については *Digital Sensory Marketing: Integrating New Technologies Into Multisensory Online Experience*, *Journal of Interactive Marketing*, 45, 42–61.',
+            '- Olivia Petit, Carlos Velasco & Charles Spence (2019), “Digital Sensory Marketing: Integrating New Technologies Into Multisensory Online Experience,” *Journal of Interactive Marketing*, 45, 42–61.'
+          );
+          fs.writeFileSync(essayPath, essay);
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          index.essays = index.essays.filter((p) => p !== essayPath);
+          index.essays.unshift(essayPath);
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          versions.articles[id] = {
+            ...(versions.articles[id] || {}),
+            'en-mix': mixPath
+          };
+          const reordered = { version: versions.version || 1, articles: { [id]: versions.articles[id] } };
+          for (const [key, value] of Object.entries(versions.articles)) {
+            if (key !== id) reordered.articles[key] = value;
+          }
+          fs.writeFileSync(versionsPath, JSON.stringify(reordered));
+          NODE
+      - name: Validate JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('data/index.json','utf8')); JSON.parse(require('fs').readFileSync('data/versions-index.json','utf8')); console.log('JSON OK')"
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json essays/2026-09-11-texture-era-copyproof-experience.md; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json essays/2026-09-11-texture-era-copyproof-experience.md
+          git commit -m '「テクスチャの時代」記事を公開登録'
+          git push
