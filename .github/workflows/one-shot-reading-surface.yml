@@ -19,6 +19,19 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Normalize migration helper for visible Shell selectors
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('tools/migrate-reading-surface-shell.py')
+          text = path.read_text()
+          old = "text = text.replace('#readerLanguageInstantDirect [data-reading-mode-intent=', '#readerModeShell [data-reading-mode-intent=')"
+          new = "text = text.replace('#readerLanguageInstantDirect ', '#readerModeShell ')"
+          if old not in text:
+              raise SystemExit('expected selector migration anchor not found')
+          path.write_text(text.replace(old, new, 1))
+          PY
+
       - name: Apply shell migration
         run: python3 tools/migrate-reading-surface-shell.py
 
