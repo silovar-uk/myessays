@@ -1,4 +1,4 @@
-name: One-shot Reading Surface migration
+name: One-shot Reading Pivot stabilization
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  migrate:
+  stabilize:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,29 +19,34 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Normalize migration helper for visible Shell selectors
+      - name: Preserve Pivot across language stable boundary
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          path = Path('tools/migrate-reading-surface-shell.py')
-          text = path.read_text()
-          old = "text = text.replace('#readerLanguageInstantDirect [data-reading-mode-intent=', '#readerModeShell [data-reading-mode-intent=')"
-          new = "text = text.replace('#readerLanguageInstantDirect ', '#readerModeShell ')"
-          if old not in text:
-              raise SystemExit('expected selector migration anchor not found')
-          path.write_text(text.replace(old, new, 1))
-          PY
 
-      - name: Apply shell migration
-        run: python3 tools/migrate-reading-surface-shell.py
+          pivot_path = Path('reader-reading-pivot.js')
+          pivot = pivot_path.read_text()
+          old = """  document.addEventListener('myessays:reading-mode-stable', () => {\n    refreshReadingBlocks();\n    scheduleEvaluate({ immediate: true });\n  });\n"""
+          new = """  document.addEventListener('myessays:reading-mode-stable', () => {\n    // A language switch changes the DOM, not the reader's semantic position.\n    // Keep the restored Primary Pivot fixed until the next real user scroll;\n    // only recompute the Reading Zone against the new physical paragraphs.\n    refreshReadingBlocks();\n    syncReadingZone(visibleReadingItems());\n    requestAnimationFrame(syncCompareUI);\n  });\n"""
+          if pivot.count(old) != 1:
+              raise SystemExit(f'expected one stable handler anchor, got {pivot.count(old)}')
+          pivot_path.write_text(pivot.replace(old, new, 1))
+
+          test_path = Path('tests/reader-reading-pivot.test.js')
+          tests = test_path.read_text()
+          marker = "test('stable language handoff keeps the restored Pivot until user scroll', () => {"
+          if marker not in tests:
+              tests += """\n\ntest('stable language handoff keeps the restored Pivot until user scroll', () => {\n  const pivot = read('reader-reading-pivot.js');\n  const stableStart = pivot.indexOf(\"document.addEventListener('myessays:reading-mode-stable'\");\n  const stableEnd = pivot.indexOf(\"document.addEventListener('myessays:reading-location-changed'\", stableStart);\n  assert.ok(stableStart >= 0 && stableEnd > stableStart, 'stable handler should be inspectable');\n  const stableHandler = pivot.slice(stableStart, stableEnd);\n  assert.match(stableHandler, /refreshReadingBlocks\\(\\)/);\n  assert.match(stableHandler, /syncReadingZone\\(visibleReadingItems\\(\\)\\)/);\n  assert.doesNotMatch(stableHandler, /scheduleEvaluate|candidatePivot|setPivot/);\n  assert.match(pivot, /window\\.addEventListener\\('scroll', \\(\\) => scheduleEvaluate\\(\\)/);\n});\n"""
+              test_path.write_text(tests)
+          PY
 
       - name: Run static tests
         run: node --test tests/*.test.js
 
-      - name: Commit shell migration
+      - name: Commit stabilization
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reader-v2.js reader-mode-shell.js reader-mode-shell.css tests/reader-reading-pivot.test.js tests/reader-mode-shell.test.js scripts/reading-locator-diagnostic.cjs scripts/reading-focus-instant-qa.cjs scripts/reading-versions-qa.cjs scripts/japanese-reference-qa.cjs scripts/reading-mode-url-qa.cjs
-          git commit -m "Make Reading Mode Shell the sole progress surface"
+          git add reader-reading-pivot.js tests/reader-reading-pivot.test.js
+          git commit -m "Preserve Reading Pivot across language stable boundary"
           git push
