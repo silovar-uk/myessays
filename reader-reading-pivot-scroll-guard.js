@@ -13,8 +13,9 @@
     root.classList.remove('is-reading-mode-switching');
   }
 
-  // The guard owns no reading coordinate. Its only job is to keep CSS smooth
-  // scrolling out of semantic handoffs while Pivot / Locators restore the eye-line.
+  // The guard owns no reading coordinate or visual transition. Its only job is
+  // to keep CSS smooth scrolling out of semantic handoffs while Pivot / Locators
+  // restore the eye-line; Reading Surface animation remains presentation-only.
   document.addEventListener('myessays:reader-version-intent', event => {
     const next = event.detail?.version || '';
     const current = window.MyEssaysReaderVersions?.currentVersion?.() || '';
