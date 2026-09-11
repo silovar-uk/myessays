@@ -100,23 +100,25 @@ async function assertLanguageLens(page) {
   await page.waitForFunction(() => document.querySelector('#languageLensPanel')?.hidden === true);
 }
 
-async function assertCrossParagraphSelectionCloses(page) {
+async function assertCrossParagraphSelectionUsesStartParagraph(page) {
   await page.evaluate(() => {
-    const paragraphs = Array.from(document.querySelectorAll('#readerContent p')).filter(p => (p.textContent || '').trim());
+    const paragraphs = [...document.querySelectorAll('#readerContent p')].filter(p => (p.textContent || '').trim());
     const first = paragraphs.find(p => (p.textContent || '').includes('But that creates an obvious tension.'));
-    const index = paragraphs.indexOf(first);
-    const second = paragraphs[index + 1];
+    const second = paragraphs[paragraphs.indexOf(first) + 1];
     if (!first || !second) return;
     const range = document.createRange();
     range.setStart(first, 0);
     range.setEnd(second, second.childNodes.length);
-    const selection = window.getSelection();
+    const selection = getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
     document.dispatchEvent(new Event('selectionchange', { bubbles: true }));
   });
-  await page.waitForFunction(() => document.querySelector('#japaneseReferencePanel')?.hidden === true);
+  await page.waitForSelector('#japaneseReferencePanel:not([hidden])');
+  assert.match((await page.locator('.japanese-reference-selected-text').innerText()).trim(), /But that creates an obvious tension\./);
+  assert.ok((await page.locator('.japanese-reference-selection-mark').innerText()).trim().length > 0);
 }
+
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
@@ -143,7 +145,7 @@ async function assertCrossParagraphSelectionCloses(page) {
   if (tocBox) assert.equal(overlaps(panelBox, tocBox), false, 'Japanese reference panel must not cover the Reader Map');
   if (modeBox) assert.equal(overlaps(panelBox, modeBox), false, 'Japanese reference panel must not cover the reading mode control');
 
-  await assertCrossParagraphSelectionCloses(page);
+  await assertCrossParagraphSelectionUsesStartParagraph(page);
   const desktopSelectedAgain = await selectTranslatedEnglishParagraph(page);
   await assertJapaneseReference(page, desktopSelectedAgain);
 

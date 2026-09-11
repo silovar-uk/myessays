@@ -333,8 +333,8 @@
     el.id = 'japaneseReferencePanel';
     el.className = 'japanese-reference-panel';
     el.hidden = true;
-    el.setAttribute('aria-label', '選択した外国語Mixと日本語版の比較');
-    el.innerHTML = '<div class="japanese-reference-handle" aria-hidden="true"></div><div class="japanese-reference-head"><div><p class="japanese-reference-kicker">BILINGUAL COMPARE</p><h2>選択箇所</h2></div><button class="japanese-reference-close" type="button" aria-label="比較を閉じる">×</button></div><p class="japanese-reference-status" aria-live="polite"></p><section class="japanese-reference-block japanese-reference-selected"><p class="japanese-reference-label">SELECTED</p><div class="japanese-reference-selected-text"></div></section><section class="japanese-reference-block japanese-reference-original"><p class="japanese-reference-label">JAPANESE ORIGINAL</p><div class="japanese-reference-text"></div></section>';
+    el.setAttribute('aria-label', '選択した表現を含む段落と日本語版の比較');
+    el.innerHTML = '<div class="japanese-reference-handle" aria-hidden="true"></div><div class="japanese-reference-head"><div><p class="japanese-reference-kicker">BILINGUAL COMPARE</p><h2>この段落</h2></div><button class="japanese-reference-close" type="button" aria-label="比較を閉じる">×</button></div><p class="japanese-reference-status" aria-live="polite"></p><section class="japanese-reference-block japanese-reference-selected"><p class="japanese-reference-label">CURRENT PARAGRAPH</p><div class="japanese-reference-selected-text"></div></section><section class="japanese-reference-block japanese-reference-original"><p class="japanese-reference-label">JAPANESE ORIGINAL</p><div class="japanese-reference-text"></div></section>';
     view.appendChild(el);
     el.querySelector('.japanese-reference-close')?.addEventListener('click', () => { el.hidden = true; });
     return el;
@@ -345,22 +345,38 @@
     if (el) el.hidden = true;
   }
 
-  function show(reference, selectedText) {
+  function renderSelectedParagraph(target, context) {
+    target.replaceChildren();
+    const text = String(context?.paragraphText || '');
+    if (!text) return;
+    const start = Math.max(0, Math.min(text.length, Number(context?.startOffset) || 0));
+    const end = Math.max(start, Math.min(text.length, Number(context?.endOffset) || start));
+    if (start) target.appendChild(document.createTextNode(text.slice(0, start)));
+    if (end > start) {
+      const mark = document.createElement('mark');
+      mark.className = 'japanese-reference-selection-mark';
+      mark.textContent = text.slice(start, end);
+      target.appendChild(mark);
+    }
+    if (end < text.length) target.appendChild(document.createTextNode(text.slice(end)));
+    if (!target.childNodes.length) target.textContent = text;
+  }
+
+  function show(reference, selection) {
     const el = panel();
     const status = el.querySelector('.japanese-reference-status');
     const selected = el.querySelector('.japanese-reference-selected-text');
     const body = el.querySelector('.japanese-reference-text');
     const originalBlock = el.querySelector('.japanese-reference-original');
-    selected.textContent = selectedText || '';
-    el.dataset.pairId = reference?.pairId || '';
-
+    renderSelectedParagraph(selected, selection);
+    el.dataset.pairId = selection?.pairId || reference?.pairId || '';
     if (!reference?.text) {
       status.textContent = 'この位置に対応する日本語段落がありません';
       body.textContent = '';
       originalBlock.hidden = true;
     } else {
       const positional = reference.confidence === 'pair-position';
-      status.textContent = positional ? '対応する日本語段落（段落位置で対応）' : '対応する日本語段落';
+      status.textContent = positional ? '同じ読書位置の日本語段落（段落位置で対応）' : '同じ読書位置の日本語段落';
       body.textContent = reference.text;
       originalBlock.hidden = false;
     }
@@ -405,32 +421,42 @@
     return element?.closest?.(BLOCK_SELECTOR) || null;
   }
 
+  function offsetWithinBlock(block, node, offset) {
+    if (!block || !node) return null;
+    if (node !== block && !block.contains(node)) return null;
+    const probe = document.createRange();
+    probe.selectNodeContents(block);
+    try { probe.setEnd(node, offset); } catch { return null; }
+    return probe.toString().length;
+  }
+
   function selectionContext() {
     const selection = window.getSelection();
-    if (!selection || selection.isCollapsed || !selection.rangeCount) return null;
-    const text = selection.toString().trim();
-    if (!text) return null;
+    if (!selection || selection.isCollapsed || !selection.rangeCount || !selection.toString().trim()) return null;
     const range = selection.getRangeAt(0);
     const startBlock = closestBlock(range.startContainer);
+    if (!startBlock || !content.contains(startBlock)) return null;
     const endBlock = closestBlock(range.endContainer);
-    const touchesContent = Boolean(
-      (startBlock && content.contains(startBlock)) ||
-      (endBlock && content.contains(endBlock))
-    );
-    if (!touchesContent) return null;
-    if (!startBlock || !endBlock || startBlock !== endBlock || !content.contains(startBlock)) return { invalid: true };
-    return { block: startBlock, text };
+    const paragraphText = String(startBlock.textContent || '');
+    const startOffset = offsetWithinBlock(startBlock, range.startContainer, range.startOffset);
+    const endOffset = startBlock === endBlock
+      ? offsetWithinBlock(startBlock, range.endContainer, range.endOffset)
+      : paragraphText.length;
+    if (startOffset == null) return null;
+    return {
+      block: startBlock,
+      pairId: startBlock.dataset.readingLocator || startBlock.dataset.pairId || '',
+      paragraphText,
+      startOffset,
+      endOffset: endOffset == null ? paragraphText.length : endOffset
+    };
   }
 
   function resolve() {
     clearTimeout(timer);
     if (view.hidden || version === 'ja' || essayId !== (content.dataset.readerEssayId || essayId)) return;
     const selection = selectionContext();
-    if (selection?.invalid) {
-      closePanel();
-      return;
-    }
-    if (selection?.block) show(references.get(selection.block) || null, selection.text);
+    if (selection?.block) show(references.get(selection.block) || null, selection);
   }
 
   const schedule = delay => {
