@@ -173,3 +173,18 @@ test('semantic handoff ignores layout scroll until a real reader gesture', () =>
   assert.match(locators, /addEventListener\('wheel', readerGesture/);
   assert.match(locators, /addEventListener\('touchmove', readerGesture/);
 });
+
+
+test('semantic restore begins only after View Transition final geometry', () => {
+  const versions = read('reader-versions.js');
+  const updateDone = versions.indexOf('await transition.updateCallbackDone');
+  const finished = versions.indexOf('await transition.finished', updateDone);
+  const languageDispatch = versions.indexOf('return dispatchLanguageChanged({ id, version, locator, pairId })', finished);
+  assert.ok(updateDone >= 0, 'View Transition DOM update boundary should exist');
+  assert.ok(finished > updateDone, 'final geometry must wait for transition.finished');
+  assert.ok(languageDispatch > finished, 'semantic language handoff must start after transition.finished');
+  const commitStart = versions.indexOf('async function commitVersionSwap');
+  const helperStart = versions.indexOf('function dispatchLanguageChanged', commitStart);
+  const commitBody = versions.slice(commitStart, helperStart);
+  assert.doesNotMatch(commitBody, /reader-language-changed/);
+});

@@ -159,6 +159,11 @@
     document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
       detail: { essayId: id, version, locator, pairId }
     }));
+    return true;
+  }
+
+  function dispatchLanguageChanged({ id, version, locator, pairId }) {
+    if (id !== currentEssayId()) return false;
     document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {
       detail: { essayId: id, mode: version, locator, pairId }
     }));
@@ -331,10 +336,15 @@
         document.activeViewTransition?.skipTransition?.();
         const transition = document.startViewTransition(update);
         await transition.updateCallbackDone;
+        // View Transition snapshots may continue affecting document geometry
+        // after the DOM callback is complete. Semantic restoration must target
+        // the final live layout, not the intermediate transition geometry.
+        await transition.finished;
       } else {
         await update();
       }
-      return completed;
+      if (!completed || id !== currentEssayId()) return false;
+      return dispatchLanguageChanged({ id, version, locator, pairId });
     } finally {
       switchInFlight = false;
     }
