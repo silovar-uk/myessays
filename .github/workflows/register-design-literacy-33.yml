@@ -1,0 +1,39 @@
+name: Register Design Literacy 33
+on:
+  push:
+    paths:
+      - '.github/workflows/register-design-literacy-33.yml'
+permissions:
+  contents: write
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Register Japanese canonical and English Mix
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          essay='essays/2026-09-11-design-literacy-line-break-semantic-rhythm.md'
+          aid='design-literacy-line-break-semantic-rhythm'
+          en='english-mix/design-literacy-line-break-semantic-rhythm.md'
+          p=Path('data/index.json')
+          d=json.loads(p.read_text())
+          arr=d['essays']
+          if essay not in arr:
+              arr.insert(0, essay)
+          p.write_text(json.dumps(d, ensure_ascii=False, separators=(',',':'))+'\n')
+          p=Path('data/versions-index.json')
+          d=json.loads(p.read_text())
+          articles=d.setdefault('articles',{})
+          articles.setdefault(aid,{})['en-mix']=en
+          p.write_text(json.dumps(d, ensure_ascii=False, separators=(',',':'))+'\n')
+          PY
+      - name: Commit indexes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git diff --cached --quiet || git commit -m 'Register Design Literacy #33'
+          git push
