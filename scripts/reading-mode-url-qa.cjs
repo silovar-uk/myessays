@@ -40,7 +40,7 @@ async function openCase(browser, { id, lang, preferred, expectedVersion, expecte
       desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
       transitioning: Boolean(window.MyEssaysInstantReadingModes?.isTransitioning?.()),
       activeTransition: window.MyEssaysInstantReadingModes?.activeTransitionVersion?.() || '',
-      checked: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
+      checked: document.querySelector('#readerModeShell [aria-checked="true"]')?.dataset.readingModeIntent || '',
       pivot: window.MyEssaysReadingPivot?.locator?.() || '',
       locatorAnchor: Boolean(window.MyEssaysReadingLocators?.hasSwitchAnchor?.()),
       pivotAnchor: Boolean(window.MyEssaysReadingPivot?.hasPendingSwitchAnchor?.()),
@@ -54,7 +54,7 @@ async function openCase(browser, { id, lang, preferred, expectedVersion, expecte
     route: window.MyEssaysRoute.parse(),
     current: window.MyEssaysReaderVersions.currentVersion(),
     desired: window.MyEssaysInstantReadingModes.desiredVersion(),
-    checked: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || ''
+    checked: document.querySelector('#readerModeShell [aria-checked="true"]')?.dataset.readingModeIntent || ''
   }));
   assert(state.route.articleId === id, `article identity mismatch: ${JSON.stringify(state)}`);
   assert(state.route.lang === expectedLang, `URL language mismatch: ${JSON.stringify(state)}`);
@@ -79,7 +79,7 @@ async function openCase(browser, { id, lang, preferred, expectedVersion, expecte
 
     const { context, page } = await openCase(browser, { id: THREE, lang: 'ja', expectedVersion: 'ja', expectedLang: 'ja' });
     await page.evaluate(() => {
-      const control = document.getElementById('readerLanguageInstantDirect');
+      const control = document.getElementById('readerModeShell');
       control.querySelector('[data-reading-mode-intent="en-mix"]').click();
       setTimeout(() => control.querySelector('[data-reading-mode-intent="es-mix"]').click(), 18);
     });

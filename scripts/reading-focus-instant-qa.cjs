@@ -5,7 +5,7 @@ const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const THREE_MODE_ID = 'confucius-knowing-liking-enjoying';
 const TWO_MODE_ID = 'watanabe-hisanobu-same-baseball-different-chair';
 const JA_ONLY_ID = 'urawa-kashima-control-the-controllable';
-const CONTROL = '#readerLanguageInstantDirect';
+const CONTROL = '#readerModeShell';
 
 async function nextFrames(page, count = 2) {
   await page.evaluate(frameCount => new Promise(resolve => {
@@ -163,9 +163,10 @@ async function waitForPreload(page, expectedVersions) {
 }
 
 async function waitForDirectControl(page, count) {
-  await page.waitForSelector(CONTROL);
+  await page.waitForSelector(CONTROL, { state: 'visible' });
   await page.waitForFunction(expected => (
-    document.querySelectorAll('#readerLanguageInstantDirect [data-reading-mode-intent]').length === expected
+    [...document.querySelectorAll('#readerModeShell [data-reading-mode-intent]')]
+      .filter(button => !button.disabled).length === expected
   ), count, { timeout: 10000 });
 }
 
@@ -178,7 +179,7 @@ async function modeDebugState(page) {
     activeTransition: window.MyEssaysInstantReadingModes?.activeTransitionVersion?.() || '',
     pivot: window.MyEssaysReadingPivot?.locator?.() || '',
     guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
-    checked: [...document.querySelectorAll('#readerLanguageInstantDirect [data-reading-mode-intent]')]
+    checked: [...document.querySelectorAll('#readerModeShell [data-reading-mode-intent]')]
       .filter(button => button.getAttribute('aria-checked') === 'true')
       .map(button => button.dataset.readingModeIntent),
     missingClicks: window.__readingModeMissing || []
@@ -188,7 +189,7 @@ async function modeDebugState(page) {
 async function waitForMode(page, version) {
   try {
     await page.waitForFunction(expected => {
-      const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+      const button = document.querySelector(`#readerModeShell [data-reading-mode-intent="${expected}"]`);
       return window.MyEssaysReaderVersions?.currentVersion?.() === expected
         && window.MyEssaysInstantReadingModes?.desiredVersion?.() === expected
         && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
@@ -202,7 +203,7 @@ async function waitForMode(page, version) {
 
 async function burst(page, sequence, gap = 18) {
   await page.evaluate(({ sequence: versions, gap: delay }) => {
-    const control = document.getElementById('readerLanguageInstantDirect');
+    const control = document.getElementById('readerModeShell');
     window.__readingModeMissing = [];
     versions.forEach((version, index) => {
       setTimeout(() => {
@@ -225,7 +226,7 @@ async function semanticPivot(page) {
       locator,
       top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
       physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
-      active: document.querySelector('#readerLanguageInstantDirect [aria-checked="true"]')?.dataset.readingModeIntent || '',
+      active: document.querySelector('#readerModeShell [aria-checked="true"]')?.dataset.readingModeIntent || '',
       missing: window.__readingModeMissing || []
     };
   });
@@ -249,7 +250,7 @@ async function semanticPivot(page) {
   await waitForMode(page, 'es-mix');
   await nextFrames(page, 3);
   const afterBurst = await semanticPivot(page);
-  assert.deepEqual(afterBurst.missing, [], 'persistent control must remain connected throughout rapid switching');
+  assert.deepEqual(afterBurst.missing, [], 'Reading Mode Shell must remain connected throughout rapid switching');
   assert.equal(afterBurst.active, 'es-mix', 'latest rapid intent must own the active control');
   assert.equal(afterBurst.locator, before.actualLocator, 'rapid switch must preserve the canonical semantic locator');
   assert.ok(Math.abs(afterBurst.top - before.actualTop) <= 3, `rapid switch moved the semantic eye-line by ${afterBurst.top - before.actualTop}px`);
@@ -258,7 +259,7 @@ async function semanticPivot(page) {
   await waitForMode(page, 'ja');
   await nextFrames(page, 3);
   const returned = await semanticPivot(page);
-  assert.deepEqual(returned.missing, [], 'rapid round trip must keep persistent controls mounted');
+  assert.deepEqual(returned.missing, [], 'rapid round trip must keep Reading Mode Shell mounted');
   assert.equal(returned.locator, before.actualLocator, 'rapid round trip must preserve semantic locator');
   assert.ok(Math.abs(returned.top - before.actualTop) <= 3, `rapid round trip moved eye-line by ${returned.top - before.actualTop}px`);
 
@@ -281,7 +282,7 @@ async function semanticPivot(page) {
   await openEssay(page, JA_ONLY_ID);
   await scrollIntoBody(page, 0.30, 'ja-only-initial');
   await assertThirdFromTopFocus(page, 'JA-only desktop', { requireUnpaintedPivot: true });
-  assert.equal(await page.locator(CONTROL).count(), 0, 'JA-only article should not invent language controls');
+  assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent]:not(:disabled)`).count(), 1, 'JA-only article should expose only Japanese as an enabled Reading Mode');
 
   await page.setViewportSize({ width: 320, height: 700 });
   await openEssay(page, TWO_MODE_ID);

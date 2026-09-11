@@ -82,8 +82,11 @@ test('Reading Surface has one semantic progress owner and an opacity-only Ink Di
   const instant = read('reader-language-instant.js');
   const css = read('reader-reading-pivot.css');
   assert.doesNotMatch(ui, /reading-progress-track|reading-progress-bar|function updateProgress/);
-  assert.match(v2, /reader-v2-header-progress/);
+  const shell = read('reader-mode-shell.js');
+  assert.doesNotMatch(v2, /reader-v2-header-progress/);
   assert.match(v2, /MyEssaysReadingLocators\?\.progress\?\.\(\)/);
+  assert.match(shell, /reader-mode-shell__progress/);
+  assert.match(shell, /MyEssaysReadingLocators\?\.progress\?\.\(\)/);
   assert.match(locators, /progress: semanticProgress/);
   assert.match(locators, /alignCapturedForSnapshot/);
   assert.match(versions, /document\.startViewTransition\(update\)/);

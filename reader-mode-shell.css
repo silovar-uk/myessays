@@ -15,7 +15,6 @@ body.reader-v2-open .reader-v2-header-inner {
 }
 
 body.reader-v2-open .reader-v2-current,
-body.reader-v2-open .reader-v2-header-progress,
 body.reader-v2-open #readerLanguageInstantDirect,
 body.reader-v2-open #readerLanguageSwitch {
   display: none !important;

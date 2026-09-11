@@ -144,13 +144,6 @@
     renderActive();
   }
 
-  function headerProgress() {
-    const transform = document.querySelector('.reader-v2-header-progress span')?.style?.transform || '';
-    const match = transform.match(/scaleX\(([-+]?\d*\.?\d+)\)/);
-    const value = match ? Number(match[1]) : 0;
-    return Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : 0;
-  }
-
   function updateContext(detail = null) {
     const shell = ensureShell();
     if (!shell) return;
@@ -158,9 +151,10 @@
     const title = detail?.sectionTitle
       || document.querySelector('.reader-v2-current-title')?.textContent?.trim()
       || 'Introduction';
+    const semanticRatio = window.MyEssaysReadingLocators?.progress?.().ratio;
     const ratio = Number.isFinite(detail?.progressRatio)
       ? Math.min(1, Math.max(0, detail.progressRatio))
-      : headerProgress();
+      : (Number.isFinite(semanticRatio) ? Math.min(1, Math.max(0, semanticRatio)) : 0);
 
     const section = shell.querySelector('.reader-mode-shell__section');
     const percent = shell.querySelector('.reader-mode-shell__percent');
@@ -211,6 +205,8 @@
   document.addEventListener('myessays:reader-version-changed', () => scheduleSync({ availability: true }));
   document.addEventListener('myessays:reader-language-changed', () => scheduleSync({ availability: true }));
   document.addEventListener('myessays:reading-mode-settled', () => scheduleSync({ availability: true }));
+  document.addEventListener('myessays:reading-mode-stable', () => scheduleSync());
+  document.addEventListener('myessays:reading-progress-changed', () => scheduleSync());
   document.addEventListener('myessays:reading-location-changed', event => {
     if (!readerOpen()) return;
     ensureShell();

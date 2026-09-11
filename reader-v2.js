@@ -271,8 +271,7 @@
               <span aria-hidden="true">☷</span><span class="reader-v2-action-label">目次</span>
             </button>
           </div>
-        </div>
-        <div class="reader-v2-header-progress" aria-hidden="true"><span></span></div>`;
+        </div>`;
       view.prepend(header);
       header.querySelector('.reader-v2-map-toggle')?.addEventListener('click', () => {
         const aside = $('readerAside');
@@ -518,11 +517,7 @@
     const header = ensureHeader();
     if (!header) return;
     const title = header.querySelector('.reader-v2-current-title');
-    const progress = header.querySelector('.reader-v2-header-progress span');
     if (title) title.textContent = locationValue.sectionTitle || 'Introduction';
-    if (progress) {
-      progress.style.transform = `scaleX(${Math.min(1, Math.max(0, locationValue.progressRatio))})`;
-    }
   }
 
   function persistLocation(locationValue, { force = false } = {}) {

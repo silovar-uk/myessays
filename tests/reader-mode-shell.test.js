@@ -42,6 +42,17 @@ test('mobile mode bar remains a three-column direct control with robust targets'
   assert.match(css, /#readerLanguageSwitch/);
 });
 
+
+test('shell is the only visible reading progress surface', () => {
+  const shell = read('reader-mode-shell.js');
+  const v2 = read('reader-v2.js');
+  const ui = read('ui-enhancements.js');
+  assert.match(shell, /reader-mode-shell__progress/);
+  assert.match(shell, /MyEssaysReadingLocators\?\.progress\?\.\(\)/);
+  assert.doesNotMatch(v2, /reader-v2-header-progress/);
+  assert.doesNotMatch(ui, /reading-progress-track|reading-progress-bar/);
+});
+
 test('semantic focus feedback respects reduced motion', () => {
   const css = read('reader-mode-shell.css');
   assert.match(css, /is-language-switch-target/);

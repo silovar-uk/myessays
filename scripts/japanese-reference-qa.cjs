@@ -5,7 +5,7 @@ const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'design-literacy-progressive-disclosure-information-timing';
 const MIX_TARGET = 'But that creates an obvious tension.';
 const EXPECTED_JAPANESE = '矛盾';
-const CONTROL = '#readerLanguageInstantDirect';
+const CONTROL = '#readerModeShell';
 const modeSelector = version => `${CONTROL} [data-reading-mode-intent="${version}"]`;
 
 function overlaps(a, b) {
@@ -19,7 +19,7 @@ async function switchMode(page, version) {
   assert.equal(await button.count(), 1, `Reading Mode choice should exist for ${version}`);
   if ((await button.getAttribute('aria-checked')) !== 'true') await button.click();
   await page.waitForFunction(expected => {
-    const option = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+    const option = document.querySelector(`#readerModeShell [data-reading-mode-intent="${expected}"]`);
     return window.MyEssaysReaderVersions?.currentVersion?.() === expected
       && window.MyEssaysInstantReadingModes?.desiredVersion?.() === expected
       && !window.MyEssaysInstantReadingModes?.isTransitioning?.()

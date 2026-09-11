@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
-const CONTROL = '#readerLanguageInstantDirect';
+const CONTROL = '#readerModeShell';
 const TOLERANCE_PX = 3;
 
 async function readState(page, label) {
@@ -31,12 +31,12 @@ async function switchTo(page, version) {
   const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
   if (current !== version) {
     const button = page.locator(`${CONTROL} [data-reading-mode-intent="${version}"]`);
-    assert.equal(await button.count(), 1, `persistent Reading Mode choice should exist for ${version}`);
+    assert.equal(await button.count(), 1, `visible Reading Mode choice should exist for ${version}`);
     await button.click();
   }
   await page.waitForFunction(expected => {
     const controller = window.MyEssaysInstantReadingModes;
-    const option = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+    const option = document.querySelector(`#readerModeShell [data-reading-mode-intent="${expected}"]`);
     return window.MyEssaysReaderVersions?.currentVersion?.() === expected
       && controller?.desiredVersion?.() === expected
       && !controller?.isTransitioning?.()

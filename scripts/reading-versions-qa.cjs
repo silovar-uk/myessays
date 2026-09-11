@@ -3,8 +3,8 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
-const CONTROL = '#readerLanguageInstantDirect';
-const optionSelector = version => `${CONTROL} .reader-language-direct-option[data-reading-mode-intent="${version}"]`;
+const CONTROL = '#readerModeShell';
+const optionSelector = version => `${CONTROL} .reader-mode-shell__mode[data-reading-mode-intent="${version}"]`;
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -21,6 +21,7 @@ async function pivotState(page, includeScrollY = false) {
       physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
       progress: window.MyEssaysReadingLocators?.progress?.().ratio ?? null,
       progressBars: {
+        shell: document.querySelectorAll('.reader-mode-shell__progress').length,
         header: document.querySelectorAll('.reader-v2-header-progress').length,
         legacy: document.querySelectorAll('.reading-progress-track').length
       },
@@ -51,11 +52,11 @@ async function pivotState(page, includeScrollY = false) {
   await page.waitForSelector('[data-reader-mode-compare]');
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
 
-  assert.equal(await page.locator(CONTROL).count(), 1, 'there should be one persistent language control');
+  assert.equal(await page.locator(CONTROL).count(), 1, 'there should be one Reading Mode Shell');
   assert.equal(await page.locator(CONTROL).getAttribute('role'), 'radiogroup');
   assert.equal(await page.locator(optionSelector('ja')).getAttribute('aria-checked'), 'true');
-  assert.equal(await page.locator(optionSelector('en-mix')).textContent(), 'EN');
-  assert.equal(await page.locator(optionSelector('es-mix')).textContent(), 'ES');
+  assert.equal((await page.locator(optionSelector('en-mix')).textContent()).trim(), 'English Mix');
+  assert.equal((await page.locator(optionSelector('es-mix')).textContent()).trim(), 'Español Mix');
   assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should yield to the one-tap direct language choices');
 
   const canonicalKey = `myessays:reading-state:${ESSAY_ID}`;
@@ -67,7 +68,7 @@ async function pivotState(page, includeScrollY = false) {
     await page.waitForFunction(expected => {
       const actual = window.MyEssaysReaderVersions?.currentVersion?.();
       const controller = window.MyEssaysInstantReadingModes;
-      const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${expected}"]`);
+      const button = document.querySelector(`#readerModeShell [data-reading-mode-intent="${expected}"]`);
       return actual === expected
         && !controller?.isTransitioning?.()
         && button?.getAttribute('aria-checked') === 'true';
@@ -111,7 +112,8 @@ async function pivotState(page, includeScrollY = false) {
   const before = await pivotState(page, true);
   assert.ok(before.scrollY > 300, `expected a meaningful reading position before switch, got ${before.scrollY}`);
   assert.ok(before.locator, 'a canonical Reading Pivot locator should exist before switching');
-  assert.equal(before.progressBars.header, 1, 'Reader V2 must render exactly one progress bar');
+  assert.equal(before.progressBars.shell, 1, 'Reading Mode Shell must render exactly one progress bar');
+  assert.equal(before.progressBars.header, 0, 'Reader V2 must not retain a hidden duplicate progress bar');
   assert.equal(before.progressBars.legacy, 0, 'legacy body progress bar must be removed');
   assert.ok(Number.isFinite(before.progress), 'semantic reading progress should exist');
 
