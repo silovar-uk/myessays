@@ -27,6 +27,45 @@ async function readState(page, label) {
   }, label);
 }
 
+async function installTrace(page) {
+  await page.evaluate(() => {
+    window.__readingPivotTrace = [];
+    const snapshot = (type, detail = null) => {
+      const pivot = window.MyEssaysReadingPivot?.current?.();
+      window.__readingPivotTrace.push({
+        t: Number(performance.now().toFixed(1)),
+        type,
+        detail,
+        version: window.MyEssaysReaderVersions?.currentVersion?.() || '',
+        desired: window.MyEssaysInstantReadingModes?.desiredVersion?.() || '',
+        logical: window.MyEssaysReadingPivot?.locator?.() || '',
+        physical: pivot?.dataset?.readingLocator || '',
+        scrollY: Number(window.scrollY.toFixed(3)),
+        guard: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
+        switchingClass: document.documentElement.classList.contains('is-reading-mode-switching')
+      });
+    };
+    [
+      'myessays:reader-version-intent',
+      'myessays:reader-version-changed',
+      'myessays:reader-language-changed',
+      'myessays:reading-pivot-changed',
+      'myessays:reading-mode-stable',
+      'myessays:reading-mode-settled',
+      'myessays:reading-progress-changed'
+    ].forEach(type => document.addEventListener(type, event => snapshot(type, event.detail || null)));
+    window.addEventListener('scroll', () => snapshot('window:scroll'), { passive: true });
+    window.addEventListener('wheel', () => snapshot('window:wheel'), { passive: true });
+    window.addEventListener('touchmove', () => snapshot('window:touchmove'), { passive: true });
+    snapshot('trace:start');
+  });
+}
+
+async function logTrace(page, label) {
+  const trace = await page.evaluate(() => window.__readingPivotTrace || []);
+  console.log(`READING_PIVOT_TRACE_${label}`, JSON.stringify(trace));
+}
+
 async function switchTo(page, version) {
   const current = await page.evaluate(() => window.MyEssaysReaderVersions?.currentVersion?.() || 'ja');
   if (current !== version) {
@@ -84,6 +123,7 @@ function assertContinuity(actual, baseline, expectedVersion) {
     assert.ok(baseline.logicalLocator, 'JA: a logical Reading Pivot locator should exist');
     assert.ok(Number.isFinite(baseline.semanticTop), 'JA: semantic top should resolve');
     console.log('SEMANTIC_LOCATOR_DIAGNOSTIC', JSON.stringify(baseline));
+    await installTrace(page);
 
     await switchTo(page, 'en-mix');
     const english = await readState(page, 'EN');
@@ -94,6 +134,7 @@ function assertContinuity(actual, baseline, expectedVersion) {
     await switchTo(page, 'es-mix');
     await page.waitForFunction(() => document.querySelector('#readerContent')?.textContent?.includes('Sabemos que es importante'));
     const spanish = await readState(page, 'ES');
+    await logTrace(page, 'JA_EN_ES');
     assertContinuity(spanish, baseline, 'es-mix');
     assert.ok(spanish.scrollY > 200, 'ES: switch must not reset to the top');
     console.log('SEMANTIC_LOCATOR_DIAGNOSTIC', JSON.stringify(spanish));
