@@ -369,12 +369,6 @@
     });
   }
 
-  function readerMoved() {
-    if (semanticRestoreActive) return;
-    if (document.documentElement.classList.contains('is-reading-mode-switching')) return;
-    clearSemanticEyeLineReference();
-  }
-
   function readerGesture() {
     clearSemanticEyeLineReference();
   }
@@ -512,7 +506,8 @@
 
   window.addEventListener('wheel', readerGesture, { passive: true });
   window.addEventListener('touchmove', readerGesture, { passive: true });
-  window.addEventListener('scroll', readerMoved, { passive: true });
+  // A raw scroll event is not sufficient evidence of reader intent: semantic
+  // correction and View Transition layout settling also generate scroll events.
   window.addEventListener('keydown', event => {
     if (keyboardMayMoveReader(event)) readerGesture();
   }, true);

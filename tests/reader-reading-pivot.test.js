@@ -157,3 +157,18 @@ test('stable language handoff keeps the restored Pivot until user scroll', () =>
   assert.doesNotMatch(stableHandler, /scheduleEvaluate|candidatePivot|setPivot/);
   assert.match(pivot, /window\.addEventListener\('scroll', \(\) => scheduleEvaluate\(\)/);
 });
+
+
+test('semantic handoff ignores layout scroll until a real reader gesture', () => {
+  const pivot = read('reader-reading-pivot.js');
+  const locators = read('reading-locators.js');
+  assert.match(pivot, /let semanticHandoffHold = false/);
+  assert.match(pivot, /semanticHandoffHold = true;[\s\S]*?syncReadingZone/);
+  assert.match(pivot, /Date\.now\(\) < lockUntil \|\|[\s\S]*?semanticHandoffHold \|\|/);
+  assert.match(pivot, /window\.addEventListener\('wheel', releaseSemanticHandoffHold/);
+  assert.match(pivot, /window\.addEventListener\('touchmove', releaseSemanticHandoffHold/);
+  assert.match(pivot, /keyboardMayMoveReader/);
+  assert.doesNotMatch(locators, /addEventListener\('scroll', readerMoved/);
+  assert.match(locators, /addEventListener\('wheel', readerGesture/);
+  assert.match(locators, /addEventListener\('touchmove', readerGesture/);
+});

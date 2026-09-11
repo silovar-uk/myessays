@@ -22,6 +22,7 @@
   let lockUntil = 0;
   let lastEssayId = '';
   let pendingSwitchAnchor = null;
+  let semanticHandoffHold = false;
 
   const versions = () => window.MyEssaysReaderVersions;
 
@@ -212,6 +213,7 @@
     if (
       !readerOpen() ||
       Date.now() < lockUntil ||
+      semanticHandoffHold ||
       versions()?.isSwitching?.() ||
       handoffScrollActive()
     ) return;
@@ -279,6 +281,7 @@
   function restoreSwitchAnchor(event) {
     const anchor = pendingSwitchAnchor;
     if (!anchor || anchor.essayId !== event.detail?.essayId) {
+      semanticHandoffHold = false;
       lockUntil = 0;
       refreshReadingBlocks();
       return scheduleEvaluate({ immediate: true });
@@ -289,6 +292,7 @@
       const target = findSwitchTarget(anchor);
       pendingSwitchAnchor = null;
       if (!target) {
+        semanticHandoffHold = false;
         lockUntil = 0;
         return scheduleEvaluate({ immediate: true });
       }
@@ -308,6 +312,10 @@
         reason: 'language-switch',
         logicalLocator: anchor.locator || physicalLocator(target)
       });
+      // DOM/layout settling can emit trusted scroll events after the semantic
+      // correction. Hold the restored Pivot until the reader expresses a real
+      // movement gesture; raw scroll events alone are not reader intent.
+      semanticHandoffHold = true;
       syncReadingZone(visibleReadingItems());
       lockUntil = Date.now() + SWITCH_LOCK_MS;
     }));
@@ -373,6 +381,7 @@
       if (!sameEssayHandoff) {
         pendingSwitchAnchor = null;
         logicalPivotLocator = '';
+        semanticHandoffHold = false;
         lockUntil = 0;
       }
     }
@@ -417,8 +426,25 @@
   });
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));
 
+  function keyboardMayMoveReader(event) {
+    if (event.defaultPrevented) return false;
+    const target = event.target;
+    if (target instanceof HTMLElement && target.closest('input, textarea, select, [contenteditable="true"]')) return false;
+    return ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key);
+  }
+
+  function releaseSemanticHandoffHold() {
+    semanticHandoffHold = false;
+  }
+
+  window.addEventListener('wheel', releaseSemanticHandoffHold, { passive: true });
+  window.addEventListener('touchmove', releaseSemanticHandoffHold, { passive: true });
+  window.addEventListener('keydown', event => {
+    if (keyboardMayMoveReader(event)) releaseSemanticHandoffHold();
+  }, true);
   window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });
   window.addEventListener('resize', () => {
+    semanticHandoffHold = false;
     refreshReadingBlocks();
     scheduleEvaluate({ immediate: true });
     requestAnimationFrame(syncCompareUI);
@@ -426,6 +452,7 @@
 
   window.addEventListener('hashchange', () => {
     logicalPivotLocator = '';
+    semanticHandoffHold = false;
     readingBlocksCache = [];
     clearReadingZone();
     requestAnimationFrame(initialize);
