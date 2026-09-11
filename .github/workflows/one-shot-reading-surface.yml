@@ -1,4 +1,4 @@
-name: One-shot semantic handoff gesture gate
+name: One-shot final-geometry semantic restore
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Gate post-handoff Pivot updates on reader gestures
+      - name: Restore semantic eye-line only after final transition geometry
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -30,85 +30,40 @@ jobs:
                   raise SystemExit(f'{label}: expected exactly one anchor, got {count}')
               return text.replace(old, new, 1)
 
-          pivot_path = Path('reader-reading-pivot.js')
-          pivot = pivot_path.read_text()
-          pivot = replace_once(
-              pivot,
-              """  let lastEssayId = '';\n  let pendingSwitchAnchor = null;\n""",
-              """  let lastEssayId = '';\n  let pendingSwitchAnchor = null;\n  let semanticHandoffHold = false;\n""",
-              'pivot semantic hold state'
-          )
-          pivot = replace_once(
-              pivot,
-              """      Date.now() < lockUntil ||\n      versions()?.isSwitching?.() ||\n      handoffScrollActive()\n""",
-              """      Date.now() < lockUntil ||\n      semanticHandoffHold ||\n      versions()?.isSwitching?.() ||\n      handoffScrollActive()\n""",
-              'pivot evaluation hold guard'
-          )
-          pivot = replace_once(
-              pivot,
-              """    if (!anchor || anchor.essayId !== event.detail?.essayId) {\n      lockUntil = 0;\n      refreshReadingBlocks();\n      return scheduleEvaluate({ immediate: true });\n    }\n""",
-              """    if (!anchor || anchor.essayId !== event.detail?.essayId) {\n      semanticHandoffHold = false;\n      lockUntil = 0;\n      refreshReadingBlocks();\n      return scheduleEvaluate({ immediate: true });\n    }\n""",
-              'pivot missing anchor release'
-          )
-          pivot = replace_once(
-              pivot,
-              """      if (!target) {\n        lockUntil = 0;\n        return scheduleEvaluate({ immediate: true });\n      }\n""",
-              """      if (!target) {\n        semanticHandoffHold = false;\n        lockUntil = 0;\n        return scheduleEvaluate({ immediate: true });\n      }\n""",
-              'pivot missing target release'
-          )
-          pivot = replace_once(
-              pivot,
-              """      setPivot(target, {\n        reason: 'language-switch',\n        logicalLocator: anchor.locator || physicalLocator(target)\n      });\n      syncReadingZone(visibleReadingItems());\n      lockUntil = Date.now() + SWITCH_LOCK_MS;\n""",
-              """      setPivot(target, {\n        reason: 'language-switch',\n        logicalLocator: anchor.locator || physicalLocator(target)\n      });\n      // DOM/layout settling can emit trusted scroll events after the semantic\n      // correction. Hold the restored Pivot until the reader expresses a real\n      // movement gesture; raw scroll events alone are not reader intent.\n      semanticHandoffHold = true;\n      syncReadingZone(visibleReadingItems());\n      lockUntil = Date.now() + SWITCH_LOCK_MS;\n""",
-              'pivot handoff hold engage'
-          )
-          pivot = replace_once(
-              pivot,
-              """        pendingSwitchAnchor = null;\n        logicalPivotLocator = '';\n        lockUntil = 0;\n""",
-              """        pendingSwitchAnchor = null;\n        logicalPivotLocator = '';\n        semanticHandoffHold = false;\n        lockUntil = 0;\n""",
-              'pivot route hold reset'
-          )
-          pivot = replace_once(
-              pivot,
-              """  document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));\n\n  window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });\n  window.addEventListener('resize', () => {\n    refreshReadingBlocks();\n    scheduleEvaluate({ immediate: true });\n""",
-              """  document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));\n\n  function keyboardMayMoveReader(event) {\n    if (event.defaultPrevented) return false;\n    const target = event.target;\n    if (target instanceof HTMLElement && target.closest('input, textarea, select, [contenteditable=\"true\"]')) return false;\n    return ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key);\n  }\n\n  function releaseSemanticHandoffHold() {\n    semanticHandoffHold = false;\n  }\n\n  window.addEventListener('wheel', releaseSemanticHandoffHold, { passive: true });\n  window.addEventListener('touchmove', releaseSemanticHandoffHold, { passive: true });\n  window.addEventListener('keydown', event => {\n    if (keyboardMayMoveReader(event)) releaseSemanticHandoffHold();\n  }, true);\n  window.addEventListener('scroll', () => scheduleEvaluate(), { passive: true });\n  window.addEventListener('resize', () => {\n    semanticHandoffHold = false;\n    refreshReadingBlocks();\n    scheduleEvaluate({ immediate: true });\n""",
-              'pivot real reader movement gate'
-          )
-          pivot = replace_once(
-              pivot,
-              """  window.addEventListener('hashchange', () => {\n    logicalPivotLocator = '';\n    readingBlocksCache = [];\n""",
-              """  window.addEventListener('hashchange', () => {\n    logicalPivotLocator = '';\n    semanticHandoffHold = false;\n    readingBlocksCache = [];\n""",
-              'pivot hash hold reset'
-          )
-          pivot_path.write_text(pivot)
+          path = Path('reader-versions.js')
+          source = path.read_text()
 
-          locators_path = Path('reading-locators.js')
-          locators = locators_path.read_text()
-          old_reader_moved = """  function readerMoved() {\n    if (semanticRestoreActive) return;\n    if (document.documentElement.classList.contains('is-reading-mode-switching')) return;\n    clearSemanticEyeLineReference();\n  }\n\n"""
-          locators = replace_once(locators, old_reader_moved, '', 'remove raw scroll semantic invalidation')
-          locators = replace_once(
-              locators,
-              """  window.addEventListener('wheel', readerGesture, { passive: true });\n  window.addEventListener('touchmove', readerGesture, { passive: true });\n  window.addEventListener('scroll', readerMoved, { passive: true });\n  window.addEventListener('keydown', event => {\n""",
-              """  window.addEventListener('wheel', readerGesture, { passive: true });\n  window.addEventListener('touchmove', readerGesture, { passive: true });\n  // A raw scroll event is not sufficient evidence of reader intent: semantic\n  // correction and View Transition layout settling also generate scroll events.\n  window.addEventListener('keydown', event => {\n""",
-              'locators gesture-only reference release'
+          source = replace_once(
+              source,
+              """    document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {\n      detail: { essayId: id, version, locator, pairId }\n    }));\n    document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {\n      detail: { essayId: id, mode: version, locator, pairId }\n    }));\n    return true;\n  }\n\n  function waitForReadySignal""",
+              """    document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {\n      detail: { essayId: id, version, locator, pairId }\n    }));\n    return true;\n  }\n\n  function dispatchLanguageChanged({ id, version, locator, pairId }) {\n    if (id !== currentEssayId()) return false;\n    document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {\n      detail: { essayId: id, mode: version, locator, pairId }\n    }));\n    return true;\n  }\n\n  function waitForReadySignal""",
+              'separate language-changed from DOM commit'
           )
-          locators_path.write_text(locators)
+
+          source = replace_once(
+              source,
+              """      if (canAnimateReadingSurface()) {\n        document.activeViewTransition?.skipTransition?.();\n        const transition = document.startViewTransition(update);\n        await transition.updateCallbackDone;\n      } else {\n        await update();\n      }\n      return completed;\n""",
+              """      if (canAnimateReadingSurface()) {\n        document.activeViewTransition?.skipTransition?.();\n        const transition = document.startViewTransition(update);\n        await transition.updateCallbackDone;\n        // View Transition snapshots may continue affecting document geometry\n        // after the DOM callback is complete. Semantic restoration must target\n        // the final live layout, not the intermediate transition geometry.\n        await transition.finished;\n      } else {\n        await update();\n      }\n      if (!completed || id !== currentEssayId()) return false;\n      return dispatchLanguageChanged({ id, version, locator, pairId });\n""",
+              'wait for final transition geometry before semantic restore'
+          )
+
+          path.write_text(source)
 
           test_path = Path('tests/reader-reading-pivot.test.js')
           tests = test_path.read_text()
-          marker = "test('semantic handoff ignores layout scroll until a real reader gesture', () => {"
+          marker = "test('semantic restore begins only after View Transition final geometry', () => {"
           if marker not in tests:
-              tests += """\n\ntest('semantic handoff ignores layout scroll until a real reader gesture', () => {\n  const pivot = read('reader-reading-pivot.js');\n  const locators = read('reading-locators.js');\n  assert.match(pivot, /let semanticHandoffHold = false/);\n  assert.match(pivot, /semanticHandoffHold = true;[\\s\\S]*?syncReadingZone/);\n  assert.match(pivot, /Date\\.now\\(\\) < lockUntil \\|\\|[\\s\\S]*?semanticHandoffHold \\|\\|/);\n  assert.match(pivot, /window\\.addEventListener\\('wheel', releaseSemanticHandoffHold/);\n  assert.match(pivot, /window\\.addEventListener\\('touchmove', releaseSemanticHandoffHold/);\n  assert.match(pivot, /keyboardMayMoveReader/);\n  assert.doesNotMatch(locators, /addEventListener\\('scroll', readerMoved/);\n  assert.match(locators, /addEventListener\\('wheel', readerGesture/);\n  assert.match(locators, /addEventListener\\('touchmove', readerGesture/);\n});\n"""
+              tests += """\n\ntest('semantic restore begins only after View Transition final geometry', () => {\n  const versions = read('reader-versions.js');\n  const updateDone = versions.indexOf('await transition.updateCallbackDone');\n  const finished = versions.indexOf('await transition.finished', updateDone);\n  const languageDispatch = versions.indexOf('return dispatchLanguageChanged({ id, version, locator, pairId })', finished);\n  assert.ok(updateDone >= 0, 'View Transition DOM update boundary should exist');\n  assert.ok(finished > updateDone, 'final geometry must wait for transition.finished');\n  assert.ok(languageDispatch > finished, 'semantic language handoff must start after transition.finished');\n  const commitStart = versions.indexOf('async function commitVersionSwap');\n  const helperStart = versions.indexOf('function dispatchLanguageChanged', commitStart);\n  const commitBody = versions.slice(commitStart, helperStart);\n  assert.doesNotMatch(commitBody, /reader-language-changed/);\n});\n"""
               test_path.write_text(tests)
           PY
 
       - name: Run static tests
         run: node --test tests/*.test.js
 
-      - name: Commit gesture gate
+      - name: Commit final-geometry boundary
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reader-reading-pivot.js reading-locators.js tests/reader-reading-pivot.test.js
-          git commit -m "Ignore layout scroll during semantic handoff"
+          git add reader-versions.js tests/reader-reading-pivot.test.js
+          git commit -m "Restore semantic eye-line after View Transition finishes"
           git push
