@@ -19,6 +19,11 @@ async function pivotState(page, includeScrollY = false) {
       locator,
       top: pivot ? (window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? pivot.getBoundingClientRect().top) : null,
       physicalTop: pivot?.getBoundingClientRect?.().top ?? null,
+      progress: window.MyEssaysReadingLocators?.progress?.().ratio ?? null,
+      progressBars: {
+        header: document.querySelectorAll('.reader-v2-header-progress').length,
+        legacy: document.querySelectorAll('.reading-progress-track').length
+      },
       ...(includeScroll ? { scrollY: window.scrollY } : {})
     };
   }, includeScrollY);
@@ -106,11 +111,15 @@ async function pivotState(page, includeScrollY = false) {
   const before = await pivotState(page, true);
   assert.ok(before.scrollY > 300, `expected a meaningful reading position before switch, got ${before.scrollY}`);
   assert.ok(before.locator, 'a canonical Reading Pivot locator should exist before switching');
+  assert.equal(before.progressBars.header, 1, 'Reader V2 must render exactly one progress bar');
+  assert.equal(before.progressBars.legacy, 0, 'legacy body progress bar must be removed');
+  assert.ok(Number.isFinite(before.progress), 'semantic reading progress should exist');
 
   await switchTo('en-mix');
   const english = await pivotState(page);
   assert.equal(english.locator, before.locator, 'English Mix should preserve the exact Reading Pivot locator');
   assert.ok(Math.abs(english.top - before.top) <= 3, `English Mix semantic top drifted by ${english.top - before.top}px`);
+  assert.ok(Math.abs(english.progress - before.progress) <= 0.01, `English Mix semantic progress drifted by ${english.progress - before.progress}`);
   assert.ok((await page.evaluate(() => window.scrollY)) > 200, 'English Mix switch must not reset reading position');
 
   await switchTo('es-mix');
@@ -118,6 +127,7 @@ async function pivotState(page, includeScrollY = false) {
   const spanish = await pivotState(page);
   assert.equal(spanish.locator, before.locator, 'Español Mix should preserve the exact Reading Pivot locator');
   assert.ok(Math.abs(spanish.top - before.top) <= 3, `Español Mix semantic top drifted by ${spanish.top - before.top}px (physical top ${spanish.physicalTop})`);
+  assert.ok(Math.abs(spanish.progress - before.progress) <= 0.01, `Español Mix semantic progress drifted by ${spanish.progress - before.progress}`);
   const spanishMixText = await page.locator('#readerContent').innerText();
   assert.match(spanishMixText, /日本語＋Español Mix/);
   assert.match(spanishMixText, /Sabemos que es importante/);
@@ -128,6 +138,7 @@ async function pivotState(page, includeScrollY = false) {
   const returned = await pivotState(page);
   assert.equal(returned.locator, before.locator, 'returning to Japanese should preserve the same Pivot locator');
   assert.ok(Math.abs(returned.top - before.top) <= 3, `round-trip semantic top drifted by ${returned.top - before.top}px`);
+  assert.ok(Math.abs(returned.progress - before.progress) <= 0.01, `round-trip semantic progress drifted by ${returned.progress - before.progress}`);
 
   await page.locator('[data-reader-mode-compare]').click();
   await page.waitForSelector('.reader-compare-view');

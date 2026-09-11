@@ -13,6 +13,7 @@
   let semanticSwitchAnchor = null;
   let semanticEyeLineReference = null;
   let semanticRestoreActive = false;
+  let frozenSemanticProgress = null;
 
   function currentEssayId() {
     return window.MyEssaysRoute?.parse?.().articleId || '';
@@ -286,6 +287,7 @@
     if (!id || !locator || !block || top == null) {
       semanticSwitchAnchor = null;
       semanticRestoreActive = false;
+      frozenSemanticProgress = null;
       return null;
     }
 
@@ -301,6 +303,7 @@
       locator,
       viewportTop: semanticEyeLineReference.viewportTop
     };
+    frozenSemanticProgress = computeSemanticProgress();
     semanticRestoreActive = true;
     return { ...semanticSwitchAnchor };
   }
@@ -355,7 +358,13 @@
           };
         }
         dispatchReadingModeStable(event);
-        requestAnimationFrame(() => { semanticRestoreActive = false; });
+        requestAnimationFrame(() => {
+          semanticRestoreActive = false;
+          frozenSemanticProgress = null;
+          document.dispatchEvent(new CustomEvent('myessays:reading-progress-changed', {
+            detail: semanticProgress()
+          }));
+        });
       });
     });
   }
@@ -387,12 +396,60 @@
     content.classList.toggle('has-language-alternate', Object.keys(versions).length > 0);
   }
 
+  function readingLineY() {
+    const header = document.querySelector('.reader-v2-header');
+    const minimum = header?.getBoundingClientRect().height
+      ? header.getBoundingClientRect().height + 24
+      : 0;
+    return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
+  }
+
+  function canonicalProgressItems(id = currentEssayId()) {
+    return [...canonicalSections(id).entries()]
+      .sort(([a], [b]) => a - b)
+      .flatMap(([sectionIndex, blocks]) => blocks.map((item, canonicalIndex) => ({
+        locator: locatorLabel(sectionIndex, canonicalIndex),
+        weight: Math.max(1, Array.from(item.text || '').length)
+      })));
+  }
+
+  function computeSemanticProgress() {
+    const id = currentEssayId();
+    if (!id) return { locator: '', ratio: 0, source: 'semantic' };
+    const pivotApi = window.MyEssaysReadingPivot;
+    const locator = pivotApi?.locator?.() || nearestLocatorBlock()?.dataset?.readingLocator || '';
+    if (!locator) return { locator: '', ratio: 0, source: 'semantic' };
+    const items = canonicalProgressItems(id);
+    const index = items.findIndex(item => item.locator === locator);
+    if (index < 0 || !items.length) return { locator, ratio: 0, source: 'semantic' };
+    const block = pivotApi?.current?.() || findContainingBlock(locator);
+    const rect = semanticRect(locator, block);
+    const within = rect
+      ? Math.min(1, Math.max(0, (readingLineY() - rect.top) / Math.max(1, rect.height)))
+      : 0;
+    const total = items.reduce((sum, item) => sum + item.weight, 0);
+    const before = items.slice(0, index).reduce((sum, item) => sum + item.weight, 0);
+    const ratio = total > 0
+      ? Math.min(1, Math.max(0, (before + (items[index].weight * within)) / total))
+      : 0;
+    return { locator, ratio, source: 'semantic' };
+  }
+
+  function semanticProgress() {
+    if (semanticRestoreActive && frozenSemanticProgress) return { ...frozenSemanticProgress };
+    return computeSemanticProgress();
+  }
+
+  function alignCapturedForSnapshot() {
+    return semanticSwitchAnchor ? correctSemanticEyeLine(semanticSwitchAnchor) : false;
+  }
+
   function nearestLocatorBlock() {
     const content = readerContent();
     if (!content) return null;
     const blocks = directChildrenMatching(content, '.reader-locator-block[data-reading-locator]');
     if (!blocks.length) return null;
-    const readingY = window.innerHeight * READING_LINE_RATIO;
+    const readingY = readingLineY();
     let nearest = blocks[0];
     let bestDistance = Infinity;
     blocks.forEach(block => {
@@ -434,6 +491,8 @@
     findContainingBlock,
     semanticRect,
     semanticTop,
+    progress: semanticProgress,
+    alignCapturedForSnapshot,
     captureForSwitch: captureSemanticAnchorNow,
     hasSwitchAnchor: () => Boolean(semanticSwitchAnchor),
     eyeLineReference: () => semanticEyeLineReference ? { ...semanticEyeLineReference } : null
@@ -461,6 +520,7 @@
     semanticSwitchAnchor = null;
     semanticEyeLineReference = null;
     semanticRestoreActive = false;
+    frozenSemanticProgress = null;
     requestAnimationFrame(syncReaderLocators);
   });
   window.addEventListener('pageshow', () => requestAnimationFrame(syncReaderLocators));

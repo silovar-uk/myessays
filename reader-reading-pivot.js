@@ -403,7 +403,6 @@
   document.addEventListener('myessays:reader-rendered', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:semantic-locators-ready', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:reader-version-changed', () => {
-    clearReadingZone();
     refreshReadingBlocks();
     requestAnimationFrame(syncCompareUI);
   });

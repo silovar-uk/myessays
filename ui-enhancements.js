@@ -27,14 +27,6 @@
   // from localStorage below. Disable the browser's competing history restoration.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-  const track = document.createElement('div');
-  track.className = 'reading-progress-track';
-  track.setAttribute('aria-hidden', 'true');
-  const bar = document.createElement('div');
-  bar.className = 'reading-progress-bar';
-  track.appendChild(bar);
-  document.body.appendChild(track);
-
   function browserStorage(kind = 'local') {
     try { return kind === 'session' ? window.sessionStorage : window.localStorage; }
     catch { return null; }
@@ -71,23 +63,6 @@
   function resetLibraryPosition() {
     if (currentEssayId()) return;
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }
-
-  function updateProgress() {
-    if (!isReaderVisible()) {
-      track.classList.remove('is-visible');
-      bar.style.width = '0%';
-      return;
-    }
-
-    track.classList.add('is-visible');
-    const rect = readerContent.getBoundingClientRect();
-    const contentTop = window.scrollY + rect.top;
-    const contentHeight = readerContent.scrollHeight;
-    const start = contentTop;
-    const end = Math.max(start + 1, contentTop + contentHeight - window.innerHeight);
-    const progress = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start)));
-    bar.style.width = `${(progress * 100).toFixed(2)}%`;
   }
 
   function updateMemoDot() {
@@ -160,7 +135,6 @@
     const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     const target = Math.min(Math.max(0, Number.isFinite(stored) ? stored : 0), maxScroll);
     window.scrollTo({ top: target, behavior: 'auto' });
-    updateProgress();
   }
 
   function visibleEssayIds({ uncompletedOnly = false } = {}) {
@@ -295,7 +269,6 @@
   function syncSoon() {
     requestAnimationFrame(() => {
       updateHeaderMode();
-      updateProgress();
       updateMemoDot();
       updateLibraryNoteMarks();
       restoreReadingPosition();
@@ -315,11 +288,7 @@
   readerContent.addEventListener('click', event => {
     if (event.target.closest('.reading-complete-button')) setTimeout(syncDiscoverySoon, 0);
   });
-  window.addEventListener('scroll', () => {
-    updateProgress();
-    queueSaveReadingPosition();
-  }, { passive: true });
-  window.addEventListener('resize', updateProgress);
+  window.addEventListener('scroll', queueSaveReadingPosition, { passive: true });
   window.addEventListener('pagehide', saveReadingPosition);
   window.addEventListener('pageshow', () => {
     if (currentEssayId()) syncSoon();

@@ -249,6 +249,7 @@
     const api = versions();
     if (!api || !version || !api.definitions?.[version]) return false;
 
+    document.activeViewTransition?.skipTransition?.();
     desiredVersion = version;
     renderIntent(version);
     syncUrlToVersion(version);

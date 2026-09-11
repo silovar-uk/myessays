@@ -136,6 +136,35 @@
     return document.getElementById('readerContent');
   }
 
+  function prefersReducedMotion() {
+    return Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  function canAnimateReadingSurface() {
+    return typeof document.startViewTransition === 'function'
+      && !prefersReducedMotion()
+      && Boolean(readerContent());
+  }
+
+  async function commitVersionSwap({ id, nextEssay, version, locator, pairId }) {
+    showReader(nextEssay, { preserveScroll: true });
+    await Promise.all([
+      waitForPairIdentity(id),
+      waitForSemanticLocators(id)
+    ]);
+    if (id !== currentEssayId()) return false;
+
+    window.MyEssaysReadingLocators?.alignCapturedForSnapshot?.();
+    rememberPreferredVersion(version);
+    document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
+      detail: { essayId: id, version, locator, pairId }
+    }));
+    document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {
+      detail: { essayId: id, mode: version, locator, pairId }
+    }));
+    return true;
+  }
+
   function waitForReadySignal({ id, datasetKey, datasetValue, eventName }) {
     const content = readerContent();
     if (!content) return Promise.resolve();
@@ -291,26 +320,21 @@
         content.dataset.semanticLocators = '';
       }
 
-      // Reader Versions owns only the content swap. showReader may reset the
-      // page while rebuilding the DOM; semantic eye-line restoration belongs
-      // exclusively to Reading Pivot + Reading Locators after readiness.
-      showReader(nextEssay);
+      // Reader Versions still owns only the content swap. Reading Locators owns
+      // semantic eye-line alignment; View Transition is presentation only.
+      let completed = false;
+      const update = async () => {
+        completed = await commitVersionSwap({ id, nextEssay, version, locator, pairId });
+      };
 
-      await Promise.all([
-        waitForPairIdentity(id),
-        waitForSemanticLocators(id)
-      ]);
-      if (id !== currentEssayId()) return false;
-
-      rememberPreferredVersion(version);
-      document.dispatchEvent(new CustomEvent('myessays:reader-version-changed', {
-        detail: { essayId: id, version, locator, pairId }
-      }));
-
-      document.dispatchEvent(new CustomEvent('myessays:reader-language-changed', {
-        detail: { essayId: id, mode: version, locator, pairId }
-      }));
-      return true;
+      if (canAnimateReadingSurface()) {
+        document.activeViewTransition?.skipTransition?.();
+        const transition = document.startViewTransition(update);
+        await transition.updateCallbackDone;
+      } else {
+        await update();
+      }
+      return completed;
     } finally {
       switchInFlight = false;
     }

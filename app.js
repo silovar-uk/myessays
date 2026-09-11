@@ -446,7 +446,7 @@ function selectionInsideReader() {
   return selection.toString().trim();
 }
 
-function showReader(essay) {
+function showReader(essay, { preserveScroll = false } = {}) {
   closeToolPanels();
   state.currentEssay = essay;
   setNoteOpen(false);
@@ -477,7 +477,7 @@ function showReader(essay) {
   }));
   loadCurrentNote();
   document.title = `${essay.title} | My Essays`;
-  window.scrollTo(0,0);
+  if (!preserveScroll) window.scrollTo(0,0);
 
   // Reader navigation used to rely only on a MutationObserver. Mobile Safari
   // may postpone that callback while the page is loading or restored from the

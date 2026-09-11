@@ -61,17 +61,37 @@ test('same-essay rerenders preserve an active Pivot handoff anchor', () => {
   assert.match(pivot, /if \(!sameEssayHandoff\) \{[\s\S]*?pendingSwitchAnchor = null/);
 });
 
-test('reading focus zone is subtle, continuous, non-animated and leaves Pivot visually unpainted', () => {
+test('reading focus zone is perceptible, continuous, non-animated and leaves Pivot visually unpainted', () => {
   const css = read('reader-reading-pivot.css');
   assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*transparent;[\s\S]*?box-shadow:\s*none/);
-  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.018\)/);
-  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.006\)/);
-  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.015\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.28\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.07\)/);
+  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.24\)/);
   const zoneRules = [...css.matchAll(/\.reader-content\.has-reading-focus-zone\s*\{([\s\S]*?)\}/g)]
     .map(match => match[1]);
   assert.equal(zoneRules.length, 2, 'desktop and mobile Reading Zone rules should both exist');
   zoneRules.forEach(rule => assert.doesNotMatch(rule, /transition:/));
   assert.match(css, /is-language-switch-target[\s\S]*?box-shadow:\s*none/);
+});
+
+test('Reading Surface has one semantic progress owner and an opacity-only Ink Dissolve', () => {
+  const ui = read('ui-enhancements.js');
+  const v2 = read('reader-v2.js');
+  const locators = read('reading-locators.js');
+  const versions = read('reader-versions.js');
+  const instant = read('reader-language-instant.js');
+  const css = read('reader-reading-pivot.css');
+  assert.doesNotMatch(ui, /reading-progress-track|reading-progress-bar|function updateProgress/);
+  assert.match(v2, /reader-v2-header-progress/);
+  assert.match(v2, /MyEssaysReadingLocators\?\.progress\?\.\(\)/);
+  assert.match(locators, /progress: semanticProgress/);
+  assert.match(locators, /alignCapturedForSnapshot/);
+  assert.match(versions, /document\.startViewTransition\(update\)/);
+  assert.match(versions, /showReader\(nextEssay, \{ preserveScroll: true \}\)/);
+  assert.match(instant, /document\.activeViewTransition\?\.skipTransition\?\.\(\)/);
+  assert.match(css, /view-transition-name:\s*reader-ink/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.doesNotMatch(css, /translate\(|scale\(|blur\(/);
 });
 
 test('persistent direct Reading Mode control supports keyboard radio navigation', () => {

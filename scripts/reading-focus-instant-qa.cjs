@@ -136,7 +136,7 @@ async function readingFocusState(page) {
   });
 }
 
-async function assertThirdFromTopFocus(page, label, { maxZoneAlpha = 0.03, requireUnpaintedPivot = false } = {}) {
+async function assertThirdFromTopFocus(page, label, { minZoneAlpha = 0.18, maxZoneAlpha = 0.35, requireUnpaintedPivot = false } = {}) {
   const state = await readingFocusState(page);
   assert.ok(state.visibleCount >= 1, `${label}: expected a top visible reading paragraph to anchor the flow`);
   assert.ok(state.expectedFocusCount >= 1, `${label}: test position should leave a third paragraph downstream from ${state.topAnchorLocator}`);
@@ -147,7 +147,7 @@ async function assertThirdFromTopFocus(page, label, { maxZoneAlpha = 0.03, requi
   assert.ok(Number.isFinite(state.zoneTop) && Math.abs(state.zoneTop - state.expectedZoneTop) <= 1, `${label}: Reading Zone top drifted from the third flow paragraph (${state.zoneTop} vs ${state.expectedZoneTop})`);
   assert.ok(Number.isFinite(state.zoneBottom) && Math.abs(state.zoneBottom - state.expectedZoneBottom) <= 1, `${label}: Reading Zone bottom drifted from the last focus paragraph (${state.zoneBottom} vs ${state.expectedZoneBottom})`);
   assert.notEqual(state.gradient, 'none', `${label}: Reading Zone should exist as one continuous background layer`);
-  assert.ok(state.maxZoneAlpha > 0 && state.maxZoneAlpha <= maxZoneAlpha, `${label}: Reading Zone should remain deliberately subtle (max alpha ${state.maxZoneAlpha})`);
+  assert.ok(state.maxZoneAlpha >= minZoneAlpha && state.maxZoneAlpha <= maxZoneAlpha, `${label}: Reading Zone should remain visible but quiet (max alpha ${state.maxZoneAlpha}, expected ${minZoneAlpha}-${maxZoneAlpha})`);
   if (requireUnpaintedPivot) {
     assert.equal(state.pivotAlpha, 0, `${label}: Primary Pivot must not receive its own background highlight`);
   }
@@ -287,7 +287,7 @@ async function semanticPivot(page) {
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await scrollIntoBody(page, 0.34, 'watanabe-mobile');
-  await assertThirdFromTopFocus(page, 'JA+EN mobile', { maxZoneAlpha: 0.02, requireUnpaintedPivot: true });
+  await assertThirdFromTopFocus(page, 'JA+EN mobile', { minZoneAlpha: 0.14, maxZoneAlpha: 0.30, requireUnpaintedPivot: true });
 
   assert.deepEqual(pageErrors, [], `page errors: ${pageErrors.join(' | ')}`);
   assert.deepEqual(consoleErrors, [], `console errors: ${consoleErrors.join(' | ')}`);

@@ -161,6 +161,10 @@
   }
 
   function progressRatio() {
+    const semantic = window.MyEssaysReadingLocators?.progress?.();
+    if (semantic && Number.isFinite(semantic.ratio)) {
+      return Math.min(1, Math.max(0, semantic.ratio));
+    }
     const content = readerContent();
     if (!content) return 0;
     const blocks = readingBlocks();
@@ -738,6 +742,8 @@
       scheduleLocationSync();
     });
     document.addEventListener('myessays:reader-language-changed', scheduleLocationSync);
+    document.addEventListener('myessays:reading-mode-stable', scheduleLocationSync);
+    document.addEventListener('myessays:reading-progress-changed', scheduleLocationSync);
 
     readerContent()?.addEventListener('myessays:add-note-quote', event => {
       storeNoteAnchor(event.detail?.text);

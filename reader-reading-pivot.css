@@ -21,6 +21,7 @@ html.is-reading-mode-switching {
    changes layout or captures pointer input. */
 .reader-content {
   background-repeat: no-repeat;
+  view-transition-name: reader-ink;
 }
 
 .reader-content.has-reading-focus-zone {
@@ -28,11 +29,11 @@ html.is-reading-mode-switching {
     to bottom,
     transparent 0,
     transparent var(--reading-zone-fade-start),
-    rgba(180, 62, 49, 0) var(--reading-zone-fade-start),
-    rgba(180, 62, 49, .018) var(--reading-zone-top),
-    rgba(180, 62, 49, .012) var(--reading-zone-mid),
-    rgba(180, 62, 49, .006) var(--reading-zone-bottom),
-    rgba(180, 62, 49, 0) var(--reading-zone-fade-end),
+    rgba(255, 255, 255, 0) var(--reading-zone-fade-start),
+    rgba(255, 255, 255, .28) var(--reading-zone-top),
+    rgba(255, 255, 255, .18) var(--reading-zone-mid),
+    rgba(255, 255, 255, .07) var(--reading-zone-bottom),
+    rgba(255, 255, 255, 0) var(--reading-zone-fade-end),
     transparent 100%
   );
 }
@@ -41,6 +42,48 @@ html.is-reading-mode-switching {
   transition: none;
   background-color: transparent;
   box-shadow: none;
+}
+
+
+/* Language changes are not navigation. Hold the Reading Surface still and
+   dissolve only the text snapshot. The root/header never animates. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(reader-ink) {
+  animation-duration: 150ms;
+  animation-timing-function: cubic-bezier(.2, .7, .2, 1);
+}
+
+::view-transition-old(reader-ink) {
+  animation: reader-ink-out 150ms cubic-bezier(.2, .7, .2, 1) both;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(reader-ink) {
+  animation: reader-ink-in 150ms cubic-bezier(.2, .7, .2, 1) both;
+  mix-blend-mode: normal;
+}
+
+@keyframes reader-ink-out {
+  from { opacity: 1; }
+  to { opacity: .08; }
+}
+
+@keyframes reader-ink-in {
+  from { opacity: .08; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(reader-ink),
+  ::view-transition-old(reader-ink),
+  ::view-transition-new(reader-ink) {
+    animation-duration: .001ms !important;
+  }
 }
 
 /* Language-switch feedback stays separate from Reading Focus. It is temporary
@@ -140,11 +183,11 @@ html.is-reading-mode-switching {
       to bottom,
       transparent 0,
       transparent var(--reading-zone-fade-start),
-      rgba(180, 62, 49, 0) var(--reading-zone-fade-start),
-      rgba(180, 62, 49, .015) var(--reading-zone-top),
-      rgba(180, 62, 49, .010) var(--reading-zone-mid),
-      rgba(180, 62, 49, .005) var(--reading-zone-bottom),
-      rgba(180, 62, 49, 0) var(--reading-zone-fade-end),
+      rgba(255, 255, 255, 0) var(--reading-zone-fade-start),
+      rgba(255, 255, 255, .24) var(--reading-zone-top),
+      rgba(255, 255, 255, .15) var(--reading-zone-mid),
+      rgba(255, 255, 255, .06) var(--reading-zone-bottom),
+      rgba(255, 255, 255, 0) var(--reading-zone-fade-end),
       transparent 100%
     );
   }
