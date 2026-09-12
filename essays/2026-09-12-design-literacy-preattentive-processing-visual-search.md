@@ -6,8 +6,8 @@ created: 2026-09-12
 updated: 2026-09-12
 type: Essay
 status: published
-tags: [Design Literacy, Visual Search, Attention, Visual Hierarchy, UI]
-keywords: [Preattentive Processing, Visual Search, Feature Integration Theory, Feature Search, Conjunction Search, Guided Search, Salience, Pop-out, Attention]
+tags: ["Design Literacy", "Visual Search", "Attention", "Visual Hierarchy", "UI"]
+keywords: ["Preattentive Processing", "Visual Search", "Feature Integration Theory", "Feature Search", "Conjunction Search", "Guided Search", "Salience", "Pop-out", "Attention"]
 favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
