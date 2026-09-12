@@ -37,6 +37,20 @@ function parseFrontMatter(text) {
   return { meta, body: text.slice(match[0].length) };
 }
 
+function normalizeList(value) {
+  if (Array.isArray(value)) return value.map(item => String(item).trim()).filter(Boolean);
+  if (typeof value !== 'string') return [];
+  const trimmed = value.trim();
+  if (!trimmed) return [];
+  const inner = trimmed.startsWith('[') && trimmed.endsWith(']')
+    ? trimmed.slice(1, -1)
+    : trimmed;
+  return inner
+    .split(',')
+    .map(item => item.trim().replace(/^['"]|['"]$/g, ''))
+    .filter(Boolean);
+}
+
 function escapeHtml(value='') {
   return String(value).replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 }
@@ -171,12 +185,16 @@ function readingMetrics(md='') {
 function normalizeEssay(path, text) {
   const { meta, body } = parseFrontMatter(text);
   const plain = body.replace(/[#>*_`\[\]()]/g,' ').replace(/https?:\/\/\S+/g,' ');
+  const tags = normalizeList(meta.tags);
+  const keywords = normalizeList(meta.keywords);
   return {
     ...meta,
+    tags,
+    keywords,
     path,
     body,
     metrics: readingMetrics(body),
-    searchText: [meta.title, meta.subtitle, meta.abstract, ...(meta.tags||[]), ...(meta.keywords||[]), plain].join(' ').toLowerCase()
+    searchText: [meta.title, meta.subtitle, meta.abstract, ...tags, ...keywords, plain].join(' ').toLowerCase()
   };
 }
 
@@ -215,7 +233,7 @@ function populateFilters() {
 
 function stars(n=0) { return '★'.repeat(Number(n)||0) + '☆'.repeat(Math.max(0,5-(Number(n)||0))); }
 function formatDate(d='') { if (!d) return ''; const [y,m,day] = d.split('-'); return `${y}.${m}.${day}`; }
-function tagsHtml(tags=[], limit=5) { return tags.slice(0,limit).map(t=>`<span>#${escapeHtml(t)}</span>`).join(''); }
+function tagsHtml(tags=[], limit=5) { return normalizeList(tags).slice(0,limit).map(t=>`<span>#${escapeHtml(t)}</span>`).join(''); }
 
 function filteredEssays() {
   const q = els.searchInput.value.trim().toLowerCase();
