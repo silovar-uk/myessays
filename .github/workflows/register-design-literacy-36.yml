@@ -1,0 +1,46 @@
+name: Register Design Literacy 36
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-design-literacy-36.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update indexes
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          article_path = 'essays/2026-09-12-design-literacy-graphical-perception-visual-encoding.md'
+          article_id = 'design-literacy-graphical-perception-visual-encoding'
+          mix_path = 'english-mix/design-literacy-graphical-perception-visual-encoding.md'
+
+          p = Path('data/index.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          essays = data['essays']
+          if article_path not in essays:
+              essays.insert(0, article_path)
+          p.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+
+          p = Path('data/versions-index.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          articles = data['articles']
+          entry = articles.setdefault(article_id, {})
+          entry['en-mix'] = mix_path
+          p.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+      - name: Commit registration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Register Design Literacy #36"
+          git push
