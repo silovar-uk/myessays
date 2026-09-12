@@ -6,8 +6,8 @@ created: 2026-09-12
 updated: 2026-09-12
 type: Essay
 status: published
-tags: [Design Literacy, Data Visualization, Graphical Perception, Visual Encoding, UI]
-keywords: [Graphical Perception, Visual Encoding, Cleveland McGill, Position, Length, Angle, Area, Pie Chart, Bar Chart]
+tags: ["Design Literacy", "Data Visualization", "Graphical Perception", "Visual Encoding", "UI"]
+keywords: ["Graphical Perception", "Visual Encoding", "Cleveland McGill", "Position", "Length", "Angle", "Area", "Pie Chart", "Bar Chart"]
 favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
