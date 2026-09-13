@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'index.html'
+      - 'reader-navigation.js'
       - 'reader-return-navigation.js'
       - 'reader-return-navigation.css'
       - 'scripts/reader-return-navigation-qa.cjs'
