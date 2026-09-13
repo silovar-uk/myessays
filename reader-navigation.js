@@ -174,7 +174,7 @@
           ${essayLink(previous, 'previous', { series: isSeries })}
           ${essayLink(next, 'next', { series: isSeries })}
         </div>
-        <a class="reader-top-link" href="#/">↑ TOPへ戻る</a>
+        <a class="reader-top-link" href="#/" aria-label="Libraryへ戻る">← Libraryへ戻る</a>
       </nav>`;
     root.appendChild(nav);
   }
