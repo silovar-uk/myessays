@@ -13,6 +13,7 @@
   let restoringLibrary = false;
   let restoreFrame = 0;
   let libraryScrollFrame = 0;
+  let readerSettleFrame = 0;
   let previousRouteType = window.MyEssaysRoute?.parse?.().type || 'library';
 
   const $ = id => document.getElementById(id);
@@ -130,6 +131,16 @@
     updatePageTopControl();
   }
 
+  function settleReaderUi() {
+    const button = ensurePageTopControl();
+    if (button) button.hidden = true;
+
+    cancelAnimationFrame(readerSettleFrame);
+    readerSettleFrame = requestAnimationFrame(() => {
+      readerSettleFrame = requestAnimationFrame(syncReaderUi);
+    });
+  }
+
   function onHashChange() {
     const route = routeState();
     const nextType = route.type;
@@ -145,7 +156,7 @@
     previousRouteType = nextType;
 
     if (nextType === 'essay') {
-      requestAnimationFrame(syncReaderUi);
+      settleReaderUi();
     }
   }
 
@@ -161,14 +172,11 @@
     window.addEventListener('resize', updatePageTopControl, { passive: true });
     window.addEventListener('hashchange', onHashChange);
 
-    document.addEventListener('myessays:reader-rendered', () => {
-      requestAnimationFrame(syncReaderUi);
-    });
-
+    document.addEventListener('myessays:reader-rendered', settleReaderUi);
     document.addEventListener('myessays:reading-location-changed', updatePageTopControl);
 
     if (libraryVisible()) captureLibraryContext();
-    if (readerVisible()) requestAnimationFrame(syncReaderUi);
+    if (readerVisible()) settleReaderUi();
   }
 
   window.MyEssaysReaderReturnNavigation = Object.freeze({
