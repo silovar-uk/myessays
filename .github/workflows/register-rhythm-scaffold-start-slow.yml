@@ -1,0 +1,60 @@
+name: Register Rhythm Scaffold Essay
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-rhythm-scaffold-start-slow.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register canonical essay and English Mix
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const essayPath = 'essays/2026-09-13-rhythm-scaffold-start-slow.md';
+          const id = 'rhythm-scaffold-start-slow';
+          const mixPath = 'english-mix/rhythm-scaffold-start-slow.md';
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          index.essays = index.essays.filter((p) => p !== essayPath);
+          index.essays.unshift(essayPath);
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          const existing = versions.articles[id] || {};
+          const nextArticle = { ...existing, 'en-mix': mixPath };
+          versions.articles = {
+            [id]: nextArticle,
+            ...Object.fromEntries(Object.entries(versions.articles).filter(([key]) => key !== id))
+          };
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+
+          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          console.log('Registration JSON validated.');
+          NODE
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'リズムを足場として使う論考を登録'
+          git push
