@@ -1,0 +1,50 @@
+name: Reader Return Navigation QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'reader-return-navigation.js'
+      - 'reader-return-navigation.css'
+      - 'scripts/reader-return-navigation-qa.cjs'
+      - '.github/workflows/reader-return-navigation-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reader-return-navigation-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/myessays-return-nav-server.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/myessays-return-nav-server.log
+          exit 1
+
+      - name: Run Reader Return Navigation QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/reader-return-navigation-qa.cjs
