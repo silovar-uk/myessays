@@ -131,12 +131,15 @@
     updatePageTopControl();
   }
 
-  function settleReaderUi() {
+  function settleReaderUi({ resetScroll = false } = {}) {
     const button = ensurePageTopControl();
     if (button) button.hidden = true;
 
     cancelAnimationFrame(readerSettleFrame);
     readerSettleFrame = requestAnimationFrame(() => {
+      if (resetScroll && readerVisible()) {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
       readerSettleFrame = requestAnimationFrame(syncReaderUi);
     });
   }
@@ -144,8 +147,9 @@
   function onHashChange() {
     const route = routeState();
     const nextType = route.type;
+    const enteringReaderFromLibrary = previousRouteType === 'library' && nextType === 'essay';
 
-    if (previousRouteType === 'library' && nextType === 'essay') {
+    if (enteringReaderFromLibrary) {
       sourceEssayId = route.articleId || '';
     }
 
@@ -156,7 +160,7 @@
     previousRouteType = nextType;
 
     if (nextType === 'essay') {
-      settleReaderUi();
+      settleReaderUi({ resetScroll: enteringReaderFromLibrary });
     }
   }
 
@@ -172,7 +176,7 @@
     window.addEventListener('resize', updatePageTopControl, { passive: true });
     window.addEventListener('hashchange', onHashChange);
 
-    document.addEventListener('myessays:reader-rendered', settleReaderUi);
+    document.addEventListener('myessays:reader-rendered', () => settleReaderUi());
     document.addEventListener('myessays:reading-location-changed', updatePageTopControl);
 
     if (libraryVisible()) captureLibraryContext();
