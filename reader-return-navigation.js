@@ -14,6 +14,7 @@
   let restoreFrame = 0;
   let libraryScrollFrame = 0;
   let readerSettleFrame = 0;
+  let endNavigationObserver = null;
   let previousRouteType = window.MyEssaysRoute?.parse?.().type || 'library';
 
   const $ = id => document.getElementById(id);
@@ -121,9 +122,16 @@
   function rewriteEndNavigation() {
     const link = document.querySelector('.reader-end-navigation .reader-top-link');
     if (!link) return;
-    link.textContent = '← Libraryへ戻る';
-    link.setAttribute('aria-label', 'Libraryへ戻る');
+    if (link.textContent?.trim() !== '← Libraryへ戻る') link.textContent = '← Libraryへ戻る';
+    if (link.getAttribute('aria-label') !== 'Libraryへ戻る') link.setAttribute('aria-label', 'Libraryへ戻る');
     link.classList.add('reader-library-return');
+  }
+
+  function observeEndNavigation() {
+    const root = $('readerContent');
+    if (!root || endNavigationObserver) return;
+    endNavigationObserver = new MutationObserver(() => rewriteEndNavigation());
+    endNavigationObserver.observe(root, { childList: true, subtree: true });
   }
 
   function syncReaderUi() {
@@ -179,6 +187,7 @@
     document.addEventListener('myessays:reader-rendered', () => settleReaderUi());
     document.addEventListener('myessays:reading-location-changed', updatePageTopControl);
 
+    observeEndNavigation();
     if (libraryVisible()) captureLibraryContext();
     if (readerVisible()) settleReaderUi();
   }
