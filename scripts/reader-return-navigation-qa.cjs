@@ -56,6 +56,7 @@ const ESSAY_ID = 'confucius-knowing-liking-enjoying';
 
   await page.locator('.reader-v2-page-top').click();
   await page.waitForFunction(() => window.scrollY <= 8);
+  await page.locator('.reader-v2-page-top').waitFor({ state: 'hidden' });
   assert.equal(await page.locator('.reader-v2-page-top').isHidden(), true, 'article top control should hide again after returning to the top');
 
   await page.locator('#backButton').click();
