@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-14",
+  "decisions": {
+    "hello-project-1997-2026-overview:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "MEDIUM",
+      "reason": "The ENMIX ending condenses the canonical closing semantic block into the preceding gradual-sequence setup, so restoring block count mechanically would duplicate or distort meaning. Rebuild the affected section from canonical blocks when editorial migration is scheduled."
+    },
+    "os-world-under-the-city:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "LOW",
+      "reason": "The ENMIX version compresses two canonical shutdown blocks into one sentence. The missing boundary cannot be restored by whitespace-only segmentation without inventing wording."
+    },
+    "design-literacy-ornament-and-crime-semantic-decoration:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "MEDIUM",
+      "reason": "The ENMIX section intentionally omits short bridge paragraphs around the paired quotations. Matching the canonical block contract requires editorial regeneration rather than a mechanical paragraph-count fix."
+    }
+  }
+}
