@@ -131,6 +131,8 @@ Then power shifted.
 
 Irish communities built influence through churches, neighborhood organizations, unions, and political networks. 1884年にはHugh O'BrienがBoston初のIrish Catholic mayorとなり、20世紀初頭にはIrish Catholicsが市政で大きな力を持つようになった。
 
+これは単なる「移民が増えた」という話ではない。
+
 **Immigration changed who had the right to define Boston.**
 
 Boston Irishを食や祭りだけで覚えるより、都市の権力構造が変わった歴史として見る方が深い。
@@ -255,6 +257,8 @@ Fenway Park is especially revealing.
 
 1912年開場の古いballparkが、都市中心部に近い場所で現在も使われ続けている。
 
+ここにもBostonらしさがある。
+
 Boston often keeps the old container alive instead of turning it into a museum.
 
 Boston Marathonも同じで、eventが単なる娯楽ではなく都市の時間をつなぐ制度になっている。
@@ -299,7 +303,6 @@ Once that difference is clear, Northeast American cities stop looking like one g
 5. **Which old institutions are still alive?** 歴史遺産ではなく今も使われている古い制度・場所は何か。
 
 Boston becomes easier to remember when you stop seeing it as a city where history merely survived.
-
 **歴史を使いながら更新している街**として見ると、一気につながる。
 
 ---

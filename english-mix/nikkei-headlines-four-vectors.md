@@ -25,7 +25,6 @@ abstract: "2026年9月10日の日経朝刊には210本の見出しが並ぶ。In
 逆に「AI多いな」「中東やばそう」で終えると、新聞を読んだ意味が薄い。
 
 So today, I will not classify the headlines by section. Instead, I will ask a different question:
-
 **What is moving what?**
 
 この記事は2026年9月10日付・日本経済新聞朝刊の**headline listを材料にしたstructure reading**であり、個々の記事本文のsummaryではない。見出しにない因果や詳細は補わない。
@@ -70,7 +69,6 @@ Who provides power, data and infrastructure?
 つまり、AI競争の重心が**model capabilityからdeployment capabilityへ広がっている**。
 
 A smart model is not the same thing as a system that 100,000 companies can actually use.
-
 工場で動くこと、点検員の作業に入ること、選手の身体データと結びつくこと。それぞれに別の能力が必要になる。
 
 As AI enters society, value spreads outward: distribution, integration, workflow design, cybersecurity, electricity and data all become part of the product.
@@ -173,6 +171,8 @@ What do you borrow from outside?
 Whose customer network do you use?
 Which capability stays inside the firm?
 ```
+
+のほうが重要になる。
 
 これは最初のAIの話にも戻る。
 
