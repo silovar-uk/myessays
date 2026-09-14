@@ -63,6 +63,8 @@ People do not process every region of a screen with equal emphasis. あるもの
 <p class="dl-visual-note">The CTA did not become enormous. Supporting elements became quieter, so the relationship changed.</p>
 </div>
 
+ここで重要なのは、**CTAを何倍にも巨大化したことではない**。周囲との差を設計したことや。
+
 Figure–Groundは「何を派手にするか」より、**what becomes the perceptual subject**と考えると使いやすい。
 
 ## 3. What creates Figure–Ground?
@@ -139,9 +141,7 @@ Proximity asks **what belongs together**. Visual Hierarchy asks **what should I 
 ## 9. 30-second design observation
 
 スマホで好きなアプリかWebサイトを一つ開く。Don't read the words first.
-
 **What dissolves into the background?**
-
 **What jumps forward as the figure?**
 
 Then ask:

@@ -116,7 +116,6 @@ WIDTH    ↑   → EASIER
 問題は「button is small」だけではない。
 
 **How precisely must you travel from START to TARGET?**
-
 それが問題だ。
 
 ## もう一歩やりすぎる｜同じ16pxを3か所に置く
@@ -353,6 +352,8 @@ PCで今開いているsiteを一つ見る。
 
 連続して使うoperationsを二つ選ぶ。
 
+例えば、
+
 ```text
 入力欄 → 送信
 検索欄 → 検索
@@ -372,6 +373,8 @@ How wide is the TARGET?
 ↓
 Does it really need to be this far away?
 ```
+
+を見る。
 
 button reviewのつもりが、いつの間にか**the road**をレビューしているはずだ。
 
