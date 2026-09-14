@@ -44,26 +44,31 @@ jobs:
           node-version: '20'
 
       - name: Regression tests
-        run: node --test tests/structure-lint.test.mjs
+        run: |
+          set -o pipefail
+          node --test tests/structure-lint.test.mjs 2>&1 | tee structure-tests.txt
 
       - name: Full repository audit
+        if: always()
         run: node scripts/validate-version-structure.mjs --all --report-only --json structure-audit.json
 
-      - name: Upload structure audit
+      - name: Upload structure diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: structure-audit
-          path: structure-audit.json
+          name: structure-diagnostics
+          path: |
+            structure-audit.json
+            structure-tests.txt
           if-no-files-found: warn
           retention-days: 14
 
       - name: Strict gate for changed article pairs
-        if: github.event_name != 'workflow_dispatch'
+        if: success() && github.event_name != 'workflow_dispatch'
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
         run: node scripts/validate-version-structure.mjs --changed-from "$BASE_SHA"
 
       - name: Strict full gate (manual run)
-        if: github.event_name == 'workflow_dispatch'
+        if: success() && github.event_name == 'workflow_dispatch'
         run: node scripts/validate-version-structure.mjs --all
