@@ -1,0 +1,36 @@
+name: Diagnose structure migration batch 003
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-structure-migration-batch-003.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Capture dry-run diagnostic
+        shell: bash
+        run: |
+          set +e
+          node scripts/apply-structure-migration.mjs --plan data/structure-migrations/batch-003.json > batch003-diagnostic.txt 2>&1
+          status=$?
+          echo "exit_status=$status" >> batch003-diagnostic.txt
+          cat batch003-diagnostic.txt
+          exit 0
+      - name: Upload diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: batch003-diagnostic
+          path: batch003-diagnostic.txt
+          retention-days: 1
