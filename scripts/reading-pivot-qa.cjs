@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 
 const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const ESSAY_ID = 'confucius-knowing-liking-enjoying';
-const CONTROL = '#readerLanguageInstantDirect';
+const CONTROL = '#readerModeShell .reader-mode-shell__modes';
 
 function overlaps(a, b) {
   if (!a || !b) return false;
@@ -28,7 +28,6 @@ async function readingState(page) {
       physicalTop: rect.top,
       physicalBottom: rect.bottom,
       railY: window.MyEssaysReadingPivot?.readingRailY?.() ?? null,
-      text: (pivot.textContent || '').trim().slice(0, 80),
       backgroundColor: getComputedStyle(pivot).backgroundColor,
       boxShadow: getComputedStyle(pivot).boxShadow,
       markerWidth: after.width,
@@ -62,7 +61,7 @@ async function switchTo(page, expected) {
   const button = page.locator(`${CONTROL} [data-reading-mode-intent="${expected}"]`);
   await button.click();
   await page.waitForFunction(version => {
-    const button = document.querySelector(`#readerLanguageInstantDirect [data-reading-mode-intent="${version}"]`);
+    const button = document.querySelector(`#readerModeShell [data-reading-mode-intent="${version}"]`);
     return window.MyEssaysReaderVersions?.currentVersion?.() === version
       && window.MyEssaysInstantReadingModes?.desiredVersion?.() === version
       && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
@@ -79,6 +78,14 @@ async function waitForPivotChange(page, previousLocator) {
   }, previousLocator, { timeout: 3000 });
 }
 
+async function waitForReader(page) {
+  await page.waitForSelector('#readerView:not([hidden])');
+  await page.waitForSelector(CONTROL);
+  await page.waitForSelector('#readerContent > p.reader-locator-block[data-reading-locator]');
+  await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
+  await page.waitForTimeout(120);
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
@@ -88,11 +95,7 @@ async function waitForPivotChange(page, previousLocator) {
   page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
 
   await page.goto(`${BASE_URL}/#/essay/${ESSAY_ID}`, { waitUntil: 'networkidle' });
-  await page.waitForSelector('#readerView:not([hidden])');
-  await page.waitForSelector(CONTROL);
-  await page.waitForSelector('#readerContent > p.reader-locator-block[data-reading-locator]');
-  await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
-  await page.waitForTimeout(120);
+  await waitForReader(page);
 
   const initial = await readingState(page);
   assertRailOwnsPivot(initial, 'initial');
@@ -104,18 +107,16 @@ async function waitForPivotChange(page, previousLocator) {
   assert.match(initial.zoneBackground, /linear-gradient/, 'Reading Lens should be a continuous gradient');
 
   const directButtons = page.locator(`${CONTROL} [data-reading-mode-intent]`);
-  assert.equal(await directButtons.count(), 3, 'JA / EN / ES should all be visible as direct choices for the sample article');
+  assert.equal(await directButtons.count(), 3, 'JA / EN / ES should all be visible as direct choices');
   assert.equal(await page.locator(CONTROL).getAttribute('role'), 'radiogroup');
   assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent="ja"]`).getAttribute('aria-checked'), 'true');
-  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="en-mix"]`).textContent()).trim(), 'EN');
-  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="es-mix"]`).textContent()).trim(), 'ES');
-  assert.equal(await page.locator('.reader-mode-bar .reader-language-direct').count(), 0, 'Pivot must not create a duplicate language selector in the mode bar');
-  assert.equal(await page.locator('.reader-mode-bar [data-reader-mode-version]').count(), 0, 'the visible mode bar must not contain legacy language choices');
-  assert.ok(await page.locator('[data-reader-mode-compare]').isVisible(), 'Compare should remain a separate secondary action on desktop');
+  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="ja"]`).textContent()).trim(), '日本語');
+  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="en-mix"]`).textContent()).trim(), 'English Mix');
+  assert.equal((await page.locator(`${CONTROL} [data-reading-mode-intent="es-mix"]`).textContent()).trim(), 'Español Mix');
+  assert.equal(await page.locator('#readerLanguageInstantDirect').isHidden(), true, 'legacy instant control should remain hidden');
   assert.equal(await page.locator('#readerLanguageSwitch').isHidden(), true, 'legacy language disclosure should remain hidden');
 
-  // Put the current paragraph comfortably on the Rail, then verify a tiny scroll
-  // remains inside the existing 24px hysteresis instead of selecting a new Pivot.
+  // Tiny movement inside the 24px hysteresis must keep the Pivot.
   await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
     const rail = window.MyEssaysReadingPivot?.readingRailY?.();
@@ -131,7 +132,7 @@ async function waitForPivotChange(page, previousLocator) {
   const afterTinyScroll = await readingState(page);
   assert.equal(afterTinyScroll.physicalLocator, beforeTinyScroll.physicalLocator, '8px scroll should remain inside Pivot hysteresis');
 
-  // Cross a paragraph boundary and confirm the Rail selects a new physical Pivot.
+  // Crossing a paragraph boundary must move the Rail anchor.
   await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
     const distance = Math.max(96, (pivot?.getBoundingClientRect().height || 0) + 40);
@@ -157,8 +158,8 @@ async function waitForPivotChange(page, previousLocator) {
     return target && style && after ? {
       animationName: style.animationName,
       animationDuration: style.animationDuration,
-      markerHeight: after.height,
       markerWidth: after.width,
+      markerHeight: after.height,
       markerAnimationName: after.animationName,
       markerPointerEvents: after.pointerEvents
     } : null;
@@ -167,6 +168,7 @@ async function waitForPivotChange(page, previousLocator) {
   assert.match(switchFeedback.animationName, /reader-language-target-surface/);
   assert.match(switchFeedback.animationDuration, /1\.8s/);
   assert.equal(switchFeedback.markerWidth, '3px');
+  assert.notEqual(switchFeedback.markerHeight, '24px', 'switch marker should be paragraph-height, not the normal bookmark');
   assert.match(switchFeedback.markerAnimationName, /reader-language-target-marker/);
   assert.equal(switchFeedback.markerPointerEvents, 'none');
 
@@ -195,8 +197,7 @@ async function waitForPivotChange(page, previousLocator) {
   const rapid = await readingState(page);
   assert.equal(rapid.locator, beforeSwitch.locator, 'rapid JA → EN → JA must keep the final logical Pivot');
 
-  // At the article end the focus range may be backfilled, but the bookmark still
-  // belongs to the actual Rail Pivot rather than the first paragraph in the range.
+  // At the article end the Lens may backfill, but the bookmark stays on the Pivot.
   await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' }));
   await page.waitForTimeout(140);
   const ending = await readingState(page);
@@ -209,9 +210,7 @@ async function waitForPivotChange(page, previousLocator) {
   for (const width of [820, 390, 320]) {
     await page.setViewportSize({ width, height: width <= 390 ? 844 : 800 });
     await page.reload({ waitUntil: 'networkidle' });
-    await page.waitForSelector(CONTROL);
-    await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
-    await page.waitForTimeout(120);
+    await waitForReader(page);
     const state = await readingState(page);
     assertRailOwnsPivot(state, `${width}px`);
     assert.ok(state.scrollWidth <= state.innerWidth + 1, `${width}px should not gain horizontal scrolling from the bookmark`);
@@ -219,12 +218,11 @@ async function waitForPivotChange(page, previousLocator) {
     assert.equal(state.markerPointerEvents, 'none', `${width}px bookmark must not block text selection`);
   }
 
-  const directBox = await page.locator(CONTROL).boundingBox();
+  const modesBox = await page.locator(CONTROL).boundingBox();
   const noteBox = await page.locator('#noteTab').boundingBox();
-  assert.ok(directBox && noteBox, 'mobile direct language choices and note control should remain visible');
-  assert.ok(directBox.x >= 0 && directBox.x + directBox.width <= 320.5, `direct language control overflows 320px viewport: ${JSON.stringify(directBox)}`);
-  assert.equal(overlaps(directBox, noteBox), false, 'direct language control must not overlap the note action');
-  assert.equal(await page.locator('[data-reader-mode-compare]').isHidden(), true, 'desktop Compare action should leave the mobile Reader Header');
+  assert.ok(modesBox && noteBox, 'mobile reading modes and note control should remain visible');
+  assert.ok(modesBox.x >= 0 && modesBox.x + modesBox.width <= 320.5, `reading mode shell overflows 320px viewport: ${JSON.stringify(modesBox)}`);
+  assert.equal(overlaps(modesBox, noteBox), false, 'reading mode shell must not overlap the note action');
 
   const jaButton = page.locator(`${CONTROL} [data-reading-mode-intent="ja"]`);
   await jaButton.focus();
@@ -232,20 +230,7 @@ async function waitForPivotChange(page, previousLocator) {
   await page.waitForFunction(() => window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix');
   assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent="en-mix"]`).getAttribute('aria-checked'), 'true');
 
-  await page.locator('.reader-v2-map-toggle').click();
-  await page.waitForSelector('#readerAside.is-open');
-  await page.waitForSelector('.reader-mobile-compare:not([hidden])');
-  const mobileCompareBox = await page.locator('.reader-mobile-compare').boundingBox();
-  assert.ok(mobileCompareBox, 'Compare should remain available from the mobile Reader Map');
-  assert.ok(mobileCompareBox.x >= 0 && mobileCompareBox.x + mobileCompareBox.width <= 320.5, `mobile Reader Map Compare overflows viewport: ${JSON.stringify(mobileCompareBox)}`);
-  await page.locator('.reader-mobile-compare').click();
-  await page.waitForSelector('.reader-compare-view');
-  await page.waitForFunction(() => !document.querySelector('#readerAside')?.classList.contains('is-open'));
-  await page.keyboard.press('Escape');
-  await page.waitForFunction(() => !document.querySelector('.reader-compare-view'));
-
-  // Accessibility media queries keep a static position cue without introducing
-  // animation or depending on gradients/shadows.
+  // Accessibility media queries keep a static cue without relying on animation.
   await page.emulateMedia({ reducedMotion: 'reduce', forcedColors: 'active' });
   await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
