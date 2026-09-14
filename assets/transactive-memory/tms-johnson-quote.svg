@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Knowledge is of two kinds</title>
+<desc id="desc">Samuel Johnson quote used at the opening of Wegner, Erber and Raymond's 1991 paper on transactive memory.</desc>
+<rect width="1200" height="675" rx="36" fill="#F7F4EE"/>
+<rect x="72" y="74" width="10" height="442" rx="5" fill="#A51C30"/>
+<text x="120" y="150" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#A51C30" letter-spacing="2">TRANSACTIVE MEMORY / 01</text>
+<text x="120" y="238" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="#1F2328">
+  <tspan x="120" dy="0">“Knowledge is of two kinds.</tspan>
+  <tspan x="120" dy="74">We know a subject ourselves,</tspan>
+  <tspan x="120" dy="74">or we know where we can find</tspan>
+  <tspan x="120" dy="74">information upon it.”</tspan>
+</text>
+<text x="120" y="570" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" fill="#59636E">— Samuel Johnson, quoted in Wegner, Erber &amp; Raymond (1991)</text>
+<text x="120" y="620" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="23" fill="#59636E">「自分で知る」だけでなく、「どこにあるかを知る」ことも知識になる。</text>
+</svg>
