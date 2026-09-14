@@ -1,0 +1,69 @@
+name: Structure lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'essays/**'
+      - 'english-mix/**'
+      - 'spanish-mix/**'
+      - 'data/versions-index.json'
+      - 'scripts/validate-version-structure.mjs'
+      - 'tests/structure-lint.test.mjs'
+      - 'reader-japanese-reference.js'
+      - 'AGENTS.md'
+      - '.github/workflows/structure-lint.yml'
+  pull_request:
+    paths:
+      - 'essays/**'
+      - 'english-mix/**'
+      - 'spanish-mix/**'
+      - 'data/versions-index.json'
+      - 'scripts/validate-version-structure.mjs'
+      - 'tests/structure-lint.test.mjs'
+      - 'reader-japanese-reference.js'
+      - 'AGENTS.md'
+      - '.github/workflows/structure-lint.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Regression tests
+        run: node --test tests/structure-lint.test.mjs
+
+      - name: Full repository audit
+        run: node scripts/validate-version-structure.mjs --all --report-only --json structure-audit.json
+
+      - name: Upload structure audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: structure-audit
+          path: structure-audit.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Strict gate for changed article pairs
+        if: github.event_name != 'workflow_dispatch'
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: node scripts/validate-version-structure.mjs --changed-from "$BASE_SHA"
+
+      - name: Strict full gate (manual run)
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/validate-version-structure.mjs --all
