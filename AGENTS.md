@@ -16,7 +16,8 @@
    - `data/index.json`: `essays` 配列の先頭に新記事パスを追加。
    - `data/versions-index.json`: `articles` オブジェクトの先頭に `{slug}: {"en-mix": "english-mix/{slug}.md"}` を追加。
 5. **構造LintとJSON構文チェック**:
-   - `node scripts/validate-version-structure.mjs --id {slug}` を実行し、日本語版と派生版のセクション数・ブロック数・ブロック種別が一致することを確認する。
+   - 新規記事は `node scripts/validate-version-structure.mjs --id {slug}` を実行し、日本語版と派生版のセクション数・ブロック数・ブロック種別が一致することを確認する。
+   - 既存記事に過去由来の構造差がある場合は、それを一度に直すことを必須にしない。ただし現在より差を増やさない。CIの `validate-structure-regressions.mjs` がbaseとの差分を比較し、新規・悪化した構造差だけを失敗させる。
    - PowerShellの `ConvertFrom-Json` 等で `data/index.json` と `data/versions-index.json` の整合性を検証する。
 6. **コミット＆プッシュ**:
    1行目に日本語要約を書いたコミットメッセージでコミットし、`origin main` へプッシュする。
@@ -36,4 +37,5 @@
 - H2の追加・削除・並べ替え、段落の結合・分割、リストと段落の相互変換、引用やfigureの移動をしない。
 - 比較UIに対応関係を推測させることを前提にしない。構造が壊れた場合は生成・公開フローで検知する。
 - `reading-locators.js` の位置推測は読書位置を保つための救済策であり、厳密な段落対応の根拠として扱わない。
-- 既存記事を調査する場合は `node scripts/validate-version-structure.mjs --all --report-only`、新規・更新記事は `--id {slug}` を使う。
+- 全体監査は `node scripts/validate-version-structure.mjs --all --report-only` を使う。新規記事は `--id {slug}` で完全一致を確認する。
+- 既存の構造差はlegacy debtとして可視化し、段階的に減らす。通常の更新では「既存差を悪化させない」を最低条件とする。
