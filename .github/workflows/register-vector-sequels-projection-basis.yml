@@ -1,0 +1,73 @@
+name: Register Vector Sequels Projection and Basis
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-vector-sequels-projection-basis.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register two sequel essays and English Mix versions
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const items = [
+            {
+              id: 'good-basis-fourier-pca-compression',
+              essay: 'essays/2026-09-14-good-basis-fourier-pca-compression.md',
+              mix: 'english-mix/good-basis-fourier-pca-compression.md'
+            },
+            {
+              id: 'inner-product-shadow-projection-least-squares',
+              essay: 'essays/2026-09-14-inner-product-shadow-projection-least-squares.md',
+              mix: 'english-mix/inner-product-shadow-projection-least-squares.md'
+            }
+          ];
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          const paths = new Set(items.map(x => x.essay));
+          index.essays = index.essays.filter(p => !paths.has(p));
+          index.essays.unshift(...items.map(x => x.essay));
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          const ids = new Set(items.map(x => x.id));
+          const rest = Object.fromEntries(
+            Object.entries(versions.articles).filter(([key]) => !ids.has(key))
+          );
+          const added = Object.fromEntries(
+            items.map(x => [x.id, { ...(versions.articles[x.id] || {}), 'en-mix': x.mix }])
+          );
+          versions.articles = { ...added, ...rest };
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+
+          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          console.log('Two sequel essays registered and JSON validated.');
+          NODE
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'ベクトル続編2本を登録'
+          git push
