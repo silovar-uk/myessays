@@ -72,7 +72,6 @@ Rozenblit と Keil は2002年、複雑な仕組みについて、人が実際よ
 [Rozenblit & Keil (2002), The misunderstood limits of folk science](https://pmc.ncbi.nlm.nih.gov/articles/PMC3062901/)
 
 The important point is not only that gaps existed.
-
 **The gaps were invisible until explanation was required.**
 
 普段は、仕組みのすべてを頭の中に持っていなくても困らない。
@@ -133,6 +132,8 @@ So feeling is not enough.
 **Explain, retrieve, solve, then compare output with confidence.**
 
 ## 5. Four small practices to expose hidden gaps
+
+「わかっていないことに気づく」を習慣にするなら、難しい方法はいらない。
 
 ### ① Close the source and explain it in three lines
 

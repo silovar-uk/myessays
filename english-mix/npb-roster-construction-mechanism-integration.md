@@ -12,7 +12,11 @@ abstract: "第5〜9回では、draft・development・contract renewal・FA・tra
 
 「強い球団を作る」と聞くと、まず思い浮かぶのは、いい選手を集めることかもしれない。
 
-Draft a good player. Sign a good player through FA. Trade for a good player.
+Draft a good player.
+
+Sign a good player through FA.
+
+Trade for a good player.
 
 でも、第5回から第9回までを読んできたなら、もう分かっているはずだ。
 

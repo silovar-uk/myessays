@@ -97,7 +97,6 @@ What stood out in recent Soka projects was that the story is not only about luxu
 代表例が **U-TaaaN PROJECT by SOKA LEATHER**。
 
 The project receives hides from deer and other wild animals captured in different parts of Japan, tans them in Soka, turns them into leather or finished goods, and sends the added value back to the original region.
-
 捨てられやすかった原皮を、regional resourcesとして使い直す発想や。
 
 Soka has also developed a form of leather using rice-bran-derived oil as a major tanning agent, known as **米ぬかなめし**.
