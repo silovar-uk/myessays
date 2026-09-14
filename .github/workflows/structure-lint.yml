@@ -9,6 +9,7 @@ on:
       - 'spanish-mix/**'
       - 'data/versions-index.json'
       - 'scripts/validate-version-structure.mjs'
+      - 'scripts/validate-structure-regressions.mjs'
       - 'tests/structure-lint.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
@@ -20,6 +21,7 @@ on:
       - 'spanish-mix/**'
       - 'data/versions-index.json'
       - 'scripts/validate-version-structure.mjs'
+      - 'scripts/validate-structure-regressions.mjs'
       - 'tests/structure-lint.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
@@ -43,6 +45,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Syntax checks
+        run: |
+          node --check reader-japanese-reference.js
+          node --check scripts/validate-version-structure.mjs
+          node --check scripts/validate-structure-regressions.mjs
+
       - name: Regression tests
         run: |
           set -o pipefail
@@ -63,12 +71,12 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-      - name: Strict gate for changed article pairs
+      - name: Regression gate for changed article pairs
         if: success() && github.event_name != 'workflow_dispatch'
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
-        run: node scripts/validate-version-structure.mjs --changed-from "$BASE_SHA"
+        run: node scripts/validate-structure-regressions.mjs --base "$BASE_SHA"
 
-      - name: Strict full gate (manual run)
+      - name: Strict full gate (manual migration check)
         if: success() && github.event_name == 'workflow_dispatch'
         run: node scripts/validate-version-structure.mjs --all
