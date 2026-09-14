@@ -30,7 +30,7 @@ Psychology has a concept aimed almost exactly at this strange middle zone: **tra
 
 ざっくり言えば、it is a system for remembering **who knows what**, then reaching that person's memory when needed.
 
-At first, I thought: 「要するに、記憶の外注やな」
+At first, I thought: 「要するに、記憶の外注か」
 
 That was half right and half much too simple.
 
