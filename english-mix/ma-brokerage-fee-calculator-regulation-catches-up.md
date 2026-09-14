@@ -160,33 +160,37 @@ So one important distinction appears:
 
 ## 4. The DD joke flips the whole story
 
-動画で最も引っかかったのは、仲介会社がデューデリジェンスまで自分でやらなくてもいい、というくだりだった。
+動画の中で、個人的に最も引っかかったのはここだった。
 
-My first reaction was simple: **You can charge that much without doing the hard investigation yourself?**
+M&A brokerage is mostly about matching and coordination; the broker does not always perform the company valuation or due diligence itself.
 
-ところが、ここは調べるほど逆転した。
+それを聞くと、正直なところ最初はこう思った。
 
-中小M&Aガイドラインでは、双方を支援する仲介者は、利益相反を避けるためDDを自ら実施すべきでないと整理されている。確定的な企業価値評価についても、必要に応じて外部専門家の意見を求める形が想定されている。
+**You can charge tens of millions of yen without doing all that yourself?**
 
-That is not “less work because nobody cares.”
+But the more I checked, the picture flipped.
 
-It is a separation of roles because one intermediary sits between two parties with different interests.
+中小M&Aガイドラインでは、双方を支援する「仲介者」は、利益相反を避ける観点からデューデリジェンス（DD）を自ら実施すべきではない、と整理されている。確定的な企業価値評価についても、一方の意向に寄りすぎないよう専門家の意見を求めることが想定されている。
 
-もちろん、仲介者が消えるわけではない。
+Of course, that does not mean the broker can do nothing.
 
-資料準備、進行管理、専門家との連携、交渉の調整、契約・クロージングへの段取りは残る。
+必要資料の整理、スケジュール調整、専門家との連携、売り手と買い手の交渉進行、契約・クロージングへ向けた段取りなど、案件を止めないための仕事は残る。
 
-So the value proposition changes.
+That changed what “brokerage” meant to me.
 
-**A broker is not necessarily paid to know everything. A broker can be paid to keep the whole transaction moving while the right specialists make the right judgments.**
+仲介者の価値は、全部を自分で専門判断することではない。
 
-会社売買では、会計、税務、法務、金融、秘密保持、経営者の感情まで同時に動く。
+**It can also mean dividing specialist judgments among the right people while keeping the whole transaction moving to the end.**
 
-Calling that “just matching” suddenly feels too small.
+会社を一社買う場面で、会計、税務、法務、金融、経営、感情、秘密保持が同時に動く。
+
+The broker turns all of that into one process.
+
+「人を紹介するだけ」と言うには、取引そのものが重すぎる。
 
 [中小企業庁「中小M&Aガイドライン」](https://www.chusho.meti.go.jp/zaimu/shoukei/m_and_a_guideline.html)
 
-[経営承継支援「中小M&Aガイドライン～業務別対応ポイント①～」](https://jms-support.jp/column/%E4%B8%AD%E5%B0%8Fma%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E6%A5%AD%E7%95%8C%E5%88%A5%E5%AF%BE%E5%BF%9C%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88/)
+[経営承継支援「中小M&Aガイドライン～業務別対応ポイント①～」](https://jms-support.jp/column/%E4%B8%AD%E5%B0%8Fma%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E6%A5%AD%E7%95%8C%E5%88%A5%E5%AF%BE%E5%BF%9C%E3%82%A4%E3%83%B3%E3%83%88/)
 
 ---
 
