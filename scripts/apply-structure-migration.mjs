@@ -45,7 +45,10 @@ export function applyExactOperation(text, operation, canonicalText = '') {
   return { text: next, status: 'pending' };
 }
 
-export function applyTarget(target, { apply = false, root = ROOT } = {}) {
+export function prepareTarget(target, { root = ROOT } = {}) {
+  if (target.verifiedRepairability !== 'SAFE') {
+    throw new Error(`${target.id || 'target'} is not explicitly verified SAFE`);
+  }
   const variantPath = path.join(root, target.variant);
   const canonicalPath = path.join(root, target.canonical);
   const before = fs.readFileSync(variantPath, 'utf8');
@@ -64,14 +67,32 @@ export function applyTarget(target, { apply = false, root = ROOT } = {}) {
     throw new Error(`${target.id} would still mismatch after plan: ${JSON.stringify(comparison.issues)}`);
   }
 
-  if (apply && current !== before) fs.writeFileSync(variantPath, current, 'utf8');
-  return { id: target.id, changed: current !== before, statuses };
+  return { id: target.id, variantPath, before, current, changed: current !== before, statuses };
+}
+
+export function applyTarget(target, { apply = false, root = ROOT } = {}) {
+  const prepared = prepareTarget(target, { root });
+  if (apply && prepared.changed) fs.writeFileSync(prepared.variantPath, prepared.current, 'utf8');
+  return { id: prepared.id, changed: prepared.changed, statuses: prepared.statuses };
 }
 
 export function runPlan(plan, options = {}) {
   if (!plan?.id || !Array.isArray(plan.targets) || !plan.targets.length) throw new Error('Invalid migration plan');
-  const results = plan.targets.map(target => applyTarget(target, options));
-  return { id: plan.id, results };
+  const root = options.root || ROOT;
+
+  // Always preflight every target before the first write. This prevents a later invalid target
+  // from leaving an earlier target partially migrated.
+  const prepared = plan.targets.map(target => prepareTarget(target, { root }));
+  if (options.apply) {
+    for (const row of prepared) {
+      if (row.changed) fs.writeFileSync(row.variantPath, row.current, 'utf8');
+    }
+  }
+
+  return {
+    id: plan.id,
+    results: prepared.map(row => ({ id: row.id, changed: row.changed, statuses: row.statuses }))
+  };
 }
 
 function argValue(name) {
