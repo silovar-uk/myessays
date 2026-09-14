@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">アミット＆ゾットの活動システムとしてのビジネスモデル</title>
+  <desc id="desc">企業、顧客、パートナー、プラットフォームを活動と矢印で結び、Content、Structure、Governanceの三つの設計要素を示す概念図。</desc>
+  <rect width="1200" height="720" fill="#f7f7f5"/>
+  <text x="70" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="40" font-weight="700" fill="#171717">Business model = 活動の「配線図」</text>
+  <text x="70" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#555">商品や価格だけでなく、誰が・何を・どうつなげて行うかを見る</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <g font-family="system-ui, -apple-system, sans-serif">
+    <rect x="90" y="220" width="230" height="120" rx="22" fill="#fff" stroke="#c8c8c8" stroke-width="2"/>
+    <text x="205" y="268" text-anchor="middle" font-size="26" font-weight="700" fill="#222">顧客</text>
+    <text x="205" y="304" text-anchor="middle" font-size="19" fill="#666">探す・選ぶ・買う</text>
+
+    <rect x="485" y="175" width="230" height="150" rx="22" fill="#fff" stroke="#b6232f" stroke-width="3"/>
+    <text x="600" y="228" text-anchor="middle" font-size="27" font-weight="700" fill="#222">焦点企業</text>
+    <text x="600" y="266" text-anchor="middle" font-size="19" fill="#666">設計・提供・調整</text>
+    <text x="600" y="296" text-anchor="middle" font-size="19" fill="#666">価値の一部を獲得</text>
+
+    <rect x="880" y="220" width="230" height="120" rx="22" fill="#fff" stroke="#c8c8c8" stroke-width="2"/>
+    <text x="995" y="268" text-anchor="middle" font-size="26" font-weight="700" fill="#222">パートナー</text>
+    <text x="995" y="304" text-anchor="middle" font-size="19" fill="#666">供給・配送・補完</text>
+
+    <rect x="485" y="420" width="230" height="120" rx="22" fill="#fff" stroke="#c8c8c8" stroke-width="2"/>
+    <text x="600" y="468" text-anchor="middle" font-size="26" font-weight="700" fill="#222">外部プラットフォーム</text>
+    <text x="600" y="504" text-anchor="middle" font-size="19" fill="#666">決済・マッチング・認証</text>
+
+    <line x1="320" y1="265" x2="485" y2="250" stroke="#555" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="715" y1="250" x2="880" y2="265" stroke="#555" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="600" y1="325" x2="600" y2="420" stroke="#555" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="520" y1="455" x2="285" y2="330" stroke="#777" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <line x1="680" y1="455" x2="915" y2="330" stroke="#777" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+    <rect x="90" y="610" width="310" height="64" rx="16" fill="#ececec"/>
+    <text x="245" y="650" text-anchor="middle" font-size="23" font-weight="700" fill="#333">Content = 何をするか</text>
+    <rect x="445" y="610" width="310" height="64" rx="16" fill="#ececec"/>
+    <text x="600" y="650" text-anchor="middle" font-size="23" font-weight="700" fill="#333">Structure = どうつなぐか</text>
+    <rect x="800" y="610" width="310" height="64" rx="16" fill="#ececec"/>
+    <text x="955" y="650" text-anchor="middle" font-size="23" font-weight="700" fill="#333">Governance = 誰が担うか</text>
+  </g>
+</svg>
