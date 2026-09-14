@@ -65,18 +65,47 @@ test('same-essay rerenders preserve an active Pivot handoff anchor', () => {
   assert.match(pivot, /if \(!sameEssayHandoff\) \{[\s\S]*?pendingSwitchAnchor = null/);
 });
 
-test('reading focus zone is perceptible, continuous, non-animated and leaves Pivot visually unpainted', () => {
+test('Reading Lens uses a continuous 10/6/2.5% surface plus one short bookmark marker', () => {
   const css = read('reader-reading-pivot.css');
-  assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*transparent;[\s\S]*?box-shadow:\s*none/);
-  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.028\)/);
-  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.009\)/);
-  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.034\)/);
-  assert.doesNotMatch(css, /has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.28\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.10\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.06\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.025\)/);
+  assert.match(css, /is-reading-pivot::after\s*\{[\s\S]*?width:\s*3px;[\s\S]*?height:\s*24px/);
+  assert.match(css, /is-reading-pivot::after[\s\S]*?pointer-events:\s*none/);
+  assert.match(css, /is-reading-pivot\s*\{[\s\S]*?background-color:\s*transparent;[\s\S]*?box-shadow:\s*none/);
   const zoneRules = [...css.matchAll(/\.reader-content\.has-reading-focus-zone\s*\{([\s\S]*?)\}/g)]
-    .map(match => match[1]);
-  assert.equal(zoneRules.length, 2, 'desktop and mobile Reading Zone rules should both exist');
+    .map(match => match[1])
+    .filter(rule => /background-image:\s*linear-gradient/.test(rule));
+  assert.equal(zoneRules.length, 1, 'Reading Lens gradient should have one shared desktop/mobile source of truth');
   zoneRules.forEach(rule => assert.doesNotMatch(rule, /transition:/));
-  assert.match(css, /is-language-switch-target[\s\S]*?box-shadow:\s*none/);
+});
+
+test('language switch target temporarily replaces the short bookmark with a full-height marker', () => {
+  const css = read('reader-reading-pivot.css');
+  assert.match(css, /is-language-switch-target[\s\S]*?reader-language-target-surface 1800ms/);
+  assert.match(css, /is-language-switch-target[\s\S]*?background-color:\s*rgba\(180, 62, 49, \.14\)/);
+  assert.match(css, /is-language-switch-target::after[\s\S]*?top:\s*0;[\s\S]*?bottom:\s*0;[\s\S]*?width:\s*3px;[\s\S]*?height:\s*auto/);
+  assert.match(css, /@keyframes reader-language-target-surface[\s\S]*?88\.9%[\s\S]*?background-color:\s*rgba\(180, 62, 49, 0\)/);
+  assert.match(css, /@keyframes reader-language-target-marker[\s\S]*?88\.9%[\s\S]*?opacity:\s*0/);
+  assert.match(css, /prefers-reduced-motion:[\s\S]*?is-language-switch-target[\s\S]*?animation:\s*none/);
+});
+
+test('Reading Lens keeps Language Lab overlays transparent and scopes the darker body link color', () => {
+  const css = read('reader-reading-pivot.css');
+  assert.match(css, /has-reading-focus-zone \[data-reading-locator\]\.is-language-active-paragraph[\s\S]*?background-color:\s*transparent/);
+  assert.match(css, /has-reading-focus-zone \[data-reading-locator\]\.is-flipped-paragraph[\s\S]*?background-color:\s*transparent/);
+  assert.match(css, /--reading-link-color:\s*#8f3027/);
+  assert.match(css, /\.reader-content \.reader-locator-block a,/);
+  assert.doesNotMatch(css, /:root[\s\S]*?--accent:\s*#8f3027/);
+});
+
+test('forced colors keeps system-color position cues when gradients and shadows disappear', () => {
+  const css = read('reader-reading-pivot.css');
+  assert.match(css, /@media \(forced-colors: active\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?background-image:\s*none/);
+  assert.match(css, /is-reading-pivot::after[\s\S]*?background:\s*CanvasText/);
+  assert.match(css, /is-language-switch-target[\s\S]*?outline:\s*1px solid CanvasText/);
+  assert.match(css, /color:\s*LinkText/);
 });
 
 test('Reading Surface has one semantic progress owner and an opacity-only Ink Dissolve', () => {
