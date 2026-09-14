@@ -10,11 +10,13 @@
   const MIN_VISIBLE_PX = 20;
   const SWITCH_LOCK_MS = 120;
   const SWITCH_CORRECTION_TOLERANCE = 0.75;
-  const FOCUS_START_INDEX = 2;
+  const READING_RAIL_RATIO = 0.36;
+  const ANCHOR_HYSTERESIS_PX = 24;
   const FOCUS_RANGE_LENGTH = 3;
   const FOCUS_FADE_PX = 30;
 
   let pivot = null;
+  let readingAnchor = null;
   let logicalPivotLocator = '';
   let readingBlocksCache = [];
   let focusZoneBlocks = [];
@@ -61,7 +63,7 @@
   function readingRailY() {
     const band = viewportBand();
     const height = Math.max(1, band.bottom - band.top);
-    return Math.min(band.bottom, band.top + Math.min(142, Math.max(76, height * .16)));
+    return Math.min(band.bottom, band.top + (height * READING_RAIL_RATIO));
   }
 
   function visibility(block) {
@@ -80,21 +82,6 @@
       .sort((a, b) => a.rect.top - b.rect.top);
   }
 
-  function readingFlowFromTop(visible = visibleReadingItems()) {
-    const blocks = readingBlocks();
-    const topBlock = visible[0]?.block || null;
-    const topIndex = topBlock ? blocks.indexOf(topBlock) : -1;
-    return {
-      blocks,
-      visible,
-      topBlock,
-      topIndex,
-      focusBlocks: topIndex >= 0
-        ? blocks.slice(topIndex + FOCUS_START_INDEX, topIndex + FOCUS_START_INDEX + FOCUS_RANGE_LENGTH)
-        : []
-    };
-  }
-
   function nearestToRail(blocks) {
     const rail = readingRailY();
     return blocks.reduce((best, block) => {
@@ -105,12 +92,50 @@
     }, null)?.block || null;
   }
 
-  function candidatePivot(visible = visibleReadingItems()) {
-    const flow = readingFlowFromTop(visible);
-    if (!flow.blocks.length) return null;
-    if (flow.focusBlocks.length) return flow.focusBlocks[0];
-    if (flow.visible.length) return nearestToRail(flow.visible.map(item => item.block));
-    return nearestToRail(flow.blocks);
+  function findRailAnchor(blocks = readingBlocks()) {
+    if (!blocks.length) return null;
+    const rail = readingRailY();
+    const intersecting = blocks.find(block => {
+      const rect = block.getBoundingClientRect();
+      return rect.top <= rail && rect.bottom >= rail;
+    });
+    return intersecting || nearestToRail(blocks);
+  }
+
+  function shouldHoldAnchor(anchor) {
+    if (!anchor || !content.contains(anchor)) return false;
+    const rect = anchor.getBoundingClientRect();
+    const rail = readingRailY();
+    return rect.top <= rail + ANCHOR_HYSTERESIS_PX
+      && rect.bottom >= rail - ANCHOR_HYSTERESIS_PX;
+  }
+
+  function resolveReadingAnchor({ force = false } = {}) {
+    const blocks = readingBlocks();
+    if (!blocks.length) {
+      readingAnchor = null;
+      return null;
+    }
+    if (!force && shouldHoldAnchor(readingAnchor)) return readingAnchor;
+    readingAnchor = findRailAnchor(blocks);
+    return readingAnchor;
+  }
+
+  function focusBlocksFromAnchor(anchor) {
+    const blocks = readingBlocks();
+    const anchorIndex = anchor ? blocks.indexOf(anchor) : -1;
+    if (anchorIndex < 0) return [];
+
+    let start = anchorIndex;
+    let end = Math.min(blocks.length, start + FOCUS_RANGE_LENGTH);
+    if (end - start < FOCUS_RANGE_LENGTH) {
+      start = Math.max(0, end - FOCUS_RANGE_LENGTH);
+    }
+    return blocks.slice(start, end);
+  }
+
+  function candidatePivot(_visible = visibleReadingItems(), { force = false } = {}) {
+    return resolveReadingAnchor({ force });
   }
 
   function clearReadingZone() {
@@ -119,6 +144,7 @@
     delete content.dataset.readingFocusCount;
     delete content.dataset.readingFocusStart;
     delete content.dataset.readingFocusEnd;
+    delete content.dataset.readingFocusAnchor;
     [
       '--reading-zone-fade-start',
       '--reading-zone-top',
@@ -128,9 +154,9 @@
     ].forEach(name => content.style.removeProperty(name));
   }
 
-  function syncReadingZone(visible = visibleReadingItems()) {
-    const flow = readingFlowFromTop(visible);
-    const focusItems = flow.focusBlocks.map(block => ({ block, rect: block.getBoundingClientRect() }));
+  function syncReadingZone(anchor = readingAnchor || resolveReadingAnchor()) {
+    const focusBlocks = focusBlocksFromAnchor(anchor);
+    const focusItems = focusBlocks.map(block => ({ block, rect: block.getBoundingClientRect() }));
     if (!focusItems.length) {
       clearReadingZone();
       return [];
@@ -154,6 +180,7 @@
     content.dataset.readingFocusCount = String(focusItems.length);
     content.dataset.readingFocusStart = focusItems[0].block.dataset.readingLocator || '';
     content.dataset.readingFocusEnd = focusItems[focusItems.length - 1].block.dataset.readingLocator || '';
+    content.dataset.readingFocusAnchor = anchor?.dataset?.readingLocator || '';
     focusZoneBlocks = focusItems.map(item => item.block);
     return [...focusZoneBlocks];
   }
@@ -189,6 +216,7 @@
     const sameBlock = pivot === block;
     if (pivot && !sameBlock) pivot.classList.remove('is-reading-pivot');
     pivot = block;
+    readingAnchor = block;
     if (logicalLocator) logicalPivotLocator = logicalLocator;
     else if (!sameBlock || !logicalPivotLocator) logicalPivotLocator = physicalLocator(block);
     pivot.classList.add('is-reading-pivot');
@@ -217,10 +245,9 @@
       versions()?.isSwitching?.() ||
       handoffScrollActive()
     ) return;
-    const visible = visibleReadingItems();
-    syncReadingZone(visible);
-    const candidate = candidatePivot(visible);
+    const candidate = candidatePivot(visibleReadingItems(), { force: immediate });
     if (!candidate) return;
+    syncReadingZone(candidate);
     if (!pivot || immediate || candidate !== pivot) {
       setPivot(candidate, { reason: pivot ? (immediate ? 'sync' : 'scroll') : 'initial' });
     }
@@ -316,7 +343,7 @@
       // correction. Hold the restored Pivot until the reader expresses a real
       // movement gesture; raw scroll events alone are not reader intent.
       semanticHandoffHold = true;
-      syncReadingZone(visibleReadingItems());
+      syncReadingZone(target);
       lockUntil = Date.now() + SWITCH_LOCK_MS;
     }));
   }
@@ -367,6 +394,7 @@
     if (!readerOpen()) {
       if (pivot) pivot.classList.remove('is-reading-pivot');
       pivot = null;
+      readingAnchor = null;
       logicalPivotLocator = '';
       readingBlocksCache = [];
       clearReadingZone();
@@ -380,6 +408,7 @@
       lastEssayId = id;
       if (!sameEssayHandoff) {
         pendingSwitchAnchor = null;
+        readingAnchor = null;
         logicalPivotLocator = '';
         semanticHandoffHold = false;
         lockUntil = 0;
@@ -388,10 +417,11 @@
 
     refreshReadingBlocks();
     if (!versions()?.isSwitching?.() && !handoffScrollActive()) {
-      const visible = visibleReadingItems();
-      syncReadingZone(visible);
-      const candidate = candidatePivot(visible);
-      if (candidate) setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
+      const candidate = candidatePivot(visibleReadingItems(), { force: routeChanged || !readingAnchor });
+      if (candidate) {
+        syncReadingZone(candidate);
+        setPivot(candidate, { reason: pivot ? 'sync' : 'initial' });
+      }
     }
     requestAnimationFrame(syncCompareUI);
   }
@@ -402,6 +432,7 @@
     locator: () => currentLogicalLocator(),
     physicalLocator: () => physicalLocator(pivot),
     focusBlocks: () => [...focusZoneBlocks],
+    readingRailY,
     captureForSwitch: captureSwitchAnchor,
     hasPendingSwitchAnchor: () => Boolean(pendingSwitchAnchor),
     candidate: candidatePivot,
@@ -421,7 +452,8 @@
     // Keep the restored Primary Pivot fixed until the next real user scroll;
     // only recompute the Reading Zone against the new physical paragraphs.
     refreshReadingBlocks();
-    syncReadingZone(visibleReadingItems());
+    readingAnchor = pivot && content.contains(pivot) ? pivot : readingAnchor;
+    syncReadingZone(readingAnchor || resolveReadingAnchor({ force: true }));
     requestAnimationFrame(syncCompareUI);
   });
   document.addEventListener('myessays:reading-location-changed', () => requestAnimationFrame(syncCompareUI));
@@ -451,6 +483,7 @@
   });
 
   window.addEventListener('hashchange', () => {
+    readingAnchor = null;
     logicalPivotLocator = '';
     semanticHandoffHold = false;
     readingBlocksCache = [];
