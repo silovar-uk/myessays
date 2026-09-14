@@ -1,0 +1,61 @@
+{
+  "id": "batch-003",
+  "description": "Decision-led legacy structure migration. Two reviewed ENMIX variants use exact boundary repair plus canonical restore; no semantic guessing.",
+  "targets": [
+    {
+      "id": "nikkei-headlines-four-vectors",
+      "canonical": "essays/2026-09-10-nikkei-headlines-four-vectors.md",
+      "variant": "english-mix/nikkei-headlines-four-vectors.md",
+      "verifiedRepairability": "SAFE_CANONICAL_RESTORE",
+      "operations": [
+        {
+          "label": "rejoin framing question split into two ENMIX blocks",
+          "policy": "structure-only",
+          "from": "So today, I will not classify the headlines by section. Instead, I will ask a different question:\n\n**What is moving what?**",
+          "to": "So today, I will not classify the headlines by section. Instead, I will ask a different question:\n**What is moving what?**"
+        },
+        {
+          "label": "rejoin deployment explanation split into two ENMIX blocks",
+          "policy": "structure-only",
+          "from": "A smart model is not the same thing as a system that 100,000 companies can actually use.\n\n工場で動くこと、点検員の作業に入ること、選手の身体データと結びつくこと。それぞれに別の能力が必要になる。",
+          "to": "A smart model is not the same thing as a system that 100,000 companies can actually use.\n工場で動くこと、点検員の作業に入ること、選手の身体データと結びつくこと。それぞれに別の能力が必要になる。"
+        },
+        {
+          "label": "restore omitted conclusion after company-network questions",
+          "policy": "canonical-restore",
+          "restoredText": "のほうが重要になる。",
+          "from": "Which capability stays inside the firm?\n```\n\nこれは最初のAIの話にも戻る。",
+          "to": "Which capability stays inside the firm?\n```\n\nのほうが重要になる。\n\nこれは最初のAIの話にも戻る。"
+        }
+      ]
+    },
+    {
+      "id": "america-cities-02-boston",
+      "canonical": "essays/2026-08-24-america-cities-02-boston.md",
+      "variant": "english-mix/america-cities-02-boston.md",
+      "verifiedRepairability": "SAFE_CANONICAL_RESTORE",
+      "operations": [
+        {
+          "label": "restore omitted Irish-immigration bridge block",
+          "policy": "canonical-restore",
+          "restoredText": "これは単なる「移民が増えた」という話ではない。",
+          "from": "Irish communities built influence through churches, neighborhood organizations, unions, and political networks. 1884年にはHugh O'BrienがBoston初のIrish Catholic mayorとなり、20世紀初頭にはIrish Catholicsが市政で大きな力を持つようになった。\n\n**Immigration changed who had the right to define Boston.**",
+          "to": "Irish communities built influence through churches, neighborhood organizations, unions, and political networks. 1884年にはHugh O'BrienがBoston初のIrish Catholic mayorとなり、20世紀初頭にはIrish Catholicsが市政で大きな力を持つようになった。\n\nこれは単なる「移民が増えた」という話ではない。\n\n**Immigration changed who had the right to define Boston.**"
+        },
+        {
+          "label": "restore omitted Fenway bridge block",
+          "policy": "canonical-restore",
+          "restoredText": "ここにもBostonらしさがある。",
+          "from": "1912年開場の古いballparkが、都市中心部に近い場所で現在も使われ続けている。\n\nBoston often keeps the old container alive instead of turning it into a museum.",
+          "to": "1912年開場の古いballparkが、都市中心部に近い場所で現在も使われ続けている。\n\nここにもBostonらしさがある。\n\nBoston often keeps the old container alive instead of turning it into a museum."
+        },
+        {
+          "label": "rejoin final Boston summary split into two ENMIX blocks",
+          "policy": "structure-only",
+          "from": "Boston becomes easier to remember when you stop seeing it as a city where history merely survived.\n\n**歴史を使いながら更新している街**として見ると、一気につながる。",
+          "to": "Boston becomes easier to remember when you stop seeing it as a city where history merely survived.\n**歴史を使いながら更新している街**として見ると、一気につながる。"
+        }
+      ]
+    }
+  ]
+}
