@@ -6,25 +6,29 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('reading pivot uses the third paragraph in flow from the top visible reading paragraph', () => {
+test('reading pivot follows a viewport Reading Rail with hysteresis instead of counting from the top', () => {
   const pivot = read('reader-reading-pivot.js');
   assert.match(pivot, /const MIN_VISIBLE_PX = 20/);
-  assert.match(pivot, /const FOCUS_START_INDEX = 2/);
+  assert.match(pivot, /const READING_RAIL_RATIO = 0\.36/);
+  assert.match(pivot, /const ANCHOR_HYSTERESIS_PX = 24/);
   assert.match(pivot, /:scope > p\.reader-locator-block\[data-reading-locator\]/);
-  assert.match(pivot, /item\.visiblePx >= Math\.min\(MIN_VISIBLE_PX/);
-  assert.match(pivot, /const topBlock = visible\[0\]\?\.block \|\| null/);
-  assert.match(pivot, /blocks\.slice\(topIndex \+ FOCUS_START_INDEX, topIndex \+ FOCUS_START_INDEX \+ FOCUS_RANGE_LENGTH\)/);
-  assert.match(pivot, /if \(flow\.focusBlocks\.length\) return flow\.focusBlocks\[0\]/);
-  assert.doesNotMatch(pivot, /return visible\[FOCUS_START_INDEX\]\.block/);
+  assert.match(pivot, /function findRailAnchor/);
+  assert.match(pivot, /rect\.top <= rail && rect\.bottom >= rail/);
+  assert.match(pivot, /function shouldHoldAnchor/);
+  assert.match(pivot, /rect\.top <= rail \+ ANCHOR_HYSTERESIS_PX/);
+  assert.match(pivot, /if \(!force && shouldHoldAnchor\(readingAnchor\)\) return readingAnchor/);
+  assert.doesNotMatch(pivot, /FOCUS_START_INDEX|readingFlowFromTop/);
   assert.doesNotMatch(pivot, /VISIBLE_RATIO|PIVOT_SETTLE_MS/);
 });
 
-test('Reading Focus is one visual zone spanning third through fifth paragraphs in reading flow', () => {
+test('Reading Lens is one visual zone spanning the current rail paragraph plus the next two paragraphs', () => {
   const pivot = read('reader-reading-pivot.js');
   const css = read('reader-reading-pivot.css');
   assert.match(pivot, /const FOCUS_RANGE_LENGTH = 3/);
-  assert.match(pivot, /function readingFlowFromTop/);
-  assert.match(pivot, /flow\.focusBlocks\.map\(block => \(\{ block, rect: block\.getBoundingClientRect\(\) \}\)\)/);
+  assert.match(pivot, /function focusBlocksFromAnchor/);
+  assert.match(pivot, /let start = anchorIndex/);
+  assert.match(pivot, /blocks\.slice\(start, end\)/);
+  assert.match(pivot, /data\.readingFocusAnchor|dataset\.readingFocusAnchor/);
   assert.match(pivot, /has-reading-focus-zone/);
   assert.match(pivot, /--reading-zone-top/);
   assert.match(pivot, /--reading-zone-bottom/);
@@ -64,9 +68,10 @@ test('same-essay rerenders preserve an active Pivot handoff anchor', () => {
 test('reading focus zone is perceptible, continuous, non-animated and leaves Pivot visually unpainted', () => {
   const css = read('reader-reading-pivot.css');
   assert.match(css, /is-reading-pivot\s*\{[\s\S]*?transition:\s*none;[\s\S]*?background-color:\s*transparent;[\s\S]*?box-shadow:\s*none/);
-  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.28\)/);
-  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.07\)/);
-  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.24\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.028\)/);
+  assert.match(css, /has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.009\)/);
+  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?has-reading-focus-zone[\s\S]*?rgba\(180, 62, 49, \.034\)/);
+  assert.doesNotMatch(css, /has-reading-focus-zone[\s\S]*?rgba\(255, 255, 255, \.28\)/);
   const zoneRules = [...css.matchAll(/\.reader-content\.has-reading-focus-zone\s*\{([\s\S]*?)\}/g)]
     .map(match => match[1]);
   assert.equal(zoneRules.length, 2, 'desktop and mobile Reading Zone rules should both exist');
@@ -152,7 +157,8 @@ test('stable language handoff keeps the restored Pivot until user scroll', () =>
   assert.ok(stableStart >= 0 && stableEnd > stableStart, 'stable handler should be inspectable');
   const stableHandler = pivot.slice(stableStart, stableEnd);
   assert.match(stableHandler, /refreshReadingBlocks\(\)/);
-  assert.match(stableHandler, /syncReadingZone\(visibleReadingItems\(\)\)/);
+  assert.match(stableHandler, /readingAnchor = pivot && content\.contains\(pivot\) \? pivot : readingAnchor/);
+  assert.match(stableHandler, /syncReadingZone\(readingAnchor \|\| resolveReadingAnchor\(\{ force: true \}\)\)/);
   assert.match(stableHandler, /requestAnimationFrame\(syncCompareUI\)/);
   assert.doesNotMatch(stableHandler, /scheduleEvaluate|candidatePivot|setPivot/);
   assert.match(pivot, /window\.addEventListener\('scroll', \(\) => scheduleEvaluate\(\)/);
