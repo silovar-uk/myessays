@@ -70,6 +70,7 @@ async function readingFocusState(page) {
     const header = document.querySelector('.reader-v2-header')?.getBoundingClientRect();
     const bandTop = (header?.height ? Math.max(0, header.bottom) : 0) + 8;
     const bandBottom = Math.max(bandTop + 1, innerHeight - 18);
+    const rail = bandTop + ((bandBottom - bandTop) * .36);
     const paragraphs = [...content.querySelectorAll(':scope > p.reader-locator-block[data-reading-locator]')]
       .filter(block => !block.classList.contains('language-source-hidden'));
     const visible = paragraphs.map(block => {
@@ -79,18 +80,20 @@ async function readingFocusState(page) {
     }).filter(item => item.visiblePx >= Math.min(20, Math.max(1, item.rect.height)))
       .sort((a, b) => a.rect.top - b.rect.top);
 
-    const topAnchor = visible[0]?.block || null;
-    const topAnchorIndex = topAnchor ? paragraphs.indexOf(topAnchor) : -1;
-    const expectedZoneBlocks = topAnchorIndex >= 0
-      ? paragraphs.slice(topAnchorIndex + 2, topAnchorIndex + 5)
-      : [];
-    const expectedZone = expectedZoneBlocks.map(block => ({ block, rect: block.getBoundingClientRect() }));
-    const expected = expectedZoneBlocks[0] || null;
     const actual = content.querySelector(':scope > p.is-reading-pivot');
+    const actualIndex = actual ? paragraphs.indexOf(actual) : -1;
+    let expectedStart = actualIndex;
+    let expectedEnd = actualIndex >= 0 ? Math.min(paragraphs.length, actualIndex + 3) : -1;
+    if (actualIndex >= 0 && expectedEnd - expectedStart < 3) {
+      expectedStart = Math.max(0, expectedEnd - 3);
+    }
+    const expectedZoneBlocks = actualIndex >= 0 ? paragraphs.slice(expectedStart, expectedEnd) : [];
+    const expectedZone = expectedZoneBlocks.map(block => ({ block, rect: block.getBoundingClientRect() }));
     const logicalLocator = window.MyEssaysReadingPivot?.locator?.() || actual?.dataset.readingLocator || '';
     const semanticTop = actual
       ? (window.MyEssaysReadingLocators?.semanticTop?.(logicalLocator, actual) ?? actual.getBoundingClientRect().top)
       : null;
+    const actualRect = actual?.getBoundingClientRect?.() || null;
     const contentRect = content.getBoundingClientRect();
     const expectedZoneTop = expectedZone[0] ? expectedZone[0].rect.top - contentRect.top : null;
     const expectedZoneBottom = expectedZone.length ? expectedZone[expectedZone.length - 1].rect.bottom - contentRect.top : null;
@@ -109,15 +112,14 @@ async function readingFocusState(page) {
       : (pivotAlphaMatch ? Number(pivotAlphaMatch[1]) : (pivotColor.startsWith('rgb(') ? 1 : 0));
 
     return {
-      sameNode: Boolean(expected && actual && expected === actual),
-      topAnchorLocator: topAnchor?.dataset.readingLocator || '',
-      topAnchorIndex,
-      expectedLocator: expected?.dataset.readingLocator || '',
+      rail,
+      railHeldByPivot: Boolean(actualRect && actualRect.top <= rail + 24 && actualRect.bottom >= rail - 24),
       actualLocator: logicalLocator,
       physicalLocator: actual?.dataset.readingLocator || '',
       visibleCount: visible.length,
       expectedFocusCount: expectedZone.length,
       focusCount: Number(content.dataset.readingFocusCount || 0),
+      focusAnchor: content.dataset.readingFocusAnchor || '',
       expectedFocusStart: expectedZone[0]?.block.dataset.readingLocator || '',
       expectedFocusEnd: expectedZone[expectedZone.length - 1]?.block.dataset.readingLocator || '',
       focusStart: content.dataset.readingFocusStart || '',
@@ -131,23 +133,25 @@ async function readingFocusState(page) {
       pivotAlpha,
       pivotBoxShadow: pivotStyle?.boxShadow || '',
       actualTop: semanticTop,
-      physicalTop: actual?.getBoundingClientRect().top ?? null
+      physicalTop: actualRect?.top ?? null
     };
   });
 }
 
-async function assertThirdFromTopFocus(page, label, { minZoneAlpha = 0.18, maxZoneAlpha = 0.35, requireUnpaintedPivot = false } = {}) {
+async function assertReadingLens(page, label, { minZoneAlpha = 0.02, maxZoneAlpha = 0.05, requireUnpaintedPivot = false } = {}) {
   const state = await readingFocusState(page);
-  assert.ok(state.visibleCount >= 1, `${label}: expected a top visible reading paragraph to anchor the flow`);
-  assert.ok(state.expectedFocusCount >= 1, `${label}: test position should leave a third paragraph downstream from ${state.topAnchorLocator}`);
-  assert.equal(state.sameNode, true, `${label}: Primary Pivot must be the third paragraph in flow from the top reading paragraph; expected ${state.expectedLocator}, got physical ${state.physicalLocator}`);
-  assert.equal(state.focusCount, state.expectedFocusCount, `${label}: Reading Zone must cover the available third-through-fifth paragraphs in reading flow`);
-  assert.equal(state.focusStart, state.expectedFocusStart, `${label}: Reading Zone must begin at the third paragraph in reading flow`);
-  assert.equal(state.focusEnd, state.expectedFocusEnd, `${label}: Reading Zone must end at the fifth paragraph in reading flow when available`);
-  assert.ok(Number.isFinite(state.zoneTop) && Math.abs(state.zoneTop - state.expectedZoneTop) <= 1, `${label}: Reading Zone top drifted from the third flow paragraph (${state.zoneTop} vs ${state.expectedZoneTop})`);
-  assert.ok(Number.isFinite(state.zoneBottom) && Math.abs(state.zoneBottom - state.expectedZoneBottom) <= 1, `${label}: Reading Zone bottom drifted from the last focus paragraph (${state.zoneBottom} vs ${state.expectedZoneBottom})`);
-  assert.notEqual(state.gradient, 'none', `${label}: Reading Zone should exist as one continuous background layer`);
-  assert.ok(state.maxZoneAlpha >= minZoneAlpha && state.maxZoneAlpha <= maxZoneAlpha, `${label}: Reading Zone should remain visible but quiet (max alpha ${state.maxZoneAlpha}, expected ${minZoneAlpha}-${maxZoneAlpha})`);
+  assert.ok(state.visibleCount >= 1, `${label}: expected visible reading paragraphs`);
+  assert.ok(state.physicalLocator, `${label}: expected a Primary Pivot`);
+  assert.equal(state.railHeldByPivot, true, `${label}: Primary Pivot must intersect the Reading Rail hysteresis band`);
+  assert.ok(state.expectedFocusCount >= 1, `${label}: expected an available three-paragraph reading window`);
+  assert.equal(state.focusAnchor, state.physicalLocator, `${label}: Reading Lens anchor must be the physical Primary Pivot`);
+  assert.equal(state.focusCount, state.expectedFocusCount, `${label}: Reading Lens must cover the current rail paragraph plus the next two, backfilled only at article end`);
+  assert.equal(state.focusStart, state.expectedFocusStart, `${label}: Reading Lens start drifted from the expected window`);
+  assert.equal(state.focusEnd, state.expectedFocusEnd, `${label}: Reading Lens end drifted from the expected window`);
+  assert.ok(Number.isFinite(state.zoneTop) && Math.abs(state.zoneTop - state.expectedZoneTop) <= 1, `${label}: Reading Lens top drifted (${state.zoneTop} vs ${state.expectedZoneTop})`);
+  assert.ok(Number.isFinite(state.zoneBottom) && Math.abs(state.zoneBottom - state.expectedZoneBottom) <= 1, `${label}: Reading Lens bottom drifted (${state.zoneBottom} vs ${state.expectedZoneBottom})`);
+  assert.notEqual(state.gradient, 'none', `${label}: Reading Lens should exist as one continuous background layer`);
+  assert.ok(state.maxZoneAlpha >= minZoneAlpha && state.maxZoneAlpha <= maxZoneAlpha, `${label}: Reading Lens should remain visible but quiet (max alpha ${state.maxZoneAlpha}, expected ${minZoneAlpha}-${maxZoneAlpha})`);
   if (requireUnpaintedPivot) {
     assert.equal(state.pivotAlpha, 0, `${label}: Primary Pivot must not receive its own background highlight`);
   }
@@ -244,7 +248,7 @@ async function semanticPivot(page) {
   await waitForDirectControl(page, 3);
   await waitForPreload(page, ['en-mix', 'es-mix']);
   await scrollIntoBody(page, 0.36, 'three-mode-initial');
-  const before = await assertThirdFromTopFocus(page, 'three-mode desktop', { requireUnpaintedPivot: true });
+  const before = await assertReadingLens(page, 'three-mode desktop', { requireUnpaintedPivot: true });
 
   await burst(page, ['en-mix', 'es-mix'], 18);
   await waitForMode(page, 'es-mix');
@@ -267,13 +271,13 @@ async function semanticPivot(page) {
   await page.mouse.wheel(0, 180);
   await page.waitForFunction(previous => window.MyEssaysReadingPivot?.locator?.() !== previous, before.actualLocator, { timeout: 3000 }).catch(() => {});
   await nextFrames(page, 2);
-  await assertThirdFromTopFocus(page, 'three-mode after user scroll');
+  await assertReadingLens(page, 'three-mode after user scroll');
 
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await waitForPreload(page, ['en-mix']);
   await scrollIntoBody(page, 0.32, 'watanabe-initial');
-  const watanabeBefore = await assertThirdFromTopFocus(page, 'JA+EN desktop', { requireUnpaintedPivot: true });
+  const watanabeBefore = await assertReadingLens(page, 'JA+EN desktop', { requireUnpaintedPivot: true });
   await burst(page, ['en-mix', 'ja'], 18);
   await waitForMode(page, 'ja');
   await nextFrames(page, 3);
@@ -281,20 +285,20 @@ async function semanticPivot(page) {
 
   await openEssay(page, JA_ONLY_ID);
   await scrollIntoBody(page, 0.30, 'ja-only-initial');
-  await assertThirdFromTopFocus(page, 'JA-only desktop', { requireUnpaintedPivot: true });
+  await assertReadingLens(page, 'JA-only desktop', { requireUnpaintedPivot: true });
   assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent]:not(:disabled)`).count(), 1, 'JA-only article should expose only Japanese as an enabled Reading Mode');
 
   await page.setViewportSize({ width: 320, height: 700 });
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await scrollIntoBody(page, 0.34, 'watanabe-mobile');
-  await assertThirdFromTopFocus(page, 'JA+EN mobile', { minZoneAlpha: 0.14, maxZoneAlpha: 0.30, requireUnpaintedPivot: true });
+  await assertReadingLens(page, 'JA+EN mobile', { minZoneAlpha: 0.025, maxZoneAlpha: 0.06, requireUnpaintedPivot: true });
 
   assert.deepEqual(pageErrors, [], `page errors: ${pageErrors.join(' | ')}`);
   assert.deepEqual(consoleErrors, [], `console errors: ${consoleErrors.join(' | ')}`);
 
   await browser.close();
-  console.log('Reading Focus + instant language QA passed');
+  console.log('Reading Lens + instant language QA passed');
 })().catch(error => {
   console.error(error);
   process.exit(1);
