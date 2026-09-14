@@ -4,7 +4,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const DONE_STATUSES = new Set(['ALIGNED']);
 const READY_STATUSES = new Set(['SAFE_STRUCTURE_ONLY', 'SAFE_CANONICAL_RESTORE']);
 const PENDING_STATUSES = new Set([
   'EDITORIAL_RESEGMENT',
@@ -75,7 +74,9 @@ function reviewPriorityFor(group, generatedDate) {
 
 function lifecycleFor(decision) {
   if (!decision) return 'UNREVIEWED';
-  if (DONE_STATUSES.has(decision.status)) return 'DONE';
+  // Queue rows only exist for current mismatches. A historical ALIGNED decision therefore means
+  // the article regressed and must be reviewed again, never hidden as DONE.
+  if (decision.status === 'ALIGNED') return 'UNREVIEWED';
   if (READY_STATUSES.has(decision.status)) return 'MIGRATION_READY';
   if (PENDING_STATUSES.has(decision.status)) return 'REVIEWED_BUT_PENDING';
   return 'REVIEWED_BUT_PENDING';
@@ -131,17 +132,15 @@ export function buildReviewQueue(packetPayload = {}, decisionPayload = {}) {
       reason: decision?.reason || '',
       reviewedAt: decision?.reviewedAt || null,
       nextAction: lifecycle === 'UNREVIEWED'
-        ? 'REVIEW'
+        ? (decision?.status === 'ALIGNED' ? 'REVIEW_REGRESSION' : 'REVIEW')
         : lifecycle === 'MIGRATION_READY'
           ? 'BUILD_MIGRATION_PLAN'
-          : lifecycle === 'DONE'
-            ? 'NONE'
-            : decision?.strategy || 'EDITORIAL_REVIEW'
+          : decision?.strategy || 'EDITORIAL_REVIEW'
     });
   }
 
   queue.sort((a, b) => {
-    const lifecycleOrder = { MIGRATION_READY: 0, UNREVIEWED: 1, REVIEWED_BUT_PENDING: 2, DONE: 3 };
+    const lifecycleOrder = { MIGRATION_READY: 0, UNREVIEWED: 1, REVIEWED_BUT_PENDING: 2 };
     return (lifecycleOrder[a.lifecycle] ?? 9) - (lifecycleOrder[b.lifecycle] ?? 9)
       || b.reviewPriority - a.reviewPriority
       || a.id.localeCompare(b.id);
@@ -152,15 +151,9 @@ export function buildReviewQueue(packetPayload = {}, decisionPayload = {}) {
     if (row.lifecycle === 'UNREVIEWED') summary.unreviewed += 1;
     else if (row.lifecycle === 'REVIEWED_BUT_PENDING') summary.reviewedButPending += 1;
     else if (row.lifecycle === 'MIGRATION_READY') summary.migrationReady += 1;
-    else if (row.lifecycle === 'DONE') summary.done += 1;
   }
 
-  return {
-    schemaVersion: 1,
-    generatedAt,
-    summary,
-    queue
-  };
+  return { schemaVersion: 1, generatedAt, summary, queue };
 }
 
 function rowLine(row) {
@@ -176,21 +169,14 @@ export function renderReviewQueue(payload = {}) {
   const ready = queue.filter(row => row.lifecycle === 'MIGRATION_READY');
   const pending = queue.filter(row => row.lifecycle === 'REVIEWED_BUT_PENDING');
   const lines = [
-    '# Structure review queue',
-    '',
-    `Generated: ${payload.generatedAt || ''}`,
-    '',
-    '## Current state',
-    '',
+    '# Structure review queue', '', `Generated: ${payload.generatedAt || ''}`, '',
+    '## Current state', '',
     `- Unreviewed: ${summary.unreviewed || 0}`,
     `- Reviewed but pending: ${summary.reviewedButPending || 0}`,
     `- Migration ready: ${summary.migrationReady || 0}`,
-    `- Done: ${summary.done || 0}`,
-    '',
-    '## Next 15 reviews',
-    '',
-    'Priority means review efficiency, not permission to auto-repair.',
-    ''
+    `- Done: ${summary.done || 0}`, '',
+    '## Next 15 reviews', '',
+    'Priority means review efficiency, not permission to auto-repair.', ''
   ];
   for (const row of unreviewed.slice(0, 15)) lines.push(rowLine(row));
   lines.push('', '## Migration ready', '');
