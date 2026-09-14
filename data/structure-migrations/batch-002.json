@@ -1,0 +1,57 @@
+{
+  "id": "batch-002",
+  "description": "Second human-verified legacy structure migration. Only exact whitespace repairs and canonical text restoration; semantic rewrites remain excluded.",
+  "targets": [
+    {
+      "id": "design-literacy-figure-ground-focus",
+      "canonical": "essays/2026-09-01-design-literacy-figure-ground-focus.md",
+      "variant": "english-mix/design-literacy-figure-ground-focus.md",
+      "verifiedRepairability": "SAFE",
+      "reviewDecision": "SAFE_CANONICAL_RESTORE_AND_STRUCTURE_ONLY",
+      "operations": [
+        {
+          "label": "restore omitted CTA relation paragraph from canonical source",
+          "policy": "canonical-restore",
+          "restoredText": "ここで重要なのは、**CTAを何倍にも巨大化したことではない**。周囲との差を設計したことや。",
+          "from": "</div>\n\nFigure–Groundは「何を派手にするか」より、**what becomes the perceptual subject**と考えると使いやすい。",
+          "to": "</div>\n\nここで重要なのは、**CTAを何倍にも巨大化したことではない**。周囲との差を設計したことや。\n\nFigure–Groundは「何を派手にするか」より、**what becomes the perceptual subject**と考えると使いやすい。"
+        },
+        {
+          "label": "rejoin three observation sentences into one canonical paragraph block",
+          "policy": "structure-only",
+          "from": "スマホで好きなアプリかWebサイトを一つ開く。Don't read the words first.\n\n**What dissolves into the background?**\n\n**What jumps forward as the figure?**",
+          "to": "スマホで好きなアプリかWebサイトを一つ開く。Don't read the words first.\n**What dissolves into the background?**\n**What jumps forward as the figure?**"
+        }
+      ]
+    },
+    {
+      "id": "design-literacy-fitts-law-screen-edge-movement",
+      "canonical": "essays/2026-09-14-design-literacy-fitts-law-screen-edge-movement.md",
+      "variant": "english-mix/design-literacy-fitts-law-screen-edge-movement.md",
+      "verifiedRepairability": "SAFE",
+      "reviewDecision": "SAFE_CANONICAL_RESTORE_AND_STRUCTURE_ONLY",
+      "operations": [
+        {
+          "label": "rejoin target-precision conclusion into one canonical paragraph block",
+          "policy": "structure-only",
+          "from": "**How precisely must you travel from START to TARGET?**\n\nそれが問題だ。",
+          "to": "**How precisely must you travel from START to TARGET?**\nそれが問題だ。"
+        },
+        {
+          "label": "restore omitted example lead-in from canonical source",
+          "policy": "canonical-restore",
+          "restoredText": "例えば、",
+          "from": "連続して使うoperationsを二つ選ぶ。\n\n```text\n入力欄 → 送信",
+          "to": "連続して使うoperationsを二つ選ぶ。\n\n例えば、\n\n```text\n入力欄 → 送信"
+        },
+        {
+          "label": "restore omitted observation close from canonical source",
+          "policy": "canonical-restore",
+          "restoredText": "を見る。",
+          "from": "Does it really need to be this far away?\n```\n\nbutton reviewのつもりが、いつの間にか**the road**をレビューしているはずだ。",
+          "to": "Does it really need to be this far away?\n```\n\nを見る。\n\nbutton reviewのつもりが、いつの間にか**the road**をレビューしているはずだ。"
+        }
+      ]
+    }
+  ]
+}
