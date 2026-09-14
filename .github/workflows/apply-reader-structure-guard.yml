@@ -1,0 +1,47 @@
+name: Apply reader structure guard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/apply-reader-structure-guard.mjs'
+      - '.github/workflows/apply-reader-structure-guard.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-reader-structure-guard
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Apply strict compare guard
+        run: node scripts/apply-reader-structure-guard.mjs
+
+      - name: Check syntax
+        run: node --check reader-japanese-reference.js
+
+      - name: Commit generated reader change
+        run: |
+          if git diff --quiet -- reader-japanese-reference.js; then
+            echo 'Reader guard already applied.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reader-japanese-reference.js
+          git commit -m '比較UIで構造不一致を推測表示しない'
+          git push origin HEAD:main
