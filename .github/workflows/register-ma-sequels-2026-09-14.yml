@@ -1,0 +1,80 @@
+name: Register M&A Sequels 2026-09-14
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-ma-sequels-2026-09-14.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register canonical essays and English Mix versions
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const entries = [
+            {
+              id: 'ma-one-yen-company-what-do-you-buy',
+              essayPath: 'essays/2026-09-14-ma-one-yen-company-what-do-you-buy.md',
+              mixPath: 'english-mix/ma-one-yen-company-what-do-you-buy.md'
+            },
+            {
+              id: 'ma-company-value-no-single-price',
+              essayPath: 'essays/2026-09-14-ma-company-value-no-single-price.md',
+              mixPath: 'english-mix/ma-company-value-no-single-price.md'
+            }
+          ];
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          const paths = new Set(entries.map(entry => entry.essayPath));
+          index.essays = [
+            ...entries.map(entry => entry.essayPath),
+            ...index.essays.filter(path => !paths.has(path))
+          ];
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          const additions = {};
+          for (const entry of entries) {
+            additions[entry.id] = {
+              ...(versions.articles[entry.id] || {}),
+              'en-mix': entry.mixPath
+            };
+          }
+          versions.articles = {
+            ...additions,
+            ...Object.fromEntries(
+              Object.entries(versions.articles).filter(([id]) => !Object.prototype.hasOwnProperty.call(additions, id))
+            )
+          };
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+
+          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          console.log('M&A sequel registration JSON validated.');
+          NODE
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'M&A続編2本を登録'
+          git push
