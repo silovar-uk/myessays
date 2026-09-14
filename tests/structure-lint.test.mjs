@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 import { compareStructures, parseMarkdownStructure } from '../scripts/validate-version-structure.mjs';
+import { findRegressions } from '../scripts/validate-structure-regressions.mjs';
 
 const JA_PATH = 'essays/2026-09-14-ma-brokerage-fee-calculator-regulation-catches-up.md';
 const EN_PATH = 'english-mix/ma-brokerage-fee-calculator-regulation-catches-up.md';
@@ -12,6 +13,21 @@ function sectionAt(markdown, marker) {
   const index = markdown.indexOf(marker);
   assert.ok(index >= 0, 'regression fixture boundary not found');
   return (markdown.slice(0, index).match(/^\s{0,3}##(?!#)\s+/gm) || []).length;
+}
+
+function countMismatch(id, version, section, ja, alt) {
+  return {
+    id,
+    version,
+    ok: false,
+    issues: [{
+      kind: 'COUNT_MISMATCH',
+      section,
+      canonicalCount: ja,
+      alternateCount: alt,
+      hint: alt < ja ? 'POSSIBLE_MERGE' : 'POSSIBLE_SPLIT'
+    }]
+  };
 }
 
 test('parser follows Reading Locator block semantics', () => {
@@ -43,4 +59,32 @@ test('merging the repaired boundary is rejected', () => {
 
   assert.ok(!baseline.issues.some(issue => issue.section === section));
   assert.ok(result.issues.some(issue => issue.kind === 'COUNT_MISMATCH' && issue.section === section));
+});
+
+test('legacy mismatch is grandfathered when it does not get worse', () => {
+  const before = [countMismatch('demo', 'en-mix', 4, 14, 12)];
+  const current = [countMismatch('demo', 'en-mix', 4, 14, 12)];
+  assert.deepEqual(findRegressions(before, current), []);
+});
+
+test('improving a legacy mismatch passes the regression gate', () => {
+  const before = [countMismatch('demo', 'en-mix', 4, 14, 11)];
+  const current = [countMismatch('demo', 'en-mix', 4, 14, 13)];
+  assert.deepEqual(findRegressions(before, current), []);
+});
+
+test('worsening a legacy mismatch fails the regression gate', () => {
+  const before = [countMismatch('demo', 'en-mix', 4, 14, 13)];
+  const current = [countMismatch('demo', 'en-mix', 4, 14, 11)];
+  const regressions = findRegressions(before, current);
+  assert.equal(regressions.length, 1);
+  assert.equal(regressions[0].section, 'section:4');
+  assert.ok(regressions[0].currentSeverity > regressions[0].beforeSeverity);
+});
+
+test('a new mismatch fails even when the variant is newly introduced', () => {
+  const current = [countMismatch('new-article', 'en-mix', 1, 5, 4)];
+  const regressions = findRegressions([], current);
+  assert.equal(regressions.length, 1);
+  assert.equal(regressions[0].beforeSeverity, 0);
 });
