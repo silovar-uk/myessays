@@ -39,3 +39,14 @@
 - `reading-locators.js` の位置推測は読書位置を保つための救済策であり、厳密な段落対応の根拠として扱わない。
 - 全体監査は `node scripts/validate-version-structure.mjs --all --report-only` を使う。新規記事は `--id {slug}` で完全一致を確認する。
 - 既存の構造差はlegacy debtとして可視化し、段階的に減らす。通常の更新では「既存差を悪化させない」を最低条件とする。
+
+## 4. Legacy構造差のmigration
+
+- 全件監査は `node scripts/validate-version-structure.mjs --all --report-only --json structure-audit.json` を使い、その結果を `node scripts/report-structure-migration.mjs --input structure-audit.json --output structure-migration-report.md --json structure-migration-audit.json` でTaxonomy / Severity / Repairabilityへ整理する。
+- `LIKELY_SAFE` は自動修復の許可ではない。構造差の小ささを示す候補ラベルにすぎず、Canonical本文と派生版の対応を確認してから、migration plan上で初めて `SAFE` と判断する。
+- 修復は `data/structure-migrations/batch-XXX.json` にCanonical path、variant path、exact replacement、policyを記録する。曖昧な類似度や推測だけで本文を書き換えない。
+- 適用前に `node scripts/apply-structure-migration.mjs --plan data/structure-migrations/batch-XXX.json` を必ずdry-runする。dry-runと内容確認が通った場合だけ `--apply` を使う。
+- `structure-only` policyでは空白・改行以外の文字変更を禁止する。Canonicalから欠落した本文を戻す場合は `canonical-restore` を使い、復元文字列が日本語Canonical Sourceに実在することを検証する。
+- 適用後は対象記事ごとに `node scripts/validate-version-structure.mjs --id {slug}` を実行し、完全一致を確認する。その後、全件auditでperfect件数が増え、新規・悪化した問題がないことを確認する。
+- 類似度・AI推測はmigration候補の発見補助には使ってよいが、Comparison UIのstrict pairや自動修復の根拠にはしない。
+- 一時的なmigration workflowを使った場合は、適用・検証後に削除し、恒久的なrunner / plan / test / CIだけを残す。

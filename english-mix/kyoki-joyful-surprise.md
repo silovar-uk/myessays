@@ -21,7 +21,6 @@ I do not simply mean surprising people.
 びっくりさせて注目を集めたいわけでもない。
 
 I want to create the moment when someone thinks, “I didn’t expect you to go that far,” feels surprised for a second, and then feels happy.
-
 その、**驚きと喜びがほぼ同時に立ち上がる瞬間**をつくりたい。
 
 When I looked it up, I found that 「驚喜」 is already a real Japanese word. デジタル大辞泉では「思いがけない出来事に驚き喜ぶこと」、精選版日本国語大辞典では「思いがけないうれしいことに出会って驚くと同時に喜ぶこと」と説明され、英訳として *joyful surprise* も挙げられている。

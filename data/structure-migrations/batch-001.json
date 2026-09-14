@@ -1,0 +1,95 @@
+{
+  "id": "batch-001",
+  "description": "First human-verified legacy structure migration. Exact replacements only; no semantic guessing.",
+  "targets": [
+    {
+      "id": "kyoki-joyful-surprise",
+      "canonical": "essays/2026-08-23-kyoki-joyful-surprise.md",
+      "variant": "english-mix/kyoki-joyful-surprise.md",
+      "verifiedRepairability": "SAFE",
+      "operations": [
+        {
+          "label": "rejoin one canonical paragraph split into two ENMIX blocks",
+          "policy": "structure-only",
+          "from": "I want to create the moment when someone thinks, “I didn’t expect you to go that far,” feels surprised for a second, and then feels happy.\n\nその、**驚きと喜びがほぼ同時に立ち上がる瞬間**をつくりたい。",
+          "to": "I want to create the moment when someone thinks, “I didn’t expect you to go that far,” feels surprised for a second, and then feels happy.\nその、**驚きと喜びがほぼ同時に立ち上がる瞬間**をつくりたい。"
+        }
+      ]
+    },
+    {
+      "id": "soka-leather-industry-water-tokyo-reinvention",
+      "canonical": "essays/2026-09-02-soka-leather-industry-water-tokyo-reinvention.md",
+      "variant": "english-mix/soka-leather-industry-water-tokyo-reinvention.md",
+      "verifiedRepairability": "SAFE",
+      "operations": [
+        {
+          "label": "rejoin U-TaaaN explanation into one canonical block",
+          "policy": "structure-only",
+          "from": "The project receives hides from deer and other wild animals captured in different parts of Japan, tans them in Soka, turns them into leather or finished goods, and sends the added value back to the original region.\n\n捨てられやすかった原皮を、regional resourcesとして使い直す発想や。",
+          "to": "The project receives hides from deer and other wild animals captured in different parts of Japan, tans them in Soka, turns them into leather or finished goods, and sends the added value back to the original region.\n捨てられやすかった原皮を、regional resourcesとして使い直す発想や。"
+        }
+      ]
+    },
+    {
+      "id": "npb-roster-construction-mechanism-integration",
+      "canonical": "essays/2026-08-31-npb-roster-construction-mechanism-integration.md",
+      "variant": "english-mix/npb-roster-construction-mechanism-integration.md",
+      "verifiedRepairability": "SAFE",
+      "operations": [
+        {
+          "label": "restore three acquisition examples as three blocks",
+          "policy": "structure-only",
+          "from": "Draft a good player. Sign a good player through FA. Trade for a good player.",
+          "to": "Draft a good player.\n\nSign a good player through FA.\n\nTrade for a good player."
+        }
+      ]
+    },
+    {
+      "id": "design-literacy-graphical-perception-visual-encoding",
+      "canonical": "essays/2026-09-12-design-literacy-graphical-perception-visual-encoding.md",
+      "variant": "english-mix/design-literacy-graphical-perception-visual-encoding.md",
+      "verifiedRepairability": "SAFE",
+      "operations": [
+        {
+          "label": "rejoin chart-ranking conclusion",
+          "policy": "structure-only",
+          "from": "ここで覚えたいのは“chart ranking”ではない。\n\n**How you encode a number changes what the eye has to do.**",
+          "to": "ここで覚えたいのは“chart ranking”ではない。\n**How you encode a number changes what the eye has to do.**"
+        },
+        {
+          "label": "rejoin research premise and method",
+          "policy": "structure-only",
+          "from": "Their 1984 paper starts from a clear problem: graphical methods for data analysis and presentation need a scientific foundation.\n\n彼らはelementary perceptual tasksを整理し、quantitative judgmentのaccuracyについてorderingを仮説化し、experimentsで検討した。",
+          "to": "Their 1984 paper starts from a clear problem: graphical methods for data analysis and presentation need a scientific foundation.\n彼らはelementary perceptual tasksを整理し、quantitative judgmentのaccuracyについてorderingを仮説化し、experimentsで検討した。"
+        },
+        {
+          "label": "rejoin caveat and limitation",
+          "policy": "structure-only",
+          "from": "But the paper is more careful than the internet slogan version.\n\n彼ら自身、accuracy of quantitative extractionがgraphの価値のすべてではないと書いている。また、10個のtasksを完全にindependentなbasic unitsとして分離できたとは現実的に主張できない、とlimitationsも述べている。",
+          "to": "But the paper is more careful than the internet slogan version.\n彼ら自身、accuracy of quantitative extractionがgraphの価値のすべてではないと書いている。また、10個のtasksを完全にindependentなbasic unitsとして分離できたとは現実的に主張できない、とlimitationsも述べている。"
+        }
+      ]
+    },
+    {
+      "id": "noticing-what-you-dont-understand",
+      "canonical": "essays/2026-08-31-noticing-what-you-dont-understand.md",
+      "variant": "english-mix/noticing-what-you-dont-understand.md",
+      "verifiedRepairability": "SAFE",
+      "operations": [
+        {
+          "label": "rejoin explanatory-depth conclusion",
+          "policy": "structure-only",
+          "from": "The important point is not only that gaps existed.\n\n**The gaps were invisible until explanation was required.**",
+          "to": "The important point is not only that gaps existed.\n**The gaps were invisible until explanation was required.**"
+        },
+        {
+          "label": "restore omitted canonical intro for practice section",
+          "policy": "canonical-restore",
+          "restoredText": "「わかっていないことに気づく」を習慣にするなら、難しい方法はいらない。",
+          "from": "## 5. Four small practices to expose hidden gaps\n\n### ① Close the source and explain it in three lines",
+          "to": "## 5. Four small practices to expose hidden gaps\n\n「わかっていないことに気づく」を習慣にするなら、難しい方法はいらない。\n\n### ① Close the source and explain it in three lines"
+        }
+      ]
+    }
+  ]
+}

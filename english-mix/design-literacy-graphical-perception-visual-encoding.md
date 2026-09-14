@@ -45,7 +45,6 @@ Their proposed ordering of elementary perceptual tasks was roughly:
 6. shading / color saturation
 
 ここで覚えたいのは“chart ranking”ではない。
-
 **How you encode a number changes what the eye has to do.**
 
 ## ちょっとやりすぎて、42と38をいろんな形にしてみる
@@ -82,13 +81,11 @@ Same 42 and 38. Three different problems.
 ## FACT｜ClevelandとMcGillは「グラフにも知覚の科学が必要」と考えた
 
 Their 1984 paper starts from a clear problem: graphical methods for data analysis and presentation need a scientific foundation.
-
 彼らはelementary perceptual tasksを整理し、quantitative judgmentのaccuracyについてorderingを仮説化し、experimentsで検討した。
 
 Position vs length、position vs angleなどの比較では、position judgmentsの方がaverage errorが小さい結果も報告されている。
 
 But the paper is more careful than the internet slogan version.
-
 彼ら自身、accuracy of quantitative extractionがgraphの価値のすべてではないと書いている。また、10個のtasksを完全にindependentなbasic unitsとして分離できたとは現実的に主張できない、とlimitationsも述べている。
 
 So “position wins, pie charts are banned” is stronger than the paper itself.
