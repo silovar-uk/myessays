@@ -6,7 +6,7 @@
       "id": "nikkei-headlines-four-vectors",
       "canonical": "essays/2026-09-10-nikkei-headlines-four-vectors.md",
       "variant": "english-mix/nikkei-headlines-four-vectors.md",
-      "verifiedRepairability": "SAFE_CANONICAL_RESTORE",
+      "verifiedRepairability": "SAFE",
       "operations": [
         {
           "label": "rejoin framing question split into two ENMIX blocks",
@@ -33,7 +33,7 @@
       "id": "america-cities-02-boston",
       "canonical": "essays/2026-08-24-america-cities-02-boston.md",
       "variant": "english-mix/america-cities-02-boston.md",
-      "verifiedRepairability": "SAFE_CANONICAL_RESTORE",
+      "verifiedRepairability": "SAFE",
       "operations": [
         {
           "label": "restore omitted Irish-immigration bridge block",
