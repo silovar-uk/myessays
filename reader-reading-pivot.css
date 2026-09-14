@@ -15,7 +15,7 @@ html.is-reading-mode-switching {
   display: none !important;
 }
 
-/* Reading Focus is one continuous paper-tone zone, not three highlighted cards.
+/* Reading Lens is one continuous paper-tone zone, not three highlighted cards.
    The Primary Pivot remains a semantic state marker only; it has no individual
    visual treatment. The zone itself lives on the content background so it never
    changes layout or captures pointer input. */
@@ -29,11 +29,11 @@ html.is-reading-mode-switching {
     to bottom,
     transparent 0,
     transparent var(--reading-zone-fade-start),
-    rgba(255, 255, 255, 0) var(--reading-zone-fade-start),
-    rgba(255, 255, 255, .28) var(--reading-zone-top),
-    rgba(255, 255, 255, .18) var(--reading-zone-mid),
-    rgba(255, 255, 255, .07) var(--reading-zone-bottom),
-    rgba(255, 255, 255, 0) var(--reading-zone-fade-end),
+    rgba(180, 62, 49, 0) var(--reading-zone-fade-start),
+    rgba(180, 62, 49, .028) var(--reading-zone-top),
+    rgba(180, 62, 49, .018) var(--reading-zone-mid),
+    rgba(180, 62, 49, .009) var(--reading-zone-bottom),
+    rgba(180, 62, 49, 0) var(--reading-zone-fade-end),
     transparent 100%
   );
 }
@@ -86,7 +86,7 @@ html.is-reading-mode-switching {
   }
 }
 
-/* Language-switch feedback stays separate from Reading Focus. It is temporary
+/* Language-switch feedback stays separate from Reading Lens. It is temporary
    switch feedback, not part of the persistent reading-zone treatment. */
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target,
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target.is-reading-pivot {
@@ -183,11 +183,11 @@ html.is-reading-mode-switching {
       to bottom,
       transparent 0,
       transparent var(--reading-zone-fade-start),
-      rgba(255, 255, 255, 0) var(--reading-zone-fade-start),
-      rgba(255, 255, 255, .24) var(--reading-zone-top),
-      rgba(255, 255, 255, .15) var(--reading-zone-mid),
-      rgba(255, 255, 255, .06) var(--reading-zone-bottom),
-      rgba(255, 255, 255, 0) var(--reading-zone-fade-end),
+      rgba(180, 62, 49, 0) var(--reading-zone-fade-start),
+      rgba(180, 62, 49, .034) var(--reading-zone-top),
+      rgba(180, 62, 49, .022) var(--reading-zone-mid),
+      rgba(180, 62, 49, .011) var(--reading-zone-bottom),
+      rgba(180, 62, 49, 0) var(--reading-zone-fade-end),
       transparent 100%
     );
   }
