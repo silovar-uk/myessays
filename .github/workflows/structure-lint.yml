@@ -9,14 +9,17 @@ on:
       - 'spanish-mix/**'
       - 'data/versions-index.json'
       - 'data/structure-migrations/**'
+      - 'data/structure-review-decisions.json'
       - 'scripts/validate-version-structure.mjs'
       - 'scripts/validate-structure-regressions.mjs'
       - 'scripts/report-structure-migration.mjs'
       - 'scripts/build-structure-review-packets.mjs'
+      - 'scripts/build-structure-review-queue.mjs'
       - 'scripts/apply-structure-migration.mjs'
       - 'tests/structure-lint.test.mjs'
       - 'tests/structure-migration.test.mjs'
       - 'tests/structure-review-packets.test.mjs'
+      - 'tests/structure-review-queue.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
       - '.github/workflows/structure-lint.yml'
@@ -27,14 +30,17 @@ on:
       - 'spanish-mix/**'
       - 'data/versions-index.json'
       - 'data/structure-migrations/**'
+      - 'data/structure-review-decisions.json'
       - 'scripts/validate-version-structure.mjs'
       - 'scripts/validate-structure-regressions.mjs'
       - 'scripts/report-structure-migration.mjs'
       - 'scripts/build-structure-review-packets.mjs'
+      - 'scripts/build-structure-review-queue.mjs'
       - 'scripts/apply-structure-migration.mjs'
       - 'tests/structure-lint.test.mjs'
       - 'tests/structure-migration.test.mjs'
       - 'tests/structure-review-packets.test.mjs'
+      - 'tests/structure-review-queue.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
       - '.github/workflows/structure-lint.yml'
@@ -64,12 +70,13 @@ jobs:
           node --check scripts/validate-structure-regressions.mjs
           node --check scripts/report-structure-migration.mjs
           node --check scripts/build-structure-review-packets.mjs
+          node --check scripts/build-structure-review-queue.mjs
           node --check scripts/apply-structure-migration.mjs
 
       - name: Regression tests
         run: |
           set -o pipefail
-          node --test tests/structure-lint.test.mjs tests/structure-migration.test.mjs tests/structure-review-packets.test.mjs 2>&1 | tee structure-tests.txt
+          node --test tests/structure-lint.test.mjs tests/structure-migration.test.mjs tests/structure-review-packets.test.mjs tests/structure-review-queue.test.mjs 2>&1 | tee structure-tests.txt
 
       - name: Verify committed migration plans
         run: |
@@ -90,6 +97,10 @@ jobs:
         if: always()
         run: node scripts/build-structure-review-packets.mjs --audit structure-migration-audit.json --json structure-review-packets.json --markdown structure-review-packets.md
 
+      - name: Build decision-aware review queue
+        if: always()
+        run: node scripts/build-structure-review-queue.mjs --packets structure-review-packets.json --decisions data/structure-review-decisions.json --json structure-review-queue.json --markdown structure-review-queue.md
+
       - name: Upload structure diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -101,6 +112,8 @@ jobs:
             structure-migration-report.md
             structure-review-packets.json
             structure-review-packets.md
+            structure-review-queue.json
+            structure-review-queue.md
             structure-tests.txt
           if-no-files-found: warn
           retention-days: 14
