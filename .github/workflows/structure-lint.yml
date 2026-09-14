@@ -8,9 +8,13 @@ on:
       - 'english-mix/**'
       - 'spanish-mix/**'
       - 'data/versions-index.json'
+      - 'data/structure-migrations/**'
       - 'scripts/validate-version-structure.mjs'
       - 'scripts/validate-structure-regressions.mjs'
+      - 'scripts/report-structure-migration.mjs'
+      - 'scripts/apply-structure-migration.mjs'
       - 'tests/structure-lint.test.mjs'
+      - 'tests/structure-migration.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
       - '.github/workflows/structure-lint.yml'
@@ -20,9 +24,13 @@ on:
       - 'english-mix/**'
       - 'spanish-mix/**'
       - 'data/versions-index.json'
+      - 'data/structure-migrations/**'
       - 'scripts/validate-version-structure.mjs'
       - 'scripts/validate-structure-regressions.mjs'
+      - 'scripts/report-structure-migration.mjs'
+      - 'scripts/apply-structure-migration.mjs'
       - 'tests/structure-lint.test.mjs'
+      - 'tests/structure-migration.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
       - '.github/workflows/structure-lint.yml'
@@ -50,15 +58,24 @@ jobs:
           node --check reader-japanese-reference.js
           node --check scripts/validate-version-structure.mjs
           node --check scripts/validate-structure-regressions.mjs
+          node --check scripts/report-structure-migration.mjs
+          node --check scripts/apply-structure-migration.mjs
 
       - name: Regression tests
         run: |
           set -o pipefail
-          node --test tests/structure-lint.test.mjs 2>&1 | tee structure-tests.txt
+          node --test tests/structure-lint.test.mjs tests/structure-migration.test.mjs 2>&1 | tee structure-tests.txt
+
+      - name: Verify committed migration plans
+        run: node scripts/apply-structure-migration.mjs --plan data/structure-migrations/batch-001.json
 
       - name: Full repository audit
         if: always()
         run: node scripts/validate-version-structure.mjs --all --report-only --json structure-audit.json
+
+      - name: Build migration report
+        if: always()
+        run: node scripts/report-structure-migration.mjs --input structure-audit.json --output structure-migration-report.md --json structure-migration-audit.json
 
       - name: Upload structure diagnostics
         if: always()
@@ -67,6 +84,8 @@ jobs:
           name: structure-diagnostics
           path: |
             structure-audit.json
+            structure-migration-audit.json
+            structure-migration-report.md
             structure-tests.txt
           if-no-files-found: warn
           retention-days: 14
