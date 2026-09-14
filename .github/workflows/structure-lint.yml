@@ -12,9 +12,11 @@ on:
       - 'scripts/validate-version-structure.mjs'
       - 'scripts/validate-structure-regressions.mjs'
       - 'scripts/report-structure-migration.mjs'
+      - 'scripts/build-structure-review-packets.mjs'
       - 'scripts/apply-structure-migration.mjs'
       - 'tests/structure-lint.test.mjs'
       - 'tests/structure-migration.test.mjs'
+      - 'tests/structure-review-packets.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
       - '.github/workflows/structure-lint.yml'
@@ -28,9 +30,11 @@ on:
       - 'scripts/validate-version-structure.mjs'
       - 'scripts/validate-structure-regressions.mjs'
       - 'scripts/report-structure-migration.mjs'
+      - 'scripts/build-structure-review-packets.mjs'
       - 'scripts/apply-structure-migration.mjs'
       - 'tests/structure-lint.test.mjs'
       - 'tests/structure-migration.test.mjs'
+      - 'tests/structure-review-packets.test.mjs'
       - 'reader-japanese-reference.js'
       - 'AGENTS.md'
       - '.github/workflows/structure-lint.yml'
@@ -59,15 +63,20 @@ jobs:
           node --check scripts/validate-version-structure.mjs
           node --check scripts/validate-structure-regressions.mjs
           node --check scripts/report-structure-migration.mjs
+          node --check scripts/build-structure-review-packets.mjs
           node --check scripts/apply-structure-migration.mjs
 
       - name: Regression tests
         run: |
           set -o pipefail
-          node --test tests/structure-lint.test.mjs tests/structure-migration.test.mjs 2>&1 | tee structure-tests.txt
+          node --test tests/structure-lint.test.mjs tests/structure-migration.test.mjs tests/structure-review-packets.test.mjs 2>&1 | tee structure-tests.txt
 
       - name: Verify committed migration plans
-        run: node scripts/apply-structure-migration.mjs --plan data/structure-migrations/batch-001.json
+        run: |
+          for plan in data/structure-migrations/batch-*.json; do
+            [ -e "$plan" ] || continue
+            node scripts/apply-structure-migration.mjs --plan "$plan"
+          done
 
       - name: Full repository audit
         if: always()
@@ -76,6 +85,10 @@ jobs:
       - name: Build migration report
         if: always()
         run: node scripts/report-structure-migration.mjs --input structure-audit.json --output structure-migration-report.md --json structure-migration-audit.json
+
+      - name: Build structure review packets
+        if: always()
+        run: node scripts/build-structure-review-packets.mjs --audit structure-migration-audit.json --json structure-review-packets.json --markdown structure-review-packets.md
 
       - name: Upload structure diagnostics
         if: always()
@@ -86,6 +99,8 @@ jobs:
             structure-audit.json
             structure-migration-audit.json
             structure-migration-report.md
+            structure-review-packets.json
+            structure-review-packets.md
             structure-tests.txt
           if-no-files-found: warn
           retention-days: 14
