@@ -144,7 +144,7 @@ body.reader-v2-open #readerLanguageSwitch {
 
 /* The existing semantic locator is the Focus Pair. Keep it brief: orientation, not spectacle. */
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target {
-  animation-duration: .8s;
+  animation-duration: 1.8s;
 }
 
 body.reader-v2-open .reader-content h2,
