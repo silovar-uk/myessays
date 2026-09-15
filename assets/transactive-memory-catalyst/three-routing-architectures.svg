@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">知識のルーティングを三つの構造で比較</title>
+  <desc id="desc">全員が知識地図を持つ分散型、一人のカタリストが詳しい人へつなぐ集中型、役職だけを頼りにする地図不在型を比較した概念図。</desc>
+  <rect width="1200" height="675" fill="#F7F4EE"/>
+  <text x="66" y="74" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#1F2328">「誰に聞くか」も、チーム設計の一部である</text>
+  <text x="66" y="114" font-family="system-ui, sans-serif" font-size="20" fill="#5B6168">3つのルーティング構造を、強みと故障モードで比べる</text>
+
+  <g transform="translate(55,165)">
+    <rect width="340" height="400" rx="24" fill="#FFFFFF" stroke="#D9D4CA" stroke-width="2"/>
+    <text x="30" y="52" font-family="system-ui, sans-serif" font-size="25" font-weight="700" fill="#1F2328">A｜全員が地図を持つ</text>
+    <circle cx="85" cy="135" r="31" fill="#A51C30"/><circle cx="255" cy="135" r="31" fill="#A51C30"/>
+    <circle cx="85" cy="245" r="31" fill="#A51C30"/><circle cx="255" cy="245" r="31" fill="#A51C30"/>
+    <g stroke="#8A9097" stroke-width="3"><line x1="112" y1="135" x2="228" y2="135"/><line x1="85" y1="166" x2="85" y2="214"/><line x1="255" y1="166" x2="255" y2="214"/><line x1="112" y1="245" x2="228" y2="245"/><line x1="108" y1="157" x2="232" y2="223"/><line x1="232" y1="157" x2="108" y2="223"/></g>
+    <text x="30" y="325" font-family="system-ui, sans-serif" font-size="18" fill="#1F2328">強み：誰からでも探索できる</text>
+    <text x="30" y="357" font-family="system-ui, sans-serif" font-size="18" fill="#5B6168">弱み：全員が地図を更新するコスト</text>
+  </g>
+
+  <g transform="translate(430,165)">
+    <rect width="340" height="400" rx="24" fill="#FFFFFF" stroke="#D9D4CA" stroke-width="2"/>
+    <text x="30" y="52" font-family="system-ui, sans-serif" font-size="25" font-weight="700" fill="#1F2328">B｜配車係が地図を持つ</text>
+    <circle cx="170" cy="190" r="43" fill="#A51C30"/>
+    <circle cx="75" cy="115" r="28" fill="#E6E2DA"/><circle cx="265" cy="115" r="28" fill="#E6E2DA"/>
+    <circle cx="75" cy="270" r="28" fill="#E6E2DA"/><circle cx="265" cy="270" r="28" fill="#E6E2DA"/>
+    <g stroke="#8A9097" stroke-width="3"><line x1="145" y1="166" x2="98" y2="135"/><line x1="195" y1="166" x2="242" y2="135"/><line x1="145" y1="214" x2="98" y2="250"/><line x1="195" y1="214" x2="242" y2="250"/></g>
+    <text x="170" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">ROUTE</text>
+    <text x="30" y="325" font-family="system-ui, sans-serif" font-size="18" fill="#1F2328">強み：高い調整負荷をさばける</text>
+    <text x="30" y="357" font-family="system-ui, sans-serif" font-size="18" fill="#5B6168">弱み：配車係が古い／消えると詰まる</text>
+  </g>
+
+  <g transform="translate(805,165)">
+    <rect width="340" height="400" rx="24" fill="#FFFFFF" stroke="#D9D4CA" stroke-width="2"/>
+    <text x="30" y="52" font-family="system-ui, sans-serif" font-size="25" font-weight="700" fill="#1F2328">C｜役職表を地図代わりにする</text>
+    <rect x="112" y="95" width="116" height="55" rx="10" fill="#E6E2DA"/>
+    <text x="170" y="129" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1F2328">ORG CHART</text>
+    <circle cx="75" cy="245" r="28" fill="#A51C30"/><circle cx="170" cy="245" r="28" fill="#A51C30"/><circle cx="265" cy="245" r="28" fill="#A51C30"/>
+    <g stroke="#8A9097" stroke-width="3"><line x1="145" y1="150" x2="90" y2="220"/><line x1="170" y1="150" x2="170" y2="217"/><line x1="195" y1="150" x2="250" y2="220"/></g>
+    <text x="30" y="325" font-family="system-ui, sans-serif" font-size="18" fill="#1F2328">強み：説明が簡単</text>
+    <text x="30" y="357" font-family="system-ui, sans-serif" font-size="18" fill="#5B6168">弱み：肩書と実際の専門性を混同する</text>
+  </g>
+
+  <text x="60" y="625" font-family="system-ui, sans-serif" font-size="19" fill="#5B6168">※どれか一つが常に最適という図ではない。Catalyst Effectは、とくに知識統合の調整負荷が高い条件で集中型の利点を示した。</text>
+</svg>
