@@ -9,9 +9,12 @@
     ['en-mix', 'English Mix'],
     ['es-mix', 'Español Mix']
   ];
+  const BODY_END_INSET_PX = 16;
 
   let availabilityToken = 0;
   let lastEssayId = '';
+  let contextFrame = 0;
+  let contentResizeObserver = null;
 
   const versions = () => window.MyEssaysReaderVersions;
   const route = () => window.MyEssaysRoute;
@@ -144,6 +147,29 @@
     renderActive();
   }
 
+  function readingBlocks() {
+    const content = document.getElementById('readerContent');
+    if (!content) return [];
+    return [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')]
+      .filter(block => !block.classList.contains('language-source-hidden'));
+  }
+
+  function bodyEndReached() {
+    const blocks = readingBlocks();
+    if (!blocks.length) return false;
+    const last = blocks.at(-1);
+    const rect = last.getBoundingClientRect();
+    return rect.bottom <= Math.max(0, window.innerHeight - BODY_END_INSET_PX);
+  }
+
+  function displayProgressRatio(detail = null) {
+    const semanticRatio = window.MyEssaysReadingLocators?.progress?.().ratio;
+    const baseRatio = Number.isFinite(detail?.progressRatio)
+      ? Math.min(1, Math.max(0, detail.progressRatio))
+      : (Number.isFinite(semanticRatio) ? Math.min(1, Math.max(0, semanticRatio)) : 0);
+    return bodyEndReached() ? 1 : baseRatio;
+  }
+
   function updateContext(detail = null) {
     const shell = ensureShell();
     if (!shell) return;
@@ -151,17 +177,44 @@
     const title = detail?.sectionTitle
       || document.querySelector('.reader-v2-current-title')?.textContent?.trim()
       || 'Introduction';
-    const semanticRatio = window.MyEssaysReadingLocators?.progress?.().ratio;
-    const ratio = Number.isFinite(detail?.progressRatio)
-      ? Math.min(1, Math.max(0, detail.progressRatio))
-      : (Number.isFinite(semanticRatio) ? Math.min(1, Math.max(0, semanticRatio)) : 0);
+    const ratio = displayProgressRatio(detail);
+    const completed = ratio >= 1;
+    const progressText = completed ? '✓ 読了' : `${Math.round(ratio * 100)}%`;
 
     const section = shell.querySelector('.reader-mode-shell__section');
     const percent = shell.querySelector('.reader-mode-shell__percent');
     const progress = shell.querySelector('.reader-mode-shell__progress span');
+    const context = shell.querySelector('.reader-mode-shell__context');
     if (section) section.textContent = title;
-    if (percent) percent.textContent = `${Math.round(ratio * 100)}%`;
+    if (percent) percent.textContent = progressText;
     if (progress) progress.style.transform = `scaleX(${ratio})`;
+    shell.classList.toggle('is-reading-complete', completed);
+    if (context) {
+      context.setAttribute(
+        'aria-label',
+        completed ? '本文を読み終えました。目次を開く' : `${title}、${Math.round(ratio * 100)}%。目次を開く`
+      );
+    }
+
+    const mapPercent = document.querySelector('.reader-v2-map-percent');
+    if (mapPercent) mapPercent.textContent = progressText;
+  }
+
+  function scheduleContextSync() {
+    if (contextFrame || !readerOpen()) return;
+    contextFrame = requestAnimationFrame(() => {
+      contextFrame = 0;
+      updateContext();
+    });
+  }
+
+  function observeReaderContent() {
+    if (!('ResizeObserver' in window)) return;
+    const content = document.getElementById('readerContent');
+    if (!content) return;
+    contentResizeObserver?.disconnect();
+    contentResizeObserver = new ResizeObserver(scheduleContextSync);
+    contentResizeObserver.observe(content);
   }
 
   function handleModeKeydown(event) {
@@ -191,6 +244,7 @@
     ensureShell();
     renderActive();
     updateContext();
+    observeReaderContent();
     const id = essayId();
     if (availability || id !== lastEssayId) syncAvailability();
   }
@@ -213,6 +267,8 @@
     updateContext(event.detail || null);
   });
 
+  window.addEventListener('scroll', scheduleContextSync, { passive: true });
+  window.addEventListener('resize', scheduleContextSync);
   window.addEventListener('hashchange', () => {
     availabilityToken += 1;
     lastEssayId = '';
