@@ -19,6 +19,19 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Align English Mix structure
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'english-mix/ai-subagents-separate-context-workdesks.md';
+          let text = fs.readFileSync(path, 'utf8');
+          const before = '会社に例えると少し分かる。Tool is a calculator or search system. Subagent is a temporary specialist inside the same project. Agent Team is a longer-lived setup where multiple workers keep their own lanes and coordinate.';
+          const after = '会社に例えると少し分かる。\n\nTool is a calculator or search system. Subagent is a temporary specialist inside the same project. Agent Team is a longer-lived setup where multiple workers keep their own lanes and coordinate.';
+          if (!text.includes(before) && !text.includes(after)) throw new Error('Target paragraph not found');
+          text = text.replace(before, after);
+          fs.writeFileSync(path, text);
+          NODE
+
       - name: Register essay and English Mix version
         run: |
           node <<'NODE'
@@ -53,12 +66,12 @@ jobs:
 
       - name: Commit registration
         run: |
-          if git diff --quiet -- data/index.json data/versions-index.json; then
+          if git diff --quiet -- english-mix/ai-subagents-separate-context-workdesks.md data/index.json data/versions-index.json; then
             echo 'Already registered.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/index.json data/versions-index.json
-          git commit -m 'サブエージェント記事をライブラリへ登録'
+          git add english-mix/ai-subagents-separate-context-workdesks.md data/index.json data/versions-index.json
+          git commit -m 'サブエージェント記事のEN MIX構造を整えて登録'
           git push
