@@ -1,0 +1,78 @@
+name: Register Intention Economy Sequels
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-intention-economy-sequels.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Register essays and English Mix versions
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const targets = [
+            {
+              id: 'intention-economy-fanbase-relation-before-intent',
+              essay: 'essays/2026-09-15-intention-economy-fanbase-relation-before-intent.md',
+              mix: 'english-mix/intention-economy-fanbase-relation-before-intent.md'
+            },
+            {
+              id: 'intention-economy-delegated-choice-agent-brand',
+              essay: 'essays/2026-09-15-intention-economy-delegated-choice-agent-brand.md',
+              mix: 'english-mix/intention-economy-delegated-choice-agent-brand.md'
+            }
+          ];
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          for (const target of [...targets].reverse()) {
+            index.essays = index.essays.filter((p) => p !== target.essay);
+            index.essays.unshift(target.essay);
+          }
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          for (const target of [...targets].reverse()) {
+            versions.articles = {
+              [target.id]: { ...(versions.articles[target.id] || {}), 'en-mix': target.mix },
+              ...Object.fromEntries(Object.entries(versions.articles).filter(([key]) => key !== target.id))
+            };
+          }
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+
+          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          NODE
+
+      - name: Validate Fanbase sequel structure
+        run: node scripts/validate-version-structure.mjs --id intention-economy-fanbase-relation-before-intent
+
+      - name: Validate delegation sequel structure
+        run: node scripts/validate-version-structure.mjs --id intention-economy-delegated-choice-agent-brand
+
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'インテンションエコノミー続編2本をライブラリへ登録'
+          git push
