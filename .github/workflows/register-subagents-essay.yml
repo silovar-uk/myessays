@@ -1,0 +1,64 @@
+name: Register Subagents Essay
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-subagents-essay.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Register essay and English Mix version
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const target = {
+            id: 'ai-subagents-separate-context-workdesks',
+            essay: 'essays/2026-09-15-ai-subagents-separate-context-workdesks.md',
+            mix: 'english-mix/ai-subagents-separate-context-workdesks.md'
+          };
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          index.essays = index.essays.filter((p) => p !== target.essay);
+          index.essays.unshift(target.essay);
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          versions.articles = {
+            [target.id]: { ...(versions.articles[target.id] || {}), 'en-mix': target.mix },
+            ...Object.fromEntries(Object.entries(versions.articles).filter(([key]) => key !== target.id))
+          };
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+
+          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          NODE
+
+      - name: Validate article structure
+        run: node scripts/validate-version-structure.mjs --id ai-subagents-separate-context-workdesks
+
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'サブエージェント記事をライブラリへ登録'
+          git push
