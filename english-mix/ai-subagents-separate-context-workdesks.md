@@ -52,7 +52,9 @@ This resembles teamwork, but there is a subtle difference. 人を増やす理由
 
 一方、**Agent Team**や複数セッション型の仕組みは、さらに独立性が高い。Claude Code’s docs describe subagents as operating within a single session and distinguish them from cross-session messaging and agent teams that coordinate separate sessions.
 
-会社に例えると少し分かる。Tool is a calculator or search system. Subagent is a temporary specialist inside the same project. Agent Team is a longer-lived setup where multiple workers keep their own lanes and coordinate.
+会社に例えると少し分かる。
+
+Tool is a calculator or search system. Subagent is a temporary specialist inside the same project. Agent Team is a longer-lived setup where multiple workers keep their own lanes and coordinate.
 
 ただし、この会社比喩にも限界がある。A subagent may exist only for seconds or minutes and disappear after returning its result. 「人を雇う」というより、**temporarily branching a cognitive process**と考えたほうが近い。
 
