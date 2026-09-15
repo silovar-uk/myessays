@@ -1,0 +1,151 @@
+name: Register Modern Marisa One Button vs OD Essay
+
+on:
+  push:
+    paths:
+      - '.github/workflows/register-sf6-modern-marisa-one-button-vs-od-specials.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JA and English Mix block alignment
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const canonicalPath = 'essays/2026-09-15-sf6-modern-marisa-one-button-vs-od-specials.md';
+          const mixPath = 'english-mix/sf6-modern-marisa-one-button-vs-od-specials.md';
+          const canonical = fs.readFileSync(canonicalPath, 'utf8');
+          const mix = fs.readFileSync(mixPath, 'utf8');
+
+          function frontmatterId(md) {
+            const match = md.match(/^---\n([\s\S]*?)\n---/);
+            if (!match) throw new Error('Frontmatter not found');
+            const id = match[1].match(/^id:\s*(.+)$/m);
+            if (!id) throw new Error('id not found');
+            return id[1].trim().replace(/^['"]|['"]$/g, '');
+          }
+
+          function stripFrontmatter(md) {
+            return md.replace(/^---\n[\s\S]*?\n---\n?/, '');
+          }
+
+          function signature(md) {
+            const lines = stripFrontmatter(md).split(/\r?\n/);
+            const blocks = [];
+            let i = 0;
+
+            while (i < lines.length) {
+              const line = lines[i];
+              if (!line.trim()) { i += 1; continue; }
+
+              const heading = line.match(/^(#{1,6})\s+/);
+              if (heading) {
+                blocks.push(`h${heading[1].length}`);
+                i += 1;
+                continue;
+              }
+
+              if (/^\s*[-*+]\s+/.test(line)) {
+                blocks.push('ul');
+                while (i < lines.length && (/^\s*[-*+]\s+/.test(lines[i]) || !lines[i].trim())) i += 1;
+                continue;
+              }
+
+              if (/^\s*\d+[.)]\s+/.test(line)) {
+                blocks.push('ol');
+                while (i < lines.length && (/^\s*\d+[.)]\s+/.test(lines[i]) || !lines[i].trim())) i += 1;
+                continue;
+              }
+
+              if (/^\s*>/.test(line)) {
+                blocks.push('blockquote');
+                while (i < lines.length && (/^\s*>/.test(lines[i]) || !lines[i].trim())) i += 1;
+                continue;
+              }
+
+              if (/^\s*<figure[\s>]/i.test(line)) {
+                blocks.push('figure');
+                while (i < lines.length && !/<\/figure>/.test(lines[i])) i += 1;
+                i += 1;
+                continue;
+              }
+
+              blocks.push('p');
+              while (i < lines.length && lines[i].trim()) i += 1;
+            }
+            return blocks;
+          }
+
+          const canonicalId = frontmatterId(canonical);
+          const mixId = frontmatterId(mix);
+          if (canonicalId !== mixId) {
+            throw new Error(`ID mismatch: ${canonicalId} !== ${mixId}`);
+          }
+
+          const a = signature(canonical);
+          const b = signature(mix);
+          if (a.length !== b.length) {
+            throw new Error(`Block count mismatch: JA=${a.length}, ENMIX=${b.length}`);
+          }
+          for (let i = 0; i < a.length; i += 1) {
+            if (a[i] !== b[i]) {
+              throw new Error(`Block type mismatch at ${i + 1}: JA=${a[i]}, ENMIX=${b[i]}`);
+            }
+          }
+
+          console.log(`Alignment OK: ${a.length} blocks, id=${canonicalId}`);
+          NODE
+
+      - name: Register canonical essay and English Mix
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const essayPath = 'essays/2026-09-15-sf6-modern-marisa-one-button-vs-od-specials.md';
+          const id = 'sf6-modern-marisa-one-button-vs-od-specials';
+          const mixPath = 'english-mix/sf6-modern-marisa-one-button-vs-od-specials.md';
+
+          const indexPath = 'data/index.json';
+          const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          index.essays = index.essays.filter((p) => p !== essayPath);
+          index.essays.unshift(essayPath);
+          fs.writeFileSync(indexPath, JSON.stringify(index));
+
+          const versionsPath = 'data/versions-index.json';
+          const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          versions.articles ||= {};
+          const existing = versions.articles[id] || {};
+          const nextArticle = { ...existing, 'en-mix': mixPath };
+          versions.articles = {
+            [id]: nextArticle,
+            ...Object.fromEntries(Object.entries(versions.articles).filter(([key]) => key !== id))
+          };
+          fs.writeFileSync(versionsPath, JSON.stringify(versions));
+
+          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
+          console.log('Registration JSON validated.');
+          NODE
+
+      - name: Commit registration
+        run: |
+          if git diff --quiet -- data/index.json data/versions-index.json; then
+            echo 'Already registered.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/index.json data/versions-index.json
+          git commit -m 'モダンマリーザ必殺技論考を登録'
+          git push
