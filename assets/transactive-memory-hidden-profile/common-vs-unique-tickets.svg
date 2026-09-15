@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">共有情報と固有情報の発言機会を比べる思考実験</title>
+  <desc id="desc">4人が4つの共有情報と1つの固有情報を持ち、各自が1項目をランダムに話す単純モデルでは、特定の共有情報が一度以上話される確率は59.0%、特定の固有情報は20.0%になる。</desc>
+  <rect width="1200" height="675" fill="#F7F4EE"/>
+  <text x="70" y="78" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#1F2328">同じ重要度でも、「みんなが持つ情報」には発言券が多い</text>
+  <text x="70" y="119" font-family="system-ui, sans-serif" font-size="20" fill="#5B6168">思考実験：4人が共有情報4件＋本人だけの固有情報1件を持ち、1件ずつランダムに話す</text>
+  <rect x="70" y="175" width="500" height="355" rx="24" fill="#FFFFFF" stroke="#D9D4CA" stroke-width="2"/>
+  <text x="105" y="225" font-family="system-ui, sans-serif" font-size="27" font-weight="700" fill="#1F2328">特定の共有情報</text>
+  <text x="105" y="268" font-family="system-ui, sans-serif" font-size="19" fill="#5B6168">4人全員が候補として持っている</text>
+  <g fill="#A51C30">
+    <circle cx="145" cy="335" r="38"/><circle cx="255" cy="335" r="38"/><circle cx="365" cy="335" r="38"/><circle cx="475" cy="335" r="38"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <text x="145" y="342">A</text><text x="255" y="342">B</text><text x="365" y="342">C</text><text x="475" y="342">D</text>
+  </g>
+  <text x="105" y="415" font-family="ui-monospace, monospace" font-size="26" fill="#1F2328">1 − (4/5)^4 = 59.0%</text>
+  <text x="105" y="468" font-family="system-ui, sans-serif" font-size="18" fill="#5B6168">誰か1人以上がその情報を選ぶ確率</text>
+  <rect x="630" y="175" width="500" height="355" rx="24" fill="#FFFFFF" stroke="#D9D4CA" stroke-width="2"/>
+  <text x="665" y="225" font-family="system-ui, sans-serif" font-size="27" font-weight="700" fill="#1F2328">特定の固有情報</text>
+  <text x="665" y="268" font-family="system-ui, sans-serif" font-size="19" fill="#5B6168">持っているのは1人だけ</text>
+  <circle cx="705" cy="335" r="38" fill="#A51C30"/>
+  <g fill="#E6E2DA"><circle cx="815" cy="335" r="38"/><circle cx="925" cy="335" r="38"/><circle cx="1035" cy="335" r="38"/></g>
+  <text x="705" y="342" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">A</text>
+  <text x="665" y="415" font-family="ui-monospace, monospace" font-size="26" fill="#1F2328">1/5 = 20.0%</text>
+  <text x="665" y="468" font-family="system-ui, sans-serif" font-size="18" fill="#5B6168">本人がその情報を選ばない限り出てこない</text>
+  <line x1="70" y1="575" x2="1130" y2="575" stroke="#D9D4CA" stroke-width="2"/>
+  <text x="70" y="618" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#A51C30">約2.95倍</text>
+  <text x="175" y="618" font-family="system-ui, sans-serif" font-size="20" fill="#1F2328">——これは実験結果ではなく、共有情報が持つ「候補者数」の差だけを可視化した単純モデル。</text>
+</svg>
