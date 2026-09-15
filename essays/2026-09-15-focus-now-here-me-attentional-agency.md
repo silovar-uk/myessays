@@ -6,6 +6,9 @@ created: "2026-09-15"
 updated: "2026-09-15"
 type: "Essay"
 status: "完成"
+series: "注意の主導権"
+seriesId: "attentional-agency"
+seriesOrder: 1
 tags: ["集中", "注意", "アテンションエコノミー", "マインドワンダリング", "メタ認知", "疲労", "自己決定"]
 keywords: ["attention", "focus", "mind wandering", "meta-awareness", "attention economy", "attentional capture", "Eric Hayot", "Uneven U", "今ここ私"]
 favorite: 5

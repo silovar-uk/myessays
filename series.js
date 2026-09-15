@@ -236,7 +236,7 @@
           <a class="series-card-main" href="${seriesUrl(series)}">
             <div class="series-card-head">
               <span class="series-kicker">SERIES</span>
-              <span class="series-count">${series.items.length} essays</span>
+              <span class="series-count">全${series.items.length}回</span>
             </div>
             <h2>${escapeHtml(series.name)}</h2>
             <p>${escapeHtml(shortText(latest?.abstract || latest?.subtitle || ''))}</p>
@@ -382,7 +382,7 @@
     if (!sequence.querySelector('.reader-series-sequence-meta')) {
       const meta = document.createElement('div');
       meta.className = 'reader-series-sequence-meta';
-      meta.innerHTML = `<p class="reader-related-kicker">SERIES</p><p class="reader-related-note">${escapeHtml(series.name)} · ${index + 1}/${series.items.length}</p>`;
+      meta.innerHTML = `<p class="reader-related-kicker">SERIES</p><p class="reader-related-note">${escapeHtml(series.name)} · 第${index + 1}回 / 全${series.items.length}回</p>`;
       links.insertAdjacentElement('beforebegin', meta);
     }
   }
@@ -407,7 +407,7 @@
         <span class="reader-series-kicker">SERIES</span>
         <a href="${seriesUrl(series)}">${escapeHtml(series.name)}</a>
       </div>
-      <span class="reader-series-position">${String(index + 1).padStart(2, '0')} / ${String(series.items.length).padStart(2, '0')}</span>`;
+      <span class="reader-series-position" aria-label="シリーズ第${index + 1}回、全${series.items.length}回">第${index + 1}回 / 全${series.items.length}回</span>`;
 
     const firstHeading = root.querySelector('h1');
     if (firstHeading) firstHeading.insertAdjacentElement('beforebegin', contextBar);

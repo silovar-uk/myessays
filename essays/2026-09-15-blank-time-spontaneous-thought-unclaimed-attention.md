@@ -6,6 +6,9 @@ created: "2026-09-15"
 updated: "2026-09-15"
 type: "Essay"
 status: "完成"
+series: "注意の主導権"
+seriesId: "attentional-agency"
+seriesOrder: 3
 tags: ["集中", "注意", "mind wandering", "休息", "スマートフォン", "創造性", "agency"]
 keywords: ["spontaneous thought", "mind wandering", "default mode network", "prospection", "creative incubation", "smartphone checking", "microbreak", "attentional agency", "Uneven U"]
 favorite: 5

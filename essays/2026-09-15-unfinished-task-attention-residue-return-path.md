@@ -6,6 +6,9 @@ created: "2026-09-15"
 updated: "2026-09-15"
 type: "Essay"
 status: "完成"
+series: "注意の主導権"
+seriesId: "attentional-agency"
+seriesOrder: 2
 tags: ["集中", "注意", "タスク切り替え", "attention residue", "中断", "生産性", "agency"]
 keywords: ["attention residue", "task switching", "interruption", "resumption lag", "ready-to-resume plan", "Sophie Leroy", "attentional agency", "Uneven U"]
 favorite: 5
