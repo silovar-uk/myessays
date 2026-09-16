@@ -1,3 +1,5 @@
+@import url("reader-media.css?v=20260917-1");
+
 /* Reader content system: semantic Markdown blocks, not article-specific fixes. */
 .reader-layout {
   grid-template-columns: 210px minmax(0, 700px);
