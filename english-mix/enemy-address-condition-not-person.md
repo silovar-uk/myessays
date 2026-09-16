@@ -298,9 +298,7 @@ Not quite.
 
 ## 次に「あいつが敵だ」と思ったら、配管を探す / Look for the pipe
 
-At first, I thought I was writing one simple message:
-
-「変な敵をつくらないでほしい。」
+At first, I thought I was writing one simple message: 「変な敵をつくらないでほしい。」
 
 社内で人を敵にしないでほしい。
 Don’t turn rival clubs into enemies larger than the competition itself.
@@ -329,7 +327,6 @@ But sometimes we should face the same direction and ask:
 **“Is that person really what we need to defeat?”**
 
 次に「あいつが敵だ」と思ったら、まず配管を探す。
-
 Fight the condition, not the person.
 
 倒すべきなのは、人ではなく、**誰かを不幸にしている状態**であってほしい。
