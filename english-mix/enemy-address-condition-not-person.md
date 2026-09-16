@@ -326,6 +326,8 @@ But sometimes we should face the same direction and ask:
 
 **“Is that person really what we need to defeat?”**
 
+That is the check I want to keep making.
+
 次に「あいつが敵だ」と思ったら、まず配管を探す。
 Fight the condition, not the person.
 
