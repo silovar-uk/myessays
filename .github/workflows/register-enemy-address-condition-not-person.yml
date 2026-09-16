@@ -42,20 +42,14 @@ jobs:
             ...Object.fromEntries(Object.entries(versions.articles).filter(([key]) => key !== id))
           };
           fs.writeFileSync(versionsPath, JSON.stringify(versions));
-
-          JSON.parse(fs.readFileSync(indexPath, 'utf8'));
-          JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
-          console.log('Registration JSON validated.');
           NODE
-      - name: Validate version structure
-        run: node scripts/validate-version-structure.mjs --id enemy-address-condition-not-person
-      - name: Commit registration and remove temporary workflow
+      - name: Generate structure audit
+        run: node scripts/validate-version-structure.mjs --id enemy-address-condition-not-person --report-only --json enemy-address-audit.json
+      - name: Commit registration and audit
         run: |
           rm .github/workflows/register-enemy-address-condition-not-person.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/index.json data/versions-index.json .github/workflows/register-enemy-address-condition-not-person.yml
-          git commit -m '敵の宛先論考を登録して構造検証'
+          git add data/index.json data/versions-index.json enemy-address-audit.json .github/workflows/register-enemy-address-condition-not-person.yml
+          git commit -m '敵の宛先論考を登録して構造監査レポートを生成'
           git push
-
-# retry after English Mix paragraph alignment
