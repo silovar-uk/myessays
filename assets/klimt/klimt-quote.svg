@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">グスタフ・クリムトの言葉</title>
+  <desc id="desc">自分を知りたいなら作品を注意深く見てほしいというクリムトの言葉を示す引用カード</desc>
+  <rect width="1200" height="675" fill="#c9a954"/>
+  <rect x="54" y="54" width="1092" height="567" rx="28" fill="#191711"/>
+  <text x="108" y="160" fill="#c9a954" font-size="86" font-family="Georgia, serif">“</text>
+  <text x="130" y="230" fill="#f6f0df" font-size="34" font-family="Georgia, serif">Whoever wants to know something about me</text>
+  <text x="130" y="282" fill="#f6f0df" font-size="34" font-family="Georgia, serif">ought to look carefully at my pictures.</text>
+  <line x1="130" y1="335" x2="1070" y2="335" stroke="#645735"/>
+  <text x="130" y="392" fill="#e0d4ba" font-size="27" font-family="system-ui, sans-serif">「私について知りたいなら、私の絵を注意深く見てほしい」</text>
+  <text x="130" y="462" fill="#c9a954" font-size="22" font-family="system-ui, sans-serif" font-weight="700">GUSTAV KLIMT</text>
+  <text x="130" y="500" fill="#948a74" font-size="17" font-family="system-ui, sans-serif">Source: Belvedere, “Gustav Klimt. Vienna and Japan 1900”</text>
+  <text x="130" y="564" fill="#746b5c" font-size="15" font-family="system-ui, sans-serif">※カード内の日本語は記事用の要約訳</text>
+</svg>
