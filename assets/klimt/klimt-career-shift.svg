@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">クリムトのキャリアの転回</title>
+  <desc id="desc">公共装飾からウィーン分離派、大学天井画の騒動、黄金期、風景画へと移る流れを示す年表</desc>
+  <rect width="1200" height="675" fill="#17140f"/>
+  <text x="72" y="88" fill="#f5efe3" font-size="38" font-family="system-ui, sans-serif" font-weight="700">クリムトは、最初から「反逆者」ではない</text>
+  <text x="72" y="126" fill="#c9bda8" font-size="20" font-family="system-ui, sans-serif">公共装飾の技術を持ったまま、装飾そのものの意味を変えていった</text>
+  <line x1="110" y1="340" x2="1090" y2="340" stroke="#8d7950" stroke-width="3"/>
+  <g font-family="system-ui, sans-serif">
+    <g transform="translate(140 0)"><circle cx="0" cy="340" r="13" fill="#d9b866"/><text x="-28" y="292" fill="#d9b866" font-size="22" font-weight="700">1876</text><text x="-50" y="390" fill="#f5efe3" font-size="20" font-weight="700">工芸美術学校</text><text x="-50" y="420" fill="#bfb29c" font-size="17">装飾画の訓練</text></g>
+    <g transform="translate(390 0)"><circle cx="0" cy="340" r="13" fill="#d9b866"/><text x="-28" y="292" fill="#d9b866" font-size="22" font-weight="700">1897</text><text x="-58" y="390" fill="#f5efe3" font-size="20" font-weight="700">ウィーン分離派</text><text x="-58" y="420" fill="#bfb29c" font-size="17">共同創設・初代会長</text></g>
+    <g transform="translate(640 0)"><circle cx="0" cy="340" r="13" fill="#d9b866"/><text x="-28" y="292" fill="#d9b866" font-size="22" font-weight="700">1902</text><text x="-66" y="390" fill="#f5efe3" font-size="20" font-weight="700">ベートーヴェン展</text><text x="-66" y="420" fill="#bfb29c" font-size="17">空間全体を作品化</text></g>
+    <g transform="translate(850 0)"><circle cx="0" cy="340" r="13" fill="#d9b866"/><text x="-28" y="292" fill="#d9b866" font-size="22" font-weight="700">1907</text><text x="-54" y="390" fill="#f5efe3" font-size="20" font-weight="700">黄金期</text><text x="-74" y="420" fill="#bfb29c" font-size="17">金・銀・模様・身体</text></g>
+    <g transform="translate(1060 0)"><circle cx="0" cy="340" r="13" fill="#d9b866"/><text x="-28" y="292" fill="#d9b866" font-size="22" font-weight="700">1910s</text><text x="-70" y="390" fill="#f5efe3" font-size="20" font-weight="700">肖像・風景</text><text x="-85" y="420" fill="#bfb29c" font-size="17">金がなくても平面化</text></g>
+  </g>
+  <rect x="72" y="525" width="1056" height="84" rx="18" fill="#242019" stroke="#51462f"/>
+  <text x="600" y="560" text-anchor="middle" fill="#f5efe3" font-size="21" font-family="system-ui, sans-serif" font-weight="700">変わったのは「技術」より、技術を何のために使うか</text>
+  <text x="600" y="592" text-anchor="middle" fill="#c9bda8" font-size="18" font-family="system-ui, sans-serif">背景を飾る装飾 → 人物と空間の境界を溶かす装飾</text>
+</svg>
