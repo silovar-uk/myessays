@@ -58,7 +58,7 @@ body.reader-v2-open #readerLanguageSwitch {
   text-align: center;
   text-overflow: clip;
   white-space: nowrap;
-  transition: background .14s ease, color .14s ease, box-shadow .14s ease;
+  transition: background .14s ease, color .14s ease, box-shadow .14s ease, min-height .14s ease;
 }
 
 .reader-mode-shell__mode:last-child {
@@ -101,6 +101,7 @@ body.reader-v2-open #readerLanguageSwitch {
   background: transparent;
   color: var(--muted);
   text-align: left;
+  transition: min-height .14s ease, padding .14s ease;
 }
 
 .reader-mode-shell__context:hover,
@@ -142,6 +143,47 @@ body.reader-v2-open #readerLanguageSwitch {
   transition: transform .12s linear;
 }
 
+/* Once the essay body ends, location information has done its job.
+   Keep language switching available, but let the shell recede and leave completion actions below. */
+.reader-mode-shell[data-reader-phase="body-end"],
+.reader-mode-shell[data-reader-phase="completed"] {
+  margin-bottom: 24px;
+}
+
+.reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__mode,
+.reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__mode {
+  min-height: 44px;
+}
+
+.reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__context,
+.reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__context {
+  grid-template-columns: 1fr;
+  min-height: 24px;
+  padding: 2px 4px 4px;
+}
+
+.reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__section,
+.reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__section {
+  display: none;
+}
+
+.reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__percent,
+.reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__percent {
+  justify-self: end;
+  color: #7e786e;
+  font-size: 9.5px;
+  letter-spacing: .02em;
+}
+
+.reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__percent {
+  color: #8f4138;
+}
+
+.reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__progress,
+.reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__progress {
+  display: none;
+}
+
 /* The existing semantic locator is the Focus Pair. Keep it brief: orientation, not spectacle. */
 .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target {
   animation-duration: 1.8s;
@@ -178,6 +220,22 @@ body.reader-v2-open .reader-locator-block {
     font-size: 10px;
   }
 
+  .reader-mode-shell[data-reader-phase="body-end"],
+  .reader-mode-shell[data-reader-phase="completed"] {
+    margin-bottom: 18px;
+  }
+
+  .reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__mode,
+  .reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__mode {
+    min-height: 44px;
+  }
+
+  .reader-mode-shell[data-reader-phase="body-end"] .reader-mode-shell__context,
+  .reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__context {
+    min-height: 24px;
+    padding: 2px 2px 4px;
+  }
+
   body.reader-v2-open .reader-content h2,
   body.reader-v2-open .reader-content h3,
   body.reader-v2-open .reader-content h4,
@@ -196,6 +254,7 @@ body.reader-v2-open .reader-locator-block {
 
 @media (prefers-reduced-motion: reduce) {
   .reader-mode-shell__mode,
+  .reader-mode-shell__context,
   .reader-mode-shell__progress span,
   .reader-content.has-language-alternate .reader-locator-block.is-language-switch-target {
     transition: none;
