@@ -57,3 +57,5 @@ jobs:
           git add data/index.json data/versions-index.json .github/workflows/register-enemy-address-condition-not-person.yml
           git commit -m '敵の宛先論考を登録して構造検証'
           git push
+
+# retry after English Mix paragraph alignment
