@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">大学天井画三作品の運命</title>
+  <desc id="desc">制作、批判と拒絶、私有化、1945年の焼失、白黒写真と近似的なカラー再構成までの流れ</desc>
+  <rect width="1200" height="675" fill="#121619"/>
+  <text x="72" y="86" fill="#f1eee7" font-size="38" font-family="system-ui, sans-serif" font-weight="700">大学天井画三作品は、もう現存しない</text>
+  <text x="72" y="124" fill="#aeb7bb" font-size="20" font-family="system-ui, sans-serif">《哲学》《医学》《法学》――「再現画像」と原作を混同しないための流れ</text>
+  <g font-family="system-ui, sans-serif">
+    <rect x="72" y="205" width="210" height="210" rx="24" fill="#20272b" stroke="#59666c"/>
+    <text x="96" y="251" fill="#e3c56f" font-size="22" font-weight="700">1898–1907</text>
+    <text x="96" y="298" fill="#f1eee7" font-size="26" font-weight="700">制作</text>
+    <text x="96" y="335" fill="#c5ced1" font-size="18">ウィーン大学</text>
+    <text x="96" y="364" fill="#c5ced1" font-size="18">大講堂の天井画</text>
+
+    <rect x="326" y="205" width="210" height="210" rx="24" fill="#20272b" stroke="#59666c"/>
+    <text x="350" y="251" fill="#e3c56f" font-size="22" font-weight="700">1900s</text>
+    <text x="350" y="298" fill="#f1eee7" font-size="26" font-weight="700">拒絶・離脱</text>
+    <text x="350" y="335" fill="#c5ced1" font-size="18">裸体・死・病など</text>
+    <text x="350" y="364" fill="#c5ced1" font-size="18">非理想化表現が反発</text>
+
+    <rect x="580" y="205" width="210" height="210" rx="24" fill="#20272b" stroke="#59666c"/>
+    <text x="604" y="251" fill="#e3c56f" font-size="22" font-weight="700">その後</text>
+    <text x="604" y="298" fill="#f1eee7" font-size="26" font-weight="700">私有化</text>
+    <text x="604" y="335" fill="#c5ced1" font-size="18">大学には設置されず</text>
+    <text x="604" y="364" fill="#c5ced1" font-size="18">個人コレクションへ</text>
+
+    <rect x="834" y="205" width="294" height="210" rx="24" fill="#30201f" stroke="#8e5651"/>
+    <text x="858" y="251" fill="#efb4ad" font-size="22" font-weight="700">1945</text>
+    <text x="858" y="298" fill="#f1eee7" font-size="26" font-weight="700">火災で焼失</text>
+    <text x="858" y="335" fill="#d7bcbc" font-size="18">シュロス・インメンドルフ</text>
+    <text x="858" y="364" fill="#d7bcbc" font-size="18">原作は失われた</text>
+  </g>
+  <path d="M282 310H326 M536 310H580 M790 310H834" stroke="#7c8a90" stroke-width="3" marker-end="url(#a)"/>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7c8a90"/></marker></defs>
+  <rect x="72" y="487" width="1056" height="116" rx="22" fill="#1b2226" stroke="#59666c"/>
+  <text x="100" y="530" fill="#f1eee7" font-size="22" font-family="system-ui, sans-serif" font-weight="700">現在わかる色 = 原作そのものではない</text>
+  <text x="100" y="566" fill="#bac4c8" font-size="19" font-family="system-ui, sans-serif">主に白黒写真が残存。《医学》には既知のカラー部分写真。研究＋機械学習のカラー化は「近似」。</text>
+  <text x="100" y="592" fill="#8f9ba0" font-size="16" font-family="system-ui, sans-serif">Source: Belvedere / Gustav Klimt – Pigment &amp; Pixel</text>
+</svg>
