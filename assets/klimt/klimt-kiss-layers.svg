@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">接吻を三つの層に分ける</title>
+  <desc id="desc">肌、装飾、金の場という三層で接吻の画面構造を整理し、実際のキスは描かれていないことを示す</desc>
+  <rect width="1200" height="675" fill="#f2eadb"/>
+  <text x="72" y="84" fill="#221d17" font-size="38" font-family="system-ui, sans-serif" font-weight="700">《接吻》を3層に分ける</text>
+  <text x="72" y="122" fill="#665b4b" font-size="20" font-family="system-ui, sans-serif">装飾は「背景」ではなく、二人の境界を溶かす装置になる</text>
+  <g font-family="system-ui, sans-serif">
+    <rect x="90" y="192" width="300" height="330" rx="30" fill="#e8c9b8" stroke="#b88e79" stroke-width="2"/>
+    <text x="120" y="245" fill="#392820" font-size="28" font-weight="700">1　肌 / SKIN</text>
+    <text x="120" y="288" fill="#5a4034" font-size="20">顔・手・足</text>
+    <text x="120" y="323" fill="#5a4034" font-size="20">丸み・頬の赤み</text>
+    <text x="120" y="358" fill="#5a4034" font-size="20">比較的自然主義的</text>
+    <text x="120" y="432" fill="#392820" font-size="18" font-weight="700">ここだけ「身体」が強い</text>
+
+    <rect x="450" y="192" width="300" height="330" rx="30" fill="#c8ae72" stroke="#806a39" stroke-width="2"/>
+    <text x="480" y="245" fill="#2d2518" font-size="28" font-weight="700">2　装飾 / ORNAMENT</text>
+    <text x="480" y="288" fill="#4f4127" font-size="20">長方形・円・花</text>
+    <text x="480" y="323" fill="#4f4127" font-size="20">衣服が身体を覆う</text>
+    <text x="480" y="358" fill="#4f4127" font-size="20">男女の輪郭が曖昧に</text>
+    <text x="480" y="432" fill="#2d2518" font-size="18" font-weight="700">二人を一つの形へ寄せる</text>
+
+    <rect x="810" y="192" width="300" height="330" rx="30" fill="#2b261e" stroke="#a98d4b" stroke-width="2"/>
+    <text x="840" y="245" fill="#e0be68" font-size="28" font-weight="700">3　金 / GOLD FIELD</text>
+    <text x="840" y="288" fill="#d6c7a4" font-size="20">奥行きより表面</text>
+    <text x="840" y="323" fill="#d6c7a4" font-size="20">光で物質として反射</text>
+    <text x="840" y="358" fill="#d6c7a4" font-size="20">人物と背景を接続</text>
+    <text x="840" y="432" fill="#e0be68" font-size="18" font-weight="700">画面全体を一つの場へ</text>
+  </g>
+  <path d="M390 357 H450 M750 357 H810" stroke="#8d7950" stroke-width="4" stroke-dasharray="10 10"/>
+  <rect x="234" y="568" width="732" height="66" rx="33" fill="#fffaf0" stroke="#9b7f44" stroke-width="2"/>
+  <text x="600" y="609" text-anchor="middle" fill="#3d3020" font-size="22" font-family="system-ui, sans-serif" font-weight="700">それでも「実際のキス」は描かれない → 境界だけが残る</text>
+</svg>
