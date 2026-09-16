@@ -4,6 +4,7 @@
   if (window.MyEssaysReaderModeShell?.installed) return;
 
   const SHELL_ID = 'readerModeShell';
+  const READING_PREFIX = 'myessays:reading-state:';
   const MODES = [
     ['ja', '日本語'],
     ['en-mix', 'English Mix'],
@@ -32,6 +33,20 @@
     return window.MyEssaysInstantReadingModes?.desiredVersion?.()
       || versions()?.currentVersion?.()
       || 'ja';
+  }
+
+  function readingState(id = essayId()) {
+    if (!id) return {};
+    try {
+      const value = JSON.parse(localStorage.getItem(`${READING_PREFIX}${id}`) || '{}');
+      return value && typeof value === 'object' ? value : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function recordedCompleted(id = essayId()) {
+    return Boolean(readingState(id).completedAt);
   }
 
   function createShell() {
@@ -170,6 +185,11 @@
     return bodyEndReached() ? 1 : baseRatio;
   }
 
+  function phase() {
+    if (!bodyEndReached()) return 'reading';
+    return recordedCompleted() ? 'completed' : 'body-end';
+  }
+
   function updateContext(detail = null) {
     const shell = ensureShell();
     if (!shell) return;
@@ -178,8 +198,14 @@
       || document.querySelector('.reader-v2-current-title')?.textContent?.trim()
       || 'Introduction';
     const ratio = displayProgressRatio(detail);
-    const completed = ratio >= 1;
-    const progressText = completed ? '✓ 読了' : `${Math.round(ratio * 100)}%`;
+    const bodyReached = bodyEndReached();
+    const isRecordedCompleted = recordedCompleted();
+    const currentPhase = bodyReached
+      ? (isRecordedCompleted ? 'completed' : 'body-end')
+      : 'reading';
+    const progressText = bodyReached
+      ? (isRecordedCompleted ? '✓ 読了済み' : '✓ 本文ここまで')
+      : `${Math.round(ratio * 100)}%`;
 
     const section = shell.querySelector('.reader-mode-shell__section');
     const percent = shell.querySelector('.reader-mode-shell__percent');
@@ -188,16 +214,23 @@
     if (section) section.textContent = title;
     if (percent) percent.textContent = progressText;
     if (progress) progress.style.transform = `scaleX(${ratio})`;
-    shell.classList.toggle('is-reading-complete', completed);
+
+    shell.dataset.readerPhase = currentPhase;
+    shell.classList.toggle('is-body-end-reached', bodyReached);
+    shell.classList.toggle('is-reading-complete', bodyReached && isRecordedCompleted);
+
     if (context) {
-      context.setAttribute(
-        'aria-label',
-        completed ? '本文を読み終えました。目次を開く' : `${title}、${Math.round(ratio * 100)}%。目次を開く`
-      );
+      const label = bodyReached
+        ? (isRecordedCompleted
+          ? '本文末まで到達しています。読了記録済みです。目次を開く'
+          : '本文末まで到達しました。目次を開く')
+        : `${title}、${Math.round(ratio * 100)}%。目次を開く`;
+      context.setAttribute('aria-label', label);
     }
 
+    // Reader Mapは位置を確認する場所なので、状態ラベルではなく数値進捗を保つ。
     const mapPercent = document.querySelector('.reader-v2-map-percent');
-    if (mapPercent) mapPercent.textContent = progressText;
+    if (mapPercent) mapPercent.textContent = `${Math.round(ratio * 100)}%`;
   }
 
   function scheduleContextSync() {
@@ -267,6 +300,12 @@
     updateContext(event.detail || null);
   });
 
+  document.addEventListener('click', event => {
+    const target = event.target;
+    if (!(target instanceof Element) || !target.closest('.reading-complete-button')) return;
+    window.setTimeout(scheduleContextSync, 0);
+  });
+
   window.addEventListener('scroll', scheduleContextSync, { passive: true });
   window.addEventListener('resize', scheduleContextSync);
   window.addEventListener('hashchange', () => {
@@ -275,13 +314,18 @@
     scheduleSync({ availability: true });
   });
   window.addEventListener('pageshow', () => scheduleSync({ availability: true }));
+  window.addEventListener('storage', event => {
+    if (event.key?.startsWith(READING_PREFIX)) scheduleContextSync();
+  });
 
   window.MyEssaysReaderModeShell = Object.freeze({
     installed: true,
     sync,
     syncAvailability,
     renderActive,
-    updateContext
+    updateContext,
+    bodyEndReached,
+    phase
   });
 
   if (document.readyState === 'loading') {
