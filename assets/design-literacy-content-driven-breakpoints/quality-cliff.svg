@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Breakpoint as a quality cliff</title>
+  <desc id="desc">A conceptual chart showing layout quality staying stable as width narrows, then falling near a content failure point where intervention is needed.</desc>
+  <rect width="1200" height="675" fill="#f7f7f4"/>
+  <text x="84" y="92" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#111">BREAKPOINT = QUALITY CLIFF</text>
+  <text x="84" y="132" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#555">端末の境界ではなく、content qualityが崩れ始める直前を見る</text>
+  <line x1="120" y1="540" x2="1100" y2="540" stroke="#222" stroke-width="2"/>
+  <line x1="120" y1="190" x2="120" y2="540" stroke="#222" stroke-width="2"/>
+  <text x="56" y="212" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#555">QUALITY</text>
+  <text x="930" y="590" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#555">NARROWER →</text>
+  <path d="M150 245 C380 240 550 248 700 252 C790 255 830 270 865 310 C900 350 915 420 950 495" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round"/>
+  <line x1="865" y1="190" x2="865" y2="540" stroke="#777" stroke-width="2" stroke-dasharray="10 10"/>
+  <circle cx="865" cy="310" r="12" fill="#111"/>
+  <text x="742" y="176" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#111">breakpoint candidate</text>
+  <text x="886" y="328" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#111">failure begins</text>
+  <text x="176" y="232" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#555">layout still sustains the content</text>
+  <text x="885" y="455" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#555">intervene before quality collapses</text>
+  <text x="145" y="575" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#666">1000px</text>
+  <text x="440" y="575" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#666">850px</text>
+  <text x="820" y="575" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#666">~760px</text>
+  <text x="1010" y="575" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#666">600px</text>
+</svg>
