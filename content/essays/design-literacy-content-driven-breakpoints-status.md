@@ -1,0 +1,1 @@
+Publication package prepared for MyEssays. Verify repository-native registry/deployment before considering the article fully published.
