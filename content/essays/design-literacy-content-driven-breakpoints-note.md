@@ -1,1 +1,0 @@
-This article extends #48–#50 by moving from fixed values, local container context, and intrinsic constraints to observed content failure as the basis for responsive breakpoints.
