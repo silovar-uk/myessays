@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Device-driven versus content-driven breakpoints</title>
+  <desc id="desc">Two flow diagrams compare choosing a breakpoint from a device label with choosing it after observing content failure.</desc>
+  <rect width="1200" height="675" fill="#f7f7f4"/>
+  <text x="76" y="92" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#111">WHO GETS TO DECIDE THE BREAKPOINT?</text>
+  <rect x="76" y="160" width="492" height="400" rx="18" fill="#fff" stroke="#bbb" stroke-width="2"/>
+  <rect x="632" y="160" width="492" height="400" rx="18" fill="#fff" stroke="#222" stroke-width="3"/>
+  <text x="112" y="215" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#555">DEVICE-DRIVEN</text>
+  <text x="668" y="215" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#111">CONTENT-DRIVEN</text>
+  <text x="170" y="290" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#222">“Tablet”</text>
+  <text x="250" y="350" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#777">↓</text>
+  <text x="196" y="410" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#222">768px</text>
+  <text x="250" y="470" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#777">↓</text>
+  <text x="164" y="525" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#222">change layout</text>
+  <text x="700" y="285" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#222">shrink continuously</text>
+  <text x="802" y="340" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#555">↓</text>
+  <text x="718" y="400" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#222">observe first failure</text>
+  <text x="802" y="455" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#555">↓</text>
+  <text x="714" y="515" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#111">place intervention</text>
+  <text x="76" y="625" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#555">The number may still be 768px. The reasoning is what changes.</text>
+</svg>
