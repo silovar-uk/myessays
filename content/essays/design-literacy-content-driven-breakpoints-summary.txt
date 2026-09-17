@@ -1,0 +1,1 @@
+Design Literacy #51 — Content-driven Breakpoints. Core thesis: a breakpoint should mark the point where content can no longer sustain the current layout, not merely a device category boundary.
