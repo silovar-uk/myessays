@@ -1,0 +1,88 @@
+name: Register Design Literacy 51
+
+on:
+  push:
+    paths:
+      - 'content/essays/design-literacy-content-driven-breakpoints-ja.md'
+      - 'content/essays/design-literacy-content-driven-breakpoints-en.md'
+      - 'content/essays/design-literacy-content-driven-breakpoints-meta.json'
+      - '.github/workflows/register-design-literacy-51.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Register Design Literacy #51
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          meta_path = Path('content/essays/design-literacy-content-driven-breakpoints-meta.json')
+          if not meta_path.exists():
+              raise SystemExit('metadata file not found')
+          meta = json.loads(meta_path.read_text(encoding='utf-8'))
+
+          candidates = [
+              Path('content/essays/index.json'),
+              Path('content/index.json'),
+              Path('src/data/essays.json'),
+              Path('public/data/essays.json'),
+              Path('data/essays.json'),
+          ]
+          index_path = next((p for p in candidates if p.exists()), None)
+          if index_path is None:
+              print('No known JSON index found; content files remain available for repository-native discovery.')
+              raise SystemExit(0)
+
+          data = json.loads(index_path.read_text(encoding='utf-8'))
+          entry = {
+              'id': meta['id'],
+              'slug': meta['slug'],
+              'title': meta['title'],
+              'titleEn': meta['titleEn'],
+              'series': meta['series'],
+              'seriesOrder': meta['seriesOrder'],
+              'tags': meta['tags'],
+              'description': meta['description'],
+              'descriptionEn': meta['descriptionEn'],
+              'ja': 'content/essays/design-literacy-content-driven-breakpoints-ja.md',
+              'en': 'content/essays/design-literacy-content-driven-breakpoints-en.md'
+          }
+
+          if isinstance(data, list):
+              data = [x for x in data if x.get('id') != entry['id'] and x.get('slug') != entry['slug']]
+              data.append(entry)
+          elif isinstance(data, dict):
+              key = 'essays' if isinstance(data.get('essays'), list) else 'items' if isinstance(data.get('items'), list) else None
+              if key is None:
+                  print(f'Unsupported index structure in {index_path}; skip registration.')
+                  raise SystemExit(0)
+              data[key] = [x for x in data[key] if x.get('id') != entry['id'] and x.get('slug') != entry['slug']]
+              data[key].append(entry)
+          else:
+              print('Unsupported index format; skip registration.')
+              raise SystemExit(0)
+
+          index_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(f'Registered {entry["slug"]} in {index_path}')
+
+      - name: Commit registry update
+        run: |
+          if git diff --quiet; then
+            echo "No registry changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Design Literacy #51を登録"
+          git push
