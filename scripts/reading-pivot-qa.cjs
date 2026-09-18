@@ -154,11 +154,20 @@ async function waitForReader(page) {
   const afterTinyScroll = await readingState(page);
   assert.equal(afterTinyScroll.physicalLocator, beforeTinyScroll.physicalLocator, '8px scroll should remain inside Pivot hysteresis');
 
-  // Crossing a paragraph boundary must move the Rail anchor.
+  // Put the next physical reading paragraph on the Rail. This is a semantic
+  // boundary crossing; a fixed pixel delta is not, because paragraph geometry
+  // and browser scroll behavior vary by viewport and typography.
   await page.evaluate(() => {
     const pivot = window.MyEssaysReadingPivot?.current?.();
-    const distance = Math.max(96, (pivot?.getBoundingClientRect().height || 0) + 40);
-    window.scrollBy({ top: distance, behavior: 'auto' });
+    const rail = window.MyEssaysReadingPivot?.readingRailY?.();
+    const blocks = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')]
+      .filter(block => !block.classList.contains('language-source-hidden'));
+    const index = pivot ? blocks.indexOf(pivot) : -1;
+    const nextBlock = index >= 0 ? blocks[index + 1] : null;
+    if (!nextBlock || !Number.isFinite(rail)) return;
+    const rect = nextBlock.getBoundingClientRect();
+    const targetPoint = rect.top + (rect.height / 2);
+    window.scrollBy({ top: targetPoint - rail, behavior: 'auto' });
   });
   await waitForPivotChange(page, afterTinyScroll.physicalLocator);
   const readingPivot = await readingState(page);
