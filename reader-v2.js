@@ -371,7 +371,6 @@
           <div><dt>Created</dt><dd>${escapeHtml(formatDate(essay.created))}</dd></div>
           <div><dt>Updated</dt><dd>${escapeHtml(formatDate(essay.updated))}</dd></div>
           <div><dt>Length</dt><dd>${Number(essay.metrics?.charCount || 0).toLocaleString('ja-JP')}文字</dd></div>
-          <div><dt>Favorite</dt><dd>${escapeHtml(String(essay.favorite || 0))}/5</dd></div>
           <div><dt>Grow</dt><dd>${escapeHtml(String(essay.grow || 0))}/5</dd></div>
         </dl>
         <div class="reader-v2-info-tags">${tags}</div>
@@ -611,7 +610,7 @@
       zone.innerHTML = '<div class="reader-v2-after-heading"><span>AFTER READING</span><strong>読み終えたあと</strong></div>';
       content.append(zone);
     }
-    ['.reading-completion-zone', '.reader-reflections', '.reader-end-navigation'].forEach(selector => {
+    ['.reader-resonance', '.reader-reflections', '.reader-end-navigation'].forEach(selector => {
       const element = content.querySelector(`:scope > ${selector}`);
       if (element && element.parentElement !== zone) zone.append(element);
     });
