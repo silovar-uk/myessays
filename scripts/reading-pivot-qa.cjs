@@ -269,7 +269,12 @@ async function waitForReader(page) {
   const jaButton = page.locator(`${CONTROL} [data-reading-mode-intent="ja"]`);
   await jaButton.focus();
   await page.keyboard.press('ArrowRight');
-  await page.waitForFunction(() => window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix');
+  await page.waitForFunction(() =>
+    window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix'
+    && window.MyEssaysInstantReadingModes?.desiredVersion?.() === 'en-mix'
+    && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
+    && Boolean(window.MyEssaysReadingPivot?.current?.()?.isConnected)
+  , null, { timeout: 8000 });
   assert.equal(await page.locator(`${CONTROL} [data-reading-mode-intent="en-mix"]`).getAttribute('aria-checked'), 'true');
 
   // Accessibility media queries keep a static cue without relying on animation.
