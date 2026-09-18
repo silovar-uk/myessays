@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["視力", "近視", "眼精疲労", "ドライアイ", "デジタル眼精疲労", "セルフケア"]
 keywords: ["myopia", "visual acuity", "digital eye strain", "dry eye", "20-20-20 rule", "pinhole effect", "eye exercises", "adult myopia"]
-favorite: false
 grow: true
 abstract: "「目を良くする」を調べると、少なくとも四つの別問題に分かれる。屈折異常、ピント合わせの疲労、涙の膜の乱れ、近視そのものの進行だ。目を細めると一瞬よく見えるピンホール効果から始め、眼球体操、20-20-20、屋外活動、成人の近視進行までを調べ、手術なしで現実的に何を改善できるのかを整理する。"
 ---
