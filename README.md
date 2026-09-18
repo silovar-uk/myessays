@@ -8,8 +8,7 @@
 - 論文種別で絞り込み
 - 作成年で絞り込み
 - タグの複数選択
-- お気に入り度で絞り込み・並び替え
-- 作成日 / 更新日 / お気に入り度 / 育てたい度を表示
+- 作成日 / 更新日 / 育てたい度を表示
 - 論考ごとの読書ビューと目次
 - 同一記事を日本語 / English Mix / Español Mixで切り替えて読む
 - Structure情報付き記事では、段落のConceptual ProfileとSentence Levelを確認
@@ -42,7 +41,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["能力評価", "AI"]
 keywords: ["latent capability"]
-favorite: 5
 grow: 4
 abstract: "概要"
 ---
@@ -65,7 +63,7 @@ abstract: "概要"
 
 English Mix / Español Mixは別記事ではなく、同じ記事IDを使う派生Reading Modeとして扱う。完全英語版・完全スペイン語版を標準運用として作らない。
 
-派生版では `title` / `subtitle` / `abstract` / 本文を差し替えられる。`id`、作成日、Series、お気に入り、読了状態、After Reading、ブラウザ内メモなどの記事管理情報は日本語正本と共有する。
+派生版では `title` / `subtitle` / `abstract` / 本文を差し替えられる。`id`、作成日、Series、読了状態、残った度、After Reading、ブラウザ内メモなどの記事管理情報は日本語正本と共有する。
 
 ### English Mix
 
@@ -171,7 +169,7 @@ Structure metadataは読了時間・文字数・全文検索の対象から除�
 - 派生版一覧: `data/versions-index.json`
 - Argument metadata互換層: `argument-metadata-compat.js`
 - Argument Structure Reader: `argument-structure.js` / `argument-structure.css`
-- localStorageの読書状態キーは記事ID基準のまま変更しない
+- 読了状態・残った度を含むlocalStorageの読書状態キーは記事ID基準のまま変更しない
 
 Argument Structureの背景・設計は [`DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md`](DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md) と [`RESEARCH_ARGUMENT_STRUCTURE.md`](RESEARCH_ARGUMENT_STRUCTURE.md) を参照。
 
