@@ -8,8 +8,8 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 
 test('page loads the reading mode shell after the existing reader layers', () => {
   const html = read('index.html');
-  assert.match(html, /reader-mode-shell\.css\?v=20260911-1/);
-  assert.match(html, /reader-mode-shell\.js\?v=20260911-1/);
+  assert.match(html, /reader-mode-shell\.css\?v=20260918-2/);
+  assert.match(html, /reader-mode-shell\.js\?v=20260916-1/);
   assert.ok(html.indexOf('reader-v2.js') < html.indexOf('reader-mode-shell.js'));
   assert.ok(html.indexOf('reader-reading-pivot.js') < html.indexOf('reader-mode-shell.js'));
 });
@@ -23,13 +23,13 @@ test('shell keeps the three supported reading modes as direct controls', () => {
   assert.match(source, /role', 'radiogroup'/);
 });
 
-test('shell reuses reader location and version events instead of adding scroll state', () => {
+test('shell reuses semantic reader events and limits scroll handling to body-end phase sync', () => {
   const source = read('reader-mode-shell.js');
   assert.match(source, /myessays:reading-location-changed/);
   assert.match(source, /myessays:reader-version-intent/);
   assert.match(source, /MyEssaysInstantReadingModes/);
-  assert.doesNotMatch(source, /addEventListener\(['"]scroll/);
-  assert.doesNotMatch(source, /new IntersectionObserver/);
+  assert.match(source, /addEventListener\('scroll', scheduleContextSync/);
+  assert.doesNotMatch(source, /window\.scrollY|documentElement\.scrollTop|new IntersectionObserver/);
 });
 
 test('mobile mode bar remains a three-column direct control with robust targets', () => {
@@ -56,7 +56,7 @@ test('shell is the only visible reading progress surface', () => {
 test('semantic focus feedback respects reduced motion', () => {
   const css = read('reader-mode-shell.css');
   assert.match(css, /is-language-switch-target/);
-  assert.match(css, /animation-duration:\s*\.8s/);
+  assert.match(css, /animation-duration:\s*1\.8s/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
 });
 
