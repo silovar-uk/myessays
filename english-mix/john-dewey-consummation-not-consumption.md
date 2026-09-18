@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["John Dewey", "Aesthetics", "Experience", "Entertainment", "Consumption", "Pragmatism"]
 keywords: ["John Dewey", "Art as Experience", "consummation", "consumption", "an experience", "doing and undergoing", "perception", "recognition", "continuity"]
-favorite: false
 grow: true
 abstract: "Consumption means using up. Consummation means bringing something to fulfillment. The words look strangely similar, but Dewey's aesthetics pushes them in almost opposite directions. 「作品を見終える」から「一つの経験が成就する」まで何が起きるのかを、doing / undergoing、recognition / perception、continuityを通して考える。"
 ---
