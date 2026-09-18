@@ -150,16 +150,16 @@
   letter-spacing: .12em;
 }
 .language-lens-panel.is-preview {
-  width: min(330px, calc(100vw - 36px));
-  max-height: min(44dvh, 420px);
-  padding: 14px;
-  border-color: rgba(180,62,49,.13);
-  box-shadow: 0 16px 44px rgba(39,32,24,.12);
-  animation: language-mirror-in .14s ease-out both;
+  padding: 0;
+  border-color: rgba(39,32,24,.10);
+  background: rgba(250,248,242,.96);
+  box-shadow: 0 10px 32px rgba(39,32,24,.10);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+  pointer-events: none;
+  animation: language-subtitle-in .12s ease-out both;
 }
-.language-lens-panel.is-preview .language-lens-head h2 {
-  font-size: 15px;
-}
+.language-lens-panel.is-preview .language-lens-head,
 .language-lens-panel.is-preview .language-lens-status,
 .language-lens-panel.is-preview .language-lens-current,
 .language-lens-panel.is-preview .language-lens-nav,
@@ -167,22 +167,49 @@
   display: none;
 }
 .language-lens-panel.is-preview .language-lens-counterpart {
-  margin-top: 10px;
+  margin: 0;
   border: 0;
-  padding: 10px 2px 2px;
+  border-radius: 0;
+  padding: 12px 18px 13px;
   background: transparent;
 }
-.language-lens-panel.is-preview .language-lens-close {
-  width: 26px;
-  height: 26px;
+.language-lens-panel.is-preview .language-lens-label {
+  margin-bottom: 5px;
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.language-lens-panel.is-preview .language-lens-counterpart-copy {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   font-size: 15px;
+  line-height: 1.72;
 }
 .language-lens-panel.is-pinned {
   border-color: rgba(180,62,49,.2);
+  pointer-events: auto;
 }
-@keyframes language-mirror-in {
-  from { opacity: 0; transform: translateX(5px); }
-  to { opacity: 1; transform: translateX(0); }
+.reader-shell.note-is-open .language-lens-panel.is-preview {
+  display: none !important;
+}
+@keyframes language-subtitle-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (min-width: 761px) {
+  .language-lens-panel.is-preview {
+    top: auto !important;
+    right: auto;
+    bottom: 22px;
+    left: 50%;
+    width: min(760px, calc(100vw - 64px));
+    max-height: 148px;
+    transform: translateX(-50%);
+  }
 }
 .language-lens-head p,
 .reader-compare-head p {
