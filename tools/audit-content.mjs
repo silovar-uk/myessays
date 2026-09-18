@@ -83,7 +83,7 @@ function freshnessRisk(meta, body) {
 }
 
 const requiredCanonicalFields = ['id', 'title', 'created'];
-const preferredFields = ['subtitle', 'updated', 'type', 'status', 'tags', 'keywords', 'favorite', 'grow', 'abstract'];
+const preferredFields = ['subtitle', 'updated', 'type', 'status', 'tags', 'keywords', 'grow', 'abstract'];
 const canonicalIndex = JSON.parse(read('data/index.json'));
 const canonicalPaths = Array.isArray(canonicalIndex.essays) ? canonicalIndex.essays : [];
 const versionsIndex = JSON.parse(read('data/versions-index.json'));
@@ -146,7 +146,6 @@ const rows = canonicalPaths.map(file => {
     status: textValue(meta.status),
     series: textValue(meta.series),
     seriesOrder: meta.seriesOrder ?? '',
-    favorite: meta.favorite ?? '',
     grow: meta.grow ?? '',
     bodyChars: bodyChars(body),
     headingCount: countHeadings(body),
