@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["サッカー", "Japan National Team", "柏レイソル", "Koki Kumasaka", "J.League", "English Mix"]
 keywords: ["熊坂光希", "Koki Kumasaka", "SAMURAI BLUE", "Kashiwa Reysol", "Japan national team", "ACL injury", "Tokyo International University", "defensive midfielder", "anchor"]
-favorite: 5
 grow: 5
 abstract: "Koki Kumasaka has been selected for Japan again, yet his senior international record still says zero caps. His first call-up in June 2025 ended with a right ACL tear during national-team training. 349 days later he returned to competition, and 117 days after that he was called back. 柏U-12の2度の落選、U-18のBチーム、東京国際大での成長まで遡ると、このzero is not empty. It is accumulated time waiting for the first one."
 ---

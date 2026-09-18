@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Urawa Reds", "Tokyo Verdy", "J1", "Football", "Match Preview", "Kwi Jae Cho", "Tactics"]
 keywords: ["Urawa Reds", "Tokyo Verdy", "Kwi Jae Cho", "2026/27 J1 League", "Okayama", "tempo", "transition", "match control"]
-favorite: false
 grow: true
 abstract: "Before Urawa Reds vs Tokyo Verdy on September 19, 2026, this essay reads Urawa through their first seven league matches. Every match has produced a winner, with 13 goals scored and 17 conceded. Yet the first five games were 11-15, while the last two compressed to 2-2. The Verdy match revisits a problem exposed by Okayama: attack before the block resets, then move it once it is set. The deeper test is whether Urawa can choose the tempo of a match rather than simply live inside its chaos."
 ---

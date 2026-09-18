@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "年俸", "契約更改", "選手評価", "スポーツビジネス", "2026"]
 keywords: ["NPB", "年俸", "契約更改", "参稼報酬", "選手契約", "salary", "contract renewal", "player value", "negotiation"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 7

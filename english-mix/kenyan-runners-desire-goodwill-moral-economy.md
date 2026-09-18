@@ -11,7 +11,6 @@ type: "Essay"
 status: "完成"
 tags: ["駅伝", "ケニア人留学生", "スポーツ移民", "善意", "欲望", "モラルエコノミー", "箱根駅伝"]
 keywords: ["Kenyan runners", "ekiden", "maendeleo", "sport migration", "moral economy", "remittance", "athlete agents", "safeguarding"]
-favorite: 5
 grow: 5
 abstract: "ケニア人駅伝留学生をめぐる議論は、しばしば『夢を与える制度』か『勝利のための搾取』かの二択になる。しかし長期民族誌と現地取材を読むと、現実はもっと面倒だった。This essay reads goodwill and desire not as opposites, but as forces that often coexist in the same act. The result is a moral economy in which nobody needs to be purely malicious for pressure to accumulate around one young runner."
 ---

@@ -8,7 +8,6 @@ type: "Practical Paper"
 status: "完成"
 tags: ["バスケットボール", "男子日本代表", "AKATSUKI JAPAN", "選手", "観戦入門", "八村塁", "河村勇輝", "渡邊雄太", "ジョシュ・ホーキンソン", "富樫勇樹", "比江島慎", "馬場雄大", "富永啓生", "吉井裕鷹", "齋藤拓実"]
 keywords: ["Japan men's national basketball team", "Akatsuki Japan", "Rui Hachimura", "Yuki Kawamura", "Yuta Watanabe", "Josh Hawkinson", "Yuki Togashi", "Makoto Hiejima", "Yudai Baba", "Keisei Tominaga", "Hirotaka Yoshii", "Takumi Saito"]
-favorite: 5
 grow: 5
 abstract: "男子バスケ日本代表を、戦術やポジションの暗記ではなく『人』から見るための入門。205cmの八村塁、172cmの河村勇輝、167cmの富樫勇樹、何でも背負う渡邊雄太、帰化して代表の土台となったジョシュ・ホーキンソン、勝負所で火がつく比江島慎など10人を、所属クラブ・経歴・役割・プレースタイル・代表での物語から紹介する。最後に、初心者が一試合で何を見ればよいかまで落とし込む。"
 ---

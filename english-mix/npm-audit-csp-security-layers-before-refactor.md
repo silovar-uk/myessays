@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["security", "npm", "CSP", "CI", "refactoring", "English Mix"]
 keywords: ["npm audit", "npm ci", "high severity", "Content Security Policy", "default-src none", "script-src self", "Cache-Control no-store", "dependency vulnerability", "Phase 0"]
-favorite: 5
 grow: 5
 abstract: "A CI log says “3 high severity vulnerabilities,” while the same app is described as having a strong CSP. 矛盾しているように見えるが、they measure different layers. npm audit checks known vulnerabilities in dependencies; CSP limits what the browser may load and execute; no-store controls caching. This essay uses npm, MDN, web.dev, and GitHub documentation to translate the security jargon into a model that a non-engineer can actually use."
 ---

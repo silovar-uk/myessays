@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["知識", "学習", "戦略", "読み合い", "AI", "ポジショニング"]
 keywords: ["curiosity", "competence", "strategic interaction", "positioning", "uncertainty", "game theory", "AI learning"]
-favorite: 5
 grow: 5
 abstract: "知識を増やすことが好きだと思っていた。けれど、スマブラでダックハントを使っていたときに楽しかったのは、知識そのものより、相手より少しだけ局面を理解し、有利な状態から読み合いに入る感覚だった。AIを学ぶことや、日常で人と少し違う専門性を持ちたくなる感覚も、同じ構造なのかもしれない。知識欲、読み合い、特殊な立ち位置を一本につなぎ、自分が本当に集めているものを考える。"
 ---

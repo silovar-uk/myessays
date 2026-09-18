@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["トランザクティブメモリー", "記憶", "認知心理学", "チーム", "組織", "Google"]
 keywords: ["transactive memory", "transactive memory system", "Daniel Wegner", "Kyle Lewis", "誰が何を知っているか", "認知的分業", "専門化", "信頼", "協調", "Google effect"]
-favorite: 5
 grow: 5
 abstract: "答えそのものを覚えていなくても、「誰に聞けばいいか」を覚えている。それは記憶なのか。1980年代に提案されたトランザクティブメモリーを、1991年の恋人ペア実験、チーム研究、Google effect、メタ分析、近年のスポーツ・医療チーム研究まで辿る。最初は「記憶の外注」だと思っていたが、調べるほど、これは専門化・信頼・協調を含む、人と人のあいだに成立する記憶システムに見えてきた。"
 ---

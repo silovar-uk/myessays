@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["心の理論", "サリー・アン問題", "他者理解", "コミュニケーション", "共通基盤", "知識の呪い", "広報"]
 keywords: ["theory of mind", "false belief", "epistemic boundary", "common ground", "curse of knowledge", "perspective taking", "audience design"]
-favorite: 5
 grow: 5
 abstract: "「相手の立場に立つ」という言葉は、しばしば相手の感情を想像することとして理解される。しかしサリー・アン問題が示す他者理解の核心は、相手が何を感じるか以前に、相手が何を知り、何を知らず、何を誤って信じているかを自分の知識から切り離して表象することにある。本稿は、この認知的課題を「知識の境界」の推定として捉え直す。false-belief研究、知識の呪い、egocentric anchoring、common ground研究を接続し、良いコミュニケーションとは相手を無知だとみなすことではなく、未確認の共有知識を過剰に仮定せず、対話を通じて共有領域を校正する営みであると論じる。"
 ---

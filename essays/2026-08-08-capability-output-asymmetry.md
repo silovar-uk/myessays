@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["能力評価", "認知バイアス", "熟達", "他者理解", "AI評価", "心理測定"]
 keywords: ["latent capability", "observed performance", "curse of knowledge", "expert blind spot", "correspondence bias", "capability elicitation"]
-favorite: 5
 grow: 5
 abstract: "私たちは一回の成功や失敗から、相手の『能力』を直接見たように判断しやすい。しかし観測できるのは、特定の課題・支援・時間・道具・状態のもとで生じた遂行であり、能力はそこから推定される。本稿は心理測定、社会心理学、熟達研究、Dynamic Assessment、AI評価研究を接続し、初回の出力を人物そのものへ圧縮しないための『能力―出力推定マトリクス（COIM）』を提示する。COIMは真の能力を二値分類する表ではなく、初回観測を追加証拠でどう更新するかを点検する概念モデルである。"
 ---

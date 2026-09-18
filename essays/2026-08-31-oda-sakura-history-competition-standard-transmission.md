@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 16
 tags: ["小田さくら", "ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "11期", "歌姫", "歌唱", "技能継承", "組織の記憶", "人物史"]
 keywords: ["Sakura Oda", "Morning Musume", "voice", "competition", "standard", "teaching", "transmission", "institutional memory", "handover"]
-favorite: 5
 grow: 5
 abstract: "2012年、『スッピン歌姫』オーディションで約7000人から唯一の11期として加入した小田さくら。初期には誰よりもパフォーマンスを磨き、歌割りを得ることを競争の目標にしていた。やがて視線はグループ内部から観客へ移り、長期在籍の中で歌唱技術だけでなく、モーニング娘。の歴史やオリジナルの振付、つんく♂から受け取った考えを後輩へ渡す立場になる。『歌がうまい人』ではなく、個人の技能が基準となり、組織の記憶へ変わっていく過程を読む。"
 ---

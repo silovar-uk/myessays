@@ -8,7 +8,6 @@ type: "Practical Game Analysis"
 status: "完成"
 tags: ["Street Fighter 6", "Marisa", "Modern Controls", "Drive Rush", "Fighting Games"]
 keywords: ["Marisa", "Modern Controls", "Drive Rush", "raw rush", "cancel rush", "Gladius", "pressure", "SF6"]
-favorite: 5
 grow: 5
 abstract: "Modern MarisaでDrive Rushをどう使うかを、2026年9月時点のcurrent frame dataと攻略資料から整理する。ModernではClassicのst.LK、cr.MK、3HP、st.HKがなく、rush high/low mixをそのままcopyできない。一方、raw rushは1 stock、cancel rushは3 stocks。そこでrushを単なるmix-up toolではなく、相手がmash・block・parry・jump・reversalのどれで拒否するかを観測するreaction probeとして再設計する。中心になるのはrush Assist Light、Assist Medium、Heavy、そして+4F bonusを受けないのに有効なrush Gladiusである。"
 ---

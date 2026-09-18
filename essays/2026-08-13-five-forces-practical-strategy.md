@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["経営戦略", "5フォース", "Five Forces", "Michael Porter", "業界分析", "コンサルティング"]
 keywords: ["five forces", "industry structure", "bargaining power", "substitutes", "entry barriers", "rivalry"]
-favorite: 5
 grow: 5
 abstract: "5フォース分析は、競合・新規参入・代替品・買い手・売り手を順番に説明するフレームではない。業界が生み出した経済価値を誰がどのようなメカニズムで取り、なぜ企業に利益が残る／残らないのかを診断する道具である。本稿では、業界境界の切り方、各フォースの判定質問、根拠の集め方、重要フォースの特定、構造変化の読み方、戦略への接続を実務手順として整理する。航空、動画配信、コンサルティング、プロスポーツを比較し、最後に45分で使えるテンプレートまでまとめる。"
 ---

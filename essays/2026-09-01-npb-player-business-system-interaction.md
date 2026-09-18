@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "球団経営", "編成", "現役ドラフト", "スポーツビジネス", "2026"]
 keywords: ["NPB", "player system", "business system", "roster construction", "club business", "active player draft", "feedback loop"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 16

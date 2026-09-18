@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["npm", "Node.js", "JavaScript", "Web開発", "依存関係"]
 keywords: ["npm", "npm install", "package.json", "package-lock.json", "node_modules", "registry", "Node Package Manager", "dependency"]
-favorite: 5
 grow: 5
 abstract: "npm installを何度も使っているのに、npmそのものが何者かは説明しにくい。しかも公式READMEによれば、npmはNode Package Managerの略ですらない。npm公式資料と小さな実験を使い、CLI、registry、package.json、package-lock.json、node_modulesの役割を「発注・倉庫・台帳」として分解する。"
 ---

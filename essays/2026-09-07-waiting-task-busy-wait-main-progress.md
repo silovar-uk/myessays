@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["仕事", "生産性", "集中", "タスク管理", "注意", "意思決定"]
 keywords: ["busy waiting", "attention residue", "prospective memory", "cognitive offloading", "reminder", "task switching", "main task"]
-favorite: 5
 grow: 5
 abstract: "返事待ち、確認待ち、承認待ち。自分では今なにもできないサブ案件ほど、なぜか何度も頭に戻ってくる。コンピューターのbusy waiting、心理学のattention residue、prospective memoryとcognitive offloadingを辿ると、問題は待ち案件の存在より『待ちを自分の注意で監視する設計』にあるように見えてきた。待ちは外部トリガーへ預け、注意は主タスクへ戻す。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["建築", "都市", "空間", "UX", "アイソビスト"]
 keywords: ["isovist", "visibility graph", "space syntax", "可視領域", "視線", "空間認知"]
-favorite: 4
 grow: 4
 abstract: "L字廊下を単純な2Dモデルにすると、内角の1m手前で見える床面積は18㎡、角まで進むと28㎡。わずか1mで約1.56倍になった。この『ある地点から見える範囲』を図形として扱うのがアイソビストである。1967年のTandy、1979年のBenedikt、2001年のvisibility graph、知覚研究、3D化の限界まで追い、駅・スタジアム・店・オフィスの“見え方”を考え直す。"
 ---

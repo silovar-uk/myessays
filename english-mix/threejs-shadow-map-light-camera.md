@@ -8,7 +8,6 @@ type: "English Mix"
 status: "完成"
 tags: ["Web開発", "JavaScript", "Three.js", "3D", "WebGL"]
 keywords: ["Three.js", "Shadow Map", "LightShadow", "DirectionalLight", "PointLight", "SpotLight", "CameraHelper", "OrthographicCamera", "castShadow", "receiveShadow", "renderer.info", "WebGLRenderer", "WebGPURenderer"]
-favorite: 4
 grow: 4
 mode: "english-mix"
 english_ratio: 0.45

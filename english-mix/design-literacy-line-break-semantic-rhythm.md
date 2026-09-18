@@ -10,7 +10,6 @@ series: "Design Literacy｜細部から思想まで"
 seriesOrder: 33
 tags: ["Design Literacy", "Typography", "Japanese Typography", "Web Design"]
 keywords: ["Line Breaking", "Kinsoku Shori", "JLReq", "text-wrap", "Japanese Typography", "Semantic Rhythm", "Rag"]
-favorite: 3
 grow: 4
 abstract: "スマホ幅を少し変えただけで、見出しの最後の1文字が次の行へ落ちる。Why does a readable line break still feel wrong? 日本語の禁則処理とCSSのtext-wrapを手がかりに、改行を文字処理ではなくmeaning relationshipsの設計として考える。"
 ---

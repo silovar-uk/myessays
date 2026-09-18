@@ -8,7 +8,6 @@ type: "Sports Profile Essay"
 status: "完成"
 tags: ["プロ野球", "埼玉西武ライオンズ", "仲田慶介", "キャリア", "育成選手"]
 keywords: ["Keisuke Nakada", "Seibu Lions", "SoftBank Hawks", "developmental draft", "roster registration", "switch hitter", "utility player", "first hero interview", "2026-08-25"]
-favorite: 5
 grow: 5
 abstract: "2026年8月25日、日本ハム戦で西武の全3得点を叩き出し、プロ初のhero interviewに立った仲田慶介。育成ドラフト14位、支配下、戦力外、別球団の育成、そして再び支配下。But this is not only a comeback story. 打撃、強肩、switch hitting、内外野守備と、自分にnew toolsを足し続けてきたキャリアから、彼がどんな選手なのかを読む。"
 ---

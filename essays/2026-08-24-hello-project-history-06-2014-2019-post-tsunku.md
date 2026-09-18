@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "つんく♂", "アンジュルム", "こぶしファクトリー", "つばきファクトリー", "カントリー・ガールズ", "BEYOOOOONDS", "ハロプロ研修生", "組織論"]
 keywords: ["Hello! Project", "Tsunku", "ANGERME", "Kobushi Factory", "Tsubaki Factory", "Country Girls", "BEYOOOOONDS", "Kenshusei", "decentralized production"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第6回。2014年から2019年を、つんく♂総合プロデューサー退任後の『喪失』ではなく、作詞・作曲、育成、グループ設計を複数の作家・スタッフ・研修生システムへ分散する組織転換として読む。アンジュルム『大器晩成』、こぶし・つばきファクトリー、℃-ute解散、カントリー・ガールズ兼任体制、2017年の新体制、BEYOOOOONDSまでを通じ、分権化が生んだ多様性と複雑さの両方を検証する。"
 ---

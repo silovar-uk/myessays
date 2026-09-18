@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["哲学", "現象学", "フッサール", "時間", "時間意識"]
 keywords: ["phenomenology", "Husserl", "time consciousness", "retention", "protention", "lived time", "時間意識"]
-favorite: 5
 grow: 5
 series: "現象学で日常を見直す"
 seriesId: "phenomenology-everyday"

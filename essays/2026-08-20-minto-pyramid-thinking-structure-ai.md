@@ -8,7 +8,6 @@ type: "Thinking & Management Essay"
 status: "完成"
 tags: ["バーバラ・ミント", "ピラミッド原則", "MECE", "ロジカルシンキング", "コンサルティング", "AI", "構造化"]
 keywords: ["Barbara Minto", "Minto Pyramid Principle", "SCQ", "structured thinking", "MECE", "argument structure", "problem solving", "AI"]
-favorite: 4
 grow: 5
 abstract: "ピラミッド原則は『結論から話す技術』だけではない。一方で、それを思考そのものや実証済みの認知モデルとみなすのも強すぎる。Barbara Minto本人の説明、MECEとSCQの役割、wicked problemとの緊張、生成AIによる構造生成を手がかりに、構造を作る力と構造を疑う力を分けて考える。"
 ---

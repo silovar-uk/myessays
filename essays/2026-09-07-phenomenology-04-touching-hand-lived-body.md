@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["哲学", "現象学", "メルロ＝ポンティ", "身体", "知覚"]
 keywords: ["phenomenology", "Merleau-Ponty", "embodiment", "lived body", "perception", "身体性", "身体図式"]
-favorite: 5
 grow: 5
 series: "現象学で日常を見直す"
 seriesId: "phenomenology-everyday"

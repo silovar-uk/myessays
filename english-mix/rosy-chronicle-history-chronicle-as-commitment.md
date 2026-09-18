@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ロージークロニクル", "ハロー！プロジェクト", "ハロプロ研修生", "橋田歩果", "ロージークロニクル史", "アイドル史", "組織論", "ブランド論"]
 keywords: ["Rosy Chronicle", "Hello Project", "chronicle as commitment", "trainee unit", "future history", "First Page", "BOOKMARK", "Blueprint"]
-favorite: 5
 grow: 5
 abstract: "Rosy Chronicle is the newest current Hello! Project group as of 2026. Formed as nine members on June 16, 2024 and major-debuting on March 19, 2025, the group has very little history compared with Morning Musume, ANGERME or Juice=Juice. Yet its very name combines Rosy with Chronicle, and later live titles such as First Page!, BOOKMARK and Blueprint keep returning to the language of recording, reading and designing time. This essay treats Rosy Chronicle not as a group with an already-proven legacy, but as a brand that made a promise to build history before that history existed."
 ---

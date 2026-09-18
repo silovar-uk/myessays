@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["E2EE", "暗号化", "セキュリティ", "プライバシー", "Signal", "WhatsApp", "iMessage", "RCS"]
 keywords: ["End-to-End Encryption", "E2EE", "TLS", "encryption", "decryption", "public key", "private key", "metadata", "forward secrecy", "post-compromise security", "Messaging Layer Security", "MLS"]
-favorite: 5
 grow: 5
 abstract: "『暗号化されている』通信とE2EEは、同じではない。違いは暗号の強さより、途中のサーバーが復号できるかどうかにある。本稿ではAlice→Server→Bobという最小モデルから、TLSとの違い、鍵の役割、Signal・WhatsApp・iMessage・RCSの実例、メタデータや端末侵害などE2EEでも守れない範囲までを整理する。E2EEを『強い暗号』ではなく、『信用しなければならない相手を減らす設計』として捉え直す。"
 ---

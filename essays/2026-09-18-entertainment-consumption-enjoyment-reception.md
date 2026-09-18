@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["言葉", "エンタメ", "消費", "享受", "受容", "ファン"]
 keywords: ["consumer", "consumption", "enjoyment", "reception", "participatory culture", "cultural consumption", "文化芸術", "鑑賞"]
-favorite: false
 grow: true
 abstract: "映画を見ても作品は減らないのに、なぜ「コンテンツを消費する」と言うのか。辞書、経済学、文化芸術基本法、受容研究、参加型文化を横断し、「消費」「享受」「鑑賞」「受容」「参加」がそれぞれ何を見ている言葉かを整理する。結論は、消費を捨てることではなく、話している関係の層ごとに言葉を変えることだった。"
 ---

@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["OCHA NORMA", "ハロー！プロジェクト", "ハロプロ研修生", "米村姫良々", "斉藤円香", "広本瑠璃", "筒井澪心", "恋のクラウチングスタート", "アイドル史", "組織論"]
 keywords: ["OCHA NORMA", "Hello Project", "hybrid origin", "trainee system", "audition", "pre-debut integration", "idol organization"]
-favorite: 5
 grow: 5
 abstract: "OCHA NORMAは2019年の研修生ユニットから約2年半かけて段階的に組み上げられた。長期の研修生経験を持つメンバー、2021年に新グループ入りした研修生、一般オーディション合格者を2021年12月12日に同じ10人の創設メンバーとして統合し、2022年7月にメジャーデビュー。2025年には田代すみれ・石栗奏美が卒業し8人体制となったが、2026年も新曲とツアーを継続している。本稿では、OCHA NORMAを『同じ経歴の人を集めたグループ』ではなく、異なる育成経路を一つの創設期へ統合することで共通のスタートラインを作ったグループとして読む。"
 ---

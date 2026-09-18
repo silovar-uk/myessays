@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 9
 tags: ["福田明日香", "ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "ASAYAN", "愛の種", "Never Forget", "卒業", "1期メンバー", "人物史", "英語学習"]
 keywords: ["Asuka Fukuda", "Morning Musume", "Hello Project", "first generation", "graduation", "Never Forget", "Ai no Tane", "ASAYAN", "people history", "English learning"]
-favorite: 5
 grow: 5
 abstract: "福田明日香の人物史を、シンプルな英語と日本語を交互に使って読む。12歳でのASAYAN、13歳でのメジャーデビュー、2期加入、14歳での卒業、『Never Forget』、長い不在、2017〜2018年の1期5人再集結とセルフカバーを通して、人が去ってもグループは続き、去った人も歴史から消えないというモーニング娘。の時間構造を考える。"
 ---

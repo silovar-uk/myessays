@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "baseball metrics", "sabermetrics", "2026"]
 keywords: ["NPB", "batting average", "OBP", "SLG", "OPS", "ERA", "WHIP", "K/9", "WAR", "baseball metrics"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 3

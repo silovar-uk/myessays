@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["コミュニケーション", "会話", "傾聴", "共感", "人間関係", "会話分析"]
 keywords: ["話に乗る", "validation", "alignment", "affiliation", "active listening", "advice giving", "conversation analysis"]
-favorite: 5
 grow: 5
 abstract: "友人が『会社辞めよかな』と言った瞬間に、正しい助言を返したのになぜか会話がしぼむことがある。そこで『肯定する』とは別に、『まず話に乗る』という行為を考えてみる。DBTのvalidation、会話分析のalignment / affiliation、助言研究を辿ると、話に乗ることは単なる同意ではなく、相手が始めた会話をいったん共同作業として続けることに近かった。重要なのは返答の正しさだけではなく、順番なのかもしれない。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["映画", "アメリカ", "1990年代", "文化", "俳優", "恋愛"]
 keywords: ["Pretty Woman", "Julia Roberts", "Richard Gere", "Garry Marshall", "J. F. Lawton", "3000", "La Traviata", "corporate raider", "Beverly Hills", "romantic comedy"]
-favorite: 5
 grow: 5
 abstract: "『プリティ・ウーマン』を、現代版シンデレラだけで片づけずに見直す。1980年代末のM&Aと消費文化、原案『3000』からの変化、ジュリア・ロバーツとリチャード・ギアの当時の立ち位置、劇中で二人が観る『椿姫』まで辿ると、この映画はヴィヴィアンだけでなくエドワードも変身する物語に見えてくる。なぜ買い物シーンがあれほど気持ちよく、なぜ今見ると少し引っかかるのか。その両方を考える。"
 ---

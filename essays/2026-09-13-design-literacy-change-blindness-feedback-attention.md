@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Change Blindness", "Attention", "Feedback", "UX"]
 keywords: ["Change Blindness", "Change Detection", "Attention", "Visual Memory", "Feedback", "State Change", "Visibility of System Status", "Inattentional Blindness"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 39

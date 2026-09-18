@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "UI", "UX", "Accessibility", "Disabled State", "Constraint", "Discoverability", "Error Prevention"]
 keywords: ["disabled state", "aria-disabled", "HTML disabled", "constraint", "discoverability", "feedback", "recovery", "button state", "accessibility", "error prevention"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 31

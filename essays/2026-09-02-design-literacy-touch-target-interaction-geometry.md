@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Touch Target", "Accessibility", "Interaction", "UI", "UX"]
 keywords: ["touch target", "tap target", "hit area", "hit region", "target size", "WCAG 2.2", "accessibility", "interaction geometry"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 6

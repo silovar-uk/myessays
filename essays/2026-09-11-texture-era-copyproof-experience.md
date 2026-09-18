@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["テクスチャ", "身体性", "感覚", "AI", "グミ", "ASMR", "言語", "文化"]
 keywords: ["texture", "haptics", "embodied cognition", "oral tactile perception", "ASMR", "sensory marketing", "copyproof experience"]
-favorite: 5
 grow: 5
 abstract: "グミ、麻辣湯、ぷっくりしたシール、ASMR、筋トレ。2020年代の流行を並べると、なぜか口、指、耳、筋肉が忙しい。瀬口真司が提示する「テクスチャの時代」という見方を起点に、食品科学、触覚研究、ASMR研究、身体化された言語理解まで横断して考えた。途中で「テクスチャ」は何でも説明できる便利すぎる概念にも見えてくる。そこで流行から質感だけを抜く思考実験をしてみると、見えてきたのは別の軸だった。意味や要約が簡単に複製されるほど、自分の身体でしか受け取れない“代行不能な経験”の価値が上がっているのではないか。"
 ---

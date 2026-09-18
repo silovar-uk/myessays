@@ -8,7 +8,6 @@ type: "Review Article"
 status: "完成"
 tags: ["英語学習", "音読", "発音", "音声知覚", "第二言語習得"]
 keywords: ["reading aloud", "pronunciation instruction", "connected speech", "phonological representation", "corrective feedback", "automaticity"]
-favorite: 4
 grow: 4
 abstract: "音読は反復すればするほどよいのか。本稿は『回数を増やす前に読み方を整える』という実践的主張を、第二言語の発音指導、音声知覚、綴りと音韻表象、連結音声、反復学習の研究から検討する。結論として、反復そのものは有効だが、意味理解・音声モデル・知覚・フィードバックによる校正を先行させる方が理論的にも実証的にも妥当であると論じる。"
 ---

@@ -11,7 +11,6 @@ seriesId: "attentional-agency"
 seriesOrder: 2
 tags: ["集中", "注意", "タスク切り替え", "attention residue", "中断", "生産性", "agency"]
 keywords: ["attention residue", "task switching", "interruption", "resumption lag", "ready-to-resume plan", "Sophie Leroy", "attentional agency", "Uneven U"]
-favorite: 5
 grow: 5
 abstract: "仕事をswitchするとき、screenは一瞬で変わるのに、mindは一瞬では変わらない。Unfinished taskから離れると、前の仕事へのattentionが次の仕事に残るattention residueが起こりうる。しかもinterruption costは、単に作業が遅くなることではなく、speedを上げてcompensateした結果のstressとして現れることもある。本稿ではattention residue、resumption lag、ready-to-resume planを手がかりに、focusを「長く居続けるability」から「future selfへrestart pointを渡し、きれいにleaveするability」まで拡張する。"
 ---

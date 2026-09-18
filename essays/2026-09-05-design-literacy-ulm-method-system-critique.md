@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Ulm School", "HfG Ulm", "Design Methodology", "Systems Thinking", "Visual Identity", "Design System", "Otl Aicher", "Tomás Maldonado"]
 keywords: ["Ulm School", "HfG Ulm", "Ulm model", "design methodology", "systems thinking", "scientification of design", "Otl Aicher", "Tomas Maldonado", "Lufthansa identity", "visual identity", "design system", "reusable rules"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 16

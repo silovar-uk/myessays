@@ -12,7 +12,6 @@ mix_unit: "sentence"
 cefr: "B1-B2"
 tags: ["交通", "自転車", "道路交通法", "交通ルール", "生活"]
 keywords: ["bicycle", "vehicle", "light vehicle", "pedestrian", "roadway", "sidewalk", "traffic signal", "crosswalk", "two-stage right turn", "blue ticket"]
-favorite: 4
 grow: 4
 abstract: "自転車はvehicleなのかpedestrianなのか。The key is not that a bicycle is half vehicle and half pedestrian. 乗っている限り原則として車両で、押して歩けば原則pedestrianになる。ただしsidewalkを通行できる例外や、走行位置によって従うtraffic signalが変わるため、境界で混乱しやすい。本稿ではroadway / sidewalk / crosswalk / intersectionの4つを行き来しながら、『いま自分はどのmodeか』で交通ルールを整理する。"
 ---

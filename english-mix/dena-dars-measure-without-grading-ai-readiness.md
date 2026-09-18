@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["AI", "DeNA", "DARS", "organization transformation", "human development", "English Mix"]
 keywords: ["DeNA AI Readiness Score", "DARS", "AI native company", "AI maturity model", "AIオールイン", "AI adoption", "organizational maturity", "workflow redesign"]
-favorite: 5
 grow: 5
 abstract: "DeNA’s DARS scores both individuals and organizations across five levels, yet it is not directly tied to personnel evaluation. The criteria are intentionally abstract and are localized by each department. Official materials, 2026 operating results, marketing and QA examples, and AWS/Microsoft maturity models suggest that DARS is less about being “good at AI” and more about how far a person or team can redesign work around AI."
 ---

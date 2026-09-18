@@ -8,7 +8,6 @@ type: "Practical Guide"
 status: "完成"
 tags: ["Street Fighter 6", "SF6", "モダンマリーザ", "マリーザ", "ハーフハート", "対空", "コンボ", "格闘ゲーム"]
 keywords: ["Modern Marisa", "Half Heart", "2HP", "anti-air", "juggle", "Street Fighter 6"]
-favorite: 5
 grow: 5
 abstract: "マリーザのしゃがみ強P『ハーフハート』を、通常版とホールド版でまったく別の役割を持つ技として整理する。通常版は9F発生の対空、ホールド版は浮いた相手を拾い直してコンボやSAへ接続する中継点。2026年8月3日調整で前方向の攻撃判定が拡大されたことも踏まえ、いつ押すか、何へつなぐか、逆に使わない方がよい場面、10分で実戦投入する練習法までまとめる。"
 ---

@@ -8,7 +8,6 @@ type: "Review"
 status: "完成"
 tags: ["サッカー", "Jリーグ", "ファジアーノ岡山", "浦和レッズ", "戦術", "English Mix"]
 keywords: ["Fagiano Okayama", "Urawa Reds", "2026/27 J1", "3-4-2-1", "possession", "second ball", "transition", "wing-back", "forward-facing player"]
-favorite: 5
 grow: 5
 abstract: "Fagiano Okayamaは広島戦で31％しかボールを持たず3得点した一方、50％を超えて保持する試合もある。So they are not simply a low-possession team. 複数試合を横断すると、岡山のidentityはpossessionそのものより、前線を使って次の選手を前向きにし、second ballから攻撃を再起動するところに見えてくる。浦和戦で見るべき3つのmatch-upまで整理する。"
 ---

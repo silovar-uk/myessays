@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["℃-ute", "ハロー！プロジェクト", "ハロプロキッズ", "鈴木愛理", "矢島舞美", "Danceでバコーン！", "Kiss me 愛してる", "日本武道館", "アイドル史", "組織論"]
 keywords: ["Cute", "C-ute", "Hello Project", "performance standard", "idol development", "Dance de Bakoon", "Kiss me Aishiteru", "Nippon Budokan"]
-favorite: 5
 grow: 5
 abstract: "2005年、Berryz工房に所属していないハロプロキッズ7人へ名前を与える形で始まった℃-ute。2006年にはハロプロエッグの有原栞菜が加入して8人となり、インディーズ活動を重ねる一方、村上愛、有原、梅田えりかの離脱・卒業を経て2009年末には5人体制となった。本稿では、『Berryz工房以外』と呼ばれた側が、メジャーデビュー、レコード大賞最優秀新人賞、少人数での技能分化、ダンス／歌唱の強化、海外公演、日本武道館、さいたまスーパーアリーナへ到達し、解散後もハロプロ内でパフォーマンス曲が再演され続けるまでを、『与えられた序列ではなく、自分たちの評価軸を作ったグループ』として読む。"
 ---

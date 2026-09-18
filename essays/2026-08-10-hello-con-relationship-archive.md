@@ -8,7 +8,6 @@ type: "Cultural Column"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロコン", "アイドル", "ファンダム", "文化継承", "ライブ", "関係性"]
 keywords: ["Hello! Project", "Hello! Con", "relationship archive", "repertoire", "fandom", "cultural memory", "live performance"]
-favorite: 5
 grow: 5
 abstract: "2026年8月8日17時30分開演の『ハロ！コン 2026』東京公演を、セットリストと観客・メンバー周辺の言説から読む。とりわけ『わがままリクエスト』4曲には、オーディション以来の因縁、憧れ、同世代の結束、研修生同期という異なる関係性が埋め込まれていた。本稿は、ハロプロの本当の資産は3,219曲の楽曲数そのものではなく、それらを使って長年の人間関係を何度でも再接続できる“関係性のアーカイブ”にあると論じる。"
 ---

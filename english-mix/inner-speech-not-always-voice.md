@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["inner speech", "thinking", "language", "認知科学", "English Mix"]
 keywords: ["inner speech", "inner voice", "verbal thinking", "anendophasia", "unsymbolized thinking", "DES", "内言"]
-favorite: 4
 grow: 5
 abstract: "頭の中には、いつも自分の声が流れているのだと思っていた。But inner speech research tells a messier story. In one Descriptive Experience Sampling study, inner speech appeared in about 26% of sampled moments on average, with huge individual variation. Inner speech can also be expanded, condensed, monologic, dialogic, or resemble another person's voice. A 2024 paper proposed the term anendophasia for minimal or absent inner speech, though whether complete absence has been demonstrated remains debated. インナーボイスは常駐するnarratorではなく、思考が必要に応じて使うlanguage modeの一つなのかもしれない。"
 ---

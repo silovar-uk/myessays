@@ -8,7 +8,6 @@ type: "Management Essay"
 status: "完成"
 tags: ["コンサルティング", "コミュニケーション", "問題解決", "意思決定", "専門性", "信頼", "組織論", "AI"]
 keywords: ["consultant-like behavior", "consulting communication", "problem framing", "client consultant interaction", "conversational governance", "impression management", "professional identity", "trust"]
-favorite: 5
 grow: 5
 abstract: "なぜ、数分話しただけで『この人はコンサルっぽい』と感じるのか。結論先行、論点整理、仮説思考だけでは説明が足りない。コンサルティング研究、実際のクライアント・コンサルタント関係の研究、大手ファームの公開資料を横断すると、その正体は、曖昧な状況を意思決定可能な形に変える『問題造形』、会話の論点・順序・着地を管理する『会話統治』、そして不確実な専門サービスを信頼可能にする『専門性の演出』の重なりとして見えてくる。本稿は、コンサルらしく見えることと、本当に優れたコンサルであることの違いまで掘り下げる。"
 ---

@@ -8,7 +8,6 @@ type: "Practical Paper"
 status: "完成"
 tags: ["Street Fighter 6", "格闘ゲーム", "モダンマリーザ", "間合い管理", "立ち回り", "技選択", "対人観察"]
 keywords: ["Modern Marisa", "spacing", "neutral", "opponent profiling", "move selection", "Street Fighter 6"]
-favorite: 5
 grow: 5
 abstract: "モダンマリーザで『どの距離なら何を振るか』を、密着・近距離・中距離・遠め中距離・遠距離の5ゾーンに分けて整理する。ただし技選択は距離だけでは決まらない。対空を待つ相手、連続で技を振る相手、こちらを観察する相手、下がる相手、飛ぶ相手、DIを狙う相手では、同じ距離でも正解が変わる。本稿では距離を座標ではなく目的で定義し、相手が『何を見ているか』を読みながら技を切り替える実戦原則へ落とし込む。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["中国古典思想", "荀子", "勧学", "学習", "フィードバック", "自己点検", "仕事術", "意思決定"]
 keywords: ["木受繩則直", "金就礪則利", "Xunzi", "Encouraging Learning", "feedback", "standard", "self-examination", "learning"]
-favorite: 4
 grow: 5
 abstract: "『荀子』「勧学」の一節を、単なる tough love の話ではなく、external standards と self-examination によって学習のズレを修正する思想として読む。孔子の反復学習との違いも手がかりに、仕事のレビューや意思決定へつなげる。"
 ---

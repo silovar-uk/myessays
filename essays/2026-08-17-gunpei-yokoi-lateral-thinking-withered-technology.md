@@ -8,7 +8,6 @@ type: "Historical Idea Essay"
 status: "完成"
 tags: ["横井軍平", "任天堂", "ゲームボーイ", "ゲーム＆ウオッチ", "ものづくり", "企画", "イノベーション", "技術", "プロダクト開発"]
 keywords: ["Gunpei Yokoi", "lateral thinking with withered technology", "Nintendo", "Game Boy", "Game & Watch", "Virtual Boy", "innovation", "product development", "technology strategy"]
-favorite: 5
 grow: 5
 abstract: "ゲーム＆ウオッチ、ゲームボーイ、十字キー、バーチャルボーイ。横井軍平の仕事をたどると、共通して見えてくるのは『最新技術そのものを競争力にしない』という思想である。本稿は、横井の人物と製品史を入口に、『枯れた技術の水平思考』を単なる“古い技術の再利用”ではなく、成熟した技術を別の用途へ移し、人間の遊びや欲望から価値を組み立てる方法として読み直す。成功例だけでなくバーチャルボーイや任天堂退社も検討し、AI時代の企画・プロダクト開発に何を持ち帰れるかまで考える。"
 ---

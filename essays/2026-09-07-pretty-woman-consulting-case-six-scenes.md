@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["映画", "コンサル", "M&A", "CX", "交渉", "PMO"]
 keywords: ["Pretty Woman", "consulting", "case interview", "due diligence", "customer journey", "BATNA", "signaling", "stakeholder management", "frontline empowerment", "transformation office", "PMO"]
-favorite: 5
 grow: 5
 abstract: "『プリティ・ウーマン』をM&A映画として眺めるだけではなく、映画の場面をクライアント課題へ翻訳する。Edwardの企業買収、Vivianとの一週間契約、Rodeo Driveの入店拒否、ホテル支配人の例外対応、服装による評価、Morseとの対立、そして映画が終わった翌朝まで。SCENE→CLIENT QUESTION→HYPOTHESIS→DATA→ANALYSIS→DELIVERABLEの流れで、コンサルの問題発見と案件設計を練習する。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["仕事", "生産性", "効率化", "マルチタスク", "集中", "意思決定"]
 keywords: ["multitasking", "task switching", "attention residue", "work in progress", "WIP", "progress principle", "exploration exploitation", "slack time"]
-favorite: 5
 grow: 5
 abstract: "予定を隙間なく埋め、small tasksを大量に処理する。ずっとworkingなのに、なぜか『何も進んでいない』『次のbig thingを始められない』感じが残る。task switching、attention residue、meaningful progress、WIP、exploration / exploitation、slack timeを辿ると、問題はefficiencyそのものより、そこで生まれたcapacityを再び小さな仕事で埋めることにあるように見えてきた。"
 ---

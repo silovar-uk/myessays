@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["リチャード・ローティ", "プラグマティズム", "哲学", "真理", "偶然性", "アイロニー", "連帯", "民主主義", "言語", "反基礎づけ", "人権"]
 keywords: ["Richard Rorty", "pragmatism", "antirepresentationalism", "contingency", "irony", "solidarity", "final vocabulary", "liberal ironist", "anti-foundationalism", "democracy", "sentimental education"]
-favorite: 5
 grow: 5
 abstract: "リチャード・ローティは、ときに『客観的真理を否定した相対主義者』として紹介される。しかし彼の核心は、真理そのものを捨てることより、社会や道徳を支えるために哲学的な最終根拠を要求する習慣から離れることにあった。本稿は『自然の鏡としての哲学』から『偶然性・アイロニー・連帯』、人権論、民主主義論までをつなぎ、ローティの思想を「正しさの最終証明」から「より残酷でない語彙をつくり続ける実践」への転換として読む。"
 ---

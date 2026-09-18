@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["椿姫", "La traviata", "コンサルティング", "問題解決", "論点設定", "仮説検証", "ステークホルダー分析"]
 keywords: ["La traviata", "椿姫", "problem framing", "structuring", "stakeholder analysis", "hypothesis testing", "primary sources", "so what"]
-favorite: 5
 grow: 5
 abstract: "『椿姫』を深く調べる過程には、consultingの基本動作がかなり詰まっている。タイトルの違和感はproblem framingになり、実在モデル・原作・戯曲・オペラを追えばstructuringになる。登場人物と社会の関係はstakeholder analysisになり、椿の俗説を一次資料へ戻って確かめる作業はhypothesis testingになる。作品知識を削らず、5-minute caseまで含めて仕事の思考法へ変換する。"
 ---

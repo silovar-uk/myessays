@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Metabolism", "Modularity", "Design Systems", "Architecture"]
 keywords: ["Metabolism", "Nakagin Capsule Tower", "Kisho Kurokawa", "Modularity", "Changeability", "Design for Disassembly", "Stable Core", "Replaceable Parts", "Design System Governance"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 38

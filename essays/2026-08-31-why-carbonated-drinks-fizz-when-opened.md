@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["化学", "物理化学", "炭酸飲料", "平衡", "過飽和", "核生成", "身近なものの科学"]
 keywords: ["carbonated drink", "carbon dioxide", "dissolved CO2", "partial pressure", "Henry's law", "equilibrium", "supersaturation", "nucleation", "heterogeneous nucleation", "bubble growth", "headspace", "flat soda", "carbonic acid"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

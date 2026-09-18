@@ -10,7 +10,6 @@ series: "ブラウザーに3D世界を作ると何が変なのか"
 seriesOrder: 1
 tags: ["Web開発", "JavaScript", "Three.js", "3D", "WebGL"]
 keywords: ["Three.js", "WebGL", "WebGPU", "Scene", "Camera", "Renderer", "Mesh", "BoxGeometry", "PerspectiveCamera", "OrthographicCamera", "Scene Graph", "renderer.info", "glTF"]
-favorite: 4
 grow: 4
 abstract: "Three.jsで立方体を1個出すだけなのに、なぜSceneとCameraとRendererが必要なのか。実際に同じ立方体のカメラと表示方法を切り替え、GPUが数える三角形まで確認しながら、Three.jsが抽象化しているものを分解する。最後にWebGPU移行期の現在地と、初心者がハマりやすい『光・モデル・描画ループ・後片づけ』まで整理する。"
 ---

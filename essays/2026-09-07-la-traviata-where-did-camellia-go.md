@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["オペラ", "音楽", "文学", "フランス", "イタリア", "19世紀"]
 keywords: ["La traviata", "椿姫", "Giuseppe Verdi", "Alexandre Dumas fils", "La Dame aux camélias", "Marie Duplessis", "Violetta Valéry", "demi-monde"]
-favorite: 5
 grow: 4
 series: "椿姫を二度読む"
 seriesOrder: 1

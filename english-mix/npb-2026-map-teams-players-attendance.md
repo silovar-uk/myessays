@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "professional baseball", "sports business", "2026"]
 keywords: ["NPB", "professional baseball", "standings", "attendance", "home ballpark", "Central League", "Pacific League", "sports business"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 1

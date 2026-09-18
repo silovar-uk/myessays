@@ -8,7 +8,6 @@ type: "Sports Essay"
 status: "完成"
 tags: ["渡辺久信", "プロ野球", "埼玉西武ライオンズ", "マネジメント", "コーチング", "キャリア"]
 keywords: ["渡辺久信", "Hisanobu Watanabe", "leadership", "GM", "acting manager", "Taiwan baseball", "coaching", "perspective"]
-favorite: 5
 grow: 5
 abstract: "「渡辺久信コーチ」を調べ始めて最初に分かったのは、2026年現在、he is not a coachということだった。Player、台湾でのplayer-coach、farm coach、manager、SD、GM、acting manager。One titleでは収まらない経歴を、肩書きではなくdifferent chairs＝野球を見る位置の変化として読む。2008年の『寛容力』と2024年の最下位も同じ線上に置き、trustとroster constructionの違いまで考える。"
 ---

@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["広報", "PR", "効果測定", "広告換算値", "AVE", "KPI", "メディア露出", "マーケティング"]
 keywords: ["Advertising Value Equivalency", "AVE", "PR measurement", "earned media", "outputs", "outtakes", "outcomes", "impact"]
-favorite: 4
 grow: 5
 abstract: "広告換算値（AVE）は、獲得したメディア露出を「同等の広告枠を買ったらいくらか」に置き換える古典的な指標である。数字が円になるため説明しやすい一方、それを広報活動そのものの価値やROIとみなすと、効果の質や行動変容、事業成果を取り逃がす。本稿では、新聞・雑誌・テレビ・Webでの典型的な算出ロジックを整理したうえで、なぜ国際的なPR測定ではAVEが批判されてきたのかを検討する。そして、露出価値・コミュニケーション成果・事業成果を分け、AVEを完全に捨てずに適切な場所へ置き直す実務フレームを提案する。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Visual Hierarchy", "Gestalt", "Proximity", "Visual Weight", "Typography", "New Typography", "Jan Tschichold", "Bauhaus", "Information Architecture"]
 keywords: ["visual hierarchy", "scale", "contrast", "grouping", "proximity", "squint test", "visual weight", "attention", "New Typography", "Jan Tschichold", "Herbert Bayer", "information architecture"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 23

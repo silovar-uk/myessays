@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["ソフトウェア", "Windows", "Tauri", "個人開発", "アプリ設計", "信頼性"]
 keywords: ["Prompt Caller", "Tauri", "Rust", "TypeScript", "global shortcut", "autostart", "Windows", "runtime", "desired state", "actual state"]
-favorite: 4
 grow: 5
 abstract: "Prompt Callerは、よく使う文章を保存し、Windowsのどこからでもショートカットで呼び出して検索・コピーできる小さな常駐アプリである。本稿では、使う場面から出発し、画面・Tauri・Rust・Windowsの関係、Global ShortcutやTray、Autostartの役割を初心者向けに整理する。さらに、再起動後に動かなかった実際の不具合を題材に、設定上のDesired Stateと現実のActual State、そして『壊れない』より『壊れ方を分けられる』ことの大切さまで考える。"
 ---

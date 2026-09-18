@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["哲学", "現象学", "サルトル", "他者", "視線"]
 keywords: ["phenomenology", "Sartre", "the Look", "gaze", "other", "intersubjectivity", "視線", "他者"]
-favorite: 5
 grow: 5
 series: "現象学で日常を見直す"
 seriesId: "phenomenology-everyday"

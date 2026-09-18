@@ -8,7 +8,6 @@ type: "Learning Column"
 status: "完成"
 tags: ["英語学習", "発音", "音読", "音声学", "カタカナ英語", "connected speech", "子音"]
 keywords: ["expected pronunciation", "consonant cluster", "vowel epenthesis", "flapping", "alveolar tap", "t deletion", "glottal stop", "unreleased stop", "aspiration", "motor cue", "Japanese learners of English"]
-favorite: 5
 grow: 5
 abstract: "expected を『エクスペクテッド』と読むと口が詰まる。最初は小さい『ッ』だけが原因だと思った。しかし調べるほど、問題はもっと広かった。英語の T/D はダやラに近い音へ変化したり、破裂が聞こえにくくなったり、条件によっては脱落する。一方、K/S/P では日本語話者が本来ない母音を挿入しやすい。つまり難しいのは一つの音ではなく、英語の子音をカタカナ一文字ずつ完成させようとすることなのかもしれない。expected を入口に、文字・音・身体のずれを考える。"
 ---

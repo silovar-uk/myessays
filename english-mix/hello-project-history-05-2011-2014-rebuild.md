@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "道重さゆみ", "鞘師里保", "フォーメーションダンス", "One・Two・Three", "Juice=Juice", "アイドル戦国時代", "ハロプロ研修生"]
 keywords: ["Hello! Project", "Morning Musume", "Sayumi Michishige", "Riho Sayashi", "formation dance", "One Two Three", "Juice=Juice", "idol sengoku", "2010s"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第5回。2011年の9期・10期大量加入から、2014年の道重さゆみ卒業までを扱う。プラチナ期に蓄積した歌・ダンスの強度を、若返り、EDM、フォーメーションダンス、鞘師里保という身体的な軸、道重さゆみの外向きの発信、握手・イベント、USTREAMなどの接点設計によって『外から見える価値』へ変換した過程を読む。同時に、3作・5作連続1位を黄金期への完全回帰とはみなさず、販売手法の変化やアイドル市場全体の再編も含めて検証する。"
 ---

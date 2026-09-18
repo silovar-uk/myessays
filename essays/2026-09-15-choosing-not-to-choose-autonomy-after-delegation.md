@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["AIエージェント", "自律性", "委任", "インテンションエコノミー", "Self-Determination Theory", "Extended Mind", "Meaningful Human Control", "Agentic Commerce"]
 keywords: ["autonomy", "delegation", "agentic AI", "self-determination theory", "constructed preference", "extended mind", "meaningful human control", "AP2", "automation bias", "constitutional autonomy"]
-favorite: 5
 grow: 5
 abstract: "AIエージェントが検索、比較、購入、予約まで代行する時代に、自律性とは何を意味するのか。自己決定理論、構成的選好、Extended Mind、Meaningful Human Control、AI購買委任研究、AP2のHuman Not Present仕様を接続すると、『人間が最後にボタンを押すこと』だけでは自律性を説明できない。本稿は、自律性を個々の選択の保持ではなく、何を委任し、何を目的とし、どこで止め、どう検証・撤回するかという意思決定システムの統治として捉え直す。ただし、委任ルールを自分で設定すれば安全だとも断定しない。AIが技能や価値形成そのものへ影響するなら、そのルールを書く自分も変わり続けるからだ。"
 ---

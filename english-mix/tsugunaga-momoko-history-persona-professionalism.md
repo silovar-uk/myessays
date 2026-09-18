@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 10
 tags: ["嗣永桃子", "ももち", "ハロー！プロジェクト", "Berryz工房", "Buono!", "カントリー・ガールズ", "人物史", "英語学習"]
 keywords: ["Momoko Tsugunaga", "Momochi", "persona", "role", "identity", "professionalism", "mentor", "retire", "Hello Project"]
-favorite: 5
 grow: 5
 abstract: "嗣永桃子の15年間を、シンプルな英語と日本語を交互に使って読む。Berryz工房ではmember、Buono!ではsinger、テレビではMomochi、カントリー・ガールズではmentorとして役割を切り替えながら、一つの強いidentityを壊さなかったプロフェッショナリズムを考える。"
 ---

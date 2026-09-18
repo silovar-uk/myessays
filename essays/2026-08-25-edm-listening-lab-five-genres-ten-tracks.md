@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["音楽", "EDM", "House", "Techno", "Trance", "Dubstep", "Drum & Bass", "Listening", "聴き方"]
 keywords: ["EDM Listening Lab", "house", "techno", "trance", "dubstep", "drum and bass", "kick", "bass", "energy", "BPM", "listening practice"]
-favorite: 5
 grow: 5
 abstract: "EDMのジャンル名を暗記するのではなく、House、Techno、Trance、Dubstep、Drum & Bassの代表10曲を同じ3問――Where is the kick? What is the bass doing? How does the energy move?――で繰り返し聴く実践教材。BPMの数字やジャンルラベルを答えとして扱わず、比較を通じて構造を自分の耳で説明できる状態を目指す。"
 ---

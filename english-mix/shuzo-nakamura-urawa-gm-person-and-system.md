@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["浦和レッズ", "中村修三", "GM", "クラブ経営", "チーム強化"]
 keywords: ["中村修三", "浦和レッズ", "ゼネラルマネージャー", "GM", "強化部", "オジェック", "オズワルド・オリヴェイラ", "大槻毅", "クラブアイデンティティ", "スポーツダイレクター"]
-favorite: false
 grow: true
 abstract: 中村修三は2006〜08年と2018〜19年、twice浦和レッズのGMを務めた。First tenureにはJ1初優勝とACL初制覇、second tenureには天皇杯優勝とACL準優勝がある一方、両時代とも最後にはteam buildingの難しさが露出した。彼をheroかfailureかに分類するのではなく、その発言とclub structureの変更を追い、浦和が「strong personが正しく決める強化」から「誰が担当しても続く強化」へ移ろうとしたprocessを読む。
 ---

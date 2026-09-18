@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Typography", "Typographic Scale", "Visual Hierarchy", "Design System"]
 keywords: ["Typographic Scale", "Type Scale", "Modular Scale", "Visual Hierarchy", "Scale Ratio", "Design Tokens", "Vertical Rhythm", "IBM Carbon", "Fluent 2", "Le Modulor"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 47

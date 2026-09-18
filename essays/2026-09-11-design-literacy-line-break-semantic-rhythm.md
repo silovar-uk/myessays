@@ -10,7 +10,6 @@ series: "Design Literacy｜細部から思想まで"
 seriesOrder: 33
 tags: ["Design Literacy", "Typography", "Japanese Typography", "Web Design"]
 keywords: ["Line Breaking", "Kinsoku Shori", "JLReq", "text-wrap", "text-wrap balance", "Japanese Typography", "Semantic Rhythm", "Rag"]
-favorite: 3
 grow: 4
 abstract: "スマホ幅を少し変えただけで、見出しの最後の1文字が次の行へ落ちる。これはブラウザの失敗なのか。日本語の禁則処理、soft wrap、CSSのtext-wrapを手がかりに、改行を『文字の折り返し』ではなく『意味の関係を見せる設計』として考える。"
 ---

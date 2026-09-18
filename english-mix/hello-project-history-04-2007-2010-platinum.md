@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "プラチナ期", "高橋愛", "リゾナント ブルー", "ライブ", "海外展開", "スマイレージ", "アイドル史"]
 keywords: ["Hello! Project", "Morning Musume", "Platinum Era", "Ai Takahashi", "Resonant Blue", "live performance", "Anime Expo", "Japan Expo", "S/mileage"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第4回。2007年から2010年までのいわゆる『プラチナ期』を、黄金期との売上比較だけでも、後年のパフォーマンス神話だけでも捉えない。高橋愛体制、ジュンジュン・リンリン加入後の比較的安定した編成、テレビ冠番組の縮小、ライブ表現の蓄積、アジア・米国・欧州への展開、エルダークラブ卒業、スマイレージ誕生までを通じて、ハロプロがマスメディア型からライブ・育成型へ重心を移す過程を読む。"
 ---

@@ -8,7 +8,6 @@ type: "Conceptual Game Analysis"
 status: "完成"
 tags: ["Street Fighter 6", "Marisa", "Modern Controls", "Fighting Games", "Game Design"]
 keywords: ["Marisa", "Modern Controls", "Overdrive", "special moves", "Drive Gauge", "input economy", "Uneven U"]
-favorite: 5
 grow: 4
 abstract: "Modern Marisaでは、SP shortcutのnormal specialとOD specialはsimple lower/upper versionではない。本稿は2026年8月調整後のGladius、Phalanx、Quadriga、Scutumを比較し、simple inputが20% damageと引き換えにreaction speedとreliabilityを買い、ODが2 Drive stocksと引き換えにarmor、wall splat、block situationなどmove propertiesを買う仕組みだと整理する。Modernの使い分けは『which move is stronger?』ではなく、time・damage・Drive・certaintyのどのcurrencyを今払うかというresource allocation problemとして理解できる。"
 ---

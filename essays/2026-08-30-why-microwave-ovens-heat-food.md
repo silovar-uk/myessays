@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["物理", "電磁波", "電子レンジ", "誘電加熱", "エネルギー", "食品科学", "身近なものの科学"]
 keywords: ["microwave oven", "microwave", "electromagnetic wave", "magnetron", "electric field", "dielectric heating", "dielectric loss", "dipolar polarization", "ionic conduction", "penetration depth", "thermal conduction", "standing wave", "hot spot", "cold spot", "non-ionizing radiation"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

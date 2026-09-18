@@ -8,7 +8,6 @@ type: "Thinking & Learning Essay"
 status: "完成"
 tags: ["数学", "確率", "期待値", "分散", "計算", "問題解決", "学習法", "トーナメント", "順序統計量"]
 keywords: ["expected value", "variance", "order statistics", "sampling without replacement", "tournament", "runner-up", "calculation", "modeling", "symmetry", "verification"]
-favorite: 5
 grow: 5
 abstract: "計算が苦手なとき、足りないのは暗算力や公式暗記とは限らない。多くの場合、難しいのは『現実の問いを、何を数えればよい問題へ変換するか』である。QuizKnockと学ぼうの『トーナメントの2位は本当に2位か？』を題材に、前提を固定し、小さい例で構造をつかみ、確率変数を定義し、場合の数と対称性の二つのルートで期待値2.6を導き、一般化して極限3を得るまでを丁寧に追う。最後に分散・検算・よくある誤りまで扱い、『計算をちゃんとする』ための再利用可能な型を作る。"
 ---

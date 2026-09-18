@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["音楽", "ドラム", "Michael Jackson", "リズム", "パフォーマンス"]
 keywords: ["Jonathan Sugarfoot Moffett", "bass drum", "kick", "groove", "Michael Jackson", "New Orleans", "live drummer", "dance"]
-favorite: 4
 grow: 4
 abstract: "Jonathan “Sugarfoot” Moffettの異様に雄弁な右足は、単なる高速キックではない。彼自身が語るベースへの憧れとNew Orleansの『bottom up』な感覚、Michael Jacksonの身体表現との同期、巨大なポップショーで要求される精度をたどると、ドラムが『時間を刻む楽器』以上のものに見えてくる。Sugarfootは足でビートを打つ。だが、その足は同時にベースを歌い、ダンサーの身体を支え、観客に『ここで動け』と伝えている。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["IP", "Fandom", "Engagement", "推し活", "Marketing", "Community"]
 keywords: ["IP business", "customer engagement", "fan engagement", "fandom", "customer lifetime value", "推し活", "participatory culture"]
-favorite: false
 grow: true
 abstract: "SHAPE PartnersのIP産業論が示したfan touchpoint designの続きを考える。Purchase aloneでは、referral, influence, creation, continuity, feedbackの価値を捉えきれない。一方でSNS reactionsをそのまま熱量と呼ぶのも危うい。"
 ---

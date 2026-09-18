@@ -8,7 +8,6 @@ type: "Thinking & Learning Essay"
 status: "完成"
 tags: ["アナロジー", "構造写像理論", "認知科学", "思考法", "問題解決", "学習", "転移", "比較"]
 keywords: ["analogy", "Structure-Mapping Theory", "Dedre Gentner", "structural alignment", "systematicity", "candidate inference", "analogical encoding", "schema induction", "transfer", "surface similarity"]
-favorite: 5
 grow: 5
 abstract: "アナロジー思考を『似た事例を思い出して真似すること』から一段深く理解する。Dedre Gentnerの構造写像理論を軸に、baseとtarget、属性より関係、one-to-one correspondence、parallel connectivity、systematicity、candidate inferenceを整理する。さらに、表面的類似に引っ張られる失敗、二つの事例を比較して共通構造を抽出するanalogical encoding、実務で使える構造写像シートまで扱い、アナロジーを発想法ではなく検証可能な推論技術として捉え直す。"
 ---

@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["OCHA NORMA", "ハロー！プロジェクト", "ハロプロ研修生", "米村姫良々", "斉藤円香", "広本瑠璃", "筒井澪心", "恋のクラウチングスタート", "アイドル史", "組織論"]
 keywords: ["OCHA NORMA", "Hello Project", "hybrid origin", "trainee system", "audition", "pre-debut integration", "idol organization"]
-favorite: 5
 grow: 5
 abstract: "OCHA NORMA was assembled in stages over roughly two and a half years, beginning with a Hello Pro Kenshusei unit in 2019. Long-term trainees, additional trainees selected in 2021, and two open-audition winners were integrated on December 12, 2021 as one founding lineup of ten. After the major debut in July 2022, the group later lost Sumire Tashiro and Kanami Ishiguri in 2025 and continued as eight members. This essay reads OCHA NORMA not as a group of people with identical backgrounds, but as an organization that created one shared starting line out of different development routes."
 ---

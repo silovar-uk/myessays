@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "league structure", "sports business", "2026"]
 keywords: ["NPB", "12 teams", "two leagues", "143 games", "interleague play", "postseason", "league format"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 4

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Jan Tschichold", "New Typography", "Penguin Books", "Typography", "Design Rules", "Context", "Modernism"]
 keywords: ["Jan Tschichold", "Die Neue Typographie", "New Typography", "Penguin Composition Rules", "design rules", "context", "typography", "modernism", "heuristics"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 29

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["expression", "creativity", "design", "表現", "English Mix"]
 keywords: ["expression", "creativity", "originality", "effectiveness", "constraints", "creative process"]
-favorite: 5
 grow: 5
 abstract: "What does expression mean in a creative context? 『自分の中にあるものを外へ出す』だけでは説明しきれない。Creativity research commonly requires not only originality but also effectiveness or appropriateness. Constraints can sometimes help rather than hurt creative performance. 表現とは、曖昧な内面をそのまま放出することではなく、何を残し、どの形式へ変換し、受け手にどんな経験として届かせるかを選ぶ仕事なのかもしれない。"
 ---

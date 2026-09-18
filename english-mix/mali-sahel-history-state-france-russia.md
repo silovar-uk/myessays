@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["アフリカ", "マリ", "サヘル", "国際政治", "世界史"]
 keywords: ["Mali", "Sahel", "Mali Empire", "Mansa Musa", "Timbuktu", "Tuareg", "Azawad", "JNIM", "ECOWAS", "AES", "France", "Russia", "Africa Corps", "MINUSMA", "postcolonial state"]
-favorite: 5
 grow: 5
 abstract: "西アフリカの内陸国Maliを、紛争国という一枚絵ではなく、SaharaとNiger Riverがつくった交易世界、中世Mali Empire、French colonial rule、独立後の北部統治、2012年危機、フランス軍介入、軍政、Russia接近まで連続した歴史として読む。マリ固有の事情と、border・state・sovereignty・securityという普遍的な問いを切り分けながら、現代Sahelを理解するための地図をつくる。"
 ---

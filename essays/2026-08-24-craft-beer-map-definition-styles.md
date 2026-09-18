@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["ビール", "クラフトビール", "醸造", "エール", "ラガー", "IPA", "スタウト", "サワービール", "味覚"]
 keywords: ["craft beer", "beer styles", "ale", "lager", "wild fermentation", "pilsner", "IPA", "stout", "porter", "saison", "wheat beer", "sour beer", "malt", "hops", "yeast", "IBU", "ABV"]
-favorite: 5
 grow: 5
 abstract: "クラフトビールを『IPAや変わった味のビール』としてではなく、分類の地図から理解する入門。まず日本の酒税法上のビールと、法的定義を持たないクラフトビールを分け、麦芽・ホップ・酵母・水の役割、醸造工程、エール／ラガー／野生・混合発酵という大分類を整理する。その上でピルスナー、ペールエール、IPA、ヴァイツェン、セゾン、スタウト、サワーなど代表スタイルを『何が味の主役か』で読み解き、メニューから味を予想するための実践的な見方までまとめる。"
 ---

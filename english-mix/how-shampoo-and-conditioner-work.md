@@ -12,7 +12,6 @@ mix_unit: "sentence"
 cefr: "B1-B2"
 tags: ["化学", "材料科学", "毛髪", "界面", "シャンプー", "コンディショナー", "身近なものの科学"]
 keywords: ["shampoo", "conditioner", "hair fiber", "hair shaft", "cuticle", "cortex", "F-layer", "18-MEA", "surfactant", "anionic surfactant", "cationic surfactant", "surface charge", "adsorption", "friction", "silicone", "amodimethicone", "coacervation"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

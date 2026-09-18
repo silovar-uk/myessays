@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Typography", "Measure", "Line Length", "Readability", "Accessibility", "Swiss Style", "Responsive Design", "UI"]
 keywords: ["measure", "line length", "text measure", "reading distance", "typography", "max-width", "ch unit", "ic unit", "WCAG 1.4.8", "Visual Presentation", "Swiss Style", "International Typographic Style", "responsive typography"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 10

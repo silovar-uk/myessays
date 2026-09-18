@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["スポーツビジネス", "アジア競技大会", "愛知", "名古屋", "大会予算", "公費", "スポンサー", "ガバナンス", "2026"]
 keywords: ["Aichi Nagoya 2026", "Asian Games budget", "2980億円", "public funding", "sponsorship", "ticketing", "sports finance"]
-favorite: 5
 grow: 5
 series: "スポーツイベントの仕組みを読む"
 seriesOrder: 2

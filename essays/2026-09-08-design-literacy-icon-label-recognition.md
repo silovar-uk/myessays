@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Icon", "Label", "Recognition", "Pictogram", "Accessibility", "Otl Aicher", "Information Scent", "UI"]
 keywords: ["icon usability", "text label", "icon label", "recognition", "pictogram", "accessible name", "aria-label", "resemblance icon", "reference icon", "arbitrary icon", "Otl Aicher", "information scent"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 25

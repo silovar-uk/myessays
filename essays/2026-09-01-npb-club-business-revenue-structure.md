@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "球団経営", "収益構造", "放映権", "親会社", "スポーツビジネス", "2026"]
 keywords: ["NPB", "club business", "revenue structure", "親会社", "広告宣伝費", "放送許可権", "日本シリーズ", "roster construction"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 11

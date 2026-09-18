@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["生成AI", "経営", "探索", "組織学習", "プロトタイピング", "委任"]
 keywords: ["hands-on management", "exploration", "organizational learning", "experimentation", "sticky information", "absorptive capacity", "prototyping", "delegation"]
-favorite: 5
 grow: 5
 abstract: "経営者が生成AIで自らツールを作る行為は、単純な生産活動とも、自動的に探索活動とも言えない。実験、sticky information、situated learning、absorptive capacityの研究は、小さな試作が意思決定に必要な情報を生む可能性を示す一方、inventor CEO研究は、継続的なhands-on involvementが企業のinnovationをexploratoryではなくexploitativeな方向へ狭めうることも示している。本稿は『経営者が作るべきか』という二択を退け、意思決定に直結する不確実性を減らすための限定的・可逆的なhands-on probeとして合理化できる条件と、その後に委任へ切り替える条件を整理する。"
 ---

@@ -8,7 +8,6 @@ type: "Fiction"
 status: "完成"
 tags: ["Street Fighter 6", "マリーザ", "格闘ゲーム", "成長", "フィクション"]
 keywords: ["Modern Marisa", "Platinum", "Street Fighter 6", "対戦", "認知", "判断"]
-favorite: 4
 grow: 4
 abstract: "勝てないことより、勝った理由も負けた理由も分からないことの方が、彼にはつらかった。プラチナ帯で足踏みするモダンマリーザ使いが、知識を増やすほど速くなっていく試合の中で、少しずつ『見る』ことを覚えていく。昇格ではなく、一秒を取り戻すまでの物語。"
 ---

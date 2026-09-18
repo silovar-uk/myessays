@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["中国古典思想", "荘子", "大宗師", "English Mix", "systems", "work"]
 keywords: ["相濡以沫", "相忘於江湖", "Zhuangzi", "system", "environment", "support"]
-favorite: 4
 grow: 5
 abstract: "『荘子』「大宗師」の魚の比喩を、日本語とシンプルな英語を行き来しながら読む。Repeated rescue can be a signal that surrounding conditions need attention. 支援を否定せず、支援が常態化する環境そのものを見る。"
 ---

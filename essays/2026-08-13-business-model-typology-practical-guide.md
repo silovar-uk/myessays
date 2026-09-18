@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["経営戦略", "ビジネスモデル", "事業分析", "新規事業", "収益モデル", "コンサルティング"]
 keywords: ["business model", "business model typology", "subscription", "freemium", "platform", "two-sided market", "licensing", "razor and blade", "revenue model"]
-favorite: 5
 grow: 5
 abstract: "ビジネスモデルを学ぶと、売切り、サブスクリプション、広告、フリーミアム、プラットフォームなど多くの名称に出会う。しかし、それらは必ずしも同じ次元の分類ではなく、実際の企業は複数の型を組み合わせている。本稿では、ビジネスモデルを「価値をつくり、届け、回収する仕組み」と捉え、代表的な10類型を4つの家族に整理する。Netflix、Google、Airbnb、Spotifyなどを例に、企業の儲け方を分解して読むための質問、分析手順、新規事業への応用までを実践的に解説する。"
 ---

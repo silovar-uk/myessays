@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["standard work", "rules", "operations", "凡事徹底", "English Mix"]
 keywords: ["standard work", "checklist", "high reliability organization", "implementation", "rules", "凡事徹底"]
-favorite: 5
 grow: 5
 abstract: "『凡事徹底』 sounds powerful: do ordinary things extraordinarily well. But consistency only helps when the routine itself is worth repeating. WHO guidance for the Surgical Safety Checklist emphasizes local adaptation, staff engagement, training, feedback and testing rather than blind compliance. High Reliability Organization research likewise values sensitivity to operations and deference to expertise. 徹底は方向を決める力ではなく、決めた方向への力を増幅する倍率なのかもしれない。"
 ---

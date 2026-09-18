@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "HCI", "Fitts's Law", "Interaction Design", "UI"]
 keywords: ["Fitts's Law", "Target Acquisition", "Index of Difficulty", "Target Width", "Distance", "Effective Width", "Motor Control", "Pointing", "Screen Edge", "Steering Law"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 43

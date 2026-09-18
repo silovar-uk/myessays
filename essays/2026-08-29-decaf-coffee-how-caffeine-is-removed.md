@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["コーヒー", "デカフェ", "カフェイン", "食品科学", "抽出", "製造技術"]
 keywords: ["decaf", "decaffeination", "caffeine", "green coffee beans", "Swiss Water", "methylene chloride", "ethyl acetate", "supercritical CO2"]
-favorite: 4
 grow: 4
 abstract: "デカフェは、淹れたコーヒーから後でカフェインを抜く飲み物ではない。多くの場合、焙煎前の生豆を湿らせ、水、溶媒、加圧した二酸化炭素などを使ってカフェインを選択的に取り除き、その後に乾燥・焙煎する。本稿では、直接溶媒法、間接溶媒法、水を使うプロセス、超臨界CO₂法の仕組みを整理し、『デカフェ＝カフェインゼロ』ではないこと、製法ごとの味の優劣を単純化できないこと、抽出されたカフェインの行き先まで解説する。"
 ---

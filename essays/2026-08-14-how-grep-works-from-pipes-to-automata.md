@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["grep", "Unix", "Linux", "CLI", "正規表現", "標準入力", "パイプ", "検索", "Git", "ripgrep"]
 keywords: ["grep", "regular expression", "BRE", "ERE", "fixed strings", "stdin", "stdout", "pipe", "Boyer-Moore", "Aho-Corasick", "git grep", "ripgrep"]
-favorite: 4
 grow: 5
 abstract: "grepは「ファイルから文字列を探すコマンド」と説明されることが多い。しかし本質は、入力を受け取り、パターンに照合し、条件に合う行を標準出力へ流す小さな検索エンジンである。本稿では、ターミナル初心者でも追えるところから始め、標準入力・パイプ・正規表現・再帰検索・終了コードを整理する。さらにGNU grep内部のオートマトン、Boyer–Moore、Aho–Corasick、localeによる性能差まで踏み込み、git grepやripgrepとの役割分担を考える。"
 ---

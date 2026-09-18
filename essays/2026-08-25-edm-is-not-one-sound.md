@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["音楽", "EDM", "House", "Techno", "Trance", "Dubstep", "Drum & Bass", "クラブミュージック", "聴き方"]
 keywords: ["Electronic Dance Music", "electronic music", "house", "techno", "trance", "dubstep", "drum and bass", "BPM", "four-on-the-floor", "kick", "bass", "synth", "build-up", "drop", "breakdown"]
-favorite: 5
 grow: 5
 abstract: "EDMを『電子音が鳴る派手な音楽』という一言から解放し、Electronic Dance Musicという大きな傘として整理する。House、Techno、Trance、Dubstep、Drum & Bassを、歴史だけでなくBPM、キック、ベース、リズム、音色、エネルギーの変化から聴き分ける。四つ打ちやDropをEDM全体の必須条件と誤解せず、次に曲を聴いた瞬間から使える観察軸をつくる入門編。"
 ---

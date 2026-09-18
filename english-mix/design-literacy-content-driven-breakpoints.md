@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Responsive Web Design", "Content-driven Breakpoints", "Accessibility", "Design Systems"]
 keywords: ["Content-driven Breakpoints", "Responsive Web Design", "Media Queries", "Reflow", "Breakpoint Testing", "Device-agnostic Design", "Responsive Stress Testing", "WCAG 1.4.10", "Brad Frost", "Ethan Marcotte"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 51

@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "球場", "スタジアム", "指定管理者制度", "球団経営", "スポーツビジネス", "2026"]
 keywords: ["NPB", "stadium ownership", "指定管理者制度", "エスコンフィールド", "横浜スタジアム", "club business", "naming rights"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 14

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["生活", "注意", "savoring", "時間", "Slow Looking", "well-being", "attention"]
 keywords: ["savoring", "time affluence", "slow looking", "attention economy", "retrospective duration", "event boundaries", "mindfulness", "Uneven U"]
-favorite: 5
 grow: 5
 abstract: "「もっとゆっくり生きたい」と思ったとき、必要なのは予定を全部減らすことでも、動作を遅くすることでもないのかもしれない。心理学のsavoring、主観的な時間の豊かさを扱うtime affluence、Harvard Project ZeroのSlow Looking、記憶と回想上の時間感覚の研究を辿ると、共通して見えてくるのは「経験をすぐ次へ送らない」という態度だった。世界そのものを遅くするのではなく、自分の中で世界が消えるまでの時間を少し長くする。そのための考え方と、小さな実験を整理する。"
 ---

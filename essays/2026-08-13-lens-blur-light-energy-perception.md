@@ -8,7 +8,6 @@ type: "Science Column"
 status: "完成"
 tags: ["光学", "映像", "CG", "VFX", "レンズボケ", "被写界深度", "HDR", "視覚知覚"]
 keywords: ["lens blur", "Gaussian blur", "bokeh", "depth of field", "circle of confusion", "point spread function", "HDR", "scene-linear", "glare illusion", "self-luminosity"]
-favorite: 5
 grow: 5
 abstract: "レンズボケは、なぜガウシアンブラーよりも「強い光」を感じさせることがあるのか。正規化されたGaussian blurも数学的には画面内の総和を保存しうるため、差を単純なエネルギー保存では説明できない。本稿は、有限な開口によるcircle of confusion、開口形状を写すボケ、HDR・scene-linear処理、グレア錯視と自己発光知覚をつなぎ、レンズボケを「光エネルギーの知覚的代理表現」として整理する。兵器表現、ゲーム、映像、広告、スポーツKVまで、実務で使える設計原則も提示する。"
 ---

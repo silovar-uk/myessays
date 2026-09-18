@@ -13,7 +13,6 @@ seriesOrder: 4
 location: "Detroit, Michigan, USA"
 country: "United States"
 coordinates: [42.3314, -83.0458]
-favorite: 5
 grow: 5
 abstract: "アメリカの都市を一つずつ読むシリーズ第4回。デトロイトを『自動車産業が衰退した街』で終わらせず、五大湖の交通拠点からMotor Cityへ変貌した理由、Fordのmoving assembly line、工場がつくった住宅・道路・郊外、Great MigrationとBlack Bottom、住宅差別とfreeway建設、1967年、Motown、人口減少と2013年のmunicipal bankruptcy、そしてMichigan Centralの再生と2025年まで3年連続となった人口増加まで一本につなぐ。デトロイトは、単一の巨大産業が都市をどこまで豊かにし、同時にどこまで脆くしうるかを見る街である。"
 ---

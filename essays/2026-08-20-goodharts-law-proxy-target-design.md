@@ -8,7 +8,6 @@ type: "Management & Systems Essay"
 status: "完成"
 tags: ["グッドハートの法則", "KPI", "評価", "組織", "マネジメント", "インセンティブ", "AI", "代理指標"]
 keywords: ["Goodhart's Law", "proxy", "target", "KPI design", "Campbell's Law", "specification gaming", "reward design", "incentives"]
-favorite: 4
 grow: 5
 abstract: "代理指標は目標になった瞬間に必ず壊れるわけではない。危険なのは、測りたい成果とproxyのずれに強い最適化圧力がかかることだ。Goodhartの原典、四つのGoodhart効果、Wells Fargo、Campbell's Law、AIのspecification gamingを手がかりに、proxyの意味が変わる仕組みと壊れにくいKPI設計を考える。"
 ---

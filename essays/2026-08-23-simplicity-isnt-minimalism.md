@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["デザイン", "UX", "設計", "システム思考", "simplicity", "minimalism"]
 keywords: ["simplicity", "minimalism", "simple made easy", "understandability", "complexity", "design", "UX", "Rich Hickey", "John Maeda", "Don Norman"]
-favorite: 5
 grow: 5
 abstract: "シンプルなデザインというと、色を減らし、余白を増やし、ボタンを消すことを想像しやすい。しかし、見える要素が少ないことと、理解しやすいことは同じではない。John Maeda、Rich Hickey、Don Norman、Nielsen Norman Groupの議論を手がかりに、minimalismを『削ること』、simplicityを『絡まりをほどき、理解できる構造にすること』として捉え直す。UIだけでなく、仕事、資料、システム設計にも持ち帰れるシンプルさの判断基準を考える。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["浦和レッズ", "ファンエンゲージメント", "CRM", "REX CLUB", "スポーツビジネス", "KPI"]
 keywords: ["Urawa Reds", "fan engagement", "CRM", "REX CLUB", "season ticket", "repeat attendance", "sports marketing"]
-favorite: false
 grow: true
 abstract: "浦和レッズの公開データを使い、ファン価値を売上やSNSフォロワー数だけで測らない実務モデルを組み立てる。2025年度売上113.1億円、J1年間入場者数709,655人、REX CLUB会員229,446人、SNSフォロワー合計829,353、シーズンチケット約2万人を起点に、収益・継続・波及・参加・学習・地域社会の6軸へ分解。公開値と試算を分け、1%の行動変化がどの程度の規模になるかまで置く。"
 ---

@@ -8,7 +8,6 @@ type: "Research Essay"
 status: "完成"
 tags: ["AI", "Claude Code", "Vercel", "セキュリティ", "ITガバナンス", "Citizen Developer", "Shadow IT", "Web開発"]
 keywords: ["AI coding", "Claude Code", "Vercel", "citizen developer", "shadow IT", "shared responsibility", "web security", "IT governance"]
-favorite: 5
 grow: 5
 abstract: "Claude CodeとVercelを組み合わせれば、非エンジニアでも数時間で社内向けWebアプリを公開できる。問題はVercelが危険なことでも、非エンジニアがコードを書くことでもない。AIが『作って公開する能力』を急速に民主化した一方、認証・秘密情報・脆弱性管理・監視・費用管理といった『安全に運用し続ける責任』は残っている。本稿ではこの能力と責任のギャップを、Shadow ITとの違い、反論、具体的な事故シナリオ、そして禁止ではなく安全に解放するためのガードレールから考える。"
 ---

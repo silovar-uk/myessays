@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["モチベーション", "優先順位", "ToDo", "自己調整", "習慣", "エッセイ"]
 keywords: ["Not Done List", "goal discrepancy", "progress monitoring", "self-concordance", "unfinished tasks", "self-criticism"]
-favorite: 5
 grow: 5
 abstract: "「本を読む」「部屋を片付ける」とToDoにすると動けないのに、「読めてない本がある」「片付けられてない部屋がある」と考えると、なぜか少し優先順位が見える。未来の行動ではなく現在の差分を見ることに意味はあるのか。自己調整研究、進捗モニタリング、未完了課題、自己一致した目標の研究をたどると、「できてない」はやる気を生む魔法というより、自分が本当に気にしているズレを発見するための現在地表示に見えてきた。"
 ---

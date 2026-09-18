@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["経済", "AI", "ニュース", "新聞", "国際", "産業"]
 keywords: ["Nikkei", "headline analysis", "AI deployment", "Middle East", "resources", "household finance", "industry restructuring"]
-favorite: 4
 grow: 4
 abstract: "2026年9月10日の日経朝刊には210本の見出しが並ぶ。Instead of treating them as 210 separate stories, this essay reads them as four vectors: AI moving into real operations, geopolitical risk reaching prices, policy support revealing differences in household capacity, and competition shifting from single firms to networks."
 ---

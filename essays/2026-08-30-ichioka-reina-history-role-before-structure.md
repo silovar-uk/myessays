@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 12
 tags: ["一岡伶奈", "ハロー！プロジェクト", "ハロプロ史", "ハロプロ研修生", "BEYOOOOONDS", "CHICA#TETSU", "リーダー", "鉄道", "Reve Pocket", "人物史"]
 keywords: ["Reina Ichioka", "Hello Project", "BEYOOOOONDS", "CHICA TETSU", "leader", "uncertainty", "responsibility", "waiting", "building", "railway"]
-favorite: 5
 grow: 5
 abstract: "一岡伶奈は、長い研修生期間を経てデビューした『苦労人』としてだけでは捉えきれない。2017年6月、他メンバーもグループ名も始動時期も決まっていない段階で、彼女には『新グループのリーダー』という役割だけが先に与えられた。完成した組織に入るのではなく、未完成な場所を任され、後から仲間と名前と仕組みが集まっていく。その特殊な順番を軸に、研修生、CHICA#TETSU、BEYOOOOONDS、鉄道仕事、2024年の卒業とその後までをたどる。"
 ---

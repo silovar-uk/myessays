@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Gestalt", "Figure-Ground", "UI", "UX", "視覚階層", "情報設計"]
 keywords: ["figure-ground", "Gestalt", "foreground", "background", "visual hierarchy", "contrast", "visual weight", "UI design"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 3

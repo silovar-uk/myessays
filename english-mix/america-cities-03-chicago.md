@@ -13,7 +13,6 @@ seriesOrder: 3
 location: "Chicago, Illinois, USA"
 country: "United States"
 coordinates: [41.8781, -87.6298]
-favorite: 5
 grow: 5
 abstract: "アメリカの都市を一つずつ読むシリーズ第3回。シカゴを『摩天楼とピザの街』で終わらせず、五大湖と運河、1848年から爆発的に広がった鉄道網、Union Stock Yardと食肉産業、1871年大火後の超高層建築、1893年万博、1909年Burnham Plan、Great MigrationとBronzeville、住宅・公共空間のsegregation、1919年人種暴動、Loopを形づくる“L”、公共の湖岸、Wrigley Fieldまでつなぐ。シカゴは、人・物・資本を接続して巨大化した一方、誰がどこに住み、動けるかという境界も強く刻んだ都市である。"
 ---

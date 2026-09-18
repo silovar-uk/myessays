@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Alignment", "Grid", "UI", "Typography", "Visual Hierarchy"]
 keywords: ["alignment", "grid", "visual axis", "optical alignment", "layout", "UI design", "typography"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 5

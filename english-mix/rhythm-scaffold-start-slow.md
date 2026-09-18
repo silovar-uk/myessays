@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["rhythm", "practice", "motor learning", "リズム", "English Mix"]
 keywords: ["rhythm", "sensorimotor synchronization", "entrainment", "slow practice", "metronome", "motor learning", "ゆっくり練習"]
-favorite: 4
 grow: 5
 abstract: "何かに乗れるまでは、リズムに頼っていい。That sounds like a small productivity trick, but rhythm research makes it stranger. Humans do not simply react to a beat; we predict it. External rhythm can work as temporary scaffolding for an internal timing model. Slow practice can also support later fast movement, but slower is not always easier: when beats become too far apart, keeping the rhythm itself can demand more conscious control. 『まずはゆっくり』とは、slow for its own sakeではなく、次を予測できるtempoを探すことなのかもしれない。"
 ---

@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Intrinsic Web Design", "CSS Grid", "Responsive Design", "Constraint Design"]
 keywords: ["Intrinsic Web Design", "Intrinsic Layout", "CSS Grid", "minmax()", "auto-fit", "auto-fill", "min-content", "max-content", "Constraint-based Design", "Content-driven Breakpoints", "Jen Simmons"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 50

@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["英語学習", "第二言語習得", "理解可能なインプット", "AI", "リーディング", "リスニング", "音読", "学習法"]
 keywords: ["comprehensible input", "Stephen Krashen", "input hypothesis", "i+1", "extensive reading", "interaction hypothesis", "output hypothesis", "AI language learning"]
-favorite: 5
 grow: 5
 abstract: "英語を大量に聞けば、いつか自然に分かるようになる――本当にそうだろうか。本稿は、Stephen KrashenのInput Hypothesisを起点に、『理解できる英語を大量に受け取る』という発想を整理する。重要なのは、簡単な教材に閉じこもることではなく、興味のある本物の内容を、自分に理解可能な形へ変換すること。AIはその変換コストを劇的に下げた。一方で、後続研究が示してきたinteraction、output、feedbackの役割も踏まえ、インプット万能論にはしない。最後に、ニュースやサッカー、仕事の記事を10〜15分の学習素材へ変える実践手順を示す。"
 ---

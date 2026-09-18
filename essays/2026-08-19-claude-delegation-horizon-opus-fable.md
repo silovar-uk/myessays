@@ -8,7 +8,6 @@ type: "Research Essay"
 status: "完成"
 tags: ["AI", "Claude", "Opus", "Fable", "Sonnet", "AIエージェント", "仕事術", "委譲", "Claude Code"]
 keywords: ["Claude Opus 5", "Claude Fable 5", "Claude Sonnet 5", "delegation horizon", "agentic work", "model routing", "AI workflow", "Claude Code"]
-favorite: 5
 grow: 5
 abstract: "Claudeのモデル選びを「どれが一番賢いか」で考えるだけでは、実務の費用対効果を捉えにくい。2026年8月31日時点のAnthropic公式情報、Stripeの顧客事例、Simon Willison、Every、CodeRabbitの外部検証を分けて読み、仕事の長さ・曖昧さ・自己検証・人間の確認間隔をまとめる独自の運用概念「委譲距離」を再設計する。Sonnet / Opus / Fableは固定階級ではなく、検証可能性と停止条件を含めて仕事ごとにルーティングすべきだと論じる。"
 ---

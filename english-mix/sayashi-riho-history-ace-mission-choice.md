@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 11
 tags: ["鞘師里保", "Riho Sayashi", "ハロー！プロジェクト", "モーニング娘。", "English Mix", "ace", "expectation", "choice"]
 keywords: ["Riho Sayashi", "Morning Musume", "ace", "expectation", "mission", "identity", "choice", "return"]
-favorite: 5
 grow: 5
 abstract: "鞘師里保を『若い絶対的エース』だけではなく、期待に応えることが使命感と自己像へ変わり、その型から一度離れたあと、自分で表現を選び直していった人物として読むEnglish Mix版。"
 ---

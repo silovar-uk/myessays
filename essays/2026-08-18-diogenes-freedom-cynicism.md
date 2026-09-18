@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["ディオゲネス", "犬儒派", "キュニコス派", "古代ギリシア哲学", "自由", "自足", "パレーシア", "アスケーシス", "コスモポリタニズム"]
 keywords: ["Diogenes of Sinope", "Cynicism", "autarkeia", "parrhesia", "askesis", "physis", "nomos", "cosmopolitanism", "Alexander the Great"]
-favorite: 4
 grow: 4
 abstract: "樽で暮らし、昼間にランプを持って歩き、アレクサンドロス大王には『日光を遮らないでくれ』と言ったと伝えられるディオゲネス。だが、その奇行は単なる変人芸ではない。本稿は、史実と伝承を区別しながら彼の人生を追い、犬儒派の自足・訓練・率直に語る自由を手がかりに、『自由とは選択肢を増やすことなのか、それとも自分を支配できるものを減らすことなのか』を現代から考える。"
 ---

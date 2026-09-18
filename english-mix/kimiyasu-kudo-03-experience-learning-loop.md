@@ -8,7 +8,6 @@ type: "Sports Essay"
 status: "完成"
 tags: ["工藤公康", "プロ野球", "学習", "大学院", "マネジメント", "身体管理", "データ"]
 keywords: ["工藤公康", "Kimiyasu Kudo", "learning", "experience", "University of Tsukuba", "工藤メモ", "sports science", "data"]
-favorite: 5
 grow: 5
 abstract: "29 seasonsの現役生活と5度の日本一を経験した工藤公康は、experience-richな人物である。ところがmanager在任中にUniversity of Tsukuba graduate schoolで学び、2020年にmaster's degreeを取得。2022年にはdoctoral programへ進み、身体やsports medicineの研究を続けている。Failure、experts、memo、dataをつなぐと、強みは経験の量より、experienceをrevisableなものとして扱うlearning loopに見えてくる。"
 ---

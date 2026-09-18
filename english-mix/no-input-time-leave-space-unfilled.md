@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["生活", "注意", "メディア", "スマートフォン", "思考", "余白"]
 keywords: ["no-input time", "digital media", "mind wandering", "self-generated thought", "notifications", "incubation", "boredom"]
-favorite: 5
 grow: 5
 abstract: "『何もしない時間を作ろう』と思った直後に、本を開き、音楽を流し、Podcastを再生する。That is rest, but it is still input. スマートフォン制限研究、notifications、mind-wandering、incubationを辿りながら、digital detoxではなく『15分だけ外から何も入れない』というsmall experimentを考える。"
 ---

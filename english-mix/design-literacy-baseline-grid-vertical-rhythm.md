@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Typography", "Baseline Grid", "Vertical Rhythm", "UI"]
 keywords: ["Baseline Grid", "Baseline", "Leading", "Line Height", "Vertical Rhythm", "Font Metrics", "Swiss Style", "CSS Inline Layout"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 46

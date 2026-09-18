@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["goal setting", "issue", "problem solving", "目標", "English Mix"]
 keywords: ["goal setting", "learning goal", "performance goal", "issue tree", "problem framing", "objective", "目標設定"]
-favorite: 5
 grow: 5
 abstract: "『片づけをする』 sounds like a goal, but it only names an activity. Goal-setting research shows that specific challenging goals often outperform vague do-your-best instructions, while complex unfamiliar tasks may benefit more from learning goals than performance goals. Consulting-style issues are different again: an issue is a question that must be resolved to move toward the desired outcome. 目標＝where to go、イシュー＝what to resolve、タスク＝what to do。この順番にすると、ToDoを書く前にDoneの定義を書ける。"
 ---

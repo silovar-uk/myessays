@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["経営戦略", "競争戦略", "SCP", "RBV", "リアル・オプション", "シュンペーター", "ソニー"]
 keywords: ["Jay Barney", "Michael Porter", "Industrial Organization competition", "Chamberlinian competition", "Schumpeterian competition", "resource-based view", "real options", "strategy fit", "Sony"]
-favorite: 5
 grow: 5
 abstract: "経営戦略の議論は、PorterのSCPかBarneyのRBVか、という理論選択に見えやすい。しかしBarneyが1986年に提示したのは、Industrial Organization型、Chamberlinian型、Schumpeterian型という三つの競争概念を統合する地図だった。重要なのは一つを選ぶことではなく、どの競争がいま支配的で、どの理論がその局面に適しているかを診断することである。本稿は2015年に入山章栄が示したソニーの複数競争型ポートフォリオを起点に、SCP、RBV、リアル・オプションの位置づけを一次資料まで遡って検証する。さらに2025年の金融事業スピンオフと2026年のソニーの事業方針も確認し、競争の型は企業の属性ではなく、時間とともに変わる環境との関係だと捉え直す。"
 ---

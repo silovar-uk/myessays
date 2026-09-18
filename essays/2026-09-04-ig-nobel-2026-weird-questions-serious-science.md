@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["イグノーベル賞", "科学", "研究", "2026", "心理学", "生物学", "物理学"]
 keywords: ["Ig Nobel Prize 2026", "kissing", "cockroach milk", "nose blowing", "snakebite", "splash-free urinal", "necroprinting", "body odor", "friendship", "soil health", "underpants"]
-favorite: 5
 grow: 4
 abstract: "2026年イグノーベル賞の10部門を、受賞理由の面白さだけで終わらせず、原著論文まで追って解説する。キスの定義、富裕層と非倫理行動、ゴキブリの乳タンパク、鼻のかみ方、毒蛇の防御行動、跳ね返らない小便器、蚊の口吻を使う3Dプリント、子どもの匂い、意地悪な友人、土に埋めるパンツ。笑ったあとに、ちゃんと考える。"
 ---

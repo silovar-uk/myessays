@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["AI", "外注", "組織学習", "知識", "生産性", "能力開発", "仕事術"]
 keywords: ["outsourcing", "generative AI", "organizational learning", "learning by doing", "absorptive capacity", "cognitive offloading", "capability", "knowledge transfer"]
-favorite: 5
 grow: 5
 abstract: "外注も生成AIも、短時間で成果を得るための強力な手段である。しかし、成果物だけを受け取り、問題設定・判断基準・検証・振り返りまで外へ出すと、次回の仕事を速くする能力資産は内部に残りにくい。本稿では、learning by doing、組織学習、absorptive capacity、生成AIと批判的思考、GPSと空間学習の研究をつなぎ、外部の力を使いながら知識と判断力を内部化する「資産化ループ」を考える。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["英語学習", "音読", "自動化", "ワーキングメモリ", "チャンク"]
 keywords: ["reading aloud", "repeated reading", "automaticity", "working memory", "formulaic sequences", "overlearning"]
-favorite: 4
 grow: 3
 abstract: "英語学習では、知識を増やすこと以上に『すでに知っている英語を低コストで処理できる状態』が重要になる。本稿は、音読と反復練習をチャンク、自動化、ワーキングメモリの観点から捉え直し、『1000回』という刺激的な数字を科学的処方箋ではなく、習熟の深さを問い直す比喩として位置づける。"
 ---

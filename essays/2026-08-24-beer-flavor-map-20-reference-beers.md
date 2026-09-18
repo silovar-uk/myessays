@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["ビール", "クラフトビール", "ビアスタイル", "テイスティング", "ラガー", "IPA", "スタウト", "サワービール", "味覚"]
 keywords: ["beer flavor map", "beer styles", "tasting", "crisp", "hop-forward", "malt-forward", "yeast-forward", "sour", "Pilsner Urquell", "Sierra Nevada Pale Ale", "Guinness Draught", "Saison Dupont", "Duvel", "Rodenbach Grand Cru"]
-favorite: 5
 grow: 5
 abstract: "ビールのスタイル名を暗記するのではなく、Crisp / Hop / Yeast / Malt / Sourという5つの味覚ゾーンと、発酵方法・味の主役・色・ABVの4軸で理解する実践編。Asahi Super Dry、Pilsner Urquell、よなよなエール、Sierra Nevada Pale Ale、Duvel、Guinness Draught、Rodenbach Grand Cruなど実在する20本を学習上の座標として配置する。すべてをクラフトビールと呼ぶのではなく、伝統的大手銘柄も『比較の基準点』として使い、未知のビールでもメニューから味を推測する方法を身につける。"
 ---

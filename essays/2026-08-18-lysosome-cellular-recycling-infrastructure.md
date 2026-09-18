@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["リソソーム", "細胞生物学", "オートファジー", "代謝", "mTORC1", "恒常性", "老化", "生命科学"]
 keywords: ["lysosome", "autophagy", "mTORC1", "TFEB", "acid hydrolase", "V-ATPase", "cellular recycling", "homeostasis"]
-favorite: 4
 grow: 4
 abstract: "リソソームはしばしば『細胞のゴミ処理場』と説明される。しかし実際には、タンパク質や脂質、糖、傷んだ細胞小器官を酸性環境で分解し、材料として細胞へ戻す循環拠点である。さらにオートファジーの最終工程を担い、mTORC1を介した栄養感知や成長制御にも関わる。発見の歴史から病気・老化との接点までたどり、『生命は作るだけでなく、壊し方によって維持される』という視点からリソソームを捉え直す。"
 ---

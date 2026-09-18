@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 11
 tags: ["鞘師里保", "ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "9期", "エース", "One・Two・Three", "道重さゆみ", "卒業", "ひなフェス", "人物史"]
 keywords: ["Riho Sayashi", "Morning Musume", "Hello Project", "ace", "expectation", "mission", "identity", "choice", "return", "performance"]
-favorite: 5
 grow: 5
 abstract: "12歳でモーニング娘。9期に入り、パフォーマンスの中心として『エース』と呼ばれ、17歳で卒業した鞘師里保。だが、その人物史を『若いエースが重圧で去った』だけに縮めると、本人が当時語った能動性も、卒業後に語った使命感も見えなくなる。期待に応えることが自己像へ変わり、その型から一度離れ、戻ることと元に戻ることを分けながら、自分で表現を選び直すまでを追う。"
 ---

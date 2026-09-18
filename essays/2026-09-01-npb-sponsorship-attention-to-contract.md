@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "スポンサーシップ", "命名権", "ユニフォーム広告", "球団経営", "スポーツビジネス", "2026"]
 keywords: ["NPB", "sponsorship", "naming rights", "命名権", "ユニフォーム広告", "看板広告", "club business", "fan attention"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 13

@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "COVID-19", "こぶしファクトリー", "カントリー・ガールズ", "The Ballad", "花鳥風月", "OCHA NORMA", "ハロプロ研修生", "ライブ文化"]
 keywords: ["Hello! Project", "COVID-19", "Kobushi Factory", "Country Girls", "The Ballad", "Kachofugetsu", "OCHA NORMA", "live culture", "idol history"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第7回。2019年末のカントリー・ガールズ活動休止、2020年のこぶしファクトリー解散と新型コロナウイルスによるライブ停止から、ソロ歌唱中心の『The Ballad』、2021年の越境チーム『花鳥風月』、配信基盤、オーディション継続、OCHA NORMA結成と2022年メジャーデビューまでを扱う。現場に人を集められなくなったとき、ハロプロが何を失い、何を組み替え、何を資産として残したのかを読む。"
 ---

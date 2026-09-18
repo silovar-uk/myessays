@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Design History", "Modernism", "Ornament", "UI"]
 keywords: ["Adolf Loos", "Ornament and Crime", "Ornament", "Modernism", "Functionalism", "Decoration", "Materiality", "Semantic Ornament", "Expression", "Identity"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 41

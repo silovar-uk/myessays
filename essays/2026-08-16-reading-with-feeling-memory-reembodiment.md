@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["英語学習", "音読", "記憶", "感情", "身体性", "哲学", "読解", "習得"]
 keywords: ["reading aloud", "memory", "production effect", "self-reference effect", "enactment effect", "embodied cognition", "action readiness", "speech act", "knowing how", "second language"]
-favorite: 5
 grow: 5
 abstract: "『気持ちを込めて読むと覚えやすい』という感覚は、どこまで説明できるのか。本稿は、音読のproduction effect、深い意味処理、自己参照、enactment effect、感情のaction readiness、第二言語のemotional distanceを、メルロ＝ポンティの身体論、Austinのspeech act theory、Ryleのknowing-howへ接続する。中心命題は二段階ある。第一に、気持ちを込めるとは感情を声へ上乗せすることではなく、身体が状況へ向かう構えを言葉と一致させること。第二に、英語が『自分の言葉になる』とは文字列を記憶していることではなく、状況に応じてその表現を使い、変形できる状態になることである。本稿では、この変化を『記憶→身体化→発話可用性』としてモデル化し、音読で再現する実践法を示す。"
 ---

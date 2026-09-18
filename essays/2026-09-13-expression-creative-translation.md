@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["表現", "クリエイティブ", "創造性", "デザイン", "コミュニケーション", "制約"]
 keywords: ["expression", "creativity", "originality", "effectiveness", "constraints", "creative process", "表現", "創造性"]
-favorite: 5
 grow: 5
 abstract: "クリエイティブの文脈で『表現』とは何だろう。自分の内側にあるものを、そのまま外へ出すことだと思いがちだが、内面には最初から完成した形があるわけではない。何を残し、何を捨て、どの形式へ変換し、受け手にどんな経験として届かせるか。その選択の連続が表現なのではないか。創造性研究では、creativeな成果にはoriginalityだけでなくeffectivenessやappropriatenessも必要だとされる。また制約は創造性を必ずしも壊さず、場合によっては探索空間を絞り創造を助ける。表現とは『自分らしさを足す』行為ではなく、意味を制約の中で知覚可能な形へ翻訳する仕事なのかもしれない。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["英語学習", "リスニング", "プロソディ", "注意", "予測"]
 keywords: ["L2 listening", "prosody", "attention", "speech segmentation", "prediction", "bottom-up", "top-down"]
-favorite: 4
 grow: 4
 abstract: "英語を一語ずつ捕まえようとするより、話者の感情や意図を聴こうとした方が、かえって意味を拾いやすいことがある。この感覚を、prosody、speech segmentation、bottom-up / top-down processing、predictionの研究から検討する。結論は『感情を聴けばよい』ではない。感情を入口に、単語以外の手掛かりへ注意を広げることが、Listeningの見え方を変えているのではないか。"
 ---

@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "球団経営", "収益構造", "球団経営統合", "スポーツビジネス", "2026"]
 keywords: ["NPB", "club business", "synthesis", "revenue structure", "fan engagement", "sponsorship", "stadium ownership", "roster construction"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 15

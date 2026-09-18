@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 10
 tags: ["嗣永桃子", "ももち", "ハロー！プロジェクト", "ハロプロ史", "Berryz工房", "Buono!", "カントリー・ガールズ", "アイドル", "キャラクター", "プロフェッショナリズム", "人物史"]
 keywords: ["Momoko Tsugunaga", "Momochi", "Hello Project", "Berryz Kobo", "Buono", "Country Girls", "persona", "professionalism", "mentor", "idol identity"]
-favorite: 5
 grow: 5
 abstract: "2002年6月30日にハロー！プロジェクト・キッズへ入り、2017年6月30日に芸能活動を終えた嗣永桃子。Berryz工房の一員、Buono!の歌手、テレビの“ももち”、カントリー・ガールズのプレイング・マネージャー、そして教育を学ぶ人という複数の役割を、強い自己像を失わずに渡り歩いた15年をたどる。『キャラの裏に本当の自分がいた』という二分法ではなく、ペルソナを他者と接続するインターフェースとして運用したプロフェッショナリズムを読む人物史。"
 ---

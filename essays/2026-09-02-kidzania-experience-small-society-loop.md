@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["キッザニア", "職業体験", "体験設計", "子ども", "社会", "教育", "サービスデザイン"]
 keywords: ["KidZania", "career experience", "role play", "KidZo", "children", "experience design", "social system", "work experience"]
-favorite: 4
 grow: 4
 abstract: "キッザニアは、子どもが制服を着いて職業をまねるだけの施設ではない。子ども自身が仕事やサービスを選び、予約し、20〜40分ほどの体験に参加し、専用通貨キッゾを受け取り、使ったり貯めたりしながら次の行動を決める。消防士、警察官、医師、裁判所、ピザ職人、ゲームクリエイター、パイロット、銀行など幅広い体験を、『小さな社会を一周する仕組み』として整理する。"
 ---

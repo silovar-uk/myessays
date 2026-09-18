@@ -8,7 +8,6 @@ type: "Practical Guide"
 status: "完成"
 tags: ["Street Fighter 6", "SF6", "キャミィ", "キンバリー", "フーリガン", "空中投げ", "荒鵺捻り", "対策", "モダンマリーザ"]
 keywords: ["Cammy", "Kimberly", "Hooligan Combination", "Leg Scissors Choke", "Fatal Leg Twister", "Nue Twister", "air throw", "anti-air", "Modern Marisa"]
-favorite: 5
 grow: 5
 abstract: "キャミィとキンバリーに空中で捕まると『空中コマ投げ？』と一括りにしたくなるが、実際にはキャミィのLeg Scissors Chokeは通常空中投げ、キンバリーの荒鵺捻りは空中必殺投げである。さらにキャミィのフーリガンコンビネーションは、下段・中段・急降下蹴り・地上投げ・フェイントへ分岐する別のミックスアップ技。本稿では技の違いを整理し、フーリガンは派生を見分ける前に本体をしゃがみ対空で落とす、空中投げには読まれやすいジャンプを減らす、という二つの原則からモダン・マリーザ向けの実戦対策を組み立てる。"
 ---

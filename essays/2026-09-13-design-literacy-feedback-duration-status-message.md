@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "UI", "Feedback", "Accessibility", "Interaction Design"]
 keywords: ["Feedback Duration", "Response Time", "Status Message", "Toast", "Transient UI", "Persistent UI", "aria-live", "WCAG 4.1.3", "Perceived Responsiveness"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 40

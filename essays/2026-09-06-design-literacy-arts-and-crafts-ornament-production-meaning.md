@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Arts and Crafts", "William Morris", "Ornament", "Craft", "Production", "Decoration", "Expressive Density", "Design History"]
 keywords: ["Arts and Crafts movement", "William Morris", "ornament", "decoration", "craft", "production", "industrialization", "useful work", "expressive density", "information density", "V&A", "design history"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 20

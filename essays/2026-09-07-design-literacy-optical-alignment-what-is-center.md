@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Optical Alignment", "Visual Center", "Typography", "Visual Perception", "UI", "Icons", "Overshoot", "Negative Space"]
 keywords: ["optical alignment", "visual center", "perceived center", "geometric centroid", "bounding box", "center of mass", "visual weight", "negative space", "overshoot", "icon alignment", "SF Symbols", "Material Symbols"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 21

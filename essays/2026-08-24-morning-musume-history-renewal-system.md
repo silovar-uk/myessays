@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["モーニング娘。", "ハロー！プロジェクト", "アイドル史", "卒業", "オーディション", "リーダー", "LOVEマシーン", "One・Two・Three", "組織論"]
 keywords: ["Morning Musume", "Hello Project", "graduation system", "member change", "leadership", "repertoire inheritance", "idol history"]
-favorite: 5
 grow: 5
 abstract: "1997年に5人で始まったモーニング娘。が、なぜ創設メンバーが一人もいなくなった後も同じ名前で存続できたのかを、加入・卒業・リーダー継承・楽曲の再演・年号表記・世代交代という制度から読む。黄金期、プラチナ期、2010年代の再構築、2026年の18期加入までを一つの『更新可能な組織』として捉える。"
 ---

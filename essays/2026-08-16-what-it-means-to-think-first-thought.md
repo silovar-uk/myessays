@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["思考", "直感", "第一想起", "納得感", "合理性", "自発的思考", "認知科学", "哲学", "記憶", "予測処理", "説得", "合意", "意識", "AI"]
 keywords: ["spontaneous thought", "intuition", "first thought", "feeling of rightness", "processing fluency", "aha experience", "cognitive dissonance", "coherence", "narrative identity", "predictive processing", "persuasion", "phenomenal consciousness", "AI consciousness"]
-favorite: 5
 grow: 5
 abstract: "「どう思う？」と聞かれたとき、理由を組み立てるより先に、言葉や像が浮かぶことがある。本稿は、この第一想起を「いま、その人が実際に思っていること」として捉える。さらに近接概念として「納得感」を導入し、合理的に説明できることと、自分の価値観・経験・自己像の中に新しい理解が収まることを分ける。Feeling of Rightness、処理流暢性、Aha!体験、認知的不協和、coherence、ナラティブ・アイデンティティを接続し、「正しいのに納得できない」「間違っているのに納得できる」というズレを中心に、思う→納得する→判断する→他者と合意する、という流れを考える。終盤ではAIを比較対象に置き、首尾一貫した出力を生成することと、それを『自分のものとして腑に落ちる』ことの違いを問う。"
 ---

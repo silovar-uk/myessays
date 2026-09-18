@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["中国古典思想", "韓非子", "喩老", "老子", "英語学習", "予防", "問題解決", "仕事術", "リスク管理"]
 keywords: ["千丈之堤", "Han Feizi", "Yu Lao", "early action", "prevention", "small problems", "risk management", "Bian Que"]
-favorite: 4
 grow: 5
 abstract: "『韓非子』喩老篇の「千丈之堤以螻蟻之穴潰」を、シンプルな英語と日本語を交互に使いながら読む。『老子』第63章との関係や扁鵲の例を踏まえ、すべての細部を気にするのではなく、放置すると増幅する小さな問題を早期に処理するという考え方へつなげる。"
 ---

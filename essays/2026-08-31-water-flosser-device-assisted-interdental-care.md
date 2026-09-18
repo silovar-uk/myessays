@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["オーラルケア", "歯科", "ウォーターフロッサー", "水流洗浄器", "UX", "習慣", "身近なものの科学"]
 keywords: ["water flosser", "oral irrigator", "interdental cleaning", "plaque", "gingivitis", "dental floss", "oral care", "adherence", "friction", "device-assisted care"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

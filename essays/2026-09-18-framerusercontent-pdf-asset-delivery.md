@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Framer", "Web", "CDN", "PDF", "Hosting", "AWS", "CloudFront", "Security"]
 keywords: ["framerusercontent.com", "Framer assets", "PDF hosting", "CDN", "CloudFront", "Static files", "bandwidth", "public asset"]
-favorite: false
 grow: true
 abstract: "PDFを開いたら、URLは framerusercontent.com/assets/...。Google DriveでもDropboxでもない。このドメインは何なのか。Framer公式資料をたどると、これは独立したファイル共有サービスではなく、Webサイト制作サービスFramerが画像・フォント・デザインファイルなどを配るためのアセット配信ドメインだと分かる。本稿では、URLから確実に言えることと推測に留めるべきことを分け、Static Filesとの違い、AWS・CloudFrontを使った配信、公開性、帯域課金まで整理する。PDF本文の内容は扱わない。"
 ---

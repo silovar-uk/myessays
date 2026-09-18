@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["IP", "ファンダム", "エンゲージメント", "推し活", "マーケティング", "コミュニティ"]
 keywords: ["IP business", "customer engagement", "fan engagement", "fandom", "customer lifetime value", "推し活", "participatory culture"]
-favorite: false
 grow: true
 abstract: "SHAPE PartnersのIP産業論が示した「ファン接点設計」の続きを考える。購入額だけでは、紹介、拡散、創作、継続、フィードバックの価値を捉えきれない。一方、SNSの反応量をそのまま熱量とみなすのも危うい。顧客エンゲージメント研究、ブランドコミュニティ研究、推し活市場のデータをつなぎ、IPの成長を測るための複数軸を整理する。"
 ---

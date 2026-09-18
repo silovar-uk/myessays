@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["映画", "コンサル", "M&A", "CX", "交渉", "PMO"]
 keywords: ["Pretty Woman", "consulting", "case interview", "due diligence", "customer journey", "BATNA", "signaling", "stakeholder management", "frontline empowerment", "transformation office", "PMO"]
-favorite: 5
 grow: 5
 abstract: "『Pretty Woman』をM&A movieとして見るだけでなく、sceneをclient problemへ翻訳する。Edwardのacquisition、Vivianとのone-week contract、Rodeo Drive、hotel manager、clothes as signals、Morseとの対立、そして映画の翌朝まで。SCENE→CLIENT QUESTION→HYPOTHESIS→DATA→ANALYSIS→DELIVERABLEでconsultingのproblem findingを練習する。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["料理", "oil", "food science", "oxidation", "English Mix"]
 keywords: ["cooking oil", "oil degradation", "oxidation", "hydrolysis", "polymerization", "smoke point", "中火"]
-favorite: 4
 grow: 5
 abstract: "『油を中火で温める』は何のためなのか。At first, I thought the answer was simple: don't cross the smoke point. But oil chemistry is messier. Heated oil changes through oxidation, hydrolysis and polymerization, and those changes begin before visible smoke appears. 中火は安全温度の名前ではなく、油温を必要以上に跳ね上げず、人間がまだ制御できる速度で加熱するための操作だと分かった。"
 ---

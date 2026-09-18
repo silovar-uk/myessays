@@ -8,7 +8,6 @@ type: "Practical Essay"
 status: "完成"
 tags: ["コミュニケーション", "会話", "傾聴", "質問", "心理学", "実践", "人間関係"]
 keywords: ["conversation", "active constructive responding", "question asking", "righting reflex", "motivational interviewing", "negativity bias", "reflective listening", "responsiveness"]
-favorite: 5
 grow: 5
 abstract: "会話がなぜかネガティブな方向へ進む。原因は悲観的だからではなく、正確さ・分析・問題発見を出すタイミングが早すぎることかもしれない。本稿ではnegativity bias、Shelly Gableのactive-constructive responding、Harvardのfollow-up question研究、Motivational Interviewingのrighting reflexとOARSをつなぎ、React → Ask → Analyzeという実践手順へ落とし込む。目標は正確さを捨てることではない。正確さを少し遅らせ、相手の感情と会話の方向を先に受け取ることである。"
 ---

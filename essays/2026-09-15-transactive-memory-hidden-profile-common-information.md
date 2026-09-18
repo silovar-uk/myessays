@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["トランザクティブメモリー", "会議", "意思決定", "Hidden Profile", "情報共有", "チーム"]
 keywords: ["hidden profile", "common information", "unshared information", "Stasser Titus", "information sharing", "expert roles", "who knows what"]
-favorite: 5
 grow: 5
 abstract: "『誰が何を知っているか』の地図があっても、重要な知識が会議で口に出されるとは限らない。Hidden Profile研究では、集団は全員が知る共有情報を繰り返し、一人だけが持つ固有情報を取りこぼしやすい。1985年の模擬選挙、3,189グループのメタ分析、殺人事件課題の専門家役割実験まで辿り、会議を『意見交換』ではなく『希少情報を回収する装置』として考え直す。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["AI", "Jev", "TypeSafe AI", "System One", "Automation", "AI Agents", "Decision Making"]
 keywords: ["Jev", "TypeSafe AI", "System One Models", "typed decisions", "probabilistic decisions", "routing", "guardrails"]
-favorite: false
 grow: true
 abstract: "Jev is not another writing model. 2026年9月にTypeSafe AIが公開したJevは、stateに対してChoice・Score・Noulという型付きの判断を返す。This essay treats it as a semantic if statement and asks where it fits among code, generative LLMs, and human responsibility."
 ---

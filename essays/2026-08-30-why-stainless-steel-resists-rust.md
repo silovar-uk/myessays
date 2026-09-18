@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["化学", "材料科学", "腐食", "酸化還元", "ステンレス", "不動態", "身近なものの科学"]
 keywords: ["rust", "corrosion", "oxidation", "reduction", "redox reaction", "electrochemical corrosion", "stainless steel", "chromium", "passivation", "passive film", "pitting corrosion", "chloride", "alloy", "surface chemistry"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

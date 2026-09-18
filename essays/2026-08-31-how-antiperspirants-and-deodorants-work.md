@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["生物", "化学", "皮膚", "微生物", "制汗剤", "デオドラント", "身近なものの科学"]
 keywords: ["antiperspirant", "deodorant", "eccrine gland", "apocrine gland", "skin microbiome", "body odor", "odor precursor", "3M3SH", "Staphylococcus hominis", "aluminum chlorohydrate", "sweat duct", "gel plug"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

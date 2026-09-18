@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "アイドル史", "音楽史", "モーニング娘。", "つんく♂", "ハロプロ研修生", "文化継承"]
 keywords: ["Hello! Project", "Morning Musume", "Tsunku", "idol history", "graduation system", "Hello Pro Kenshusei", "Berryz Kobo", "C-ute"]
-favorite: 5
 grow: 5
 abstract: "ハロー！プロジェクト約30年の歴史を、モーニング娘。の大ヒットや個々の卒業だけでなく、人材育成、グループの新陳代謝、楽曲、プロデュース体制、ライブ文化、メディア環境の変化から俯瞰する。ASAYANからキッズ、エッグ、研修生へ、テレビからライブ・SNS・ストリーミングへと形を変えながら続いてきた理由を、『変化そのものを制度にした』という観点から考える。"
 ---

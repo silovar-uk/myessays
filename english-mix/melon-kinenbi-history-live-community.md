@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["メロン記念日", "ハロー！プロジェクト", "This is 運命", "赤いフリージア", "お願い魅惑のターゲット", "Melon Lounge", "ロック化計画", "ライブ文化", "アイドル史"]
 keywords: ["Melon Kinenbi", "Hello Project", "live culture", "fixed lineup", "This is Unmei", "Melon Lounge", "rock collaboration", "fandom"]
-favorite: 5
 grow: 5
 abstract: "1999年に結成され、2000年のデビューから2010年の解散まで一度もメンバーチェンジをしなかったメロン記念日。モーニング娘。とは逆に『変えないこと』を武器に、ライブハウス、クラブイベント、ロックバンドとの共演を通じて濃いファン共同体を育てた。本稿では、初期の苦戦、『This is 運命』によるライブ型への転換、『赤いフリージア』のトップ10、Melon Lounge、ロック化計画、10周年での自主的解散、2025–26年の期間限定再結成までを、コミュニティが生き残る仕組みとして読む。"
 ---

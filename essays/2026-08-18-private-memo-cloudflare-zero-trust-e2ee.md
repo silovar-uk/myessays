@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["Cloudflare", "セキュリティ", "暗号化", "Web Crypto", "Cloudflare Access", "Workers", "D1", "Zero Trust", "個人開発", "プライバシー"]
 keywords: ["Cloudflare Access", "Cloudflare Workers", "Cloudflare D1", "Web Crypto API", "AES-GCM", "PBKDF2", "JWT", "E2EE", "Zero Trust", "workers.dev", "Wrangler"]
-favorite: 5
 grow: 5
 abstract: "自分だけが使う秘密のメモをWeb上に置くとき、ログイン画面を付けるだけでは十分ではない。本稿では、Cloudflare Accessを玄関、Workerを受付、D1を金庫、ブラウザ暗号化を封筒にたとえながら、第三者アクセス・認証迂回・DB流出という異なる事故を別々の防御で止める設計を、非エンジニア向けに一段ずつ整理する。D1作成、Wrangler、workers.dev、OTP、JWT検証、AES-GCM、PBKDF2まで、実際にPrivate Memoを構築した順番と、その順番である理由を追う。"
 ---

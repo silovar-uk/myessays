@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["ビール", "IPA", "クラフトビール", "ホップ", "醸造", "歴史", "味覚"]
 keywords: ["India Pale Ale", "IPA", "English IPA", "American IPA", "West Coast IPA", "Hazy IPA", "NEIPA", "hops", "IBU", "dry hopping", "Burton upon Trent", "George Hodgson"]
-favorite: 5
 grow: 5
 abstract: "IPAを『苦いクラフトビール』という一言から解放し、その名前の由来、英国からインドへの貿易、HodgsonとBurtonの醸造所、ホップの働き、IBUと体感苦味の違い、American IPA、West Coast IPA、Hazy IPAへの分岐までたどる。よく語られる『長い航海に耐えるためHodgsonが発明した』という起源神話も史料に照らしてほどき、最後はラベルから味を予想し、IPAを飲み比べられるところまで整理する。"
 ---

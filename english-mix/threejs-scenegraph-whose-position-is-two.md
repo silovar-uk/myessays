@@ -13,7 +13,6 @@ series: "ブラウザーに3D世界を作ると何が変なのか"
 seriesOrder: 3
 tags: ["Web開発", "JavaScript", "Three.js", "3D", "Scene Graph"]
 keywords: ["Three.js", "Scene Graph", "Object3D", "local space", "world space", "position", "matrix", "matrixWorld", "getWorldPosition", "add", "attach"]
-favorite: 4
 grow: 4
 abstract: "`child.position.x = 2`はworldの住所ではない。Parentのscale・rotation・reparentingを実際に変え、LOCALとWORLDの数字を並べて見ることで、Scene Graphをobjectsのgroupではなくnested coordinate spacesとして理解するEnglish Mix版。"
 ---

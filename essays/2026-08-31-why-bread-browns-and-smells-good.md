@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["化学", "食品化学", "パン", "メイラード反応", "香り", "熱", "身近なものの科学"]
 keywords: ["bread", "baking", "bread crust", "bread crumb", "Maillard reaction", "reducing sugar", "amino acid", "water activity", "caramelization", "Strecker degradation", "volatile compounds", "melanoidins", "acrylamide"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

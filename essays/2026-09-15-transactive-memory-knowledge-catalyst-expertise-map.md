@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["トランザクティブメモリー", "メタ知識", "専門性", "Catalyst Effect", "組織", "リモートワーク"]
 keywords: ["metaknowledge", "catalyst effect", "expertise recognition", "transactive memory accuracy", "work remoteness", "knowledge repository", "who knows who knows what"]
-favorite: 5
 grow: 5
 abstract: "本人は法務にもデータにも最も詳しくないのに、『それならこの人に聞けばいい』だけは異様に正確な人がいる。その能力は雑用なのか、それとも専門性なのか。Catalyst Effectの112チーム実験、組織内の専門家認識、26の医療チーム、リモートワーク、ステレオタイプ研究を辿ると、チームの記憶には知識そのものとは別に『知識を正しい場所へ配車する機能』があるように見えてくる。"
 ---

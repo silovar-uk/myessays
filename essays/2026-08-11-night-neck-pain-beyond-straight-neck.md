@@ -8,7 +8,6 @@ type: "Review Essay"
 status: "完成"
 tags: ["首痛", "睡眠", "ストレートネック", "枕", "姿勢", "運動療法", "慢性痛"]
 keywords: ["neck pain", "nocturnal pain", "cervical lordosis", "forward head posture", "pillow", "sleep", "exercise therapy", "cervical myelopathy"]
-favorite: 3
 grow: 5
 abstract: "夜中、首の痛みで目が覚める。その苦しさを「ストレートネックだから」と説明すると、原因も対策も単純に見える。しかし研究を追うと、頚椎のカーブ、頭部姿勢、画像所見と痛みの関係はそれほど直線的ではない。一方で、枕の高さや睡眠姿勢、運動療法、そして睡眠と痛みの双方向関係については、限定的ながら実践につながる知見がある。本稿は「形を矯正する」発想から離れ、夜間頚部痛を機械的負荷・睡眠・神経症状・生活機能の問題として捉え直し、セルフケアと受診の境界を整理する。"
 ---

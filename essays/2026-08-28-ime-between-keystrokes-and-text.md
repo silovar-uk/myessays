@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["IME", "日本語入力", "キーボード", "Web", "ブラウザ", "入力システム"]
 keywords: ["IME", "Input Method Editor", "composition", "candidate", "commit", "isComposing", "CompositionEvent", "日本語入力"]
-favorite: 4
 grow: 5
 abstract: "ローマ字でnihongoと打ったのに、最終的に画面へ残るのは「日本語」。その途中では、キーボード、IME、OSの入力システム、アプリが別々の役割を担っている。本稿では、IMEを単なる『漢字変換ソフト』ではなく、限られた入力操作から意図した文字列を組み立てる仕組みとして捉える。変換中のcompositionと確定後のtextの違い、スマホ入力、多言語入力、Web開発で起きるEnterキー問題まで、普段は見えない文字入力の裏側を整理する。"
 ---

@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["コミュニケーション", "ワツラウィック", "相互作用", "システム論", "メタコミュニケーション", "パロアルト学派", "人間関係"]
 keywords: ["Paul Watzlawick", "Pragmatics of Human Communication", "communication axioms", "interactional view", "metacommunication", "punctuation", "digital and analogic communication", "symmetrical and complementary interaction"]
-favorite: 5
 grow: 5
 abstract: "『人はコミュニケーションしないことができない』で知られるワツラウィックらの5公理を、標語としてではなく相互作用を見るための理論として読み直す。5公理を存在・関係・因果・表現・力学という5つのレンズに整理し、沈黙は本当にコミュニケーションなのか、なぜ同じ出来事から異なる物語が生まれるのか、人は内容より関係性と会話しているのか、失敗は言葉より構造にあるのか、という4つの問いを個別に検討する。第一公理への批判やシステム論の限界も踏まえ、実務で使える診断法まで接続する。"
 ---

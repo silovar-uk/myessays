@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "ミニモニ。", "松浦亜弥", "プッチモニ", "つんく♂", "アイドル史", "音楽史", "テレビ"]
 keywords: ["Hello! Project", "Morning Musume", "Mini Moni", "Aya Matsuura", "Petitmoni", "shuffle units", "media mix", "idol history", "2000s"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第2回。1999年末から2004年までを、単なる『黄金期』ではなく、メンバーを派生ユニット、シャッフル、ソロ、子ども向け企画、冠番組へ横断させる巨大なメディア実験として読む。4期加入、ミニモニ。と子ども市場、松浦亜弥というソロアイドル、5期・6期の継続加入、後藤真希・安倍なつみの卒業、2002年のハロプロ大改革を、縮小し始めたCD市場と重ねて整理する。"
 ---

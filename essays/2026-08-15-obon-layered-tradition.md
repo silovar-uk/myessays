@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["お盆", "盂蘭盆", "年中行事", "仏教", "民俗学", "祖先祭祀", "盆踊り", "家族", "ジェンダー", "記憶", "伝統", "日本文化"]
 keywords: ["Obon", "Urabon", "Ullambana", "ancestor worship", "Bon Odori", "Japanese folk religion", "ie system", "ritual", "social memory", "continuing bonds", "invented tradition"]
-favorite: 5
 grow: 5
 abstract: "お盆は『先祖の霊が帰ってくる仏教行事』と説明されがちだが、その一文だけでは歴史の半分しか見えない。盂蘭盆会、日本の祖霊観、家と墓、近代の改暦、都市化と帰省、盆踊り、ジェンダー化されたケア労働まで、異なる時代の制度と感情が重なって現在のお盆はできている。本稿では最新の古代史研究、民俗学、家族社会学、社会的記憶論、死別研究を横断し、お盆を『死者と生者の関係を定期的につくり直す装置』として捉え直す。伝統は変わったら壊れるのか。家や墓がなくなっても、お盆は残るのか。そして人はなぜ、死者との関係を何度も更新するのかを問う。"
 ---

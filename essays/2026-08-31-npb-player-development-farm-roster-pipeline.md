@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "ファーム", "育成選手", "支配下", "スポーツビジネス", "2026"]
 keywords: ["NPB", "ファーム", "二軍", "育成選手", "支配下選手", "出場選手登録", "player development", "development pipeline", "roster"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 6

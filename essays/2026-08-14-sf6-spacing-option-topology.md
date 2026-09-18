@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["Street Fighter 6", "格闘ゲーム", "モダンマリーザ", "間合い管理", "ニュートラル", "認知科学"]
 keywords: ["spacing", "neutral game", "option topology", "temporal distance", "cognitive branching", "Marisa"]
-favorite: 5
 grow: 5
 abstract: "SF6の間合いを、単なる物理距離ではなく、その地点で両者が持つ選択肢と期待値の分布として捉え直す。時間距離、選択肢閾値、認知分岐、技の影、ソフトウォール、プローブ歩き、空間所有権という独自概念を提示し、モダン・マリーザの実戦とリプレイ分析へ接続する。"
 ---

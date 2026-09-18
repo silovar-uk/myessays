@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "トレード", "移籍", "契約", "選手契約", "スポーツビジネス", "2026"]
 keywords: ["NPB", "trade", "player mobility", "選手契約の譲渡", "トレード期限", "事前同意", "FA", "roster construction"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 9

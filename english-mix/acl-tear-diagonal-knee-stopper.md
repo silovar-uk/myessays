@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["ACL", "football", "sports medicine", "膝", "injury", "English Mix"]
 keywords: ["前十字靭帯断裂", "ACL tear", "ACL rupture", "ACL reconstruction", "knee", "football", "rehabilitation", "return to sport"]
-favorite: 5
 grow: 5
 abstract: "Football news keeps saying “ACL tear,” but what actually tears? ACL is not on the front surface of the knee. 膝関節の中央を斜めに走り、tibiaの前方移動とrotationを抑える。本稿では、why a non-contact movement can tear it、断裂時に何を確認するのか、why surgery often means reconstruction、自然治癒研究をどう読むべきか、そしてwhy return to sport cannot be decided by time aloneを整理する。"
 ---

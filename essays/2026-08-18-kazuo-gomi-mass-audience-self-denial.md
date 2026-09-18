@@ -8,7 +8,6 @@ type: "Historical Idea Essay"
 status: "完成"
 tags: ["五味一男", "テレビ", "企画", "マーケティング", "クリエイティブ", "視聴率", "大衆", "顧客理解", "データ", "日本テレビ"]
 keywords: ["Kazuo Gomi", "mass audience", "silent majority", "customer insight", "100 no jibun", "200 no jibun", "ratings", "creative strategy", "Nippon Television"]
-favorite: 5
 grow: 5
 abstract: "『クイズ世界はSHOW by ショーバイ!!』『マジカル頭脳パワー!!』『エンタの神様』などを手がけた五味一男。彼の仕事を貫くのは、天才的なひらめきへの信仰ではなく、自分の感覚を疑い、視聴者の行動から学び続ける姿勢だった。本稿は、前衛映画を撮っていた青年時代から、視聴率による『人生全否定感』、100の自分／200の自分、極端な分かりやすさ、『エンタ』をめぐる賛否までをたどり、五味の企画術を『自分の中に大衆を住まわせる技術』として読み直す。"
 ---
