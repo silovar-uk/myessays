@@ -10,6 +10,8 @@
 - タグの複数選択
 - 作成日 / 更新日 / 育てたい度を表示
 - 論考ごとの読書ビューと目次
+- 読了後に「残った度」1〜5をブラウザ内へ保存
+- 「残った」フィルターと「残った記事から1本」で、強く残った論考を再発見
 - 同一記事を日本語 / English Mix / Español Mixで切り替えて読む
 - Structure情報付き記事では、段落のConceptual ProfileとSentence Levelを確認
 - `/` で検索、`Esc` でLibraryへ戻る
@@ -170,6 +172,8 @@ Structure metadataは読了時間・文字数・全文検索の対象から除�
 - Argument metadata互換層: `argument-metadata-compat.js`
 - Argument Structure Reader: `argument-structure.js` / `argument-structure.css`
 - 読了状態・残った度を含むlocalStorageの読書状態キーは記事ID基準のまま変更しない
+- 「残った度」は記事front matterではなく、`myessays:reading-state:<articleId>` 内の個人読書状態として保存する
+- 「残った度」1〜5は記事の品質採点ではなく、読後に自分へどれだけ残ったかの記録として扱う
 
 Argument Structureの背景・設計は [`DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md`](DEVELOPMENT_PLAN_ARGUMENT_STRUCTURE.md) と [`RESEARCH_ARGUMENT_STRUCTURE.md`](RESEARCH_ARGUMENT_STRUCTURE.md) を参照。
 
