@@ -1,5 +1,5 @@
 name: One-shot Integrity and Pivot Full QA
-# rerun after Pivot boundary QA was made semantic
+# rerun after QA scroll geometry was stabilized
 
 on:
   push:
