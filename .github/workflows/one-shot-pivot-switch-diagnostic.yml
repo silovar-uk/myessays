@@ -1,0 +1,114 @@
+name: One-shot Pivot Switch Diagnostic
+
+on:
+  push:
+    branches: [investigate/integrity-pivot-20260918]
+    paths:
+      - '.github/workflows/one-shot-pivot-switch-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: investigate/integrity-pivot-20260918
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/pivot-diag.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          exit 1
+      - name: Trace semantic eye-line switch
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const page = await browser.newPage({viewport:{width:1280,height:800}});
+            await page.goto('http://127.0.0.1:4173/#/essay/confucius-knowing-liking-enjoying',{waitUntil:'networkidle'});
+            await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
+            await page.waitForTimeout(200);
+
+            await page.evaluate(() => {
+              window.__switchTrace = [];
+              const names = [
+                'myessays:reader-version-intent',
+                'myessays:reader-version-changed',
+                'myessays:reader-language-changed',
+                'myessays:reading-pivot-changed',
+                'myessays:reading-mode-stable',
+                'myessays:reading-mode-settled'
+              ];
+              const snap = (name, detail) => {
+                const pivot = window.MyEssaysReadingPivot?.current?.();
+                const locator = window.MyEssaysReadingPivot?.locator?.() || pivot?.dataset?.readingLocator || '';
+                const rect = pivot?.getBoundingClientRect?.();
+                const semantic = locator && pivot
+                  ? window.MyEssaysReadingLocators?.semanticRect?.(locator, pivot)
+                  : null;
+                const shell = document.getElementById('readerModeShell');
+                window.__switchTrace.push({
+                  name,
+                  detail,
+                  time: performance.now(),
+                  scrollY: window.scrollY,
+                  locator,
+                  physicalLocator: pivot?.dataset?.readingLocator || '',
+                  physicalTop: rect?.top ?? null,
+                  semanticTop: semantic?.top ?? null,
+                  exactText: semantic?.exactText ?? null,
+                  eyeLine: window.MyEssaysReadingLocators?.eyeLineReference?.() || null,
+                  railY: window.MyEssaysReadingPivot?.readingRailY?.() ?? null,
+                  shellTop: shell?.getBoundingClientRect?.().top ?? null,
+                  shellHeight: shell?.getBoundingClientRect?.().height ?? null,
+                  shellPosition: shell ? getComputedStyle(shell).position : null,
+                  phase: shell?.dataset?.readerPhase || ''
+                });
+              };
+              window.__snapSwitch = snap;
+              names.forEach(name => document.addEventListener(name, event => {
+                snap(name, event.detail || null);
+                requestAnimationFrame(() => snap(name + ':raf1', event.detail || null));
+                requestAnimationFrame(() => requestAnimationFrame(() => snap(name + ':raf2', event.detail || null)));
+              }));
+            });
+
+            await page.evaluate(() => {
+              const pivot = window.MyEssaysReadingPivot?.current?.();
+              const rail = window.MyEssaysReadingPivot?.readingRailY?.();
+              const blocks = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')];
+              const index = blocks.indexOf(pivot);
+              const next = blocks[index + 1];
+              if (next && Number.isFinite(rail)) {
+                const rect = next.getBoundingClientRect();
+                window.scrollBy({top: rect.top + rect.height/2 - rail, behavior:'auto'});
+              }
+            });
+            await page.waitForTimeout(250);
+            await page.evaluate(() => window.__snapSwitch('before-click', null));
+
+            await page.locator('#readerModeShell [data-reading-mode-intent="en-mix"]').click();
+            await page.waitForFunction(() =>
+              window.MyEssaysReaderVersions?.currentVersion?.() === 'en-mix'
+              && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
+            , null, {timeout:8000});
+            await page.waitForTimeout(120);
+            await page.evaluate(() => window.__snapSwitch('after-settled+120', null));
+
+            console.log('SWITCH_TRACE='+JSON.stringify(await page.evaluate(() => window.__switchTrace)));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1);});
+          NODE
