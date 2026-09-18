@@ -105,6 +105,10 @@ async function waitForReader(page) {
   await page.waitForSelector(CONTROL);
   await page.waitForSelector('#readerContent > p.reader-locator-block[data-reading-locator]');
   await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
+  // Geometry assertions need a settled viewport. The production stylesheet uses
+  // scroll-behavior:smooth, so behavior:'auto' would otherwise keep animating
+  // between an assertion and the next language-switch action.
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
   await page.waitForTimeout(120);
 }
 
