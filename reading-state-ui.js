@@ -5,7 +5,7 @@
   const REFLECTION_ENTRY_PREFIX = 'myessays:reader-reflections:v1:';
   const REFLECTION_DRAFT_PREFIX = 'myessays:reader-reflections:draft:v1:';
   const READING_PREFIX = 'myessays:reading-state:';
-  const FILTERS = ['all', 'unread', 'opened', 'completed', 'memo'];
+  const FILTERS = ['all', 'unread', 'opened', 'completed', 'resonance', 'memo'];
   let activeFilter = 'all';
   let librarySyncQueued = false;
   let readerSyncQueued = false;
@@ -99,6 +99,12 @@
     return safeSet(`${READING_PREFIX}${id}`, JSON.stringify(value));
   }
 
+  function resonanceFor(id) {
+    const value = readState(id)?.resonance?.value;
+    const number = Number(value);
+    return Number.isInteger(number) && number >= 1 && number <= 5 ? number : null;
+  }
+
   function progressFor(id) {
     const reading = readState(id);
     if (reading.completedAt) return 'completed';
@@ -189,6 +195,7 @@
       <button type="button" class="reading-status-tab" data-reading-filter="unread" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>未読</button>
       <button type="button" class="reading-status-tab" data-reading-filter="opened" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>開いた</button>
       <button type="button" class="reading-status-tab" data-reading-filter="completed" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>読了</button>
+      <button type="button" class="reading-status-tab" data-reading-filter="resonance" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>残った</button>
       <button type="button" class="reading-status-tab" data-reading-filter="memo" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>メモあり</button>`;
     toolbar.insertAdjacentElement('afterend', tabs);
 
@@ -241,7 +248,31 @@
   function matchesFilter(id) {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'memo') return Boolean(memoInfo(id).text);
+    if (activeFilter === 'resonance') return Number(resonanceFor(id) || 0) >= 4;
     return progressFor(id) === activeFilter;
+  }
+
+  function syncResonanceBadge(card, id) {
+    const value = resonanceFor(id);
+    let badge = card.querySelector('.reading-resonance-badge');
+
+    if (!value) {
+      badge?.remove();
+      return;
+    }
+
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'reading-resonance-badge';
+      badge.setAttribute('aria-label', `残った度 ${value} / 5`);
+      const host = card.classList.contains('featured-card')
+        ? card.querySelector('.featured-footer')
+        : card.querySelector('.archive-side');
+      (host || card).appendChild(badge);
+    }
+
+    badge.textContent = `残った度 ${value}`;
+    badge.setAttribute('aria-label', `残った度 ${value} / 5`);
   }
 
   function decorateCard(card) {
@@ -257,6 +288,7 @@
     card.dataset.readingStatus = progress;
     card.dataset.hasReadingNote = String(hasMemo);
     syncMemoPreview(card, id);
+    syncResonanceBadge(card, id);
 
     const visible = matchesFilter(id);
     card.hidden = !visible;
@@ -288,6 +320,12 @@
       }
     });
 
+    const resonantIds = cards
+      .map(card => card.dataset.id)
+      .filter(id => id && Number(resonanceFor(id) || 0) >= 4);
+    const resonantRandom = document.getElementById('resonantRandomEssay');
+    if (resonantRandom) resonantRandom.hidden = resonantIds.length < 3;
+
     if (activeFilter !== 'all') {
       const resultCount = document.getElementById('resultCount');
       if (resultCount) resultCount.textContent = `${visibleCount} essays · 読書状態で絞り込み`;
@@ -296,7 +334,9 @@
         empty.hidden = visibleCount > 0;
         empty.textContent = activeFilter === 'memo'
           ? 'メモのある論考はまだない。'
-          : 'この読書状態に合う論考はまだない。';
+          : activeFilter === 'resonance'
+            ? '残った度4以上の論考はまだない。'
+            : 'この読書状態に合う論考はまだない。';
       }
     }
   }
@@ -350,102 +390,6 @@
     return button;
   }
 
-  function revealCompletionZone(zone) {
-    if (!zone || zone.dataset.revealReady === 'true') return;
-    zone.dataset.revealReady = 'true';
-
-    if (!('IntersectionObserver' in window)) {
-      zone.classList.add('is-visible');
-      return;
-    }
-
-    const observer = new IntersectionObserver(entries => {
-      const entry = entries[0];
-      if (!entry?.isIntersecting) return;
-      zone.classList.add('is-visible');
-      observer.disconnect();
-    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
-
-    observer.observe(zone);
-  }
-
-  function ensureCompletionZone() {
-    const id = currentEssayId();
-    const content = document.getElementById('readerContent');
-    if (!id || !content || !content.children.length) return null;
-
-    let zone = content.querySelector('.reading-completion-zone');
-    if (!zone) {
-      zone = document.createElement('section');
-      zone.className = 'reading-completion-zone';
-      zone.setAttribute('aria-label', '読了を記録');
-      zone.innerHTML = `
-        <div class="reading-completion-divider" aria-hidden="true"><span></span><i>◦</i><span></span></div>
-        <p class="reading-completion-kicker">END OF ESSAY</p>
-        <h2 class="reading-completion-title">ここで、ひと区切り。</h2>
-        <p class="reading-completion-message">読み終えた記録を残して、次の一本へ。</p>
-        <button type="button" class="reading-complete-button" aria-pressed="false"></button>
-        <p class="reading-completion-status" aria-live="polite" aria-atomic="true"></p>`;
-
-      const button = zone.querySelector('.reading-complete-button');
-      button?.addEventListener('click', () => {
-        const target = currentEssayId();
-        if (!target) return;
-        const completed = toggleCompleted(target);
-        syncReader({ announce: true });
-        scheduleLibrarySync();
-
-        if (completed) {
-          zone.classList.remove('just-completed');
-          requestAnimationFrame(() => zone.classList.add('just-completed'));
-          window.setTimeout(() => zone.classList.remove('just-completed'), 680);
-        }
-      });
-    }
-
-    const reflections = content.querySelector('.reader-reflections');
-    const endNavigation = content.querySelector('.reader-end-navigation');
-    const anchor = reflections || endNavigation;
-    if (anchor) {
-      if (zone.nextElementSibling !== anchor) anchor.insertAdjacentElement('beforebegin', zone);
-    } else if (zone !== content.lastElementChild) {
-      content.appendChild(zone);
-    }
-
-    revealCompletionZone(zone);
-    return zone;
-  }
-
-  function syncCompletionZone(options = {}) {
-    const id = currentEssayId();
-    if (!id) return;
-
-    const zone = ensureCompletionZone();
-    const button = zone?.querySelector('.reading-complete-button');
-    const status = zone?.querySelector('.reading-completion-status');
-    if (!zone || !button) return;
-
-    const completed = progressFor(id) === 'completed';
-    const stateName = completed ? 'completed' : 'open';
-    zone.classList.toggle('is-completed', completed);
-    button.classList.toggle('is-completed', completed);
-    button.setAttribute('aria-pressed', String(completed));
-
-    if (button.dataset.completionState !== stateName) {
-      button.dataset.completionState = stateName;
-      button.innerHTML = completed
-        ? '<span class="reading-complete-icon" aria-hidden="true">✓</span><span class="reading-complete-copy"><strong class="reading-complete-label">読了しました</strong><small>記録済み · もう一度押すと解除</small></span>'
-        : '<span class="reading-complete-icon" aria-hidden="true">○</span><span class="reading-complete-copy"><strong class="reading-complete-label">読了を記録する</strong><small>読み終えた記事として保存</small></span>';
-    }
-
-    button.title = completed ? 'もう一度押すと読了を解除' : 'この記事を読み終えた記録を残す';
-    if (status) {
-      status.textContent = options.announce
-        ? (completed ? '読了を記録しました。' : '読了記録を解除しました。')
-        : '';
-    }
-  }
-
   function syncReader(options = {}) {
     readerSyncQueued = false;
     const id = currentEssayId();
@@ -453,7 +397,6 @@
 
     markOpened(id);
     ensureCopyButton();
-    syncCompletionZone(options);
   }
 
   function scheduleReaderSync() {
@@ -519,6 +462,18 @@
         key.startsWith(READING_PREFIX)
       ) syncForCurrentRoute();
     });
+
+    const resonantRandomEssay = document.getElementById('resonantRandomEssay');
+    resonantRandomEssay?.addEventListener('click', event => {
+      const ids = [...document.querySelectorAll('#essayGrid [data-id]')]
+        .map(card => card.dataset.id)
+        .filter(id => id && Number(resonanceFor(id) || 0) >= 4);
+      if (!ids.length) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const id = ids[Math.floor(Math.random() * ids.length)];
+      location.hash = `#/essay/${encodeURIComponent(id)}`;
+    }, { capture: true });
 
     const randomEssay = document.getElementById('randomEssay');
     randomEssay?.addEventListener('click', event => {
