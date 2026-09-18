@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+<title id="title">Proximity and similarity can compete</title>
+<desc id="desc">距離による左右のグループと、色・形による横断的なグループが競合することを示す図。</desc>
+<rect width="1200" height="640" fill="#fbfaf7"/>
+<text x="70" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#111">When grouping cues compete</text>
+<text x="70" y="118" font-family="Arial, sans-serif" font-size="20" fill="#666">Proximity says “left / right.” Similarity says “circle / triangle.”</text>
+
+<g stroke-width="4">
+  <circle cx="220" cy="250" r="48" fill="#315efb" stroke="#315efb"/>
+  <polygon points="350,202 400,298 300,298" fill="#ef6c35" stroke="#ef6c35"/>
+  <circle cx="760" cy="250" r="48" fill="#315efb" stroke="#315efb"/>
+  <polygon points="890,202 940,298 840,298" fill="#ef6c35" stroke="#ef6c35"/>
+
+  <polygon points="220,382 270,478 170,478" fill="#ef6c35" stroke="#ef6c35"/>
+  <circle cx="350" cy="430" r="48" fill="#315efb" stroke="#315efb"/>
+  <polygon points="760,382 810,478 710,478" fill="#ef6c35" stroke="#ef6c35"/>
+  <circle cx="890" cy="430" r="48" fill="#315efb" stroke="#315efb"/>
+</g>
+
+<rect x="120" y="170" width="350" height="350" rx="24" fill="none" stroke="#aaa" stroke-dasharray="10 10" stroke-width="2"/>
+<rect x="660" y="170" width="350" height="350" rx="24" fill="none" stroke="#aaa" stroke-dasharray="10 10" stroke-width="2"/>
+<text x="170" y="560" font-family="Arial, sans-serif" font-size="20" fill="#555">Spatial grouping</text>
+<text x="710" y="560" font-family="Arial, sans-serif" font-size="20" fill="#555">Spatial grouping</text>
+<text x="70" y="610" font-family="Arial, sans-serif" font-size="18" fill="#888">No single Gestalt cue always wins; context and competing cues matter.</text>
+</svg>
