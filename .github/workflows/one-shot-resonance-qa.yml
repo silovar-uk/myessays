@@ -1,4 +1,5 @@
 name: One-shot Resonance QA
+# rerun after cache-key test update
 
 on:
   push:
