@@ -1,0 +1,140 @@
+name: One-shot Integrity and Pivot Diagnostic
+
+on:
+  push:
+    branches: [investigate/integrity-pivot-20260918]
+    paths:
+      - '.github/workflows/one-shot-integrity-pivot-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: investigate/integrity-pivot-20260918
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Diagnose content integrity repairability
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const read = p => fs.readFileSync(p,'utf8').replace(/\r\n?/g,'\n');
+          function fm(p){
+            const m=read(p).match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
+            const meta={}; if(!m) return meta;
+            for(const line of m[1].split('\n')){
+              const i=line.indexOf(':'); if(i<0) continue;
+              const k=line.slice(0,i).trim(), raw=line.slice(i+1).trim();
+              try{meta[k]=JSON.parse(raw);}catch{meta[k]=raw.replace(/^['"]|['"]$/g,'');}
+            }
+            return meta;
+          }
+          const md = dir => fs.readdirSync(dir).filter(x=>x.endsWith('.md')&&x!=='README.md').map(x=>`${dir}/${x}`).sort();
+          const index=JSON.parse(read('data/index.json')).essays||[];
+          const versions=JSON.parse(read('data/versions-index.json')).articles||{};
+          const indexed=new Set(index);
+          const canonicalById=new Map(index.map(p=>[String(fm(p).id||'').trim(),p]));
+          const actualCanonical=md('essays');
+          const english=md('english-mix');
+
+          const unindexedCanonical=actualCanonical.filter(p=>!indexed.has(p)).map(p=>{
+            const meta=fm(p); const id=String(meta.id||'').trim();
+            return {path:p,id,created:meta.created,uniqueCanonicalId:!canonicalById.has(id)};
+          });
+
+          const mismatched=[];
+          const indexedDerived=new Set();
+          for(const [id,entry] of Object.entries(versions)){
+            for(const file of Object.values(entry||{})){
+              indexedDerived.add(file);
+              if(!fs.existsSync(file)) continue;
+              const actual=String(fm(file).id||'').trim();
+              if(actual!==id){
+                const base=path.basename(file,'.md');
+                mismatched.push({
+                  file, expected:id, actual, basename:base,
+                  safeSuffixRepair: base===id && actual===`${id}-en-mix`
+                });
+              }
+            }
+          }
+
+          const unindexedDerived=english.filter(p=>!indexedDerived.has(p)).map(p=>{
+            const base=path.basename(p,'.md');
+            const id=String(fm(p).id||'').trim();
+            return {
+              path:p, basename:base, id,
+              canonicalExists: canonicalById.has(base),
+              safeRegister: canonicalById.has(base) && (id===base || id===`${base}-en-mix`)
+            };
+          });
+
+          console.log('CONTENT_DIAGNOSTIC='+JSON.stringify({
+            counts:{unindexedCanonical:unindexedCanonical.length,mismatched:mismatched.length,unindexedDerived:unindexedDerived.length},
+            allCanonicalSafe:unindexedCanonical.every(x=>x.uniqueCanonicalId),
+            allIdRepairsSafe:mismatched.every(x=>x.safeSuffixRepair),
+            allDerivedRegistersSafe:unindexedDerived.every(x=>x.safeRegister),
+            unindexedCanonical,mismatched,unindexedDerived
+          }));
+          NODE
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/myessays-diag.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/myessays-diag.log
+          exit 1
+
+      - name: Diagnose Reading Pivot geometry
+        run: |
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:1280,height:800}});
+            await page.goto('http://127.0.0.1:4173/#/essay/confucius-knowing-liking-enjoying',{waitUntil:'networkidle'});
+            await page.waitForSelector('#readerContent > p.reader-locator-block.is-reading-pivot');
+            await page.waitForTimeout(200);
+            const result=await page.evaluate(()=>{
+              const pivot=window.MyEssaysReadingPivot?.current?.();
+              const paras=[...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')];
+              const shell=document.getElementById('readerModeShell');
+              const header=document.querySelector('.reader-v2-header');
+              const content=document.getElementById('readerContent');
+              const rect=pivot?.getBoundingClientRect();
+              const rail=window.MyEssaysReadingPivot?.readingRailY?.();
+              return {
+                scrollY:window.scrollY,
+                railY:rail,
+                header:header?.getBoundingClientRect().toJSON?.()||null,
+                shell:shell?.getBoundingClientRect().toJSON?.()||null,
+                shellPosition:shell?getComputedStyle(shell).position:null,
+                content:content?.getBoundingClientRect().toJSON?.()||null,
+                pivot:pivot?{locator:pivot.dataset.readingLocator,rect:rect.toJSON?.()||null}:null,
+                firstFive:paras.slice(0,5).map(p=>({locator:p.dataset.readingLocator,rect:p.getBoundingClientRect().toJSON?.()})),
+                distance:rect&&Number.isFinite(rail)?(rect.top>rail?rect.top-rail:rail>rect.bottom?rail-rect.bottom:0):null,
+                readingLineY:Math.max(window.innerHeight*.28,(header?.getBoundingClientRect().height||0)+24)
+              };
+            });
+            console.log('PIVOT_DIAGNOSTIC='+JSON.stringify(result));
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1);});
+          NODE
