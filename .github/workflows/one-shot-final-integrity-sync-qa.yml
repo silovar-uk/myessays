@@ -1,0 +1,67 @@
+name: One-shot Final Integrity Sync QA
+
+on:
+  push:
+    branches: [investigate/integrity-pivot-20260918]
+    paths:
+      - '.github/workflows/one-shot-final-integrity-sync-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  final:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: investigate/integrity-pivot-20260918
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Synchronize indexes from actual content
+        run: node tools/sync-content-indexes.mjs --write
+
+      - name: Verify integrity
+        run: |
+          node tools/sync-content-indexes.mjs --check
+          node tools/audit-content.mjs --strict
+
+      - name: Run all static tests
+        run: node --test tests/*.test.js
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/myessays-final-integrity.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/myessays-final-integrity.log
+          exit 1
+
+      - name: Run Reading Pivot browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/reading-pivot-qa.cjs
+
+      - name: Commit synchronized indexes
+        run: |
+          if git diff --quiet; then
+            echo "No synchronization changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json english-mix
+          git commit -m "最新記事を共通索引へ同期"
+          git push origin HEAD:investigate/integrity-pivot-20260918
