@@ -9,9 +9,10 @@
 1. **最新リポジトリの同期**: 必ず執筆前にリモートから最新コミットを取得（`git pull --rebase origin main`）する。
 2. **日本語通常版の執筆**: `essays/YYYY-MM-DD-{slug}.md` に配置。Frontmatterの必須項目を満たす。
 3. **英語交じり版（EN MIX）の執筆**: `english-mix/{slug}.md` に配置。日本語版をCanonical Sourceとして、H2の順序とReading Locator対象ブロック（`p` / `ul` / `ol` / `blockquote` / `figure`）を1対1で保持する。英語と日本語の混在・言い換えは各ブロック内部だけで行い、段落の結合・分割・並べ替え・別セクションへの移動をしない。
-4. **インデックス更新**: `data/index.json` と `data/versions-index.json` を更新する。
-5. **構造Lint**: 新規記事は `node scripts/validate-version-structure.mjs --id {slug}` で完全一致を確認する。既存legacy差は悪化させない。
-6. **コミット＆プッシュ**: 1行目に日本語要約を書いたコミットメッセージで `origin main` へプッシュする。
+4. **インデックス同期**: 記事ファイルを作成したら、手作業や記事別workflowで索引を書き換えず、`node tools/sync-content-indexes.mjs --write` を実行して `data/index.json` と `data/versions-index.json` を同期する。EN MIX / ES MIXのfront matter `id` はCanonical IDと同一にする。
+5. **整合性確認**: `node tools/sync-content-indexes.mjs --check` と `node tools/audit-content.mjs --strict` を通す。記事ごとの `register-*.yml` を新設しない。
+6. **構造Lint**: 新規記事は `node scripts/validate-version-structure.mjs --id {slug}` で完全一致を確認する。既存legacy差は悪化させない。
+7. **コミット＆プッシュ**: 1行目に日本語要約を書いたコミットメッセージで `origin main` へプッシュする。
 
 ## 2. 表記およびスタイルルール
 - 文体: 誠実、明快、平易な思考プロセスを重視する。
