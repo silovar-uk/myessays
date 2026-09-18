@@ -1,0 +1,82 @@
+name: One-shot Resonance Tap QA
+
+on:
+  push:
+    branches: [fix/resonance-tap-layer]
+    paths:
+      - '.github/workflows/one-shot-resonance-tap-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/resonance-tap-layer
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/resonance-tap.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/resonance-tap.log
+          exit 1
+      - name: Exercise resonance flow
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const assert = require('node:assert/strict');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+            await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
+
+            const card = page.locator('#essayGrid [data-id]').first();
+            await card.waitFor();
+            const essayId = await card.getAttribute('data-id');
+            assert.ok(essayId);
+            await card.click();
+            await page.waitForSelector('.reader-resonance');
+
+            const rating = page.locator('.reader-resonance input[name="reader-resonance"][value="4"]');
+            await rating.check();
+
+            await page.waitForFunction(id => {
+              const raw = localStorage.getItem('myessays:reading-state:' + id);
+              if (!raw) return false;
+              const state = JSON.parse(raw);
+              return state?.resonance?.value === 4 && Boolean(state.completedAt);
+            }, essayId);
+
+            assert.match(await page.locator('[data-resonance-selected]').innerText(), /4.+かなり残った/);
+
+            await page.locator('#backButton').click();
+            await page.waitForSelector('#libraryView:not([hidden])');
+            const ratedCard = page.locator(`#essayGrid [data-id="${essayId}"]`);
+            const badge = ratedCard.locator('.reading-resonance-badge');
+            await badge.waitFor();
+            assert.equal((await badge.innerText()).trim(), '残った度 4');
+
+            await page.locator('[data-reading-filter="resonance"]').click();
+            assert.equal(await ratedCard.isVisible(), true);
+
+            console.log(JSON.stringify({ essayId, result: 'ok' }));
+            await browser.close();
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
