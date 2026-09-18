@@ -274,13 +274,13 @@ async function waitForReader(page) {
 
   // Accessibility media queries keep a static cue without relying on animation.
   await page.emulateMedia({ reducedMotion: 'reduce', forcedColors: 'active' });
-  await page.evaluate(() => {
-    const pivot = window.MyEssaysReadingPivot?.current?.();
-    pivot?.classList.add('is-language-switch-target');
-  });
   const forced = await page.evaluate(() => {
+    // Inspect the media-query fallback synchronously after applying the transient
+    // class. A previous language-switch cleanup timer may still be pending and
+    // is allowed to remove this runtime class on the next task.
     const content = document.getElementById('readerContent');
-    const target = document.querySelector('#readerContent .is-language-switch-target');
+    const target = window.MyEssaysReadingPivot?.current?.();
+    target?.classList.add('is-language-switch-target');
     const style = target ? getComputedStyle(target) : null;
     const after = target ? getComputedStyle(target, '::after') : null;
     return target && style && after ? {
