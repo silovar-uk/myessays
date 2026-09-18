@@ -108,7 +108,22 @@ Migration rules:
 - Mechanical path/index fixes alone do not require rewriting the historical meaning of the article.
 - Do not invent missing metadata when it cannot be inferred safely. Flag it for review.
 
-## 7. Article types are not one template
+## 7. Reader-local resonance
+
+`resonance` is reader state, not article metadata.
+
+- UI label: `残った度`
+- Scale: integer 1–5
+- Meaning: how strongly the article remains with the reader after reading, not article quality
+- Storage: browser-local `myessays:reading-state:<articleId>`
+- Scope: shared by the canonical article ID across JA / EN MIX / ES MIX
+- Selecting a resonance value also marks the article completed when it is not already completed
+- Completion without rating remains possible
+- Legacy article-side ratings must not be migrated into resonance because the semantics differ
+
+Resonance must not be added to front matter or `data/index.json`.
+
+## 8. Article types are not one template
 
 `Conceptual Paper`, `Essay`, `Review`, technical/reference pieces, game guides and archive pieces do not need identical heading structures.
 
@@ -124,7 +139,7 @@ Do not force every article into:
 
 Use the article's purpose and type.
 
-## 8. Writing Architecture / Argument Structure
+## 9. Writing Architecture / Argument Structure
 
 Structure metadata is optional.
 
@@ -166,13 +181,13 @@ Within one structured paragraph, annotated sentences are kept together without b
 
 Do not add Structure simply to produce a pretty `4 → 3 → 1 → 3 → 5` shape. Use it only where argument movement is meaningful.
 
-## 9. Paragraph migration rule
+## 10. Paragraph migration rule
 
 Many older Web-essay articles use one sentence per paragraph. When adding Structure, do not merely attach one level to each one-sentence paragraph.
 
 First decide whether several adjacent sentences actually form one argumentative paragraph. If so, paragraph boundaries may be regrouped while preserving the original wording. Distinguish boundary-only changes from prose edits in the PR description.
 
-## 10. Mechanical vs Editorial migration
+## 11. Mechanical vs Editorial migration
 
 Mechanical migration includes:
 
@@ -196,7 +211,7 @@ Editorial migration includes:
 
 Do not hide editorial changes inside a large mechanical PR.
 
-## 11. Historical integrity
+## 12. Historical integrity
 
 Past essays are also a record of past thinking.
 
@@ -207,7 +222,7 @@ For time-sensitive facts, preserve the original `created` date and either:
 - update the relevant facts and `updated` date, or
 - make the historical time frame explicit when that better preserves the article's meaning.
 
-## 12. Migration classes
+## 13. Migration classes
 
 - **A — Compatibility:** renders, indexes and behaves correctly under current contracts.
 - **B — Modernize:** A + metadata, headings and paragraph/readability cleanup.
@@ -216,14 +231,14 @@ For time-sensitive facts, preserve the original `created` date and either:
 
 Not every article should reach D.
 
-## 13. Priorities
+## 14. Priorities
 
 - **P0:** broken/current-spec conflict, duplicate/invalid index behavior, legacy contract that can cause new bad content.
 - **P1:** flagship/series-entry/high-value content.
 - **P2:** ordinary modernization candidates.
 - **P3:** archive/reference content that is already compatible and needs little editorial work.
 
-## 14. Known specification drift at baseline
+## 15. Known specification drift at baseline
 
 Confirmed on 2026-08-30:
 
@@ -238,7 +253,7 @@ Confirmed on 2026-08-30:
 
 These are Batch 0 / Batch 1 migration work. Their presence does not redefine the current contract.
 
-## 15. QA contract
+## 16. QA contract
 
 The test and QA suite is part of the content contract. When a Reading Mode or directory contract changes, update all of these together:
 
@@ -249,7 +264,7 @@ The test and QA suite is part of the content contract. When a Reading Mode or di
 
 A production implementation is not considered fully migrated when the runtime uses the new contract but CI still validates the old one.
 
-## 16. Reject conditions
+## 17. Reject conditions
 
 Stop and re-review if a migration:
 
@@ -263,7 +278,7 @@ Stop and re-review if a migration:
 - reintroduces `es`, `spanish/` or canonical `*-mixed-en.md` as current conventions;
 - changes normal Reader output for articles without Structure metadata.
 
-## 17. Definition of compatibility
+## 18. Definition of compatibility
 
 At minimum, a compatible article set has:
 
