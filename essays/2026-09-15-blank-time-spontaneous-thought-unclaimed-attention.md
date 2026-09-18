@@ -11,7 +11,6 @@ seriesId: "attentional-agency"
 seriesOrder: 3
 tags: ["集中", "注意", "mind wandering", "休息", "スマートフォン", "創造性", "agency"]
 keywords: ["spontaneous thought", "mind wandering", "default mode network", "prospection", "creative incubation", "smartphone checking", "microbreak", "attentional agency", "Uneven U"]
-favorite: 5
 grow: 5
 abstract: "エレベーターを待つ30秒、信号待ち、電車が来るまでの2分。以前なら何もしなかった小さな空白を、私たちはスマートフォンで簡単に埋められる。ただ、その空白は本当に無価値だったのか。Mind wanderingには失敗も機能もあり、未来計画、memory、creative incubationとの関係も研究されている。一方、スマホ休憩が必ず認知を悪化させるという証拠もない。本稿では、ぼんやりを美化せず、空白を『内部思考か外部入力かを自分で選べる余地』として捉え直す。集中を選べることが自由なら、集中しない時間を残せることも自由である。"
 ---

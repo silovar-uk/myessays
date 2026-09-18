@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["日本語", "組版", "タイポグラフィ", "Webデザイン", "UI", "UX", "改行", "可読性", "AI", "CSS", "編集", "出版", "デザイン思想"]
 keywords: ["Japanese typography", "line breaking", "kinsoku", "JLREQ", "JIS X 4051", "semantic line breaking", "phrase based line breaking", "responsive typography", "word-break", "text-wrap", "editorial design"]
-favorite: 5
 grow: 5
 abstract: "AIが生成したWebページを見ていると、規則上は間違っていないのに、日本語の改行だけが妙に気持ち悪いことがある。単語の途中で切れる。見出しが細切れになる。短い行が連続する。PCでは整っていた改行がスマートフォンでは崩れる。本稿では、この違和感を日本語組版、出版の版面設計、Unicodeの改行アルゴリズム、CSS Textの仕様を手がかりに整理する。結論は単純である。改行とは、空いた幅に文字を詰める処理ではない。意味のまとまり、読みのリズム、視覚的な形を同時に編集する行為である。"
 ---

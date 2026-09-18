@@ -13,7 +13,6 @@ seriesOrder: 2
 location: "Boston, Massachusetts, USA"
 country: "United States"
 coordinates: [42.3601, -71.0589]
-favorite: 5
 grow: 5
 abstract: "アメリカの都市を一つずつ読むシリーズ第2回。ボストンを『独立革命と大学の街』だけで終わらせず、港に生まれた植民都市、Back Bayの大規模埋立、アイルランド移民と政治、黒人コミュニティと奴隷制廃止運動、1970年代の学校統合危機、大学・医療・life sciences中心の知識経済、1897年から続く地下鉄、Big Dig、スポーツまで一本につなぐ。フィラデルフィアが古いグリッドを使い続ける都市なら、ボストンは古い地図の上に新しい都市を何度も上書きしてきた街である。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Affordance", "Signifier", "Interaction", "UI", "UX", "Flat Design"]
 keywords: ["affordance", "signifier", "discoverability", "clickability", "interaction design", "flat design", "skeuomorphism", "Don Norman", "James Gibson"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 7

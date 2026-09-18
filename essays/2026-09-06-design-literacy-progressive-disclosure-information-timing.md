@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Progressive Disclosure", "Information Architecture", "Cognitive Load", "Disclosure Control", "Recognition", "Discoverability", "Accessibility", "UI"]
 keywords: ["progressive disclosure", "disclosure control", "information architecture", "cognitive load", "recognition", "discoverability", "advanced settings", "information timing", "Apple HIG", "W3C cognitive accessibility", "Nielsen Norman Group"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 19

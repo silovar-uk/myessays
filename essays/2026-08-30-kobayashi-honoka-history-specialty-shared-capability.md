@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 13
 tags: ["小林萌花", "ハロー！プロジェクト", "ハロプロ史", "BEYOOOOONDS", "SeasoningS", "ONLY YOU", "ピアノ", "クラシック", "BEYOOOOOPHONIC", "Honopiano", "人物史"]
 keywords: ["Honoka Kobayashi", "BEYOOOOONDS", "piano", "classical music", "specialty", "expertise", "shared capability", "translation", "bridge", "ONLY YOU audition"]
-favorite: 5
 grow: 5
 abstract: "2018年、特技・才能・技能を持つ人材を求めた『ONLY YOU』オーディションからBEYOOOOONDSへ加入した小林萌花。彼女のピアノは、加入時の個人的な強みから、楽曲、ライブ、オーケストラ共演、クラシック作品、ラジオへと広がっていった。『ピアノが上手いアイドル』という紹介ではなく、一人の専門性がグループの表現語彙へ組み込まれ、やがて外部の音楽文化と接続する橋になるまでを読む。"
 ---

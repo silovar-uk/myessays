@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["AI", "DeNA", "DARS", "組織変革", "人材育成", "業務設計"]
 keywords: ["DeNA AI Readiness Score", "DARS", "AI native company", "AI maturity model", "AIオールイン", "AI活用", "組織成熟度", "業務再設計"]
-favorite: 5
 grow: 5
 abstract: "DeNAのAI活用指標DARSは、個人と組織を5段階で測るのに、人事評価へ直接は結びつけない。しかも基準は意図的に少し抽象的で、部署ごとに具体化する。これは甘い制度なのか。公式資料、2026年時点の運用実績、マーケティング部と品質管理部門の事例、AWSやMicrosoftの成熟度モデルまで比べると、DARSが測ろうとしているのは「AIの上手さ」より、AIを使って仕事を再設計できる距離だと見えてくる。"
 ---

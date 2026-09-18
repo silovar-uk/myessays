@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["学習", "metacognition", "knowledge", "thinking", "cognitive bias"]
 keywords: ["metacognition", "illusion of explanatory depth", "self-explanation", "retrieval practice", "knowledge gaps", "calibration"]
-favorite: 5
 grow: 5
 abstract: "Learning is not only about adding more answers. 大きな転換は、自分が何を理解していないのか、その輪郭が見え始めるときに起こる。本稿では illusion of explanatory depth、metacognition、self-explanation、retrieval practice を手がかりに、「わかっていないことに気づく」ことを失敗ではなく、理解の resolution が上がったサインとして捉え直す。"
 ---

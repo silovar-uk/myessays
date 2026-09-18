@@ -8,7 +8,6 @@ type: "Technical Essay"
 status: "完成"
 tags: ["AI", "Google", "Antigravity", "Gemini", "開発環境", "エージェント"]
 keywords: ["Antigravity", "Gemini 3.8 Flash", "AI agent", "GEMINI.md", "pair programming", "terminal execution policy"]
-favorite: 4
 grow: 4
 abstract: "AIを単なる『コード生成チャット』として使う段階から、自律的にファイルを読み書きし検証までこなす『ペアプログラマー』として協働する時代へ。本稿では、Googleの開発環境Antigravityのアーキテクチャと、高速推論を担うGemini 3.8 Flashの組み合わせがもたらす開発体験の変化を整理する。さらに、GEMINI.mdによるルール定義やTerminal Execution Policyによる安全性の担保など、自律型エージェントと人間が心地よく境界線を引いて共存するための作法を考察する。"
 ---

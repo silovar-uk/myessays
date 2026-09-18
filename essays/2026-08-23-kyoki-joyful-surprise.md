@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["驚喜", "コミュニケーション", "体験設計", "サービス", "仕事", "人間関係"]
 keywords: ["驚喜", "joyful surprise", "customer delight", "surprise", "kindness", "期待", "体験設計", "delight"]
-favorite: 5
 grow: 5
 abstract: "『驚喜』という言葉を、自分が大切にしたい行動原則として捉え直す。驚かせること自体を目的にするのではなく、相手をよく見たうえで期待を少しだけ越え、思わず嬉しくなる瞬間をつくる。辞書にある本来の意味、customer delight研究、親切の効果を過小評価しやすいという心理学研究を手がかりに、仕事や日常で再現できる『驚喜』の条件と、やりすぎないための境界線を考える。"
 ---

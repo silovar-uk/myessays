@@ -8,7 +8,6 @@ type: "Technology & Society Essay"
 status: "完成"
 tags: ["AI", "フィジカルAI", "ロボティクス", "Embodied AI", "VLA", "World Model", "社会実装"]
 keywords: ["physical AI", "embodied AI", "robotics", "vision-language-action", "VLA", "world model", "robot foundation model", "sim-to-real", "deployment", "robotics safety"]
-favorite: 5
 grow: 5
 abstract: "Physical AIはヒューマノイドの別名でも、ひとつの確立済み学術分類でもない。本稿では2026年8月31日時点の研究・製品情報をもとに、Physical AI、Embodied AI、VLA、World Modelの境界を整理する。そのうえで、ロボットを『一度できる』Capability、『繰り返し安全にできる』Reliability、『現場の制約下で成立する』Deployabilityの三段階で読む。生成AI由来のモデル進歩は本物だが、データ、Sim-to-Real、安全、復旧、速度、保守、ROIまで含めて初めて社会実装になる。"
 ---

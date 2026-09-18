@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["組織論", "conflict", "negotiation", "team", "sports clubs", "English Mix"]
 keywords: ["Robbers Cave experiment", "superordinate goals", "task conflict", "relationship conflict", "Getting to Yes", "common enemy", "rivalry", "accountability"]
-favorite: 5
 grow: 5
 abstract: "社内で「あの人が悪い」と言い始めると、everything becomes simple very quickly. But if the same problem returns after that person leaves, we probably sent the enemy label to the wrong address. Robbers Cave、組織内コンフリクト研究、Getting to Yesを手がかりに、Fight the condition, not the personという考え方を組み立てる。Other clubs can be competitors without becoming moral enemies. And accountability still matters."
 ---

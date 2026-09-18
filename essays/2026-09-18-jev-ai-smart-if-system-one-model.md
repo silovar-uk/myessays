@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["AI", "Jev", "TypeSafe AI", "System One", "自動化", "AIエージェント", "意思決定"]
 keywords: ["Jev", "TypeSafe AI", "System One Models", "probabilistic decision model", "typed decisions", "AI agents", "routing", "guardrails"]
-favorite: false
 grow: true
 abstract: "2026年9月にTypeSafe AIが公開したJevは、文章やコードを生成するLLMではない。入力された状態に対して、あらかじめ定義された選択肢・スコア・真偽の確率を返す「判断用AI」だ。本稿では、Jevを「意味を理解するif文」と捉え、LLM・通常コード・人間との役割分担、実務で使える場面、現時点の弱点まで一次情報を中心に整理する。"
 ---

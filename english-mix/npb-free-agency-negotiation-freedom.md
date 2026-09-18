@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "FA", "free agency", "player mobility", "English Mix"]
 keywords: ["NPB", "free agency", "domestic FA", "overseas FA", "eligibility", "declaration", "negotiation freedom", "compensation"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 8

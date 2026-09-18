@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["太陽とシスコムーン", "T&Cボンバー", "ハロー！プロジェクト", "ASAYAN", "つんく♂", "ガタメキラ", "Magic of Love", "アイドル史", "組織論"]
 keywords: ["Taiyo to Ciscomoon", "T&C Bomber", "Hello Project", "ASAYAN", "Tsunku", "Gatamekira", "Magic of Love", "group history"]
-favorite: 5
 grow: 5
 abstract: "太陽とシスコムーン／T&Cボンバーは1999年のデビューから2000年10月の解散まで約1年半しか活動していない。それでも後輩による楽曲継承、周年ライブ、若いファンによる再発見を通じてハロプロ史に残り続けている。本稿では、異なる専門性を持つ4人の編成、つんく♂の実験的な楽曲制作、ASAYAN型の過酷な変化、短命ゆえの未完性、そして後世の再評価から、なぜ短い活動が長い影響へ変換されたのかを読む。"
 ---

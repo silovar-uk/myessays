@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["カントリー娘。", "カントリー・ガールズ", "ハロー！プロジェクト", "里田まい", "嗣永桃子", "半農半芸", "浮気なハニーパイ", "愛おしくってごめんね", "組織論"]
 keywords: ["Country Musume", "Country Girls", "Hello Project", "Mai Satoda", "Momoko Tsugunaga", "brand inheritance", "organizational identity", "idol history"]
-favorite: 5
 grow: 5
 abstract: "1999年に北海道・花畑牧場で働きながら芸能活動をする『半農半芸』アイドルとして始まったカントリー娘。は、事故による喪失、りんね一人体制、モーニング娘。メンバーを加えた特殊名義、里田まい一人体制を経て、2014年にカントリー・ガールズとして都市型アイドルへ再起動した。本稿では、同じメンバーや活動方式ではなく『カントリー』という名前そのものが残り、時代ごとに別の意味を入れ直されてきた歴史として読む。"
 ---

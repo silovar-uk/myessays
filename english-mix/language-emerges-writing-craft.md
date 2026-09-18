@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["writing", "language", "thinking", "文章", "English Mix"]
 keywords: ["language production", "incrementality", "writing process", "planning", "revision", "creative cognition", "文章術"]
-favorite: 5
 grow: 5
 abstract: "文章を書いていると、words sometimes seem to arrive by themselves. Psycholinguistic research suggests that speakers do not always formulate an entire sentence before starting; language production unfolds incrementally. Writing research, however, also shows that planning, goal setting, strategy instruction, models and revision can improve writing. だから文章術は『言葉を無から生む方法』というより、材料を蓄え、方向を与え、出てきた言葉を選び直す技術なのかもしれない。"
 ---

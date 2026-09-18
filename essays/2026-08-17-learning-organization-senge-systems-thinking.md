@@ -8,7 +8,6 @@ type: "Organizational Learning Essay"
 status: "完成"
 tags: ["ピーター・センゲ", "学習する組織", "システム思考", "組織学習", "チーム学習", "メンタルモデル", "心理的安全性", "マネジメント"]
 keywords: ["Peter Senge", "learning organization", "organizational learning", "The Fifth Discipline", "systems thinking", "mental models", "team learning", "psychological safety", "institutionalizing", "DLOQ"]
-favorite: 5
 grow: 5
 abstract: "『学習する組織』を、5つのディシプリンを備えた理想像としてではなく、経験が解釈・対話・routine・制度へ変換される仕組みとして読み直す。Sengeの影響力と実証的な根拠を分け、NASAコロンビア事故、組織学習研究、心理的安全性、team learning、DLOQ研究から、組織が本当に学んだと言える条件を考える。"
 ---

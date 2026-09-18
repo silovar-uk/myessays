@@ -10,7 +10,6 @@ series: "ブラウザーに3D世界を作ると何が変なのか"
 seriesOrder: 2
 tags: ["Web開発", "JavaScript", "Three.js", "3D", "WebGL"]
 keywords: ["Three.js", "Shadow Map", "LightShadow", "DirectionalLight", "PointLight", "SpotLight", "CameraHelper", "OrthographicCamera", "castShadow", "receiveShadow", "renderer.info", "WebGLRenderer", "WebGPURenderer"]
-favorite: 4
 grow: 4
 abstract: "Three.jsで影を一つ足すだけなのに、なぜライト側にもCameraが必要なのか。Shadow Cameraの範囲をわざと狭めて影を消し、影を落とすライト数も切り替えながら、Shadow Mapが『光から見た深度』を使う仕組みと描画コストを追う。PointLightが6方向ぶんの影描画を必要とする理由や、影の解像度・bias・WebGPU移行期の現在地まで整理する。"
 ---

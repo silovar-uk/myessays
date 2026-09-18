@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 16
 tags: ["小田さくら", "Sakura Oda", "モーニング娘。", "English Mix", "voice", "competition", "standard", "transmission"]
 keywords: ["Sakura Oda", "Morning Musume", "voice", "competition", "reliability", "standard", "teaching", "institutional memory", "transmission"]
-favorite: 5
 grow: 5
 abstract: "『スッピン歌姫』として一人で加入した小田さくらを、歌唱力ランキングではなく、競争する歌手から、グループの基準を支え、後輩へ技術と歴史を渡す人へ変化した人物として読むEnglish Mix版。"
 ---

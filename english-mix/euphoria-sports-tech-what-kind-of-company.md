@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["ユーフォリア", "ONE TAP SPORTS", "スポーツテック", "スポーツ科学", "事業戦略"]
 keywords: ["株式会社ユーフォリア", "ONE TAP SPORTS", "Sgrum", "スポーツテック", "コンディショニング", "アスリートマネジメント", "スポーツ科学", "健康経営", "臨床研究", "スポーツDX"]
-favorite: false
 grow: true
 abstract: ラグビー日本代表のcondition managementから始まったONE TAP SPORTSは、71競技・1,700チーム以上に広がった。その運営会社ユーフォリアは今、スクール運営、部活動地域展開、construction siteのheatstroke prevention、企業のclinical research支援まで手を伸ばしている。事業を並べると散らかって見えるが、「measure → share → decide → validate」というpatternで追うと、別の輪郭が見えてくる。スポーツをmarketではなく、社会実装のための「innovation nursery」と捉える会社の現在地を、成功例だけでなくscientific limitsや撤退事例も含めて考える。
 ---

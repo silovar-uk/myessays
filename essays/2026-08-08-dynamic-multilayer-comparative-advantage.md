@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["比較優位", "生成AI", "タスク配分", "人的資本", "組織設計", "キャリア"]
 keywords: ["comparative advantage", "task allocation", "AI adoption", "task chaining", "learning by doing", "human capital", "workflow design"]
-favorite: 5
 grow: 5
 abstract: "生成AI時代の仕事配分では、『AIにできるか』『人間のほうが上手いか』だけでは足りない。比較優位は相対的な機会費用と配分を考える強力な出発点だが、AIが複数工程をchain化するとtask単位の最適化が崩れ、現在の配分はlearning-by-doingを通じて将来の人的資本も変える。本稿は既存研究と独自拡張を分けながら、①Task Relative Surplus、②Workflow Boundary、③Capability Trajectoryの三層で配分を点検する『DMCA』を診断枠組みとして再定義する。"
 ---

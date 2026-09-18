@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Memphis", "Ettore Sottsass", "Postmodernism", "Functionalism", "Expression", "Radical Design"]
 keywords: ["Memphis design", "Ettore Sottsass", "Carlton", "Postmodernism", "Functionalism", "Radical Design", "Anti-Design", "expression", "ornament", "identity"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 32

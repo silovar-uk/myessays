@@ -8,7 +8,6 @@ type: "Practical Paper"
 status: "完成"
 tags: ["Street Fighter 6", "格闘ゲーム", "ドライブパリィ", "ジャストパリィ", "モダンマリーザ", "防御", "期待値"]
 keywords: ["Drive Parry", "Perfect Parry", "defense", "risk reward", "Marisa", "Street Fighter 6"]
-favorite: 5
 grow: 5
 abstract: "SF6のドライブパリィとジャストパリィを、単なる防御テクニックではなく『守備の期待値を再配分するシステム』として整理する。現行仕様、ガードとの違い、投げとの三すくみ、2025年以降の方向入力要件、ジャスト後の50%補正、狙うべき局面と捨てるべき局面、モダン・マリーザ向けの実戦運用、トレーニングメニューまで一気通貫でまとめる。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["仕事", "生産性", "効率化", "マルチタスク", "集中", "意思決定"]
 keywords: ["multitasking", "task switching", "attention residue", "work in progress", "WIP", "progress principle", "exploration exploitation", "slack time"]
-favorite: 5
 grow: 5
 abstract: "目先の効率化を重ね、予定を隙間なく埋める。ずっと働いているし、細かい仕事も大量に片づく。それなのに、一日の終わりには『何も進んでいない』『次の大きなことを始められない』感じが残る。task switching、attention residue、meaningful progress、WIP、exploration / exploitation、slack timeを辿ると、問題は効率化そのものより、効率化で生まれた容量を再び小さな仕事で埋めてしまうことにあるように見えてきた。"
 ---

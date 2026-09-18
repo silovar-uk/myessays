@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["インテンションエコノミー", "AIエージェント", "Agentic Commerce", "Jobs to Be Done", "構成的選好", "Choice Architecture", "ファンベース", "ブランド"]
 keywords: ["intention economy", "agentic commerce", "Jobs to Be Done", "constructed preference", "choice architecture", "consumer autonomy", "AI shopping agent", "delegation", "brand"]
-favorite: 5
 grow: 5
 abstract: "AIエージェントが検索、比較、推薦、決済まで担うとき、消費者は単に作業を委任するだけなのか。Jobs to Be Done、構成的選好、Choice Architecture、消費者自律性の研究をつなぐと、比較や選択の過程そのものが好みを作っているため、委任とは『すでにある意図の実行』だけでなく『意図形成の一部を渡すこと』でもあると見えてくる。本稿では、ブランドが消えると断定せず、選択の委任可能性を左右する条件を考え、最後にエージェント時代の希少資源を『何を最適化するかを決める権利』として捉え直す。"
 ---

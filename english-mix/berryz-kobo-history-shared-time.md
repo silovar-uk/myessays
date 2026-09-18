@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["Berryz工房", "ハロー！プロジェクト", "ハロプロキッズ", "スッペシャル ジェネレ〜ション", "嗣永桃子", "清水佐紀", "活動停止", "アイドル史", "組織論"]
 keywords: ["Berryz Kobo", "Hello Project", "shared time", "fixed cohort", "group history", "Special Generation", "idol development", "collective memory"]
-favorite: 5
 grow: 5
 abstract: "Berryz工房は2004年、ハロプロキッズ15人から選ばれた8人の『スターティングメンバー』で始まり、当初は学校生活に合わせてメンバー交代や人数変更まで想定されていた。しかし2005年に石村舞波が卒業すると、その後は清水佐紀、嗣永桃子、徳永千奈美、須藤茉麻、夏焼雅、熊井友理奈、菅谷梨沙子の7人で2015年の無期限活動停止まで約10年活動した。本稿では、メンバー交換ではなく、同じ人たちが小学生から大人へ変わっていく時間そのものが、楽曲・ライブ・ファン記憶へ積み上がったグループとして読む。"
 ---

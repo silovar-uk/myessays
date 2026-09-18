@@ -8,7 +8,6 @@ type: "Football Memory / EN MIX"
 status: "完成"
 tags: ["浦和レッズ", "鹿島アントラーズ", "Jリーグ", "EN MIX", "李忠成"]
 keywords: ["Urawa Reds", "Kashima Antlers", "Kashima Stadium", "Tadanari Lee", "Shusaku Nishikawa", "Ricardo Rodriguez", "Cho Kwi-jae"]
-favorite: 5
 grow: 4
 abstract: "浦和が2026年9月6日に鹿島のホームで1-0の勝利。対鹿島の勝利は2021年以来、CSを除く鹿島でのリーグ勝利は2016年7月23日以来。その時間を、当時の選手名やスタジアムの景色とともにたどるEN MIX版。"
 ---

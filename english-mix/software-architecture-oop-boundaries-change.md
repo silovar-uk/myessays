@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["ソフトウェア設計", "アーキテクチャ", "OOP", "オブジェクト指向", "モジュール", "依存関係", "リファクタリング", "ADR"]
 keywords: ["software architecture", "object-oriented programming", "OOP", "encapsulation", "abstraction", "inheritance", "polymorphism", "coupling", "cohesion", "modularity", "architecture decision record", "microservices", "event-driven architecture"]
-favorite: 4
 grow: 5
 abstract: "Software architectureとOOPを、別々の暗記項目ではなく『complexityとchangeをどう制御するか』という一つの地図として整理する。Architectureはsystem-levelの重要なboundaries, dependencies, data ownership, evolution principlesを扱い、OOPはstateとbehaviorをobjectsへまとめて責務と実装詳細を局所化する一つの手段。本稿ではencapsulation, abstraction, inheritance, polymorphismから、cohesion/coupling、layered architecture、microservices、event-driven、design patterns、refactoring、ADRまでをつなぐ。"
 ---

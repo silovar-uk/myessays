@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["つんく♂", "モーニング娘。", "ハロー！プロジェクト", "プロデュース", "人材育成", "組織設計", "ブランド", "J-POP", "アイドル", "リズム天国"]
 keywords: ["Tsunku", "Morning Musume", "Hello Project", "producer", "talent development", "brand architecture", "ASAYAN", "Rhythm Heaven", "Sharam Q"]
-favorite: 5
 grow: 4
 abstract: "つんく♂の凄さを『スターを見抜いた天才プロデューサー』だけで説明すると、本質を取り逃がす。シャ乱Qで自分たちを売る方法を考え、モーニング娘。では凸凹のある人材を入れ替えながら長く続く仕組みをつくり、『リズム天国』では制約から遊びを設計した。本稿は、人物史を追いながら、つんく♂の仕事を『不完全な人・音・組織を、変化し続ける価値へ変換する技術』として読み直す。"
 ---

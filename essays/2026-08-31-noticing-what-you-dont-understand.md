@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["学習", "メタ認知", "知識", "思考法", "認知バイアス"]
 keywords: ["metacognition", "illusion of explanatory depth", "self-explanation", "retrieval practice", "knowledge gaps", "calibration"]
-favorite: 5
 grow: 5
 abstract: "学ぶとは、知っていることを増やすだけではない。むしろ大きな転換は、自分が何を理解していないのか、その輪郭が見え始めるときに起こる。本稿では、説明できると思い込む「説明深度の錯覚」、自分の理解状態を監視するメタ認知、自己説明と想起練習の研究を手がかりに、「わかっていないことに気づく」ことを学習の失敗ではなく、解像度が上がったサインとして捉え直す。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["インテンションエコノミー", "ファンベース", "ブランドコミュニティ", "関係性マーケティング", "顧客エンゲージメント", "AI", "自律性"]
 keywords: ["intention economy", "fanbase", "relationship marketing", "brand community", "customer engagement", "extended self", "service-dominant logic", "AI agents"]
-favorite: 5
 grow: 5
 abstract: "インテンションエコノミーは、人が次に何をしようとしているかをめぐる市場として語れる。しかし、その『次にしたいこと』はどこから来るのか。ファンベース、関係性マーケティング、ブランドコミュニティ、拡張された自己、顧客エンゲージメント、サービス・ドミナント・ロジックを横断すると、購買意図は孤立した瞬間の信号ではなく、信頼、記憶、儀式、仲間、自己像が長い時間をかけて作る結果として見えてくる。するとファンベースは購入後の維持策ではなく、意図が生まれる前の『意図インフラ』として読み替えられる。"
 ---

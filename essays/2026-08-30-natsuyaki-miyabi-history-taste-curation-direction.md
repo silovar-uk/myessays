@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 15
 tags: ["夏焼雅", "ハロー！プロジェクト", "ハロプロ史", "Berryz工房", "Buono!", "PINK CRES.", "ファッション", "Rosy Kelly", "リーダー", "人物史"]
 keywords: ["Miyabi Natsuyaki", "Berryz Kobo", "Buono!", "PINK CRES.", "taste", "style", "curation", "direction", "leadership", "fashion", "independence"]
-favorite: 5
 grow: 5
 abstract: "夏焼雅は『おしゃれな人』という一語では捉えきれない。10歳でハロー！プロジェクト・キッズに入り、Berryz工房では集団の中で自分を見せることを学び、Buono!では歌い方そのものを変え、PINK CRES.ではリーダーとして他者の見せ方にも関わった。その後、ファッション、ブランド、そして2026年の個人活動へ。『好き』『格好いい』という感覚が、選ぶ・組み合わせる・伝える・方向を決める能力へ変わっていく過程を読む。"
 ---

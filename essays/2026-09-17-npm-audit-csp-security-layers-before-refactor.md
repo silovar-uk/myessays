@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["セキュリティ", "npm", "CSP", "CI", "リファクタリング", "Web開発"]
 keywords: ["npm audit", "npm ci", "high severity", "Content Security Policy", "default-src none", "script-src self", "Cache-Control no-store", "dependency vulnerability", "Phase 0"]
-favorite: 5
 grow: 5
 abstract: "CIログに「3 high severity vulnerabilities」と出ているのに、同じアプリのCSPは強いと言われる。これは矛盾ではない。npm auditは依存関係の既知脆弱性、CSPはブラウザが読み込み・実行できる資源、no-storeはキャッシュ保存を扱う、別々の防御線だからだ。npm公式、MDN、web.dev、GitHub Docsをたどりながら、非エンジニアでも「何が危険で、何を先に確認すべきか」を判断できるところまで分解する。"
 ---

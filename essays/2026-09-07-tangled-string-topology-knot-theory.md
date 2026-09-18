@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["数学", "トポロジー", "結び目理論", "物理", "日常", "科学"]
 keywords: ["topology", "knot theory", "knot", "link", "braid", "tangle", "knotoid", "Reidemeister moves", "physical entanglement", "spontaneous knotting"]
-favorite: 5
 grow: 5
 abstract: "ひも、イヤホン、ネックレスはなぜ絡むのか。トポロジーの結び目理論を辿ると、そもそも数学でいうknotは端のない閉じた輪で、日常の開いたひもの絡まりとは少し違うことが分かる。knot、link、braid、tangle、knotoidを整理し、Reidemeister movesや実際にひもを箱で振った実験まで見ると、現実の『ほどけない』はtopologyだけでなく、geometry、摩擦、太さ、硬さ、端点、閉じ込めが重なった現象として見えてくる。"
 ---

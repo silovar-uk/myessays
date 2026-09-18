@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["BEYOOOOONDS", "ハロー！プロジェクト", "CHICA#TETSU", "雨ノ森 川海", "SeasoningS", "眼鏡の男の子", "灰toダイヤモンド", "アイドル史", "組織論"]
 keywords: ["BEYOOOOONDS", "Hello Project", "combinatorial identity", "modular organization", "skit", "special skills", "subunits", "idol organization"]
-favorite: 5
 grow: 5
 abstract: "BEYOOOOONDS began with a structure that looked almost unnecessarily complicated: multiple internal units, audition winners with specialized skills, theatrical songs, instruments and character roles. But the complexity itself became a production engine. This essay reads CHICA#TETSU, Ame no Mori Kawa Umi, SeasoningS, 'Megane no Otoko no Ko', member skills, graduations and the 2026 redistribution of new members as one organizational idea: identity can live not in one fixed form, but in the ability to recombine people, roles and capabilities."
 ---

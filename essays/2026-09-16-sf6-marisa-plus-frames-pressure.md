@@ -8,7 +8,6 @@ type: "Practical Game Analysis"
 status: "完成"
 tags: ["Street Fighter 6", "マリーザ", "フレームデータ", "格闘ゲーム", "攻め"]
 keywords: ["Marisa", "frame advantage", "frame trap", "Drive Rush", "throw invulnerability", "pressure", "SF6"]
-favorite: 5
 grow: 4
 abstract: "マリーザがガードさせて有利を取ったあと、具体的に何を押すべきかを現行Ver.2.0401.010のフレームデータから逆算する。+1〜+5を『4F暴れをきれいに潰せる最も遅い技』へ翻訳し、距離、投げ無敵、ドライブラッシュ、パリィ、無敵技まで含めて実戦の判断木にする。最大の発見は、+5では最速投げが早すぎて空振りし得ること。有利フレームは攻め続けてよい許可証ではなく、次の選択を設計するための時間予算である。"
 ---

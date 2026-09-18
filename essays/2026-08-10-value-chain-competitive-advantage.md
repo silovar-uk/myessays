@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["経営戦略", "バリューチェーン", "コンサルティング", "競争優位", "プロスポーツ", "業界比較", "戦略分析"]
 keywords: ["value chain", "competitive advantage", "Michael Porter", "activity system", "value system", "value shop", "value network", "J.LEAGUE", "cost leadership", "differentiation", "strategy consulting"]
-favorite: 5
 grow: 5
 abstract: "バリューチェーン分析は、業務を上流から下流へ並べる作業ではない。企業を戦略的に重要な活動へ分解し、相対コストと顧客価値、活動間の連結から競争優位の構造を診断する。本稿はポーターの基本モデルを図解し、Toyota、IKEA、プロスポーツクラブなど複数業界を比較。分析手順、記入テンプレート、KPIへの変換、value shop・value networkを含む限界と読み替えまで、企画・経営実務で使える形に整理する。"
 ---

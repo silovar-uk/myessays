@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "ファン", "観客動員", "球団経営", "保護地域", "スポーツビジネス", "2026"]
 keywords: ["NPB", "fan", "audience", "保護地域", "ファンクラブ", "オールスターゲーム", "revenue link", "club business"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 12

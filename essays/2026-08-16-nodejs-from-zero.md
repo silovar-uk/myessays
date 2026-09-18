@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["Node.js", "JavaScript", "npm", "Web開発", "バックエンド", "CLI", "プログラミング", "GitHub Pages", "非同期処理", "イベントループ"]
 keywords: ["Node.js", "JavaScript runtime", "V8", "libuv", "npm", "package.json", "node_modules", "event loop", "asynchronous I/O", "server", "backend", "CLI", "CommonJS", "ES Modules", "LTS"]
-favorite: 4
 grow: 5
 abstract: "Node.jsを理解するには、いきなりnpmやサーバーの話から始めるより、「そもそもプログラムはどうやってコンピューター上で動くのか」「JavaScriptという言語と、それを動かす環境は何が違うのか」から整理した方が早い。本稿では、完全初心者を対象に、実行環境・V8・API・プロセス・I/O・非同期・イベントループ・npm・package.jsonなどの用語を必要になった順に導入する。1995年のJavaScript誕生から2009年のNode.js登場、io.js分裂と再統合、現在のOpenJS Foundationまでの歴史、Node.jsが得意な仕事と不得意な仕事、依存関係肥大化やセキュリティ、エコシステムの複雑さといった批判も含めて、一枚の概念地図として整理する。"
 ---

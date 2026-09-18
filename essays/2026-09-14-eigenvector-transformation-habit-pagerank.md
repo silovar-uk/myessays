@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["固有ベクトル", "固有値", "線形代数", "行列", "PageRank", "PCA", "数学"]
 keywords: ["eigenvector", "eigenvalue", "linear algebra", "power method", "PageRank", "stationary distribution", "PCA", "matrix powers"]
-favorite: 5
 grow: 5
 abstract: "ベクトルの続編として、固有ベクトルを『行列の公式』ではなく『変換そのものの癖』として調べた。(x,y)を(2x+y,x+2y)へ移す変換を(1,0)に何度もかけると、(2,1)、(5,4)、(14,13)、(41,40)…と増えながら45度方向へ寄っていく。なぜその方向だけが残るのかを固有値分解で確かめ、反復計算、Power Method、Markov連鎖、初期PageRank、PCAまで追う。一方で、すべての行列が一つの方向へ収束するわけではなく、回転行列のように実固有ベクトルを持たない例や、最大固有値の条件も整理した。最後に、固有ベクトルとは『行列の中に隠れた特別な矢印』ではなく、変換が何度繰り返されても自分自身として扱う方向なのだと捉え直す。"
 ---

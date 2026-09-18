@@ -8,7 +8,6 @@ type: "Expanded Reading"
 status: "完成"
 tags: ["拡張読解", "エンターテインメント", "サンリオ", "松竹", "SHAPE Partners", "LBE", "IP", "LTV", "財務分析", "有価証券報告書"]
 keywords: ["expanded reading", "location based entertainment", "experience economy", "customer lifetime value", "Baumol cost disease", "rights business", "Sanrio", "Shochiku", "SHAPE Partners", "financial statements"]
-favorite: 5
 grow: 5
 abstract: "SHAPE Partnersによるサンリオ・松竹対談を、本文だけで閉じずに読む。LBEを経験経済やIP360と接続し、歌舞伎の『超・高LTV』を顧客獲得と関係継続の問題として捉え、ライブの強さをバウモルのコスト病という弱点からも検討する。さらに、片岡佑輔氏が2015年にサンリオの有価証券報告書を3年分読み込んだという逸話から、公開資料を使って企業の事業モデルと経営課題を逆算する行為を再構成する。一本の記事から、その背後の経営構造へ進む『拡張読解』の実践。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["駅伝", "ケニア人留学生", "スポーツ移民", "スカウト", "労働市場", "箱根駅伝", "実業団"]
 keywords: ["Iten", "Eldoret", "Kenyan runners", "Michael Kentaro Peters", "sport labour migration", "ekiden", "recruiter", "scouting network", "talent pipeline"]
-favorite: 5
 grow: 5
 abstract: "ケニアで長距離ランナーを探すなら、世界的な練習拠点ItenやEldoretへ行けばよさそうに見える。ところがMichael Kentaro Petersの10年にわたる民族誌研究では、日本の高校・大学・実業団へ渡るランナーの多くは、別の地域に張られた日本向けスカウト網から選ばれていた。日本には年間およそ150人のケニア人ランナーがいる一方、誰がその回廊に乗るかは速さだけでは決まらない。駅伝の広告価値、エージェントの地理、奨学金、ビザ、契約更新、外国人区間制限まで追うと、グローバルな才能市場は『世界中から最適な人を選ぶ市場』ではなく、特定の場所同士を結ぶ細い回廊に見えてきた。"
 ---

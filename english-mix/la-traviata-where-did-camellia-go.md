@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["オペラ", "音楽", "文学", "フランス", "イタリア", "19世紀"]
 keywords: ["La traviata", "椿姫", "Giuseppe Verdi", "Alexandre Dumas fils", "La Dame aux camélias", "Marie Duplessis", "Violetta Valéry", "demi-monde"]
-favorite: 5
 grow: 4
 abstract: "日本語では『椿姫』、イタリア語の原題はLa traviata――『道を踏み外した女』。Why does the flower disappear from the title? 原作小説、1853年の台本、検閲、ヴィオレッタの声の変化を追うと、the flower shrinks while the judgment growsという奇妙な変換が見えてくる。"
 ---

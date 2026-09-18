@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "プロ野球", "リーグ制度", "スポーツビジネス", "2026"]
 keywords: ["NPB", "12球団", "2リーグ", "143試合", "interleague", "climax series", "league structure", "sports league design"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 4

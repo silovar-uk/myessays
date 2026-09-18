@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["ベクトル", "数学", "線形代数", "基底", "直交基底", "Fourier", "PCA", "次元削減", "情報圧縮"]
 keywords: ["basis", "orthonormal basis", "change of basis", "Fourier series", "PCA", "principal components", "dimensionality reduction", "projection", "compression"]
-favorite: 5
 grow: 5
 abstract: "前編では『座標から解脱する』ことを、座標を本体扱いしないことだと整理した。ところが線形代数は、その直後にまた基底を選び始める。なぜか。ベクトル(3,3)は標準基底では(3,3)だが、45度回した直交基底では(3√2,0)になり、座標が1個消える。同じ対象でも、ものさしを選び直すと記述の複雑さが変わるからだ。この記事では基底、直交基底、Fourier級数、PCAを『良い座標を選んで、不要な係数を小さくする技術』として一本につなぐ。抽象化のゴールは座標を捨てることではなく、座標を自由に選べるようになることだった。"
 ---

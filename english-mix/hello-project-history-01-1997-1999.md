@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "ASAYAN", "LOVEマシーン", "つんく♂", "アイドル史", "音楽史"]
 keywords: ["Hello! Project", "Morning Musume", "ASAYAN", "LOVE Machine", "Ai no Tane", "Tsunku", "idol history", "1990s"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第1回。1997年のモーニング娘。結成から1999年の『LOVEマシーン』とHello! Project成立までを、ASAYANのドキュメンタリー性、5万枚手売りという参加型デビュー、2期追加と福田明日香卒業による流動的メンバー制、CD市場ピーク、後藤真希加入、複数グループを束ねるプロジェクト化という観点から読む。"
 ---

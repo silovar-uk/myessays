@@ -8,7 +8,6 @@ type: "Field Report"
 status: "完成"
 tags: ["BCG", "BCG Japan", "コンサルティング", "キャリア", "働き方", "組織論", "評価", "プロフェッショナルファーム"]
 keywords: ["Boston Consulting Group", "BCG Japan", "consulting reality", "staffing", "evaluation", "work life balance", "project leader", "中途採用"]
-favorite: 5
 grow: 5
 abstract: "BCGを『激務か、成長できるか』の二択で語ると、日本オフィスの実態を外す。2024〜2026年を中心に、日本法人の現役・元社員口コミ、2024年退職の元Project Leader、BCGアラムナイ、現役社員・公式採用情報を横断すると、見えてくるのは単純な長時間労働ではない。案件によって20時にも23時にもなる生活、若手の働き方改革のしわ寄せを受けるマネージャー層、評価と次の案件がつながる感覚、そして高い成長密度。本稿は、海外BCGの一般論ではなく、日本人がBCG Japanで働くときの生活と心理をできるだけ立体的に描く。"
 ---

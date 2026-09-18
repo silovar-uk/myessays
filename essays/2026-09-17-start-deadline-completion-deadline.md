@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["締切", "先延ばし", "タスク管理", "行動科学", "計画"]
 keywords: ["開始締切", "完了締切", "implementation intentions", "planning fallacy", "procrastination", "pre-crastination"]
-favorite: 5
 grow: 5
 abstract: "仕事では『いつまでに終えるか』は書くのに、『いつまでに始めるか』はなぜか書かない。本稿では後者を実務上の造語として『開始締切』と呼び、締切研究、実行意図、計画錯誤、プレクラステイネーションまで調べる。結論は、締切をもう一個増やすことではない。完了時刻から逆算した『出発時刻』を、観測できる最初の行動として見える化することである。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "UI", "Gestalt", "Similarity", "Signifier", "Accessibility", "Visual Language"]
 keywords: ["cue collision", "semantic overload", "Similarity", "Gestalt", "visual cue", "signifier", "WCAG 1.4.1", "redundant cues", "visual vocabulary"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 56

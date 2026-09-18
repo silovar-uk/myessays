@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["インテンションエコノミー", "AI", "エージェント", "アテンションエコノミー", "広告", "自律性", "コマース"]
 keywords: ["intention economy", "Doc Searls", "Yaqub Chaudhary", "Jonnie Penn", "agentic commerce", "Agent Payments Protocol", "Agentic Commerce Protocol", "AI agent", "autonomy"]
-favorite: 5
 grow: 5
 abstract: "インテンションエコノミーとは何かを調べると、同じ名前でほぼ反対方向を向く二つの構想に出会う。2006年にDoc Searlsが描いたのは、買い手が自分の購入意図を市場へ示し、売り手を競わせる利用者主導の市場だった。ところが2024年、Yaqub ChaudharyとJonnie Pennは、LLMが人間の意図を推定・予測・操作し、それを商業化する別の「インテンションエコノミー」を警告した。2025年以降にはAIエージェントが検索、推薦、決済まで担う基盤も現れた。注意の次に市場化されるものは意図そのものなのか。それとも、意図が固まる前に介入する権利なのか。二つの未来をたどりながら、自律性がシステム設計の問題へ変わっていく過程を考える。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["文化心理学", "稲作", "小麦", "Rice Theory", "集団主義", "個人主義", "相互依存", "英語学習"]
 keywords: ["rice theory", "collectivism", "individualism", "interdependence", "rice farming", "wheat farming", "irrigation", "culture", "English"]
-favorite: 4
 grow: 5
 abstract: "Rice Theoryを、シンプルな英語と日本語を交互に使いながら読み直す。2014年の中国研究から2015年の批判、2018年の日常行動観察、2024年の準自然実験、2025年の日本での否定的結果までをたどり、作物そのものより『相互依存を要求する仕事の構造』に注目する。"
 ---

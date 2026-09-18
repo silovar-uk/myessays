@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 13
 tags: ["小林萌花", "Honoka Kobayashi", "BEYOOOOONDS", "SeasoningS", "ピアノ", "クラシック", "English Mix", "specialty", "expertise", "bridge"]
 keywords: ["Honoka Kobayashi", "BEYOOOOONDS", "piano", "classical music", "specialty", "expertise", "shared capability", "translation", "bridge"]
-favorite: 5
 grow: 5
 abstract: "小林萌花のピアノを個人的な特技ではなく、BEYOOOOONDSの表現能力へ組み込まれ、やがてクラシック音楽の外部世界と接続する専門性として読むEnglish Mix版。"
 ---

@@ -12,7 +12,6 @@ mix_unit: "sentence"
 cefr: "B1-B2"
 tags: ["歌", "ボイトレ", "高音", "発声", "音声科学", "練習", "運動学習", "セルフ実験"]
 keywords: ["high notes", "usable range", "SOVT", "straw phonation", "lip trill", "motor learning", "vocal warm-up", "voice training", "repeatability", "strain"]
-favorite: 5
 grow: 5
 abstract: "高い声を出したいと思って音域を測ると、最低音G2、楽に出せる最高音C5、D5付近からstrainが増え、G5付近でfalsetto側へ切り替わり、C6まで発声できた。The real target may not be maximum pitch, but a wider usable range with less effort and better repeatability. SOVT、vocal warm-up、motor learningの研究を踏まえ、1回10〜12分・7日間でbefore / after / next morningを記録するpersonal experimentとして練習を設計する。"
 ---

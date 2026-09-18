@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Gestalt", "Proximity", "Whitespace", "Accessibility", "Design Systems"]
 keywords: ["Gestalt Proximity", "Principle of Proximity", "Whitespace", "Negative Space", "Semantic Spacing", "Perceptual Grouping", "Visual Grouping", "Cognitive Accessibility", "Max Wertheimer", "Spacing Tokens"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 55

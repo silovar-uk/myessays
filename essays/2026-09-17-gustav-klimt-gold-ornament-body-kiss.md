@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["美術", "グスタフ・クリムト", "ウィーン世紀末", "ウィーン分離派", "装飾", "金"]
 keywords: ["Gustav Klimt", "The Kiss", "Der Kuss", "Vienna Secession", "Beethoven Frieze", "Adele Bloch-Bauer", "gold leaf", "ornament", "Attersee", "Wiener Moderne"]
-favorite: 5
 grow: 5
 abstract: "《接吻》という題なのに、ベルヴェデーレは「実際のキスそのものを意図的に避けている」と説明する。では、クリムトは何を描いていたのか。金箔、平面的な装飾と立体的な肌、ウィーン分離派、大学天井画の騒動、ナチ時代の略奪と返還、そして段ボール製ビューファインダーまで追う。調べる前は「金色の絵の人」だった。調べた後に残ったのは、金よりも、身体と模様、現実と象徴、接触と未接触の「あいだ」を描き続けた人だった。"
 ---

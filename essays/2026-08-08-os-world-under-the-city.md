@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["OS", "コンピューター", "システム", "抽象化", "比喩"]
 keywords: ["operating system", "abstraction", "resource allocation", "interface", "infrastructure"]
-favorite: 3
 grow: 3
 abstract: "OSは、単にコンピューターを動かすソフトではない。複雑な機械の仕組みを隠し、限られた資源を配り、アプリが共通のルールで動ける世界をつくる。本稿では、その役割を『眠らない街の地下にある見えない仕組み』になぞらえ、OSという比喩が人や組織にも使われる理由まで描く。"
 ---

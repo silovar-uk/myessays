@@ -12,7 +12,6 @@ mix_unit: "sentence"
 cefr: "B1-B2"
 tags: ["日本政治", "政党政治", "中道", "公明党", "立憲民主党", "政治史"]
 keywords: ["centrism", "political centre", "55-year system", "Katayama Cabinet", "Minshato", "Komeito", "Constitutional Democratic Party", "Chudo Reform Alliance", "coalition", "political realignment", "consensus-building"]
-favorite: 5
 grow: 5
 abstract: "What does centrism mean in Japanese politics? 日本政治の『中道』を1947年の片山連立内閣、55年体制、民社党、公明党、自公連立、立憲民主党、2026年の中道改革連合までたどる。The key is to separate organizational lineage, ideological similarity, and political cooperation. 中道は左右の固定されたmidpointではなく、時代によってposition・values・political methodの意味を変えてきた。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["中国古典思想", "孟子", "尽心下", "書経", "英語学習", "批判的読解", "意思決定", "資料", "AI"]
 keywords: ["盡信書則不如無書", "Mencius", "Jinxin", "Wucheng", "source criticism", "evidence", "critical reading", "AI"]
-favorite: 4
 grow: 5
 abstract: "孟子の「盡信《書》，則不如無《書》」を、シンプルな英語と日本語を交互に使いながら読む。『書経』武成の記述を孟子がなぜ全面採用しなかったのかを確認し、報告書・データ・AI出力を判断材料としてどう扱うかへつなげる。"
 ---

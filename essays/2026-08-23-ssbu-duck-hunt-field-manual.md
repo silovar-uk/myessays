@@ -8,7 +8,6 @@ type: "Structured Practical Review"
 status: "完成"
 tags: ["スマブラSP", "ダックハント", "対戦ゲーム", "ゲーム研究", "技能獲得"]
 keywords: ["Duck Hunt", "Trick Shot", "Can", "Can Shield Dash", "投げ缶", "neutral", "stage control", "Wild Gunman", "Clay Shooting"]
-favorite: 5
 grow: 5
 abstract: "『スマブラSP』のダックハントを、技表ではなく「盤面を設計するキャラクター」として学ぶ実戦ガイド。缶・ガンマン・クレーの役割、ニュートラルの基本、シールド缶、投げ缶、崖・復帰、初心者が陥りやすい失敗を、公式情報・フレームデータ・攻略動画・近年の競技実績を突き合わせて整理する。目標はBボタンを増やすことではなく、相手の反応を見て次の一手を選べるようになること。"
 ---

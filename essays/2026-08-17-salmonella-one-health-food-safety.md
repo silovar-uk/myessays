@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["サルモネラ", "食中毒", "細菌", "食品衛生", "鶏卵", "生卵", "感染症", "公衆衛生", "One Health", "抗菌薬耐性"]
 keywords: ["Salmonella", "salmonellosis", "Salmonella Enteritidis", "Salmonella Typhimurium", "Salmonella Typhi", "food safety", "egg safety", "serovar", "One Health", "antimicrobial resistance"]
-favorite: 5
 grow: 5
 abstract: "サルモネラは『卵や鶏肉で起こる食中毒菌』として知られるが、それだけでは正体の半分しか見えない。2,500を超える血清型、動物の腸管と環境をまたぐ生態、鶏の生殖器から卵内部へ入り得るSalmonella Enteritidis、チフス菌との違い、日本で生卵を食べることを可能にしてきた生産・表示・冷蔵・加熱の制度、さらに抗菌薬耐性とOne Healthまでを一続きで整理する。衛生とは、世界から菌を消すことなのか。それとも、菌がいる世界で感染確率を下げ続ける設計なのかを考える。"
 ---

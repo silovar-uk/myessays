@@ -8,7 +8,6 @@ type: "Practical Game Analysis"
 status: "完成"
 tags: ["Street Fighter 6", "Marisa", "Frame Data", "Fighting Games", "Pressure"]
 keywords: ["Marisa", "frame advantage", "frame trap", "Drive Rush", "throw invulnerability", "pressure", "SF6"]
-favorite: 5
 grow: 4
 abstract: "After Marisa gets plus frames on block, what should she actually press? Using current Ver.2.0401.010 frame data, this essay translates +1 through +5 into the slowest follow-up that can cleanly beat a 4F mash, then adds spacing, throw invulnerability, Drive Rush, parry, and reversals. The strangest discovery is that at +5, an immediate throw can be too early and whiff. Plus frames are not a permission slip to keep attacking; they are a time budget for designing the next choice."
 ---

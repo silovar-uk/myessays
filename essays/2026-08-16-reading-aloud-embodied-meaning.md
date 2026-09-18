@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["音読", "プレゼン", "朗読", "英語学習", "プロソディ", "身体性", "コミュニケーション"]
 keywords: ["reading aloud", "oral reading", "prosody", "production effect", "presentation", "recitation", "pause", "embodied meaning", "fluency"]
-favorite: 5
 grow: 5
 abstract: "音読は、文字を音へ変換するだけの作業ではない。本稿は、記憶研究のproduction effect、読解とプロソディの研究、発話における間と速度、プレゼンテーションの実践知を横断し、音読を「意味を身体化し、他者に手渡す行為」として捉え直す。英語学習、プレゼン、朗読を別々の技能として扱わず、意味の分節、身体化、受け渡しという共通構造から整理する。棒読み、過剰な感情表現、速読、句読点依存といった失敗を検討し、チャンク、意図、聞き手、間、録音を用いた具体的な練習法まで示す。"
 ---

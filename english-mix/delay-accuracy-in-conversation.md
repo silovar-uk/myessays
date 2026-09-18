@@ -8,7 +8,6 @@ type: "Practical Essay"
 status: "完成"
 tags: ["コミュニケーション", "会話", "傾聴", "質問", "心理学", "実践", "人間関係"]
 keywords: ["conversation", "active constructive responding", "question asking", "righting reflex", "motivational interviewing", "negativity bias", "reflective listening", "responsiveness"]
-favorite: 5
 grow: 5
 abstract: "Why do some conversations turn negative even when you are only trying to be accurate? The issue may not be pessimism but timing: analysis arrives before emotional responsiveness. This essay connects negativity-bias research, Shelly Gable's active-constructive responding, Harvard research on follow-up questions, and Motivational Interviewing's righting reflex, then turns them into a practical rule: React → Ask → Analyze. The goal is not to become less accurate. It is to delay accuracy long enough to understand what kind of conversation is actually happening."
 ---

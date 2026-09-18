@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["ベクトル", "数学", "線形代数", "内積", "射影", "最小二乗法", "cosine similarity", "情報検索"]
 keywords: ["inner product", "dot product", "projection", "least squares", "orthogonal projection", "cosine similarity", "vector space model", "Legendre", "Gauss"]
-favorite: 5
 grow: 5
 abstract: "前編では、ベクトルが図形から住所を剥がし、内積が長さと角度を保存することを追った。続編では、内積を『影を測る装置』として見直す。3つの数2,3,7の平均4を取ると、残差(-2,-1,3)は(1,1,1)と直交する。この小さな事実から、射影、解けない連立方程式への最善近似、最小二乗法、さらに文書検索のcosine similarityまで同じ構造でつながる。内積は単なる成分の掛け算ではなく、『この方向をどれだけ含んでいるか』を測り、残りにその方向が一切なくなった地点を最善と認定する装置だった。"
 ---

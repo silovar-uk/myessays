@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Framer", "Web", "CDN", "PDF", "Hosting", "AWS", "CloudFront", "Security"]
 keywords: ["framerusercontent.com", "Framer assets", "PDF hosting", "CDN", "Static files", "bandwidth", "public asset"]
-favorite: false
 grow: true
 abstract: "A PDF opens from framerusercontent.com/assets/... — not Drive, not Dropbox. What is this domain? Framer’s own documentation shows that it is part of the platform’s asset-delivery infrastructure. 本文の内容には触れず、URLだけを入口に、Framerのasset hosting、Static Files、AWS/CloudFront、公開性、bandwidthまで掘る。"
 ---

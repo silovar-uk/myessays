@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "プロ野球", "選手", "スポーツビジネス", "2026"]
 keywords: ["NPB", "players", "slugger", "ace", "closer", "stolen base", "starting pitcher", "baseball roles"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 2

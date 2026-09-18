@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ロージークロニクル", "ハロー！プロジェクト", "ハロプロ研修生", "橋田歩果", "ロージークロニクル史", "アイドル史", "組織論", "ブランド論"]
 keywords: ["Rosy Chronicle", "Hello Project", "chronicle as commitment", "trainee unit", "future history", "First Page", "BOOKMARK", "Blueprint"]
-favorite: 5
 grow: 5
 abstract: "ロージークロニクルは2024年6月16日に9人で結成され、2025年3月19日にメジャーデビューした、2026年現在もっとも新しいハロー！プロジェクトのグループである。歴史はまだ短い。それでも名前には『Rosy＝薔薇色の、希望に満ちた』と『Chronicle＝年代記』が組み合わされ、結成後のライブ名にもFirst Page!、BOOKMARK、Blueprintと記録・本・設計を想起させる語彙が繰り返されている。本稿では、ロージークロニクルを“すでに長い歴史を持つグループ”としてではなく、これから歴史を積み上げること自体を先にブランドとして宣言したグループとして読む。"
 ---

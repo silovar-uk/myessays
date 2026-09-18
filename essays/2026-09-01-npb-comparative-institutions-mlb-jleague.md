@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "MLB", "Jリーグ", "比較制度論", "スポーツビジネス", "2026"]
 keywords: ["NPB", "comparative institutions", "salary cap", "competitive balance tax", "revenue sharing", "rule 5 draft", "active player draft"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 17

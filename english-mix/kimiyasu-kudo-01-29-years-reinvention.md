@@ -8,7 +8,6 @@ type: "Sports Essay"
 status: "完成"
 tags: ["工藤公康", "プロ野球", "NPB", "投手", "キャリア", "身体管理", "トレーニング"]
 keywords: ["工藤公康", "Kimiyasu Kudo", "longevity", "reinvention", "conditioning", "NPB", "224 wins", "29 seasons"]
-favorite: 5
 grow: 5
 abstract: "工藤公康の現役生活は1982年から2010年まで実働29年、通算224 wins。けれどcareer statsを追うと、29年間ずっと同じpitcherだったわけではない。Ace starter、移籍先の柱、40代のstarter、46歳のreliever。大きな不調からのcomebackも何度もある。Longevityを『丈夫だったから』で終わらせず、身体管理とrole changeを含むreinventionの連続として読み直す。"
 ---

@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 9
 tags: ["福田明日香", "ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "ASAYAN", "愛の種", "Never Forget", "卒業", "1期メンバー", "人物史"]
 keywords: ["Asuka Fukuda", "Morning Musume", "Hello Project", "first generation", "graduation", "Never Forget", "Ai no Tane", "ASAYAN", "people history"]
-favorite: 5
 grow: 5
 abstract: "モーニング娘。最年少の初期メンバーとして12歳で物語に入り、14歳で最初にグループを去った福田明日香。1997年のASAYANと『愛の種』5万枚、13歳でのメジャーデビュー、2期加入による8人体制、1999年の『Memory 青春の光』『Never Forget』と4月18日のラストステージ、長い不在、そして2017〜2018年の1期5人再集結と『Never Forget』セルフカバーまでをたどる。『卒業制度を作った人』と単純化せず、一人が去ってもグループが続き、去った本人も後から歴史へ再接続できるという、ハロプロ独特の時間構造を人物史から読む。"
 ---

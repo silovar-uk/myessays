@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["読む", "英語学習", "音読", "読解", "韻律", "内言", "解釈"]
 keywords: ["reading aloud", "prosody", "reading comprehension", "inner speech", "situation model", "mental simulation", "transactional theory"]
-favorite: 5
 grow: 5
 abstract: "「気持ちを込めて読む」とは、単に声を感情的にすることなのか。本稿は英語音読を出発点に、読解研究、韻律、内言、状況モデル、発話意図、読者論を横断する。音読そのものは理解を自動的に深めない。一方、読み手が文章から構築した状況や意図は、間・強勢・速度などの韻律に反映されうる。本稿は音読を、自分が文章をどう解釈したかを声として外部化し、点検する方法として捉え直す。"
 ---

@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["AI", "スポーツDX", "横浜DeNAベイスターズ", "ユーフォリア", "データ活用"]
 keywords: ["プロスポーツクラブ", "AI活用", "横浜DeNAベイスターズ", "ユーフォリア", "ONE TAP SPORTS", "QUARIA AI", "野良システム", "スポーツアナリティクス", "Human-in-the-Loop", "データ基盤"]
-favorite: false
 grow: true
 abstract: プロスポーツクラブのAI adoptionを扱うeventを前にpublic materialsを追うと、目立ってきたのはgenerative AIの使い方ではなく、measurement、data integration、現場へのfeedback、そして「野良システム」だった。横浜DeNAベイスターズのcatcher・pitcher・hitter支援、ユーフォリアのONE TAP SPORTSとQUARIA AI、AI policyを手掛かりに、当日出そうな論点と会場で聞きたいquestionsを整理する。AI implementationの前に、clubは何を整えておく必要があるのか。
 ---

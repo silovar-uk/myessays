@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["実況", "気づき", "注意", "言語化", "観察", "認知科学", "メタ認知", "知覚", "学習"]
 keywords: ["commentary", "noticing", "attention", "verbalization", "event segmentation", "think aloud", "professional vision", "signaling", "expertise", "verbal overshadowing"]
-favorite: 4
 grow: 5
 abstract: "実況すると観察力が上がる、と単純には言えない。直接の因果証拠より、注意のcueing、専門家と初心者のvisual search、professional vision、event segmentation、think-aloud、verbal overshadowingなどの隣接研究のほうが厚い。本稿では実況を『気づきを増やす技術』ではなく、何を探し、どこで区切り、いつ解釈へ進むかを外化するattentional scaffoldとして捉え直す。"
 ---

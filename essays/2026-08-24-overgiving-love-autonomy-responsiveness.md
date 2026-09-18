@@ -8,7 +8,6 @@ type: "Research Essay"
 status: "完成"
 tags: ["恋愛", "社会心理学", "関係性", "贈与", "自律性", "コミットメント", "コミュニケーション"]
 keywords: ["overgiving", "romantic relationships", "investment model", "communal relationship", "indebtedness", "gratitude", "perceived partner responsiveness", "autonomy support", "invisible support"]
-favorite: 5
 grow: 5
 abstract: "『尽くすほど嫌われる』という恋愛の俗説を、社会心理学と関係科学から組み直す。与えた側では投資がコミットメントを高め、受け取る側では感謝と同時に負債感が生じうる。ただし、親密な関係は本来、厳密な帳尻合わせをする交換関係ではない。問題は愛情の量ではなく、相手のニーズとのズレ、断れなさ、自律性や有能感を奪う先回り、そして返す役割を失わせることにある。『尽くさない』ではなく、『相手が参加できる余白を残して与える』という恋愛設計を考える。"
 ---

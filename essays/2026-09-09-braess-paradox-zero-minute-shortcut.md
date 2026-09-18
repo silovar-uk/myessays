@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["交通", "ゲーム理論", "ネットワーク", "都市", "意思決定", "パラドックス"]
 keywords: ["ブライスのパラドックス", "Braess paradox", "Wardrop equilibrium", "Nash equilibrium", "selfish routing", "price of anarchy", "交通工学", "ネットワーク設計"]
-favorite: 5
 grow: 5
 abstract: "4,000人が同じ目的地へ向かう単純な道路網に、所要時間0分の近道を1本追加する。すると各自が最短ルートを選んだ結果、全員の所要時間が65分から80分へ悪化する。1968年のDietrich Braessの論文、Wardrop均衡、Price of Anarchy、ソウルの道路撤去事例まで追い、さらに交通需要を500〜10,000人まで動かして『いつ逆効果になるのか』を調べる。結論は、近道そのものより“選択肢を開いた後の均衡”を見るべき、だった。"
 ---

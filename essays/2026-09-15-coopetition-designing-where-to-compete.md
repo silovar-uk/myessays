@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["経営戦略", "コーペティション", "競争", "協調", "ゲーム理論", "イノベーション", "エコシステム"]
 keywords: ["coopetition", "co-opetition", "Brandenburger", "Nalebuff", "Bengtsson", "Kock", "value creation", "value appropriation", "tension management", "Uneven U"]
-favorite: 5
 grow: 5
 abstract: "競合企業とは、すべての領域で争わなければならないのか。コーペティションは、競争をやめて仲良くする理論ではない。同じ相手と協調と競争を同時に行い、価値を一緒につくる場所と、違いを競う場所を分けて設計する戦略である。1990年代のゲーム理論的発想から、Bengtsson & Kockの活動レベルの研究、2026年の2,104本を対象にした大規模レビューまでたどると、核心は『競争か協調か』の選択ではなく、両者の緊張をどこに置き、どう再調整し続けるかにある。本稿では、企業間関係を敵／味方で見る発想から、『競争の場所を設計する』発想へ移る。"
 ---

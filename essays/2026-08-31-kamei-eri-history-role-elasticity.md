@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 17
 tags: ["亀井絵里", "ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "6期", "プラチナ期", "ジュエルペット", "卒業", "人物史"]
 keywords: ["Eri Kamei", "Morning Musume", "6th generation", "role elasticity", "flexible presence", "performance", "Platinum Era", "graduation"]
-favorite: 5
 grow: 5
 abstract: "亀井絵里を一つの肩書きに固定すると、かえって彼女の面白さを見失う。6期として加入し、バラエティではコミカルな役を担い、プラチナ期にはパフォーマーとして存在感を増し、ソロ曲や声優にも領域を広げた。センター、リーダー、歌姫のどれか一つになるのではなく、場面ごとに役割を変えながらグループの表現レンジを広げた人物として読む。"
 ---

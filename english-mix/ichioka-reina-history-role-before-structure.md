@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 12
 tags: ["一岡伶奈", "Reina Ichioka", "ハロー！プロジェクト", "BEYOOOOONDS", "CHICA#TETSU", "English Mix", "leader", "uncertainty", "building"]
 keywords: ["Reina Ichioka", "BEYOOOOONDS", "leader", "uncertainty", "responsibility", "waiting", "building", "railway"]
-favorite: 5
 grow: 5
 abstract: "一岡伶奈を『長く待った研修生』だけではなく、グループが完成する前にリーダーという役割を与えられ、未確定な場所を形にしていった人物として読むEnglish Mix版。"
 ---

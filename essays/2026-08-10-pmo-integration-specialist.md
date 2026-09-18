@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["PMO", "プロジェクトマネジメント", "組織設計", "戦略実行", "知識仲介", "分業"]
 keywords: ["PMO", "Project Management Office", "integration", "knowledge broker", "strategy execution", "organizational design", "boundary spanning"]
-favorite: 5
 grow: 5
 abstract: "高度な分業は専門性を高める一方、戦略・業務・IT・財務・現場のあいだに新たな分断を生む。本稿は「高度に分業された組織で、全体を実現することは誰の専門なのか」という問いを立て、PMOを進捗管理や会議運営の事務局ではなく、異なる専門性・階層・時間軸を接続する「統合のスペシャリスト」として再定義する。PMO研究におけるintegrative arrangement、knowledge broker、strategy executionの議論を接続し、その能力を翻訳、意思決定設計、接続、学習、完遂の五つに整理する。同時に、官僚化、シャドーPM化、何でも屋化という失敗条件を検討し、AI時代に残るPMOの価値を論じる。"
 ---

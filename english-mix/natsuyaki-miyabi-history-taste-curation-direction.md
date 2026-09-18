@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 15
 tags: ["夏焼雅", "Miyabi Natsuyaki", "Berryz工房", "Buono!", "PINK CRES.", "English Mix", "taste", "curation", "direction"]
 keywords: ["Miyabi Natsuyaki", "Berryz Kobo", "Buono!", "PINK CRES.", "taste", "style", "curation", "direction", "leadership", "independence"]
-favorite: 5
 grow: 5
 abstract: "夏焼雅を『おしゃれな人』としてではなく、自分の見せ方を探し、歌い方を変え、他者やグループの見せ方を考え、最終的に活動の方向そのものをより多く自分で持つようになった人物として読むEnglish Mix版。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["哲学", "現象学", "ハイデガー", "道具", "世界内存在"]
 keywords: ["phenomenology", "Heidegger", "Being and Time", "being-in-the-world", "ready-to-hand", "equipment", "世界内存在"]
-favorite: 5
 grow: 5
 series: "現象学で日常を見直す"
 seriesId: "phenomenology-everyday"

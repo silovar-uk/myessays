@@ -12,7 +12,6 @@ mix_unit: "sentence"
 cefr: "B1-B2"
 tags: ["野球", "NPB", "トレード", "移籍", "契約", "スポーツビジネス", "2026"]
 keywords: ["trade", "player mobility", "contract assignment", "consent", "trade deadline", "FA", "roster construction"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 9

@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["B&ZAI", "ジュニア", "STARTO ENTERTAINMENT", "アイドル", "バンド", "ライブ", "日本武道館"]
 keywords: ["B&ZAI", "ROCK'N'DOL", "First Beat", "なつ♡あい", "SUMMER SONIC", "日本武道館", "ジュニア再編", "HiHi Jets", "7 MEN 侍", "少年忍者"]
-favorite: false
 grow: true
 abstract: "B&ZAIは8人全員が楽器を担う「バンド×アイドル」のジュニアグループである。ところが2026年の日本武道館公演で、1曲目に選んだのは王道アイドル曲「なつ♡あい」だった。2025年の再編、初単独公演、SUMMER SONIC、通算100公演、そして自ら掲げた「ROCK'N'DOL」を追うと、B&ZAIの強みは楽器そのものではなく、バンドとアイドルのモードを同じ8人で切り替えられることに見えてくる。"
 ---

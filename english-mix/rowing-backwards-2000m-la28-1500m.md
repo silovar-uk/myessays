@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Rowing", "Sports", "Biomechanics", "LA28", "観戦", "Competition Design"]
 keywords: ["rowing", "classic rowing", "2000m", "1500m", "sculling", "sweep rowing", "coxswain", "rowing biomechanics", "World Rowing"]
-favorite: false
 grow: true
 abstract: "Rowers face backward, yet the boat moves forward. Classic rowing is normally 2000m, but LA28 will use 1500m because Long Beach cannot fit a full course. 「ボート競技」から「ローイング」への改名、1x・2-・8+のnotation、leg-driven stroke、synchrony、2000m physiology、2026年世界選手権の0.06秒差まで追い、競技をどう見れば面白くなるかを整理する。"
 ---

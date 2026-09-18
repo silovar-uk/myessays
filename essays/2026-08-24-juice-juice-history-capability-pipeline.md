@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["Juice=Juice", "ハロー！プロジェクト", "宮本佳林", "高木紗友希", "段原瑠々", "井上玲音", "植村あかり", "Fiesta! Fiesta!", "アイドル史", "組織論"]
 keywords: ["Juice=Juice", "Hello Project", "capability pipeline", "vocal culture", "succession", "training", "Fiesta Fiesta", "idol development"]
-favorite: 5
 grow: 5
 abstract: "Juice=Juiceは2013年、研修生中心の新ユニットとして始まり、宮本佳林、高木紗友希、金澤朋子らの強い歌唱イメージを早くから形成した。しかし2017年以降、段原瑠々、稲場愛香、工藤由愛、松永里愛、井上玲音、さらに合同オーディションや研修生昇格による新世代を加え、初期メンバー全員が卒業した後も『歌えるグループ』という評判を維持している。本稿では、その理由を個人エースの継承ではなく、難度の高いレパートリー、先輩後輩の同時在籍、複数の加入経路、役割分散によって能力そのものを再生産する組織パイプラインとして読む。"
 ---

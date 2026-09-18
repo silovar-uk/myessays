@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["椿姫", "La traviata", "コンサルティング", "問題解決", "論点設定", "仮説検証", "ステークホルダー分析"]
 keywords: ["La traviata", "椿姫", "problem framing", "structuring", "stakeholder analysis", "hypothesis testing", "primary sources", "so what"]
-favorite: 5
 grow: 5
 series: "椿姫を二度読む"
 seriesOrder: 2

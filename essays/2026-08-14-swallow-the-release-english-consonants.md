@@ -8,7 +8,6 @@ type: "Learning Column"
 status: "完成"
 tags: ["英語学習", "発音", "音読", "音声学", "子音", "リズム"]
 keywords: ["English pronunciation", "unreleased stop", "stop consonant", "release", "vowel epenthesis", "consonant cluster", "connected speech"]
-favorite: 5
 grow: 5
 abstract: "英語の子音は「弱く発音する」と教わることがある。しかし、破裂音 /p, b, t, d, k, g/ では、子音そのものを弱くするより「口の中では子音を作るが、破裂を外へ出し切らない」と捉えた方が実態に近い場面がある。本稿では unreleased stop、調音ジェスチャーの重なり、日本語話者に起こりやすい母音挿入を手がかりに、「子音を飲み込む」という身体感覚を音声学的に整理し、音読で使える練習法へ落とし込む。"
 ---

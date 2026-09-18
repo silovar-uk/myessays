@@ -8,7 +8,6 @@ type: "Structured Narrative Review"
 status: "完成"
 tags: ["Street Fighter 6", "格闘ゲーム", "モダンマリーザ", "技能獲得", "熟達", "ゲーム研究"]
 keywords: ["skill acquisition", "automaticity", "perception-action coupling", "deliberate practice", "Modern Controls", "Marisa", "ranked match"]
-favorite: 5
 grow: 5
 abstract: "本稿は『Street Fighter 6』のプラチナ帯からダイヤモンド帯への移行に必要とされる技能を、モダン・マリーザを主要事例として検討する構造化ナラティブレビューである。公式資料、専門的攻略言説、ランク到達記を階層化して比較し、さらに熟達・自動化・知覚―行為結合に関する学術研究と接続した。分析の結果、当該移行は高度技術の単純な追加よりも、①高頻度損失の抑制、②ヒットから有利状況への変換の定型化、③相手の行動に応じた条件付き適応、という三層の制御方策再編として捉える方が妥当であることを論じる。"
 ---

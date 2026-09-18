@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["組織論", "対立", "交渉", "チーム", "スポーツクラブ", "コミュニケーション"]
 keywords: ["Robbers Cave experiment", "superordinate goals", "task conflict", "relationship conflict", "Getting to Yes", "common enemy", "rivalry", "accountability"]
-favorite: 5
 grow: 5
 abstract: "社内で「あの人が悪い」と言い始めると、話は急に分かりやすくなる。けれど、その人が消えても同じ問題が再発するなら、敵の宛先を間違えている。1954年のRobbers Cave実験、組織内コンフリクトのメタ分析、交渉論の「人と問題を分ける」を手がかりに、人ではなく「誰かを不幸にしている状態」を敵にするための考え方を組み立てる。他クラブは競争相手であっても、道徳的な敵である必要はない。そして、人を敵にしないことと、行為の責任を曖昧にすることは別である。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["エンタメ", "消費", "糧", "鑑賞", "経験", "Dewey", "Slow Looking"]
 keywords: ["entertainment", "consumption", "nourishment", "experience", "reflection", "aesthetic experience", "slow looking", "commonplace book", "血肉化"]
-favorite: false
 grow: true
 abstract: "作品を「消費」と呼ばないだけでは、見る側の態度は変わらない。辞書の「糧」、John Deweyの経験論、Slow Looking、commonplace book、芸術の非道具的価値を横断し、エンタメを宿題にせず、それでも次の経験へ持ち越す方法を考える。結論は、消費の反対は節制ではなく「連結」かもしれない、というものだった。"
 ---

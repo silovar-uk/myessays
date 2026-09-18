@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Typography", "Line Height", "Leading", "Readability", "Accessibility", "UI"]
 keywords: ["line-height", "leading", "line spacing", "typography", "readability", "measure", "line length", "WCAG 1.4.12", "text spacing", "vertical rhythm"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 9

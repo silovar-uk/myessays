@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["文化心理学", "稲作", "小麦", "Rice Theory", "集団主義", "個人主義", "相互依存", "農業", "社会構造"]
 keywords: ["rice theory", "collectivism", "individualism", "interdependence", "rice farming", "wheat farming", "irrigation", "culture", "Thomas Talhelm"]
-favorite: 4
 grow: 5
 abstract: "稲作社会は協調的で、小麦作社会は個人主義的になる――いわゆるRice Theoryを、2014年の中国研究、2018年の日常行動観察、2024年の準自然実験、そして2025年の日本での反証的研究までたどる。重要なのは作物そのものより、共同灌漑や労働交換がつくる『相互依存の構造』かもしれない。"
 ---

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["中国古典思想", "荘子", "人間世", "英語学習", "受容", "意思決定", "仕事術", "不確実性", "感情"]
 keywords: ["知其不可奈何而安之若命", "Zhuangzi", "Ren Jian Shi", "acceptance", "uncontrollable conditions", "responsibility", "uncertainty", "giving up"]
-favorite: 4
 grow: 5
 abstract: "『荘子』内篇「人間世」の「知其不可奈何而安之若命」を、シンプルな英語と日本語を交互に使いながら読む。葉公子高が避けがたい任務の成否を恐れて消耗する文脈を確認し、「受け入れる＝諦める」ではなく、自分の力が届く範囲を尽くしつつ、届かない条件まで心の責任にしないという現代的な補助線へつなげる。"
 ---

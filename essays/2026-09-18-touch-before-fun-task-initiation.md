@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["先延ばし", "行動設計", "タスク開始", "習慣", "実験", "implementation intention"]
 keywords: ["procrastination", "task initiation", "present bias", "task aversiveness", "implementation intentions", "temptation bundling", "starting friction", "行動開始"]
-favorite: false
 grow: true
 abstract: "掃除や勉強を「やる」と考えると重い。そこで完了ではなく、まず30秒〜2分だけ対象に触れることを成功条件にする。先延ばし、present bias、implementation intention、temptation bundlingの研究を手がかりに、楽しいことを禁止せず、その直前を開始の合図へ変える個人ルールを設計する。"
 ---

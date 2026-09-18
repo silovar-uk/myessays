@@ -8,7 +8,6 @@ type: "Sports Essay"
 status: "完成"
 tags: ["工藤公康", "福岡ソフトバンクホークス", "プロ野球", "NPB", "監督", "マネジメント", "短期決戦"]
 keywords: ["工藤公康", "Kimiyasu Kudo", "SoftBank Hawks", "Japan Series", "Climax Series", "leadership", "management", "558 wins"]
-favorite: 5
 grow: 5
 abstract: "工藤公康はSoftBank managerとして7年間で3 pennants、5 Japan Series titles。2018、2019年はregular season 2位からpostseasonを勝ち上がった。558勝、winning percentage .596という長期戦の強さと、short seriesへのadaptation、さらにorganizationの強さを分けると、『winner』という一語では説明できない。"
 ---

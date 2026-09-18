@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["映画", "アメリカ", "1990年代", "文化", "俳優", "恋愛"]
 keywords: ["Pretty Woman", "Julia Roberts", "Richard Gere", "Garry Marshall", "J. F. Lawton", "3000", "La Traviata", "corporate raider", "Beverly Hills", "romantic comedy"]
-favorite: 5
 grow: 5
 abstract: "『Pretty Woman』をmodern Cinderellaだけで片づけずに見直す。1980年代末のM&Aとconsumer culture、原案『3000』からの変化、Julia RobertsとRichard Gereの当時の立ち位置、劇中のLa Traviataまで辿ると、この映画はVivianだけでなくEdwardもtransformする物語に見えてくる。なぜshopping sceneがあれほど気持ちよく、なぜ今見ると少し引っかかるのか。その両方を考える。"
 ---

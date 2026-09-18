@@ -8,7 +8,6 @@ type: "Business Infrastructure Essay"
 status: "完成"
 tags: ["楽天証券", "ネット証券", "日経テレコン", "会社四季報", "Barron's", "楽天銀行", "マネーブリッジ", "ポイント投資", "NISA", "情報収集"]
 keywords: ["Rakuten Securities", "Nikkei Telecom", "Shikiho", "Barron's Digest", "Money Bridge", "Rakuten Points", "NISA", "online brokerage", "business intelligence", "friction design"]
-favorite: 4
 grow: 5
 abstract: "日経新聞を安く読む方法を探していたら、楽天証券の口座から日経テレコン、会社四季報、Barron'sダイジェストへアクセスできることに気づいた。本稿では2026年8月31日時点の公式情報を確認し直し、変わりやすい金利・ポイント・商品条件と、長く残るサービス設計を分ける。楽天証券を『無料特典の多い証券会社』ではなく、Discover→Understand→Fund→Execute→Reviewをつなぎ、小さな摩擦を減らす情報・金融インターフェースとして読む。"
 ---

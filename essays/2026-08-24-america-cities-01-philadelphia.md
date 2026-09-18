@@ -13,7 +13,6 @@ seriesOrder: 1
 location: "Philadelphia, Pennsylvania, USA"
 country: "United States"
 coordinates: [39.9526, -75.1652]
-favorite: 5
 grow: 5
 abstract: "アメリカの都市を一つずつ知るシリーズ第1回。フィラデルフィアを『独立宣言の街』だけで終わらせず、1680年代の街路グリッド、ロウハウスがつくる生活圏、工業都市としての巨大化と脱工業化、人種と住宅政策、大学・病院中心のEds & Meds経済、SEPTA、公共アート、食、スポーツ文化までつないで読む。建国の理念と都市の現実が同じ場所に重なるからこそ、フィラデルフィアはアメリカそのものを考える入口になる。"
 ---

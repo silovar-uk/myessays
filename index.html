@@ -9,18 +9,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/myessays/apple-touch-icon.png?v=20260814">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <link rel="stylesheet" href="styles.css?v=20260813-1353">
+  <link rel="stylesheet" href="styles.css?v=20260918-1">
   <link rel="stylesheet" href="ui-enhancements.css?v=20260824-2337">
   <link rel="stylesheet" href="native-essay-links.css?v=20260817-0931">
   <link rel="stylesheet" href="source-links.css?v=20260816-1856">
   <link rel="stylesheet" href="selection-tools.css?v=20260813-1353">
   <link rel="stylesheet" href="reader-navigation.css?v=20260816-1856">
+  <link rel="stylesheet" href="reader-resonance.css?v=20260918-1">
   <link rel="stylesheet" href="reader-reflections.css?v=20260816-1928">
   <link rel="stylesheet" href="reader-gpt-bridge.css?v=20260817-1017">
   <link rel="stylesheet" href="reader-content.css?v=20260917-2">
   <link rel="stylesheet" href="phenomenology-visuals.css?v=20260907-2">
   <link rel="stylesheet" href="design-literacy.css?v=20260901-1224">
-  <link rel="stylesheet" href="reading-status.css?v=20260822-2140">
+  <link rel="stylesheet" href="reading-status.css?v=20260918-1">
   <link rel="stylesheet" href="reader-versions.css?v=20260830-2258">
   <link rel="stylesheet" href="reader-japanese-reference.css?v=20260911-1">
   <link rel="stylesheet" href="reader-language-lab.css?v=20260918-2">
@@ -70,6 +71,9 @@
             <button id="unreadRandomEssay" class="discovery-button discovery-button-primary" type="button" title="現在の候補から未読了の記事をランダムに1本読む">
               <span class="discovery-button-icon" aria-hidden="true">↝</span><span>未読了から1本</span><span id="unreadRandomCount" class="discovery-count" aria-label="未読了 0本" hidden></span>
             </button>
+            <button id="resonantRandomEssay" class="discovery-button discovery-button-secondary" type="button" title="残った度4以上の記事からランダムに1本読む" hidden>
+              <span class="discovery-button-icon" aria-hidden="true">↝</span><span>残った記事から1本</span>
+            </button>
             <button id="randomEssay" class="discovery-button discovery-button-secondary random-essay-button" type="button" title="現在の候補からランダムに1本読む">
               <span class="discovery-button-icon" aria-hidden="true">↝</span><span>ランダムで1本</span>
             </button>
@@ -89,8 +93,7 @@
         <div class="filters">
           <label>種類<select id="typeFilter"><option value="">すべて</option></select></label>
           <label>作成年<select id="yearFilter"><option value="">すべて</option></select></label>
-          <label>お気に入り<select id="favoriteFilter"><option value="0">すべて</option><option value="5">★★★★★</option><option value="4">★★★★以上</option><option value="3">★★★以上</option></select></label>
-          <label>並び順<select id="sortSelect"><option value="created-desc">新しい順</option><option value="updated-desc">更新順</option><option value="favorite-desc">お気に入り順</option><option value="title-asc">タイトル順</option></select></label>
+          <label>並び順<select id="sortSelect"><option value="created-desc">新しい順</option><option value="updated-desc">更新順</option><option value="title-asc">タイトル順</option></select></label>
         </div>
         <div id="tagFilters" class="tag-filters" aria-label="タグ"></div>
       </section>
@@ -127,7 +130,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="route-state.js?v=20260910-1" defer></script>
-  <script src="app.js?v=20260912-1" defer></script>
+  <script src="app.js?v=20260918-1" defer></script>
   <script src="argument-metadata-compat.js?v=20260830-2207" defer></script>
   <script src="library-versions.js?v=20260830-2258" defer></script>
   <script src="native-essay-links.js?v=20260817-0931" defer></script>
@@ -139,6 +142,7 @@
   <script src="argument-flow-compat.js?v=20260830-2245" defer></script>
 
   <!-- Reader lifecycle -->
+  <script src="reading-state-store.js?v=20260918-1" defer></script>
   <script src="reader-runtime.js?v=20260910-1" defer></script>
 
   <!-- Reader plugins: runtime controls execution order -->
@@ -149,12 +153,13 @@
   <script src="reader-braess-lab.js?v=20260909-1" defer></script>
   <script src="source-links.js?v=20260816-1856" defer></script>
   <script src="reader-navigation.js?v=20260910-1" defer></script>
+  <script src="reader-resonance.js?v=20260918-1" defer></script>
   <script src="reader-reflections.js?v=20260910-1" defer></script>
   <script src="reader-gpt-bridge.js?v=20260910-1" defer></script>
   <script src="selection-note-bridge.js?v=20260813-1353" defer></script>
   <script src="selection-tools.js?v=20260813-1353" defer></script>
   <script src="ui-enhancements.js?v=20260910-2" defer></script>
-  <script src="reading-state-ui.js?v=20260910-1" defer></script>
+  <script src="reading-state-ui.js?v=20260918-1" defer></script>
   <script src="reader-language-instant.js?v=20260910-1" defer></script>
   <script src="reading-locators.js?v=20260910-1" defer></script>
   <script src="reader-versions.js?v=20260910-1" defer></script>
@@ -162,7 +167,7 @@
   <script src="reader-language-lab.js?v=20260918-2" defer></script>
   <script src="series.js?v=20260824-1651" defer></script>
   <script src="reader-nine-masu.js?v=20260908-1" defer></script>
-  <script src="reader-v2.js?v=20260910-1" defer></script>
+  <script src="reader-v2.js?v=20260918-1" defer></script>
   <script src="reader-v2-stability.js?v=20260910-1" defer></script>
   <script src="reader-reading-pivot.js?v=20260914-2" defer></script>
   <script src="reader-reading-pivot-scroll-guard.js?v=20260909-3" defer></script>

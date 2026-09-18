@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["化学", "漂白剤", "酸化還元", "発色団", "次亜塩素酸ナトリウム", "過酸化水素", "身近なものの科学"]
 keywords: ["bleach", "bleaching", "chromophore", "oxidation", "reduction", "redox reaction", "sodium hypochlorite", "hypochlorous acid", "hydrogen peroxide", "sodium percarbonate", "visible light", "molecular structure"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

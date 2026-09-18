@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["ビジネスモデル", "経営戦略", "アミット＆ゾット", "事業設計", "イノベーション", "活動システム"]
 keywords: ["Raphael Amit", "Christoph Zott", "business model", "activity system", "content structure governance", "NICE framework", "novelty", "lock-in", "complementarities", "efficiency", "business model innovation"]
-favorite: 5
 grow: 5
 abstract: "『ビジネスモデル＝どう儲けるか』だと思ってアミット＆ゾットを読むと、妙なことが起きる。彼らが執拗に見ているのは価格ではなく、取引と活動のつなぎ方だからだ。2001年のe-business研究から2010年のactivity system、Content / Structure / Governance、NICEまでを辿り、同じ3,000円の観戦チケットを三つの活動システムで売る思考実験も行う。調べたあと、ビジネスモデルは収益の箱ではなく、企業の境界をまたぐ『動詞の配線図』に見えてきた。"
 ---

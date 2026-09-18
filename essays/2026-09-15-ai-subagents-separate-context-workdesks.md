@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["AIエージェント", "サブエージェント", "マルチエージェント", "コンテキスト", "Codex", "Claude Code", "オーケストレーション"]
 keywords: ["subagent", "multi-agent", "context engineering", "orchestrator-worker", "agent thread", "Codex", "Claude Code", "context isolation", "parallel agents"]
-favorite: 5
 grow: 5
 abstract: "AIのサブエージェントは、単に『親AIの部下』なのか。OpenAI CodexとClaude Codeの現在の実装を追うと、より重要なのは組織図ではなく、仕事ごとに別のコンテキスト、ツール、権限、作業時間を割り当てることだと見えてくる。本稿は、tool・agent・subagent・agent teamの違い、context isolation、parallelism、specialization、fresh perspective、コストと失敗を整理し、CodexとClaude Codeでの具体的な使い方まで落とし込む。サブエージェントを『AIの部下』ではなく『別の作業机を増やすアーキテクチャ』として捉え直す。"
 ---

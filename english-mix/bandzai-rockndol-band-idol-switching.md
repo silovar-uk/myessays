@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["B&ZAI", "Junior", "STARTO ENTERTAINMENT", "Idol", "Band", "Live", "Budokan"]
 keywords: ["B&ZAI", "ROCK'N'DOL", "First Beat", "なつ♡あい", "SUMMER SONIC", "Budokan", "Junior reorganization", "HiHi Jets", "7 MEN 侍", "少年忍者"]
-favorite: false
 grow: true
 abstract: "B&ZAI is an eight-member Junior group in which every member has an instrumental role. Yet at their 2026 Nippon Budokan show, the opening number was not a heavy band showcase but the bright idol original 「なつ♡あい」. 2025年の再編、first solo show、SUMMER SONIC、100 stages、そして彼ら自身が名付けた ROCK'N'DOL を追うと、their real strength looks less like “being able to play instruments” and more like switching between band mode and idol mode without changing the eight people."
 ---

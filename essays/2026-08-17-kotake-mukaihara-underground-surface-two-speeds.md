@@ -8,7 +8,6 @@ type: "Urban History Essay"
 status: "完成"
 tags: ["小竹向原", "東京", "都市論", "鉄道", "有楽町線", "副都心線", "練馬区", "板橋区", "まちづくり"]
 keywords: ["Kotake-mukaihara", "urban history", "Tokyo Metro", "Yurakucho Line", "Fukutoshin Line", "urban planning", "Nerima", "Itabashi"]
-favorite: 4
 grow: 5
 abstract: "小竹向原は、東京メトロ有楽町線・副都心線と西武有楽町線が交わり、2025年度には東京メトロ集計で1日平均18万人超を扱う交通結節点である。それなのに地上へ出ると、巨大駅ビルも繁華街もなく、学校と住宅地が広がる。本稿はこの違和感を入口に、小竹と向原の地名史、1947年の区境、1970年代の道路反対運動、1983年の駅開業、その後の相互直通、2026年に始まった新たなまちづくりまでをたどり、『地下と地上が違う速度で変化した街』として小竹向原を読み解く。"
 ---

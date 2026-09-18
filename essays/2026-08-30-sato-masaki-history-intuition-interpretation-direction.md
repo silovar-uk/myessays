@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 14
 tags: ["佐藤優樹", "ハロー！プロジェクト", "ハロプロ史", "モーニング娘。", "10期", "つんく♂", "楽曲解釈", "パフォーマンス", "セルフプロデュース", "人物史"]
 keywords: ["Masaki Sato", "Morning Musume", "Hello Project", "intuition", "interpretation", "deep listening", "performance", "verbalization", "direction", "self-production"]
-favorite: 5
 grow: 5
 abstract: "佐藤優樹はしばしば『天才』『感覚派』『予測不能』と語られる。しかし2020年の本人インタビューを読むと、歌詞だけでなくインストやベースラインを聴き、曲を人格のように捉え、歌い方・立ち位置・カメラへの向きまで仮説を立てていたことが分かる。本稿では、結果を『天才』という一語で説明するのではなく、感覚を聴取・解釈・試行・言語化へ変え、やがて演出とセルフプロデュースへ広げていった過程を追う。"
 ---

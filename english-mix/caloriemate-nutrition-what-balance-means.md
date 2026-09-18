@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["食", "nutrition", "CalorieMate", "food labeling", "English Mix"]
 keywords: ["CalorieMate", "nutrition", "balanced nutrition food", "栄養調整食品", "fiber", "vitamins", "PFC balance", "栄養素等表示基準値"]
-favorite: 4
 grow: 5
 abstract: "カロリーメイト1箱4本は400kcal。Yet Otsuka says it provides about half a day’s vitamins, while fiber is only 2g and potassium 110mg. So what exactly is “balanced”? 大塚製薬の成分表示、2025年版の栄養素等表示基準値、厚生労働省の食事摂取基準を突き合わせ、さらに2200kcalを全部CalorieMateにする極端な計算までやると、この食品はa tiny complete mealではなく、食事が崩れた瞬間を埋めるhigh-density nutrition patchとして見えてきた。"
 ---

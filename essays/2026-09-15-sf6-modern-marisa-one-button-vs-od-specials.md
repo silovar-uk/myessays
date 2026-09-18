@@ -8,7 +8,6 @@ type: "Conceptual Game Analysis"
 status: "完成"
 tags: ["Street Fighter 6", "マリーザ", "モダン操作", "格闘ゲーム", "ゲームデザイン"]
 keywords: ["Marisa", "Modern Controls", "Overdrive", "special moves", "Drive Gauge", "input economy", "Uneven U"]
-favorite: 5
 grow: 4
 abstract: "『Street Fighter 6』のモダン・マリーザでは、SP簡易入力の通常必殺技とOD必殺技は単純な下位版・上位版ではない。本稿は2026年8月調整後のグラディウス、ファランクス、クアドリガ、スクトゥムを比較し、簡易入力がダメージ20％と引き換えに反応速度と確実性を買い、ODがドライブ2本と引き換えにアーマー、壁やられ、ガード状況など技の性質を買う仕組みだと整理する。結論として、モダンの使い分けは『どの技が強いか』ではなく、時間・火力・ドライブ・確実性のどの通貨を今払うかという資源配分問題として理解できる。"
 ---

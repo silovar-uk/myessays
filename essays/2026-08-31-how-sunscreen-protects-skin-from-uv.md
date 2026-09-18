@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["物理", "化学", "光化学", "日焼け止め", "紫外線", "材料科学", "身近なものの科学"]
 keywords: ["sunscreen", "ultraviolet radiation", "UVA", "UVB", "UV filter", "organic UV filter", "inorganic UV filter", "zinc oxide", "titanium dioxide", "absorption", "scattering", "reflection", "electronic excitation", "excited state", "photostability", "SPF", "PA", "film formation"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

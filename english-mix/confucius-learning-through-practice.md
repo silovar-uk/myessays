@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["中国古典思想", "孔子", "論語", "学而", "英語学習", "学習", "実践", "AI", "仕事術"]
 keywords: ["学而時習之", "Confucius", "Analects", "practice", "learning", "usable knowledge", "AI", "repetition"]
-favorite: 4
 grow: 5
 abstract: "孔子の「学而時習之」を、シンプルな英語と日本語を交互に使いながら読み直す。古注と朱熹の解釈を踏まえ、理解しただけの知識を反復・思索・実践によって使える知識へ変える過程を、仕事やAI利用に接続する。"
 ---

@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["真善美", "正しさ", "科学哲学", "教育", "説明", "認識論", "知的謙虚さ", "コミュニケーション"]
 keywords: ["truth", "accuracy", "idealization", "scientific models", "value pluralism", "cognitive load", "misconception", "intellectual humility", "purpose-fit accuracy"]
-favorite: 5
 grow: 5
 abstract: "私たちは『それは正しい』という言葉に、しばしば議論を終わらせる力を与えている。しかし、正しさは本当に、分かりやすさ、有用性、面白さ、優しさ、美しさより常に上位なのだろうか。本稿は、学校教育における単純化を出発点に、科学哲学の理想化モデル、教育研究の認知負荷と誤概念、価値多元論、リスクコミュニケーション、知的謙虚さ、フィクションの認識的価値を横断する。結論として、真理を軽視するのではなく、命題の真、モデルの適合性、行為としての適切さを分け、誤りの害・不可逆性・意思決定への影響・修正可能性に応じて『目的適合的な正確さ』を設計すべきだと論じる。"
 ---

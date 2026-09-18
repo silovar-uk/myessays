@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["tax law", "行為計算否認", "前澤友作", "economic rationality", "English Mix"]
 keywords: ["Maezawa Yusaku", "前澤友作", "行為計算否認", "法人税法132条", "tax avoidance", "gift tax", "corporate bonds", "economic substance", "economic rationality"]
-favorite: 5
 grow: 5
 abstract: "Can a tax authority deny a transaction even when each step is legal? 前澤友作氏の資産管理会社をめぐる社債取引を入口に、法人税法132条の行為計算否認を追った。At first, it looked like tax law was judging someone's hidden intention. But the deeper point was more objective: whether the transaction has economic rationality beyond its tax effect. Silence does not make a structure disappear."
 ---

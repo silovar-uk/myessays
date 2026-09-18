@@ -8,7 +8,6 @@ type: "Science Column"
 status: "完成"
 tags: ["写真", "カメラ", "Hasselblad", "X2D", "Phocus", "広告", "色", "階調", "RAW現像"]
 keywords: ["Hasselblad X2D 100C", "medium format", "dynamic range", "bit depth", "RAW", "Phocus", "HNCS", "high key", "depth", "tonality"]
-favorite: 5
 grow: 5
 abstract: "同じように明るい広告写真なのに、なぜある写真は軽く平面的に見え、別の写真は明るいまま奥行きと密度を感じさせるのか。本稿はHasselblad X2D 100CとPhocusを手掛かりに、カメラを触ったことがない人にもわかる言葉から出発し、中判センサー、ダイナミックレンジ、16bit、RAW、色管理、被写界深度まで段階的に掘り下げる。「ハッセルらしい重さ」「外国的質感」という感覚語を、技術と美意識を混同せずに読み解き、写真を見るための新しい語彙をつくる。"
 ---

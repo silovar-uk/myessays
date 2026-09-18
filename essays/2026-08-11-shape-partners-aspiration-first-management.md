@@ -8,7 +8,6 @@ type: "Management Essay"
 status: "完成"
 tags: ["SHAPE Partners", "経営", "組織論", "コンサルティング", "プロフェッショナルファーム", "アスピレーション", "スポーツビジネス", "リーダーシップ"]
 keywords: ["SHAPE Partners", "Kohei Fujikuma", "Takehiro Komamiya", "aspiration first", "value first", "member first", "professional firm", "organizational design", "SHAPE Sports"]
-favorite: 5
 grow: 5
 abstract: "SHAPE Partnersを理解する鍵は、スポーツやエンタメに強い戦略コンサルティングファームという業種分類ではない。創業者・藤熊浩平とCOO・駒宮健大の発言をたどると、そこには『会社の戦略に人を配置する』という通常の企業観を反転させ、個人のアスピレーションから事業と組織を生成しようとする経営思想が見える。本稿は、価値至上主義、メンバーファースト、自律したプロフェッショナルの連携モデル、SHAPE SportsやGlobalへの展開を手掛かりに、この思想の魅力と同時に、成長・選別・同質性・収益性という矛盾を検討する。"
 ---

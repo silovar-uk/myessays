@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 17
 tags: ["亀井絵里", "Eri Kamei", "モーニング娘。", "6期", "English Mix", "role elasticity", "flexible presence"]
 keywords: ["Eri Kamei", "Morning Musume", "role elasticity", "range", "performance", "Platinum Era", "graduation"]
-favorite: 5
 grow: 5
 abstract: "亀井絵里をセンター、歌姫、バラエティ担当のどれか一つに固定せず、場面によって役割を変えながらグループの表現レンジを広げた人物として読むEnglish Mix版。"
 ---

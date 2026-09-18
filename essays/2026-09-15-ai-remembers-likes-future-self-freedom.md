@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["AI", "Personalization", "Recommender Systems", "構成的選好", "自律性", "Identity", "Exploration", "未来の自分"]
 keywords: ["personalization", "recommender systems", "constructed preference", "endogenous preferences", "future self", "identity", "exploration exploitation", "autonomy", "feedback loop", "AI agent"]
-favorite: 5
 grow: 5
 abstract: "AIがあなたの好みを正確に覚え、次に好きそうなものを外さなくなったとき、それは自由を増やすのか、それとも過去の自分へ閉じ込めるのか。構成的選好、endogenous preference、推薦システムのfeedback loop、exploration–exploitation、Self-Determination Theory、future self研究を接続すると、問題は『AIが好みを操作するか』という単純な二択ではなくなる。本稿は、AI時代の自律性を『現在の好みを正確に反映されること』だけでなく、『まだ知らない好みに出会い、自分についてのモデルを更新できること』として捉え直す。"
 ---

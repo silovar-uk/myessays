@@ -11,7 +11,6 @@ seriesId: "hello-project-history"
 seriesOrder: 14
 tags: ["佐藤優樹", "Masaki Sato", "モーニング娘。", "English Mix", "intuition", "interpretation", "performance", "self-production"]
 keywords: ["Masaki Sato", "Morning Musume", "intuition", "deep listening", "interpretation", "verbalization", "direction", "self-production"]
-favorite: 5
 grow: 5
 abstract: "佐藤優樹を『説明できない天才』としてではなく、音を聴き、仮説を作り、身体で試し、言葉にし、やがて制作とセルフプロデュースへ広げていった人物として読むEnglish Mix版。"
 ---

@@ -8,7 +8,6 @@ type: Essay
 status: published
 tags: ["Design Literacy", "Typography", "Fluid Typography", "Responsive Design", "CSS"]
 keywords: ["Fluid Typography", "CSS clamp()", "Responsive Typography", "Viewport Units", "rem", "Interpolation", "CSS Locks", "Utopia", "WCAG Resize Text", "Container Queries", "cqi"]
-favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 48

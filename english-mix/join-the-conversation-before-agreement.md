@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["コミュニケーション", "会話", "傾聴", "共感", "人間関係", "会話分析"]
 keywords: ["join the conversation", "validation", "alignment", "affiliation", "active listening", "advice giving", "conversation analysis"]
-favorite: 5
 grow: 5
 abstract: "友人が『会社辞めよかな』と言った瞬間、correct adviceを返したのになぜか会話がしぼむ。そこで『肯定する』とは別に、まず相手のconversationへjoinする行為を考える。validation、alignment / affiliation、advice-giving研究を辿ると、重要なのはagreementの有無より、相手が始めたstoryを一度共同で続けること、そしてresponseの順番だった。"
 ---

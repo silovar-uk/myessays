@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["タイ語", "タイ文字", "語学学習", "発音", "声調", "文字体系", "SNS"]
 keywords: ["Thai script", "abugida", "Thai pronunciation", "tone", "vowel placement", "syllable", "reading strategy"]
-favorite: 4
 grow: 4
 abstract: "タイ文字が難しく見える最大の理由は、文字数の多さだけではない。母音が子音の前・後・上・下に現れ、声調記号まで重なるため、日本語や英語のように一文字ずつ左から音へ変換しようとすると読み方を見失いやすい。本稿はタイ語SNSの一文を材料に、タイ文字を「子音を芯にした音節パッケージ」として捉える方法を整理する。前置母音、末子音、暗黙母音、声調、単語境界まで、初心者が実際に読むための順番に組み直す。"
 ---

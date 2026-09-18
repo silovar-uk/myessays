@@ -8,7 +8,6 @@ type: "Practical Research Note"
 status: "完成"
 tags: ["歌", "ボイトレ", "発声", "中音", "ミックスボイス", "音声科学", "練習", "運動学習"]
 keywords: ["middle voice", "mixed voice", "passaggio", "subglottal pressure", "airflow", "vocal fold adduction", "resonance", "SOVT", "straw phonation", "motor learning", "voice training"]
-favorite: 5
 grow: 5
 abstract: "みつまるボーカルスタジオの『中音』解説を入口に、そこで使われる『呼吸の高さ』『圧力』『位置』『テンション』という感覚語を、海外のボーカル教育と音声科学へ翻訳する。NATS、Complete Vocal Technique、Estill Voice Training、Ingo Titzeらの研究を照合すると、中音の核心は単純な息の強さではなく、声門下圧・呼気流・声帯の接近・声道共鳴を音高と音量に応じて協調させることにある。本稿ではさらに運動学習研究を使い、SOVT、レガート、speech-to-song、変化練習、フィードバック頻度まで含めた15分の実践ルーティンへ落とし込む。"
 ---

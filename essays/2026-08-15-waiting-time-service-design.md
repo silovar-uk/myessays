@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["UX", "サービスデザイン", "待ち時間", "行列", "顧客体験", "行動科学", "HCI", "テーマパーク"]
 keywords: ["waiting time", "queue psychology", "service design", "perceived waiting time", "perceived progress", "labor illusion", "duration heuristic", "fairness"]
-favorite: 5
 grow: 5
 abstract: "同じ10分でも、長く感じる待ち時間と短く感じる待ち時間がある。ではUXが設計すべきなのは、実際の分数なのか、それとも『自分はいま何を待っているのか』という認知なのか。本稿では、ディズニー、サイゼリヤ、JR東日本、USJ、空港、ゲーム、デジタルサービスなど国内外の事例を、Maisterの待ち行列心理、期待差、知覚された進捗、統制感、公平性、Labor Illusion、Duration Heuristic、Peak-End Ruleなどの研究と接続する。待ち時間を誤魔化すのではなく、情報・選択・意味・公平性を設計するための実務フレームを提示し、最後に『心地よく待たせること』の倫理を問う。"
 ---

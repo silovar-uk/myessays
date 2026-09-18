@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["小泉信三", "教養", "学習", "AI", "キャリア", "組織学習", "適応", "基礎教育"]
 keywords: ["usefulness", "obsolescence", "adaptability", "exploration exploitation", "inert ideas", "liberal arts", "skill obsolescence", "organizational learning"]
-favorite: 5
 grow: 5
 abstract: "『すぐ役に立つ人間は、すぐ役に立たなくなる人間だ』。小泉信三が『読書論』で紹介した谷村豊太郎の言葉は、単なる教養擁護ではない。本稿はこの命題を「現在への過剰適応は未来への適応力を損なう」という一般原理として読み直す。基礎教育、ホワイトヘッドの不活性な観念、Marchの探索と深化、AIによる技能変化を接続し、仕事・組織・広報・スポーツ・個人学習の具体例から、長く役立つ知識とは抽象知そのものではなく、具体と抽象を往復しながら再利用できる知識であると論じる。"
 ---

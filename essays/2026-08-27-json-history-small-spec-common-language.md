@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["JSON", "JavaScript", "Web", "API", "標準化", "データ交換", "ソフトウェア設計"]
 keywords: ["JSON", "JavaScript Object Notation", "RFC 8259", "RFC 7159", "RFC 4627", "ECMA-404", "API", "data interchange", "Douglas Crockford", "Ajax"]
-favorite: 4
 grow: 4
 abstract: "APIや設定ファイルで当たり前のように使うJSONは、巨大な標準化プロジェクトとして始まったわけではない。JavaScriptの中にすでにあった記法をデータ交換に使えると『発見』し、利用が広がった後にRFCやECMA標準が現実の相互運用問題を吸収していった。JSONの歴史と現在の仕様をたどりながら、『少なく決めること』がなぜ強い設計になりうるのかを考える。"
 ---

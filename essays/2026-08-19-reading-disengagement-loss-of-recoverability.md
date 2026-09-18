@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "完成"
 tags: ["読解", "認知科学", "文章理解", "メタ認知", "注意", "認知的離脱", "文章設計"]
 keywords: ["reading disengagement", "standards of coherence", "cognitive coupling", "mind wandering", "comprehension monitoring", "causal network", "situation model", "metacomprehension", "recoverability"]
-favorite: 5
 grow: 5
 abstract: "難しい文章を前に、人はいつ『もう読めない』と判断するのか。本稿は、文章理解、因果ネットワーク、standards of coherence、comprehension monitoring、cognitive coupling、mind wandering、reading disengagementの研究を横断し、理解の破綻から離脱までの過程を整理する。研究から確立しているのは、読者が一貫した意味表象を構築し、難度に応じて処理努力を調整すること、そしてその調整の崩れが注意逸脱や理解低下と結びつくことである。一方、『複数の未回収関係が蓄積し、理解を再びつなぎ直せる見込みを失うと離脱する』という考えは、直接検証を要する統合仮説として提示する。"
 ---

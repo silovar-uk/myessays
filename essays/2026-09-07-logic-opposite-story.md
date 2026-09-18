@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["ロジック", "ストーリー", "ナラティブ", "コミュニケーション", "認知", "説得", "文章術"]
 keywords: ["logic", "story", "narrative", "paradigmatic thought", "Jerome Bruner", "Walter Fisher", "informal logic", "transportation", "persuasion"]
-favorite: 5
 grow: 4
 abstract: "「ロジックは分かる。でも、ストーリーがない」は、なぜ普通に通じるのか。認知心理学・コミュニケーション論・非形式論理をたどると、ロジックとストーリーは反意語ではなく、異なる問いに答える補完的なモードだった。同じ架空企画を3通りに書き分け、両者がどこで競合し、どこで助け合うのかを確かめる。"
 ---

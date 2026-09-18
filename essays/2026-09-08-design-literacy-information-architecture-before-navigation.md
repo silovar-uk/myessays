@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Information Architecture", "IA", "Navigation", "Taxonomy", "Mental Model", "Card Sorting", "Tree Testing", "UX", "Richard Saul Wurman"]
 keywords: ["information architecture", "IA", "navigation", "taxonomy", "labeling", "mental model", "sitemap", "card sorting", "tree testing", "findability", "Richard Saul Wurman"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 24

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["経済", "AI", "ニュース", "新聞", "国際", "産業"]
 keywords: ["Nikkei", "headline analysis", "AI deployment", "Middle East", "resources", "household finance", "industry restructuring"]
-favorite: 4
 grow: 4
 abstract: "2026年9月10日の日経朝刊には210本の見出しが並ぶ。全部を別々のニュースとして追うのではなく、AIが現場へ降りる、中東リスクが価格へ伝わる、制度の支援と家計の余力に差が出る、企業の境界が組み替わる、という4本の線で読み直す。見出しだけを材料に、その日の経済の『向き』をつかむ試み。"
 ---

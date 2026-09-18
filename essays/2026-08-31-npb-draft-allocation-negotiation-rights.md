@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "ドラフト", "スポーツビジネス", "制度設計", "2026"]
 keywords: ["NPB", "ドラフト", "新人選手選択会議", "交渉権", "戦力均衡", "competitive balance", "allocation", "player development"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 5

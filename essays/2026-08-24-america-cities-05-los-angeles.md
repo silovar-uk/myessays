@@ -14,7 +14,6 @@ seriesOrder: 5
 location: "Los Angeles, California, USA"
 country: "United States"
 coordinates: [34.0522, -118.2437]
-favorite: 5
 grow: 5
 abstract: "アメリカ都市を一つずつ読むシリーズ第5回。ロサンゼルスを単なる『映画と車の街』としてではなく、水を遠方から運び、人を広域交通で移動させ、映像を世界へ送り、港から物資を太平洋規模で流すことで、距離そのものを都市の前提へ変えたHorizontal Metropolisとして読む。Tongvaと1781年のpueblo、Los Angeles Aqueduct、Pacific Electric、Hollywood、不動産開発、racial covenantsとredlining、freeway、Port of Los Angeles、現代Metro、住宅負担までを一本につなぐ。"
 ---

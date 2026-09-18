@@ -8,7 +8,6 @@ type: "Transcript"
 status: "完成"
 tags: ["English", "Psychology", "Self-talk", "TED-Ed"]
 keywords: ["self-talk", "inner speech", "Vygotsky", "CBT", "distanced self-talk"]
-favorite: 3
 grow: 3
 abstract: ""
 source: "https://www.youtube.com/watch?app=desktop&si=jfUnelizdKxPRm9Z&v=iNyUmbmQQZg&feature=youtu.be"

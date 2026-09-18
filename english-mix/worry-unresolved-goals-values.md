@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["worry", "rumination", "values", "悩み", "English Mix"]
 keywords: ["worry", "rumination", "repetitive thought", "unresolved goals", "values", "problem solving", "悩み"]
-favorite: 5
 grow: 5
 abstract: "I think I like people who have something they are still wrestling with. ただし、苦しみが人を偉くするという話ではない。Research on repetitive thought shows that repeated thinking can be constructive or destructive depending on context and level of abstraction. Unresolved personal goals can trigger spontaneous rumination, and vague, abstract rumination can be more harmful than specific thought. 悩みは『考えすぎ』ではなく、複数の大事なものがまだ片づいていないというsignalなのかもしれない。"
 ---

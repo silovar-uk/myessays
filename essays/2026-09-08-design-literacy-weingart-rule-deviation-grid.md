@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Wolfgang Weingart", "Swiss Typography", "New Wave", "Grid", "Typography", "Constraint", "Deviation", "Basel School of Design"]
 keywords: ["Wolfgang Weingart", "Swiss typography", "New Wave typography", "grid", "deviation", "constraint", "Basel School of Design", "typographic rules", "visual grammar", "rule breaking"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 26

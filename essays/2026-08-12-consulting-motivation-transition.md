@@ -8,7 +8,6 @@ type: "Management Essay"
 status: "完成"
 tags: ["コンサルティング", "キャリア", "モチベーション", "組織論", "プロフェッショナルファーム", "専門性", "自律性", "AI"]
 keywords: ["consulting motivation", "career motivation", "professional service firm", "autonomy", "learning", "career capital", "job crafting", "professional identity"]
-favorite: 5
 grow: 5
 abstract: "『成長できるからコンサルへ行きたい』という説明は、半分しか語っていない。既存研究と現役・退職者の公開証言を横断すると、入社時に人を引きつけるのは学習速度、難問、優秀な同僚、ブランド、将来の選択肢である一方、長く続ける理由は裁量、専門性、顧客への影響、仲間、仕事の意味へ移っていく。本稿は、この動機の入れ替わりを『ファーム供給型から自己生成型への移行』として捉え、コンサルを続ける人・離れる人の分岐を考える。"
 ---

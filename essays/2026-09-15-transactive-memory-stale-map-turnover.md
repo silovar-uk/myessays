@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["トランザクティブメモリー", "チーム", "引き継ぎ", "組織", "知識管理", "メンバー交代"]
 keywords: ["transactive memory", "membership change", "turnover", "Kyle Lewis", "Linda Argote", "knowledge continuity", "bus factor", "routines", "引き継ぎ", "属人化"]
-favorite: 5
 grow: 5
 abstract: "前作では、チームの記憶は『誰が何を知っているか』という索引まで含むと考えた。では、その誰かが入れ替わったら何が起きるのか。研究には、一人だけメンバーを替えたチームが、全員を入れ替えたチームより悪い成績を示した例がある。問題は知識が消えることだけではない。古い索引が残り、存在しない専門性へ問い合わせ続けることだ。メンバー交代、通信ネットワーク、ルーティン、Bus Factorの研究をたどりながら、引き継ぎを『情報のコピー』ではなく『検索経路の再配線』として考え直す。"
 ---

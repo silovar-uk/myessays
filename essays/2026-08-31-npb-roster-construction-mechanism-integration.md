@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "編成", "ロースター", "ドラフト", "育成", "FA", "トレード", "スポーツビジネス", "2026"]
 keywords: ["NPB", "roster construction", "team building", "支配下選手", "育成選手", "出場選手登録", "draft", "development", "free agency", "trade"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 10

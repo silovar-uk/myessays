@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["BEYOOOOONDS", "ハロー！プロジェクト", "CHICA#TETSU", "雨ノ森 川海", "SeasoningS", "眼鏡の男の子", "灰toダイヤモンド", "アイドル史", "組織論"]
 keywords: ["BEYOOOOONDS", "Hello Project", "combinatorial identity", "modular organization", "skit", "special skills", "subunits", "idol organization"]
-favorite: 5
 grow: 5
 abstract: "BEYOOOOONDSは、複数ユニットと個人特技を抱える『分かりにくい』構造から始まった。しかし、その複雑さは弱点ではなく、楽曲ごとに人・役柄・技術を組み替える制作エンジンになった。CHICA#TETSU、雨ノ森 川海、SeasoningSという内部ユニット、寸劇から始まる『眼鏡の男の子』、ピアノやヒューマンビートボックスなどの特技、そして2024〜26年の卒業と新加入。本稿では、BEYOOOOONDSを固定されたキャラクターではなく、組み合わせ方そのものがアイデンティティになったグループとして読む。"
 ---

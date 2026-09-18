@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["思考", "意思決定", "エポケー", "現象学", "自己調整", "目標", "習慣", "行動"]
 keywords: ["epoche", "エポケー", "判断停止", "Husserl", "フッサール", "impulsive choice", "delay discounting", "implementation intentions", "目標設定", "自己調整"]
-favorite: 5
 grow: 5
 abstract: "思いついて咄嗟にやりたいことへ動く力は、探索や発見の源になる。しかし、その瞬間ごとの魅力だけを積み重ねても、自分が進みたい方向へ自然に収束するとは限らない。エポケーという『いったん判断を止める』発想と、行動科学のimplementation intentionsを手がかりに、衝動を殺さず、立ち止まりも自己目的化せず、方向を選んで再び動くためのリズムを考える。"
 ---

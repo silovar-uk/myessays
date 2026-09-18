@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Gestalt", "Similarity", "Visual Language", "Consistency", "Accessibility", "UI", "Design System"]
 keywords: ["similarity", "Gestalt psychology", "factor of similarity", "visual grouping", "visual language", "consistency", "design system", "WCAG 1.4.1", "use of color", "Max Wertheimer", "predictability"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 13

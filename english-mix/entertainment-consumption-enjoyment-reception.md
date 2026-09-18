@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Language", "Entertainment", "Consumption", "享受", "Reception", "Fandom"]
 keywords: ["consumer", "consumption", "enjoyment", "reception", "participatory culture", "cultural consumption", "文化芸術", "鑑賞"]
-favorite: false
 grow: true
 abstract: "Why do we say we consume entertainment when a digital work does not run out? 辞書、economics、文化芸術基本法、reception studies、participatory cultureを横断し、消費・享受・鑑賞・受容・参加がそれぞれ何を見せる語なのかを整理する。"
 ---

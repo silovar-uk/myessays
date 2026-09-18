@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Entertainment", "Consumption", "Nourishment", "Experience", "Dewey", "Slow Looking"]
 keywords: ["entertainment", "consumption", "nourishment", "experience", "reflection", "aesthetic experience", "slow looking", "commonplace book", "血肉化"]
-favorite: false
 grow: true
 abstract: "Changing the label from consumption to enjoyment does not automatically change the audience. 「糧」, Dewey's theory of experience, Slow Looking, commonplace books, and non-instrumental aesthetic valueを横断し、作品をhomeworkにせず次の経験へcarry forwardする態度を考える。"
 ---

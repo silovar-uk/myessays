@@ -8,7 +8,6 @@ type: "Conceptual Paper"
 status: "着想"
 tags: ["タグ1", "タグ2"]
 keywords: ["keyword1", "keyword2"]
-favorite: 3
 grow: 3
 abstract: "150〜250字程度の概要"
 ---

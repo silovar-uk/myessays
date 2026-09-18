@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["ベクトル", "数学", "線形代数", "内積", "Gram行列", "解析幾何", "学び方"]
 keywords: ["vector", "dot product", "inner product", "Gram matrix", "Cartesian coordinates", "linear algebra", "René Descartes", "William Rowan Hamilton", "Gibbs", "Heaviside"]
-favorite: 5
 grow: 5
 abstract: "雷獣のベクトル授業で何度も出てくる『座標から解脱する』という表現を、本当に数学として確かめた。三角形を座標で書けば6個の数が必要なのに、形だけなら3個の情報で足りる。ベクトルは絶対的な位置を忘れ、内積は長さと角度を保存する。さらに動画で使われる『a・a、a・b、b・bの3つが決まれば全部の長さと角度が分かる』という議論を追うと、その正体はGram行列だった。斜めの座標軸を使う小実験まで行うと、座標から解脱するとは座標を使わなくなることではなく、どの座標を選んでも変わらない関係を本体として扱うことだと分かった。"
 ---

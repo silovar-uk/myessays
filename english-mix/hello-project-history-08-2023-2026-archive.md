@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "25周年", "サブスク", "アーカイブ", "ロージークロニクル", "モーニング娘。'26", "BEYOOOOONDS", "ハロプロ研修生", "オーディション"]
 keywords: ["Hello! Project", "25th anniversary", "streaming", "archive", "Rosy Chronicle", "Morning Musume 26", "BEYOOOOONDS", "audition", "30th anniversary"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ年代別最終章。2023年の25周年を起点に、過去MVの大規模公開、2025年からの旧譜サブスク解禁、2026年2月の全楽曲配信、ロージークロニクルの結成・デビュー、2026年のモーニング娘。とBEYOOOOONDSへの新メンバー加入、30周年を見据えた新オーディションまでを扱う。約30年の歴史が『古い作品』から検索・再生・推薦・継承できるアーカイブへ変わる一方、現在のメンバーを採用し続けることで、保存と更新を同時に行う仕組みを読む。"
 ---

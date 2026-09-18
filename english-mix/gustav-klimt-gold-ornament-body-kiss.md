@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["美術", "Gustav Klimt", "Vienna 1900", "Vienna Secession", "ornament", "English Mix"]
 keywords: ["Gustav Klimt", "The Kiss", "Der Kuss", "Vienna Secession", "Beethoven Frieze", "Adele Bloch-Bauer", "gold leaf", "ornament", "Attersee", "Wiener Moderne"]
-favorite: 5
 grow: 5
 abstract: "《接吻》という題なのに、Belvedere explains that Klimt deliberately avoids showing the actual kiss. So what was he really painting? 金箔、flat ornament and dimensional skin、Vienna Secession、大学天井画の騒動、Nazi-era looting and restitution、そして段ボール製viewfinderまで追う。Before researching him, he was simply “the gold painter.” Afterward, he looks more like an artist of thresholds: body and pattern, reality and symbol, contact and non-contact."
 ---

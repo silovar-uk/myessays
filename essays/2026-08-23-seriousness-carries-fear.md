@@ -8,7 +8,6 @@ type: "Learning Essay"
 status: "完成"
 tags: ["真剣", "本気", "怖さ", "コミットメント", "仕事", "心理学", "哲学"]
 keywords: ["真剣", "seriousness", "commitment", "fear", "fear of failure", "goal commitment", "anxiety", "Kierkegaard", "escalation of commitment"]
-favorite: 5
 grow: 5
 abstract: "真剣さを突き詰めると、なぜ少しの『怖さ』が立ち上がるのかを考える。怖さを威圧や怒気ではなく、失敗の痛みを引き受け、言い訳の退路を減らし、何かを失える状態になることで生じる緊張感として捉え直す。目標コミットメント、失敗への恐れ、キルケゴールの不安論、コミットメントの過剰化を手がかりに、本気と怖さの関係と、その怖さを他人への圧力に変えないための境界線を整理する。"
 ---

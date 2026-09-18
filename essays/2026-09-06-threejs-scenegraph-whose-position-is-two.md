@@ -10,7 +10,6 @@ series: "ブラウザーに3D世界を作ると何が変なのか"
 seriesOrder: 3
 tags: ["Web開発", "JavaScript", "Three.js", "3D", "Scene Graph"]
 keywords: ["Three.js", "Scene Graph", "Object3D", "local space", "world space", "position", "matrix", "matrixWorld", "getWorldPosition", "localToWorld", "worldToLocal", "add", "attach", "AxesHelper", "GridHelper"]
-favorite: 4
 grow: 4
 abstract: "Three.jsのchild.position.xを2にした。なのに親を動かしたり拡大したりすると、子のworld positionは別の数字になる。親を3倍にすると子との距離まで3倍になる実験と、add() / attach()で親を付け替える実験を通して、Scene Graphを『物体のグループ』ではなく『local spaceの入れ子』として捉え直す。"
 ---

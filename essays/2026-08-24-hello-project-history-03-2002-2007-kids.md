@@ -8,7 +8,6 @@ type: "Cultural History"
 status: "完成"
 tags: ["ハロー！プロジェクト", "ハロプロ史", "ハロー！プロジェクト・キッズ", "Berryz工房", "℃-ute", "つんく♂", "アイドル史", "育成", "研修生"]
 keywords: ["Hello! Project Kids", "Berryz Kobo", "C-ute", "Tsunku", "idol training", "talent pipeline", "2000s"]
-favorite: 5
 grow: 5
 abstract: "ハロプロ史シリーズ第3回。2002年のハロー！プロジェクト・キッズ15人加入から、Berryz工房と℃-uteがそれぞれグループとして自立する2007年までを扱う。テレビ番組でオーディションからデビューまでを短期間で見せたASAYAN型から、バックダンサー、映画、期間限定ユニット、前座、インディーズ活動を通じて数年単位で育てるモデルへ、ハロプロの人材育成がどう変わったかを読む。"
 ---

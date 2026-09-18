@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["React", "宣言的UI", "フロントエンド", "状態管理", "UI設計", "JavaScript"]
 keywords: ["React", "declarative UI", "imperative UI", "DOM", "state", "render", "commit", "ref", "Effect"]
-favorite: 5
 grow: 5
 abstract: "ReactはUIを『宣言的』に書けと言う。DOMを直接show/hideするのではなく、stateに応じて画面がどう見えるべきかを記述する。ところがReact自身はcommit段階でappendChild()などを使い、結局DOMを命令的に変更している。では宣言的UIとは『命令が消えること』なのか。本稿では5状態のフォームを命令型と宣言型で比べ、render・commit・ref・Effectまで追いかける。見えてきたのは、宣言型とは命令をなくす思想ではなく、『遷移の手順を誰が引き受けるか』を組み替える設計だということだった。"
 ---

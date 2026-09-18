@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["化学", "界面化学", "石けん", "界面活性剤", "ミセル", "洗浄", "身近なものの科学"]
 keywords: ["soap", "detergent", "surfactant", "interface", "interfacial tension", "surface tension", "hydrophilic", "hydrophobic", "amphiphilic", "micelle", "emulsification", "dispersion", "grease", "hard water", "soap scum"]
-favorite: 4
 grow: 4
 series: "身近なものの科学"
 seriesId: "science-behind-everyday-things"

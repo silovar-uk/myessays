@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["スポーツビジネス", "アジア競技大会", "愛知", "名古屋", "OCA", "JOC", "ガバナンス", "国際スポーツ大会", "2026"]
 keywords: ["Aichi Nagoya 2026", "Asian Games", "OCA", "Host City", "AINAGOC", "JOC", "sports governance"]
-favorite: 5
 grow: 5
 series: "スポーツイベントの仕組みを読む"
 seriesOrder: 1

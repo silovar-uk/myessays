@@ -8,7 +8,6 @@ type: "Practical Research Note"
 status: "完成"
 tags: ["歌", "ボイトレ", "高音", "発声", "音声科学", "練習", "運動学習", "セルフ実験"]
 keywords: ["high notes", "usable range", "SOVT", "straw phonation", "lip trill", "motor learning", "vocal warm-up", "voice training", "repeatability", "strain"]
-favorite: 5
 grow: 5
 abstract: "高い声を出したいと思って音域を測ってみたら、最低音G2、楽に出せる最高音C5、D5付近から苦しくなり、G5付近で裏声へ切り替わり、裏声ではC6まで出た。そこで目標を『最高音を伸ばす』から『C5前後から上で、力まず同じ品質を再現できる範囲を広げる』へ変更した。SOVT、ウォームアップ、運動学習、注意の向け方に関する研究を踏まえ、1回10〜12分・7日間で、練習前後と翌日の状態まで記録する個人実験として設計する。"
 ---

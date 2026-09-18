@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["ローイング", "スポーツ", "競技構造", "バイオメカニクス", "LA28", "観戦"]
 keywords: ["rowing", "classic rowing", "2000m", "1500m", "sculling", "sweep rowing", "coxswain", "rowing biomechanics", "World Rowing", "日本ローイング協会"]
-favorite: false
 grow: true
 abstract: "ローイングは、漕手が進行方向に背を向け、全身で艇を進める競技である。標準距離は2000mだが、LA28のクラシック・ローイングは会場条件により1500mで実施予定。日本での「ボート競技」から「ローイング」への改称、1x・2-・8+という艇種記号、脚主導のストローク、同期と速度、2000mの生理負荷、2026年世界選手権の0.06秒差まで追い、何を見れば競技が立体的に見えるのかを整理する。"
 ---

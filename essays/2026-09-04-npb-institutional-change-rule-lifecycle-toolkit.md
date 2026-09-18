@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "制度改正", "FA", "ピッチクロック", "スポーツビジネス", "2026"]
 keywords: ["NPB", "rule lifecycle", "institutional change", "FA人的補償", "ピッチクロック", "toolkit", "how to keep reading"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 18

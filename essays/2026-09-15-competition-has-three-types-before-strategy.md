@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["経営戦略", "競争戦略", "IO型", "チェンバレン型", "シュンペーター型", "SCP", "RBV", "リアルオプション"]
 keywords: ["Jay Barney", "Types of Competition", "Industrial Organization", "Chamberlinian Competition", "Schumpeterian Competition", "SCP", "RBV", "Porter", "Real Options", "入山章栄"]
-favorite: 5
 grow: 5
 abstract: "経営戦略を学んでいると、ポーターかRBVかという「戦い方」の議論に目が行く。だがJay Barneyの1986年論文は、その手前で競争そのものをIO型・チェンバレン型・シュンペーター型という3つの見方に分けた。業界構造を動かす、自社の固有資源を磨く、そして競争の前提自体が壊れる。本稿では同じ企業を3つの世界に置く思考実験を行い、日本企業論とリアルオプションまで接続しながら、「戦略より前に競争を診断する」という見方を試す。"
 ---

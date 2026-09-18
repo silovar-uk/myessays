@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["トランザクティブメモリー", "生成AI", "AI", "チーム", "知識管理", "Human-AI Teaming"]
 keywords: ["transactive memory", "human-AI teaming", "generative AI", "GenAI", "knowledge coordination", "trust calibration", "jagged frontier", "P&G", "BCG", "ChatGPT"]
-favorite: 5
 grow: 5
 abstract: "トランザクティブメモリーを『誰が何を知っているか』の地図だとするなら、生成AIはその地図のどこに置かれるのか。2026年の研究では、人間とGenAIの協働は知識の幅と深さを増やした一方、知識の協調には有意な改善が確認されなかった。ICU、P&G、GitHub、BCGの研究をたどると、AIは単なる外部ツールでも万能な同僚でもなく、能力境界と信頼度が仕事ごとに動く特殊な知識源に見えてくる。AI導入をプロンプト設計ではなく、『知る・疑う・決める』の分業設計として考え直す。"
 ---

@@ -8,7 +8,6 @@ type: "Learning Paper"
 status: "完成"
 tags: ["睡眠", "不眠", "REM睡眠", "ノンレム睡眠", "眼球運動", "入眠", "CBT-I", "認知行動療法", "睡眠科学"]
 keywords: ["sleep onset", "slow eye movements", "SEM", "REM sleep", "NREM sleep", "insomnia", "CBT-I", "stimulus control"]
-favorite: 5
 grow: 5
 abstract: "『眠れない夜は、目を閉じて眼球だけゆっくり動かせ。脳がREM睡眠と勘違いして眠りに落ちる』——もっともらしい睡眠ハックだが、科学的にはどこまで正しいのか。入眠時には実際にslow eye movements（ゆっくりした眼球運動）が現れる一方、それを意識的に再現すればREMや睡眠を誘発できるという因果関係は確立していない。REM・NREMの役割、メラトニンとの関係、CBT-Iの刺激統制までを整理し、『眠りは命令するものではなく、訪れやすい条件をつくるもの』という実践へつなげる。"
 ---

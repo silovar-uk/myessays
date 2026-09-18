@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "UX", "Error Prevention", "Accessibility", "Human Factors", "Interaction Design"]
 keywords: ["Error Prevention", "Error Recovery", "Undo", "Confirmation Dialog", "WCAG 3.3.4", "Slips", "Mistakes", "Human Error", "Constraints"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 34

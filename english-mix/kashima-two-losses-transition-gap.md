@@ -8,7 +8,6 @@ type: "Match Analysis"
 status: "完成"
 tags: ["鹿島アントラーズ", "Jリーグ", "試合分析", "戦術", "鬼木達"]
 keywords: ["Kashima Antlers", "Mito Hollyhock", "Urawa Reds", "Oniki Toru", "Leo Ceara", "transition", "rest defence", "adaptation", "game model"]
-favorite: 4
 grow: 4
 abstract: "Kashima lost 2-4 to Mito and 0-1 to Urawa. でも、同じ2連敗ではない。Mito attacked the moment after Kashima lost the ball. Urawa slowed Kashima's adaptation under pressure. 共通項を『局面をまたぐ接続速度』として読む。"
 ---

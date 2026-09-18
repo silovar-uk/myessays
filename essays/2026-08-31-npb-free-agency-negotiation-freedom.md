@@ -8,7 +8,6 @@ type: "Research Guide"
 status: "完成"
 tags: ["野球", "NPB", "FA", "フリーエージェント", "移籍", "契約", "スポーツビジネス", "2026"]
 keywords: ["NPB", "FA", "free agency", "国内FA", "海外FA", "FA宣言", "人的補償", "交渉自由", "player mobility"]
-favorite: 5
 grow: 5
 series: "野球という産業を読む"
 seriesOrder: 8

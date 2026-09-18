@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["Tokyo Verdy", "Urawa Reds", "J1", "Football", "Match Preview", "Tactics"]
 keywords: ["Tokyo Verdy", "Urawa Reds", "2026/27 J1 League", "Hiroshi Jofuku", "Itsuki Someno", "Kazunari Ichimi", "Kanya Fujimoto", "3-4-2-1"]
-favorite: false
 grow: true
 abstract: "Before Urawa Reds vs Tokyo Verdy on September 19, 2026, this essay looks at Verdy through current results and primary sources. They are 0-4-3 with three goals and nine conceded. All three league goals came from registered defenders, while both away matches ended 0-0. The 21-shot game against JEF Chiba, the arrivals of Kazunari Ichimi and Kanya Fujimoto, and injuries including Koki Morita suggest a team trying to rebuild its attack without throwing away its defensive base."
 ---

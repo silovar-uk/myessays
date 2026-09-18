@@ -8,7 +8,6 @@ type: "Practical Paper"
 status: "完成"
 tags: ["Street Fighter 6", "格闘ゲーム", "モダンマリーザ", "コンボ", "トレーニング", "意思決定", "学習"]
 keywords: ["Modern Marisa", "combo", "training", "decision compression", "muscle memory", "Street Fighter 6"]
-favorite: 5
 grow: 5
 abstract: "モダンマリーザのコンボ習得を、技の羅列を暗記する作業ではなく『状況を見た瞬間に回答を一つへ圧縮する設計』として捉え直す。実戦で頻出する14ルートを、共通パーツと状況分岐へ分解し、小技・中攻撃・大確反・DI・SAというトリガーから迷わず完走するための考え方を整理する。後半では、まず覚える5本、次の5本、発展4本の順に、実際のトレーニング手順まで落とし込む。"
 ---

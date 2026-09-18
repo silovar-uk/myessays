@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["哲学", "現象学", "レヴィナス", "倫理", "他者"]
 keywords: ["phenomenology", "Levinas", "ethics", "face", "other", "responsibility", "顔", "他者", "責任"]
-favorite: 5
 grow: 5
 series: "現象学で日常を見直す"
 seriesId: "phenomenology-everyday"

@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["soccer", "football", "visual search", "観戦", "English Mix"]
 keywords: ["soccer", "football", "visual search", "gaze", "ball carrier", "scanning", "peripheral vision"]
-favorite: 5
 grow: 5
 abstract: "When I watch football, I naturally look at the player with the ball. That instinct is half right. Elite 11-v-11 eye-tracking research shows the player in possession is a major fixation target, but experienced players also extract information from teammates, opponents and space. Novices tend to stick to the ball and passer more. 上手な見方は保持者から目を離すことではなく、保持者をvisual anchorにして周囲の選択肢を読むことなのかもしれない。"
 ---

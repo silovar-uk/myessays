@@ -8,7 +8,6 @@ type: "Conceptual Essay"
 status: "完成"
 tags: ["武士は食わねど高楊枝", "ノブレス・オブリージュ", "noblesse oblige", "矜持", "責任", "品位", "努力", "倫理", "強さ", "リーダーシップ", "自己規律"]
 keywords: ["pride", "dignity", "noblesse oblige", "responsibility", "self-command", "moral effort", "leadership", "privilege", "strength"]
-favorite: 5
 grow: 5
 abstract: "『武士は食わねど高楊枝』と『noblesse oblige』は、どちらも人間の品位を語るが、向いている方向は少し違う。前者は、苦しいときに自分を安売りしない矜持。後者は、力や立場を得たときに他者への責任を引き受ける倫理。本稿では、この二つを『下に落ちないための強さ』と『上に立ったときに忘れないための強さ』としてつなぐ。無理を隠すことや自己犠牲を美化するのではなく、助けを求めながらも卑屈にならず、余裕ができたらその余裕を周囲へ返す。そんな頑張り方を、自分の生き方の基準として考える。"
 ---

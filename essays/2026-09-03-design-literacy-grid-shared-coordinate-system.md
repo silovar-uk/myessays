@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Design Literacy", "デザイン", "Grid System", "Swiss Style", "International Typographic Style", "Layout", "Alignment", "Typography", "Responsive Design", "Design System"]
 keywords: ["grid system", "typographic grid", "columns", "gutters", "margins", "modules", "baseline grid", "Swiss Style", "International Typographic Style", "asymmetrical layout", "Wim Crouwel", "Armin Hofmann", "Ernst Keller", "design system"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 11

@@ -11,7 +11,6 @@ seriesId: "attentional-agency"
 seriesOrder: 1
 tags: ["集中", "注意", "アテンションエコノミー", "mind wandering", "meta-awareness", "疲労", "agency"]
 keywords: ["attention", "focus", "mind wandering", "meta-awareness", "attention economy", "attentional capture", "Eric Hayot", "Uneven U", "Now Here Me"]
-favorite: 5
 grow: 5
 abstract: "集中できているかを見るとき、「Now・Here・Me」という三点が使える。今の対象にいるか、この場にいるか、そしてattentionの向きを自分で選んでいるか。ただし、not focusedであること自体は悪ではない。Mind wanderingはfuture planningやcreativityにも関わり、intentionalな分散は必要になる。問題はfocusかdiffusionかではなく、そのswitchを自分で選べているか。Attention economy、attentional capture、meta-awareness、rest研究を手がかりに、「Now・Here・Me」を集中力のscoreではなく、attentional agencyを取り戻すための三点測量として考える。"
 ---
