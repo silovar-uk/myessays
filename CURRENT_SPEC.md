@@ -24,7 +24,7 @@ The Japanese article is the canonical article.
 - Canonical article paths are registered in `data/index.json`.
 - One logical article has one canonical `id`.
 - Derived Reading Modes reuse the same canonical `id`.
-- Reading state, favorites, Series state, After Reading data and browser-local notes remain article-ID based.
+- Reading state, resonance, Series state, After Reading data and browser-local notes remain article-ID based.
 
 A Reading Mode must not be registered as a second canonical article in `data/index.json`.
 
@@ -96,7 +96,6 @@ Preferred current article metadata follows `essay-template.md` and normally incl
 - `status`
 - `tags`
 - `keywords`
-- `favorite`
 - `grow`
 - `abstract`
 - optional `series`
