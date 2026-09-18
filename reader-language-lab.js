@@ -11,7 +11,11 @@
   let activePairId = '';
   let compareMode = false;
   let available = [];
+  let previewTimer = 0;
+  let closeTimer = 0;
+  let lensPinned = false;
   const flipState = new WeakMap();
+  const counterpartCache = new Map();
 
   const versions = () => window.MyEssaysReaderVersions;
   const pairs = () => window.MyEssaysPairIdentity;
@@ -138,18 +142,15 @@
       return;
     }
 
-    const button = ensurePeekButton();
-    button.textContent = target === 'ja' ? 'JA' : d.badge.replace(' MIX', '');
-    button.setAttribute('aria-label', `${d.label}でこの段落を見る`);
-    button.style.top = `${Math.max(88, Math.min(innerHeight - 56, rect.top + 4))}px`;
-    button.style.left = `${Math.min(innerWidth - 58, rect.right + 12)}px`;
-    button.hidden = false;
+    // Desktop uses direct hover preview. The extra JA button is only needed on touch layouts.
+    ensurePeekButton().hidden = true;
     ensureMobileDock().hidden = true;
   }
 
   function setActiveBlock(block) {
     const pairId = block?.dataset?.readingLocator || block?.dataset?.pairId || '';
     if (!pairId || block.closest('.reader-mode-bar,.reader-compare-view')) return;
+    if (block === activeBlock) return;
     if (activeBlock && activeBlock !== block) activeBlock.classList.remove('is-language-active-paragraph');
     activeBlock = block;
     activePairId = pairId;
@@ -167,7 +168,7 @@
     panel.setAttribute('aria-label', '段落の言語比較');
     panel.innerHTML = `
       <div class="language-lens-handle" aria-hidden="true"></div>
-      <div class="language-lens-head"><div><p>LANGUAGE LENS</p><h2>この段落</h2></div><button type="button" class="language-lens-close" aria-label="閉じる">×</button></div>
+      <div class="language-lens-head"><div><p>LANGUAGE MIRROR</p><h2>対応する原文</h2></div><div class="language-lens-head-actions"><span class="language-lens-pin-state" hidden>PINNED</span><button type="button" class="language-lens-close" aria-label="閉じる">×</button></div></div>
       <div class="language-lens-status" aria-live="polite"></div>
       <section class="language-lens-current"><span class="language-lens-label"></span><div class="language-lens-current-copy"></div></section>
       <section class="language-lens-counterpart"><span class="language-lens-label"></span><div class="language-lens-counterpart-copy"></div></section>
@@ -187,15 +188,59 @@
     return panel;
   }
 
-  function closeLens() {
+  function closeLens({ force = false } = {}) {
+    if (lensPinned && !force) return;
+    clearTimeout(previewTimer);
+    clearTimeout(closeTimer);
     const panel = document.getElementById('languageLensPanel');
-    if (panel) panel.hidden = true;
+    if (panel) {
+      panel.hidden = true;
+      panel.classList.remove('is-preview', 'is-pinned');
+      panel.querySelector('.language-lens-pin-state')?.toggleAttribute('hidden', true);
+    }
+    lensPinned = false;
+  }
+
+  function pinLens(block = activeBlock) {
+    if (!block || isMobile()) return;
+    clearTimeout(closeTimer);
+    lensPinned = true;
+    const panel = ensureLens();
+    panel.classList.remove('is-preview');
+    panel.classList.add('is-pinned');
+    panel.querySelector('.language-lens-pin-state')?.toggleAttribute('hidden', false);
+    openLens(block, { preview: false });
+  }
+
+  function scheduleCloseLens() {
+    clearTimeout(closeTimer);
+    if (lensPinned || isMobile()) return;
+    closeTimer = window.setTimeout(() => closeLens(), 280);
+  }
+
+  function cancelCloseLens() {
+    clearTimeout(closeTimer);
   }
 
   async function counterpartFor(pairId, target) {
     if (!ctx || !target) return null;
+    const cacheKey = `${ctx.essayId}::${target}::${pairId}`;
+    if (counterpartCache.has(cacheKey)) return counterpartCache.get(cacheKey);
+
+    if (target === 'ja' && pairId) {
+      const canonicalText = window.MyEssaysReadingLocators?.canonicalText?.(pairId, ctx.essayId);
+      if (canonicalText) {
+        const virtual = document.createElement('p');
+        virtual.textContent = canonicalText;
+        counterpartCache.set(cacheKey, virtual);
+        return virtual;
+      }
+    }
+
     const root = await versions()?.rootForVersion?.(ctx.essayId, target);
-    return findByPair(root, pairId);
+    const counterpart = findByPair(root, pairId);
+    counterpartCache.set(cacheKey, counterpart || null);
+    return counterpart;
   }
 
   function readablePairBlocks() {
@@ -203,11 +248,14 @@
       .filter(el => el.dataset.readingLocator || el.dataset.pairId);
   }
 
-  async function openLens(block) {
+  async function openLens(block, { preview = false } = {}) {
     const pairId = block?.dataset?.readingLocator || block?.dataset?.pairId || '';
     if (!pairId || compareMode) return;
     setActiveBlock(block);
     const panel = ensureLens();
+    cancelCloseLens();
+    if (preview && !lensPinned) panel.classList.add('is-preview');
+    else panel.classList.remove('is-preview');
     const target = targetVersion();
     if (!target) return;
     panel.dataset.pairId = pairId;
@@ -340,7 +388,9 @@
     compareMode = false;
     activeBlock = null;
     activePairId = '';
-    closeLens();
+    lensPinned = false;
+    counterpartCache.clear();
+    closeLens({ force: true });
     hideAffordance();
     view.classList.remove('language-compare-mode');
     available = await versions()?.availableVersions?.(context.essayId) || [];
@@ -351,15 +401,40 @@
   content.addEventListener('pointerover', event => {
     if (compareMode || isMobile()) return;
     const block = event.target.closest?.('[data-reading-locator],[data-pair-id]');
-    if (block && content.contains(block)) setActiveBlock(block);
+    if (!block || !content.contains(block)) return;
+    cancelCloseLens();
+    if (block === activeBlock && !ensureLens().hidden) return;
+    setActiveBlock(block);
+    if (lensPinned) return;
+    clearTimeout(previewTimer);
+    previewTimer = window.setTimeout(() => openLens(block, { preview: true }), 120);
+  });
+
+  content.addEventListener('pointerout', event => {
+    if (compareMode || isMobile() || lensPinned) return;
+    const fromBlock = event.target.closest?.('[data-reading-locator],[data-pair-id]');
+    if (!fromBlock) return;
+    const next = event.relatedTarget;
+    if (next && (fromBlock.contains(next) || ensureLens().contains(next))) return;
+    clearTimeout(previewTimer);
+    scheduleCloseLens();
   });
 
   content.addEventListener('click', event => {
-    if (!isMobile() || compareMode) return;
+    if (compareMode) return;
     if (event.target.closest?.('a,button,input,textarea,select,summary,code,pre')) return;
     const block = event.target.closest?.('[data-reading-locator],[data-pair-id]');
-    if (block && content.contains(block)) setActiveBlock(block);
+    if (!block || !content.contains(block)) return;
+    if (isMobile()) {
+      setActiveBlock(block);
+      return;
+    }
+    pinLens(block);
   });
+
+  const lens = ensureLens();
+  lens.addEventListener('pointerenter', cancelCloseLens);
+  lens.addEventListener('pointerleave', scheduleCloseLens);
 
   window.addEventListener('scroll', positionAffordance, { passive: true });
   window.addEventListener('resize', () => {
@@ -373,7 +448,7 @@
     const panel = document.getElementById('languageLensPanel');
     if (panel && !panel.hidden) {
       event.stopPropagation();
-      closeLens();
+      closeLens({ force: true });
       return;
     }
     if (compareMode) {
@@ -382,7 +457,7 @@
     }
   }, true);
   window.addEventListener('hashchange', () => {
-    closeLens();
+    closeLens({ force: true });
     hideAffordance();
     compareMode = false;
     view.classList.remove('language-compare-mode');
