@@ -1,5 +1,5 @@
 name: One-shot Integrity and Pivot Full QA
-# rerun after forced-colors transient-class race was removed
+# final rerun after forced-colors computed-style normalization
 
 on:
   push:
