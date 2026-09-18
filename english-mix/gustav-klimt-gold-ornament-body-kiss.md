@@ -1,5 +1,5 @@
 ---
-id: gustav-klimt-gold-ornament-body-kiss-en-mix
+id: gustav-klimt-gold-ornament-body-kiss
 title: "The World’s Most Famous “Kiss” Is Not Actually a Kiss――クリムトとは何者か"
 subtitle: "Gold, ornament, body, scandal――「金色の絵の人」を一度ばらして組み直す"
 created: "2026-09-17"

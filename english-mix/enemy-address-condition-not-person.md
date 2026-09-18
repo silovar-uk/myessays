@@ -1,5 +1,5 @@
 ---
-id: enemy-address-condition-not-person-en-mix
+id: enemy-address-condition-not-person
 title: "Don’t Make People the Enemy. 敵を人間にすると、だいたいバグる。"
 subtitle: "Inside the company, across rival clubs, and toward myself――「敵の宛先」の話"
 created: "2026-09-17"

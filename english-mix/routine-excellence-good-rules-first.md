@@ -1,5 +1,5 @@
 ---
-id: routine-excellence-good-rules-first-en-mix
+id: routine-excellence-good-rules-first
 title: "Routine Excellence Only Works When the Routine Is Good――凡事徹底の前に凡事設計"
 subtitle: "Consistency is a multiplier, not a direction"
 created: "2026-09-13"
