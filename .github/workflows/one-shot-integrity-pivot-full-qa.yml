@@ -1,5 +1,5 @@
 name: One-shot Integrity and Pivot Full QA
-# rerun after stale test expectations were updated
+# rerun after Pivot boundary QA was made semantic
 
 on:
   push:
