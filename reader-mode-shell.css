@@ -147,6 +147,9 @@ body.reader-v2-open #readerLanguageSwitch {
    Keep language switching available, but let the shell recede and leave completion actions below. */
 .reader-mode-shell[data-reader-phase="body-end"],
 .reader-mode-shell[data-reader-phase="completed"] {
+  position: relative;
+  top: auto;
+  z-index: 1;
   margin-bottom: 24px;
 }
 
