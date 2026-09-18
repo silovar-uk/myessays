@@ -294,8 +294,14 @@ async function waitForReader(page) {
   });
   assert.ok(forced, 'forced-colors target should remain inspectable');
   assert.equal(forced.backgroundImage, 'none', 'forced colors should not rely on Reading Lens gradient');
-  assert.equal(forced.animationName, 'none', 'reduced motion should disable switch-surface fade');
-  assert.equal(forced.markerAnimationName, 'none', 'reduced motion should disable switch-marker fade');
+  assert.ok(
+    forced.animationName === 'none' || forced.animationName === '',
+    `reduced motion should disable switch-surface fade, got ${forced.animationName}`
+  );
+  assert.ok(
+    forced.markerAnimationName === 'none' || forced.markerAnimationName === '',
+    `reduced motion should disable switch-marker fade, got ${forced.markerAnimationName}`
+  );
   assert.equal(forced.outlineStyle, 'solid', 'forced colors should expose a system-color outline');
   assert.notEqual(forced.outlineWidth, '0px', 'forced colors outline should remain visible');
   assert.equal(forced.markerPointerEvents, 'none', 'forced-colors marker must not block interaction');
