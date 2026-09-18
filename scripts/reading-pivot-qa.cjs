@@ -28,6 +28,23 @@ async function readingState(page) {
       physicalTop: rect.top,
       physicalBottom: rect.bottom,
       railY: window.MyEssaysReadingPivot?.readingRailY?.() ?? null,
+      expectedRailLocator: (() => {
+        const rail = window.MyEssaysReadingPivot?.readingRailY?.();
+        const blocks = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')]
+          .filter(block => !block.classList.contains('language-source-hidden'));
+        if (!Number.isFinite(rail) || !blocks.length) return '';
+        const intersecting = blocks.find(block => {
+          const candidate = block.getBoundingClientRect();
+          return candidate.top <= rail && candidate.bottom >= rail;
+        });
+        if (intersecting) return intersecting.dataset.readingLocator || '';
+        return blocks.reduce((best, block) => {
+          const candidate = block.getBoundingClientRect();
+          const point = Math.min(candidate.bottom, Math.max(candidate.top, rail));
+          const distance = Math.abs(rail - point);
+          return !best || distance < best.distance ? { block, distance } : best;
+        }, null)?.block?.dataset?.readingLocator || '';
+      })(),
       backgroundColor: getComputedStyle(pivot).backgroundColor,
       boxShadow: getComputedStyle(pivot).boxShadow,
       markerWidth: after.width,
@@ -48,10 +65,15 @@ async function readingState(page) {
 function assertRailOwnsPivot(state, label) {
   assert.ok(state, `${label}: Pivot should exist`);
   assert.ok(Number.isFinite(state.railY), `${label}: Reading Rail should be exposed`);
-  assert.ok(
-    state.physicalTop <= state.railY + 24 && state.physicalBottom >= state.railY - 24,
-    `${label}: Pivot should intersect the Reading Rail or remain inside its 24px hysteresis band`
-  );
+  const insideRailBand = state.physicalTop <= state.railY + 24
+    && state.physicalBottom >= state.railY - 24;
+  if (!insideRailBand) {
+    assert.equal(
+      state.physicalLocator,
+      state.expectedRailLocator,
+      `${label}: when the Reading Rail crosses non-reading whitespace, Pivot should be the nearest readable paragraph`
+    );
+  }
   assert.equal(state.focusAnchor, state.physicalLocator, `${label}: focus anchor should be the physical Pivot`);
   assert.ok(state.focusCount >= 1 && state.focusCount <= 3, `${label}: focus zone should contain 1–3 paragraphs`);
   assert.ok(state.focusLocators.includes(state.physicalLocator), `${label}: Pivot should belong to the Reading Lens range`);
