@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["視力", "Myopia", "Eye Strain", "Dry Eye", "Digital Eye Strain", "Self-care"]
 keywords: ["myopia", "visual acuity", "digital eye strain", "dry eye", "20-20-20 rule", "pinhole effect", "eye exercises", "adult myopia"]
-favorite: false
 grow: true
 abstract: "“I want better eyesight” sounds like one problem, but it splits into at least four: refractive error, focus fatigue, tear-film instability, and myopia progression. 目を細めると一瞬よく見えるpinhole effectから始め、eye exercises、20-20-20、outdoor time、adult myopiaまでを調べ、手術なしで現実的に何を変えられるのかを整理する。"
 ---
