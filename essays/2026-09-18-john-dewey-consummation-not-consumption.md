@@ -8,7 +8,6 @@ type: "Essay"
 status: "published"
 tags: ["John Dewey", "美学", "経験", "エンタメ", "消費", "鑑賞", "Pragmatism"]
 keywords: ["John Dewey", "Art as Experience", "consummation", "consumption", "an experience", "doing and undergoing", "perception", "recognition", "continuity", "aesthetic experience"]
-favorite: false
 grow: true
 abstract: "consumption（消費）と consummation（成就）は、綴りが驚くほど似ている。しかしジョン・デューイが『Art as Experience』で重視したのは、経験を使い切ることではなく、ばらばらの出来事が関係を持ち、ひとまとまりの「一つの経験」へ成就することだった。作品、受け手、知覚、抵抗、連続性をたどりながら、エンタメを「糧にする」とは何かをもう一段深く考える。"
 ---
