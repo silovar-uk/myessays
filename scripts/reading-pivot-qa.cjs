@@ -233,7 +233,14 @@ async function waitForReader(page) {
   assert.equal(rapid.locator, beforeSwitch.locator, 'rapid JA → EN → JA must keep the final logical Pivot');
 
   // At the article end the Lens may backfill, but the bookmark stays on the Pivot.
-  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' }));
+  // After a language switch, Pivot intentionally ignores raw programmatic scrolls
+  // until the reader expresses movement intent. Use a real keyboard navigation
+  // gesture here so the QA follows the runtime contract instead of bypassing it.
+  await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());
+  await page.keyboard.press('End');
+  await page.waitForFunction(() =>
+    window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
+  );
   await page.waitForTimeout(140);
   const ending = await readingState(page);
   assertRailOwnsPivot(ending, 'article end');
