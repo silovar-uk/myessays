@@ -254,6 +254,14 @@
     setActiveBlock(block);
     const panel = ensureLens();
     cancelCloseLens();
+    if (!isMobile()) {
+      const rect = block.getBoundingClientRect();
+      const panelHeight = Math.min(520, Math.max(180, panel.offsetHeight || 260));
+      const top = Math.max(88, Math.min(innerHeight - panelHeight - 18, rect.top - 10));
+      panel.style.top = `${top}px`;
+    } else {
+      panel.style.removeProperty('top');
+    }
     if (preview && !lensPinned) panel.classList.add('is-preview');
     else panel.classList.remove('is-preview');
     const target = targetVersion();
@@ -343,7 +351,7 @@
     if (!target) return;
 
     compareMode = true;
-    closeLens();
+    closeLens({ force: true });
     hideAffordance();
     ensureModeBar();
     view.classList.add('language-compare-mode');
