@@ -52,8 +52,12 @@ jobs:
           cat /tmp/myessays-server.log
           exit 1
 
+      - name: Verify content indexes are synchronized
+        run: node tools/sync-content-indexes.mjs --check
+
       - name: Run content migration audit
         run: |
+          set -o pipefail
           mkdir -p qa-artifacts
           node tools/audit-content.mjs --strict | tee qa-artifacts/migration-audit.md
 
