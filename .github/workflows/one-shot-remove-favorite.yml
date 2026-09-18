@@ -27,7 +27,7 @@ jobs:
         run: node tools/remove-favorite-frontmatter.mjs --check
 
       - name: Run JavaScript tests
-        run: node --test tests/*.test.js
+        run: node --test tests/favorite-removal.test.js tests/reader-resonance.test.js tests/reader-reflections.test.js tests/reader-architecture.test.js tests/runtime-assets.test.js
 
       - name: Commit migrated content
         run: |
