@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Equal spacing versus semantic spacing</title>
+<desc id="desc">左はすべて同じ24pxの間隔、右は関連度に応じて8pxと32pxを使い分け、情報グループが見える比較図。</desc>
+<rect width="1200" height="720" fill="#f7f7f5"/>
+<text x="70" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#111">Equal spacing</text>
+<text x="650" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#111">Semantic spacing</text>
+<text x="70" y="118" font-family="Arial, sans-serif" font-size="20" fill="#666">Everything is 24px apart</text>
+<text x="650" y="118" font-family="Arial, sans-serif" font-size="20" fill="#666">Distance reflects relationship</text>
+
+<g font-family="Arial, sans-serif" fill="#111">
+  <text x="90" y="190" font-size="22" font-weight="700">MATCH INFO</text>
+  <text x="90" y="252" font-size="28">10/3 SAT · 19:00</text>
+  <text x="90" y="314" font-size="28">KASHIMA ANTLERS</text>
+  <text x="90" y="376" font-size="28">SAITAMA STADIUM</text>
+  <rect x="90" y="418" width="300" height="68" rx="10" fill="#111"/>
+  <text x="130" y="461" font-size="24" fill="#fff">BUY TICKETS</text>
+
+  <text x="670" y="190" font-size="22" font-weight="700">MATCH INFO</text>
+  <text x="670" y="246" font-size="28">10/3 SAT · 19:00</text>
+  <text x="670" y="286" font-size="28">KASHIMA ANTLERS</text>
+  <text x="670" y="326" font-size="28">SAITAMA STADIUM</text>
+  <rect x="670" y="390" width="300" height="68" rx="10" fill="#111"/>
+  <text x="710" y="433" font-size="24" fill="#fff">BUY TICKETS</text>
+</g>
+
+<g font-family="Arial, sans-serif" font-size="18" fill="#9b3f00">
+  <text x="425" y="224">24</text><text x="425" y="286">24</text><text x="425" y="348">24</text><text x="425" y="414">24</text>
+  <text x="1020" y="220">8</text><text x="1020" y="270">8</text><text x="1020" y="310">8</text><text x="1020" y="370">32</text>
+</g>
+
+<line x1="600" y1="150" x2="600" y2="570" stroke="#d6d6d0" stroke-width="2"/>
+<text x="70" y="620" font-family="Arial, sans-serif" font-size="22" fill="#555">Same neat rhythm, weak grouping.</text>
+<text x="650" y="620" font-family="Arial, sans-serif" font-size="22" fill="#555">Tighter within groups, wider between groups.</text>
+<text x="70" y="670" font-family="Arial, sans-serif" font-size="18" fill="#888">Original diagram for Design Literacy #55</text>
+</svg>
