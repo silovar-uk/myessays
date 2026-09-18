@@ -1,0 +1,47 @@
+name: One-shot Apply Content Integrity Repair
+
+on:
+  push:
+    branches: [investigate/integrity-pivot-20260918]
+    paths:
+      - '.github/workflows/one-shot-apply-content-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: investigate/integrity-pivot-20260918
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Apply deterministic content-index repair
+        run: node tools/sync-content-indexes.mjs --write
+
+      - name: Verify content-index sync
+        run: |
+          node tools/sync-content-indexes.mjs --check
+          node tools/audit-content.mjs --strict
+
+      - name: Run integrity tests
+        run: node --test tests/data-integrity.test.js tests/reader-versions.test.js
+
+      - name: Commit deterministic repairs
+        run: |
+          if git diff --quiet; then
+            echo "No content repair changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/index.json data/versions-index.json english-mix
+          git commit -m "記事とReading Mode索引の整合性を修復"
+          git push origin HEAD:investigate/integrity-pivot-20260918
