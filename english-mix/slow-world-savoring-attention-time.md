@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["生活", "Attention", "Savoring", "Time Affluence", "Slow Looking", "Well-being"]
 keywords: ["savoring", "time affluence", "slow looking", "attention economy", "retrospective duration", "event boundaries", "mindfulness", "Uneven U"]
-favorite: 5
 grow: 5
 abstract: "「もっとゆっくり生きたい」は、予定を全部減らす願いではないのかもしれない。This essay treats slowness as attentional dwell time: how long we stay with an experience before sending ourselves to the next one. Savoring, time affluence, Slow Looking, and research on retrospective duration suggest a smaller practice—do not move on immediately. 世界を遅くするのではなく、自分の中で世界が消えるまでを少し長くする。"
 ---
