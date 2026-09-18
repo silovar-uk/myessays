@@ -10,7 +10,7 @@ const $ = (id) => document.getElementById(id);
 const els = {
   libraryView: $('libraryView'), readerView: $('readerView'), essayGrid: $('essayGrid'),
   searchInput: $('searchInput'), searchControl: $('searchControl'), searchToggle: $('searchToggle'),
-  typeFilter: $('typeFilter'), yearFilter: $('yearFilter'), favoriteFilter: $('favoriteFilter'),
+  typeFilter: $('typeFilter'), yearFilter: $('yearFilter'),
   sortSelect: $('sortSelect'), tagFilters: $('tagFilters'), resultCount: $('resultCount'),
   emptyState: $('emptyState'), clearFilters: $('clearFilters'), filterToggle: $('filterToggle'),
   filterCount: $('filterCount'), filterPanel: $('filterPanel'), readerContent: $('readerContent'),
@@ -231,41 +231,39 @@ function populateFilters() {
   });
 }
 
-function stars(n=0) { return '★'.repeat(Number(n)||0) + '☆'.repeat(Math.max(0,5-(Number(n)||0))); }
 function formatDate(d='') { if (!d) return ''; const [y,m,day] = d.split('-'); return `${y}.${m}.${day}`; }
 function tagsHtml(tags=[], limit=5) { return normalizeList(tags).slice(0,limit).map(t=>`<span>#${escapeHtml(t)}</span>`).join(''); }
 
 function filteredEssays() {
   const q = els.searchInput.value.trim().toLowerCase();
-  const type = els.typeFilter.value, year = els.yearFilter.value, minFav = Number(els.favoriteFilter.value || 0);
+  const type = els.typeFilter.value, year = els.yearFilter.value;
   let rows = state.essays.filter(e => {
     if (q && !e.searchText.includes(q)) return false;
     if (type && e.type !== type) return false;
     if (year && !String(e.created||'').startsWith(year)) return false;
-    if ((Number(e.favorite)||0) < minFav) return false;
     if ([...state.activeTags].some(tag => !(e.tags||[]).includes(tag))) return false;
     return true;
   });
   const sort = els.sortSelect.value;
   rows.sort((a,b) => {
     if (sort === 'title-asc') return String(a.title).localeCompare(String(b.title),'ja');
-    if (sort === 'favorite-desc') return (Number(b.favorite)||0)-(Number(a.favorite)||0) || String(b.created).localeCompare(String(a.created));
     if (sort === 'updated-desc') return String(b.updated||'').localeCompare(String(a.updated||''));
     return String(b.created||'').localeCompare(String(a.created||''));
   });
   return rows;
 }
 
-function featuredEssayIds() {
-  const newest = [...state.essays].sort((a,b)=>String(b.created||'').localeCompare(String(a.created||''))).slice(0,2);
-  const favorites = [...state.essays]
-    .filter(e => Number(e.favorite || 0) >= 4)
-    .sort((a,b)=>(Number(b.favorite)||0)-(Number(a.favorite)||0) || String(b.created||'').localeCompare(String(a.created||'')));
-  return new Set([...newest, ...favorites].filter((e,i,arr)=>arr.findIndex(x=>x.id===e.id)===i).slice(0,4).map(e=>e.id));
+function latestEssayIds() {
+  return new Set(
+    [...state.essays]
+      .sort((a,b)=>String(b.created||'').localeCompare(String(a.created||'')))
+      .slice(0,4)
+      .map(e=>e.id)
+  );
 }
 
 function activeFilterCount() {
-  return Number(Boolean(els.typeFilter.value)) + Number(Boolean(els.yearFilter.value)) + Number(Number(els.favoriteFilter.value) > 0) + state.activeTags.size;
+  return Number(Boolean(els.typeFilter.value)) + Number(Boolean(els.yearFilter.value)) + state.activeTags.size;
 }
 
 function syncToolbarState() {
@@ -286,7 +284,6 @@ function renderFeaturedCard(e) {
       <p class="featured-abstract">${escapeHtml(e.abstract || '')}</p>
       <div class="featured-footer">
         <div class="mini-tags">${tagsHtml(e.tags, 5)}</div>
-        <span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span>
       </div>
     </article>`;
 }
@@ -301,22 +298,21 @@ function renderArchiveRow(e) {
       </div>
       <div class="archive-side">
         <span class="archive-type">${escapeHtml(e.type || 'Essay')}</span>
-        <span class="stars" title="お気に入り ${e.favorite || 0}/5">${stars(e.favorite)}</span>
       </div>
     </article>`;
 }
 
 function renderLibrary() {
   const rows = filteredEssays();
-  const featuredIds = featuredEssayIds();
-  const featured = rows.filter(e => featuredIds.has(e.id));
-  const archive = rows.filter(e => !featuredIds.has(e.id));
+  const latestIds = latestEssayIds();
+  const featured = rows.filter(e => latestIds.has(e.id));
+  const archive = rows.filter(e => !latestIds.has(e.id));
   els.resultCount.textContent = `${rows.length} / ${state.essays.length} essays`;
   els.emptyState.hidden = rows.length > 0;
 
   const featuredHtml = featured.length ? `
     <section class="library-section">
-      <div class="section-heading"><strong>Featured</strong><span>最新・お気に入り</span></div>
+      <div class="section-heading"><strong>Latest</strong><span>新しく追加した論考</span></div>
       <div class="featured-grid">${featured.map(renderFeaturedCard).join('')}</div>
     </section>` : '';
   const archiveHtml = archive.length ? `
@@ -485,7 +481,6 @@ function showReader(essay, { preserveScroll = false } = {}) {
       <dt>Created</dt><dd>${formatDate(essay.created)}</dd>
       <dt>Updated</dt><dd>${formatDate(essay.updated)}</dd>
       <dt>Length</dt><dd>${essay.metrics.charCount.toLocaleString('ja-JP')}文字 · 約${essay.metrics.minutes}分</dd>
-      <dt>Favorite</dt><dd class="stars">${stars(essay.favorite)}</dd>
       <dt>Grow</dt><dd>${essay.grow || 0}/5</dd>
       <dt>Tags</dt><dd>${(essay.tags||[]).map(t=>`#${escapeHtml(t)}`).join(' ')}</dd>
     </dl>
@@ -525,7 +520,6 @@ function route() {
   els.searchInput.addEventListener(eventName, renderLibrary);
   els.typeFilter.addEventListener(eventName, renderLibrary);
   els.yearFilter.addEventListener(eventName, renderLibrary);
-  els.favoriteFilter.addEventListener(eventName, renderLibrary);
   els.sortSelect.addEventListener(eventName, renderLibrary);
 });
 
@@ -535,7 +529,7 @@ els.essayGrid.addEventListener('click', e => { const card=e.target.closest('[dat
 els.essayGrid.addEventListener('keydown', e => { const card=e.target.closest('[data-id]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openEssay(card.dataset.id); }});
 els.backButton.addEventListener('click', () => { location.hash = '#/'; });
 els.clearFilters.addEventListener('click', () => {
-  els.searchInput.value=''; els.typeFilter.value=''; els.yearFilter.value=''; els.favoriteFilter.value='0'; els.sortSelect.value='created-desc';
+  els.searchInput.value=''; els.typeFilter.value=''; els.yearFilter.value=''; els.sortSelect.value='created-desc';
   state.activeTags.clear(); document.querySelectorAll('.tag-chip').forEach(b=>b.classList.remove('is-active'));
   closeToolPanels(); renderLibrary();
 });
