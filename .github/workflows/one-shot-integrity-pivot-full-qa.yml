@@ -1,5 +1,5 @@
 name: One-shot Integrity and Pivot Full QA
-# final rerun after forced-colors computed-style normalization
+# final rerun after keyboard switch waits for semantic stability
 
 on:
   push:
