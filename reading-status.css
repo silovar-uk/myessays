@@ -38,6 +38,7 @@
 .reading-status-tab[data-reading-filter="unread"] { --status-color: #7897ad; }
 .reading-status-tab[data-reading-filter="opened"] { --status-color: #b89a55; }
 .reading-status-tab[data-reading-filter="completed"] { --status-color: #b65b50; }
+.reading-status-tab[data-reading-filter="resonance"] { --status-color: #8a6a36; }
 .reading-status-tab[data-reading-filter="memo"] { --status-color: #6f96b2; }
 .reading-status-dot {
   width: 7px;
@@ -45,6 +46,23 @@
   border-radius: 999px;
   background: var(--status-color);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--status-color) 11%, transparent);
+}
+
+
+.reading-resonance-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 3px 7px;
+  border: 1px solid rgba(138,106,54,.22);
+  border-radius: 999px;
+  background: rgba(255,249,235,.62);
+  color: #7d6338;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .featured-card,
