@@ -2,6 +2,8 @@
   'use strict';
 
   const BREAKPOINT = 760;
+  const PREVIEW_DELAY_MS = 160;
+  const PREVIEW_CLOSE_DELAY_MS = 280;
   const view = document.getElementById('readerView');
   const content = document.getElementById('readerContent');
   if (!view || !content) return;
@@ -22,6 +24,7 @@
   const currentVersion = () => versions()?.currentVersion?.() || 'ja';
   const definition = version => versions()?.definitions?.[version] || { label: version, badge: version.toUpperCase(), lang: 'ja' };
   const isMobile = () => matchMedia(`(max-width:${BREAKPOINT}px)`).matches;
+  const noteIsOpen = () => view.classList.contains('note-is-open');
 
   function targetVersion() {
     const current = currentVersion();
@@ -215,7 +218,7 @@
   function scheduleCloseLens() {
     clearTimeout(closeTimer);
     if (lensPinned || isMobile()) return;
-    closeTimer = window.setTimeout(() => closeLens(), 280);
+    closeTimer = window.setTimeout(() => closeLens(), PREVIEW_CLOSE_DELAY_MS);
   }
 
   function cancelCloseLens() {
@@ -248,22 +251,29 @@
       .filter(el => el.dataset.readingLocator || el.dataset.pairId);
   }
 
+  function positionPinnedLens(panel, block) {
+    const rect = block.getBoundingClientRect();
+    const panelHeight = Math.min(520, Math.max(180, panel.offsetHeight || 260));
+    const top = Math.max(88, Math.min(innerHeight - panelHeight - 18, rect.top - 10));
+    panel.style.top = `${top}px`;
+  }
+
   async function openLens(block, { preview = false } = {}) {
     const pairId = block?.dataset?.readingLocator || block?.dataset?.pairId || '';
     if (!pairId || compareMode) return;
     setActiveBlock(block);
     const panel = ensureLens();
     cancelCloseLens();
+
+    const previewMode = preview && !lensPinned && !isMobile();
     if (!isMobile()) {
-      const rect = block.getBoundingClientRect();
-      const panelHeight = Math.min(520, Math.max(180, panel.offsetHeight || 260));
-      const top = Math.max(88, Math.min(innerHeight - panelHeight - 18, rect.top - 10));
-      panel.style.top = `${top}px`;
+      if (previewMode) panel.style.removeProperty('top');
+      else positionPinnedLens(panel, block);
     } else {
       panel.style.removeProperty('top');
     }
-    if (preview && !lensPinned) panel.classList.add('is-preview');
-    else panel.classList.remove('is-preview');
+
+    panel.classList.toggle('is-preview', previewMode);
     const target = targetVersion();
     if (!target) return;
     panel.dataset.pairId = pairId;
@@ -277,13 +287,14 @@
     panel.querySelector('.language-lens-counterpart .language-lens-label').textContent = targetDef.label.toUpperCase();
     panel.querySelector('.language-lens-current-copy').textContent = block.textContent.trim();
     panel.querySelector('.language-lens-counterpart-copy').textContent = '…';
-    panel.querySelector('.language-lens-status').textContent = '対応段落を確認中';
+    panel.querySelector('.language-lens-status').textContent = previewMode ? '' : '対応段落を確認中';
 
     const counterpart = await counterpartFor(pairId, target);
     if (panel.dataset.pairId !== pairId) return;
-    panel.querySelector('.language-lens-counterpart-copy').textContent = counterpart?.textContent?.trim() || '';
+    panel.querySelector('.language-lens-counterpart-copy').textContent =
+      counterpart?.textContent?.trim() || (previewMode ? '対応する段落なし' : '');
     panel.querySelector('.language-lens-status').textContent = counterpart ? '同じ読書位置' : 'この段落は対応版なし';
-    panel.querySelector('.language-lens-counterpart').hidden = !counterpart;
+    panel.querySelector('.language-lens-counterpart').hidden = !counterpart && !previewMode;
     panel.querySelector('.language-lens-flip').disabled = !counterpart;
     panel.querySelector('.language-lens-full').textContent = `全文を${targetDef.label}で読む`;
     panel.querySelector('.language-lens-flip').textContent = flipState.has(block) ? '元に戻す' : 'この段落だけ切替';
@@ -407,15 +418,14 @@
   }
 
   content.addEventListener('pointerover', event => {
-    if (compareMode || isMobile()) return;
+    if (compareMode || isMobile() || noteIsOpen() || lensPinned) return;
     const block = event.target.closest?.('[data-reading-locator],[data-pair-id]');
     if (!block || !content.contains(block)) return;
     cancelCloseLens();
     if (block === activeBlock && !ensureLens().hidden) return;
     setActiveBlock(block);
-    if (lensPinned) return;
     clearTimeout(previewTimer);
-    previewTimer = window.setTimeout(() => openLens(block, { preview: true }), 120);
+    previewTimer = window.setTimeout(() => openLens(block, { preview: true }), PREVIEW_DELAY_MS);
   });
 
   content.addEventListener('pointerout', event => {
@@ -446,11 +456,15 @@
 
   window.addEventListener('scroll', positionAffordance, { passive: true });
   window.addEventListener('resize', () => {
+    if (isMobile()) closeLens({ force: true });
     positionAffordance();
     placeModeBar();
   });
   document.addEventListener('myessays:reading-location-changed', () => placeModeBar());
-  document.addEventListener('myessays:reader-version-changed', () => requestAnimationFrame(() => placeModeBar()));
+  document.addEventListener('myessays:reader-version-changed', () => {
+    closeLens({ force: true });
+    requestAnimationFrame(() => placeModeBar());
+  });
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
     const panel = document.getElementById('languageLensPanel');
