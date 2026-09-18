@@ -12,82 +12,92 @@ favorite: false
 grow: true
 series: Design Literacy｜細部から思想まで
 seriesOrder: 55
-abstract: 「余白を増やしてください」というdesign review languageを本気で疑う。Why can we still see groups after borders, backgrounds, and shadows disappear? Max Wertheimerの1923年のGestalt研究、modern UIのProximity、W3Cのcognitive accessibility guidanceをたどり、whitespaceを「leftover space」ではなくrelationshipとboundaryを書くinformationとして捉え直す。
+abstract: 「余白を増やしてください」というdesign instructionを本気で疑う。Why can people still find groups on a screen even without borders or background fills?Max Wertheimerの1923年のGestalt研究、現代UIのProximity、W3Cの認知アクセシビリティ資料をたどり、Whitespaceをleftover spaceではなく、relationshipとboundaryを書くinformationとして捉え直す。
 ---
 
 # 枠線を全部消したのに、なぜまだグループが見えるのか？
 
-Design reviewには、extremely convenientな言葉がある。
+Web design reviewには、かなり便利な言葉がある。
 
 > **「もう少し余白を増やしてください」**
 
-Most of the time、something gets better.
+Most of the time、何かしら良くなる。
 
-窮屈だった画面にairが入り、copy is easier to scan、そして少しpremiumにも見える。
+窮屈だった画面に空気が入り、文字が読みやすくなり、ちょっと高級そうにも見える。
 
 Too useful.
 
-だから一度、意地悪なexperimentをする。
+だから一度、意地悪な実験をしてみる。
 
-Take one interface and remove every border. Remove the background fills. Remove card shadows. Keep only text, buttons, and distance.
+Take one UI and remove every border. 背景色も消す。Card shadowも消す。残すのはtext、button、そしてspacingだけ。
 
 すると妙なことが起きる。
 
 **The groups are still there.**
 
-「名前」と「山田太郎」はone pairに見える。「メールアドレス」と「taro@example.com」もone pairに見える。A button placed farther away feels like another functional group.
+「名前」と「山田太郎」は一組に見えるし、「メールアドレス」と「taro@example.com」も一組に見える。ボタンが少し離れていれば、「ここから操作」という別のまとまりにも見える。
 
-There is no line, but there is still a boundary.
+枠がないのに、境界がある。
 
-What created it?
+何が境界を作っているのか。
 
-何も置かれていない場所だった。
+The answer was the place where nothing was placed.
 
 ## 1. 今日のテーマ｜Whitespaceは空白ではなく、関係を書く
 
 今回扱うのはGestalt psychologyの**Principle of Proximity（近接の原則）**。
 
-In short:
+In short、
 
-> **Things placed close together tend to be perceived as belonging together.**
+> **近いものは、同じまとまりに見えやすい。**
 
-ただし、このone-linerだけ覚えると、すぐDesign Tipsになる。
+という知覚の傾向だ。
 
-今回見たいのはone level deeper.
+However「近いものは仲間」という一行だけ覚えると、急にデザインTipsになる。
 
-Why can “nothing” communicate structure? そしてUIでは、spacingを「8 / 16 / 24pxのnumbers」ではなく、**relationship strengthを表すinformation**として設計できるのか。
+今回やりたいのはone level deeper。
+
+なぜ余白は、何も描かれていないのに意味を持てるのか。
+
+そしてUIでは、spacingを「8px / 16px / 24pxの数字」ではなく、**relationship strengthを表すinformation**として設計できるのか。
 
 ## 2. FACT｜人は最初から「バラバラの点」として見ていない
 
-Gestalt psychologist Max Wertheimerは1923年の論文 “Laws of Organization in Perceptual Forms” で、our visual field is not simply experienced as a pile of independent stimuli; it appears organized into meaningful wholes.
+Gestalt心理学者Max Wertheimerは1923年の論文「Laws of Organization in Perceptual Forms」で、視野に入るものが単なる刺激の集合として知覚されるわけではなく、まとまりを持って組織されて見えることを論じた。
 
-英訳の冒頭には、windowからhouse、trees、skyを見るexampleが出てくる。
+英訳の冒頭では、窓から家・木・空を見る例が出てくる。
 
-In theory、you could break the scene into hundreds of brightnesses and color nuances. But you do not first experience “327 fragments.”
+理屈の上では無数の明るさや色の差に分解できる。しかし実際には、私たちは「327個の色の断片」を先に見るのではない。
 
-**You see sky, house, and trees.**
+**家、木、空を見る。**
 
 Source: https://psychclassics.yorku.ca/Wertheimer/Forms/forms
 
-Wertheimer then discusses arrangements in which elements with smaller spatial intervals naturally form groups.
+その後Wertheimerは、点や線の配置において、より小さい間隔を持つ要素同士が自然なまとまりとして現れる現象を扱っている。
 
-ここまではhistorical / psychological **fact**。
+ここまではhistorical / psychologicalな**事実**。
 
-UIへ持ち込むところからは**design interpretation**だ。
+ここからUIへ持ち込むのはdesign**解釈**だ。
 
-Whitespace can act as structural information:
+画面上の余白は、単に「要素が存在しない場所」ではなく、
 
-> this belongs together.
+> ここまでは一つの話です。
 >
-> this starts a different thing.
+> ここから別の話です。
 
-Whitespace is not absence.
+という構造情報として働く。
 
-**Sometimes we communicate by deliberately placing nothing.**
+つまり、Whitespace is not absence.
+
+**関係を伝えるために、何も置かない。**
+
+It is a strange idea.
 
 ## 3. EXPERIMENT｜全部24pxにすると、整うのに意味が薄くなる
 
 Imagine a match-information card.
+
+要素は5つ。
 
 ~~~text
 MATCH INFO
@@ -97,7 +107,7 @@ SAITAMA STADIUM
 BUY TICKETS
 ~~~
 
-First、put 24px between everything.
+First、全部のspacingを24pxにする。
 
 ~~~text
 MATCH INFO
@@ -113,15 +123,15 @@ BUY TICKETS
 
 It looks neat.
 
-Spacing tokens are beautifully consistent.
+Spacing tokenも統一されている。
 
-でもperceptionとしては妙だ。
+しかし、知覚上は妙なことになる。
 
 **Equal distance implies equal relationship.**
 
-The title-to-date relationship, date-to-opponent relationship, venue-to-CTA relationship — all become “24px relationships.”
+タイトルと日時の関係も、日時と対戦相手の関係も、会場とCTAの関係も、全部「24pxぶんの関係」。
 
-次に、meaningに応じてdistanceを変える。
+Next、meaningに合わせてdistanceを変える。
 
 ~~~text
 MATCH INFO
@@ -137,32 +147,34 @@ SAITAMA STADIUM
 BUY TICKETS
 ~~~
 
-Now two groups emerge.
+すると、急に
 
 ~~~text
-[Heading + match information]
+[見出し＋試合情報]
 
 [CTA]
 ~~~
 
-Same text. Same color. Same elements.
+という二つのまとまりが見えてくる。
 
-Only the amount of “nothing” changed.
+同じ要素。同じ文字。同じ色。
+
+Changed only**何もない場所の量**だけ。
 
 ![Equal spacingとSemantic spacingの比較](https://raw.githubusercontent.com/silovar-uk/myessays/main/assets/design-literacy-proximity-whitespace/semantic-spacing.svg)
 
-*Figure: すべて24pxで揃えたcaseと、relationshipに応じて8px / 32pxを使い分けたcase。Original diagram for this article.*
+*Figure: すべて24pxで揃えた場合と、関連度に応じて8px / 32pxを使い分けた場合。Original diagram for this article.*
 
-This reveals the difference between a **Spacing Scale** and **Semantic Spacing**.
+Here、「Spacing Scale」と「Semantic Spacing」の違いが見えてくる。
 
 ~~~text
 Spacing Scale
 4 / 8 / 16 / 24 / 32
-= available values
+= 使える数字の体系
 
 Semantic Spacing
 related / section / separate
-= meaning carried by those values
+= その数字が担う意味
 ~~~
 
 A tidy scale does not automatically create information architecture.
@@ -171,7 +183,7 @@ A tidy scale does not automatically create information architecture.
 
 もう一つexperimentする。
 
-Start with a form separated into cards.
+フォームをカードで区切る。
 
 ### Before
 
@@ -193,7 +205,7 @@ Start with a form separated into cards.
 
 Clear enough.
 
-But the interface uses border, background, radius, and padding to explain grouping.
+でも情報のまとまりを示すために、border、background、radius、paddingと大量の視覚記号を使っている。
 
 Remove all of them.
 
@@ -210,33 +222,41 @@ taro@example.com
 変更を保存
 ~~~
 
-Label and value are close. The next field is farther away. The save action is farther still.
+ラベルと値は近く、次の項目との間は少し広い。操作ボタンはさらに離す。
 
 The structure largely survives.
 
-重要なのは、
+Here、重要なのは、
 
-> **Never use cards.**
+> **カードを使うな。**
 
 ではない。
 
-Cards can signal common region, create clickable surfaces, protect grouping against busy backgrounds, and support interaction.
+カードには共通領域を示したり、クリック可能範囲を明示したり、背景上でまとまりを守ったりする役割がある。
 
-The better question is:
+The better question is、
 
-> **Before adding a card, how much structure can spacing already communicate?**
+> **カードを使う前に、spacingだけでどこまで構造を伝えられているか。**
 
-関係を先に整理し、decorationは必要な分だけ足す。
+ということだ。
+
+Organize relationships before adding decoration.
 
 ## 5. Before → After｜「余白を増やす」を制作指示に変換する
 
-“Add more whitespace” is useful but vague.
+「余白を増やしてください」は、Useful, but vague.
 
-If the real problem is:
+たとえば、
 
-> heading and paragraph should feel like one unit, while the next section should feel separate,
+> このあたり、もうちょっと空けてください。
 
-then simply increasing everything is wrong.
+だけだと、制作者は24pxを32pxにするかもしれない。
+
+でも本当の問題が、
+
+> 見出しと本文は一組に見せたいが、次のセクションとは別に見せたい。
+
+なら、必要なのは単純な増量ではない。
 
 ### Before
 
@@ -268,33 +288,35 @@ H2
 
 > **「余白を均等に増やすのではなく、見出しと対応する本文は近づけ、次セクションとの間隔を明確に広げてください。枠線や背景色を外してもセクション構造が読めるspacing hierarchyを作ってください。」**
 
-This tells the maker not only what to change, but why.
+Now the maker knows both what to change and why.
 
 ## 6. ACCESSIBILITY｜余白は「高級感」のためだけではない
 
-ここではjokesを止める。
+Here、は笑いを止める。
 
-W3C WAIのCognitive Accessibility向けsupplemental guidance “Use White Spacing” recommends using whitespace around objects, text, headings, and blocks so sections are clearly separated.
+W3C WAIのCognitive Accessibility向け補足ガイダンス「Use White Spacing」は、Whitespaceを使ってobjectsやtext、headings、content blocksを分離し、各sectionを明確にすることを勧めている。
 
-It also explains that whitespace can reduce clutter and support overview, navigation, and reading.
+またWhitespaceがclutterを減らし、ページのoverview、navigation、readingを助けると説明している。
 
 Source: https://www.w3.org/WAI/WCAG2/supplemental/patterns/o3p10-whitespace/
 
-Important nuance: this is **Supplemental Guidance**, not a normative WCAG success criterion. It does not mean “32px spacing = WCAG compliant.”
+One important nuance.
 
-それでもdesign implicationは大きい。
+これはWCAGの達成基準そのものではなく、**Supplemental Guidance**だ。つまり「このspacing値ならWCAG合格」という規格ではない。
 
-W3Cの “Designing for Web Accessibility” でも、headings and spacingによってrelated contentをgroupし、Whitespace and Proximityでrelationshipsを明確にすることが勧められている。
+Still、design implicationは強い。
+
+さらにW3Cの「Designing for Web Accessibility」でも、関連contentをheadingsとspacingでgroupingし、WhitespaceとProximityで関係を明確にすることが推奨されている。
 
 Source: https://www.w3.org/WAI/tips/designing/
 
 Whitespace is not only luxury styling.
 
-**It can be a comprehension aid.**
+**It can also be a comprehension aid.**
 
 ## 7. HISTORY｜Gestaltを「UIの法則」に縮めすぎない
 
-In modern UX writing、Gestalt is often presented as a checklist:
+Gestaltという言葉は、UI記事ではしばしば
 
 ~~~text
 Proximity
@@ -304,61 +326,70 @@ Common Region
 ...
 ~~~
 
-That is useful for practice.
+というチェックリストで出てくる。
+
+Useful in practice.
 
 But historically、それだけに縮めると少し雑になる。
 
-Wertheimerたちが扱っていたのはcard UIではない。They were asking a more fundamental question: **how does human perception organize experience into wholes?**
+Wertheimerたちが扱っていたのは「カードUIをどう配置するか」ではなく、**人間の知覚がどのように全体を組織して経験するのか**という、もっと根本的な問題だった。
 
-1923年の論文がおもしろいのは、
+1923年の論文を読んで面白いのは、
 
-> near things group together
+> 「点が近いとgroupになる」
 
-というruleだけではない。
+というルールそのものより、
 
-The deeper starting point is:
+> **そもそも私たちは、世界をバラバラの要素から後で組み立てているわけではないらしい。**
 
-> **we do not seem to experience the world as isolated pieces first and assemble meaning later.**
+という出発点だ。
 
-So when modern designers use Proximity, we are not “inventing” groups from zero.
+When modern UI uses Proximity、このlarger ideaを忘れない方がいい。
 
-We are designing with the fact that people are already looking for organization.
+Designerがgroupをゼロから作っているというより、**人間がgroupを見つけてしまう知覚の性質に、画面側を合わせている**。
 
 ## 8. MISUNDERSTANDING｜近いほど仲良し、では終わらない
 
 Proximity is powerful, but not sovereign.
 
-Nielsen Norman Group notes that proximity can sometimes overpower competing cues such as color or shape similarity.
+Nielsen Norman Groupは、ProximityがcolorやshapeなどSimilarityの手がかりより強く働くことがあると説明している。
 
 Source: https://www.nngroup.com/articles/gestalt-proximity/
 
-That does not mean it always wins.
+However「常にProximityが勝つ」という意味ではない。
 
-Real interfaces contain several grouping cues at once: distance, color, shape, common region, connecting lines, alignment.
+実際の画面では、距離、色、形、囲み、線、alignmentなど複数のgrouping cueが同時に働く。
 
 ![ProximityとSimilarityが競合する模式図](https://raw.githubusercontent.com/silovar-uk/myessays/main/assets/design-literacy-proximity-whitespace/proximity-vs-similarity.svg)
 
-*Figure: Distance says left/right groups; color and shape suggest another cross-cutting relationship. Original diagram for this article.*
+*Figure: 距離は左右のgroupを作り、色・形は別の横断的groupを作ろうとする。Original diagram for this article.*
 
-Consider destructive actions.
+たとえばDangerous action。
 
 ~~~text
 [削除] [保存]
 ~~~
 
-Same shape, same color, very close.
+同じ形、同じ色、近い距離。
 
-All cues say “these are peers.”
+三つのcueすべてが「この二つは同類」と言っている。
 
-But semantically, one is destructive.
+しかし意味としては、片方は破壊的だ。
 
-だからdesigner may separate them spatially, style them differently, change placement, or add confirmation.
+だから、
+
+- 距離を少し離す
+- 色やstyleを変える
+- placementを変える
+- confirmationを入れる
+
+など、複数のcueを調整する。
 
 **Do not ask spacing to solve every meaning problem by itself.**
 
 ## 9. CONNECTION｜数字のデザインから、意味のデザインへ
 
-ここ数回をつなげる。
+ここ数回のDesign Literacyをつなげる。
 
 ~~~text
 #53
@@ -377,11 +408,13 @@ content自身が持つintrinsic sizeへ
 relationshipを表すsemantic spacingへ
 ~~~
 
-The common movement is:
+The common movement is、
 
-> **Do not begin with the number. Ask what the number is protecting.**
+> **数字を先に置くのではなく、その数字が何を守っているかを見る。**
 
-The same applies to Design Tokens.
+という方向だ。
+
+Design Tokenでも同じことが起きる。
 
 ~~~text
 space-1 = 4
@@ -390,9 +423,9 @@ space-3 = 16
 space-4 = 24
 ~~~
 
-This is a scale.
+だけなら、Scaleである。
 
-Add roles such as:
+そこに、
 
 ~~~text
 tight
@@ -401,41 +434,47 @@ section
 separate
 ~~~
 
-and the system starts carrying semantics.
+という役割を考えると、Tokenが**意味**を持ち始める。
 
-Implementation still ends up in pixels.
+もちろんImplementation still ends up in 4px or 8px.
 
-But the design conversation changes from:
+But the review conversation changes.
 
-> “Make it 24px.”
+> 「24pxにしましょう」
 
-to:
+から、
 
-> **“Is this spacing inside one group, or between groups?”**
+> **「これは同一group内のspacingですか、それともgroup間のspacingですか？」**
 
-これが今回の「前より解像度が上がる接続」。
+へ。
+
+This is today’s higher-resolution connection.
 
 ## 10. PRODUCTION｜そのまま使える制作・修正指示
 
-実務では、この指示が使える。
+For production、次の指示が強い。
 
 > **関連する要素は近づけ、別groupとの間隔を明確に広げてください。全要素を同じspacing tokenで均等配置せず、まず枠線・背景色・shadowを外した状態でも情報構造が読めるspacing hierarchyを作り、その後必要な装飾だけを戻してください。**
 
-For Design Systems:
+Design System寄りなら、
 
 > **Spacing tokenを数値scaleだけで定義せず、related / section / separateなど意味上の用途を整理し、同じ数値が異なる意味で乱用されていないか確認してください。**
 
-And for review:
+For review、
 
-> **“What relationship is this whitespace supposed to communicate?”**
+> **「この余白は、何と何を仲間にするための余白ですか？」**
+
+でいい。
 
 ## 11. PRACTICE｜30秒のBlur Test
 
 Open any website.
 
-Squint your eyes. Or blur a screenshot slightly.
+Squint your eyes.
 
-Stop reading text and look only at visual masses.
+あるいはスクリーンショットを少しblurさせる。
+
+Stop reading the words and look only at visual masses.
 
 ~~~text
 ■■■■
@@ -447,65 +486,71 @@ Stop reading text and look only at visual masses.
 ■■■■■■
 ~~~
 
-Ask one question:
+Ask one question.
 
-> **Where does one group end and another begin?**
+> **どこからどこまでが、一つのgroupに見えるか。**
 
-If the answer matches the intended information structure, spacing is doing useful work.
+意図した情報構造と一致していれば、spacingが仕事をしている。
 
-If everything becomes one blob、group separation is too weak.
+全部ひと塊なら、group間の差が弱い。
 
-If every item floats alone、internal relationships may be too loose.
+全部バラバラなら、group内の距離が遠すぎるかもしれない。
 
-A screen that only reveals its structure after reading every word may not be using visual grouping very effectively.
+文字を読まないと構造が分からない画面は、文字以外の視覚情報があまり働いていない可能性がある。
 
 ## 12. NEXT｜Similarity──距離ではなく「見た目」で仲間を作る
 
-Next is **Similarity（類同）**.
+Next is**Similarity（類同）**。
 
-Same color, same shape, same size, same style can make things feel related even when they are separated.
+同じ色、同じ形、同じ大きさ、同じstyleのものは、離れていても関連して見えやすい。
 
-Proximity says:
+Proximityが、
 
-> **write relationships with distance.**
+> **距離で関係を書く**
 
-Similarity says:
+なら、
 
-> **write relationships with appearance.**
+Similarityは、
 
-From there comes a useful UI question:
+> **見た目で関係を書く。**
 
-> Why does making all links blue improve clarity, while making every interactive thing the exact same blue can sometimes destroy hierarchy?
+The practical question that follows is pretty interesting.
 
-次は、ProximityとSimilarityがcooperateするとき、そしてfightするときを見る。
+> なぜ全部のリンクを青くすると分かりやすいのに、全部のUIを同じ青にすると逆に分かりにくくなるのか。
+
+Next、ProximityとSimilarityがcooperateするとき、そしてfightするときを見る。
 
 ## 13. 今日の中心命題
 
 > **Whitespace is a relationship, not a remainder.**
 
-Whitespace is not what is left after placing objects.
+Whitespace is not what remains after placing elements.
 
-Even while containing nothing, it can say:
+何も置いていないのに、
 
-> these belong together.
+> ここは同じ話。
 >
-> this begins something else.
+> ここから別の話。
 
-調べる前、「余白を増やす」は画面をcleanerにする操作に見えていた。
+と喋ることができる。
 
-After looking at Gestalt grouping、it looks slightly different.
+Before researching、 「余白を増やす」は画面をcleanerにする操作に見えていた。
 
-**Changing whitespace can change the relationship itself.**
+After researching、it looks slightly different.
 
-So changing 8px to 16px is not always “double the space.”
+**余白を変えるということは、要素同士の関係を書き換えることでもある。**
 
-Sometimes it quietly rewrites:
+だから8pxを16pxに変えるのは、単なる2倍ではない。
 
-> “these are one unit”
+場合によっては、
 
-into:
+> 「この二つは一組です」
 
-> “these are separate things.”
+を、
+
+> 「この二つは別々です」
+
+へ変えてしまう。
 
 Nothing is surprisingly talkative.
 
