@@ -1,5 +1,5 @@
 ---
-id: language-emerges-writing-craft-en-mix
+id: language-emerges-writing-craft
 title: "Words Do Not Wait Until the Sentence Is Finished――ことばは勝手に出てくるのか"
 subtitle: "Writing craft may be less about generating and more about guiding, selecting, and revising"
 created: "2026-09-13"
