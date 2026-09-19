@@ -125,6 +125,10 @@
   font: 600 9px/1.4 Inter, "Hiragino Sans", sans-serif !important;
 }
 
+.reader-resonance-status:empty {
+  display: none;
+}
+
 .reader-resonance-status[data-tone="error"] {
   color: #9d4439 !important;
 }
@@ -228,7 +232,7 @@
   display: inline-flex;
   align-items: baseline;
   gap: 7px;
-  min-height: 38px;
+  min-height: 44px;
   margin-top: 8px;
   padding: 6px 9px;
   border: 0;
