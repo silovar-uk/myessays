@@ -1,0 +1,68 @@
+name: Content integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app.js'
+      - 'index.html'
+      - 'essays/**'
+      - 'english-mix/**'
+      - 'spanish-mix/**'
+      - 'data/index.json'
+      - 'data/versions-index.json'
+      - 'scripts/content-contract.mjs'
+      - 'scripts/build-content-index.mjs'
+      - 'tools/audit-content.mjs'
+      - 'tests/content-contract.test.mjs'
+      - 'tests/data-integrity.test.js'
+      - '.github/workflows/content-integrity.yml'
+  pull_request:
+    paths:
+      - 'app.js'
+      - 'index.html'
+      - 'essays/**'
+      - 'english-mix/**'
+      - 'spanish-mix/**'
+      - 'data/index.json'
+      - 'data/versions-index.json'
+      - 'scripts/content-contract.mjs'
+      - 'scripts/build-content-index.mjs'
+      - 'tools/audit-content.mjs'
+      - 'tests/content-contract.test.mjs'
+      - 'tests/data-integrity.test.js'
+      - '.github/workflows/content-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Syntax checks
+        run: |
+          node --check app.js
+          node --check scripts/content-contract.mjs
+          node --check scripts/build-content-index.mjs
+          node --check tools/audit-content.mjs
+
+      - name: Generated index drift check
+        run: node scripts/build-content-index.mjs --check
+
+      - name: Content audit
+        run: node tools/audit-content.mjs --strict
+
+      - name: Contract and data integrity tests
+        run: node --test tests/content-contract.test.mjs tests/data-integrity.test.js
