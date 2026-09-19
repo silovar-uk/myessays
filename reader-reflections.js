@@ -98,18 +98,69 @@
     el.append(edit,acts); return el;
   }
 
+  function syncDisclosure(root, entries=[]) {
+    const button=root?.querySelector('[data-reflection-disclosure]');
+    const label=root?.querySelector('[data-reflection-disclosure-label]');
+    const icon=root?.querySelector('[data-reflection-disclosure-icon]');
+    if(!button||!label||!icon)return;
+    if(entries.length){
+      icon.textContent='✎';
+      label.textContent=`メモ ${entries.length}件`;
+      button.setAttribute('aria-label',`読後メモ ${entries.length}件を開く`);
+    }else{
+      icon.textContent='＋';
+      label.textContent='ひとこと残す';
+      button.setAttribute('aria-label','読後メモをひとこと残す');
+    }
+  }
+
+  function setExpanded(root, expanded, {focus=false}={}) {
+    if(!root)return;
+    const panel=root.querySelector('[data-reflection-panel]');
+    const button=root.querySelector('[data-reflection-disclosure]');
+    const next=Boolean(expanded);
+    root.classList.toggle('is-expanded',next);
+    root.classList.toggle('is-collapsed',!next);
+    if(panel)panel.hidden=!next;
+    button?.setAttribute('aria-expanded',String(next));
+    if(next&&focus){
+      requestAnimationFrame(()=>{
+        const input=root.querySelector('.reflection-composer-input');
+        input?.focus({preventScroll:true});
+      });
+    }
+  }
+
+  function syncAvailability(root, essayId) {
+    const api=window.MyEssaysReadingState;
+    if(!root||!essayId||!api?.read)return;
+    root.hidden=!Boolean(api.read(essayId)?.completedAt);
+  }
+
+  function flashDisclosure(root, message) {
+    const label=root?.querySelector('[data-reflection-disclosure-label]');
+    const icon=root?.querySelector('[data-reflection-disclosure-icon]');
+    if(!label||!icon)return;
+    icon.textContent='✓';
+    label.textContent=message;
+    window.setTimeout(()=>syncDisclosure(root,readEntries(root.dataset.essayId)),1500);
+  }
+
   function refresh(root,essay,entries=readEntries(essay.id)) {
     root.querySelector('.reflection-list')?.replaceChildren(...entries.map(card));
-    const c=root.querySelector('.reflection-heading-count');if(c){c.textContent=String(entries.length);c.title=`${entries.length}件の読後メモ`;}
-    const bar=root.querySelector('.reflection-toolbar');if(bar)bar.hidden=!entries.length; updateTimes(root);
+    const count=root.querySelector('.reflection-heading-count');if(count){count.textContent=String(entries.length);count.title=`${entries.length}件の読後メモ`;}
+    const bar=root.querySelector('.reflection-toolbar');if(bar)bar.hidden=!entries.length;
+    syncDisclosure(root,entries);
+    syncAvailability(root,essay.id);
+    updateTimes(root);
   }
 
   function build(essay) {
-    const root=document.createElement('section');root.className='reader-reflections';root.dataset.essayId=essay.id;root.setAttribute('aria-labelledby','readerReflectionsTitle');
-    root.innerHTML=`<div class="reader-reflections-heading"><div><p class="reader-reflections-kicker">AFTER READING</p><div class="reader-reflections-title-row"><h2 id="readerReflectionsTitle">読んで、何が残った？</h2><span class="reflection-heading-count" aria-label="読後メモ件数"></span></div></div><p class="reader-reflections-local">このブラウザだけに保存</p></div><div class="reflection-composer"><textarea class="reflection-composer-input" rows="4" spellcheck="true" aria-label="読後メモを追加"></textarea><div class="reflection-composer-footer"><div class="reflection-composer-meta"><span class="reflection-composer-hint"><kbd>Ctrl/⌘ + Enter</kbd> で残す</span><span class="reflection-draft-status" data-draft-status aria-live="polite">下書きなし</span></div><button class="reflection-add-button" type="button" disabled>残す</button></div></div><div class="reflection-toolbar" hidden><div class="reflection-copy-actions"><button type="button" data-copy="plain">メモだけコピー</button><button type="button" data-copy="detail">記事情報込みコピー</button></div></div><p class="reflection-status" data-reflection-status aria-live="polite"></p><div class="reflection-undo" role="status" aria-live="polite" hidden><span>メモを削除しました</span><button type="button" data-undo>元に戻す</button></div><div class="reflection-list"></div>`;
+    const root=document.createElement('section');root.className='reader-reflections is-collapsed';root.dataset.essayId=essay.id;root.setAttribute('aria-label','読後メモ');
+    root.innerHTML=`<button class="reflection-disclosure" type="button" data-reflection-disclosure aria-expanded="false" aria-controls="readerReflectionPanel"><span class="reflection-disclosure-icon" data-reflection-disclosure-icon aria-hidden="true">＋</span><span data-reflection-disclosure-label>ひとこと残す</span></button><div class="reflection-panel" id="readerReflectionPanel" data-reflection-panel hidden><div class="reader-reflections-heading"><div><p class="reader-reflections-kicker">NOTE</p><div class="reader-reflections-title-row"><h2 id="readerReflectionsTitle">ひとこと、残す。</h2><span class="reflection-heading-count" aria-label="読後メモ件数"></span></div></div><p class="reader-reflections-local">このブラウザだけに保存</p></div><div class="reflection-composer"><textarea class="reflection-composer-input" rows="3" spellcheck="true" aria-label="読後メモを追加"></textarea><div class="reflection-composer-footer"><div class="reflection-composer-meta"><span class="reflection-composer-hint"><kbd>Ctrl/⌘ + Enter</kbd> で残す</span><span class="reflection-draft-status" data-draft-status aria-live="polite">下書きなし</span></div><button class="reflection-add-button" type="button" disabled>残す</button></div></div><div class="reflection-toolbar" hidden><div class="reflection-copy-actions"><button type="button" data-copy="plain">メモだけコピー</button><button type="button" data-copy="detail">記事情報込みコピー</button></div></div><p class="reflection-status" data-reflection-status aria-live="polite"></p><div class="reflection-undo" role="status" aria-live="polite" hidden><span>メモを削除しました</span><button type="button" data-undo>元に戻す</button></div><div class="reflection-list"></div></div>`;
     const input=root.querySelector('.reflection-composer-input'),draft=readDraft(essay.id);input.placeholder=prompts[Math.floor(Math.random()*prompts.length)];input.value=draft.text;
     if(draft.text)setText(root,'[data-draft-status]',draft.updatedAt?`下書き保存済み · ${clock(draft.updatedAt)}`:'下書き保存済み');
-    refresh(root,essay); bind(root,essay); requestAnimationFrame(()=>autosize(input)); return root;
+    refresh(root,essay); bind(root,essay); setExpanded(root,Boolean(draft.text)); requestAnimationFrame(()=>autosize(input)); return root;
   }
 
   function bind(root,essay) {
@@ -117,7 +168,7 @@
     const sync=()=>add.disabled=!input.value.trim();
     const saveDraft=()=>{clearTimeout(draftTimer);draftTimer=0;if(!input.value.trim()){const ok=clearDraft(essay.id);setText(root,'[data-draft-status]',ok?'下書きなし':'下書きを保存できません',ok?'':'error');return ok;}const r=writeDraft(essay.id,input.value);setText(root,'[data-draft-status]',r.ok?`保存済み · ${clock(r.updatedAt)}`:'下書きを保存できません',r.ok?'':'error');return r.ok;};
     const draft=()=>{sync();autosize(input);if(!input.value.trim())return saveDraft();setText(root,'[data-draft-status]','保存中…');clearTimeout(draftTimer);draftTimer=setTimeout(saveDraft,DRAFT_MS);};
-    const addEntry=()=>{const text=input.value.trim();if(!text)return;const now=new Date().toISOString(),entries=readEntries(essay.id);entries.unshift({id:uid(),text,createdAt:now,updatedAt:now});if(!writeEntries(essay.id,entries))return announce(root,'メモを保存できませんでした','error',0);clearTimeout(draftTimer);clearDraft(essay.id);input.value='';sync();autosize(input);setText(root,'[data-draft-status]','下書きなし');refresh(root,essay,entries);announce(root,'メモを残しました','success');input.focus({preventScroll:true});};
+    const addEntry=()=>{const text=input.value.trim();if(!text)return;const now=new Date().toISOString(),entries=readEntries(essay.id);entries.unshift({id:uid(),text,createdAt:now,updatedAt:now});if(!writeEntries(essay.id,entries))return announce(root,'メモを保存できませんでした','error',0);clearTimeout(draftTimer);clearDraft(essay.id);input.value='';sync();autosize(input);setText(root,'[data-draft-status]','下書きなし');refresh(root,essay,entries);announce(root,'メモを残しました','success');setExpanded(root,false);flashDisclosure(root,'ひとこと残しました');};
     saveActiveDraft=saveDraft; sync(); input.addEventListener('input',draft);input.addEventListener('blur',saveDraft);input.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){e.preventDefault();addEntry();}});add.addEventListener('click',addEntry);
 
     function closeEdit(c,focus=false){if(!c)return;c.classList.remove('is-editing');c.querySelector('.reflection-card-text').hidden=false;const x=c.querySelector('.reflection-expand-button');if(x)x.hidden=false;c.querySelector('.reflection-card-actions').hidden=false;c.querySelector('.reflection-edit-area').hidden=true;if(focus)c.querySelector('.reflection-card-text').focus({preventScroll:true});}
@@ -130,6 +181,13 @@
     root.addEventListener('focusout',e=>{const t=e.target.closest('.reflection-edit-textarea');if(!t)return;setTimeout(()=>{if(t.dataset.skipBlurSave==='true'){delete t.dataset.skipBlurSave;return;}const c=t.closest('.reflection-card');if(!c||!root.contains(c)||!c.classList.contains('is-editing'))return;const x=readEntries(essay.id).find(v=>v.id===c.dataset.entryId);if(x)saveEdit(c,x);},0);});
     root.addEventListener('keydown',e=>{const t=e.target.closest('.reflection-edit-textarea');if(t){const c=t.closest('.reflection-card'),x=readEntries(essay.id).find(v=>v.id===c?.dataset.entryId);if(!c||!x)return;if(e.key==='Escape'){e.preventDefault();t.dataset.skipBlurSave='true';closeEdit(c,true);}else if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){e.preventDefault();t.dataset.skipBlurSave='true';saveEdit(c,x);}return;}const body=e.target.closest('[data-edit-target]');if(body&&(e.key==='Enter'||e.key===' ')){e.preventDefault();const c=body.closest('.reflection-card'),x=readEntries(essay.id).find(v=>v.id===c?.dataset.entryId);if(c&&x)startEdit(c,x);}});
     root.addEventListener('click',async e=>{
+      const disclosure=e.target.closest('[data-reflection-disclosure]');
+      if(disclosure){
+        const open=disclosure.getAttribute('aria-expanded')==='true';
+        if(open)saveDraft();
+        setExpanded(root,!open,{focus:!open});
+        return;
+      }
       if(e.target.closest('[data-undo]'))return undoDelete();
       const all=e.target.closest('[data-copy]');if(all){const entries=readEntries(essay.id);if(!entries.length)return;try{await copyText(all.dataset.copy==='detail'?detailedCopy(essay,entries):plainCopy(entries));copied(all);}catch{announce(root,'コピーできませんでした','error');}return;}
       const more=e.target.closest('[data-expand]');if(more){const c=more.closest('.reflection-card'),x=readEntries(essay.id).find(v=>v.id===c?.dataset.entryId),body=c?.querySelector('.reflection-card-text');if(!x||!body)return;const open=more.dataset.expanded==='true';body.textContent=open?shortText(x.text):x.text;more.dataset.expanded=String(!open);more.textContent=open?'続きを読む':'閉じる';return;}
@@ -140,7 +198,7 @@
 
   function render(context) {
     const view=context?.view||document.getElementById('readerView'),content=context?.root||document.getElementById('readerContent');if(!view||!content||view.hidden)return;
-    const essay=context?.essay||essayNow(),old=content.querySelector(ROOT);if(!essay){old?.remove();return;}if(old?.dataset.essayId===essay.id){refresh(old,essay);return;}saveActiveDraft?.();old?.remove();const root=build(essay),nav=content.querySelector('.reader-end-navigation');nav?.parentElement?nav.parentElement.insertBefore(root,nav):content.append(root);
+    const essay=context?.essay||essayNow(),old=content.querySelector(ROOT);if(!essay){old?.remove();return;}if(old?.dataset.essayId===essay.id){refresh(old,essay);syncAvailability(old,essay.id);return;}saveActiveDraft?.();old?.remove();const root=build(essay),nav=content.querySelector('.reader-end-navigation');nav?.parentElement?nav.parentElement.insertBefore(root,nav):content.append(root);
   }
 
   window.MyEssaysReaderReflections=Object.freeze({render,readEntries,readDraft,plainCopy,detailedCopy,formatRelativeDateTime:relativeTime});
@@ -151,8 +209,12 @@
     document.addEventListener('myessays:reader-rendered',()=>render());
   }
 
+  document.addEventListener('myessays:resonance-changed',event=>{
+    const root=document.querySelector(ROOT),id=event.detail?.essayId||idFromHash();
+    if(root&&id===root.dataset.essayId)syncAvailability(root,id);
+  });
   window.addEventListener('pagehide',()=>saveActiveDraft?.());
   document.addEventListener('visibilitychange',()=>document.hidden?saveActiveDraft?.():updateTimes(document.querySelector(ROOT)));
-  window.addEventListener('storage',e=>{if(e.key?.startsWith(ENTRY_KEY)||e.key?.startsWith(DRAFT_KEY))requestAnimationFrame(()=>render(window.MyEssaysReaderRuntime?.getContext?.()));});
+  window.addEventListener('storage',e=>{if(e.key?.startsWith(ENTRY_KEY)||e.key?.startsWith(DRAFT_KEY)||e.key?.startsWith('myessays:reading-state:'))requestAnimationFrame(()=>render(window.MyEssaysReaderRuntime?.getContext?.()));});
   setInterval(()=>updateTimes(document.querySelector(ROOT)),60000);
 })();

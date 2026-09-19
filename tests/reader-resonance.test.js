@@ -71,16 +71,20 @@ test('clearing completion also clears resonance but preserves other reading stat
   assert.ok(state.openedAt);
 });
 
-test('reader rating uses native radios and runtime order 70 -> 80 -> 90', () => {
+test('Reader Seal keeps completion primary and reveals rating progressively', () => {
   const resonance = read('reader-resonance.js');
   const reflections = read('reader-reflections.js');
   const navigation = read('reader-navigation.js');
 
+  assert.match(resonance, /data-resonance-seal/);
+  assert.match(resonance, /setCompleted\(id, true\)/);
+  assert.match(resonance, /data-resonance-rating/);
   assert.match(resonance, /type="radio"/);
+  assert.match(resonance, /data-resonance-summary/);
   assert.match(resonance, /priority:\s*70/);
   assert.match(reflections, /priority:80/);
   assert.match(navigation, /priority:\s*90/);
-  assert.match(resonance, /評価せず読了にする/);
+  assert.doesNotMatch(resonance, /評価せず読了にする/);
   assert.doesNotMatch(resonance, /★|☆|⭐/);
 });
 
@@ -92,6 +96,18 @@ test('resonance assets are loaded and reduced motion is supported', () => {
   assert.match(index, /reader-resonance\.js\?v=/);
   assert.match(index, /reader-resonance\.css\?v=/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.match(css, /min-width:\s*48px/);
+  assert.match(css, /width:\s*164px/);
+  assert.match(css, /min-height:\s*52px/);
+  assert.match(css, /grid-template-columns:\s*repeat\(5, 44px\)/);
   assert.match(css, /focus-visible/);
+});
+
+
+test('Reader Seal does not recreate the old wide card or duplicate After Reading heading', () => {
+  const css = read('reader-resonance.css');
+  const reader = read('reader-v2.js');
+
+  assert.doesNotMatch(css, /620px/);
+  assert.doesNotMatch(reader, /AFTER READING|読み終えたあと/);
+  assert.match(reader, /zone\.dataset\.closing = 'seal'/);
 });

@@ -19,7 +19,7 @@ test('composer autosaves, autosizes, and keeps keyboard flow',()=>{
   assert.match(source,/reflection-composer-input/);
   assert.match(source,/autosize\(input\)/);
   assert.match(source,/e\.metaKey\|\|e\.ctrlKey/);
-  assert.match(source,/input\.focus\(\{preventScroll:true\}\)/);
+  assert.match(source,/focus\(\{preventScroll:true\}\)/);
   assert.match(css,/max-height: 320px/);
   assert.match(css,/font-size: 16px/);
 });
@@ -57,4 +57,16 @@ test('mobile and accessibility details are covered',()=>{
   assert.match(css,/min-height: 44px/);
   assert.match(css,/focus-visible/);
   assert.match(css,/prefers-reduced-motion: reduce/);
+});
+
+
+test('reflection composer is progressive and only available after completion',()=>{
+  assert.match(source,/data-reflection-disclosure/);
+  assert.match(source,/data-reflection-panel/);
+  assert.match(source,/setExpanded/);
+  assert.match(source,/syncAvailability/);
+  assert.match(source,/completedAt/);
+  assert.match(source,/flashDisclosure\(root,'ひとこと残しました'\)/);
+  assert.match(css,/\.reflection-disclosure/);
+  assert.match(css,/\.reflection-panel\[hidden\]/);
 });

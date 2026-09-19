@@ -606,8 +606,8 @@
     if (!zone) {
       zone = document.createElement('section');
       zone.className = 'reader-v2-after-reading';
-      zone.setAttribute('aria-label', 'After Reading');
-      zone.innerHTML = '<div class="reader-v2-after-heading"><span>AFTER READING</span><strong>読み終えたあと</strong></div>';
+      zone.setAttribute('aria-label', '読後');
+      zone.dataset.closing = 'seal';
       content.append(zone);
     }
     ['.reader-resonance', '.reader-reflections', '.reader-end-navigation'].forEach(selector => {

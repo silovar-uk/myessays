@@ -12,6 +12,8 @@
 
   let undoSnapshot = null;
   let undoTimer = 0;
+  let settleTimer = 0;
+  let statusTimer = 0;
 
   const currentEssayId = () => window.MyEssaysRoute?.parse?.().articleId || '';
 
@@ -30,16 +32,32 @@
 
   const store = () => window.MyEssaysReadingState;
 
-  function announce(root, message, tone = '') {
+  function announce(root, message, tone = '', ms = 1800) {
     const status = root?.querySelector('[data-resonance-status]');
     if (!status) return;
+    clearTimeout(statusTimer);
     status.textContent = message;
     status.dataset.tone = tone;
+    if (ms) {
+      statusTimer = window.setTimeout(() => {
+        if (!status.isConnected || status.textContent !== message) return;
+        status.textContent = '';
+        status.dataset.tone = '';
+      }, ms);
+    }
   }
 
   function dispatch(id) {
     document.dispatchEvent(new CustomEvent('myessays:resonance-changed', { detail: { essayId: id } }));
-    window.dispatchEvent(new StorageEvent('storage', { key: `myessays:reading-state:${id}` }));
+    try {
+      window.dispatchEvent(new StorageEvent('storage', { key: `myessays:reading-state:${id}` }));
+    } catch {}
+  }
+
+  function setRatingOpen(root, open) {
+    if (!root) return;
+    root.dataset.ratingOpen = String(Boolean(open));
+    sync(root, root.dataset.essayId || currentEssayId());
   }
 
   function sync(root, id) {
@@ -49,74 +67,104 @@
     const reading = api.read(id);
     const resonance = api.getResonance(id);
     const completed = Boolean(reading.completedAt);
+    const ratingOpen = completed && (!resonance || root.dataset.ratingOpen === 'true');
+
+    root.classList.toggle('is-completed', completed);
+    root.classList.toggle('has-resonance', Boolean(resonance));
+    root.classList.toggle('is-rating-open', ratingOpen);
 
     root.querySelectorAll('input[name="reader-resonance"]').forEach(input => {
       input.checked = Boolean(resonance && Number(input.value) === resonance.value);
     });
 
-    const selected = root.querySelector('[data-resonance-selected]');
-    if (selected) {
-      selected.textContent = resonance
-        ? `${resonance.value} — ${LABELS[resonance.value]}`
-        : 'まだ記録していません';
-      selected.dataset.hasValue = String(Boolean(resonance));
+    const seal = root.querySelector('[data-resonance-seal]');
+    if (seal) {
+      seal.setAttribute('aria-pressed', String(completed));
+      seal.dataset.state = completed ? 'completed' : 'ready';
+      const mark = seal.querySelector('[data-seal-mark]');
+      const label = seal.querySelector('[data-seal-label]');
+      if (mark) mark.textContent = completed ? '✓' : '○';
+      if (label) label.textContent = '読了';
+    }
+
+    const panel = root.querySelector('[data-resonance-rating]');
+    if (panel) panel.hidden = !ratingOpen;
+
+    const summary = root.querySelector('[data-resonance-summary]');
+    if (summary) {
+      summary.hidden = !completed || !resonance || ratingOpen;
+      if (resonance) {
+        const value = summary.querySelector('[data-summary-value]');
+        const label = summary.querySelector('[data-summary-label]');
+        if (value) value.textContent = String(resonance.value);
+        if (label) label.textContent = LABELS[resonance.value];
+      }
     }
 
     const secondary = root.querySelector('[data-resonance-secondary]');
-    if (secondary) {
-      secondary.textContent = completed ? '読了記録を解除' : '評価せず読了にする';
-      secondary.dataset.action = completed ? 'undo-complete' : 'complete-only';
+    if (secondary) secondary.hidden = !completed;
+
+    const after = root.querySelector('[data-resonance-after]');
+    if (after) after.hidden = !completed;
+
+    const undo = root.querySelector('[data-resonance-undo]');
+    if (!completed && undoSnapshot?.id !== id && undo) undo.hidden = true;
+  }
+
+  function markCompleted(root, id) {
+    const api = store();
+    if (!api) return announce(root, '保存機能を読み込めませんでした', 'error');
+
+    const before = api.read(id);
+    if (before.completedAt) {
+      setRatingOpen(root, !api.getResonance(id));
+      return;
     }
 
-    root.classList.toggle('is-completed', completed);
-    root.classList.toggle('has-resonance', Boolean(resonance));
+    const result = api.setCompleted(id, true);
+    if (!result.ok) return announce(root, '保存できませんでした。もう一度試してください', 'error');
+
+    root.dataset.ratingOpen = 'true';
+    root.classList.add('just-completed');
+    clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(() => root.classList.remove('just-completed'), 620);
+    sync(root, id);
+    announce(root, '読了として保存しました', 'success');
+    dispatch(id);
   }
 
   function setRating(root, id, value) {
     const api = store();
     if (!api) return announce(root, '保存機能を読み込めませんでした', 'error');
 
-    const before = api.read(id);
     const result = api.setResonance(id, value);
     if (!result.ok) {
       sync(root, id);
       return announce(root, '保存できませんでした。もう一度試してください', 'error');
     }
 
-    const firstCompletion = !before.completedAt;
+    root.dataset.ratingOpen = 'false';
     sync(root, id);
-    announce(
-      root,
-      `${value} — ${LABELS[value]}${firstCompletion ? ' · 読了として保存しました' : ' · 変更しました'}`,
-      'success'
-    );
-    dispatch(id);
-  }
-
-  function completeOnly(root, id) {
-    const api = store();
-    if (!api) return announce(root, '保存機能を読み込めませんでした', 'error');
-    const result = api.setCompleted(id, true);
-    if (!result.ok) return announce(root, '保存できませんでした。もう一度試してください', 'error');
-    sync(root, id);
-    announce(root, '評価せず読了として保存しました', 'success');
+    announce(root, '保存しました', 'success');
     dispatch(id);
   }
 
   function undoComplete(root, id) {
     const api = store();
     if (!api) return;
+
     const before = api.read(id);
     const result = api.clearCompletion(id);
     if (!result.ok) return announce(root, '変更を保存できませんでした', 'error');
 
     clearTimeout(undoTimer);
     undoSnapshot = { id, state: before };
+    root.dataset.ratingOpen = 'false';
     sync(root, id);
 
     const undo = root.querySelector('[data-resonance-undo]');
     if (undo) undo.hidden = false;
-    announce(root, '読了と「残った度」を解除しました', 'success');
+    announce(root, '読了を解除しました', 'success');
 
     undoTimer = window.setTimeout(() => {
       undoSnapshot = null;
@@ -129,11 +177,13 @@
   function restoreUndo(root, id) {
     const api = store();
     if (!api || !undoSnapshot || undoSnapshot.id !== id) return;
+
     const result = api.merge(id, undoSnapshot.state);
     if (!result.ok) return announce(root, '元に戻せませんでした', 'error');
 
     clearTimeout(undoTimer);
     undoSnapshot = null;
+    root.dataset.ratingOpen = 'false';
     const undo = root.querySelector('[data-resonance-undo]');
     if (undo) undo.hidden = true;
     sync(root, id);
@@ -145,31 +195,39 @@
     const root = document.createElement('section');
     root.className = 'reader-resonance';
     root.dataset.essayId = essay.id;
-    root.setAttribute('aria-labelledby', 'readerResonanceTitle');
+    root.dataset.ratingOpen = 'false';
+    root.setAttribute('aria-label', '読了');
 
     const options = [1,2,3,4,5].map(value => `
-      <label class="reader-resonance-option">
+      <label class="reader-resonance-option" style="--resonance-step:${value}">
         <input type="radio" name="reader-resonance" value="${value}" aria-label="${value} ${LABELS[value]}">
-        <span class="reader-resonance-number" aria-hidden="true">${value}</span>
+        <span class="reader-resonance-dot" aria-hidden="true"></span>
       </label>`).join('');
 
     root.innerHTML = `
-      <div class="reader-resonance-heading">
-        <p class="reader-resonance-kicker">YOUR AFTERTASTE</p>
-        <h3 id="readerResonanceTitle">この記事、どれくらい残った？</h3>
-        <p class="reader-resonance-hint">良し悪しではなく、今の自分に何かが残った感覚。</p>
+      <div class="reader-resonance-rule" aria-hidden="true"><span></span><i>◇</i><span></span></div>
+      <div class="reader-seal-stage">
+        <button type="button" class="reader-seal" data-resonance-seal aria-pressed="false">
+          <span class="reader-seal-mark" data-seal-mark aria-hidden="true">○</span>
+          <span data-seal-label>読了</span>
+        </button>
+        <p class="reader-resonance-status" data-resonance-status aria-live="polite" aria-atomic="true"></p>
       </div>
-      <fieldset class="reader-resonance-fieldset">
-        <legend class="sr-only">残った度を1から5で選択</legend>
-        <div class="reader-resonance-scale">${options}</div>
-        <div class="reader-resonance-endpoints" aria-hidden="true">
-          <span>ほぼ残らなかった</span>
-          <span>強く残った</span>
+      <div class="reader-resonance-after" data-resonance-after hidden>
+        <div class="reader-resonance-rating" data-resonance-rating hidden>
+          <p class="reader-resonance-question">どれくらい残った？</p>
+          <fieldset class="reader-resonance-fieldset">
+            <legend class="sr-only">残った度を1から5で選択</legend>
+            <div class="reader-resonance-scale">${options}</div>
+          </fieldset>
         </div>
-      </fieldset>
-      <p class="reader-resonance-selected" data-resonance-selected>まだ記録していません</p>
-      <p class="reader-resonance-status" data-resonance-status aria-live="polite" aria-atomic="true"></p>
-      <button type="button" class="reader-resonance-secondary" data-resonance-secondary>評価せず読了にする</button>
+        <button type="button" class="reader-resonance-summary" data-resonance-summary hidden aria-label="残った度を変更">
+          <strong data-summary-value></strong>
+          <span data-summary-label></span>
+          <small>変更</small>
+        </button>
+        <button type="button" class="reader-resonance-secondary" data-resonance-secondary hidden>読了を解除</button>
+      </div>
       <div class="reader-resonance-undo" data-resonance-undo hidden>
         <span>読了記録を解除しました</span>
         <button type="button" data-resonance-restore>元に戻す</button>
@@ -182,15 +240,23 @@
     });
 
     root.addEventListener('click', event => {
-      const secondary = event.target.closest('[data-resonance-secondary]');
-      if (secondary) {
-        if (secondary.dataset.action === 'undo-complete') undoComplete(root, essay.id);
-        else completeOnly(root, essay.id);
+      if (event.target.closest('[data-resonance-seal]')) {
+        markCompleted(root, essay.id);
+        return;
+      }
+      if (event.target.closest('[data-resonance-summary]')) {
+        setRatingOpen(root, true);
+        return;
+      }
+      if (event.target.closest('[data-resonance-secondary]')) {
+        undoComplete(root, essay.id);
         return;
       }
       if (event.target.closest('[data-resonance-restore]')) restoreUndo(root, essay.id);
     });
 
+    const existing = store()?.getResonance?.(essay.id);
+    if (!existing && store()?.read?.(essay.id)?.completedAt) root.dataset.ratingOpen = 'true';
     sync(root, essay.id);
     return root;
   }
@@ -217,7 +283,14 @@
     else content.append(root);
   }
 
-  window.MyEssaysReaderResonance = Object.freeze({ render, labels: { ...LABELS } });
+  window.MyEssaysReaderResonance = Object.freeze({
+    render,
+    labels: { ...LABELS },
+    openRating: () => {
+      const root = document.querySelector(ROOT);
+      if (root) setRatingOpen(root, true);
+    }
+  });
 
   if (window.MyEssaysReaderRuntime?.register) {
     window.MyEssaysReaderRuntime.register('resonance', render, { priority: 70 });
