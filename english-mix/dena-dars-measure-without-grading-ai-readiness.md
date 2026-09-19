@@ -1,5 +1,5 @@
 ---
-id: dena-dars-measure-without-grading-ai-readiness-en-mix
+id: dena-dars-measure-without-grading-ai-readiness
 title: "An AI Score That Does Not Directly Grade You――DeNA「DARS」は何を測っているのか"
 subtitle: "Not usage count, but a map for redesigning work and organization"
 created: "2026-09-17"

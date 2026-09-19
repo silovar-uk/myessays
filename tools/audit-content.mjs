@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseFrontMatterSource } from '../scripts/content-contract.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = new Set(process.argv.slice(2));
@@ -23,23 +24,7 @@ function listMarkdown(directory) {
 }
 
 function parseFrontMatter(file) {
-  const source = read(file);
-  const match = source.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
-  if (!match) return { meta: {}, body: source, issues: ['missing-front-matter'] };
-
-  const meta = {};
-  const issues = [];
-  for (const line of match[1].split('\n')) {
-    const separator = line.indexOf(':');
-    if (separator < 0) continue;
-    const key = line.slice(0, separator).trim();
-    const raw = line.slice(separator + 1).trim();
-    if (!key) continue;
-    try { meta[key] = JSON.parse(raw); }
-    catch { meta[key] = raw.replace(/^['"]|['"]$/g, ''); }
-  }
-
-  return { meta, body: source.slice(match[0].length), issues };
+  return parseFrontMatterSource(read(file));
 }
 
 function textValue(value) {

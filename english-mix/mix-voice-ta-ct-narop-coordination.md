@@ -1,5 +1,5 @@
 ---
-id: mix-voice-ta-ct-narop-coordination-en-mix
+id: mix-voice-ta-ct-narop-coordination
 title: "There Is No “Falsetto Muscle.” でも、筋肉だけ見てもミックスボイスは分からない"
 subtitle: "TA・CT, register, pressure, and vocal tract――「ナロップ」の現在地を整理する"
 created: "2026-09-19"

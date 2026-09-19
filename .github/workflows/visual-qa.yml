@@ -55,6 +55,7 @@ jobs:
       - name: Run content migration audit
         run: |
           mkdir -p qa-artifacts
+          node scripts/build-content-index.mjs --check
           node tools/audit-content.mjs --strict | tee qa-artifacts/migration-audit.md
 
       - name: Run static tests
