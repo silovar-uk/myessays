@@ -246,3 +246,21 @@ EN MIXはCanonical Block Transformationとして作る。
 - 見出しだけで11人の違いが分かるか
 - 最後に「名前ではなく見るポイントを覚える」という認識へ戻ったか
 - EN MIXの構造がCanonicalと1:1か
+
+
+## Phase 6｜Gemini Editorial Bridge
+
+本文完成後、Gemini Editorial Bridgeで保守的校正をかける。
+
+- endpoint: `POST https://gemini-editorial-bridge.silovar-uk.workers.dev/v1/copyedit`
+- auth: `Authorization: Bearer {EDITORIAL_BRIDGE_TOKEN}`
+- policy: `editingMode: "conservative"`
+- `allowFlavor: true` は許可するが、新事実・新論旨・結論変更は禁止
+- heading / frontmatter / URL / 数値 / 固有名詞 / 構造は保護する
+- `status: "success"` の場合のみ候補を検討する
+- `KEEP` は原文維持、`EDIT` のみ差し替える
+- `validatorRejected: true` は原文維持
+- `timeout` / `quota_exceeded` の場合はGPT完成稿をそのまま採用する
+- その他のBridge失敗も公開フローを止めず、GPT完成稿へfallbackする
+- Geminiの結果を反映した場合も、事実・数字・固有名詞・断定強度が変わっていないかGPT側で再監査する
+- 日本語Canonical確定後、EN MIXとのH2順序・semantic block構造1:1を再検証する
