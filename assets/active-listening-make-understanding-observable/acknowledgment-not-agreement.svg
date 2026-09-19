@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Acknowledgment is not agreement</title>
+<desc id="desc">Two separate lanes show recognition of a concern and agreement with a claim as distinct conversational operations.</desc>
+<rect width="1200" height="675" fill="#f7f5ef"/>
+<text x="70" y="90" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#171717">ACKNOWLEDGMENT ≠ AGREEMENT</text>
+<text x="70" y="136" font-family="Arial, sans-serif" font-size="23" fill="#505050">You can recognize the weight of a concern without deciding the claim is correct.</text>
+<rect x="80" y="210" width="475" height="300" rx="28" fill="#ffffff" stroke="#1f2937" stroke-width="3"/>
+<text x="318" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#111827">ACKNOWLEDGMENT</text>
+<text x="318" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#374151">“I can see this uncertainty</text>
+<text x="318" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#374151">is creating real pressure.”</text>
+<line x1="145" y1="392" x2="490" y2="392" stroke="#d1d5db" stroke-width="2"/>
+<text x="318" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#374151">recognizes concern / emotion</text>
+<text x="318" y="469" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#111827">No verdict on who is right.</text>
+<rect x="645" y="210" width="475" height="300" rx="28" fill="#111827"/>
+<text x="882" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff">AGREEMENT</text>
+<text x="882" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#e5e7eb">“Yes. Your assessment</text>
+<text x="882" y="352" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#e5e7eb">of the situation is correct.”</text>
+<line x1="710" y1="392" x2="1055" y2="392" stroke="#4b5563" stroke-width="2"/>
+<text x="882" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#e5e7eb">endorses a claim / judgment</text>
+<text x="882" y="469" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff">A verdict is being made.</text>
+<text x="600" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">Recognition can increase while disagreement remains.</text>
+</svg>
