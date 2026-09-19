@@ -181,8 +181,7 @@ export function buildGeneratedIndexes(
   // comes from the Markdown files that actually exist on disk.
   const discoveredCanonical = graph.canonical
     .filter(article => !oldCanonicalSet.has(article.path))
-    .sort(sortDiscoveredCanonical)
-    .map(article => article.path);
+    .sort(sortDiscoveredCanonical);
   const retainedSeen = new Set();
   const retainedCanonical = oldCanonicalPaths.filter(file => {
     if (!canonicalPathSet.has(file) || retainedSeen.has(file)) return false;
@@ -190,9 +189,29 @@ export function buildGeneratedIndexes(
     return true;
   });
 
-  const index = {
-    essays: [...discoveredCanonical, ...retainedCanonical]
-  };
+  // Preserve the existing presentation order, but insert newly discovered
+  // Markdown into the correct created-date group. This repairs membership
+  // drift without making an old forgotten file suddenly become "Latest".
+  const canonicalByPath = new Map(graph.canonical.map(article => [article.path, article]));
+  const essays = [...retainedCanonical];
+  const discoveredGroups = [];
+  for (const article of discoveredCanonical) {
+    const created = textValue(article.meta.created);
+    const last = discoveredGroups[discoveredGroups.length - 1];
+    if (last?.created === created) last.paths.push(article.path);
+    else discoveredGroups.push({ created, paths: [article.path] });
+  }
+
+  for (const group of discoveredGroups) {
+    const insertAt = essays.findIndex(file => {
+      const existing = canonicalByPath.get(file);
+      return textValue(existing?.meta?.created) <= group.created;
+    });
+    if (insertAt < 0) essays.push(...group.paths);
+    else essays.splice(insertAt, 0, ...group.paths);
+  }
+
+  const index = { essays };
 
   const actualVersions = new Map();
   for (const article of graph.derived) {
