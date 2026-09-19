@@ -1,5 +1,5 @@
 ---
-id: soccer-ball-carrier-visual-anchor-en-mix
+id: soccer-ball-carrier-visual-anchor
 title: "Watch the Ball Carrier――でも、そこだけを見ない"
 subtitle: "Use the player in possession as a visual anchor, not the whole picture"
 created: "2026-09-13"
