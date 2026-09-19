@@ -1,4 +1,5 @@
 name: One-shot Reader Seal QA
+# rerun after static expectation fixes
 
 on:
   push:
