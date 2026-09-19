@@ -13,6 +13,7 @@
   let undoSnapshot = null;
   let undoTimer = 0;
   let settleTimer = 0;
+  let statusTimer = 0;
 
   const currentEssayId = () => window.MyEssaysRoute?.parse?.().articleId || '';
 
@@ -31,11 +32,19 @@
 
   const store = () => window.MyEssaysReadingState;
 
-  function announce(root, message, tone = '') {
+  function announce(root, message, tone = '', ms = 1800) {
     const status = root?.querySelector('[data-resonance-status]');
     if (!status) return;
+    clearTimeout(statusTimer);
     status.textContent = message;
     status.dataset.tone = tone;
+    if (ms) {
+      statusTimer = window.setTimeout(() => {
+        if (!status.isConnected || status.textContent !== message) return;
+        status.textContent = '';
+        status.dataset.tone = '';
+      }, ms);
+    }
   }
 
   function dispatch(id) {
@@ -136,7 +145,7 @@
 
     root.dataset.ratingOpen = 'false';
     sync(root, id);
-    announce(root, `${value} · ${LABELS[value]}`, 'success');
+    announce(root, '保存しました', 'success');
     dispatch(id);
   }
 
