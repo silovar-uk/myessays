@@ -1,5 +1,5 @@
 name: One-shot Reader Seal QA
-# rerun after reflection focus test normalization
+# rerun after measuring settled seal geometry
 
 on:
   push:
@@ -84,6 +84,7 @@ jobs:
             }, essayId);
             await rating.waitFor({ state: 'visible' });
             await reflections.waitFor({ state: 'visible' });
+            await page.waitForTimeout(280);
 
             const completedSeal = await seal.boundingBox();
             const scale = await page.locator('.reader-resonance-scale').boundingBox();
