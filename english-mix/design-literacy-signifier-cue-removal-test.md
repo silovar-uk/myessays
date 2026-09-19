@@ -311,7 +311,7 @@ browser
 
 を背負っている。
 
-That is a surprisingly large historical burden for one tiny button.
+That is a surprisingly large historical burden.\n\nFor one tiny button.
 
 だから「斬新だから」という理由だけで既存のinteraction conventionを壊すと、ユーザーは新しい見た目だけでなく**新しい文法まで学習させられる**ことがある。
 
