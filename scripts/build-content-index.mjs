@@ -42,8 +42,18 @@ function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
 
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(
+    Object.keys(value)
+      .sort()
+      .map(key => [key, canonicalize(value[key])])
+  );
+}
+
 function semanticEqual(a, b) {
-  return JSON.stringify(a) === JSON.stringify(b);
+  return JSON.stringify(canonicalize(a)) === JSON.stringify(canonicalize(b));
 }
 
 function diffPaths(current = [], generated = []) {
