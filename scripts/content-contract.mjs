@@ -170,7 +170,11 @@ function sortDiscoveredCanonical(a, b) {
 
 export function buildGeneratedIndexes(
   graph,
-  { currentIndex = { essays: [] }, currentVersions = { articles: {} } } = {}
+  {
+    currentIndex = { essays: [] },
+    currentVersions = { articles: {} },
+    canPublishDerived = () => false
+  } = {}
 ) {
   const canonicalPaths = graph.canonical.map(article => article.path);
   const canonicalPathSet = new Set(canonicalPaths);
@@ -217,32 +221,66 @@ export function buildGeneratedIndexes(
   for (const article of graph.derived) {
     if (!article.id) continue;
     if (!actualVersions.has(article.id)) actualVersions.set(article.id, {});
-    actualVersions.get(article.id)[article.version] = article.path;
+    actualVersions.get(article.id)[article.version] = article;
   }
 
   const currentArticles = currentVersions?.articles && typeof currentVersions.articles === 'object'
     ? currentVersions.articles
     : {};
 
-  const actualIds = [...actualVersions.keys()];
-  const currentIds = Object.keys(currentArticles).filter(id => actualVersions.has(id));
-  const currentIdSet = new Set(currentIds);
-  const discoveredIds = actualIds.filter(id => !currentIdSet.has(id)).sort();
-  const orderedIds = [...discoveredIds, ...currentIds];
-
   const articles = {};
-  for (const id of orderedIds) {
+  const publication = {
+    preserved: [],
+    autoPublished: [],
+    unpublished: [],
+    staleRemoved: []
+  };
+
+  // A derived Markdown file is a candidate, not automatically a publication.
+  // Existing published variants stay published when the underlying id/version
+  // still exists. New variants enter the manifest only after a safety gate.
+  for (const [id, currentEntry] of Object.entries(currentArticles)) {
     const actual = actualVersions.get(id) || {};
     const entry = {};
+
     for (const version of Object.keys(VERSION_DIRECTORIES)) {
-      if (actual[version]) entry[version] = actual[version];
+      if (!currentEntry?.[version]) continue;
+      const record = actual[version];
+      if (!record) {
+        publication.staleRemoved.push({ id, version, path: currentEntry[version] });
+        continue;
+      }
+      entry[version] = record.path;
+      publication.preserved.push({ id, version, path: record.path });
     }
+
+    if (Object.keys(entry).length) articles[id] = entry;
+  }
+
+  for (const [id, actual] of [...actualVersions.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+    const canonical = graph.canonicalById.get(id);
+    if (!canonical) continue;
+    const entry = articles[id] || {};
+
+    for (const version of Object.keys(VERSION_DIRECTORIES)) {
+      const record = actual[version];
+      if (!record || entry[version]) continue;
+
+      if (canPublishDerived(record, canonical)) {
+        entry[version] = record.path;
+        publication.autoPublished.push({ id, version, path: record.path });
+      } else {
+        publication.unpublished.push({ id, version, path: record.path });
+      }
+    }
+
     if (Object.keys(entry).length) articles[id] = entry;
   }
 
   return {
     index,
-    versionsIndex: { articles }
+    versionsIndex: { articles },
+    publication
   };
 }
 
