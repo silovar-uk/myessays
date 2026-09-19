@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "urawa-2026-27-defensive-funnel-three-paradoxes": {
+      "en-mix": "english-mix/urawa-2026-27-defensive-funnel-three-paradoxes.md"
+    },
     "affordance-action-possibility-relation": {
       "en-mix": "english-mix/affordance-action-possibility-relation.md"
     },
