@@ -1,5 +1,5 @@
 ---
-id: outcome-before-task-issue-setting-en-mix
+id: outcome-before-task-issue-setting
 title: "‘Clean the Desk’ Is Not a Goal――まずDoneを定義する"
 subtitle: "Separate outcome, issue, and task before starting the work"
 created: "2026-09-13"
