@@ -1,5 +1,5 @@
 name: One-shot Reader Seal QA
-# rerun after static expectation fixes
+# rerun after reflection focus test normalization
 
 on:
   push:
