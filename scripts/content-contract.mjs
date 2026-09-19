@@ -183,7 +183,12 @@ export function buildGeneratedIndexes(
     .filter(article => !oldCanonicalSet.has(article.path))
     .sort(sortDiscoveredCanonical)
     .map(article => article.path);
-  const retainedCanonical = oldCanonicalPaths.filter(file => canonicalPathSet.has(file));
+  const retainedSeen = new Set();
+  const retainedCanonical = oldCanonicalPaths.filter(file => {
+    if (!canonicalPathSet.has(file) || retainedSeen.has(file)) return false;
+    retainedSeen.add(file);
+    return true;
+  });
 
   const index = {
     essays: [...discoveredCanonical, ...retainedCanonical]
