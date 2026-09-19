@@ -79,6 +79,10 @@ a { color: inherit; }
 .archive-side { display:grid; justify-items:end; gap:7px; min-width:120px; }
 .archive-type { color:var(--muted); font-size:10px; }
 .empty-state { padding:48px 20px; text-align:center; color:var(--muted); }
+.content-load-warning { margin:0 0 18px; padding:11px 14px; border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.42); color:var(--muted); font-size:11px; line-height:1.6; }
+.essay-load-error { padding:40px 0 80px; }
+.essay-load-error h1 { margin:10px 0 18px; }
+.essay-load-error p:last-child { color:var(--muted); }
 .reader-shell { width:min(1060px, calc(100% - 40px)); margin:0 auto; padding:34px 0 110px; }
 .back-button { margin-bottom:30px; }
 .reader-layout { display:grid; grid-template-columns:210px minmax(0,680px); gap:56px; align-items:start; justify-content:center; }
