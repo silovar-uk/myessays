@@ -165,6 +165,7 @@ node tools/audit-content.mjs --strict
 - 共通content contract: `scripts/content-contract.mjs`
 - index generator: `scripts/build-content-index.mjs`
 - Fast Gate: `.github/workflows/content-integrity.yml`
+- main上の自動index同期: `.github/workflows/sync-content-index.yml`
 - canonical記事のruntime loadingはfail-soft。1記事が404でも、正常な記事だけでLibraryを起動する。
 - `window.MyEssaysDiagnostics.getContentErrors()` で現在の部分的な読み込み失敗を確認できる。
 - 既存の `register-*.yml` はlegacy。新規作成しない。
