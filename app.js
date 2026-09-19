@@ -554,8 +554,8 @@ function showLibrary() {
 
 function showEssayLoadError(articleId) {
   closeToolPanels();
-  state.currentEssay = null;
   setNoteOpen(false);
+  state.currentEssay = null;
   els.libraryView.hidden = true;
   els.readerView.hidden = false;
   els.readerAside.innerHTML = '';
