@@ -17,7 +17,7 @@
 ### Content registration safety
 - `data/index.json` / `data/versions-index.json` は生成物として扱い、記事登録のsource of truthにしない。
 - 新規の `.github/workflows/register-*.yml` を作らない。既存のregister workflowはlegacyとして扱う。
-- Markdownの追加・改名・削除後は必ず `node scripts/build-content-index.mjs --write` を実行する。
+- Markdownの追加・改名・削除後は必ず `node scripts/build-content-index.mjs --write` を実行する。mainでは`.github/workflows/sync-content-index.yml`も安全網として自動同期するが、通常の公開フローでは同一commit内で生成indexまで揃える。
 - 1記事の読み込み失敗をLibrary全体の停止へ昇格させない。canonical loaderはfail-softを維持する。
 
 ## 2. 表記およびスタイルルール
