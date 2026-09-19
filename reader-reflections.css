@@ -558,3 +558,282 @@
     transition: none !important;
   }
 }
+
+
+/* Reader Seal: reflections stay quiet until the reader explicitly opens them. */
+.reader-reflections {
+  --reflection-pop: var(--ink);
+  --reflection-pop-deep: var(--ink);
+  --reflection-pop-soft: rgba(255,255,255,.5);
+  width: min(100%, 520px);
+  margin: 10px auto 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.reader-reflections[hidden],
+.reflection-panel[hidden] {
+  display: none !important;
+}
+
+.reader-reflections::after {
+  display: none;
+}
+
+.reflection-disclosure {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 154px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 650 10.5px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  cursor: pointer;
+  transition: background .14s ease, color .14s ease, transform .14s ease;
+}
+
+.reflection-disclosure:hover {
+  background: rgba(255,255,255,.44);
+  color: var(--ink);
+}
+
+.reflection-disclosure:active {
+  transform: scale(.985);
+}
+
+.reflection-disclosure:focus-visible {
+  outline: 3px solid color-mix(in srgb, #5b89a9 34%, transparent);
+  outline-offset: 3px;
+}
+
+.reflection-disclosure-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.reflection-panel {
+  margin-top: 8px;
+  padding: 16px 16px 14px;
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, var(--line));
+  border-radius: 15px;
+  background: rgba(255,255,255,.38);
+  box-shadow: 0 10px 28px rgba(39,32,24,.035);
+  text-align: left;
+  animation: reflection-panel-open .18s ease-out both;
+}
+
+@keyframes reflection-panel-open {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reader-reflections-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-right: 0;
+}
+
+.reader-reflections-kicker {
+  min-height: 0;
+  margin: 0 0 5px !important;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted) !important;
+  font-size: 8px !important;
+  letter-spacing: .16em;
+  box-shadow: none;
+}
+
+.reader-reflections-heading h2 {
+  color: var(--ink);
+  font: 650 18px/1.35 "Iowan Old Style", "YuMincho", "Yu Mincho", serif !important;
+  letter-spacing: .01em;
+}
+
+.reflection-heading-count {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  color: var(--muted);
+  font-size: 8px;
+  box-shadow: none;
+}
+
+.reader-reflections-local {
+  margin: 0 !important;
+  color: var(--muted);
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+}
+
+.reader-reflections-local::before {
+  display: none;
+}
+
+.reflection-composer {
+  padding: 12px 12px 10px;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, var(--line));
+  border-radius: 12px;
+  background: rgba(255,255,255,.46);
+  box-shadow: none;
+  transform: none;
+}
+
+.reflection-composer::before {
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 650;
+}
+
+.reflection-composer:focus-within {
+  border-color: color-mix(in srgb, var(--ink) 32%, var(--line));
+  background: rgba(255,255,255,.66);
+  box-shadow: 0 0 0 3px color-mix(in srgb, #5b89a9 8%, transparent);
+  transform: none;
+}
+
+.reflection-composer-input {
+  min-height: 82px;
+  max-height: 260px;
+  padding: 2px 2px 8px;
+  font-size: 14px;
+  line-height: 1.78;
+}
+
+.reflection-composer-footer {
+  padding-top: 8px;
+  border-top-color: color-mix(in srgb, var(--ink) 8%, var(--line));
+}
+
+.reflection-composer-hint,
+.reflection-draft-status {
+  color: var(--muted);
+  font-size: 8.5px;
+}
+
+.reflection-composer-hint kbd,
+.reflection-edit-hint kbd {
+  border-color: var(--line);
+  background: rgba(255,255,255,.52);
+}
+
+.reflection-add-button {
+  min-height: 36px;
+  padding: 8px 14px;
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #f8f5ef;
+  box-shadow: none;
+}
+
+.reflection-add-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 90%, white);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.reflection-add-button:disabled {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--line) 60%, transparent);
+  color: color-mix(in srgb, var(--muted) 58%, transparent);
+}
+
+.reflection-toolbar {
+  margin: 10px 0 6px;
+}
+
+.reflection-list {
+  margin-top: 5px;
+}
+
+.reflection-card {
+  border-color: color-mix(in srgb, var(--ink) 8%, var(--line));
+  background: rgba(255,255,255,.34);
+  box-shadow: none;
+}
+
+.reflection-card-text:hover {
+  background: rgba(255,255,255,.48);
+}
+
+.reader-reflections + .reader-end-navigation {
+  margin-top: 50px;
+}
+
+@media (max-width: 620px) {
+  .reader-reflections {
+    width: min(100%, 470px);
+    margin: 8px auto 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .reader-reflections-heading {
+    display: flex;
+    margin-bottom: 11px;
+    padding-right: 0;
+  }
+
+  .reader-reflections-heading h2 {
+    font-size: 17px !important;
+  }
+
+  .reader-reflections-local {
+    margin-top: 0 !important;
+  }
+
+  .reflection-panel {
+    margin: 7px -2px 0;
+    padding: 14px 12px 12px;
+    border-radius: 13px;
+  }
+
+  .reflection-composer {
+    padding: 11px 10px 10px;
+    border-radius: 11px;
+  }
+
+  .reflection-composer-input {
+    min-height: 96px;
+    max-height: 240px;
+    font-size: 16px;
+  }
+
+  .reflection-add-button {
+    min-width: 58px;
+    min-height: 44px;
+  }
+
+  .reflection-disclosure {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reflection-disclosure,
+  .reflection-panel {
+    transition: none !important;
+    animation: none !important;
+  }
+}
