@@ -109,5 +109,5 @@ test('Reader Seal does not recreate the old wide card or duplicate After Reading
 
   assert.doesNotMatch(css, /620px/);
   assert.doesNotMatch(reader, /AFTER READING|読み終えたあと/);
-  assert.match(reader, /data\.closing = 'seal'/);
+  assert.match(reader, /zone\.dataset\.closing = 'seal'/);
 });
