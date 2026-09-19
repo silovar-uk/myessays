@@ -16,6 +16,7 @@ on:
       - 'tools/audit-content.mjs'
       - 'tests/content-contract.test.mjs'
       - 'tests/data-integrity.test.js'
+      - 'tests/content-loading-resilience.test.js'
       - '.github/workflows/content-integrity.yml'
   pull_request:
     paths:
@@ -31,6 +32,7 @@ on:
       - 'tools/audit-content.mjs'
       - 'tests/content-contract.test.mjs'
       - 'tests/data-integrity.test.js'
+      - 'tests/content-loading-resilience.test.js'
       - '.github/workflows/content-integrity.yml'
   workflow_dispatch:
 
@@ -65,4 +67,4 @@ jobs:
         run: node tools/audit-content.mjs --strict
 
       - name: Contract and data integrity tests
-        run: node --test tests/content-contract.test.mjs tests/data-integrity.test.js
+        run: node --test tests/content-contract.test.mjs tests/data-integrity.test.js tests/content-loading-resilience.test.js
