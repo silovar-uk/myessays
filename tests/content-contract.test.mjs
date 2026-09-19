@@ -86,6 +86,24 @@ test('generated canonical membership removes stale paths and discovers new Markd
   ]);
 });
 
+test('generated canonical index removes duplicate registered paths', () => {
+  const root = fixture();
+  write(root, 'essays/2026-09-19-alpha.md', canonical('alpha'));
+
+  const graph = buildContentGraph(root);
+  const generated = buildGeneratedIndexes(graph, {
+    currentIndex: {
+      essays: [
+        'essays/2026-09-19-alpha.md',
+        'essays/2026-09-19-alpha.md'
+      ]
+    },
+    currentVersions: { articles: {} }
+  });
+
+  assert.deepEqual(generated.index.essays, ['essays/2026-09-19-alpha.md']);
+});
+
 test('duplicate canonical ids fail the content contract', () => {
   const root = fixture();
   write(root, 'essays/2026-09-19-a.md', canonical('same'));
