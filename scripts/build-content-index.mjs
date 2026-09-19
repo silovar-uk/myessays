@@ -65,6 +65,17 @@ function diffPaths(current = [], generated = []) {
   };
 }
 
+function flattenVersions(index = {}) {
+  const rows = new Map();
+  const articles = index?.articles && typeof index.articles === 'object' ? index.articles : {};
+  for (const [id, versions] of Object.entries(articles)) {
+    for (const [version, file] of Object.entries(versions || {})) {
+      rows.set(`${id}:${version}`, file);
+    }
+  }
+  return rows;
+}
+
 function printDrift(currentIndex, currentVersions, generated) {
   const canonical = diffPaths(currentIndex?.essays || [], generated.index.essays || []);
   const messages = ['CONTENT INDEX DRIFT'];
@@ -80,7 +91,17 @@ function printDrift(currentIndex, currentVersions, generated) {
   }
 
   if (!semanticEqual(currentVersions, generated.versionsIndex)) {
+    const current = flattenVersions(currentVersions);
+    const expected = flattenVersions(generated.versionsIndex);
     messages.push('', 'Reading Mode index differs from Markdown source.');
+
+    for (const [key, file] of expected) {
+      if (!current.has(key)) messages.push(`  + ${key} -> ${file}`);
+      else if (current.get(key) !== file) messages.push(`  ~ ${key}: ${current.get(key)} -> ${file}`);
+    }
+    for (const [key, file] of current) {
+      if (!expected.has(key)) messages.push(`  - ${key} -> ${file}`);
+    }
   }
 
   messages.push('', 'Fix:', '  node scripts/build-content-index.mjs --write');
