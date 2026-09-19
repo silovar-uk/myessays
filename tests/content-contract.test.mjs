@@ -86,6 +86,30 @@ test('generated canonical membership removes stale paths and discovers new Markd
   ]);
 });
 
+test('old unindexed Markdown is inserted by created date without taking over Latest', () => {
+  const root = fixture();
+  write(root, 'essays/2026-09-19-latest.md', canonical('latest', '2026-09-19'));
+  write(root, 'essays/2026-09-17-existing.md', canonical('existing', '2026-09-17'));
+  write(root, 'essays/2026-09-18-forgotten.md', canonical('forgotten', '2026-09-18'));
+
+  const graph = buildContentGraph(root);
+  const generated = buildGeneratedIndexes(graph, {
+    currentIndex: {
+      essays: [
+        'essays/2026-09-19-latest.md',
+        'essays/2026-09-17-existing.md'
+      ]
+    },
+    currentVersions: { articles: {} }
+  });
+
+  assert.deepEqual(generated.index.essays, [
+    'essays/2026-09-19-latest.md',
+    'essays/2026-09-18-forgotten.md',
+    'essays/2026-09-17-existing.md'
+  ]);
+});
+
 test('generated canonical index removes duplicate registered paths', () => {
   const root = fixture();
   write(root, 'essays/2026-09-19-alpha.md', canonical('alpha'));
