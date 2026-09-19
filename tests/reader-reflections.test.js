@@ -58,3 +58,15 @@ test('mobile and accessibility details are covered',()=>{
   assert.match(css,/focus-visible/);
   assert.match(css,/prefers-reduced-motion: reduce/);
 });
+
+
+test('reflection composer is progressive and only available after completion',()=>{
+  assert.match(source,/data-reflection-disclosure/);
+  assert.match(source,/data-reflection-panel/);
+  assert.match(source,/setExpanded/);
+  assert.match(source,/syncAvailability/);
+  assert.match(source,/completedAt/);
+  assert.match(source,/flashDisclosure\(root,'ひとこと残しました'\)/);
+  assert.match(css,/\.reflection-disclosure/);
+  assert.match(css,/\.reflection-panel\[hidden\]/);
+});
