@@ -241,7 +241,7 @@ Source: https://pubmed.ncbi.nlm.nih.gov/39427810/
   https://pubmed.ncbi.nlm.nih.gov/24806682/
 - Ohira, “Integration of Interoception, Decision-Making, and Affect: Allostasis as Predictive Processing” (2023)  
   https://pubmed.ncbi.nlm.nih.gov/37936424/
-- Katsumi et al., “Allostasis as a core feature of hierarchical gradients in the human brain” (2022/2024 indexing)  
+- Katsumi et al., “Allostasis as a core feature of hierarchical gradients in the human brain” (2022)  
   https://pubmed.ncbi.nlm.nih.gov/38800458/
 - Mehling et al., “The Multidimensional Assessment of Interoceptive Awareness, Version 2 (MAIA-2)” (2018)  
   https://pubmed.ncbi.nlm.nih.gov/30513087/
