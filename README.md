@@ -143,25 +143,31 @@ Structure metadataは読了時間・文字数・全文検索の対象から除�
 
 1. `essay-template.md` を複製する。
 2. 日本語正本を `essays/YYYY-MM-DD-slug.md` として保存する。
-3. `data/index.json` の `essays` 配列へ日本語版のパスを追加する。
-4. English Mixも作る場合は、同じ記事IDで `english-mix/記事ID.md` を作る。
-5. Español Mixも作る場合は、同じ記事IDで `spanish-mix/記事ID.md` を作る。
-6. 派生版を作った記事は `data/versions-index.json` の同じ記事IDへ `en-mix` / `es-mix` のパスを登録する。
-7. 必要な段落だけStructure metadataを追加する。
+3. English Mixも作る場合は、同じ記事IDで `english-mix/記事ID.md` を作る。
+4. Español Mixも作る場合は、同じ記事IDで `spanish-mix/記事ID.md` を作る。
+5. 必要な段落だけStructure metadataを追加する。
+6. `node scripts/build-content-index.mjs --write` を実行する。
+7. `node scripts/build-content-index.mjs --check` と `node tools/audit-content.mjs --strict` で整合性を確認する。
 8. GitHubへ反映する。
 
-例:
+`data/index.json` と `data/versions-index.json` はMarkdownから生成する。記事登録のために手編集しない。
 
-```json
-{
-  "article-id": {
-    "en-mix": "english-mix/article-id.md",
-    "es-mix": "spanish-mix/article-id.md"
-  }
-}
+```bash
+node scripts/build-content-index.mjs --write
+node scripts/build-content-index.mjs --check
+node tools/audit-content.mjs --strict
 ```
 
-派生版は `data/index.json` へ追加しない。
+日本語正本のmembershipは `essays/*.md`、派生版のmembershipは `english-mix/*.md` / `spanish-mix/*.md` とfrontmatterの `id` がsource of truthになる。派生版はcanonical indexへ入らない。
+
+## Content Integrity
+
+- 共通content contract: `scripts/content-contract.mjs`
+- index generator: `scripts/build-content-index.mjs`
+- Fast Gate: `.github/workflows/content-integrity.yml`
+- canonical記事のruntime loadingはfail-soft。1記事が404でも、正常な記事だけでLibraryを起動する。
+- `window.MyEssaysDiagnostics.getContentErrors()` で現在の部分的な読み込み失敗を確認できる。
+- 既存の `register-*.yml` はlegacy。新規作成しない。
 
 ## 実装メモ
 
