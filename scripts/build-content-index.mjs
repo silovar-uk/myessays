@@ -10,6 +10,7 @@ import {
   formatIssue,
   readCurrentIndexes
 } from './content-contract.mjs';
+import { compareStructures } from './validate-version-structure.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const defaultRoot = path.resolve(scriptDir, '..');
@@ -121,7 +122,9 @@ function usage() {
     '  node scripts/build-content-index.mjs --write',
     '  node scripts/build-content-index.mjs --output <directory>',
     '',
-    'Markdown files are the membership source of truth.',
+    'Canonical Markdown files are the membership source of truth.',
+    'Derived Markdown files are publication candidates; new variants are published only when structure-safe.',
+    'Existing published variants stay published while their id/version still exists.',
     'Existing canonical index order is preserved only as a presentation hint.'
   ].join('\n');
 }
@@ -147,7 +150,13 @@ export function run(argv = process.argv.slice(2)) {
   }
 
   const { currentIndex, currentVersions } = readCurrentIndexes(args.root);
-  const generated = buildGeneratedIndexes(graph, { currentIndex, currentVersions });
+  const generated = buildGeneratedIndexes(graph, {
+    currentIndex,
+    currentVersions,
+    canPublishDerived(derived, canonical) {
+      return compareStructures(canonical.source, derived.source).ok;
+    }
+  });
 
   if (args.check) {
     const indexMatches = semanticEqual(currentIndex, generated.index);
@@ -159,13 +168,15 @@ export function run(argv = process.argv.slice(2)) {
     }
 
     process.stdout.write(
-      `CONTENT INDEX OK — ${generated.index.essays.length} canonical, ${Object.keys(generated.versionsIndex.articles).length} versioned articles\n`
+      `CONTENT INDEX OK — ${generated.index.essays.length} canonical, ${Object.keys(generated.versionsIndex.articles).length} versioned articles, ${generated.publication.unpublished.length} derived drafts\n`
     );
   }
 
   if (args.write) {
     writeGenerated(path.join(args.root, 'data'), generated);
-    process.stdout.write('Wrote data/index.json and data/versions-index.json\n');
+    process.stdout.write(
+      `Wrote data/index.json and data/versions-index.json — auto-published ${generated.publication.autoPublished.length}, left ${generated.publication.unpublished.length} derived drafts unpublished\n`
+    );
   }
 
   if (args.output) {
