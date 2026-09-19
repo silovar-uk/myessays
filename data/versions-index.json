@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "affordance-action-possibility-relation": {
+      "en-mix": "english-mix/affordance-action-possibility-relation.md"
+    },
     "sf6-modern-marisa-drive-rush-as-probe": {
       "en-mix": "english-mix/sf6-modern-marisa-drive-rush-as-probe.md"
     },
