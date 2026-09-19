@@ -1,5 +1,5 @@
 name: One-shot Reader Seal QA
-# rerun after measuring settled seal geometry
+# rerun after final feedback cleanup
 
 on:
   push:
