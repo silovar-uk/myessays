@@ -586,41 +586,23 @@ body.reader-v2-open .reader-shell {
   scroll-margin-top: 92px;
 }
 
-/* One closing phase instead of a stack of unrelated endings. */
+/* Closing phase: the Reader Seal is the boundary. Avoid starting a second page below the article. */
 .reader-v2-after-reading {
-  margin-top: 76px;
-  padding-top: 28px;
-  border-top: 1px solid var(--ink);
+  margin-top: 54px;
+  padding-top: 0;
+  border-top: 0;
 }
 
-.reader-v2-after-heading {
-  display: grid;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
-.reader-v2-after-heading span {
-  color: var(--accent);
-  font-size: 8.5px;
-  font-weight: 800;
-  letter-spacing: .17em;
-}
-
-.reader-v2-after-heading strong {
-  font: 700 24px/1.25 Georgia, "Yu Mincho", serif;
-}
-
-.reader-v2-after-reading .reading-completion-zone {
-  width: 100%;
-  margin: 30px 0 26px;
+.reader-v2-after-reading .reader-resonance {
+  margin-top: 0;
 }
 
 .reader-v2-after-reading .reader-reflections {
-  margin-top: 28px;
+  margin-top: 8px;
 }
 
 .reader-v2-after-reading .reader-end-navigation {
-  margin-top: 46px;
+  margin-top: 52px;
 }
 
 .reader-v2-after-reading .reader-related-item:nth-child(n+3) {
@@ -833,10 +815,6 @@ body.reader-v2-open .reader-shell {
   .reader-v2-article-info-body dl {
     grid-template-columns: 1fr 1fr;
     gap: 10px 12px;
-  }
-
-  .reader-v2-after-heading strong {
-    font-size: 21px;
   }
 
   .reader-v2-after-reading .reader-end-links {
