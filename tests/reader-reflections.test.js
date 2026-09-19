@@ -19,7 +19,7 @@ test('composer autosaves, autosizes, and keeps keyboard flow',()=>{
   assert.match(source,/reflection-composer-input/);
   assert.match(source,/autosize\(input\)/);
   assert.match(source,/e\.metaKey\|\|e\.ctrlKey/);
-  assert.match(source,/input\\?\\.focus\\(\\{preventScroll:true\\}\\)/);
+  assert.match(source,/focus\(\{preventScroll:true\}\)/);
   assert.match(css,/max-height: 320px/);
   assert.match(css,/font-size: 16px/);
 });
