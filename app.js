@@ -3,7 +3,8 @@ const state = {
   tags: new Set(),
   activeTags: new Set(),
   currentEssay: null,
-  pendingQuote: ''
+  pendingQuote: '',
+  contentLoadErrors: []
 };
 
 const $ = (id) => document.getElementById(id);
@@ -198,18 +199,56 @@ function normalizeEssay(path, text) {
   };
 }
 
+function articleIdFromCanonicalPath(file='') {
+  const name = String(file).split('/').pop()?.replace(/\.md$/i, '') || '';
+  return name.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+}
+
+async function loadEssayDocument(file) {
+  const response = await fetch(file, { cache:'no-store' });
+  if (!response.ok) throw new Error(`${file}: HTTP ${response.status}`);
+  const text = await response.text();
+  const essay = normalizeEssay(file, text);
+  if (!String(essay.id || '').trim()) throw new Error(`${file}: missing id`);
+  if (!String(essay.title || '').trim()) throw new Error(`${file}: missing title`);
+  return essay;
+}
+
 async function loadEssays() {
   const index = await fetch('data/index.json', { cache: 'no-store' }).then(r => {
-    if (!r.ok) throw new Error('index.jsonを読み込めませんでした');
+    if (!r.ok) throw new Error(`index.jsonを読み込めませんでした: HTTP ${r.status}`);
     return r.json();
   });
-  state.essays = await Promise.all(index.essays.map(async path => {
-    const text = await fetch(path, { cache:'no-store' }).then(r => {
-      if (!r.ok) throw new Error(`${path}を読み込めませんでした`);
-      return r.text();
+
+  const paths = Array.isArray(index?.essays) ? index.essays : [];
+  const results = await Promise.allSettled(paths.map(loadEssayDocument));
+  const essays = [];
+  const failures = [];
+
+  results.forEach((result, position) => {
+    const file = paths[position];
+    if (result.status === 'fulfilled') {
+      essays.push(result.value);
+      return;
+    }
+    failures.push({
+      path: file,
+      articleId: articleIdFromCanonicalPath(file),
+      error: String(result.reason?.message || result.reason)
     });
-    return normalizeEssay(path, text);
-  }));
+  });
+
+  state.essays = essays;
+  state.contentLoadErrors = failures;
+
+  if (!state.essays.length) {
+    throw new Error('読み込み可能な記事がありませんでした');
+  }
+
+  if (failures.length) {
+    console.warn('[MyEssays] Some canonical essays failed to load.', failures);
+  }
+
   state.tags = new Set(state.essays.flatMap(e => e.tags || []));
   populateFilters();
   renderLibrary();
@@ -321,7 +360,11 @@ function renderLibrary() {
       <div class="archive-list">${archive.map(renderArchiveRow).join('')}</div>
     </section>` : '';
 
-  els.essayGrid.innerHTML = featuredHtml + archiveHtml;
+  const loadWarningHtml = state.contentLoadErrors.length
+    ? `<p class="content-load-warning" role="status">一部の記事を読み込めませんでした（${state.contentLoadErrors.length}件）。ほかの記事は通常どおり読めます。</p>`
+    : '';
+
+  els.essayGrid.innerHTML = loadWarningHtml + featuredHtml + archiveHtml;
   syncToolbarState();
 }
 
@@ -509,11 +552,30 @@ function showLibrary() {
   document.title = 'My Essays';
 }
 
+function showEssayLoadError(articleId) {
+  closeToolPanels();
+  state.currentEssay = null;
+  setNoteOpen(false);
+  els.libraryView.hidden = true;
+  els.readerView.hidden = false;
+  els.readerAside.innerHTML = '';
+  els.readerContent.innerHTML = `
+    <div class="essay-load-error" role="alert">
+      <p class="eyebrow">CONTENT LOAD ERROR</p>
+      <h1>この記事を読み込めませんでした。</h1>
+      <p>ほかの記事は利用できます。← Library から一覧へ戻れます。</p>
+    </div>`;
+  document.title = '記事を読み込めませんでした | My Essays';
+  window.scrollTo(0, 0);
+}
+
 function route() {
   const currentRoute = window.MyEssaysRoute.parse();
   if (currentRoute.type !== 'essay' || !currentRoute.articleId) { showLibrary(); return; }
   const essay = state.essays.find(e => e.id === currentRoute.articleId);
-  essay ? showReader(essay) : showLibrary();
+  if (essay) { showReader(essay); return; }
+  const failed = state.contentLoadErrors.find(item => item.articleId === currentRoute.articleId);
+  failed ? showEssayLoadError(currentRoute.articleId) : showLibrary();
 }
 
 ['input','change'].forEach(eventName => {
@@ -599,6 +661,12 @@ window.addEventListener('keydown', e => {
       closeToolPanels(); els.searchToggle.focus(); return;
     }
     if (!els.readerView.hidden) location.hash='#/';
+  }
+});
+
+window.MyEssaysDiagnostics = Object.freeze({
+  getContentErrors() {
+    return state.contentLoadErrors.map(item => ({ ...item }));
   }
 });
 
