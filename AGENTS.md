@@ -51,3 +51,13 @@
 - **REGENERATE**: 意味統合、セクション欠落、Visual Lesson省略、再作文・再構成が強い場合。局所修理よりCanonical blocksから再生成する。
 - **RETIRE**: 派生版自体が不要・古い・重複していることを確認できた場合だけ選ぶ。根拠なくretire候補を作らない。
 - `repair cost > regeneration cost` になったシリーズや記事群は、一件ずつの修理を続けず再生成へ切り替える。
+
+
+## 6. Gemini Editorial Bridge
+- 記事本文はまずGPT側で完成稿まで仕上げる。Geminiを下書き生成や論旨設計には使わない。
+- 本文完成後、Gemini Editorial Bridge（POST /v1/copyedit）へブロック単位で送り、`editingMode: "conservative"` で保守的校正をかける。
+- Bridgeの返却が `status: "success"` の場合のみ候補を検討し、`KEEP` は原文維持、`EDIT` のみ差し替える。事実、論旨、数値、固有名詞、URL、見出し、frontmatter、構造、ブロック順は変更しない。
+- `validatorRejected: true` の候補は採用しない。
+- `timeout` / `quota_exceeded` / `upstream_error` / `schema_invalid` / `bad_request` の場合はBridgeの失敗を公開ブロッカーにせず、GPT完成稿をそのまま採用する。
+- BridgeはGitHubへ直接書き込まない。最終反映と公開責任はGPT側のフローに残す。
+- EN MIXがある記事は、日本語Canonicalの最終確定後に派生版との構造1:1を再検証する。Gemini校正でCanonicalの段落構造を変えない。
