@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "conways-law-org-chart-becomes-architecture": {
+      "en-mix": "english-mix/conways-law-org-chart-becomes-architecture.md"
+    },
     "interoception-body-signals-not-answers": {
       "en-mix": "english-mix/interoception-body-signals-not-answers.md"
     },
