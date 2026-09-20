@@ -8,294 +8,138 @@ abstract: "スマブラで上達するとき、we naturally ask what to hit: com
 # The Art of Smash Is Not Getting Hit
 ## 「当てる」より先に、相手の攻撃が空振りする場所を選ぶ
 
-When we try to improve at Smash, we usually ask one question first.
+When we try to improve at Smash, we usually ask **What should I hit them with?** コンボ、kill confirm、確定反撃、崖狩り。Training Modeでは相手が止まっているので、自分の理論はだいたい世界一正しい。オンラインへ行くと、そのbeautiful comboが始まる前に横スマを喰らう。
 
-**What should I hit them with?**
+So turn the question around. **What if the deepest skill is simply not getting hit?** ここでいうnot getting hitは「一発も被弾するな」でも「逃げ続けろ」でもない。相手のattackが成功するplace and timingに、自分を置かないこと。
 
-コンボ、kill confirm、確定反撃、崖狩り。手札を増やすほど、strongerになった感じがする。
-
-Training Mode makes this feeling even stronger. The opponent stands still, so your theory is undefeated.
-
-オンラインへ行く。
-
-Before the beautiful combo begins, you eat a forward smash.
-
-そこで問いを逆にする。
-
-> **What if the deepest skill is simply not getting hit?**
-
-これは「一発も喰らうな」という宗教ではない。If you can literally do that every match, please stop reading and enter a major.
-
-ここでいうnot getting hitは、**相手のattackが成功するplace and timingに、自分を置かないこと**。
+This changes what “defense” means. 防御ボタンを増やす話ではなく、相手の攻撃判定と自分の身体が会わないように盤面を作る話になる。That is where the rest of the essay starts.
 
 ---
 
 ## 1. Not getting hit does not mean “defend more.” It means “make them miss.”
 
-SmashWiki defines spacing as awareness of the opponent's options and the ability to **avoid and counter** them.
+SmashWiki describes spacing as awareness of the opponent's options and the ability to **avoid and counter** them. つまりspacingは「遠くへ逃げる」ではなく、相手の攻撃が届かず、こちらの反撃は届く位置を選ぶ技術である。
 
-つまりspacingは「遠くに逃げる」ではない。
+Stand just outside an aerial. 相手は届くと思って振る。It misses by half a step. 着地隙が出る。Then you punish. 最後の反撃だけを見ると「反応が速かった」に見えるが、その反撃は先にwhiffを作ったから成立している。
 
-You stand just outside their aerial.
+**Offense is the second half. “Not being there” is the first half.** ここで「喰らわない」はpassive defenseではなくなる。相手が技を振る前から、こちらは結果を作り始めている。
 
-相手は届くと思って振る。
+[SmashWiki: Spacing](https://www.ssbwiki.com/Spacing) と [Punishment](https://www.ssbwiki.com/Punishment) を並べて読むと、この前後関係が見えやすい。Punishは隙が生まれて初めて成立する。だから反撃精度だけでなく、隙が生まれる距離を作れるかが重要になる。
 
-It misses by half a step.
+ダッシュバック、小さな歩き、何もしない待ちにもattack valueがある。自分は判定を出していないのに、相手が勝手に後隙を作る。何もしていないのに相手から隙が徴収される。スマブラ、ときどき税務署。
 
-着地隙が出る。
-
-Then you punish.
-
-ここで最後の一撃だけ見ると、「反撃が速かった」が勝因に見える。
-
-But the punish existed only because you first created a miss.
-
-**Offense is the second half. “Not being there” is the first half.**
-
-- [SmashWiki: Spacing](https://www.ssbwiki.com/Spacing)
-- [SmashWiki: Punishment](https://www.ssbwiki.com/Punishment)
-
-ダッシュバック、小さな歩き、何もしない待ち。
-
-These can all be active decisions.
-
-自分は技を振っていない。
-
-The opponent creates the opening for you.
-
-何もしていないのに相手から隙が徴収される。スマブラ、ときどき税務署。
+So the first principle is not “hit faster.” It is **make their move miss without giving up your own next action.** 技を喰らわないことは、攻撃を拒否することではなく、こちらが選べる状態のまま相手の選択だけを失敗させることになる。
 
 ---
 
 ## 2. The first hit may cost 8%. The real cost is the next few seconds.
 
-A small hit looks small because the number is small.
+A small hit looks small because the number is small. 8%。まだ全然大丈夫に見える。でも一発の被弾はhitstun、combo、juggle、landing trap、ledgeへつながる入口になりうる。
 
-8%.
+[Hitstun](https://www.ssbwiki.com/Hitstun) は被弾後の行動を制限し、[Juggling](https://www.ssbwiki.com/Juggling) は相手を着地させず攻撃を続ける有利展開として整理される。つまり最初の8%は、8%だけを買っているわけではない。
 
-まだ大丈夫に見える。
+You may also lose position, time, and the next decision. 上を取られる、着地を読まれる、崖へ運ばれる。被弾のcostは画面の数字より長く残る。
 
-But one hit can lead into hitstun, a combo, a juggle, a landing trap, or the ledge.
+That changes replay review. 10発の連携を喰らったとき、7発目だけを「なぜ喰らった」と考えても遅い場合がある。First ask: **Why did the first hit that started this disadvantage happen?**
 
-SmashWiki describes juggling as repeatedly keeping the opponent airborne without letting them reset.
+もちろん途中にDI、jump、air dodgeなどのescape pointがある連携なら、そこも別に見る。The point is not to excuse later mistakes. 10発を無条件に10個の独立したミスへ分解しないこと。
 
-つまり最初の8%は、8%だけではない。
-
-It may buy the opponent the next position, the next read, and the next decision.
-
-だから10-hit sequenceを喰らったあと、7発目だけを責めても遅いことがある。
-
-Ask first:
-
-> **Why did the first hit that started this disadvantage happen?**
-
-- [SmashWiki: Hitstun](https://www.ssbwiki.com/Hitstun)
-- [SmashWiki: Juggling](https://www.ssbwiki.com/Juggling)
-
-途中でDIやair dodgeのescape pointがあるなら、もちろんそこも見る。
-
-But do not treat ten hits as ten unrelated mistakes.
-
-入口を一つ見つける。
-
-That is often a much better unit for practice.
+A better unit of practice is often **the entrance to disadvantage**. 被弾をdamage eventではなくturn transitionとして見ると、「守備が下手」という曖昧な反省から、「この距離で先に振った」が修正対象になる。
 
 ---
 
 ## 3. Shield and dodge matter. But the cleanest guard is “out of range.”
 
-Shield is strong, but it is not a permanent address.
+Shield is strong, but it is not a permanent address. 掴みには負けるし、長く使えば縮む。Ultimateには[dodge staling](https://www.ssbwiki.com/Dodge_staling)もあり、spot dodge、roll、air dodgeを短時間に繰り返すほど性能が落ちる。
 
-掴みには負けるし、使えば縮む。
+So “danger → dodge” cannot be the whole defense system. 回避を擦るほどゲーム側から「それ、見えてますよ」という請求書が届く。[Shield](https://www.ssbwiki.com/Shield)も[Air dodge](https://www.ssbwiki.com/Airdodge)も大事だが、その前にpositionという層がある。
 
-Ultimate also has **dodge staling**: repeated spot dodges, rolls, and air dodges become less effective.
-
-So “I feel danger → I dodge” cannot be the whole defense system.
-
-回避を擦ると、ゲーム側からだんだん「それ、見えてますよ」という請求書が届く。
-
-A better question comes earlier.
-
-**Can I stand somewhere the move simply does not reach?**
-
-- [SmashWiki: Shield](https://www.ssbwiki.com/Shield)
-- [SmashWiki: Dodge staling](https://www.ssbwiki.com/Dodge_staling)
-- [SmashWiki: Air dodge](https://www.ssbwiki.com/Airdodge)
-
-Practice heuristic:
+Ask in this order as a practice heuristic:
 
 1. Can I be out of range?
 2. If not, can I safely shield, jump, or reposition?
 3. If I dodge, what happens after the dodge?
 4. If I punish, is it really guaranteed?
 
-これはuniversal rankingではない。
+This is not a universal ranking. Matchup, percent, stage and position change the answer. 「届かない＞シールド＞回避」と固定的な強弱を言いたいわけではない。
 
-Matchup, percent, stage and position change the answer.
+The useful shift is **position before defensive input**. 「何の防御ボタンを押すか」より前に、「そもそも押さなくて済む場所にいられたか」を問う。
 
-でも「とりあえず振る」「とりあえず回避する」より、decision qualityは上がる。
+Once you think this way, defense becomes less about emergency reactions and more about spatial design. 最強のガードがいつもshieldとは限らない。Sometimes the cleanest guard is simply “not there.”
 
 ---
 
 ## 4. To avoid getting hit, you eventually need to threaten them.
 
-Here is the paradox.
+Here is the paradox: if not getting hit only means retreating, you eventually run out of stage. 逃げ続ければ後ろがなくなる。Shield forever and you get grabbed. 脅威を見せなければ相手は安全に前へ出られる。
 
-If “not getting hit” means only retreating, you eventually run out of stage.
+[Approach](https://www.ssbwiki.com/Approach)では、neutralでsafe approachとdefensive structureの両方が問題になる。[Camping](https://www.ssbwiki.com/Camping)も、単なる「守備全般」ではなく安全地帯へ留まり続ける戦略として区別できる。
 
-逃げ続ければ後ろがなくなる。
+So “not getting hit” and “never attack” are not the same. むしろ被弾を減らすには、「この距離を雑に歩くと刺される」「ここで飛ぶと狩られる」というthreatが必要になる。
 
-Shield forever and you get grabbed.
+A threat changes the opponent's route before it deals damage. 攻撃が当たらなくても、相手の接近を遅らせたり、ジャンプへ偏らせたりすれば、自分が安全でいられるspaceが増える。
 
-Show no threat, and the opponent walks forward for free.
+**Good offense buys room where you do not have to get hit.** ここで攻撃はdamage toolだけでなく、defensive geometryを作る道具になる。
 
-SmashWiki's Approach page frames neutral as balancing safe approach with a defensive structure.
-
-So defense and offense are not separate departments.
-
-**A threat can be defensive because it makes the opponent's approach more expensive.**
-
-「ここを雑に歩くと刺される」
-
-「ここで飛ぶと狩られる」
-
-そう思わせるattackがあるから、自分のspaceが残る。
-
-Good offense does not only buy damage.
-
-**It buys room where you do not have to get hit.**
-
-- [SmashWiki: Approach](https://www.ssbwiki.com/Approach)
-- [SmashWiki: Camping](https://www.ssbwiki.com/Camping)
-
-攻守、別部署ではなかった。
-
-Same floor. Same Slack channel.
+攻守は別部署ではない。Same floor, same Slack channel. 守備を突き詰めると攻撃が必要になり、攻撃を突き詰めると「反撃を喰らわない振り方」が必要になる。
 
 ---
 
 ## 5. Strong spacing does not wait for a whiff. It helps create one.
 
-Baiting is described on SmashWiki as inducing an opponent into a vulnerable action and punishing that reaction.
+[Mindgame](https://www.ssbwiki.com/Mindgame)ではbaitingを、相手をvulnerableな行動へ誘ってpunishする読み合いとして説明している。This means a whiff does not have to be an accident.
 
-少し前へ出る。
+少し前へ出る。They think, “He's entering.” 相手が技を振る。You pull back. 攻撃だけが空中に残る。
 
-They think, “He's entering.”
+Then you punish. 重要なのは「見てから全部超反応した」ことではない。技を振りたくなる距離を先に作り、自分はそこから消える準備をしていた。
 
-相手が技を振る。
+Not getting hit now becomes **decision design**. 相手の攻撃を止めるのではなく、相手が「これなら当たる」と判断する材料そのものを少しずらす。
 
-You pull back.
+The strongest defense is sometimes not preventing an attack. **It is making the opponent choose an attack that will miss.** ここまで来ると、spacingは距離管理というより相手の意思決定へ触る技術になる。
 
-攻撃だけが空中に残る。
+派手な一点読みほど動画映えはしない。でもwin rateはInstagramの審査員ではない。Half-step movement can be strategically loud even when it looks visually quiet.
 
-Then you punish.
-
-This is not pure reaction speed.
-
-You created a distance where the opponent **wanted** to attack, while already planning to leave that distance.
-
-するとnot getting hitは、passive defenseではなくなる。
-
-It becomes decision design.
-
-> **The best defense is not always stopping an attack. Sometimes it is making the opponent choose an attack that will miss.**
-
-[SmashWiki: Mindgame / Baiting](https://www.ssbwiki.com/Mindgame)
-
-派手な一点読みほど動画映えはしない。
-
-But win rate is not judged by Instagram.
+だから「読み勝ち」を大技の的中だけで数えない。相手が振る理由を作り、その技を空振りさせた時点で、すでに一つの読みは勝っている。
 
 ---
 
 ## 6. For Duck Hunt, the Can can create “space where I don't get hit.”
 
-Duck Hunt makes this idea easy to see.
+Duck Hunt makes this principle easy to see. Canは直接当てればdamageになるが、当たらなくてもroute、timing、attentionを変えられる。
 
-The Can can deal damage.
+[Duck Hunt (SSBU)](https://www.ssbwiki.com/Duck_Hunt_(SSBU)) はprojectileを使ったzoning、setup、stage controlを特徴に持ち、[Trick Shot](https://www.ssbwiki.com/Trick_Shot)のCanは盤面に残って位置関係を変える。
 
-でも、当たらなくても仕事をする。
+相手がCanを嫌ってjumpする。You watch the jump. 相手がCanへattackを振る。You reposition. その瞬間、Canは0%しか取っていなくても仕事をしている。
 
-The Can changes routes, timing and attention.
+If we judge the Can only by hit rate, all of this disappears. Projectile value can also be measured by how much it lowers the chance that the opponent gets a clean attack on your body.
 
-相手がカンを嫌ってjumpする。
+This connects to the earlier Duck Hunt question: **What game do I want to play?** Canとbodyを同じ場所に置かず、相手に一方向だけ見せない。
 
-You watch the jump.
+相手が技を振りたくなる場所と、自分が実際にいる場所を少しずらす。The Can is not only a projectile; it can be a way to purchase safer geometry.
 
-相手がカンへattackを振る。
-
-You move somewhere safer.
-
-If we judge the Can only by hit rate, all of this disappears.
-
-**A projectile can have value because it lowers the chance that the opponent's next attack is aimed cleanly at your body.**
-
-- [SmashWiki: Duck Hunt (SSBU)](https://www.ssbwiki.com/Duck_Hunt_(SSBU))
-- [SmashWiki: Trick Shot](https://www.ssbwiki.com/Trick_Shot)
-
-前に考えた問いともつながる。
-
-**What game do I want to play?**
-
-Canとbodyを同じ場所に置かない。
-
-Make the opponent look at two things.
-
-相手が技を振りたくなる場所と、自分が実際にいる場所をずらす。
-
-Maybe ideal Duck Hunt is not “more projectiles.”
-
-Maybe it is a match where **the opponent's attack is always half a step too old.**
+Maybe ideal Duck Hunt is not “more projectiles.” **Maybe it is a match where the opponent's attack is always half a step too old.** 「喰らわない」はキャラ固有技を減らす原則ではなく、固有技の目的を別の角度から見直す原則になる。
 
 ---
 
 ## 7. “Never get hit” is not a law. It is a lens.
 
-Now add the exception back.
+Now add the exception back. Not every hit is equally bad. 小さい被弾と引き換えにpositionを取れる場面もあれば、tradeが有利な場面、armorで読み合いを変えられる場面もある。
 
-Not every hit is equally bad.
+Percent, stocks and stage position change the cost. 低%の弱い被弾と、高%での撃墜技は同じではない。[Punishment](https://www.ssbwiki.com/Punishment)でも、反撃へ近づくこと自体が危険なら見送る判断がありうる。
 
-小さい被弾と引き換えにpositionを取れる場面もある。
+So **“I got hit” ≠ “I made a bad decision.”** 同じように「被弾ゼロ」を目標値にすると、合理的なtradeまで避ける変な宗教になりうる。
 
-A trade can be favorable.
+What we really want to reduce is bad expected loss: returnのない差し込み、読まれた回避、意味のない着地暴れ、撃墜帯での不要なtrade。Not getting hit is a priority lens, not an absolute law.
 
-Armor can change interactions.
-
-High percent and low percent create different risks.
-
-SmashWiki's Punishment page even notes that some powerful moves may be better left unpunished when approaching the punish itself is too dangerous.
-
-So:
-
-**“I got hit” ≠ “I made a bad decision.”**
-
-減らしたいのは、returnのない差し込み、読まれた回避、意味のない着地暴れ、撃墜帯での不要なtrade。
-
-Not getting hit is not a religion of zero damage.
-
-It is a way to reduce **bad expected loss**.
-
-極端な標語で視点を変える。
-
-Then bring the exceptions back.
-
-Otherwise, you stop fighting the opponent and start fighting your doctrine.
+極端な標語は最初の視点を変えるために使い、そのあとで例外を戻す。Otherwise, you stop fighting the opponent and start fighting your doctrine.
 
 ---
 
 ## 8. In replay review, mark the first hit that gave away the turn.
 
-For the next three matches, change the metric.
+For the next three matches, change the metric. 「コンボを落とした」「撃墜できなかった」より先に、相手の有利展開が始まったfirst hitを見る。
 
-Do not start with “Why didn't my combo work?”
-
-Start with:
-
-**Where did I first give the opponent a clean turn?**
-
-その最初の被弾だけを見る。
-
-Tag it:
+Tag that entrance:
 
 - spacing
 - overcommit
@@ -304,73 +148,27 @@ Tag it:
 - dodge habit
 - greedy punish
 
-Ten hits become one entrance problem.
+Ten hits can become one entrance problem. もちろん途中にescape pointがあるなら別に見るが、まず入口を特定すると修正対象が小さくなる。
 
-すると改善が具体になる。
+“Defend better” is vague. 「この距離では先に振らない」「着地で毎回air dodgeしない」「もう間に合わない反撃を追わない」はtrainableである。
 
-“Defend better” is vague.
-
-“Do not swing first at this distance” is trainable.
-
-“Do not air dodge every landing” is trainable.
-
-“Do not chase a punish that is already gone” is trainable.
-
-ゲームは自分の撃墜数を数えてくれる。
-
-It does not count how many dangerous places you successfully avoided.
-
-So count that yourself.
+ゲームは自分の撃墜数を勝手に数えてくれる。It does not count how many dangerous places you successfully avoided. だからwhiffを作れた場面や、危ない距離へ入らなかった場面は自分で成功として数える。
 
 ---
 
 ## 9. Not getting hit means keeping the next decision yours.
 
-At the beginning, “not getting hit” sounded like defense.
+At the beginning, not getting hit sounded like defense. でもspacing、punish、dodge staling、jugglingを通すと、被弾で失うものはdamageだけではないと分かる。
 
-After looking at spacing, punish, dodge staling and juggling, it looks bigger.
+You lose position, time and options. ときには「次に何をするか」を自分で決める権利そのものを失う。
 
-被弾で失うのはdamageだけではない。
+When the opponent's move whiffs in front of you, you are still standing there. No hitstun. No forced trajectory. 次の行動をまだ自分で選べる。
 
-You lose position.
+Attack, retreat, set a projectile, or do nothing. **You still own the decision.** だから喰らわないことの価値は、防御力よりoption valueに近い。
 
-You lose time.
+The final principle becomes simple: **Don't get hit, because as long as you don't, the next decision is still yours.** 技を当てる技術は、そのあとでいい。正確には、そのあとにしか存在できない。
 
-You lose options.
-
-Sometimes you lose the right to choose what happens next.
-
-But when the opponent's move whiffs in front of you, you are still standing there.
-
-No hitstun.
-
-No forced trajectory.
-
-Your next move is still yours.
-
-Attack.
-
-Retreat.
-
-Set a projectile.
-
-Do nothing.
-
-**You still own the decision.**
-
-だから最後に残る極意は、こうなる。
-
-> **Don't get hit. Because as long as you don't, the next decision is still yours.**
-
-攻撃を当てる技術は、そのあとでいい。
-
-More precisely, it can only exist after that.
-
-相手の横スマに顔から入ったあとで、美しいcombo routeを思い出しても遅い。
-
-Stay alive long enough to choose again.
-
-そこからスマブラが始まる。
+相手の横スマに顔から入ったあとで、美しいcombo routeを思い出しても遅い。Stay alive long enough to choose again. そこからスマブラが始まる。
 
 ---
 
@@ -392,5 +190,4 @@ Stay alive long enough to choose again.
 
 ## Research note
 
-“The art of Smash is not getting hit” is this essay's interpretation and practice hypothesis, not an official rule of the game.  
-The suggested order—out of range first, then defensive options—is also a practice heuristic, not a universal tier list. Matchup, percent, stage, stocks and opponent behavior can make trades or armored interactions rational.
+“The art of Smash is not getting hit” is this essay's interpretation and practice hypothesis, not an official rule of the game. 「届かない位置を先に考える」という順序もuniversal tier listではなく、過剰なdefensive inputを減らすためのpractice heuristic。Matchup, percent, stage, stocks and opponent behavior can make trades or armored interactions rational.
