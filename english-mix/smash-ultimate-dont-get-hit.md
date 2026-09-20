@@ -63,9 +63,7 @@ Ask in this order as a practice heuristic:
 
 This is not a universal ranking. Matchup, percent, stage and position change the answer. 「届かない＞シールド＞回避」と固定的な強弱を言いたいわけではない。
 
-The useful shift is **position before defensive input**. 「何の防御ボタンを押すか」より前に、「そもそも押さなくて済む場所にいられたか」を問う。
-
-Once you think this way, defense becomes less about emergency reactions and more about spatial design. 最強のガードがいつもshieldとは限らない。Sometimes the cleanest guard is simply “not there.”
+The useful shift is **position before defensive input**. 「何の防御ボタンを押すか」より前に、「そもそも押さなくて済む場所にいられたか」を問う。Once you think this way, defense becomes less about emergency reactions and more about spatial design. 最強のガードがいつもshieldとは限らない。Sometimes the cleanest guard is simply “not there.”
 
 ---
 
@@ -97,9 +95,7 @@ Not getting hit now becomes **decision design**. 相手の攻撃を止めるの�
 
 The strongest defense is sometimes not preventing an attack. **It is making the opponent choose an attack that will miss.** ここまで来ると、spacingは距離管理というより相手の意思決定へ触る技術になる。
 
-派手な一点読みほど動画映えはしない。でもwin rateはInstagramの審査員ではない。Half-step movement can be strategically loud even when it looks visually quiet.
-
-だから「読み勝ち」を大技の的中だけで数えない。相手が振る理由を作り、その技を空振りさせた時点で、すでに一つの読みは勝っている。
+派手な一点読みほど動画映えはしない。でもwin rateはInstagramの審査員ではない。Half-step movement can be strategically loud even when it looks visually quiet. だから「読み勝ち」を大技の的中だけで数えない。相手が振る理由を作り、その技を空振りさせた時点で、すでに一つの読みは勝っている。
 
 ---
 
@@ -137,9 +133,7 @@ What we really want to reduce is bad expected loss: returnのない差し込み�
 
 ## 8. In replay review, mark the first hit that gave away the turn.
 
-For the next three matches, change the metric. 「コンボを落とした」「撃墜できなかった」より先に、相手の有利展開が始まったfirst hitを見る。
-
-Tag that entrance:
+For the next three matches, change the metric. 「コンボを落とした」「撃墜できなかった」より先に、相手の有利展開が始まったfirst hitを見る。Tag that entrance:
 
 - spacing
 - overcommit
