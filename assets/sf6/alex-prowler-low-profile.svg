@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Prowler Stance: speed is not enough</title>
+  <desc id="desc">Schematic showing a fast high attack passing over a low-profile stance while a low attack reaches it.</desc>
+  <rect width="1200" height="675" fill="#111318"/>
+  <text x="72" y="86" fill="#ffffff" font-size="44" font-family="system-ui, sans-serif" font-weight="700">Prowler Stance: SPEED ≠ HEIGHT</text>
+  <text x="72" y="128" fill="#b8bdc7" font-size="24" font-family="system-ui, sans-serif">速い技でも、攻撃の高さが合わなければ空振りする</text>
+
+  <line x1="80" y1="540" x2="1120" y2="540" stroke="#4b5563" stroke-width="4"/>
+  <rect x="760" y="390" width="250" height="110" rx="55" fill="#2a3441" stroke="#93c5fd" stroke-width="5"/>
+  <circle cx="820" cy="365" r="42" fill="#2a3441" stroke="#93c5fd" stroke-width="5"/>
+  <text x="775" y="570" fill="#93c5fd" font-size="24" font-family="system-ui, sans-serif" font-weight="700">LOW PROFILE / 低姿勢</text>
+
+  <rect x="110" y="270" width="520" height="64" rx="18" fill="#7f1d1d" stroke="#fca5a5" stroke-width="4"/>
+  <path d="M 630 302 L 738 302" stroke="#fca5a5" stroke-width="14" stroke-linecap="round"/>
+  <path d="M 720 278 L 748 302 L 720 326" fill="none" stroke="#fca5a5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="130" y="312" fill="#ffffff" font-size="28" font-family="system-ui, sans-serif" font-weight="700">4F HIGH → WHIFF?</text>
+
+  <rect x="110" y="438" width="560" height="64" rx="18" fill="#14532d" stroke="#86efac" stroke-width="4"/>
+  <path d="M 670 470 L 790 470" stroke="#86efac" stroke-width="14" stroke-linecap="round"/>
+  <path d="M 772 446 L 800 470 L 772 494" fill="none" stroke="#86efac" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="130" y="480" fill="#ffffff" font-size="28" font-family="system-ui, sans-serif" font-weight="700">LOW ATTACK → REACHES</text>
+
+  <text x="72" y="630" fill="#fbbf24" font-size="28" font-family="system-ui, sans-serif" font-weight="700">見る順番：速度 → 高さ → 距離</text>
+</svg>
