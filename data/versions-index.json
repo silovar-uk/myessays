@@ -898,6 +898,9 @@
     },
     "smash-ultimate-dont-get-hit": {
       "en-mix": "english-mix/smash-ultimate-dont-get-hit.md"
+    },
+    "duck-hunt-four-timers-ultimate-tech": {
+      "en-mix": "english-mix/duck-hunt-four-timers-ultimate-tech.md"
     }
   },
   "jev-ai-smart-if-system-one-model": {
@@ -929,8 +932,5 @@
   },
   "unai-emery-opponent-model-compression-rehearsal": {
     "en-mix": "english-mix/unai-emery-opponent-model-compression-rehearsal.md"
-  },
-  "duck-hunt-four-timers-ultimate-tech": {
-    "en-mix": "english-mix/duck-hunt-four-timers-ultimate-tech.md"
   }
 }
