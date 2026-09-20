@@ -41,9 +41,9 @@ Breaker Stanceは、英語版でProwler Stanceと呼ばれる低い構えであ�
 
 ただし、構え中はguardできない。ここが構造上の代償になる。しかも構えはlow profileなので、「相手が守れないならfastest技を押せばよい」でも終わらない。high判定の技は、startupが速くても姿勢の低さに負けて空を殴る場合がある。Alex counterplayは**速度×高さ×distance**の問題になる。
 
-![Alexの構え派生・Dangerous Armbarの判定例](https://wiki.supercombo.gg/w/Special:Redirect/file/SF6_Alex_2pp_lplk_hitbox.png)
+![Breaker Stanceのlow profileとattack heightを示す模式図](assets/sf6/alex-prowler-low-profile.svg)
 
-画像はSuperCombo Wikiのヒットボックス資料。赤が攻撃／投げ判定、緑・青系がキャラクター側の判定を示す。画像そのものは一つの派生例だが、重要なのは「構えを見たら技名を当てる」より、**今のAlexはguardできる状態か、low profileでこちらの技を潜る状態か**を見ることにある。[画像出典：SuperCombo Wiki](https://wiki.supercombo.gg/w/File:SF6_Alex_2pp_lplk_hitbox.png)
+模式図では、「fast high」と「low profileへ届くlow」を分けている。実際のgame hitboxはSuperCombo Wikiの公開資料で確認できる。重要なのは「構えを見たら技名を当てる」より、**今のAlexはguardできる状態か、low profileでこちらの技を潜る状態か**を見ることにある。[判定資料：SuperCombo Wiki](https://wiki.supercombo.gg/w/File:SF6_Alex_2pp_lplk_hitbox.png)
 
 ## 3. Marisaの4Fは速い。でも構えには「高さ」で負ける
 
@@ -51,9 +51,9 @@ Breaker Stanceは、英語版でProwler Stanceと呼ばれる低い構えであ�
 
 そこで構えそのものを止める場面では、**5F cr.LKを第一の低リスクlow、9F cr.MKを少し遠いdistanceのlow**としてTraining Modeで当たり方を確認する価値がある。どちらも通常の必殺技キャンセル技ではないため、当てた瞬間に大火力へ変換するボタンではない。目的は「構えを見て最大を取る」ではなく、まず「構えっぱなしを無料にしない」ことである。
 
-![Marisaのcr.MK。低い位置に攻撃判定が伸びる](https://wiki.supercombo.gg/w/Special:Redirect/file/SF6_Marisa_2mk_hitbox.png)
+![Marisaの4F highと5F・9F lowのheightとreachを比較する模式図](assets/sf6/marisa-low-attack-height.svg)
 
-この画像を見ると、frame表だけでは落ちる情報が分かりやすい。同じ9Fでも「どこを殴る9Fか」が違う。Marisa対Alexでは、この空間情報が4F／5Fという速度差と同じくらい重要になる。[画像出典：SuperCombo Wiki](https://wiki.supercombo.gg/w/File:SF6_Marisa_2mk_hitbox.png)
+模式図にすると、frame表だけでは落ちる情報が分かりやすい。同じ9Fでも「どこを殴る9Fか」が違う。Marisa対Alexでは、このspatial informationが4F／5Fというspeed差と同じくらい重要になる。実際のgame hitboxはSuperCombo Wikiの資料でも確認できる。[判定資料：SuperCombo Wiki](https://wiki.supercombo.gg/w/File:SF6_Marisa_2mk_hitbox.png)
 
 ## 4. punishは-4から。-1〜-3は「割り込める」であって「確定」ではない
 
@@ -86,9 +86,9 @@ AlexのHeavy Lariatは、通常版が12F・guard+3、溜め版が21F・+5。現�
 
 Marisa側には明確な対抗propertyがある。**OD Gladiusはarmor-break property**を持ち、frame 1から上半身armorが始まる。通常Gladiusも最大溜めならarmor breakになる。したがって「相手が構えたからGladius」ではなく、**Heavy Lariatを読むならarmor breakを当てる**という用途に絞ると筋がよい。
 
-![Marisaの溜めOD Gladius。armorと前方判定が視覚化される](https://wiki.supercombo.gg/w/Special:Redirect/file/SF6_Marisa_236pp_hold_hitbox.png)
+![Heavy LariatのarmorとOD Gladiusのarmor breakを示す模式図](assets/sf6/marisa-armor-break.svg)
 
-ただし、ここにこの組み合わせの嫌なところがある。Breaker Stance自体はlow profileで、high系のGladiusが噛み合わない間合いがある。さらにAlexにはShoulder Launcherやcommand throwもある。**armorはinvincibilityではなく、armor breakも構え全体への正解ではない。** 画像の紫・緑・赤の重なりを見ると、「property / hitbox」だけでなく「どこに判定があるか」を一緒に見る必要がある。[画像出典：SuperCombo Wiki](https://wiki.supercombo.gg/w/File:SF6_Marisa_236pp_hold_hitbox.png)
+ただし、ここにこの組み合わせの嫌なところがある。Breaker Stance自体はlow profileで、high系のGladiusが噛み合わない間合いがある。さらにAlexにはShoulder Launcherやcommand throwもある。**armorはinvincibilityではなく、armor breakも構え全体への正解ではない。** 模式図のとおり、propertyだけでなくpostureとdistanceまで一緒に見る必要がある。実際のhitboxはSuperCombo Wikiの資料で確認できる。[判定資料：SuperCombo Wiki](https://wiki.supercombo.gg/w/File:SF6_Marisa_236pp_hold_hitbox.png)
 
 もう一つ重要なのが投げである。Alexの強／OD Power Bombは5F startupで、command throwなので通常の投げ抜けでは外せない。打撃を読むarmoractionは、投げに対する回答にはならない。特にOblique Stomp+2、Flash Chop+2、ラリアット+3／+5の後に「armorで全部返す」と決めると、相手に投げの理由を与える。
 
@@ -166,4 +166,4 @@ match中に技名を検索している時間はない。そこで11択を、見�
 - [SuperCombo Wiki — Alex hitbox files](https://wiki.supercombo.gg/w/Street_Fighter_6/Alex)
 - [SuperCombo Wiki — Marisa hitbox files](https://wiki.supercombo.gg/w/Street_Fighter_6/Marisa)
 
-※frame dataはアップデートで変化する。本文は2026年9月20日時点、Frame Data Search表記のVer.2.0401.010を基準にした。画像は外部サイトの公開ヒットボックス資料をリモート参照しており、リンク先の変更・削除により表示されなくなる場合がある。
+※frame dataはアップデートで変化する。本文は2026年9月20日時点、Frame Data Search表記のVer.2.0401.010を基準にした。本文中のdiagramsは本サイト内に保存し、外部サイトの公開hitbox資料は判定確認用のreference linkとして記載している。
