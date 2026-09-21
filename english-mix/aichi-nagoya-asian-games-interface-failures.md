@@ -66,6 +66,9 @@ On September 17, athletes from multiple delegations waited for hours at the tran
 Transport produced another kind of failure. 韓国男子バスケットボール代表は9月20日の決勝前、午前10時に来る予定だったshuttle busが現れず、軽い練習を取りやめた。Before the opening ceremony, there were also reports of late buses and athletes being taken to wrong destinations.
 
 <!-- level:1 role:evidence -->
+Vietnam's women's volleyball team reported a similar interface failure before its September 21 match against Indonesia. 大会側手配のvehicleが遅れ、会場到着が予定より遅くなったとVietnamese mediaが報じた。The incident shows how transport trouble can compress pre-match preparation, although it would be too strong to claim that the delay determined the result.
+
+<!-- level:1 role:evidence -->
 Protocol failed too. 9月18日の男子ホッケー韓国対バングラデシュ戦前、韓国国歌ではなく北朝鮮国歌が誤って流れた。The organising committee apologised to the Korean Sport & Olympic Committee and said it would work to prevent recurrence.
 
 <!-- level:3 role:analysis -->
@@ -77,6 +80,7 @@ A department can finish its own task and the athlete can still experience failur
 [ロイター「Team Japan forced to look at alternate accommodation options」](https://www.reuters.com/sports/team-japan-forced-look-alternate-accommodation-options-home-asian-games-2026-09-17/)  
 [サウスチャイナ・モーニング・ポスト「China athletes stuck at Nagoya airport」](https://www.scmp.com/sport/china/article/3367896/asian-games-china-athletes-stuck-nagoya-airport-no-food-way-out-7-hours)  
 [ロイター配信「South Korea missed practice after shuttle bus no-show」](https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/20/039where039s-the-bus-039-south-korea-in-a-huff-after-their-team-missed-practice-before-the-men039s-basketball-final-due-to-vehicle-no-show)  
+[VietnamNet「Vietnam fall 3-0 to Indonesia in Asian Games women's volleyball」](https://vietnamnet.vn/en/vietnam-fall-3-0-to-indonesia-in-asian-games-women-s-volleyball-2557371.html)  
 [メ～テレ「韓国戦前に北朝鮮の国歌が流れる不手際」](https://www.nagoyatv.com/news/?id=037272)
 
 ---

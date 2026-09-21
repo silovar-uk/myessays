@@ -66,6 +66,9 @@ abstract: "愛知・名古屋アジア競技大会では、開幕前後に宿泊
 輸送では、韓国男子バスケットボール代表が9月20日の決勝前、午前10時にホテルへ来る予定だった送迎バスが現れず、軽い練習を取りやめた。開幕前にも、バスの遅延や目的地の取り違えが複数報じられている。
 
 <!-- level:1 role:evidence -->
+さらにベトナム女子バレーボール代表では、9月21日のインドネシア戦前に大会側手配の車両が遅れ、会場到着が予定より遅くなったとベトナムメディアが報じた。移動の遅れが競技前の準備時間まで圧迫した事例として、輸送問題が「不便」にとどまらず競技体験へ波及し得ることを示している。ただし、この遅延が試合結果を決定したとは断定できない。
+
+<!-- level:1 role:evidence -->
 式典では9月18日、男子ホッケーの韓国対バングラデシュ戦前に、韓国国歌ではなく北朝鮮国歌が誤って流れた。大会組織委員会は大韓体育会に謝罪し、再発防止に努めるとコメントした。
 
 <!-- level:3 role:analysis -->
@@ -77,6 +80,7 @@ abstract: "愛知・名古屋アジア競技大会では、開幕前後に宿泊
 [ロイター「日本代表、代替宿泊先を検討」](https://www.reuters.com/sports/team-japan-forced-look-alternate-accommodation-options-home-asian-games-2026-09-17/)  
 [サウスチャイナ・モーニング・ポスト「中国選手ら、名古屋空港で長時間足止め」](https://www.scmp.com/sport/china/article/3367896/asian-games-china-athletes-stuck-nagoya-airport-no-food-way-out-7-hours)  
 [ロイター配信「韓国男子バスケットボール、送迎バス不着で練習中止」](https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/20/039where039s-the-bus-039-south-korea-in-a-huff-after-their-team-missed-practice-before-the-men039s-basketball-final-due-to-vehicle-no-show)  
+[VietnamNet「ベトナム女子バレー、送迎遅延で会場到着に影響」](https://vietnamnet.vn/en/vietnam-fall-3-0-to-indonesia-in-asian-games-women-s-volleyball-2557371.html)  
 [メ～テレ「韓国戦前に北朝鮮の国歌が流れる不手際」](https://www.nagoyatv.com/news/?id=037272)
 
 ---
