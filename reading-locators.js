@@ -543,12 +543,67 @@
     return legacyBlockProgress(target);
   }
 
+  function renderedProgressEntries() {
+    const content = readerContent();
+    if (!content) return [];
+    return directChildrenMatching(content, '.reader-locator-block[data-reading-locator]')
+      .map(block => {
+        const target = textProgressTarget(block);
+        const textLength = target ? progressTextLength(target.textContent) : 0;
+        const bounds = target && textLength > 0
+          ? (textBounds(target) || target.getBoundingClientRect())
+          : null;
+        return {
+          block,
+          target,
+          locator: block.dataset.readingLocator || '',
+          textLength,
+          bounds
+        };
+      })
+      .filter(entry => entry.locator && entry.textLength > 0 && entry.bounds);
+  }
+
+  function progressAnchorAtRail(entries = renderedProgressEntries()) {
+    if (!entries.length) return null;
+    const railY = readingLineY();
+    const first = entries[0];
+    if (railY <= first.bounds.top) return { entry: first, railY };
+
+    let previous = first;
+    for (const entry of entries) {
+      if (railY < entry.bounds.top) return { entry: previous, railY };
+      if (railY <= entry.bounds.bottom) return { entry, railY };
+      previous = entry;
+    }
+    return { entry: entries.at(-1), railY };
+  }
+
+  function locatorClusterProgress(locator, entries, railY) {
+    const cluster = entries.filter(entry => entry.locator === locator);
+    const total = cluster.reduce((sum, entry) => sum + entry.textLength, 0);
+    if (!total) return 0;
+
+    let consumed = 0;
+    cluster.forEach(entry => {
+      if (railY >= entry.bounds.bottom) {
+        consumed += entry.textLength;
+        return;
+      }
+      if (railY <= entry.bounds.top) return;
+      consumed += entry.textLength * blockTextProgress(entry.block);
+    });
+
+    return Math.min(1, Math.max(0, consumed / total));
+  }
+
   function computeSemanticProgress() {
     const id = currentEssayId();
     if (!id) return { locator: '', ratio: 0, source: 'semantic-text' };
 
-    const pivotApi = window.MyEssaysReadingPivot;
-    const locator = pivotApi?.locator?.() || nearestLocatorBlock()?.dataset?.readingLocator || '';
+    const entries = renderedProgressEntries();
+    const anchor = progressAnchorAtRail(entries);
+    const locator = anchor?.entry?.locator || '';
     if (!locator) return { locator: '', ratio: 0, source: 'semantic-text' };
 
     const metrics = canonicalProgressMetrics(id);
@@ -557,8 +612,7 @@
       return { locator, ratio: 0, source: 'semantic-text' };
     }
 
-    const block = pivotApi?.current?.() || findContainingBlock(locator);
-    const within = blockTextProgress(block);
+    const within = locatorClusterProgress(locator, entries, anchor.railY);
     const before = metrics.beforeByLocator.get(locator) || 0;
     const ratio = (before + (item.weight * within)) / metrics.total;
 
