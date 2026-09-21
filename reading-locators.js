@@ -392,6 +392,8 @@
   }
 
   function readingLineY() {
+    const pivotRail = window.MyEssaysReadingPivot?.readingRailY?.();
+    if (Number.isFinite(pivotRail)) return pivotRail;
     const header = document.querySelector('.reader-v2-header');
     const minimum = header?.getBoundingClientRect().height
       ? header.getBoundingClientRect().height + 24
