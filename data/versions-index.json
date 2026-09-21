@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "goal-too-close-local-optimum": {
+      "en-mix": "english-mix/goal-too-close-local-optimum.md"
+    },
     "jev-vs-bert-non-generative-intelligence": {
       "en-mix": "english-mix/jev-vs-bert-non-generative-intelligence.md"
     },
