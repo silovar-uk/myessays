@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "jev-vs-bert-non-generative-intelligence": {
+      "en-mix": "english-mix/jev-vs-bert-non-generative-intelligence.md"
+    },
     "sf6-marisa-vs-elena-safe-entry": {
       "en-mix": "english-mix/sf6-marisa-vs-elena-safe-entry.md"
     },
