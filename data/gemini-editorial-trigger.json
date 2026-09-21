@@ -1,23 +1,26 @@
 {
-  "file": "essays/2026-09-21-sf6-marisa-vs-elena-safe-entry.md",
-  "articleId": "sf6-marisa-vs-elena-safe-entry",
+  "file": "essays/2026-09-22-aichi-nagoya-asian-games-interface-failures.md",
+  "articleId": "aichi-nagoya-asian-games-interface-failures",
   "mode": "ja",
-  "articleType": "Matchup Field Guide",
+  "articleType": "Research Essay",
   "endpoint": "https://gemini-editorial-bridge.silovar-uk.workers.dev/v1/copyedit",
   "allowFlavor": true,
   "maxFlavorChanges": 3,
   "clientTimeoutMs": 120000,
   "protectedTerms": [
-    "マリーザ",
-    "エレナ",
-    "Lynx Song",
-    "Lynx Whirl",
-    "Moon Glider",
-    "Scratch Wheel",
-    "Revival Dance",
-    "Rhino Horn",
-    "SA2",
-    "Ver.2.0401.010"
+    "愛知・名古屋アジア競技大会",
+    "アジア・オリンピック評議会",
+    "OCA",
+    "日本オリンピック委員会",
+    "JOC",
+    "国際オリンピック委員会",
+    "IOC",
+    "カースティ・コベントリー",
+    "Costa Serena",
+    "15,000",
+    "17,000",
+    "600億円",
+    "1,020億円"
   ],
-  "requestedAt": "2026-09-21T09:24:52.216Z"
+  "requestedAt": "2026-09-21T21:46:00.000Z"
 }
