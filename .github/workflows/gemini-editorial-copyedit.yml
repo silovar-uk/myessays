@@ -17,6 +17,7 @@ concurrency:
 jobs:
   copyedit:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,6 +33,14 @@ jobs:
         env:
           EDITORIAL_BRIDGE_TOKEN: ${{ secrets.EDITORIAL_BRIDGE_TOKEN }}
         run: node scripts/run-gemini-editorial-copyedit.mjs data/gemini-editorial-trigger.json
+
+      - name: Save copyedit diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-editorial-diagnostics
+          path: gemini-editorial-report.json
+          if-no-files-found: ignore
 
       - name: Validate EN MIX structure when registered
         if: hashFiles('gemini-editorial-result.json') != ''
@@ -52,3 +61,4 @@ jobs:
           git add "$FILE"
           git commit -m "Gemini Editorial Bridgeで保守校正を反映"
           git push
+

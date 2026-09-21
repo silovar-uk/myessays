@@ -6,7 +6,7 @@
   "endpoint": "https://gemini-editorial-bridge.silovar-uk.workers.dev/v1/copyedit",
   "allowFlavor": true,
   "maxFlavorChanges": 3,
-  "clientTimeoutMs": 60000,
+  "clientTimeoutMs": 120000,
   "protectedTerms": [
     "マリーザ",
     "エレナ",
@@ -18,5 +18,6 @@
     "Rhino Horn",
     "SA2",
     "Ver.2.0401.010"
-  ]
+  ],
+  "requestedAt": "2026-09-21-timeout-diagnostics"
 }

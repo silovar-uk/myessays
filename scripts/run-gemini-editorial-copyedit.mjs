@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { copyeditBatches, requestJson, DEFAULT_ENDPOINT } from './editorial-bridge-client.mjs';
 
 const triggerPath = process.argv[2] || 'data/gemini-editorial-trigger.json';
 if (!fs.existsSync(triggerPath)) {
@@ -19,7 +20,9 @@ if (!token) {
   process.exit(2);
 }
 
-const endpoint = trigger.endpoint || 'https://gemini-editorial-bridge.silovar-uk.workers.dev/v1/copyedit';
+const endpoint = process.env.EDITORIAL_BRIDGE_ENDPOINT || DEFAULT_ENDPOINT;
+if (trigger.endpoint && trigger.endpoint !== endpoint) throw new Error('Trigger endpoint differs from the configured bridge endpoint');
+fs.rmSync('gemini-editorial-result.json', { force: true });
 const source = fs.readFileSync(filePath, 'utf8');
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
@@ -157,49 +160,28 @@ const payload = {
   blocks: blocks.map(({blockId,index,type,editable,text}) => ({blockId,index,type,editable,text}))
 };
 
-const controller = new AbortController();
-const timeoutMs = Number(trigger.clientTimeoutMs || 60000);
-const timer = setTimeout(() => controller.abort(), timeoutMs);
-
-let response;
-let data;
-try {
-  response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload),
-    signal: controller.signal
-  });
-  data = await response.json();
-} catch (error) {
-  clearTimeout(timer);
-  if (error?.name === 'AbortError') {
-    console.log(JSON.stringify({status:'timeout', fallback:'gpt_original', reason:'client_timeout'}));
-    process.exit(0);
-  }
-  console.error('Bridge request failed before a structured response:', error?.message || String(error));
-  process.exit(2);
+const events = [];
+function report(status, extra = {}) {
+  const value = { status, articleId, file: filePath, ...extra, events };
+  fs.writeFileSync('gemini-editorial-report.json', JSON.stringify(value, null, 2) + '\n');
+  if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+    `## Gemini Editorial Bridge\n\n- Result: ${status}\n- Article: ${articleId}\n- Reason: ${extra.reason || 'none'}\n- Batches attempted: ${events.length}\n- Original retained on any failed batch.\n`);
 }
-clearTimeout(timer);
-
-console.log(JSON.stringify({
-  httpStatus: response.status,
-  status: data?.status,
-  summary: data?.summary || null,
-  validation: data?.validation || null,
-  fallbackRecommended: data?.fallbackRecommended || false
-}));
-
-if (data?.status === 'timeout' || data?.status === 'quota_exceeded') {
-  console.log('Gemini unavailable by policy; keeping GPT original unchanged.');
+// GET needs neither article content nor credentials. A legacy 404 proves reachability too.
+const probe = await requestJson(new URL('/health', endpoint).href, {}, 10000);
+console.log(JSON.stringify({ phase: 'bridge_reachability', httpStatus: probe.httpStatus, durationMs: probe.durationMs, status: probe.status || probe.data?.status, reason: probe.reason, networkCode: probe.networkCode }));
+if (probe.status || ![200, 404].includes(probe.httpStatus)) {
+  report(probe.status || 'upstream_error', { reason: probe.reason || 'bridge_health_http_error', probe });
+  console.log('::warning::Bridge unreachable; GPT original retained. See gemini-editorial-report.json.');
   process.exit(0);
 }
-
-if (data?.status !== 'success') {
-  console.log(`Bridge status ${data?.status || 'unknown'}; keeping GPT original unchanged.`);
+const data = await copyeditBatches(payload, {
+  endpoint, token, timeoutMs: 120000,
+  onProgress(event) { events.push(event); console.log(JSON.stringify(event)); }
+});
+report(data.status, { reason: data.reason || null, summary: data.summary || null });
+if (data.status !== 'success') {
+  console.log(`::warning::Gemini copyedit skipped (${data.status}); GPT original retained. See diagnostic report.`);
   process.exit(0);
 }
 
@@ -239,3 +221,4 @@ fs.writeFileSync('gemini-editorial-result.json', JSON.stringify({
 }, null, 2) + '\n');
 
 console.log(`Applied ${applied} conservative edit block(s) to ${filePath}.`);
+
