@@ -1,6 +1,6 @@
 {
-  "file": "essays/2026-09-22-aichi-nagoya-asian-games-interface-failures.md",
-  "articleId": "aichi-nagoya-asian-games-interface-failures",
+  "file": "essays/2026-09-22-waseda-homma-takayuki-president-interface-implementation.md",
+  "articleId": "waseda-homma-takayuki-president-interface-implementation",
   "mode": "ja",
   "articleType": "Research Essay",
   "endpoint": "https://gemini-editorial-bridge.silovar-uk.workers.dev/v1/copyedit",
@@ -8,19 +8,18 @@
   "maxFlavorChanges": 3,
   "clientTimeoutMs": 120000,
   "protectedTerms": [
-    "愛知・名古屋アジア競技大会",
-    "アジア・オリンピック評議会",
-    "OCA",
-    "日本オリンピック委員会",
-    "JOC",
-    "国際オリンピック委員会",
-    "IOC",
-    "カースティ・コベントリー",
-    "Costa Serena",
-    "15,000",
-    "17,000",
-    "600億円",
-    "1,020億円"
+    "早稲田大学",
+    "本間敬之",
+    "第18代総長",
+    "総長候補者選挙",
+    "私立学校法",
+    "2026年9月21日",
+    "2030年9月20日",
+    "2032年",
+    "2050年",
+    "国際卓越研究大学",
+    "25ミリメートル角",
+    "2兆個"
   ],
-  "requestedAt": "2026-09-21T21:46:00.000Z"
+  "requestedAt": "2026-09-21T22:18:00.000Z"
 }
