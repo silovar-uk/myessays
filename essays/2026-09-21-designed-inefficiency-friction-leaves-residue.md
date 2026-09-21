@@ -240,7 +240,7 @@ abstract: "効率化は、時間や手間を減らす。しかし手間の中に
 
 [Interview with Carl Honoré — Slow Entrepreneur](https://www.slowentrepreneur.com/the-interviews/carl-honor%C3%A9)
 
-七人いるものを三人にしたら、確かに42.9％の人員削減ではある。
+七人いるものを三人にしたら、確かに57.1％の人員削減ではある。
 
 でも、寝物語に求めている成果は、たぶん小人一人あたりの処理速度ではない。
 
@@ -391,7 +391,7 @@ AIに速い道だけ探させるのではなく、**速くすると消えるも�
 
 ---
 
-## Research Note
+## 調査メモ
 
 ### 公開資料から確認できること
 
@@ -414,7 +414,7 @@ AIに速い道だけ探させるのではなく、**速くすると消えるも�
 
 ---
 
-## Sources
+## 参考資料
 
 - [Inzlicht, Shenhav & Olivola (2018) — The Effort Paradox](https://pubmed.ncbi.nlm.nih.gov/29477776/)
 - [Campbell, Wang & Inzlicht (2025) — Experimental evidence that exerting effort increases meaning](https://pubmed.ncbi.nlm.nih.gov/39854968/)
