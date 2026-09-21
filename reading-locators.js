@@ -8,6 +8,7 @@
   const MIN_SEMANTIC_FRAGMENT_LENGTH = 3;
 
   const canonicalSectionsCache = new Map();
+  const progressMetricsCache = new Map();
   let indexPromise = null;
   let flashTimer = 0;
   let semanticSwitchAnchor = null;
@@ -398,35 +399,172 @@
     return Math.max(window.innerHeight * READING_LINE_RATIO, minimum);
   }
 
-  function canonicalProgressItems(id = currentEssayId()) {
-    return [...canonicalSections(id).entries()]
+  function progressText(value = '') {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function progressTextLength(value = '') {
+    return Array.from(progressText(value)).length;
+  }
+
+  function canonicalProgressMetrics(id = currentEssayId()) {
+    if (!id) return { items: [], total: 0, beforeByLocator: new Map() };
+    if (progressMetricsCache.has(id)) return progressMetricsCache.get(id);
+
+    const items = [...canonicalSections(id).entries()]
       .sort(([a], [b]) => a - b)
       .flatMap(([sectionIndex, blocks]) => blocks.map((item, canonicalIndex) => ({
         locator: locatorLabel(sectionIndex, canonicalIndex),
-        weight: Math.max(1, Array.from(item.text || '').length)
+        weight: progressTextLength(item.text)
       })));
+
+    const beforeByLocator = new Map();
+    let total = 0;
+    items.forEach(item => {
+      beforeByLocator.set(item.locator, total);
+      total += item.weight;
+    });
+
+    const metrics = { items, total, beforeByLocator };
+    progressMetricsCache.set(id, metrics);
+    return metrics;
+  }
+
+  function textProgressTarget(block) {
+    if (!block) return null;
+    if (block.matches('figure')) return block.querySelector('figcaption') || null;
+    return block;
+  }
+
+  function caretPositionAtPoint(x, y) {
+    if (typeof document.caretPositionFromPoint === 'function') {
+      const position = document.caretPositionFromPoint(x, y);
+      if (position) {
+        return {
+          node: position.offsetNode,
+          offset: position.offset,
+          source: 'caret-position'
+        };
+      }
+    }
+
+    if (typeof document.caretRangeFromPoint === 'function') {
+      const range = document.caretRangeFromPoint(x, y);
+      if (range) {
+        return {
+          node: range.startContainer,
+          offset: range.startOffset,
+          source: 'caret-range'
+        };
+      }
+    }
+
+    return null;
+  }
+
+  function caretCandidates(block) {
+    const rect = block?.getBoundingClientRect?.();
+    if (!rect || rect.width <= 0) return [];
+    return [.55, .3, .8, .1].map(ratio => rect.left + (rect.width * ratio));
+  }
+
+  function charactersBeforeCaret(block, node, offset) {
+    if (!block || !node) return null;
+    const host = node.nodeType === Node.TEXT_NODE ? node.parentNode : node;
+    if (node !== block && !block.contains(host)) return null;
+
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(block);
+      range.setEnd(node, offset);
+      return progressTextLength(range.toString());
+    } catch {
+      return null;
+    }
+  }
+
+  function textBounds(block) {
+    if (!block) return null;
+    const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        return progressText(node.nodeValue)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    let node = walker.nextNode();
+    while (node) {
+      nodes.push(node);
+      node = walker.nextNode();
+    }
+    if (!nodes.length) return null;
+
+    try {
+      const range = document.createRange();
+      range.setStart(nodes[0], 0);
+      range.setEnd(nodes.at(-1), nodes.at(-1).nodeValue?.length || 0);
+      const rect = range.getBoundingClientRect();
+      return rect && (rect.height > 0 || rect.width > 0) ? rect : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function legacyBlockProgress(block) {
+    const rect = textBounds(block) || block?.getBoundingClientRect?.();
+    if (!rect) return 0;
+    return Math.min(1, Math.max(0, (readingLineY() - rect.top) / Math.max(1, rect.height)));
+  }
+
+  function blockTextProgress(block) {
+    const target = textProgressTarget(block);
+    if (!target) return 0;
+
+    const total = progressTextLength(target.textContent);
+    if (!total) return 0;
+
+    const bounds = textBounds(target) || target.getBoundingClientRect();
+    const railY = readingLineY();
+
+    if (railY <= bounds.top) return 0;
+    if (railY >= bounds.bottom) return 1;
+
+    for (const x of caretCandidates(target)) {
+      const caret = caretPositionAtPoint(x, railY);
+      if (!caret) continue;
+      const consumed = charactersBeforeCaret(target, caret.node, caret.offset);
+      if (consumed == null) continue;
+      return Math.min(1, Math.max(0, consumed / total));
+    }
+
+    return legacyBlockProgress(target);
   }
 
   function computeSemanticProgress() {
     const id = currentEssayId();
-    if (!id) return { locator: '', ratio: 0, source: 'semantic' };
+    if (!id) return { locator: '', ratio: 0, source: 'semantic-text' };
+
     const pivotApi = window.MyEssaysReadingPivot;
     const locator = pivotApi?.locator?.() || nearestLocatorBlock()?.dataset?.readingLocator || '';
-    if (!locator) return { locator: '', ratio: 0, source: 'semantic' };
-    const items = canonicalProgressItems(id);
-    const index = items.findIndex(item => item.locator === locator);
-    if (index < 0 || !items.length) return { locator, ratio: 0, source: 'semantic' };
+    if (!locator) return { locator: '', ratio: 0, source: 'semantic-text' };
+
+    const metrics = canonicalProgressMetrics(id);
+    const item = metrics.items.find(entry => entry.locator === locator);
+    if (!item || !metrics.items.length || metrics.total <= 0) {
+      return { locator, ratio: 0, source: 'semantic-text' };
+    }
+
     const block = pivotApi?.current?.() || findContainingBlock(locator);
-    const rect = semanticRect(locator, block);
-    const within = rect
-      ? Math.min(1, Math.max(0, (readingLineY() - rect.top) / Math.max(1, rect.height)))
-      : 0;
-    const total = items.reduce((sum, item) => sum + item.weight, 0);
-    const before = items.slice(0, index).reduce((sum, item) => sum + item.weight, 0);
-    const ratio = total > 0
-      ? Math.min(1, Math.max(0, (before + (items[index].weight * within)) / total))
-      : 0;
-    return { locator, ratio, source: 'semantic' };
+    const within = blockTextProgress(block);
+    const before = metrics.beforeByLocator.get(locator) || 0;
+    const ratio = (before + (item.weight * within)) / metrics.total;
+
+    return {
+      locator,
+      ratio: Math.min(1, Math.max(0, ratio)),
+      source: 'semantic-text'
+    };
   }
 
   function semanticProgress() {
