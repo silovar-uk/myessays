@@ -250,7 +250,36 @@ Good root-cause analysis does not rush to the strongest story. **It separates co
 
 ---
 
-## 11. 今大会の本当の論点は、「持続可能性」に運営の余白まで含められるかである
+## 11. 「五輪の縮小版」ではない大会を、毎回ほぼ作り直す難しさがある
+
+<!-- level:4 role:claim -->
+Masuyuki Hatta's essay, 「アジア大会は超無理ゲー。名古屋は最後の日本開催になるだろう」, adds an important lens. 今回の不手際をNagoya-specific failureだけでなく、**how large and complex the Asian Games have become**から見直す。「Asian Olympics」という説明は便利だが、“a smaller Olympics”と理解するとscaleを読み違える。
+
+<!-- level:1 role:evidence -->
+The Japanese Olympic Committee lists 43 sports for Aichi-Nagoya. パリ2024オリンピックは32競技だった。The previous Hangzhou Asian Games had 40 sports, 481 events, 12,417 athletes, and 4,975 team officials; athlete count alone exceeded the roughly 10,500 athletes at Paris 2024. 大会全体を一つの数字で単純比較はできないが、**in sports and athlete count, the Asian Games can exceed the Olympics**.
+
+<!-- level:3 role:analysis -->
+More sports do not merely mean more medals. 競技ごとにvenue requirements, equipment, officials, international and Asian federation coordination, training conditions, transport, ceremonies, and results systemsが増える。A 43-sport Games is therefore also the job of connecting 43 different competition systems to shared accommodation, accreditation, and transport infrastructure. 本稿でいう“more interfaces” is partly built into the scale of the event itself.
+
+<!-- level:2 role:description -->
+Operational knowledge also does not preserve itself automatically. スポーツ庁は大会前、愛知県内の競技団体ごとにinternational-event experienceの差があったため、他大会への研修派遣や東京2020経験者らによるknowledge sharingを実施したと紹介している。In a December 2025 Sports Council meeting, the organising committee itself stressed that the Asian Games had far more sports than the Olympics. Yomiuri also reported at the opening that Tokyo 2020 personnel and know-how had been mobilised for Aichi-Nagoya.
+
+<!-- level:3 role:analysis -->
+This does not prove that “Japan had no know-how.” むしろ重要なのは、**the know-how had to be gathered from people, transferred across sports, and recomposed into one temporary operating system**という点だ。Mega-event capability is not stored intact inside one permanent organisation waiting for the next host.
+
+<!-- level:5 role:implication -->
+Hatta's claim that this may be the last Asian Games hosted in Japan is a forecast, not a fact, so this article does not adopt it as its conclusion. ただし、その問題提起からsustainabilityをもう一段広げられる。**A sustainable event must preserve not only physical legacy but reusable operational memory after the temporary organisation disappears.** 白い象を残さなくても、every host must climb the same learning curve from near zero, the model is fragile in another way.
+
+[八田益之「アジア大会は超無理ゲー。名古屋は最後の日本開催になるだろう」](https://comemo.nikkei.com/n/n021fcb04a16f?sub_rt=share_b)  
+[JOC「その数なんとオリンピック以上！ アジア大会の実施競技数！」](https://www.joc.or.jp/aichi_nagoya2026/pickup03.html)  
+[OCA Sporting Asia — Hangzhou Games data](https://oca.asia/media/newsletters/1/edition-files/Sporting_Asia_63.pdf)  
+[Paris 2024 Sustainability & Legacy Post-Games Report](https://library.olympics.com/digitalCollection/DigitalCollectionAttachmentDownloadHandler.ashx?documentId=3460237&parentDocumentId=3460235&skipCopyright=true&skipWatermark=true)  
+[スポーツ庁「開催都市が考えるアジア・アジアパラ競技大会の開催意義とは？」](https://www.mext.go.jp/sports/b_menu/sports/mcatetop08/list/jsa_00020.html)  
+[スポーツ審議会スポーツ基本計画部会（第3期）（第7回）議事録](https://www.mext.go.jp/sports/b_menu/shingi/001_index/bunkabukai008/gijiroku/jsa_00007.html)
+
+---
+
+## 12. 今大会の本当の論点は、「持続可能性」に運営の余白まで含められるかである
 
 <!-- level:4 role:claim -->
 Using existing facilities instead of building a giant village is an important experiment for future mega-events. 大会のためだけに巨大施設を造り、終了後に持て余す方式にはclear problemsがある。
@@ -272,7 +301,7 @@ Before the Games, cancelling the village looked like a story about not building 
 
 ---
 
-## 12. 大会終了後は「苦情の数」より、接続点の復旧時間を検証したい
+## 13. 大会終了後は「苦情の数」より、接続点の復旧時間を検証したい
 
 <!-- level:4 role:claim -->
 From here, this is a proposal. 大会終了後のreviewで「トラブルが何件あったか」だけを数えても、next eventに使えるknowledgeは少ない。
