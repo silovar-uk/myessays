@@ -47,18 +47,25 @@ export function validateCandidates(data, blocks) {
 }
 
 // All batches must succeed before any caller may apply a candidate.
-export async function copyeditBatches(payload, { endpoint = DEFAULT_ENDPOINT, token, timeoutMs = 120000, totalTimeoutMs = 480000, fetchImpl = fetch, onProgress = () => {} } = {}) {
+export async function copyeditBatches(payload, { endpoint = DEFAULT_ENDPOINT, token, timeoutMs = 120000, totalTimeoutMs = 1200000, minIntervalMs = 30000, fetchImpl = fetch, onProgress = () => {} } = {}) {
   const start = Date.now();
   const batches = batchBlocks(payload.blocks);
   const candidate = [];
   const summary = { kept: 0, edited: 0, unsure: 0, flavorChanges: 0 };
   const warnings = [];
   let passed = true;
+  let lastStarted = null;
   let remainingFlavor = Math.min(4, Math.max(0, Number(payload.policy.maxFlavorChanges) || 0));
   for (let index = 0; index < batches.length; index++) {
+    if (lastStarted !== null) {
+      const delay = Math.max(0, minIntervalMs - (Date.now() - lastStarted));
+      if (Date.now() - start + delay >= totalTimeoutMs) return { status: 'timeout', reason: 'article_deadline', fallbackRecommended: true };
+      if (delay) await new Promise(resolve => setTimeout(resolve, delay));
+    }
     const remaining = totalTimeoutMs - (Date.now() - start);
     if (remaining <= 0) return { status: 'timeout', reason: 'article_deadline', fallbackRecommended: true };
     const batch = batches[index];
+    lastStarted = Date.now();
     const result = await requestJson(endpoint, {
       method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...payload, blocks: batch, policy: { ...payload.policy, maxFlavorChanges: remainingFlavor } })

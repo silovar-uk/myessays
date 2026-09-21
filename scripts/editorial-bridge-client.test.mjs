@@ -10,7 +10,7 @@ test('batches respect block/character limits and skip locked content',()=>{
 });
 test('later timeout discards earlier successful candidates',async()=>{
  let calls=0;
- const result=await copyeditBatches(payload,{token:'test',fetchImpl:async(u,o)=>{
+ const result=await copyeditBatches(payload,{token:'test',minIntervalMs:0,fetchImpl:async(u,o)=>{
    calls++; if(calls===2)return new Response(JSON.stringify({status:'timeout'}));
    return new Response(JSON.stringify(success(JSON.parse(o.body).blocks)));
  }});
@@ -22,11 +22,11 @@ test('success requires exact coverage and original text',()=>{
  data.candidate.push(data.candidate[0]); assert.equal(validateCandidates(data,blocks),false);
 });
 test('all successful batches preserve candidate order',async()=>{
- const result=await copyeditBatches(payload,{token:'test',fetchImpl:async(u,o)=>new Response(JSON.stringify(success(JSON.parse(o.body).blocks)))});
+ const result=await copyeditBatches(payload,{token:'test',minIntervalMs:0,fetchImpl:async(u,o)=>new Response(JSON.stringify(success(JSON.parse(o.body).blocks)))});
  assert.equal(result.status,'success'); assert.deepEqual(result.candidate.map(b=>b.blockId),blocks.map(b=>b.blockId));
 });
 test('429 stops without retry',async()=>{
- let calls=0; const result=await copyeditBatches(payload,{token:'test',fetchImpl:async()=>{calls++;return new Response(JSON.stringify({status:'quota_exceeded'}),{status:429});}});
+ let calls=0; const result=await copyeditBatches(payload,{token:'test',minIntervalMs:0,fetchImpl:async()=>{calls++;return new Response(JSON.stringify({status:'quota_exceeded'}),{status:429});}});
  assert.equal(result.status,'quota_exceeded');assert.equal(calls,1);
 });
 test('timeout identifies waiting for response headers',async()=>{
