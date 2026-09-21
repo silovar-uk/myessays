@@ -58,6 +58,9 @@ So a useful decision has at least three parts:
 - **Payoff** — what do I gain or lose?
 - **Recoverability** — what happens after I am wrong?
 
+<!-- level:4 role:analysis -->
+If I ignore payoff and recovery, the phrase “50/50” hides a tiny poke and a round-losing gamble inside the same label.
+
 <!-- level:5 role:implication -->
 Stable play is not only about being right more often. It is about making **wrong answers cheaper**.
 
@@ -101,6 +104,10 @@ Normally the screen is “me versus you.” Put a can in the middle and suddenly
 The key is not simply “projectiles are good.” The **order of decision-making changes**. Instead of swinging first and hoping, you place a condition, make the opponent spend an action, then choose.
 
 <!-- level:4 role:analysis -->
+In other words, the supposedly two-player 50/50 has acquired a third participant.
+
+The can.
+
 犬、カモ、缶。
 
 Fair duel is already having a bad day.
@@ -125,6 +132,9 @@ But strong setups reduce options. A **meaty** can beat normal mash. A **safe jum
 
 <!-- level:3 role:analysis -->
 This is not prediction. It is option removal. “If you mash here, you lose.” “If you tech here, I may step out of range.” The attacker edits the tree first.
+
+<!-- level:4 role:analysis -->
+There is still no universal answer. Reversals, parry, back movement, jump and character-specific options can leave different branches alive, so the read never disappears completely.
 
 <!-- level:5 role:implication -->
 Good offense is less “guess my two options” and more **“I deleted some of your answers; now choose from what remains.”**
@@ -194,8 +204,13 @@ Stop the first 20 moments where both players could touch each other. Label each 
 <!-- level:3 role:analysis -->
 Then mark every time you took meaningful damage. Is most of it coming from A? Could C have been created instead? Did you rush from a controllable situation into a clash?
 
-For Smash, add: **who swung first?**  
-For SF6, add: **which defensive option did my offense actually beat?**
+<!-- level:2 role:description -->
+For Smash, add: **who swung first?** If you play Duck Hunt, also ask whether the can, clay pigeon or gunman made the opponent act before you committed.
+
+For SF6, isolate knockdowns and plus situations. Write down **which defensive option your offense actually beat**: mash, block, throw tech, reversal, or something else.
+
+<!-- level:4 role:analysis -->
+The audit is less interested in who won each exchange than in **how often you personally opened the coin-flip casino**.
 
 <!-- level:5 role:implication -->
 The point is not to calculate a perfect percentage. It is to count how often you personally opened the coin-flip casino.
@@ -213,8 +228,12 @@ Sometimes that is true. Eventually uncertainty remains, and someone has to choos
 <!-- level:3 role:analysis -->
 But after looking at both games, skill starts to look different. Strong players are not only better at reads. They are better at **editing how many reads happen, what the payoffs are, and what happens when they are wrong.**
 
-Smash: make them swing first.  
-SF6: remove one defensive answer first.
+In Smash, make them swing first, move them with a projectile, or refuse a dangerous exchange with spacing and shield.
+
+In SF6, use oki to beat mash, safe-jump timing to reduce reversal value, or shimmy to turn throw tech into a punishable whiff.
+
+<!-- level:4 role:analysis -->
+Both games do important work one step before “I will read this option.”
 
 <!-- level:5 role:implication -->
 Consistency is not becoming a coin-flip genius. It is building a position where you only have to flip the coin when the game has finally left you no cleaner option.
