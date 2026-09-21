@@ -1,0 +1,54 @@
+name: Gemini editorial copyedit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/gemini-editorial-trigger.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gemini-editorial-copyedit
+  cancel-in-progress: false
+
+jobs:
+  copyedit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Gemini Editorial Bridge
+        env:
+          EDITORIAL_BRIDGE_TOKEN: ${{ secrets.EDITORIAL_BRIDGE_TOKEN }}
+        run: node scripts/run-gemini-editorial-copyedit.mjs data/gemini-editorial-trigger.json
+
+      - name: Validate EN MIX structure when registered
+        if: hashFiles('gemini-editorial-result.json') != ''
+        run: |
+          ARTICLE_ID=$(node -p "JSON.parse(require('fs').readFileSync('gemini-editorial-result.json','utf8')).articleId")
+          node scripts/validate-version-structure.mjs --id "$ARTICLE_ID"
+
+      - name: Commit accepted copyedit only
+        if: hashFiles('gemini-editorial-result.json') != ''
+        run: |
+          FILE=$(node -p "JSON.parse(require('fs').readFileSync('gemini-editorial-result.json','utf8')).file")
+          if git diff --quiet -- "$FILE"; then
+            echo "No article diff to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$FILE"
+          git commit -m "Gemini Editorial Bridgeで保守校正を反映"
+          git push
