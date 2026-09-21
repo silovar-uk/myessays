@@ -98,7 +98,11 @@
         <div id="tagFilters" class="tag-filters" aria-label="タグ"></div>
       </section>
 
-      <section id="essayGrid" class="essay-grid" aria-live="polite"></section>
+      <div id="libraryLoadState" class="library-load-state" role="status" aria-live="polite" aria-atomic="true">
+        <span class="library-load-indicator" aria-hidden="true"></span>
+        <span class="library-load-message">論考を読み込んでいます…</span>
+      </div>
+      <section id="essayGrid" class="essay-grid" aria-live="polite" aria-busy="true"></section>
       <p id="emptyState" class="empty-state" hidden>条件に合う論考がない。検索語かフィルターを少しゆるめてみて。</p>
     </section>
 
