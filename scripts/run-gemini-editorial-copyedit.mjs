@@ -169,7 +169,7 @@ function report(status, extra = {}) {
 }
 // GET needs neither article content nor credentials. A legacy 404 proves reachability too.
 const probe = await requestJson(new URL('/health', endpoint).href, {}, 10000);
-console.log(JSON.stringify({ phase: 'bridge_reachability', httpStatus: probe.httpStatus, durationMs: probe.durationMs, status: probe.status || probe.data?.status, reason: probe.reason, networkCode: probe.networkCode }));
+console.log(JSON.stringify({ phase: 'bridge_reachability', version: probe.data?.version || null, httpStatus: probe.httpStatus, durationMs: probe.durationMs, status: probe.status || probe.data?.status, reason: probe.reason, networkCode: probe.networkCode }));
 if (probe.status || ![200, 404].includes(probe.httpStatus)) {
   report(probe.status || 'upstream_error', { reason: probe.reason || 'bridge_health_http_error', probe });
   console.log('::warning::Bridge unreachable; GPT original retained. See gemini-editorial-report.json.');
