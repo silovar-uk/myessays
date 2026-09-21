@@ -2,7 +2,7 @@
   'use strict';
 
   const INDEX_URL = 'data/versions-index.json';
-  const LOCATOR_BLOCK_SELECTOR = 'p, ul, ol, blockquote, figure';
+  const LOCATOR_BLOCK_SELECTOR = 'p, ul, ol, blockquote, figure, .essay-table-wrap';
   const READING_LINE_RATIO = 0.28;
   const FLASH_DURATION_MS = 1800;
   const MIN_SEMANTIC_FRAGMENT_LENGTH = 3;
