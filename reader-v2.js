@@ -118,6 +118,8 @@
   }
 
   function readingY() {
+    const pivotRail = window.MyEssaysReadingPivot?.readingRailY?.();
+    if (Number.isFinite(pivotRail)) return pivotRail;
     const header = document.querySelector('.reader-v2-header');
     const minimum = header?.getBoundingClientRect().height
       ? header.getBoundingClientRect().height + 24
@@ -262,16 +264,17 @@
       header.innerHTML = `
         <div class="reader-v2-header-inner">
           <div class="reader-v2-header-left"></div>
-          <div class="reader-v2-current" aria-live="polite">
-            <span class="reader-v2-current-kicker">NOW READING</span>
-            <strong class="reader-v2-current-title">Introduction</strong>
+          <div class="reader-v2-current">
+            <span class="reader-v2-current-kicker">READING <b class="reader-v2-current-percent">0%</b></span>
+            <strong class="reader-v2-current-title" aria-live="polite">Introduction</strong>
           </div>
           <div class="reader-v2-header-actions">
             <button class="reader-v2-map-toggle" type="button" aria-expanded="false" aria-controls="readerAside">
               <span aria-hidden="true">☷</span><span class="reader-v2-action-label">目次</span>
             </button>
           </div>
-        </div>`;
+        </div>
+        <div class="reader-v2-header-progress" aria-hidden="true"><span></span></div>`;
       view.prepend(header);
       header.querySelector('.reader-v2-map-toggle')?.addEventListener('click', () => {
         const aside = $('readerAside');
@@ -399,11 +402,14 @@
     const nearTop = Number(stateValue.lastProgressRatio || 0) < 0.08;
     if (!stateValue.lastLocator || stateValue.completedAt || nearTop) return;
 
+    const previousPercent = Math.round(
+      Math.min(1, Math.max(0, Number(stateValue.lastProgressRatio || 0))) * 100
+    );
     const prompt = document.createElement('aside');
     prompt.className = 'reader-v2-resume';
     prompt.innerHTML = `
       <div>
-        <span>CONTINUE</span>
+        <span>CONTINUE · ${previousPercent}%</span>
         <p>前回は「${escapeHtml(stateValue.lastSectionTitle || '本文')}」の途中まで読みました。</p>
       </div>
       <button type="button">続きから読む <span aria-hidden="true">→</span></button>`;
@@ -516,7 +522,12 @@
     const header = ensureHeader();
     if (!header) return;
     const title = header.querySelector('.reader-v2-current-title');
+    const percent = header.querySelector('.reader-v2-current-percent');
+    const progressBar = header.querySelector('.reader-v2-header-progress span');
+    const ratio = Math.min(1, Math.max(0, Number(locationValue.progressRatio || 0)));
     if (title) title.textContent = locationValue.sectionTitle || 'Introduction';
+    if (percent) percent.textContent = `${Math.round(ratio * 100)}%`;
+    if (progressBar) progressBar.style.transform = `scaleX(${ratio})`;
   }
 
   function persistLocation(locationValue, { force = false } = {}) {
