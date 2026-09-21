@@ -547,6 +547,7 @@
     const content = readerContent();
     if (!content) return [];
     return directChildrenMatching(content, '.reader-locator-block[data-reading-locator]')
+      .filter(block => !block.hidden && !block.classList.contains('language-source-hidden'))
       .map(block => {
         const target = textProgressTarget(block);
         const textLength = target ? progressTextLength(target.textContent) : 0;
@@ -561,7 +562,12 @@
           bounds
         };
       })
-      .filter(entry => entry.locator && entry.textLength > 0 && entry.bounds);
+      .filter(entry =>
+        entry.locator
+        && entry.textLength > 0
+        && entry.bounds
+        && (entry.bounds.width > 0 || entry.bounds.height > 0)
+      );
   }
 
   function progressAnchorAtRail(entries = renderedProgressEntries()) {
