@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Elena Revival Dance healing math</title>
+<desc id="desc">Compares standard level two damage with the healing route and shows the simple life differential change.</desc>
+<rect width="1200" height="675" fill="#111318"/>
+<text x="70" y="80" fill="#fff" font-family="system-ui,sans-serif" font-size="44" font-weight="700">REVIVAL DANCE: “1600 HEAL” IS NOT THE WHOLE MATH</text>
+<text x="70" y="124" fill="#aeb6c3" font-family="system-ui,sans-serif" font-size="24">通常SA2とHealingを「体力差」で比較する</text>
+<g font-family="system-ui,sans-serif">
+<rect x="80" y="190" width="470" height="245" rx="26" fill="#2e1b1d" stroke="#ff8a96" stroke-width="4"/>
+<text x="120" y="250" fill="#fff" font-size="30" font-weight="700">NORMAL SA2</text>
+<text x="120" y="330" fill="#ff9aa5" font-size="54" font-weight="800">2800 damage</text>
+<text x="120" y="390" fill="#d7dde7" font-size="24">相手の体力差を -2800</text>
+<rect x="650" y="190" width="470" height="245" rx="26" fill="#153425" stroke="#6ee7a2" stroke-width="4"/>
+<text x="690" y="250" fill="#fff" font-size="30" font-weight="700">HEALING ROUTE</text>
+<text x="690" y="315" fill="#ffd38b" font-size="38" font-weight="800">1950 damage</text>
+<text x="690" y="370" fill="#7cf0ad" font-size="38" font-weight="800">+1600 heal</text>
+<text x="690" y="415" fill="#d7dde7" font-size="22">+ Drive recovery (current data)</text>
+<path d="M550 315 L650 315" stroke="#7b8493" stroke-width="6"/><path d="M630 298 L655 315 L630 332" fill="none" stroke="#7b8493" stroke-width="6"/>
+<rect x="155" y="500" width="890" height="95" rx="24" fill="#172033"/>
+<text x="205" y="543" fill="#fff" font-size="28" font-weight="700">1600 - (2800 - 1950) = 750</text>
+<text x="205" y="577" fill="#bcd1ff" font-size="21">単純な体力差の追加価値。実戦では回復上限とDrive回復で価値が変わる。</text>
+</g></svg>

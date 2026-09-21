@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Elena matchup traffic light</title>
+<desc id="desc">Red, yellow, and green decision zones for Marisa after blocking Elena.</desc>
+<rect width="1200" height="675" fill="#101216"/>
+<text x="70" y="78" fill="#fff" font-family="system-ui,sans-serif" font-size="44" font-weight="700">ELENA: BLOCK → DECIDE</text>
+<text x="70" y="120" fill="#aab2bf" font-family="system-ui,sans-serif" font-size="24">技名を覚えるより、ガード後の操作を3色にする</text>
+<g font-family="system-ui,sans-serif">
+<rect x="70" y="175" width="1060" height="120" rx="24" fill="#43151a" stroke="#ff7b88" stroke-width="4"/>
+<circle cx="135" cy="235" r="34" fill="#ff5267"/><text x="195" y="226" fill="#fff" font-size="30" font-weight="700">RED / 押さない</text>
+<text x="195" y="264" fill="#ffd4d9" font-size="23">st.MK +1 ・ Whirl→Mallet +3 ・ Whirl→Leopard +1</text>
+<rect x="70" y="322" width="1060" height="120" rx="24" fill="#463b13" stroke="#facc15" stroke-width="4"/>
+<circle cx="135" cy="382" r="34" fill="#facc15"/><text x="195" y="373" fill="#fff" font-size="30" font-weight="700">YELLOW / 手番を戻す</text>
+<text x="195" y="411" fill="#fff2ad" font-size="23">cr.LP -1 ・ cr.MK -3 ・ Moon Glider -3〜-2 ・ normal Mallet -3</text>
+<rect x="70" y="469" width="1060" height="120" rx="24" fill="#143b24" stroke="#66e39b" stroke-width="4"/>
+<circle cx="135" cy="529" r="34" fill="#44d17b"/><text x="195" y="520" fill="#fff" font-size="30" font-weight="700">GREEN / punish</text>
+<text x="195" y="558" fill="#c9ffdc" font-size="23">cr.HP -7 ・ Rhino Horn -9 ・ cr.HK -12 ・ Scratch Wheel -24〜-46</text>
+<text x="70" y="640" fill="#8fb3ff" font-size="25" font-weight="700">RULE: 赤で焦らない。黄で欲張らない。緑を逃さない。</text>
+</g></svg>

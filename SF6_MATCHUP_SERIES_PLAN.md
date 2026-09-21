@@ -179,3 +179,48 @@ Alex編で固定したUIを変えず、Elena固有の以下だけを差し替え
 - Visual Evidence 2〜4枚
 
 シリーズの一貫性はデザインの統一ではなく、「相手が変わっても読む順番を学び直さなくてよいこと」で評価する。
+
+
+## Elena 実装記録（2026-09-21）
+
+Alex編の固定UIを継承し、Elena編では「安全な前進を無理に咎めない／本当のpunishだけ最大回収する」ことを中心命題にした。
+
+### Researchで固定した事実
+
+- 現行基準: Ver.2.0401.010（Frame Data Searchが2026-09-08に全技再取得）
+- st.MK: 6F / on block +1
+- st.HK: on block ±0
+- cr.LP / cr.LK: -1
+- cr.MK / f+MK / b+HK: -3
+- Rhino Horn: 各版おおむね-9
+- Scratch Wheel: Light -24 / Medium -30 / Heavy -33 / OD -46
+- OD Scratch Wheel: 1-8F full invincibility
+- Lynx Song派生:
+  - Leopard Snap: -5 → Whirl経由+1
+  - Harvest Circle: -9 → Whirl経由-4
+  - Mallet Smash: -3 → Whirl経由+3
+- Moon Glider: -3 / -2 / -2 / -3、follow-up完遂時はNormal -13 / OD -19
+- Revival Dance Healing: 1950 damage + 1600 heal + Drive recovery、通常SA2は2800 damage
+
+### Re-researchで修正した点
+
+- Moon Gliderを「-3だから4F確反」としない。単体はpunishではなく、follow-upを含む連係としてTraining Modeで確認する。
+- Lynx Songは派生名だけで分類しない。Whirl経由でblock advantageが反転するため、「Whirlを通ったか」を最初の観察項目にする。
+- MarisaのarmorはElenaのmulti-hitに対する万能回答としない。Normal Gladius / Phalanxの1-hit armorはRhino HornやSpinning Scythe等の後続hitを残す。
+- Healingは「1600回復＝1600得」と書かない。通常SA2との比較ではdamageを850落とすため、単純なlife differential追加分は750。実戦価値は回復上限とDrive recoveryで変わる。
+
+### Elena編の再利用プロンプト差し替え変数
+
+```text
+Opponent: Elena
+Hook: 正しくguardしているのに得した感じがしない
+Opponent system axis: safe entry / Lynx Song branches / Lynx Whirl enhancement / Moon Glider / Healing
+Red examples: st.MK +1, Whirl→Leopard +1, Whirl→Mallet +3
+Yellow examples: cr.LP -1, cr.MK -3, Moon Glider -3~-2, normal Mallet -3
+Green examples: cr.HP -7, Rhino Horn -9, cr.HK -12, Scratch Wheel -24~-46
+Marisa-specific caution: one-hit armor vs Elena multi-hit
+Overkill research: SA2 normal 2800 vs Healing 1950 + 1600 heal + Drive recovery
+Training focus: redを押さない / yellowを欲張らない / greenを最大回収
+```
+
+Elena編では、シリーズUIの一貫性を維持しつつ「色が変わる原因」をAlex編のpostureからbranch historyへ変更した。シリーズの固定部分とキャラ固有部分を分離できている。
