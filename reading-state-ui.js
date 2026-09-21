@@ -302,6 +302,7 @@
     const library = document.getElementById('libraryView');
     const grid = document.getElementById('essayGrid');
     if (!library || !grid || library.hidden) return;
+    if (grid.getAttribute('aria-busy') === 'true') return;
 
     const cards = [...grid.querySelectorAll('[data-id]')];
     if (!cards.length) return;
