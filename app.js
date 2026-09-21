@@ -1,9 +1,17 @@
+const LIBRARY_STATUS = Object.freeze({
+  LOADING: 'loading',
+  READY: 'ready',
+  ERROR: 'error'
+});
+
 const state = {
   essays: [],
   tags: new Set(),
   activeTags: new Set(),
   currentEssay: null,
-  pendingQuote: ''
+  pendingQuote: '',
+  libraryStatus: LIBRARY_STATUS.LOADING,
+  libraryError: null
 };
 
 const $ = (id) => document.getElementById(id);
@@ -13,7 +21,7 @@ const els = {
   typeFilter: $('typeFilter'), yearFilter: $('yearFilter'),
   sortSelect: $('sortSelect'), tagFilters: $('tagFilters'), resultCount: $('resultCount'),
   emptyState: $('emptyState'), clearFilters: $('clearFilters'), filterToggle: $('filterToggle'),
-  filterCount: $('filterCount'), filterPanel: $('filterPanel'), readerContent: $('readerContent'),
+  filterCount: $('filterCount'), filterPanel: $('filterPanel'), libraryLoadState: $('libraryLoadState'), readerContent: $('readerContent'),
   readerAside: $('readerAside'), backButton: $('backButton'), guideDialog: $('guideDialog'),
   openGuide: $('openGuide'), noteTab: $('noteTab'), notePanel: $('notePanel'), closeNote: $('closeNote'),
   noteTextarea: $('noteTextarea'), noteStatus: $('noteStatus'), copyNote: $('copyNote'),
@@ -198,22 +206,102 @@ function normalizeEssay(path, text) {
   };
 }
 
+function renderLibrarySkeleton(count = 4) {
+  return `
+    <section class="library-section library-skeleton" aria-hidden="true">
+      <div class="section-heading skeleton-heading">
+        <span class="skeleton-line skeleton-line-short"></span>
+      </div>
+      <div class="featured-grid">
+        ${Array.from({ length: count }, () => `
+          <article class="featured-card skeleton-card">
+            <span class="skeleton-line skeleton-line-meta"></span>
+            <span class="skeleton-line skeleton-line-title"></span>
+            <span class="skeleton-line skeleton-line-title skeleton-line-title-short"></span>
+            <span class="skeleton-line skeleton-line-body"></span>
+            <span class="skeleton-line skeleton-line-body skeleton-line-body-short"></span>
+          </article>`).join('')}
+      </div>
+    </section>`;
+}
+
+function setLibraryStatus(status, { message = '', error = null } = {}) {
+  state.libraryStatus = status;
+  state.libraryError = error;
+  els.essayGrid.setAttribute('aria-busy', String(status === LIBRARY_STATUS.LOADING));
+
+  if (status === LIBRARY_STATUS.LOADING) {
+    els.libraryLoadState.hidden = false;
+    els.libraryLoadState.dataset.state = 'loading';
+    els.libraryLoadState.innerHTML = `
+      <span class="library-load-indicator" aria-hidden="true"></span>
+      <span class="library-load-message">${escapeHtml(message || '論考を読み込んでいます…')}</span>`;
+    els.emptyState.hidden = true;
+    return;
+  }
+
+  if (status === LIBRARY_STATUS.ERROR) {
+    els.libraryLoadState.hidden = false;
+    els.libraryLoadState.dataset.state = 'error';
+    els.libraryLoadState.innerHTML = `
+      <span class="library-load-error-mark" aria-hidden="true">!</span>
+      <div>
+        <strong>論考を読み込めませんでした</strong>
+        <p>${escapeHtml(message || '通信状態を確認して、もう一度お試しください。')}</p>
+      </div>
+      <button type="button" data-library-retry>再読み込み</button>`;
+    els.emptyState.hidden = true;
+    return;
+  }
+
+  els.libraryLoadState.hidden = true;
+  delete els.libraryLoadState.dataset.state;
+}
+
+function resetFilters() {
+  els.typeFilter.innerHTML = '<option value="">すべて</option>';
+  els.yearFilter.innerHTML = '<option value="">すべて</option>';
+  els.tagFilters.innerHTML = '';
+}
+
 async function loadEssays() {
-  const index = await fetch('data/index.json', { cache: 'no-store' }).then(r => {
-    if (!r.ok) throw new Error('index.jsonを読み込めませんでした');
-    return r.json();
-  });
-  state.essays = await Promise.all(index.essays.map(async path => {
-    const text = await fetch(path, { cache:'no-store' }).then(r => {
-      if (!r.ok) throw new Error(`${path}を読み込めませんでした`);
-      return r.text();
+  setLibraryStatus(LIBRARY_STATUS.LOADING);
+  els.resultCount.textContent = '';
+  els.essayGrid.hidden = false;
+  els.essayGrid.innerHTML = renderLibrarySkeleton();
+  els.emptyState.hidden = true;
+
+  try {
+    const response = await fetch('data/index.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('index.jsonを読み込めませんでした');
+
+    const index = await response.json();
+    if (!Array.isArray(index.essays)) throw new Error('index.jsonの形式が不正です');
+
+    const essays = await Promise.all(index.essays.map(async path => {
+      const essayResponse = await fetch(path, { cache:'no-store' });
+      if (!essayResponse.ok) throw new Error(`${path}を読み込めませんでした`);
+      return normalizeEssay(path, await essayResponse.text());
+    }));
+
+    state.essays = essays;
+    state.tags = new Set(essays.flatMap(e => e.tags || []));
+    resetFilters();
+    populateFilters();
+    setLibraryStatus(LIBRARY_STATUS.READY);
+    renderLibrary();
+    route();
+  } catch (error) {
+    console.error(error);
+    state.essays = [];
+    state.tags = new Set();
+    els.essayGrid.innerHTML = '';
+    els.resultCount.textContent = '';
+    setLibraryStatus(LIBRARY_STATUS.ERROR, {
+      message: error?.message || '',
+      error
     });
-    return normalizeEssay(path, text);
-  }));
-  state.tags = new Set(state.essays.flatMap(e => e.tags || []));
-  populateFilters();
-  renderLibrary();
-  route();
+  }
 }
 
 function populateFilters() {
@@ -302,13 +390,34 @@ function renderArchiveRow(e) {
     </article>`;
 }
 
+function hasLibraryFilters() {
+  return Boolean(
+    els.searchInput.value.trim() ||
+    els.typeFilter.value ||
+    els.yearFilter.value ||
+    state.activeTags.size
+  );
+}
+
 function renderLibrary() {
+  if (state.libraryStatus !== LIBRARY_STATUS.READY) {
+    els.emptyState.hidden = true;
+    return;
+  }
+
   const rows = filteredEssays();
   const latestIds = latestEssayIds();
   const featured = rows.filter(e => latestIds.has(e.id));
   const archive = rows.filter(e => !latestIds.has(e.id));
   els.resultCount.textContent = `${rows.length} / ${state.essays.length} essays`;
-  els.emptyState.hidden = rows.length > 0;
+  const empty = rows.length === 0;
+  els.essayGrid.hidden = empty;
+  els.emptyState.hidden = !empty;
+  if (empty) {
+    els.emptyState.textContent = hasLibraryFilters()
+      ? '条件に合う論考がありません。検索語や絞り込み条件を変更してみてください。'
+      : 'まだ論考がありません。';
+  }
 
   const featuredHtml = featured.length ? `
     <section class="library-section">
@@ -534,6 +643,11 @@ els.clearFilters.addEventListener('click', () => {
   closeToolPanels(); renderLibrary();
 });
 els.openGuide.addEventListener('click', () => els.guideDialog.showModal());
+els.libraryLoadState.addEventListener('click', event => {
+  const retry = event.target.closest('[data-library-retry]');
+  if (!retry) return;
+  loadEssays();
+});
 
 els.noteTab.addEventListener('click', toggleNote);
 els.closeNote.addEventListener('click', () => setNoteOpen(false));
@@ -602,7 +716,4 @@ window.addEventListener('keydown', e => {
   }
 });
 
-loadEssays().catch(err => {
-  console.error(err);
-  els.essayGrid.innerHTML = `<p class="empty-state">読み込みに失敗した。${escapeHtml(err.message)}</p>`;
-});
+loadEssays();
