@@ -1,0 +1,22 @@
+{
+  "file": "essays/2026-09-21-sf6-marisa-vs-elena-safe-entry.md",
+  "articleId": "sf6-marisa-vs-elena-safe-entry",
+  "mode": "ja",
+  "articleType": "Matchup Field Guide",
+  "endpoint": "https://gemini-editorial-bridge.silovar-uk.workers.dev/v1/copyedit",
+  "allowFlavor": true,
+  "maxFlavorChanges": 3,
+  "clientTimeoutMs": 60000,
+  "protectedTerms": [
+    "マリーザ",
+    "エレナ",
+    "Lynx Song",
+    "Lynx Whirl",
+    "Moon Glider",
+    "Scratch Wheel",
+    "Revival Dance",
+    "Rhino Horn",
+    "SA2",
+    "Ver.2.0401.010"
+  ]
+}
