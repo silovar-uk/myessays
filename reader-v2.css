@@ -71,10 +71,21 @@ body.reader-v2-open .reader-shell {
 }
 
 .reader-v2-current-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   color: #918b81;
   font-size: 8px;
   font-weight: 750;
   letter-spacing: .16em;
+}
+
+.reader-v2-current-percent {
+  color: var(--accent);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .05em;
 }
 
 .reader-v2-current-title {
