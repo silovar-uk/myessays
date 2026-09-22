@@ -72,7 +72,7 @@ AはBの服、仕事、評判、余裕、Cへの接し方を気にする。BもA
 セジウィックの「欲望」は、**好きか嫌いかを判定する言葉ではなく、誰が誰を重要人物にしているかを見る言葉**である。ここを押さえると、友情と競争は反対側に並ばなくなる。どちらも、人を人へ強く結びつける別の形になり得る。
 
 <!-- level:1 role:source -->
-[セジウィック「Sexualism and the Citizen of the World」『Critical Inquiry』1984](https://criticalinquiry.uchicago.edu/past_issues/issue/december_1984_v11_n2/) ／ [セジウィック「クィア理論を通して考える」](https://www2.igs.ocha.ac.jp/en/wp-content/uploads/2002/04/04-Sedgwick.pdf)
+[セジウィック「世界市民の性差別主義（Sexualism and the Citizen of the World）」『クリティカル・インクワイアリー（Critical Inquiry）』1984](https://criticalinquiry.uchicago.edu/past_issues/issue/december_1984_v11_n2/) ／ [セジウィック「クィア理論を通して考える」](https://www2.igs.ocha.ac.jp/en/wp-content/uploads/2002/04/04-Sedgwick.pdf)
 
 ## 3. 三角形にすると、女性が「恋愛対象」であると同時に「男性関係の媒介」になる
 
@@ -92,7 +92,7 @@ AはBの服、仕事、評判、余裕、Cへの接し方を気にする。BもA
 三角形の発見は、恋愛を冷たく否定するためではなく、**一つの関係が別の関係のインフラになることがある**と気づくためにある。A→Cだけを見ていると、A↔Bを通って流れている承認と権力が見えない。
 
 <!-- level:1 role:source -->
-[セジウィック「Sexualism and the Citizen of the World」](https://criticalinquiry.uchicago.edu/past_issues/issue/december_1984_v11_n2/) ／ [デ・グリュイター／コロンビア大学出版局『Between Men』概要](https://www.degruyter.com/document/doi/10.7312/sedg90478/html)
+[セジウィック「世界市民の性差別主義（Sexualism and the Citizen of the World）」](https://criticalinquiry.uchicago.edu/past_issues/issue/december_1984_v11_n2/) ／ [デ・グリュイター／コロンビア大学出版局『Between Men』概要](https://www.degruyter.com/document/doi/10.7312/sedg90478/html)
 
 ## 4. 男同士の親密さと同性愛は同じではないが、「完全に無関係」とする境界も社会的に作られる
 
@@ -112,7 +112,7 @@ AはBの服、仕事、評判、余裕、Cへの接し方を気にする。BもA
 だから見るべきなのは「この友情は本当は性的か」という推理ではない。**どこまでの近さが許され、どこから先を危険として切り離すのか。その境界を誰が、何のために守っているのか。** セジウィックの理論は、関係そのものだけでなく、関係に引かれる境界線まで分析対象にする。
 
 <!-- level:1 role:source -->
-[セジウィック「クィア理論を通して考える」](https://www2.igs.ocha.ac.jp/en/wp-content/uploads/2002/04/04-Sedgwick.pdf) ／ [ハマレーンとヨハンソン「Homosociality」2014](https://journals.sagepub.com/doi/10.1177/2158244013518057)
+[セジウィック「クィア理論を通して考える」](https://www2.igs.ocha.ac.jp/en/wp-content/uploads/2002/04/04-Sedgwick.pdf) ／ [ハマレーンとヨハンソン「ホモソーシャリティ（Homosociality）」2014](https://journals.sagepub.com/doi/10.1177/2158244013518057)
 
 ## 5. 「ホモソーシャル＝男だけの嫌なノリ」まで縮めると、概念の変な強さが消える
 
@@ -179,7 +179,7 @@ AはBの服、仕事、評判、余裕、Cへの接し方を気にする。BもA
 ### 主要参考資料
 
 - [イヴ・コゾフスキー・セジウィック「クィア理論を通して考える（Thinking through Queer Theory）」](https://www2.igs.ocha.ac.jp/en/wp-content/uploads/2002/04/04-Sedgwick.pdf)
-- [イヴ・コゾフスキー・セジウィック「Sexualism and the Citizen of the World」『Critical Inquiry』](https://criticalinquiry.uchicago.edu/past_issues/issue/december_1984_v11_n2/)
+- [イヴ・コゾフスキー・セジウィック「世界市民の性差別主義（Sexualism and the Citizen of the World）」『クリティカル・インクワイアリー（Critical Inquiry）』](https://criticalinquiry.uchicago.edu/past_issues/issue/december_1984_v11_n2/)
 - [コロンビア大学出版局『Between Men: English Literature and Male Homosocial Desire』](https://cup.columbia.edu/book/between-men/9780231082730/)
 - [名古屋大学出版会『男同士の絆――イギリス文学とホモソーシャルな欲望』](https://www.unp.or.jp/ISBN/ISBN4-8158-0400-1.html)
 - [森山至貴「ホモソーシャル概念の多義性を使い尽くす」](https://www.jstage.jst.go.jp/article/jsr/73/1/73_2/_article/-char/ja/)
