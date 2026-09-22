@@ -1,9 +1,9 @@
 {
-  "counting-simple-rules-next-step-rhythm": {
-    "en-mix": "english-mix/counting-simple-rules-next-step-rhythm.md"
-  },
   "version": 1,
   "articles": {
+    "counting-simple-rules-next-step-rhythm": {
+      "en-mix": "english-mix/counting-simple-rules-next-step-rhythm.md"
+    },
     "goal-too-close-local-optimum": {
       "en-mix": "english-mix/goal-too-close-local-optimum.md"
     },
