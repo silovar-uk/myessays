@@ -57,7 +57,7 @@
 .reader-series-kicker {
   display: block;
   margin: 0 0 9px;
-  color: var(--accent);
+  color:var(--muted);
   font:800 11px/1 Inter, "Hiragino Sans", sans-serif;
   letter-spacing: .18em;
 }

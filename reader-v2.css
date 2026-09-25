@@ -413,7 +413,7 @@ body.reader-v2-open .reader-shell {
 }
 
 .reader-v2-map-head span {
-  color: var(--accent);
+  color:var(--muted);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .15em;
