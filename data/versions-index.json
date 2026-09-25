@@ -1018,6 +1018,9 @@
     },
     "happiness-distance-mobility-origin": {
       "en-mix": "english-mix/happiness-distance-mobility-origin.md"
+    },
+    "tam-sam-som-target-is-not-the-center": {
+      "en-mix": "english-mix/tam-sam-som-target-is-not-the-center.md"
     }
   },
   "designed-inefficiency-friction-leaves-residue": {
@@ -1025,8 +1028,5 @@
   },
   "network-protocols-are-fossils-of-inconvenience": {
     "en-mix": "english-mix/network-protocols-are-fossils-of-inconvenience.md"
-  },
-  "tam-sam-som-target-is-not-the-center": {
-    "en-mix": "english-mix/tam-sam-som-target-is-not-the-center.md"
   }
 }
