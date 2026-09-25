@@ -61,7 +61,7 @@
 .nine-masu-cell,
 .nine-masu-outside {
   appearance: none;
-  font: inherit;
+  font:inherit;
   color: inherit;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
