@@ -25,7 +25,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 今回確認できた範囲では、2011年の高城剛の著書『私の名前は、高城剛。住所不定、職業不明。』を紹介した同年の記事や読者記録に「アイディアは移動距離に比例する」という考え方が現れる。2014年刊行の『2035年の世界』では、PHP研究所自身が「アイデアは移動距離に比例する」を本の紹介文に掲げている。2015年には本田健『強運を味方につける49の言葉』で「運気は移動距離に比例する」が公式紹介文に入り、2019年には「幸せは“歩き”の距離に比例する？」という記事も確認できる。
 
 <!-- level:3 role:analysis -->
-つまり、「幸せ」の形だけに唯一の元祖を求めるより、先に「Xは移動距離に比例する」という文型が流通し、そのXが増殖したと見るほうが自然である。ただし、これは直接の引用関係を証明するものではない。似た表現が独立に生まれた可能性も残る。ここで分けたいのは、言葉の系譜と、移動が本当に幸福と関係するかという科学の話である。
+つまり、「幸せ」の形だけに唯一の元祖を求めるより、先に「○○は移動距離に比例する」という文型が流通し、その○○が増殖したと見るほうが自然である。ただし、これは直接の引用関係を証明するものではない。似た表現が独立に生まれた可能性も残る。ここで分けたいのは、言葉の系譜と、移動が本当に幸福と関係するかという科学の話である。
 
 <!-- level:5 role:implication -->
 元ネタ探しは、途中から問いが変わる。「最初に誰が言ったのか」だけでなく、「なぜこの文型は、アイデアにも運にも幸福にも使いたくなるほど説得力があるのか」。その答えを探すと、格言の中で一番怪しかった「比例」が、いちばん面白い入口になった。
@@ -55,7 +55,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 そして、この元の形が「幸福」ではなく「アイデア」だったことは重要である。高城の文脈では、移動は距離そのものを稼ぐ競技ではなく、日常から離れ、異なる情報や価値観へ接触する方法だった。後に「幸福」へ置き換わるとき、残ったのはキロメートルだが、元の意味の中心はすでに「異質なものに触れること」だった可能性がある。
 
 <!-- level:1 role:source -->
-[ソニーReader Store『私の名前は高城剛。住所不定、職業不明。』レビュー](https://ebookstore.sony.jp/review/title/00145770/id/BT000014577000100101/) ／ [はてなニュース、2011年](https://hatenanews.com/articles/201103/2833) ／ [PHP研究所『2035年の世界』](https://www.php.co.jp/books/detail.php?isbn=978-4-569-81950-1)
+[ソニーのリーダーストア（Reader Store）『私の名前は高城剛。住所不定、職業不明。』レビュー](https://ebookstore.sony.jp/review/title/00145770/id/BT000014577000100101/) ／ [はてなニュース、2011年](https://hatenanews.com/articles/201103/2833) ／ [PHP研究所『2035年の世界』](https://www.php.co.jp/books/detail.php?isbn=978-4-569-81950-1)
 
 ## 2. 「デリダの名言」説もある。でも、今回は一次出典までたどれなかった
 
@@ -63,7 +63,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 ここで急に、フランスの哲学者ジャック・デリダ（Jacques Derrida）が出てくる。インターネットには「アイデアと移動距離は比例する」はデリダの言葉だ、とする記述も複数ある。
 
 <!-- level:2 role:description -->
-たとえば2014年のMedium記事は、この言葉をデリダに帰し、「高城剛が最初という説もあるが、自分はデリダが先だと思う」という趣旨を書いている。その後も、日本語の記事や投稿で「デリダの名言」として引用されている例が見つかる。
+たとえば2014年のメディアム（Medium）の記事は、この言葉をデリダに帰し、「高城剛が最初という説もあるが、自分はデリダが先だと思う」という趣旨を書いている。その後も、日本語の記事や投稿で「デリダの名言」として引用されている例が見つかる。
 
 <!-- level:1 role:evidence -->
 しかし今回、デリダ本人の著書、講演、インタビューの題名、原語の文章、ページ番号まで示した一次出典は確認できなかった。英語やフランス語に置き換えた検索でも、同じ命題へ直接たどれる信頼できる原典は見つからない。一方で、高城については2011年の出版物周辺の記録と2014年の出版社公式紹介が残っている。
@@ -75,12 +75,12 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 したがって現時点では、「デリダ由来」は出典未確認として保留するのが安全である。元ネタ探しでは、有名人の名前より「追跡できる鎖」の長さを信じたほうがよい。今回の鎖は、高城剛のほうが明らかに長い。
 
 <!-- level:1 role:source -->
-[Medium「All Around the World. アイデアと移動距離は比例する」](https://medium.com/@junyamadera/all-around-the-world-2126c910a27d) ／ [btrax「震災から這い上がった起業家 その経営哲学とは」](https://blog.btrax.com/jp/fukushima-entrepreneur/) ／ [PHP研究所『2035年の世界』](https://www.php.co.jp/books/detail.php?isbn=978-4-569-81950-1)
+[メディアム（Medium）「All Around the World. アイデアと移動距離は比例する」](https://medium.com/@junyamadera/all-around-the-world-2126c910a27d) ／ [ビートラックス（btrax）「震災から這い上がった起業家 その経営哲学とは」](https://blog.btrax.com/jp/fukushima-entrepreneur/) ／ [PHP研究所『2035年の世界』](https://www.php.co.jp/books/detail.php?isbn=978-4-569-81950-1)
 
 ## 3. その後、文型だけが残って「運気」「成功」「幸福」へ増殖した
 
 <!-- level:4 role:claim -->
-面白いのは、いったん「Xは移動距離に比例する」という型ができると、Xがかなり自由になることだ。
+面白いのは、いったん「○○は移動距離に比例する」という型ができると、○○の部分がかなり自由になることだ。
 
 <!-- level:2 role:description -->
 2015年、本田健の『強運を味方につける49の言葉』では「運気は移動距離に比例する」が公式の紹介文に入った。2019年の「遊歩のススメ」は「成功は、移動距離と比例する」という惹句を見かけるとした上で、タイトルを「幸せは“歩き”の距離に比例する？」としている。2025年以降には、「幸福度は移動距離に比例する」をそのまま題名にした記事も複数見つかる。
@@ -95,7 +95,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 つまり「幸せは移動距離に比例する」は、古典的な一つの名言というより、移動を肯定する文化の中で育った“派生形”と見るのが妥当そうだ。では問題は、その派生形が科学的にも偶然当たっているのか、である。
 
 <!-- level:1 role:source -->
-[PHP研究所『強運を味方につける49の言葉』](https://www.php.co.jp/books/detail.php?isbn=978-4-569-76320-0) ／ [遊歩のススメ](https://u-trekking.com/dokuhon02) ／ [note「幸福度は“移動距離”に比例する。」](https://note.com/yuya_tsum1/n/nf1ecd00d4b56)
+[PHP研究所『強運を味方につける49の言葉』](https://www.php.co.jp/books/detail.php?isbn=978-4-569-76320-0) ／ [遊歩のススメ](https://u-trekking.com/dokuhon02) ／ [ノート（note）「幸福度は“移動距離”に比例する。」](https://note.com/yuya_tsum1/n/nf1ecd00d4b56)
 
 ## 4. 科学に聞くと、「距離」より先に「場所の多様さ」が出てくる
 
@@ -115,7 +115,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 「移動距離は幸せに比例する」を研究に寄せて言い換えるなら、少なくともこの研究から近いのは「経験する場所の多様さとポジティブ感情には関連がある」だろう。急に地味になった。でも科学はだいたい、格言から気持ちのいい部分を削って強くなる。
 
 <!-- level:1 role:source -->
-[Heller et al., Association between real-world experiential diversity and positive affect, Nature Neuroscience, 2020](https://www.nature.com/articles/s41593-020-0636-4) ／ [PubMed Central全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9169417/)
+[ヘラーほか「実世界における経験の多様性とポジティブ感情の関連」（ネイチャー・ニューロサイエンス：Nature Neuroscience、2020）](https://www.nature.com/articles/s41593-020-0636-4) ／ [パブメド・セントラル（PubMed Central）全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9169417/)
 
 ## 5. 東京1314人の位置情報でも、最後に残ったのは「遠さ」より「行き先の数」だった
 
@@ -155,7 +155,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 この反例を通ると、幸福と結びついているものが少し見える。身体を遠くへ運ぶこと自体ではなく、**自分の生活世界に新しい選択肢や刺激を持ち込む移動**なのではないか。距離はその一部を測れるが、全部ではない。
 
 <!-- level:1 role:source -->
-[Chatterjee et al., Commuting and wellbeing: a critical overview, Transport Reviews, 2020](https://www.tandfonline.com/doi/full/10.1080/01441647.2019.1649317) ／ [Mouratidis et al., Systematic review of commuting, subjective wellbeing and mental health, 2022](https://www.sciencedirect.com/science/article/pii/S2214367X22000151) ／ [北川ほか「日常的な移動が主観的幸福感に及ぼす影響に関する研究」](https://www.jstage.jst.go.jp/article/jscejipm/67/5/67_67_I_697/_article/-char/ja)
+[チャタジーほか「通勤とウェルビーイングの批判的概観」（トランスポート・レビューズ：Transport Reviews、2020）](https://www.tandfonline.com/doi/full/10.1080/01441647.2019.1649317) ／ [モウラティディスほか「通勤・主観的幸福感・精神的健康の系統的レビュー」（2022）](https://www.sciencedirect.com/science/article/pii/S2214367X22000151) ／ [北川ほか「日常的な移動が主観的幸福感に及ぼす影響に関する研究」](https://www.jstage.jst.go.jp/article/jscejipm/67/5/67_67_I_697/_article/-char/ja)
 
 ## 7. さらに厄介なのは、「幸せだから移動できる」方向もあることだ
 
@@ -175,7 +175,7 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 だからこの格言を人生訓として使うなら、「動かない人は幸せになれない」という道徳にしてはいけない。移動できること自体が、すでに一つの自由である。大事なのは距離を競うことではなく、自分が使える範囲で生活の接点を増やせるか、そして社会側がその自由を誰にでも持ちやすくできるか、という問いになる。
 
 <!-- level:1 role:source -->
-[Heller et al., Nature Neuroscience, 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC9169417/) ／ [講談社『移動と階級』](https://www.kodansha.co.jp/book/products/0000412972)
+[ヘラーほか（ネイチャー・ニューロサイエンス：Nature Neuroscience、2020）](https://pmc.ncbi.nlm.nih.gov/articles/PMC9169417/) ／ [講談社『移動と階級』](https://www.kodansha.co.jp/book/products/0000412972)
 
 ## 8. 調べる前より、遠くへ行くことより「違う場所へ行くこと」が気になった
 
@@ -207,10 +207,10 @@ abstract: "「移動距離は幸せに比例する」という言葉の元ネタ
 - [高城剛『2035年の世界』PHP研究所](https://www.php.co.jp/books/detail.php?isbn=978-4-569-81950-1)
 - [はてなニュース「高城剛問答集、発想を生むノート術、美しいデータ処理」](https://hatenanews.com/articles/201103/2833)
 - [本田健『強運を味方につける49の言葉』PHP研究所](https://www.php.co.jp/books/detail.php?isbn=978-4-569-76320-0)
-- [Heller et al., Association between real-world experiential diversity and positive affect, Nature Neuroscience, 2020](https://www.nature.com/articles/s41593-020-0636-4)
-- [Heller et al., PubMed Central全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9169417/)
+- [ヘラーほか「実世界における経験の多様性とポジティブ感情の関連」（ネイチャー・ニューロサイエンス：Nature Neuroscience、2020）](https://www.nature.com/articles/s41593-020-0636-4)
+- [ヘラーほか、パブメド・セントラル（PubMed Central）全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9169417/)
 - [博報堂生活総合研究所「位置情報データからみえる『移動と幸せ』の関係」](https://seikatsusoken.jp/diginography/20378/)
 - [北川夏樹ほか「日常的な移動が主観的幸福感に及ぼす影響に関する研究」](https://www.jstage.jst.go.jp/article/jscejipm/67/5/67_67_I_697/_article/-char/ja)
-- [Chatterjee et al., Commuting and wellbeing: a critical overview of the literature](https://www.tandfonline.com/doi/full/10.1080/01441647.2019.1649317)
-- [Mouratidis et al., Systematic review of commuting, subjective wellbeing and mental health](https://www.sciencedirect.com/science/article/pii/S2214367X22000151)
+- [チャタジーほか「通勤とウェルビーイングの批判的概観」](https://www.tandfonline.com/doi/full/10.1080/01441647.2019.1649317)
+- [モウラティディスほか「通勤・主観的幸福感・精神的健康の系統的レビュー」](https://www.sciencedirect.com/science/article/pii/S2214367X22000151)
 - [伊藤将人『移動と階級』講談社](https://www.kodansha.co.jp/book/products/0000412972)
