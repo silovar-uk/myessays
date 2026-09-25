@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+<title id="title">Sequoia Capitalの市場規模説明に関する短い引用</title>
+<desc id="desc">市場調査の巨大な数字を詳細なしで掲げないよう注意する引用カード。</desc>
+<rect width="1400" height="760" rx="40" fill="#151515"/>
+<text x="110" y="130" font-family="Georgia, 'Times New Roman', serif" font-size="86" fill="#ffffff">“</text>
+<text x="150" y="230" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#ffffff">One thing not to do is to put up huge numbers</text>
+<text x="150" y="295" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#ffffff">from some market study without any details</text>
+<text x="150" y="360" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#ffffff">behind them.</text>
+<line x1="150" y1="435" x2="560" y2="435" stroke="#ffffff" stroke-width="3"/>
+<text x="150" y="500" font-family="system-ui, -apple-system, sans-serif" font-size="27" font-weight="700" fill="#ffffff">Sequoia Capital</text>
+<text x="150" y="545" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#bdbdbd">How to Present to Investors</text>
+<text x="150" y="640" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#eeeeee">巨大な数字より、その数字の「中身」を説明する。</text>
+<text x="150" y="690" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#888">Quote: Sequoia Capital / visual design: My Essays</text>
+</svg>
