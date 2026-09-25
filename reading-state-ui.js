@@ -192,11 +192,11 @@
     tabs.setAttribute('aria-label', '読書状態');
     tabs.innerHTML = `
       <button type="button" class="reading-status-tab is-active" data-reading-filter="all" aria-pressed="true">すべて</button>
-      <button type="button" class="reading-status-tab" data-reading-filter="unread" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>未読</button>
-      <button type="button" class="reading-status-tab" data-reading-filter="opened" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>開いた</button>
-      <button type="button" class="reading-status-tab" data-reading-filter="completed" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>読了</button>
-      <button type="button" class="reading-status-tab" data-reading-filter="resonance" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>残った</button>
-      <button type="button" class="reading-status-tab" data-reading-filter="memo" aria-pressed="false"><span class="reading-status-dot" aria-hidden="true"></span>メモあり</button>`;
+      <button type="button" class="reading-status-tab" data-reading-filter="unread" aria-pressed="false">未読</button>
+      <button type="button" class="reading-status-tab" data-reading-filter="opened" aria-pressed="false">◐ 開いた</button>
+      <button type="button" class="reading-status-tab" data-reading-filter="completed" aria-pressed="false">✓ 読了</button>
+      <button type="button" class="reading-status-tab" data-reading-filter="resonance" aria-pressed="false"><span class="reading-status-resonance-mark" aria-hidden="true">●</span>残った</button>
+      <button type="button" class="reading-status-tab" data-reading-filter="memo" aria-pressed="false">✎ メモあり</button>`;
     toolbar.insertAdjacentElement('afterend', tabs);
 
     tabs.addEventListener('click', event => {
@@ -264,15 +264,50 @@
     if (!badge) {
       badge = document.createElement('span');
       badge.className = 'reading-resonance-badge';
-      badge.setAttribute('aria-label', `残った度 ${value} / 5`);
+      badge.innerHTML = '<i></i><i></i><i></i><i></i><i></i>';
       const host = card.classList.contains('featured-card')
         ? card.querySelector('.featured-footer')
         : card.querySelector('.archive-side');
       (host || card).appendChild(badge);
     }
 
-    badge.textContent = `残った度 ${value}`;
-    badge.setAttribute('aria-label', `残った度 ${value} / 5`);
+    const label = `残った度 ${value} / 5`;
+    if (badge.dataset.value !== String(value)) badge.dataset.value = String(value);
+    if (badge.getAttribute('aria-label') !== label) badge.setAttribute('aria-label', label);
+  }
+
+  function syncReadingMark(card, id, progress) {
+    let mark = card.querySelector('.reading-mark');
+    if (progress === 'unread') {
+      mark?.remove();
+      return;
+    }
+
+    const reading = readState(id);
+    const ratio = Number(reading.lastProgressRatio || 0);
+    const percent = ratio > 0 && ratio < 1 ? Math.round(ratio * 100) : null;
+    const text = progress === 'completed' ? '✓ 読了' : (percent ? `◐ ${percent}%` : '◐ 開いた');
+    const aria = progress === 'completed' ? '読了' : (percent ? `開いた ${percent}%` : '開いた');
+
+    if (!mark) {
+      mark = document.createElement('span');
+      mark.className = 'reading-mark';
+      const host = card.classList.contains('featured-card')
+        ? (card.querySelector('.featured-meta-left') || card.querySelector('.featured-meta'))
+        : (card.querySelector('.archive-meta-line') || card.querySelector('.archive-side'));
+      if (host) {
+        if (card.classList.contains('featured-card') && !host.classList.contains('featured-meta-left')) host.prepend(mark);
+        else if (!card.classList.contains('featured-card') && !host.classList.contains('archive-meta-line')) host.prepend(mark);
+        else host.append(mark);
+      } else {
+        card.prepend(mark);
+      }
+    }
+
+    mark.classList.toggle('is-completed', progress === 'completed');
+    mark.classList.toggle('is-opened', progress === 'opened');
+    if (mark.textContent !== text) mark.textContent = text;
+    if (mark.getAttribute('aria-label') !== aria) mark.setAttribute('aria-label', aria);
   }
 
   function decorateCard(card) {
@@ -287,6 +322,7 @@
     card.classList.toggle('has-reading-note', hasMemo);
     card.dataset.readingStatus = progress;
     card.dataset.hasReadingNote = String(hasMemo);
+    syncReadingMark(card, id, progress);
     syncMemoPreview(card, id);
     syncResonanceBadge(card, id);
 

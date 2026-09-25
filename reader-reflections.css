@@ -1,33 +1,13 @@
 .reader-reflections {
-  --reflection-pop: #146cff;
-  --reflection-pop-deep: #0b53cc;
-  --reflection-pop-soft: #e8f1ff;
-  --reflection-spark: #f3c934;
-  position: relative;
-  margin: 70px -24px 0;
-  padding: 34px 24px 26px;
-  overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--reflection-pop) 22%, var(--line));
-  border-top: 4px solid var(--reflection-pop);
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 92% 12%, rgba(243,201,52,.22) 0 42px, transparent 43px),
-    linear-gradient(145deg, rgba(232,241,255,.92) 0%, rgba(255,255,255,.44) 44%, rgba(244,241,234,.74) 100%);
-  box-shadow: 0 18px 48px rgba(20,108,255,.08);
-  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
-}
-
-.reader-reflections::after {
-  content: '';
-  position: absolute;
-  top: 24px;
-  right: 27px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--reflection-spark);
-  box-shadow: 0 0 0 6px rgba(243,201,52,.13);
-  pointer-events: none;
+  position:relative;
+  margin:70px -24px 0;
+  padding:34px 24px 26px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:color-mix(in srgb,var(--raise) 45%,transparent);
+  box-shadow:none;
+  font-family:Inter,"Hiragino Sans","Yu Gothic UI","Yu Gothic",system-ui,sans-serif;
 }
 
 .reader-reflections + .reader-end-navigation {
@@ -54,9 +34,9 @@
   border-radius: 999px;
   background: var(--reflection-pop);
   color: #fff;
-  font: 800 9px/1 Inter, "Hiragino Sans", sans-serif !important;
+  font:800 11px/1 Inter, "Hiragino Sans", sans-serif !important;
   letter-spacing: .18em;
-  box-shadow: 0 6px 18px rgba(20,108,255,.18);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 18%, transparent);
 }
 
 .reader-reflections-title-row {
@@ -70,7 +50,7 @@
   padding: 0 !important;
   border: 0 !important;
   color: #172640;
-  font: 700 27px/1.25 Georgia, "Yu Mincho", serif !important;
+  font:700 27px/1.25 Georgia, "Yu Mincho", serif !important;
   letter-spacing: -.025em;
 }
 
@@ -83,15 +63,15 @@
   border-radius: 999px;
   background: var(--reflection-pop);
   color: #fff;
-  font: 850 10px/1 Inter, "Hiragino Sans", sans-serif;
+  font:850 11px/1 Inter, "Hiragino Sans", sans-serif;
   letter-spacing: .03em;
-  box-shadow: 0 5px 14px rgba(20,108,255,.18);
+  box-shadow: 0 5px 14px color-mix(in srgb, var(--ink) 18%, transparent);
 }
 
 .reader-reflections-local {
   margin: 0 0 2px !important;
   color: #60708a;
-  font: 700 10px/1.5 Inter, "Hiragino Sans", sans-serif !important;
+  font:700 11px/1.5 Inter, "Hiragino Sans", sans-serif !important;
   letter-spacing: .02em;
 }
 
@@ -99,7 +79,7 @@
   content: '●';
   margin-right: 6px;
   color: var(--reflection-pop);
-  font-size: 7px;
+  font-size: 11px;
   vertical-align: 1px;
 }
 
@@ -109,7 +89,7 @@
   border: 1.5px solid color-mix(in srgb, var(--reflection-pop) 58%, white);
   border-radius: 17px;
   background: rgba(255,255,255,.78);
-  box-shadow: 0 10px 30px rgba(20,108,255,.08), inset 0 1px 0 rgba(255,255,255,.8);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--ink) 8%, transparent), inset 0 1px 0 rgba(255,255,255,.8);
   transition: border-color .14s ease, box-shadow .14s ease, background .14s ease, transform .14s ease;
 }
 
@@ -136,7 +116,7 @@
   outline: 0;
   background: transparent;
   color: var(--ink);
-  font: 500 15px/1.85 Inter, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font:500 15px/1.85 Inter, "Hiragino Sans", "Yu Gothic", sans-serif;
   box-sizing: border-box;
 }
 
@@ -148,7 +128,7 @@
 .reflection-composer:focus-within {
   border-color: var(--reflection-pop);
   background: rgba(255,255,255,.92);
-  box-shadow: 0 0 0 4px rgba(20,108,255,.11), 0 16px 38px rgba(20,108,255,.11);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 11%, transparent), 0 16px 38px color-mix(in srgb, var(--ink) 11%, transparent);
   transform: translateY(-1px);
 }
 
@@ -172,7 +152,7 @@
 .reflection-composer-hint,
 .reflection-draft-status {
   color: #718097;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -187,7 +167,7 @@
   border-radius: 4px;
   background: rgba(232,241,255,.72);
   color: inherit;
-  font: inherit;
+  font:inherit;
 }
 
 .reflection-add-button {
@@ -198,16 +178,16 @@
   border-radius: 999px;
   background: var(--reflection-pop);
   color: #fff;
-  font: 800 11px/1 Inter, "Hiragino Sans", sans-serif;
+  font:800 11px/1 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
-  box-shadow: 0 7px 18px rgba(20,108,255,.2);
+  box-shadow: 0 7px 18px color-mix(in srgb, var(--ink) 2%, transparent);
   transition: transform .14s ease, opacity .14s ease, background .14s ease, box-shadow .14s ease;
 }
 
 .reflection-add-button:hover:not(:disabled) {
   transform: translateY(-1px);
   background: var(--reflection-pop-deep);
-  box-shadow: 0 10px 22px rgba(20,108,255,.24);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--ink) 24%, transparent);
 }
 
 .reflection-add-button:disabled {
@@ -244,7 +224,7 @@
   border-radius: 999px;
   background: rgba(255,255,255,.52);
   color: var(--muted);
-  font: 700 10px/1 Inter, "Hiragino Sans", sans-serif;
+  font:700 11px/1 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
   transition: border-color .14s ease, color .14s ease, background .14s ease, transform .14s ease;
 }
@@ -268,7 +248,7 @@
   min-height: 17px;
   margin: 0 0 7px !important;
   color: var(--muted);
-  font: 700 9px/1.5 Inter, "Hiragino Sans", sans-serif !important;
+  font:700 11px/1.5 Inter, "Hiragino Sans", sans-serif !important;
   text-align: right;
 }
 
@@ -291,7 +271,7 @@
   border-radius: 11px;
   background: rgba(35,30,24,.92);
   color: #f8f4ec;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -340,14 +320,14 @@
   flex-wrap: wrap;
   gap: 5px 11px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .025em;
 }
 
 .reflection-card-marker {
   color: color-mix(in srgb, var(--reflection-pop) 58%, var(--muted));
-  font: 800 9px/1 Inter, sans-serif;
+  font:800 11px/1 Inter, sans-serif;
   letter-spacing: .12em;
 }
 
@@ -356,7 +336,7 @@
   padding: 2px 3px;
   border-radius: 6px;
   color: var(--ink);
-  font: 500 14px/1.82 Inter, "Hiragino Sans", "Yu Gothic", sans-serif !important;
+  font:500 14px/1.82 Inter, "Hiragino Sans", "Yu Gothic", sans-serif !important;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   cursor: text;
@@ -403,7 +383,7 @@
   border: 1px solid color-mix(in srgb, var(--reflection-pop) 58%, #a89e90);
   border-radius: 10px;
   background: rgba(255,255,255,.72);
-  box-shadow: 0 0 0 3px rgba(20,108,255,.07);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 7%, transparent);
 }
 
 .reflection-edit-textarea {
@@ -420,7 +400,7 @@
   padding-top: 8px;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -461,7 +441,7 @@
 
   .reflection-composer::before {
     margin-bottom: 9px;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .reflection-composer-input,
@@ -484,7 +464,7 @@
 
   .reflection-composer-hint,
   .reflection-draft-status {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .reflection-add-button {
@@ -597,7 +577,7 @@
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font: 650 10.5px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:650 11px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   cursor: pointer;
   transition: background .14s ease, color .14s ease, transform .14s ease;
 }
@@ -612,7 +592,7 @@
 }
 
 .reflection-disclosure:focus-visible {
-  outline: 3px solid color-mix(in srgb, #5b89a9 34%, transparent);
+  outline: 3px solid color-mix(in srgb, var(--ink-soft) 34%, transparent);
   outline-offset: 3px;
 }
 
@@ -658,14 +638,14 @@
   border-radius: 0;
   background: transparent;
   color: var(--muted) !important;
-  font-size: 8px !important;
+  font-size: 11px !important;
   letter-spacing: .16em;
   box-shadow: none;
 }
 
 .reader-reflections-heading h2 {
   color: var(--ink);
-  font: 650 18px/1.35 "Iowan Old Style", "YuMincho", "Yu Mincho", serif !important;
+  font:650 18px/1.35 "Iowan Old Style", "YuMincho", "Yu Mincho", serif !important;
   letter-spacing: .01em;
 }
 
@@ -675,14 +655,14 @@
   padding: 0 6px;
   background: color-mix(in srgb, var(--ink) 8%, transparent);
   color: var(--muted);
-  font-size: 8px;
+  font-size: 11px;
   box-shadow: none;
 }
 
 .reader-reflections-local {
   margin: 0 !important;
   color: var(--muted);
-  font-size: 8.5px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
 }
 
@@ -702,14 +682,14 @@
 .reflection-composer::before {
   margin-bottom: 7px;
   color: var(--muted);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 650;
 }
 
 .reflection-composer:focus-within {
   border-color: color-mix(in srgb, var(--ink) 32%, var(--line));
   background: rgba(255,255,255,.66);
-  box-shadow: 0 0 0 3px color-mix(in srgb, #5b89a9 8%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink-soft) 8%, transparent);
   transform: none;
 }
 
@@ -729,7 +709,7 @@
 .reflection-composer-hint,
 .reflection-draft-status {
   color: var(--muted);
-  font-size: 8.5px;
+  font-size: 11px;
 }
 
 .reflection-composer-hint kbd,
