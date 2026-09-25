@@ -43,7 +43,7 @@ abstract: "「移動距離は幸せに比例する」という言葉を追うと
 今回の調査で最初に足を置けたのは、「幸福」ではなく「アイデア」だった。The strongest early foothold was Tsuyoshi Takashiro.
 
 <!-- level:2 role:description -->
-高城剛は、世界各地を移動しながら仕事をするstyleと結びつけて、「アイデアは移動距離に比例する」という考えを繰り返し語ってきた。2011年2月に刊行された『私の名前は、高城剛。住所不定、職業不明。』は、その考えがat least by 2011、公に流通していたことを確認できる資料になる。
+高城剛は、世界各地を移動しながら仕事をするstyleと「アイデアは移動距離に比例する」という考えを結びつけて知られてきた。At least by 2011, his mobile lifestyle and this phrase were already being presented together.
 
 <!-- level:1 role:evidence -->
 同書の刊行直後、2011年3月の読者reviewには「アイディアと移動距離は比例する」と記録され、同年のはてなニュースも高城について「『アイディアは移動距離に比例する』という考え方を提唱」と紹介した。さらに2014年の『2035年の世界』では、出版社の公式ページが「アイデアは移動距離に比例する」という一文を前面に置いている。At minimum, the phrase was firmly attached to Takashiro by then.
@@ -83,7 +83,7 @@ abstract: "「移動距離は幸せに比例する」という言葉を追うと
 面白いのは、いったん「Xは移動距離に比例する」という型ができると、Xがかなり自由になることだ。Once the template exists, the noun slot becomes surprisingly editable.
 
 <!-- level:2 role:description -->
-2015年、本田健の『強運を味方につける49の言葉』では「運気は移動距離に比例する」が公式の紹介文に入った。2019年の「遊歩のススメ」は「成功は、移動距離と比例する」という惹句を見かけるとした上で、タイトルを「幸せは“歩き”の距離に比例する？」としている。By 2025, articles using「幸福度は移動距離に比例する」as the title itself are easy to find.
+2015年、本田健の『強運を味方につける49の言葉』では「運気は移動距離に比例する」が公式の紹介文に入った。2019年の「遊歩のススメ」は「成功は、移動距離と比例する」という惹句を見かけるとした上で、タイトルを「幸せは“歩き”の距離に比例する？」としている。By 2025, I could confirm an article using「幸福度は移動距離に比例する」as the title itself.
 
 <!-- level:1 role:evidence -->
 ここでは「アイデア→運気→幸福」と一人ずつbatonを渡した証拠はない。確認できるのは、同じ比例構文が少なくとも十数年にわたって、アイデア、運気、成功、成長、幸福へ使い回されていることだ。The sentence pattern has excellent preservation.
@@ -129,7 +129,7 @@ abstract: "「移動距離は幸せに比例する」という言葉を追うと
 ところが、日常の「訪問エリア」を見ると話が変わる。幸福度2点の人と10点の人で、訪問先までの距離の中央値はどちらも8キロメートルだった。一方、訪問エリア数は幸福度0点の人で中央値6か所、10点の人で13か所。The researchers themselves point toward variety of areas, not simply greater distance.
 
 <!-- level:3 role:analysis -->
-これはかなりdecisiveなズレである。休日には「遠出する人のほうが幸福度が高い」という傾向が見える。でも日常を細かくほどくと、遠さが同じでも、接触する場所の数で差が出る。Kilometers may have been a rough proxy for experiential variety.
+これはかなりimportantなズレである。休日には「遠出する人のほうが幸福度が高い」という傾向が見える。でも日常を細かくほどくと、遠さが同じでも、接触する場所の数で差が出る。Kilometers may have been a rough proxy for experiential variety.
 
 <!-- level:5 role:implication -->
 東京から大阪へ新幹線で往復すれば自動的に幸福になるなら、東海道新幹線は巨大なwell-being machineである。残念ながら、dataはそこまで単純ではない。重要なのは「どこまで行ったか」より、「生活の地図に何種類の場所が増えたか」に近そうだ。
