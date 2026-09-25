@@ -15,7 +15,7 @@
   border-radius: 999px;
   background: color-mix(in srgb, var(--reflection-pop, var(--accent)) 10%, transparent);
   color: var(--reflection-pop-deep, var(--accent));
-  font: 800 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:800 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   letter-spacing: .02em;
   cursor: pointer;
   transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
@@ -25,11 +25,11 @@
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--reflection-pop, var(--accent)) 68%, var(--line));
   background: color-mix(in srgb, var(--reflection-pop, var(--accent)) 15%, transparent);
-  box-shadow: 0 8px 22px rgba(20, 108, 255, .12);
+  box-shadow: 0 8px 22px color-mix(in srgb,var(--ink) 12%,transparent);
 }
 
 .reflection-gpt-button:focus-visible {
-  outline: 2px solid var(--reflection-pop, var(--accent));
+  outline:3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -41,9 +41,9 @@
   border-radius: 50%;
   background: var(--reflection-pop, var(--accent));
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1;
-  box-shadow: 0 4px 12px rgba(20, 108, 255, .2);
+  box-shadow: 0 4px 12px color-mix(in srgb,var(--ink) 2%,transparent);
 }
 
 @media (max-width: 620px) {

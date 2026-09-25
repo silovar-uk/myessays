@@ -54,7 +54,7 @@ body.reader-v2-open #readerLanguageSwitch {
   border-radius: 0;
   background: transparent;
   color: var(--muted);
-  font: 700 13px/1.25 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:700 13px/1.25 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   text-align: center;
   text-overflow: clip;
   white-space: nowrap;
@@ -112,14 +112,14 @@ body.reader-v2-open #readerLanguageSwitch {
 
 .reader-mode-shell__section {
   overflow: hidden;
-  font: 650 10.5px/1.35 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:650 11px/1.35 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .reader-mode-shell__percent {
   color: #938d83;
-  font: 700 9px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:700 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   font-variant-numeric: tabular-nums;
 }
 
@@ -174,7 +174,7 @@ body.reader-v2-open #readerLanguageSwitch {
 .reader-mode-shell[data-reader-phase="completed"] .reader-mode-shell__percent {
   justify-self: end;
   color: #7e786e;
-  font-size: 9.5px;
+  font-size: 11px;
   letter-spacing: .02em;
 }
 
@@ -220,7 +220,7 @@ body.reader-v2-open .reader-locator-block {
   }
 
   .reader-mode-shell__section {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .reader-mode-shell[data-reader-phase="body-end"],
@@ -250,7 +250,7 @@ body.reader-v2-open .reader-locator-block {
 @media (max-width: 360px) {
   .reader-mode-shell__mode {
     padding-inline: 3px;
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: -.015em;
   }
 }

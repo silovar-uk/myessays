@@ -19,8 +19,8 @@
 
 .reader-related-kicker {
   margin: 0 0 7px !important;
-  color: var(--accent);
-  font: 800 9px/1 Inter, "Hiragino Sans", sans-serif !important;
+  color:var(--muted);
+  font:800 11px/1 Inter, "Hiragino Sans", sans-serif !important;
   letter-spacing: .18em;
 }
 
@@ -28,7 +28,7 @@
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  font: 700 25px/1.25 Georgia, "Yu Mincho", serif !important;
+  font:700 25px/1.25 Georgia, "Yu Mincho", serif !important;
   letter-spacing: -.02em;
 }
 
@@ -36,7 +36,7 @@
   max-width: 245px;
   margin: 0 !important;
   color: var(--muted);
-  font: 10px/1.65 Inter, "Hiragino Sans", sans-serif !important;
+  font:11px/1.65 Inter, "Hiragino Sans", sans-serif !important;
   text-align: right;
 }
 
@@ -74,14 +74,14 @@
 
 .reader-related-number {
   color: var(--accent);
-  font: 800 10px/1 Inter, "Hiragino Sans", sans-serif;
+  font:800 11px/1 Inter, "Hiragino Sans", sans-serif;
   letter-spacing: .12em;
 }
 
 .reader-related-meta {
   overflow: hidden;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: .04em;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -91,7 +91,7 @@
   display: -webkit-box;
   margin: 0 !important;
   overflow: hidden;
-  font: 700 20px/1.48 Georgia, "Yu Mincho", serif !important;
+  font:700 20px/1.48 Georgia, "Yu Mincho", serif !important;
   letter-spacing: -.018em;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -106,12 +106,12 @@
 }
 
 .reader-related-tag {
-  padding: 4px 7px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: #7e2d24;
-  font-size: 9px;
-  font-weight: 750;
+  padding:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--muted);
+  font-size: 11px;
+  font-weight:600;
   line-height: 1.2;
 }
 
@@ -162,7 +162,7 @@
 
 .reader-nav-label {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .04em;
 }
@@ -170,7 +170,7 @@
 .reader-end-link strong {
   display: -webkit-box;
   overflow: hidden;
-  font: 700 15px/1.55 Georgia, "Yu Mincho", serif;
+  font:700 15px/1.55 Georgia, "Yu Mincho", serif;
   letter-spacing: -.01em;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -270,6 +270,6 @@
   }
 
   .reader-nav-label {
-    font-size: 9px;
+    font-size: 11px;
   }
 }
