@@ -29,7 +29,7 @@
 
   async function versionsIndex() {
     if (!indexPromise) {
-      indexPromise = fetch(INDEX_URL, { cache: 'no-store' })
+      indexPromise = fetch(INDEX_URL, { cache: 'no-cache' })
         .then(response => {
           if (!response.ok) throw new Error(`versions-index.json: ${response.status}`);
           return response.json();
@@ -76,7 +76,7 @@
     const path = index?.articles?.[id]?.[version];
     if (!path) return null;
 
-    const task = fetch(path, { cache: 'no-store' })
+    const task = fetch(path, { cache: 'no-cache' })
       .then(response => {
         if (!response.ok) throw new Error(`${path}: ${response.status}`);
         return response.text();

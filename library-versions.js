@@ -71,7 +71,7 @@
     renderLibrary();
   });
 
-  fetch(INDEX_URL, { cache: 'no-store' })
+  fetch(INDEX_URL, { cache: 'no-cache' })
     .then(response => {
       if (!response.ok) throw new Error(`versions-index.json: ${response.status}`);
       return response.json();

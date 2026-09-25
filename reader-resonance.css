@@ -25,7 +25,7 @@
 }
 
 .reader-resonance-rule i {
-  font: 400 10px/1 Georgia, "Times New Roman", serif;
+  font:400 11px/1 Georgia, "Times New Roman", serif;
 }
 
 .reader-seal-stage {
@@ -45,7 +45,7 @@
   border-radius: 999px;
   background: var(--ink);
   color: #f8f5ef;
-  font: 760 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:760 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   letter-spacing: .045em;
   box-shadow: 0 8px 20px rgba(39,32,24,.10);
   cursor: pointer;
@@ -72,7 +72,7 @@
 .reader-resonance-summary:focus-visible,
 .reader-resonance-secondary:focus-visible,
 .reader-resonance-undo button:focus-visible {
-  outline: 3px solid color-mix(in srgb, #5b89a9 34%, transparent);
+  outline: 3px solid color-mix(in srgb, var(--ink-soft) 34%, transparent);
   outline-offset: 4px;
 }
 
@@ -83,7 +83,7 @@
   height: 19px;
   border: 1px solid currentColor;
   border-radius: 50%;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1;
   transition: transform .24s cubic-bezier(.2,.8,.2,1);
 }
@@ -122,7 +122,7 @@
   min-height: 14px;
   margin: 7px 0 0 !important;
   color: var(--muted) !important;
-  font: 600 9px/1.4 Inter, "Hiragino Sans", sans-serif !important;
+  font:600 11px/1.4 Inter, "Hiragino Sans", sans-serif !important;
 }
 
 .reader-resonance-status:empty {
@@ -162,7 +162,7 @@
 .reader-resonance-question {
   margin: 0 0 9px !important;
   color: var(--ink) !important;
-  font: 650 12px/1.45 "Iowan Old Style", "YuMincho", "Yu Mincho", serif !important;
+  font:650 12px/1.45 "Iowan Old Style", "YuMincho", "Yu Mincho", serif !important;
   letter-spacing: .025em !important;
 }
 
@@ -249,17 +249,17 @@
 }
 
 .reader-resonance-summary strong {
-  font: 780 17px/1 Inter, sans-serif;
+  font:780 17px/1 Inter, sans-serif;
 }
 
 .reader-resonance-summary span {
-  font: 650 10.5px/1.4 Inter, "Hiragino Sans", sans-serif;
+  font:650 11px/1.4 Inter, "Hiragino Sans", sans-serif;
 }
 
 .reader-resonance-summary small {
   margin-left: 2px;
   color: var(--muted);
-  font: 600 8.5px/1.4 Inter, "Hiragino Sans", sans-serif;
+  font:600 11px/1.4 Inter, "Hiragino Sans", sans-serif;
 }
 
 .reader-resonance-secondary {
@@ -269,7 +269,7 @@
   border: 0;
   background: transparent;
   color: color-mix(in srgb, var(--muted) 78%, transparent);
-  font: 600 9px/1.4 Inter, "Hiragino Sans", sans-serif;
+  font:600 11px/1.4 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
 }
 
@@ -287,14 +287,14 @@
   border-radius: 999px;
   background: rgba(255,255,255,.48);
   color: var(--muted);
-  font: 600 9px/1.4 Inter, "Hiragino Sans", sans-serif;
+  font:600 11px/1.4 Inter, "Hiragino Sans", sans-serif;
 }
 
 .reader-resonance-undo button {
   border: 0;
   background: transparent;
   color: var(--ink);
-  font: inherit;
+  font:inherit;
   font-weight: 750;
   cursor: pointer;
 }

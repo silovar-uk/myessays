@@ -17,7 +17,7 @@
 
   async function loadLegacyMetadata() {
     try {
-      const response = await fetch(LEGACY_METADATA_URL, { cache: 'no-store' });
+      const response = await fetch(LEGACY_METADATA_URL, { cache: 'no-cache' });
       if (!response.ok) return;
       const data = await response.json();
       if (data?.articles && typeof data.articles === 'object') legacyArticles = data.articles;

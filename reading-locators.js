@@ -38,7 +38,7 @@
 
   function versionsIndex() {
     if (!indexPromise) {
-      indexPromise = fetch(INDEX_URL, { cache: 'no-store' })
+      indexPromise = fetch(INDEX_URL, { cache: 'no-cache' })
         .then(response => response.ok ? response.json() : { articles: {} })
         .then(data => ({ articles: data?.articles && typeof data.articles === 'object' ? data.articles : {} }))
         .catch(() => ({ articles: {} }));

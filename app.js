@@ -272,14 +272,14 @@ async function loadEssays() {
   els.emptyState.hidden = true;
 
   try {
-    const response = await fetch('data/index.json', { cache: 'no-store' });
+    const response = await fetch('data/index.json', { cache: 'no-cache' });
     if (!response.ok) throw new Error('index.jsonを読み込めませんでした');
 
     const index = await response.json();
     if (!Array.isArray(index.essays)) throw new Error('index.jsonの形式が不正です');
 
     const essays = await Promise.all(index.essays.map(async path => {
-      const essayResponse = await fetch(path, { cache:'no-store' });
+      const essayResponse = await fetch(path, { cache: 'no-cache' });
       if (!essayResponse.ok) throw new Error(`${path}を読み込めませんでした`);
       return normalizeEssay(path, await essayResponse.text());
     }));
