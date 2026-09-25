@@ -42,7 +42,7 @@
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font: 700 10px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  font:700 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
   letter-spacing: .01em;
   cursor: pointer;
   transition: background .14s ease, color .14s ease, box-shadow .14s ease;
@@ -50,7 +50,7 @@
 .reader-v2-header .reader-mode-button {
   min-height: 30px;
   padding: 5px 9px;
-  font-size: 9px;
+  font-size: 11px;
 }
 .reader-mode-button:hover,
 .reader-mode-button:focus-visible {
@@ -100,7 +100,7 @@
   color: var(--accent);
   box-shadow: 0 8px 24px rgba(39,32,24,.08);
   backdrop-filter: blur(10px);
-  font: 800 9px/1 Inter, sans-serif;
+  font:800 11px/1 Inter, sans-serif;
   letter-spacing: .06em;
   cursor: pointer;
 }
@@ -146,7 +146,7 @@
 }
 .language-lens-pin-state {
   color: var(--accent);
-  font: 800 7px/1 Inter, sans-serif;
+  font:800 11px/1 Inter, sans-serif;
   letter-spacing: .12em;
 }
 .language-lens-panel.is-preview {
@@ -176,7 +176,7 @@
 .language-lens-panel.is-preview .language-lens-label {
   margin-bottom: 5px;
   color: var(--accent);
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: .12em;
 }
@@ -215,13 +215,13 @@
 .reader-compare-head p {
   margin: 0 0 5px;
   color: var(--accent);
-  font: 800 8px/1 Inter, sans-serif;
+  font:800 11px/1 Inter, sans-serif;
   letter-spacing: .14em;
 }
 .language-lens-head h2,
 .reader-compare-head h2 {
   margin: 0;
-  font: 700 20px/1.3 Georgia, "Yu Mincho", serif;
+  font:700 20px/1.3 Georgia, "Yu Mincho", serif;
 }
 .language-lens-close {
   display: grid;
@@ -239,7 +239,7 @@
 .language-lens-status {
   margin: 10px 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 .language-lens-current,
 .language-lens-counterpart {
@@ -256,7 +256,7 @@
   display: block;
   margin-bottom: 7px;
   color: var(--muted);
-  font: 800 8px/1 Inter, sans-serif;
+  font:800 11px/1 Inter, sans-serif;
   letter-spacing: .1em;
 }
 .language-lens-current-copy,
@@ -287,7 +287,7 @@
   border-radius: 9px;
   background: rgba(255,255,255,.62);
   color: var(--ink);
-  font: 700 10px/1.2 Inter, "Hiragino Sans", sans-serif;
+  font:700 11px/1.2 Inter, "Hiragino Sans", sans-serif;
   cursor: pointer;
 }
 .language-lens-nav button:disabled,
@@ -295,7 +295,7 @@
 .language-lens-nav button:last-child { justify-self: stretch; }
 .language-lens-position {
   color: var(--muted);
-  font: 700 9px/1 Inter, sans-serif;
+  font:700 11px/1 Inter, sans-serif;
 }
 .language-lens-actions {
   display: grid;
@@ -322,7 +322,7 @@
 .reader-compare-language button {
   min-height: 28px;
   padding: 5px 9px;
-  font-size: 8px;
+  font-size: 11px;
 }
 .reader-compare-language button.is-active {
   background: var(--ink);
@@ -345,7 +345,7 @@
   display: block;
   margin-bottom: 7px;
   color: var(--muted);
-  font: 800 8px/1 Inter, sans-serif;
+  font:800 11px/1 Inter, sans-serif;
   letter-spacing: .1em;
 }
 .reader-compare-cell > div {
@@ -355,7 +355,7 @@
   overflow-wrap: anywhere;
 }
 .reader-compare-row.is-heading .reader-compare-cell > div {
-  font: 700 18px/1.45 Georgia, "Yu Mincho", serif;
+  font:700 18px/1.45 Georgia, "Yu Mincho", serif;
 }
 .reader-compare-cell em { color: var(--muted); font-style: normal; }
 .reader-compare-loading { color: var(--muted); }
@@ -379,7 +379,7 @@
   }
   .reader-v2-header .reader-mode-button::after {
     content: attr(data-short-label);
-    font: 800 8px/1 Inter, sans-serif;
+    font:800 11px/1 Inter, sans-serif;
     letter-spacing: .02em;
   }
 }
@@ -394,7 +394,7 @@
   .reader-mode-bar:not(.is-reader-v2-header) .reader-mode-button {
     min-height: 34px;
     padding: 7px 11px;
-    font-size: 9.5px;
+    font-size: 11px;
   }
   .paragraph-language-peek { display: none !important; }
   .paragraph-language-dock {
@@ -416,7 +416,7 @@
     color: #fff;
     box-shadow: 0 12px 34px rgba(39,32,24,.18);
     backdrop-filter: blur(12px);
-    font: 700 12px/1 Inter, "Hiragino Sans", sans-serif;
+    font:700 12px/1 Inter, "Hiragino Sans", sans-serif;
     pointer-events: auto;
   }
   [data-pair-id].is-language-active-paragraph,

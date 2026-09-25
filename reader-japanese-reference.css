@@ -21,20 +21,20 @@
 .japanese-reference-block[hidden] { display: none; }
 .japanese-reference-handle { display: none; }
 .japanese-reference-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
-.japanese-reference-kicker { margin: 0 0 5px; color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .13em; }
-.japanese-reference-head h2 { margin: 0; font: 700 21px/1.2 Georgia, "Yu Mincho", serif; }
+.japanese-reference-kicker { margin: 0 0 5px; color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .13em; }
+.japanese-reference-head h2 { margin: 0; font:700 21px/1.2 Georgia, "Yu Mincho", serif; }
 .japanese-reference-close { display: grid; place-items: center; flex: 0 0 auto; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--muted); font-size: 18px; line-height: 1; }
 .japanese-reference-close:hover,
 .japanese-reference-close:focus-visible { background: rgba(255,255,255,.76); color: var(--ink); outline: 0; }
-.japanese-reference-status { margin: 11px 0 10px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.japanese-reference-status { margin: 11px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .japanese-reference-block { padding: 12px 13px 13px; border: 1px solid rgba(39, 32, 24, .08); border-radius: 12px; }
 .japanese-reference-block + .japanese-reference-block { margin-top: 9px; }
 .japanese-reference-selected { background: rgba(255,255,255,.52); }
 .japanese-reference-original { background: rgba(255,255,255,.78); }
-.japanese-reference-label { margin: 0 0 7px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .1em; }
-.japanese-reference-selected-text { white-space: pre-wrap; color: var(--ink); font: 14.5px/1.82 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
+.japanese-reference-label { margin: 0 0 7px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .1em; }
+.japanese-reference-selected-text { white-space: pre-wrap; color: var(--ink); font:14.5px/1.82 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
 .japanese-reference-selection-mark { padding: 0 .05em; border-radius: .2em; background: rgba(164, 45, 38, .12); color: inherit; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.japanese-reference-text { white-space: pre-wrap; color: var(--ink); font: 15px/1.88 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
+.japanese-reference-text { white-space: pre-wrap; color: var(--ink); font:15px/1.88 Georgia, "Yu Mincho", serif; overflow-wrap: anywhere; }
 .reader-shell.note-is-open .japanese-reference-panel { visibility: hidden; pointer-events: none; }
 
 @media (max-width: 980px) {

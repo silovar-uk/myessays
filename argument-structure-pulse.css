@@ -12,7 +12,7 @@
 }
 .structure-pulse-kicker {
   color: var(--accent);
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: .12em;
 }
@@ -21,7 +21,7 @@
   padding: 3px 0;
   background: transparent;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   cursor: pointer;
 }
 .structure-map-open:hover,
@@ -35,12 +35,12 @@
 }
 .structure-pulse-level {
   color: var(--ink);
-  font: 700 24px/1 Georgia, "Yu Mincho", serif;
+  font:700 24px/1 Georgia, "Yu Mincho", serif;
 }
 .structure-pulse-role {
   min-width: 0;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.35;
 }
 .structure-pulse-lanes {
@@ -60,7 +60,7 @@
 }
 .structure-pulse-lane b,
 .structure-pulse-lane em {
-  font-size: 7px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 700;
   line-height: 1;
@@ -83,7 +83,7 @@
   margin: 10px 0 0;
   overflow: hidden;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.55;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -145,19 +145,19 @@
 }
 .structure-map-titlebar > div > span {
   color: var(--accent);
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: .14em;
 }
 .structure-map-titlebar h2 {
   margin: 4px 0 0;
   color: var(--ink);
-  font: 700 clamp(24px, 3vw, 36px)/1.15 Georgia, "Yu Mincho", serif;
+  font:700 clamp(24px, 3vw, 36px)/1.15 Georgia, "Yu Mincho", serif;
 }
 .structure-map-titlebar p {
   margin: 7px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.6;
 }
 .structure-map-close {
@@ -181,7 +181,7 @@
   justify-content: space-between;
   margin: 0 0 7px 122px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: .08em;
 }
 .structure-map-scroll {
@@ -211,8 +211,8 @@
   color: var(--muted);
   text-align: center;
 }
-.structure-map-header strong { color: var(--ink); font-size: 10px; }
-.structure-map-header span { font-size: 7px; font-weight: 500; }
+.structure-map-header strong { color: var(--ink); font-size: 11px; }
+.structure-map-header span { font-size: 11px; font-weight: 500; }
 .structure-map-header.structure-map-sticky {
   z-index: 5;
   left: 0;
@@ -227,7 +227,7 @@
   padding: 13px 9px 7px;
   background: var(--paper);
   color: var(--ink);
-  font: 700 10px/1.4 Georgia, "Yu Mincho", serif;
+  font:700 11px/1.4 Georgia, "Yu Mincho", serif;
 }
 .structure-map-section-rule {
   grid-column: 2 / 7;
@@ -245,7 +245,7 @@
   padding: 8px 9px;
   background: var(--paper);
   color: var(--muted);
-  font: 800 8px/1 Inter, "Hiragino Sans", sans-serif;
+  font:800 11px/1 Inter, "Hiragino Sans", sans-serif;
   text-align: left;
   cursor: pointer;
 }
@@ -269,7 +269,7 @@
   overflow: hidden;
   background: transparent;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -288,7 +288,7 @@
   gap: 5px 8px;
   margin-top: 10px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: .03em;
 }
 .structure-map-open:focus-visible,

@@ -39,7 +39,7 @@
 .reading-launcher-label {
   margin: 0 0 6px 2px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: .14em;
 }
@@ -138,7 +138,7 @@
   border-radius: 999px;
   background: var(--paper);
   color: var(--ink);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
@@ -218,7 +218,7 @@
 }
 .note-tab kbd {
   opacity: .58;
-  font-size: 7px;
+  font-size: 11px;
   padding: 1px 2px;
 }
 
@@ -246,7 +246,7 @@
   align-items:center;
   gap:3px;
   color:var(--muted) !important;
-  font-size:9px !important;
+  font-size:11px !important;
   line-height:1;
   opacity:.72;
 }
@@ -327,7 +327,7 @@
     min-width: 19px;
     height: 19px;
     padding: 0 5px;
-    font-size: 8px;
+    font-size: 11px;
   }
   .note-tab {
     top: 50%;
@@ -388,7 +388,7 @@
   }
   .note-action {
     padding:5px 8px;
-    font-size:9px;
+    font-size:11px;
   }
 }
 
