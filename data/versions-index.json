@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "barbara-syllogism-aaa-first-figure": {
+      "en-mix": "english-mix/barbara-syllogism-aaa-first-figure.md"
+    },
     "asia-koshien-exporting-a-dream-stage": {
       "en-mix": "english-mix/asia-koshien-exporting-a-dream-stage.md"
     },
