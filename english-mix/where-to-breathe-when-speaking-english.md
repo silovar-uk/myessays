@@ -178,3 +178,137 @@ Third, chunk by hierarchy: `After the meeting, // I’ll call Sarah / and send t
 Fourth, move the boundary with information structure. If you want to package “call Sarah + send the file” as one task block, `After the meeting, / I’ll call Sarah and send the revised file // before I go home.` is also possible. 正解は一本ではない。**Prosodic boundaries are constrained by grammar but shaped by information structure and speaker intention.**
 
 <!-- level:5 role:implication -->
+This mini-experiment shows why “breathe every N words” cannot solve the problem. 問うべきは、**did the breath break the meaning structure, or did it prepare the next chunk?** Fixing breathing placement is also a way of making English structure audible.
+
+> **Extreme comparison**
+>
+> Weak rule: `air runs out → inhale right there`  
+> Better rule: `a long chunk is coming → inhale at the strong boundary before it`  
+> Better still: `signal small boundaries with prosody; reserve inhalation for the stronger ones`
+
+**Underlying evidence**: [Grosjean & Collins, “Breathing, pausing and reading”](https://pubmed.ncbi.nlm.nih.gov/482374/) ／ [Winkworth et al. (1994)](https://pubmed.ncbi.nlm.nih.gov/8084185/) ／ [Redford et al. (2026)](https://doi.org/10.1016/j.jml.2026.104763)
+
+## 8. In practice, decide where *not* to inhale before deciding where to inhale
+
+<!-- level:4 role:claim -->
+For practice, do not begin with lung-capacity tests. Begin by designing boundaries on the page. 特に効くのは、**rather than adding more “allowed breathing points,” first mark the chunks you do not want to break.**
+
+<!-- level:2 role:description -->
+Five steps are enough. ①Split the sentence into meaning-preserving chunks. ②Put `//` at strong boundaries such as sentence ends, clause changes, the end of a long introductory phrase, or a topic shift. ③Put `/` at smaller natural boundaries. ④Do not drain the lungs completely before `//`; take a short replenishing breath there. ⑤Record yourself. If an emergency `×` appears, do not fix only that word――**move back to the previous `//` and reconsider the refueling point.**
+
+<!-- level:2 role:description -->
+At first, short chunks are fine. A 2013 corpus study extracted 19,551 “breath groups” from movie speech and found an average duration of 1.9 seconds, with 87% within 3 seconds. ただしこれはactual inhalationを生理計測した研究ではなく、pause間の区間をcorpus上で定義した分析。“English must breathe every two seconds” is therefore the wrong lesson. Still, it is a useful reminder that learners do not need heroic, extremely long one-breath sentences.
+
+<!-- level:3 role:analysis -->
+For shadowing, do not copy sound blindly. 台本へ`/`と`//`を書き、why that boundary belongs thereを説明できるようにする。When listening to a model speaker, separate three observations: Was there silence? Did the final word lengthen or the pitch pattern close? Was there an audible or measurable inhalation? **Expand the object of listening from “the English sentence” to “the sentence plus its breathing design.”**
+
+<!-- level:5 role:implication -->
+The goal is not to clone one model recording. It is to build a **reproducible phrasing strategy that survives your own air supply, speech rate, and lexical-retrieval speed.** 英語の息継ぎは、one correct locationを暗記するより、自分でboundary strengthを判断できるほうが強い。
+
+**Key sources**: [Yubune & Tabuchi, “An Analysis on the Duration of Breath Groups in a Speech Corpus of Movies”](https://doi.org/10.24539/let.50.0_23) ／ [Grosjean & Collins (1979)](https://pubmed.ncbi.nlm.nih.gov/482374/) ／ [Winkworth et al. (1994)](https://pubmed.ncbi.nlm.nih.gov/8084185/)
+
+## 9. Speak too fast, and physiology can beat grammar
+
+<!-- level:4 role:claim -->
+ここまで“breathe at meaningful boundaries”と言ってきたが、extreme conditions break the rule. 話速を上げすぎると、the body cannot always wait for the linguistically ideal location.
+
+<!-- level:1 role:evidence -->
+François Grosjean and Martin Collins varied reading rate in a 1979 experiment. They found that the frequency and duration of breathing pauses depended on both speaking rate and syntactic location. 遅い・通常速度ではbreathing needs could be accommodated to preplanned pause patterns, while at very high rates physiological demand became more dominant.
+
+<!-- level:2 role:qualification -->
+Spontaneous conversation is also messier than reading. A 2017 review notes that inhalations cluster strongly at syntactic boundaries in read speech, but within-constituent inhalations become more common in spontaneous speech. 相づち、turn-taking、interruptions、repairs, and changing communicative goals all compete with an idealized respiratory plan.
+
+<!-- level:3 role:analysis -->
+So “hold your breath until the next grammatical boundary, whatever happens” is poor advice. If you repeatedly run short of air, slow down, shorten the chunk, or breathe at the previous strong boundary. “Natural speed” pursued too aggressively can create less natural emergency stops.
+
+<!-- level:5 role:implication -->
+Fluency is not the ability to erase breathing. It is the ability to **coordinate language planning with bodily constraints at a sustainable speed.** 息継ぎはpronunciationの付属品ではなく、conversationのtime designでもある。
+
+**Key sources**: [Grosjean & Collins (1979)](https://pubmed.ncbi.nlm.nih.gov/482374/) ／ [Włodarczak & Heldner (2017)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5434352/)
+
+## 10. “Nose or mouth?” is less binary than “where?”
+
+<!-- level:4 role:claim -->
+Once you ask where to breathe, another question appears: nose or mouth? ここもEnglish-learning folk wisdomだけでone correct answerを決めると単純化しすぎる。
+
+<!-- level:1 role:evidence -->
+A 2014 study of natural speech breathing examined ten healthy adults and found that the predominant pattern during speaking tasks was **simultaneous nasal and oral inspiration**. 別条件ではalternating patternsも見られた。At least in this sample, “always nose only” or “always mouth only” was not a good description of natural speech breathing.
+
+<!-- level:2 role:qualification -->
+This was a study of healthy adults. 鼻閉、respiratory disease、voice disorders、運動直後などではconditionsが変わる。本稿はgeneral English speech structureについての説明であり、medical breathing adviceではない。Persistent breathlessness or voice problems belong in a different conversation with appropriate professionals.
+
+<!-- level:3 role:analysis -->
+For learners, priority is probably placement before route. **Can you replenish quickly at a place that does not break meaning?** そこが壊れていれば、どれほど“perfect”な吸い方でもsentenceは崩れる。If the place is good, the body has more flexibility in how it gets the needed air.
+
+<!-- level:5 role:implication -->
+The deeper the research goes, the further we move from a single correct technique. Body and language negotiate with each other in real time. **Speech breathing is less a fixed trick than a coordination problem.**
+
+**Key sources**: [Lester & Hoit, “Nasal and oral inspiration during natural speech breathing”](https://pubmed.ncbi.nlm.nih.gov/24129013/) ／ [Włodarczak & Heldner (2017)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5434352/)
+
+## 11. Conclusion――A breath is not only the end of one phrase; it is preparation for the next
+
+<!-- level:4 role:claim -->
+So, where should you breathe when speaking English? The most practical answer is: **at a strong semantic, syntactic, or discourse boundary, before you begin the next chunk.** ただしevery boundary does not require an inhalation; smaller boundaries can be signaled through prosody alone.
+
+<!-- level:2 role:description -->
+As a rough priority: ①sentence ends and topic shifts, ②clause boundaries and the end of a long introductory unit, ③a strong boundary before an upcoming long utterance. 逆に、preposition + noun、article + noun、auxiliary + verbなど、tightly connected materialの内部で“because I ran out of air”と吸うのは避けたい。Move the refueling point one strong boundary earlier.
+
+<!-- level:3 role:analysis -->
+Before researching this, I imagined breath as something inserted *after* a phrase was finished. The evidence makes it look more forward-facing. 話者はupcoming sentence lengthやnew episode onsetに合わせてinhalation probabilityやvolumeを調整する。Breathing is not only a consequence of finished language; **it participates in preparing language that has not yet been spoken.**
+
+<!-- level:5 role:implication -->
+So when you run out of air in English, do not stare only at the word where you suffered. Look a few seconds backward for **the boundary where you could have refueled before launching the next idea.** 息継ぎは肺が限界を知らせる地点ではなく、自分が次の意味をどこから始めるかを決める地点なのである。
+
+> **One sentence to keep**
+>
+> Don’t breathe where the air finally runs out. Breathe earlier, where the next meaning chunk can begin intact.
+
+## 12. Prompt for re-research and deeper verification
+
+<!-- level:4 role:claim -->
+This topic sits across speech breathing, prosody, syntax, and L2 fluency. 「English breathing」で検索するだけではteaching adviceに偏りやすい。For a serious re-check, decompose the phenomenon before searching.
+
+<!-- level:3 role:analysis -->
+The prompt below is designed to verify the topic again with future evidence or another model. It separates primary studies from reviews, reading from spontaneous conversation, and evidence about Japanese learners from broad generalization.
+
+<!-- level:5 role:implication -->
+The purpose of promptification is not to freeze this article’s conclusion. It is to make the process **repeatable even when new evidence forces the conclusion to change.**
+
+```text
+You are a researcher working across phonetics, psycholinguistics, respiratory physiology, and second-language acquisition.
+Topic: “Where do inhalations actually occur in English speech, and where should learners breathe?”
+
+1. Separate these terms before searching:
+   - silent pause / filled pause
+   - inhalation / breath pause
+   - breath group
+   - intonational phrase / tone unit
+   - thought group
+   - syntactic boundary
+   - speech planning
+2. Search separately for reviews since 2010, classic primary studies, and primary studies from the last three years.
+3. For each study, record sample size, language, reading vs. spontaneous speech, whether respiration was physiologically measured or pauses were inferred acoustically, and the main result.
+4. Never equate “pause” with “inhalation.”
+5. Do not generalize boundary-alignment rates from read speech directly to spontaneous conversation.
+6. Separate effects of upcoming utterance length, syntactic boundaries, discourse boundaries, speech rate, and lexical-retrieval load.
+7. Search Japanese-L1 English-learner studies separately, and do not confuse L1-language effects with proficiency effects.
+8. Label claims as FACT, AUTHOR INTERPRETATION, or PEDAGOGICAL PROPOSAL.
+9. If studies conflict, examine task, measurement, participants, and speech-rate differences before resolving the conflict.
+10. Create five original English sentences of about 20–30 words and mark multiple possible “small boundary /,” “inhalation candidate //,” and “avoid splitting ×” versions.
+11. Attach a verifiable DOI, PubMed, publisher, or society-journal link to every major factual claim.
+12. Avoid “native speakers always…” and “Japanese speakers always…” unless replicated evidence genuinely supports it.
+```
+
+## 13. References and resources
+
+- Redford, M. A., Kallay, J., & Mayr, U. (2026). [Pausing to breathe and the speech–language relationship in production](https://doi.org/10.1016/j.jml.2026.104763). *Journal of Memory and Language, 149*, 104763.
+- Winkworth, A. L., Davis, P. J., Ellis, E., & Adams, R. D. (1994). [Variability and consistency in speech breathing during reading: lung volumes, speech intensity, and linguistic factors](https://pubmed.ncbi.nlm.nih.gov/8084185/). *Journal of Speech and Hearing Research, 37*(3), 535–556.
+- Winkworth, A. L., Davis, P. J., Adams, R. D., & Ellis, E. (1995). [Breathing patterns during spontaneous speech](https://pubmed.ncbi.nlm.nih.gov/7731204/). *Journal of Speech and Hearing Research*.
+- Grosjean, F., & Collins, M. (1979). [Breathing, pausing and reading](https://pubmed.ncbi.nlm.nih.gov/482374/). *Phonetica, 36*(2), 98–114.
+- Włodarczak, M., & Heldner, M. (2017). [Respiratory Constraints in Verbal and Non-verbal Communication](https://pmc.ncbi.nlm.nih.gov/articles/PMC5434352/). *Frontiers in Psychology, 8*, 708.
+- Conrad, B., & Schönle, P. (1979). [Speech and respiration](https://pubmed.ncbi.nlm.nih.gov/454139/). *Archiv für Psychiatrie und Nervenkrankheiten, 226*(4), 251–268.
+- Yang, X., Shen, X., Li, W., & Yang, Y. (2014). [How Listeners Weight Acoustic Cues to Intonational Phrase Boundaries](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0102166). *PLOS ONE, 9*(7), e102166.
+- Yubune, E., & Tabuchi, R. (2013). [An Analysis on the Duration of Breath Groups in a Speech Corpus of Movies](https://doi.org/10.24539/let.50.0_23). *Language Education & Technology, 50*, 23–41.
+- Coulange, S., & de Jong, N. H. (2026). [Fluency assessment: Incorporating syntactic distance in a new measure of pause location](https://doi.org/10.1075/jslp.25042.cou). *Journal of Second Language Pronunciation*.
+- Mizuguchi, S., & Tateishi, K. (2025). [Prosodic boundary processing is language-dependent](https://doi.org/10.3765/plsa.v10i1.5884). *Proceedings of the Linguistic Society of America, 10*(1).
+- Lester, R. A., & Hoit, J. D. (2014). [Nasal and oral inspiration during natural speech breathing](https://pubmed.ncbi.nlm.nih.gov/24129013/). *Journal of Speech, Language, and Hearing Research, 57*(3), 734–742.
