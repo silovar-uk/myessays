@@ -76,7 +76,7 @@ abstract: "アルテリックスを「ノーコードのデータ分析ソフト
 
 [マイクロソフト公式「パワークエリとは何か」（What Is Power Query?）](https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query) ／ [タブロー公式「タブロー・プレップについて」（About Tableau Prep）](https://help.tableau.com/current/prep/en-us/prep_about.htm) ／ [パイソン公式ドキュメント「パイソン入門」（The Python Tutorial）](https://docs.python.org/3/tutorial/index.html) ／ [アルテリックス公式「データソース」（Data Sources）](https://help.alteryx.com/current/ja/designer/data-sources.html)
 
-## 4. 1997年の地理データ会社から、2025年の統合分析基盤まで役割は広がった
+## 4. 1997年の創業から、2025年の統合分析基盤まで役割は広がった
 
 アルテリックスの歴史をたどると、「最初から今のノーコード分析基盤だった」という理解も崩れる。米国証券取引委員会（SEC）へ提出された2018年の年次報告書によると、会社は1997年3月にカリフォルニア州でエスアールシー有限責任会社（SRC, LLC）として組織され、同年11月に主要事業を開始した。2010年3月にアルテリックス有限責任会社（Alteryx, LLC）へ改称し、2011年3月にアルテリックス株式会社（Alteryx, Inc.）へ移行した。
 
