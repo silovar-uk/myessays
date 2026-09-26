@@ -146,13 +146,13 @@ TOTOの100年史によると、このテレビCMは1982年に放送された。�
 ## 6. 「Just Do It.」と「Think Different.」は、目的語を空席にする
 
 <!-- level:4 role:claim -->
-海外へ移ると、文法そのものに空席をつくるコピーが目立つ。Nikeの「Just Do It.」とAppleの「Think Different.」である。
+海外へ移ると、文法そのものに空席をつくるコピーが目立つ。ナイキ（Nike）の「Just Do It.」とアップル（Apple）の「Think Different.」である。
 
 <!-- level:2 role:description -->
-Nikeは「Just Do It.」を1988年に始めた広告コピーと説明し、困難でも始める、試す、前へ進むための呼びかけと位置づけている。だが文だけを見れば、「何をやるのか」は書いていない。
+ナイキ（Nike）は「Just Do It.」を1988年に始めた広告コピーと説明し、困難でも始める、試す、前へ進むための呼びかけと位置づけている。だが文だけを見れば、「何をやるのか」は書いていない。
 
 <!-- level:1 role:evidence -->
-Appleの「Think Different.」も同じである。Appleは2026年の創立50周年資料でも「既存の規範に疑問を抱き、何ができるかを想像する人々」を自社の精神として語っている。一方、1990年代後半の広告は、製品機能よりも、異なる考え方を象徴する人物像と短い言葉を前に出した。
+アップル（Apple）の「Think Different.」も同じである。アップル（Apple）は2026年の創立50周年資料でも「既存の規範に疑問を抱き、何ができるかを想像する人々」を自社の精神として語っている。一方、1990年代後半の広告は、製品機能よりも、異なる考え方を象徴する人物像と短い言葉を前に出した。
 
 <!-- level:3 role:analysis -->
 両者は動詞が強い。「やれ」「違って考えろ」。しかし、行動の目的語や思考の対象を埋めない。だからランニングを始める人も、新しい事業を始める人も、創作する人も、自分の課題へ接続できる。**命令の強さと内容の自由度が同時に高い**。
@@ -185,15 +185,15 @@ Appleの「Think Different.」も同じである。Appleは2026年の創立50周
 余白は、名詞を曖昧にするだけでは作れない。文法上の主役を読み手に渡すことでも作れる。「あなた向けです」と書くより、**あなたが話者になる文**のほうが自己参照を起こしやすい場合がある。
 
 <!-- level:1 role:source -->
-[California Milk Processor Board「About Us」](https://www.gotmilk.com/about-us/) ／ [L'Oréal Paris「Worth itの生みの親」](https://www.lorealparisjapan.jp/the-final-copy-of-ilon-specht)
+[カリフォルニア牛乳加工業者協会（California Milk Processor Board）「About Us」](https://www.gotmilk.com/about-us/) ／ [ロレアル パリ（L'Oréal Paris）「Worth itの生みの親」](https://www.lorealparisjapan.jp/the-final-copy-of-ilon-specht)
 
 ## 8. 「Think Small.」は、空欄ではなく「常識の反転」で読者を止める
 
 <!-- level:4 role:claim -->
-Volkswagenの「Think Small.」は、空欄を埋めさせるより先に、当時の自動車広告の前提をひっくり返した。
+フォルクスワーゲン（Volkswagen）の「Think Small.」は、空欄を埋めさせるより先に、当時の自動車広告の前提をひっくり返した。
 
 <!-- level:2 role:description -->
-1959年の米国では、車の大きさや豪華さが価値として語られやすかった。その中でDDBは、小さなフォルクスワーゲン・ビートルを紙面の小さな位置に置き、「小さく考えよう」と言った。米国広告業協会の歴史紹介も、このキャンペーンが当時の自動車広告と逆の方向を選んだと説明している。
+1959年の米国では、車の大きさや豪華さが価値として語られやすかった。その中で広告会社DDBは、小さなフォルクスワーゲン・ビートルを紙面の小さな位置に置き、「小さく考えよう」と言った。米国広告業協会の歴史紹介も、このキャンペーンが当時の自動車広告と逆の方向を選んだと説明している。
 
 <!-- level:1 role:evidence -->
 重要なのは、「Think Small.」だけで広告を終えていないことだ。本文では燃費、油量、保険料、修理費など、小さいことの実利を具体的に説明した。見出しは反転しているが、証拠まで曖昧にしてはいない。
@@ -205,7 +205,7 @@ Volkswagenの「Think Small.」は、空欄を埋めさせるより先に、当�
 だから余白は、ページ全体をふわっとさせる技術ではない。むしろ、**どこを開き、どこを閉じるかを分業する技術**である。
 
 <!-- level:1 role:source -->
-[4A's「Truth in Advertising: DDB and VW Encourage the World to Think Small」](https://www.aaaa.org/blog/timeline-event/vw-encourages-world-think-small/) ／ [German Historical Institute「Doyle Dane Bernbach」](https://www.transatlanticperspectives.org/entries/doyle-dane-bernbach/)
+[米国広告業協会（4A's）「Truth in Advertising: DDB and VW Encourage the World to Think Small」](https://www.aaaa.org/blog/timeline-event/vw-encourages-world-think-small/) ／ [ドイツ歴史研究所（German Historical Institute）「Doyle Dane Bernbach」](https://www.transatlanticperspectives.org/entries/doyle-dane-bernbach/)
 
 ## 9. 心理学を当てはめると、共通するのは「自分で処理した情報」だった
 
@@ -294,11 +294,11 @@ Volkswagenの「Think Small.」は、空欄を埋めさせるより先に、当�
 - [日産「セレナ CM」公式FAQ](https://faq2.nissan.co.jp/faq/show/11915?site_domain=default)
 - [タワーレコード「NO MUSIC, NO LIFE.」](https://nomusicnolife.jp/)
 - [TOTO「100年史」](https://jp.toto.com/company/profile/library/)
-- [Nike Newsroom](https://about.nike.com/ja/newsroom)
-- [Apple Newsroom](https://www.apple.com/jp/newsroom/)
-- [California Milk Processor Board / got milk?](https://www.gotmilk.com/about-us/)
-- [L'Oréal Paris「Worth itの生みの親」](https://www.lorealparisjapan.jp/the-final-copy-of-ilon-specht)
-- [4A's「Truth in Advertising: DDB and VW Encourage the World to Think Small」](https://www.aaaa.org/blog/timeline-event/vw-encourages-world-think-small/)
+- [ナイキ公式ニュースルーム](https://about.nike.com/ja/newsroom)
+- [アップル公式ニュースルーム](https://www.apple.com/jp/newsroom/)
+- [カリフォルニア牛乳加工業者協会（California Milk Processor Board）／got milk?](https://www.gotmilk.com/about-us/)
+- [ロレアル パリ（L'Oréal Paris）「Worth itの生みの親」](https://www.lorealparisjapan.jp/the-final-copy-of-ilon-specht)
+- [米国広告業協会（4A's）「Truth in Advertising: DDB and VW Encourage the World to Think Small」](https://www.aaaa.org/blog/timeline-event/vw-encourages-world-think-small/)
 - [Rogers, Kuiper & Kirker（1977）](https://pubmed.ncbi.nlm.nih.gov/909043/)
 - [Symons & Johnson（1997）](https://pubmed.ncbi.nlm.nih.gov/9136641/)
 - [Slamecka & Graf（1978）](https://doi.org/10.1037/0278-7393.4.6.592)
