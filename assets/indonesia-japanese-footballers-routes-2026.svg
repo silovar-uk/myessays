@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" rx="36" fill="#f7f7f4"/>
+  <text x="70" y="86" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#171717">日本人選手の経路は「日本→インドネシア」だけではない</text>
+  <text x="70" y="130" font-family="system-ui, sans-serif" font-size="22" fill="#555">代表例を単純化した模式図。矢印はリーグの上下関係を示さない。</text>
+
+  <text x="90" y="220" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#171717">野津田岳人</text>
+  <rect x="275" y="182" width="170" height="56" rx="18" fill="#ecece7"/><text x="360" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">日本</text>
+  <text x="468" y="218" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="515" y="182" width="170" height="56" rx="18" fill="#ecece7"/><text x="600" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">タイ</text>
+  <text x="708" y="218" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="755" y="182" width="260" height="56" rx="18" fill="#d9d9d1"/><text x="885" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#171717">インドネシア</text>
+
+  <text x="90" y="330" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#171717">田中幸大</text>
+  <rect x="275" y="292" width="170" height="56" rx="18" fill="#ecece7"/><text x="360" y="328" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">日本</text>
+  <text x="468" y="328" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="515" y="292" width="170" height="56" rx="18" fill="#ecece7"/><text x="600" y="328" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">シンガポール</text>
+  <text x="708" y="328" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="755" y="292" width="260" height="56" rx="18" fill="#d9d9d1"/><text x="885" y="328" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#171717">インドネシア</text>
+
+  <text x="90" y="440" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#171717">山寺優作</text>
+  <rect x="275" y="402" width="130" height="56" rx="18" fill="#ecece7"/><text x="340" y="438" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">日本</text>
+  <text x="424" y="438" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="467" y="402" width="130" height="56" rx="18" fill="#ecece7"/><text x="532" y="438" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">タイ</text>
+  <text x="616" y="438" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="659" y="402" width="130" height="56" rx="18" fill="#ecece7"/><text x="724" y="438" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">日本</text>
+  <text x="808" y="438" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="851" y="402" width="130" height="56" rx="18" fill="#ecece7"/><text x="916" y="438" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">タイ</text>
+  <text x="1000" y="438" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="1043" y="402" width="110" height="56" rx="18" fill="#d9d9d1"/><text x="1098" y="438" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#171717">インドネシア</text>
+
+  <text x="90" y="550" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#171717">廣瀬慧</text>
+  <rect x="275" y="512" width="140" height="56" rx="18" fill="#ecece7"/><text x="345" y="548" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">欧州</text>
+  <text x="438" y="548" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="485" y="512" width="180" height="56" rx="18" fill="#ecece7"/><text x="575" y="548" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#171717">マレーシア</text>
+  <text x="688" y="548" font-family="system-ui, sans-serif" font-size="25" fill="#777">→</text>
+  <rect x="735" y="512" width="280" height="56" rx="18" fill="#d9d9d1"/><text x="875" y="548" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#171717">インドネシア</text>
+
+  <text x="70" y="625" font-family="system-ui, sans-serif" font-size="19" fill="#555">経歴は代表的な移動を簡略化。完全な所属履歴ではない。</text>
+</svg>
