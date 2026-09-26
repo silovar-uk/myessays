@@ -1,7 +1,7 @@
 ---
 id: software-engine-core-processing-metaphor
-title: "コンピュータの“engine”は、what does it actually run?"
-subtitle: "Search、browser、database、game、AI――same word, different responsibilities"
+title: "コンピュータの「engine」は、what is it actually running?"
+subtitle: "Search、browser、database、game、AI――same word, different responsibility boundaries"
 created: "2026-09-26"
 updated: "2026-09-26"
 type: "リサーチエッセイ"
@@ -9,11 +9,11 @@ status: "完成"
 tags: ["コンピュータ", "ソフトウェア", "エンジン", "アーキテクチャ", "用語"]
 keywords: ["ソフトウェアエンジン", "search engine", "rendering engine", "JavaScript engine", "database engine", "inference engine", "game engine"]
 grow: 5
-abstract: "search engine、rendering engine、JavaScript engine、database engine、inference engine、game engine。computer fieldでは、まったく違う仕組みに同じ「エンジン」という語が使われる。本稿は、その語を厳密な規格名ではなく「inputを受け、規則やstateを使ってcore processingを繰り返し、結果や新しいstateを返す部分」を指す建築上の比喩として整理する。語源、バベッジの計算機、1970年代のinference engine、現代のブラウザーやデータベースまでたどり、runtime、library、framework、compilerなどとの違いも説明する。"
+abstract: "なぜcomputerにはengineがこんなに多いのか。search、rendering、JavaScript、database、inference、gameの実例を比べ、engineをformal categoryではなくcore processingとresponsibility boundaryを示す言葉として整理する。語源、バベッジ、1970年代のexpert systems、modern softwareまでたどり、runtime、library、framework、compilerとの違いも説明する。"
 ---
 
-# コンピュータの“engine”は、what does it actually run?
-## Search、browser、database、game、AI――same word, different responsibilities
+# コンピュータの「engine」は、what is it actually running?
+## Search、browser、database、game、AI――same word, different responsibility boundaries
 
 コンピュータの説明を読んでいると、やたらとエンジンが出てくる。search engine。rendering engine。ジャバスクリプト（JavaScript）エンジン。database engine。inference engine。game engine。パワークエリ（Power Query）は自らを「data transformation and data preparation engine」と呼ぶ。アンリアル・エンジン（Unreal Engine）の中には、さらにaudio engineまである。
 
@@ -21,17 +21,17 @@ abstract: "search engine、rendering engine、JavaScript engine、database engin
 
 しかも、名前だけでは共通点が見えにくい。search engineは文書を探す。rendering engineは画面を作る。JavaScript engineはプログラムを実行する。データベースのstorage engineはデータを保存し、inference engineは規則から結論を出す。game engineに至っては、描画、物理計算、音、input、スクリプトなどをまとめた巨大な開発基盤である。
 
-Bottom line first、、computer fieldの「エンジン」は、統一された厳密な技術分類ではない。多くの場合、**ある種類のinputを受け、規則・algorithm・データ・stateを使ってcore processingを繰り返し、outputまたは新しいstateを返す部分**を指す。自動車のエンジンのように「whole productを動かす中核」という比喩は確かにある。But、それだけでは説明しきれない。エンジンという語そのものが、自動車よりずっと古いからである。
+Bottom line first: コンピュータ分野（computer field）の「engine」は、統一された厳密な技術分類ではない。多くの場合、**ある種類のinputを受け、規則・algorithm・データ・stateを使ってcore processingを繰り返し、outputまたは新しいstateを返す部分**を指す。自動車のエンジンのように「whole productを動かすcore」という比喩は確かにある。But that aloneでは説明しきれない。engineという語そのものが、自動車よりずっと古いからである。
 
-本稿では、まず「エンジン」という語が何を意味してきたかを確認し、その後、現代のソフトウェアで何が共通し、どこから共通しなくなるかを実例で確かめる。最後には、技術文書で「○○エンジン」と出会ったとき、名前に圧倒されず中身を読むための見方まで整理する。
+本稿では、まず「engine」という語が何を意味してきたかを確認し、その後、現代のソフトウェアで何が共通し、どこから共通しなくなるかを実例で確かめる。最後には、技術文書で「○○エンジン」と出会ったとき、名前に圧倒されず中身を読むための見方まで整理する。
 
-[MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [エピック・ゲームズ公式「アンリアル・エンジンの音声」（Audio in Unreal Engine）](https://dev.epicgames.com/documentation/unreal-engine/audio-in-unreal-engine-5)
+[MDNウェブ文書「engine」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [エピック・ゲームズ公式「アンリアル・エンジンの音声」（Audio in Unreal Engine）](https://dev.epicgames.com/documentation/unreal-engine/audio-in-unreal-engine-5)
 
-> **情報基準日：2026年9月26日。** 本稿は「エンジン」という語に一つの公式定義があるとは扱わない。分野ごとの公式文書で実際の用法を比較し、共通項を筆者の整理として提示する。また、現代ソフトウェアで最初に「エンジン」と呼ばれた仕組みを一つに特定できる信頼性の高い資料は確認できなかったため、「最初のソフトウェアエンジン」を断定しない。
+> **情報基準日：2026年9月26日。** 本稿は「engine」という語に一つの公式定義があるとは扱わない。分野ごとの公式文書で実際の用法を比較し、共通項を筆者の整理として提示する。また、現代ソフトウェアで最初に「engine」と呼ばれた仕組みを一つに特定できる信頼性の高い資料は確認できなかったため、「最初のソフトウェアエンジン」を断定しない。
 
-## 1. 「エンジン」は規格名ではなく、「中で処理を回す部分」を示す建築上の比喩である
+## 1. 「engine」は規格名ではなく、「中で処理を回す部分」を示す建築上の比喩である
 
-まず大前提として、エンジンは中央処理装置（CPU）やハイパーテキスト記述言語（HTML）のように、対象が明確に決まった用語ではない。MDNウェブ文書も「エンジンは文脈によって複数の意味を持つ」としたうえで、JavaScript engineとrendering engineを別々に説明している。In other words、名前だけ見て「これがエンジンの正式定義だ」と一つに固定するほうが危ない。
+まず大前提として、エンジンは中央処理装置（CPU）やハイパーテキスト記述言語（HTML）のように、対象が明確に決まった用語ではない。MDNウェブ文書も「エンジンは文脈によって複数の意味を持つ」としたうえで、JavaScript engineとrendering engineを別々に説明している。In other words, 名前だけ見て「これがエンジンの正式定義だ」と一つに固定するほうが危ない。
 
 それでも、実際の用法にはかなり強い共通項がある。エンジンと呼ばれるものは、しばしば「外側から何かを渡される」「内部の規則や仕組みで処理する」「結果を返す」「同じ処理を何度も呼び出せる」という形を持つ。検索語を渡せば候補を探して順位づけする。プログラムを渡せば解析して実行する。文書とスタイル情報を渡せば画面へ変換する。規則と事実を渡せば判断を返す。
 
@@ -39,25 +39,25 @@ Bottom line first、、computer fieldの「エンジン」は、統一された�
 
 The important point is、、「エンジン＝速いもの」「エンジン＝人工知能」「エンジン＝裏側のプログラム」と覚えないことである。速いかどうかは性能評価の話であり、人工知能かどうかは機能の話であり、裏側にあるかどうかは配置の話である。エンジンという名前が示すのは、それらよりも**システムの中で何を処理する責任を持つか**という役割に近い。
 
-So、「エンジンとは何か」という問いは、「何という種類のソフトウェアか」より「この製品は、どの処理の中心をエンジンとして切り出しているのか」と読み替えたほうが理解しやすい。エンジンはcomponent名というより、responsibility scopeの名前なのである。
+So, 「エンジンとは何か」という問いは、「何という種類のソフトウェアか」より「この製品は、どの処理の中心をエンジンとして切り出しているのか」と読み替えたほうが理解しやすい。engineはcomponent名というより、responsibility scopeの名前なのである。
 
-[MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [MDNウェブ文書「rendering engine」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering)
+[MDNウェブ文書「engine」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [MDNウェブ文書「rendering engine」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering)
 
-## 2. 「エンジン」は本来「モーター」より広い言葉で、計算機も19世紀からエンジンだった
+## 2. 「engine」は本来「モーター」より広い言葉で、計算機も19世紀からエンジンだった
 
-At this point、、自動車から離れる必要がある。英語のエンジン（engine）は、もともと「燃料を燃やして回転力を生む装置」だけを意味した語ではない。語源辞典では、1300年ごろには機械装置、特に軍事用の仕掛けを指し、さらに技能、工夫、仕掛けといった意味を持っていたとされる。18世紀になって、エネルギーを機械的な力へ変える装置という意味が強まり、19世紀には蒸気機関との結びつきが強くなった。
+At this point, 、自動車から離れる必要がある。英語のエンジン（engine）は、もともと「燃料を燃やして回転力を生む装置」だけを意味した語ではない。語源辞典では、1300年ごろには機械装置、特に軍事用の仕掛けを指し、さらに技能、工夫、仕掛けといった意味を持っていたとされる。18世紀になって、エネルギーを機械的な力へ変える装置という意味が強まり、19世紀には蒸気機関との結びつきが強くなった。
 
-この古い「工夫された機械・仕掛け」という意味を知ると、コンピュータ史の妙な事実が急に自然になる。チャールズ・バベッジ（Charles Babbage）は1821年に数表を自動計算する階差機関（Difference Engine）の設計を始め、1834年にはより一般的な計算を行う解析機関（Analytical Engine）を構想した。In other words、電子計算機が生まれる一世紀以上前から、計算する機械が文字どおり「エンジン」と呼ばれていた。
+この古い「工夫された機械・仕掛け」という意味を知ると、コンピュータ史の妙な事実が急に自然になる。チャールズ・バベッジ（Charles Babbage）は1821年に数表を自動計算する階差機関（Difference Engine）の設計を始め、1834年にはより一般的な計算を行う解析機関（Analytical Engine）を構想した。In other words, 電子計算機が生まれる一世紀以上前から、計算する機械が文字どおり「engine」と呼ばれていた。
 
-解析機関には、数や途中結果を置く「記憶部」と、算術処理を行う「演算部」を分ける発想があった。コンピュータ歴史博物館は、条件分岐や反復処理など現代の計算機に通じる特徴も説明している。だから「コンピュータとエンジンという語の相性」は、自動車ソフトの比喩から突然始まったわけではない。
+解析機関には、数や途中結果を置く「記憶部」と、算術処理を行う「演算部」を分ける発想があった。コンピュータ歴史博物館は、条件分岐や反復処理など現代の計算機に通じる特徴も説明している。だから「コンピュータとengineという語の相性」は、自動車ソフトの比喩から突然始まったわけではない。
 
-But、ここで歴史をきれいにつなぎすぎてはいけない。同博物館は、バベッジから現代の電子計算機へ「連続した発展の線」があったわけではなく、多くの原理は20世紀にバベッジの仕事とは独立に再発明されたと明記している。So、「現代のsearch engineという呼び方は解析機関から直接受け継がれた」とまでは言えない。
+But、ここで歴史をきれいにつなぎすぎてはいけない。同博物館は、バベッジから現代の電子計算機へ「連続した発展の線」があったわけではなく、多くの原理は20世紀にバベッジの仕事とは独立に再発明されたと明記している。So, 「現代のsearch engineという呼び方は解析機関から直接受け継がれた」とまでは言えない。
 
-それでも重要なのは、エンジンという語が最初から「動力源」だけではなく、**ある仕事を自動で進めるために組み立てられた仕掛け**を指してきたことである。そう考えると、ソフトウェアのエンジンは比喩ではあるが、思ったほど突飛な比喩でもない。
+それでも重要なのは、engineという語が最初から「動力源」だけではなく、**ある仕事を自動で進めるために組み立てられた仕掛け**を指してきたことである。そう考えると、ソフトウェアのエンジンは比喩ではあるが、思ったほど突飛な比喩でもない。
 
 [オンライン語源辞典「engineの語源と歴史」（Engine - Etymology, Origin & Meaning）](https://www.etymonline.com/word/engine) ／ [コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [コンピュータ歴史博物館「簡史」（A Brief History）](https://www.computerhistory.org/babbage/history)
 
-## 3. 同じ「エンジン」でも、実際には四つくらいの仕事に分けると見通しがよくなる
+## 3. 同じ「engine」でも、実際には四つくらいの仕事に分けると見通しがよくなる
 
 現代の用例を並べると、エンジンは何でもありに見える。そこで、名前ではなく「何を変換・実行しているか」で分類してみる。厳密な業界標準ではなく、理解のための整理である。
 
@@ -78,9 +78,9 @@ But、ここで歴史をきれいにつなぎすぎてはいけない。同博�
 
 Here is one intentionally over-serious test。「そのエンジンを周囲から外したら、何が残るか」を考える。これを本稿では便宜上「エンジン除去テスト」と呼ぶ。正式な工学用語ではないが、エンジンという曖昧な語のresponsibility scopeを読むには役に立つ。
 
-まずウェブブラウザーで試す。クローム（Chrome）で使われるブイエイトは、ジャバスクリプトを実行する。しかしブイエイトの公式文書は、文書オブジェクトモデル（DOM）は通常JavaScript engineが提供するものではなく、クローム側が提供すると説明している。In other words、ブイエイトだけ取り出しても「ウェブブラウザー」にはならない。実際、ブイエイトはノード・ジェイエス（Node.js）のようなブラウザー外のruntimeでも使われる。
+まずウェブブラウザーで試す。クローム（Chrome）で使われるブイエイトは、ジャバスクリプトを実行する。しかしブイエイトの公式文書は、文書オブジェクトモデル（DOM）は通常JavaScript engineが提供するものではなく、クローム側が提供すると説明している。In other words, ブイエイトだけ取り出しても「ウェブブラウザー」にはならない。実際、ブイエイトはノード・ジェイエス（Node.js）のようなブラウザー外のruntimeでも使われる。
 
-次に、マイエスキューエル（MySQL）で試す。公式文書では、storage engineは表の種類に応じて構造化照会言語（SQL）の処理を担うcomponentで、イノディービー（InnoDB）など複数のエンジンを扱える。さらにstorage engineを読み込んだり外したりできるreplaceableな構造が説明されている。ここでは「エンジン」がかなり文字どおり、交換可能な中核componentとして見える。
+次に、マイエスキューエル（MySQL）で試す。公式文書では、storage engineは表の種類に応じて構造化照会言語（SQL）の処理を担うcomponentで、イノディービー（InnoDB）など複数のエンジンを扱える。さらにstorage engineを読み込んだり外したりできるreplaceableな構造が説明されている。ここでは「engine」がかなり文字どおり、交換可能な中核componentとして見える。
 
 パワークエリでも境界は明確である。マイクロソフトの説明では、パワークエリは変換を担うが、結果を保存する一つの固定された宛先を持たない。結果をどこへ読み込むかは、エクセル（Excel）やパワー・ビーアイ（Power BI）など、パワークエリを載せている製品やサービス側が決める。エンジンは「データを変換する責任」を受け持ち、その外側にinput画面や保存先がある。
 
@@ -92,11 +92,11 @@ What this test shows is、「エンジンは必ず独立して動くcomponent」
 
 ## 5. 1970年代の「inference engine」は、知識と処理方法を分ける発想をはっきり見せた
 
-ソフトウェア史で「エンジン」という考え方が分かりやすく現れる例の一つが、1970年代の専門家システムである。専門家システムは、ある分野の知識を規則として蓄え、その規則を使って診断や判断を行わせようとした人工知能の一系統だった。
+ソフトウェア史で「engine」という考え方が分かりやすく現れる例の一つが、1970年代の専門家システムである。専門家システムは、ある分野の知識を規則として蓄え、その規則を使って診断や判断を行わせようとした人工知能の一系統だった。
 
 スタンフォード大学で1970年代半ばに開発されたマイシン（MYCIN）は、細菌感染症に対する抗菌薬選択を支援する規則型システムだった。その後、研究者は医療固有の知識と、規則を選び適用して結論へ進む仕組みを分けられないかと考えた。そこで作られたエマイシン（EMYCIN）は、マイシンから感染症の知識を外し、別分野の知識ベースにも使える枠組みへ一般化した。
 
-1986年のスタンフォード大学の報告書は、エマイシンについて「inference engineと知識表現の構文を提供するが、それ自体は問題固有の知識を持たない」と説明している。これはエンジンという語の便利さを非常によく示す。**何を知っているか**と**その知識をどう使って推論するか**を分離し、後者をreusableな処理機構として切り出しているからである。
+1986年のスタンフォード大学の報告書は、エマイシンについて「inference engineと知識表現の構文を提供するが、それ自体は問題固有の知識を持たない」と説明している。これはengineという語の便利さを非常によく示す。**何を知っているか**と**その知識をどう使って推論するか**を分離し、後者をreusableな処理機構として切り出しているからである。
 
 もちろん、これが「ソフトウェアエンジン」という語の最初の用法だと断定することはできない。もっと古い使用例があり得るし、分野ごとに独立して広がった可能性もある。ただ、少なくとも1970年代には、現在のrules engineやinference engineにも通じる「知識・規則と、それを動かす処理系を分ける」という設計が明確に現れていた。
 
@@ -106,13 +106,13 @@ What this test shows is、「エンジンは必ず独立して動くcomponent」
 
 ## 6. エンジン、runtime、library、frameworkは似ているが、見ている軸が違う
 
-初心者が混乱しやすいのは、「エンジン」と周辺語が互いに排他的ではないことである。一つのソフトウェアが、見方によってlibraryでもエンジンでもあり得る。だから単語を箱の名前として覚えるより、「何を説明するための言葉か」を分けたほうがよい。
+初心者が混乱しやすいのは、「engine」と周辺語が互いに排他的ではないことである。一つのソフトウェアが、見方によってlibraryでもエンジンでもあり得る。だから単語を箱の名前として覚えるより、「何を説明するための言葉か」を分けたほうがよい。
 
 - **エンジン**：特定領域のcore processingを担うという、役割・responsibility scopeを表す言葉。何をinputとして何を処理するかに注目する。
 - **runtime（runtime）**：プログラムを動かすために必要な環境全体を指す。ノード・ジェイエスはブイエイトだけでなく、入outputやイベント処理など周囲の機能も含むため、JavaScript engineそのものより広い。
 - **library**：他のプログラムから呼び出して使うreusableなコードの集合である。エンジンがlibraryとして提供されることもある。
 - **framework**：アプリケーション全体の構造や拡張点を用意し、その枠へ利用者の処理を組み込ませる。エンジンを内部に持つこともある。
-- **compiler／interpreter**：プログラム言語を翻訳・解析・実行する方法やcomponentを指す。現代のJavaScript engineは、解釈実行だけでなく実行時コンパイルなど複数の技法を組み合わせるため、「エンジン」はそれらを含む上位のまとまりとして使われる。
+- **compiler／interpreter**：プログラム言語を翻訳・解析・実行する方法やcomponentを指す。現代のJavaScript engineは、解釈実行だけでなく実行時コンパイルなど複数の技法を組み合わせるため、「engine」はそれらを含む上位のまとまりとして使われる。
 - **server**：ネットワーク越しの要求へ応答するプログラムや実行単位を指す。内部にsearch engineやdatabase engineを持つことがある。
 - **kernel**：オペレーティングシステムの中核として、プロセス、メモリー、機器などの資源を管理する部分である。「中核」という意味では似るが、役割はエンジンよりはるかに具体的である。
 
@@ -122,21 +122,21 @@ What this test shows is、「エンジンは必ず独立して動くcomponent」
 
 [MDNウェブ文書「JavaScript engine」（JavaScript engine）](https://github.com/mdn/content/blob/main/files/en-us/glossary/engine/javascript/index.md?plain=1) ／ [ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs)
 
-## 7. 「エンジン」という語の弱点は、便利すぎて境界をぼかせることである
+## 7. 「engine」という語の弱点は、便利すぎて境界をぼかせることである
 
-エンジンという語は便利だが、便利すぎる。厳密な規格語ではないため、狭いcomponentにも巨大な製品にも付けられる。storage engineのようにreplaceableな一部を指すこともあれば、アンリアル・エンジンのように開発環境全体に近い範囲を指すこともある。
+engineという語は便利だが、便利すぎる。厳密な規格語ではないため、狭いcomponentにも巨大な製品にも付けられる。storage engineのようにreplaceableな一部を指すこともあれば、アンリアル・エンジンのように開発環境全体に近い範囲を指すこともある。
 
-第一の弱点は、**名前だけでは境界が分からない**ことだ。「人工知能エンジン」「推薦エンジン」「分析エンジン」と書いてあっても、それが一個のlibraryなのか、複数サービスの集合なのか、単なる製品名なのかは別途確認しなければならない。エンジンという語だけでは、配置、規模、交換可能性、利用形態は保証されない。
+第一の弱点は、**名前だけでは境界が分からない**ことだ。「人工知能エンジン」「推薦エンジン」「分析エンジン」と書いてあっても、それが一個のlibraryなのか、複数サービスの集合なのか、単なる製品名なのかは別途確認しなければならない。engineという語だけでは、配置、規模、交換可能性、利用形態は保証されない。
 
 第二の弱点は、**強そうに聞こえる**ことである。エンジンには速度、推進力、中核という印象がある。しかし「○○エンジン」と名乗ること自体は、性能の証明ではない。高速性、精度、省メモリー、拡張性を判断するには、algorithm、実装、評価条件、比較対象を見る必要がある。
 
-第三の弱点は、**入れ子になると説明が循環する**ことである。「game engineのrendering engineのシェーダー処理」のように、階層ごとにエンジンという語が現れると、「結局どこが本当のエンジンなのか」と感じる。しかし、本当のエンジンが一つだけある必要はない。異なるresponsibility scopeごとに処理の中心があり、それぞれをエンジンと呼んでいるだけである。
+第三の弱点は、**入れ子になると説明が循環する**ことである。「game engineのrendering engineのシェーダー処理」のように、階層ごとにengineという語が現れると、「結局どこが本当のエンジンなのか」と感じる。しかし、本当のエンジンが一つだけある必要はない。異なるresponsibility scopeごとに処理の中心があり、それぞれをエンジンと呼んでいるだけである。
 
-この曖昧さは欠陥だけではない。ソフトウェア設計では「ここは検索を担当する」「ここは規則を評価する」「ここは描画する」というresponsibility boundaryを名前で示すことに価値がある。エンジンという語は、厳密な分類名としては弱いが、**設計者がどこを処理の中心と見なしているかを読む手掛かり**としては強い。
+この曖昧さは欠陥だけではない。ソフトウェア設計では「ここは検索を担当する」「ここは規則を評価する」「ここは描画する」というresponsibility boundaryを名前で示すことに価値がある。engineという語は、厳密な分類名としては弱いが、**設計者がどこを処理の中心と見なしているかを読む手掛かり**としては強い。
 
-だから批判的に読むとは、「エンジンという語を使うな」と言うことではない。「エンジンと書いてあるから分かった気にならない」ことである。
+だから批判的に読むとは、「engineという語を使うな」と言うことではない。「エンジンと書いてあるから分かった気にならない」ことである。
 
-[MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイエスキューエル公式「代替storage engine」（Alternative Storage Engines）](https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html) ／ [エピック・ゲームズ公式「アンリアル・エンジン入門」（Get Started）](https://dev.epicgames.com/documentation/unreal-engine/get-started)
+[MDNウェブ文書「engine」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイエスキューエル公式「代替storage engine」（Alternative Storage Engines）](https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html) ／ [エピック・ゲームズ公式「アンリアル・エンジン入門」（Get Started）](https://dev.epicgames.com/documentation/unreal-engine/get-started)
 
 ## 8. 「○○エンジン」と出会ったら、五つの質問でほぼ正体をつかめる
 
@@ -148,7 +148,7 @@ What this test shows is、「エンジンは必ず独立して動くcomponent」
 - **誰が呼び出すのか。** 利用者が直接使うのか、別のアプリケーション、runtime、serverが内部から呼ぶのかを確認する。
 - **何と交換・reuseできるのか。** 別のエンジンへ差し替えられるのか、他製品へ組み込めるのか、それともwhole productのブランド名に近いのかを見る。
 
-For example、「search engine」なら、検索語が入り、あらかじめ作られた索引などを参照し、関連する情報を順位づけして返す。グーグル検索（Google Search）の公式説明では、その前段に収集と索引登録があり、検索結果表示までを含む三段階で説明される。つまり「search engine」という一語の中にも、複数の処理工程がある。
+For example, 「search engine」なら、検索語が入り、あらかじめ作られた索引などを参照し、関連する情報を順位づけして返す。グーグル検索（Google Search）の公式説明では、その前段に収集と索引登録があり、検索結果表示までを含む三段階で説明される。つまり「search engine」という一語の中にも、複数の処理工程がある。
 
 「JavaScript engine」なら、プログラムが入り、言語仕様に従って解析・コンパイル・実行され、計算やstate changeが起きる。しかし画面の文書構造そのものはブラウザー側の責任である。「データ変換エンジン」なら、データと変換手順が入り、変換済みデータが出るが、保存先は外側の製品が決める場合がある。
 
@@ -162,12 +162,12 @@ Back to the first question。なぜコンピュータでは、何でもエンジ
 
 Before researching、、自動車の比喩をそのまま持ち込んで、「製品を動かす一番大事なcomponentだからエンジン」と説明すれば済むように見えた。確かに、その感覚は一部当たっている。しかし歴史をたどると、エンジンはもともと動力装置だけではなく、工夫された仕掛けや機械を指す広い語だった。バベッジの計算機も、自動車ソフトとは無関係な時代からエンジンだった。
 
-Compare modern usage and、さらに見え方が変わる。エンジンという語が指しているのは、最重要componentという順位より、**ここでは何を処理するのかというresponsibility boundary**であることが多い。ジャバスクリプトを実行する。文書を描画する。データを保存する。規則を評価する。物理stateを更新する。それぞれの「回す仕事」に名前を付けている。
+Compare modern usage and、さらに見え方が変わる。engineという語が指しているのは、最重要componentという順位より、**ここでは何を処理するのかというresponsibility boundary**であることが多い。ジャバスクリプトを実行する。文書を描画する。データを保存する。規則を評価する。物理stateを更新する。それぞれの「回す仕事」に名前を付けている。
 
 そして、境界の大きさは一定ではない。小さなreplaceablecomponentもエンジンなら、巨大なゲーム開発基盤もエンジンである。だから、単語そのものに厳密さを求めると失敗する。代わりに「何が入り、何を参照し、何を変え、誰から呼ばれ、何と交換できるか」を読む。
 
 そうすると、パソコンの中が機関室に見える感じは少し薄れる。
 
-そこにあるのは無数のモーターではない。**複雑な仕事を、それぞれの責任に切り分けて回すための境界線**である。「エンジン」という妙に力強い名前は、その境界に貼られた札だと思うと、かなり正体に近い。
+そこにあるのは無数のモーターではない。**複雑な仕事を、それぞれの責任に切り分けて回すための境界線**である。「engine」という妙に力強い名前は、その境界に貼られた札だと思うと、かなり正体に近い。
 
-[コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [スタンフォード大学「専門家システムの構築に関する報告」（Knowledge Systems Laboratory report）](https://i.stanford.edu/pub/cstr/reports/cs/tr/86/1094/CS-TR-86-1094.pdf)
+[コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [MDNウェブ文書「engine」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [スタンフォード大学「専門家システムの構築に関する報告」（Knowledge Systems Laboratory report）](https://i.stanford.edu/pub/cstr/reports/cs/tr/86/1094/CS-TR-86-1094.pdf)
