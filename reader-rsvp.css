@@ -54,7 +54,7 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-bullet { color: var(--faint, #9a948a); margin-inline-end: .15em; }
 
 .rsvp-card { display: grid; justify-items: center; gap: 14px; max-width: min(34em, 100%); text-align: center; }
-.rsvp-card[data-kind="figure"] { width: min(1040px, 100%); max-width: min(1040px, 100%); max-height: 100%; grid-template-rows: auto minmax(0, 1fr) auto auto auto; gap: 10px; }
+.rsvp-card[data-kind="figure"] { width: min(1040px, 100%); max-width: min(1040px, 100%); max-height: 100%; gap: 10px; }
 .rsvp-card-heading { margin: 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-soft, #4f4b45); font: 700 calc(var(--rsvp-size) * .56)/1.55 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
 .rsvp-card[data-kind="h3"] .rsvp-card-heading { font-size: calc(var(--rsvp-size) * .46); }
 .rsvp-card-title { margin: 0; font: 700 calc(var(--rsvp-size) * .72)/1.4 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
