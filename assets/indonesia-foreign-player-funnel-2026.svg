@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
   <rect width="1200" height="675" rx="36" fill="#f7f7f4"/>
-  <text x="70" y="88" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#171717">BRI Super League 2026/27 外国籍選手の「漏斗」</text>
-  <text x="70" y="132" font-family="system-ui, sans-serif" font-size="22" fill="#555">上限は、登録 → 試合登録 → 同時出場の順に絞られる</text>
+  <text x="70" y="88" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#171717">BRIスーパーリーグ2026/27 外国籍選手の「漏斗」</text>
+  <text x="70" y="132" font-family="system-ui, sans-serif" font-size="22" fill="#555">登録 → 試合登録 → 同時出場の順に上限が絞られる</text>
   <polygon points="130,205 1070,205 930,330 270,330" fill="#deded8"/>
   <polygon points="270,350 930,350 810,465 390,465" fill="#c8c8c0"/>
   <polygon points="390,485 810,485 720,575 480,575" fill="#abab9f"/>
   <text x="600" y="275" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#171717">クラブ登録　最大11人</text>
   <text x="600" y="420" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#171717">試合登録　最大9人</text>
   <text x="600" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#171717">同時出場　最大7人</text>
-  <text x="70" y="625" font-family="system-ui, sans-serif" font-size="20" fill="#555">Source: I.League, 2026/27 competition guidance</text>
+  <text x="70" y="625" font-family="system-ui, sans-serif" font-size="20" fill="#555">出典：Iリーグ（I.League）2026/27シーズン関連公式記事</text>
 </svg>
