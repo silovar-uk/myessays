@@ -7,7 +7,7 @@ updated: "2026-09-26"
 type: "リサーチエッセイ"
 status: "完成"
 tags: ["英語", "発音", "音声学", "第二言語習得", "日本語"]
-keywords: ["英語発音", "鼻音", "撥音", "モーラ", "音節子音", "子音連結", "nの発音", "connected speech"]
+keywords: ["英語発音", "鼻音", "撥音", "モーラ", "音節子音", "子音連結", "nの発音", "連続発話"]
 grow: 5
 abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一拍置くように発音するより、舌や唇の状態を保つ「伸ばし」と考えると発音しやすいのではないか。この直感を音声学から検証する。結論は半分当たりで半分危険だった。英語の鼻音は持続でき、音節子音では実際に子音そのものが音節の核になる一方、日本語の語末鼻音のほうが英語より長いという報告もある。効くのは長さではなく、「別のンを足す」から「子音の調音ジェスチャーを途切れさせず保つ」への認識転換である。"
 ---
@@ -42,7 +42,7 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 <!-- level:5 role:implication -->
 つまり「伸ばし」という比喩が効く最初の理由は、長さではない。文字の数え方をいったん忘れ、**子音にも時間幅と身体の姿勢がある**と思い出させてくれるからである。
 
-**主な根拠**：[文化庁「現代仮名遣い」](https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/gendaikana/honbun_dai1.html) ／ [「撥音便」の定義](https://kotobank.jp/word/%E6%92%A5%E9%9F%B3%E4%BE%BF-602231) ／ [Maekawa, “Production of the utterance-final moraic nasal in Japanese”](https://doi.org/10.1017/S0025100321000050)
+**主な根拠**：[文化庁「現代仮名遣い」](https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/gendaikana/honbun_dai1.html) ／ [「撥音便」の定義](https://kotobank.jp/word/%E6%92%A5%E9%9F%B3%E4%BE%BF-602231) ／ [前川喜久雄（Kikuo Maekawa）「日本語の発話末モーラ鼻音の生成（Production of the utterance-final moraic nasal in Japanese）」](https://doi.org/10.1017/S0025100321000050)
 
 ## 2. 英語の`n`は、瞬間ではなく「保てる状態」である
 
@@ -60,9 +60,9 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 
 ![有声歯茎鼻音[n]の発音時の口腔断面模式図。](https://commons.wikimedia.org/wiki/Special:Redirect/file/Voiced_alveolar_nasal.svg)
 
-*図2：有声歯茎鼻音[n]。舌で口腔を閉鎖しつつ、鼻腔側へ気流を通す。画像：Nardog / Tavin, Wikimedia Commons, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。*
+*図2：有声歯茎鼻音[n]。舌で口腔を閉鎖しつつ、鼻腔側へ気流を通す。画像：Nardog / Tavin、ウィキメディア・コモンズ（Wikimedia Commons）、 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。*
 
-**主な根拠**：[Essentials of Linguistics「子音の分類」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/) ／ [An Introduction to American English Phonetics「Nasals」](https://opentextbooks.rug.nl/americanenglishphonetics2/chapter/12-1-nasals/)
+**主な根拠**：[『言語学の基礎（Essentials of Linguistics）』「子音の分類」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/) ／ [『アメリカ英語音声学入門（An Introduction to American English Phonetics）』「鼻音（Nasals）」](https://opentextbooks.rug.nl/americanenglishphonetics2/chapter/12-1-nasals/)
 
 ## 3. ところが「日本語より長くする」は、証拠と逆向きになりうる
 
@@ -87,7 +87,7 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 > 子音の調音位置と気流・声の状態を、必要な区間だけ保つこと。  
 > そして、かなの「ン」を一拍追加する感覚から離れること。
 
-**主な根拠**：[森直哉「日本語と英語における語末鼻子音の長さの比較」](https://doi.org/10.57375/0002000027) ／ [Sato, “The Durations of Syllable-Final Nasals and the Mora Hypothesis in Japanese”](https://doi.org/10.1159/000261925)
+**主な根拠**：[森直哉「日本語と英語における語末鼻子音の長さの比較」](https://doi.org/10.57375/0002000027) ／ [佐藤由美子（Yumiko Sato）「音節末鼻音の持続時間と日本語のモーラ仮説（The Durations of Syllable-Final Nasals and the Mora Hypothesis in Japanese）」](https://doi.org/10.1159/000261925)
 
 ## 4. 日本語の「ん」は一種類に見えるが、実際の舌はかなり変身している
 
@@ -106,7 +106,7 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 <!-- level:5 role:implication -->
 日本語話者が英語の鼻音で失いやすいのは、鼻声そのものではなく、**一つの「ン」という便利な箱が、英語では別々に保存すべき調音位置まで畳んでしまうこと**なのかもしれない。伸ばしの感覚は、その箱をもう一度開く作業になる。
 
-**主な根拠**：[Maekawa (2021/2023)](https://doi.org/10.1017/S0025100321000050) ／ [Otakeほか「The representation of Japanese moraic nasals」](https://doi.org/10.1121/1.417239) ／ [Peperkampほか「On the perceptual origin of loanword adaptations」](https://doi.org/10.1017/S0952675708001425)
+**主な根拠**：[前川喜久雄（Kikuo Maekawa、2021/2023）](https://doi.org/10.1017/S0025100321000050) ／ [大竹孝司（Takashi Otake）ほか「日本語モーラ鼻音の表象（The representation of Japanese moraic nasals）」](https://doi.org/10.1121/1.417239) ／ [シャロン・ペペルカンプ（Sharon Peperkamp）ほか「借用語適応の知覚的起源（On the perceptual origin of loanword adaptations）」](https://doi.org/10.1017/S0952675708001425)
 
 ## 5. `button`や`cotton`では、子音が「音節の中心」になることさえある
 
@@ -125,7 +125,7 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 <!-- level:5 role:implication -->
 「伸ばす」という少々乱暴な言葉が、ここで別の輪郭を得る。英語を母音中心のカナ列へ戻すのではなく、**母音が弱くなっても子音だけで立てることを許す**。発音を足し算するより、むしろ余計な母音を引くための比喩なのである。
 
-**主な根拠**：[Introducing the IPA「Syllables」](https://ecampusontario.pressbooks.pub/introducingtheipa/chapter/syllables/) ／ [UC Berkeley “Examples of the Consonant [syllabic]”](https://linguistics.berkeley.edu/~kjohnson/English_Phonetics/cons_syllabic.html)
+**主な根拠**：[『国際音声記号入門（Introducing the IPA）』「音節（Syllables）」](https://ecampusontario.pressbooks.pub/introducingtheipa/chapter/syllables/) ／ [カリフォルニア大学バークレー校「音節子音の例（Examples of the Consonant [syllabic]）」](https://linguistics.berkeley.edu/~kjohnson/English_Phonetics/cons_syllabic.html)
 
 ## 6. この方法は鼻音だけではない。ただし、全部の英語音へ広げると壊れる
 
@@ -148,7 +148,7 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 
 *図3：「伸ばせるかテスト」。音韻論上の厳密な自然類分類ではなく、発音運動を自覚するための練習図。*
 
-**主な根拠**：[Essentials of Linguistics「調音方法」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics2/chapter/3-4-describing-consonants-manner/) ／ [Essentials of Linguistics「子音の分類」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/)
+**主な根拠**：[『言語学の基礎（Essentials of Linguistics）』「調音方法」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics2/chapter/3-4-describing-consonants-manner/) ／ [『言語学の基礎（Essentials of Linguistics）』「子音の分類」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/)
 
 ## 7. 「伸ばす」の本当の効き目は、語末で止めず、次の音まで橋を残すことにある
 
@@ -164,7 +164,7 @@ abstract: "英語の語末子音、とくに/n/を、日本語の「ン」を一
 <!-- level:5 role:implication -->
 英語の流暢さを「速く言うこと」と考えると、音を削る方向へ急ぎやすい。しかし必要なのは、削るより先に**接続を切らないこと**かもしれない。速度は結果であり、先に作るべきは運動の連続性である。
 
-**主な根拠**：[Cambridge Dictionary “connected speech”](https://dictionary.cambridge.org/dictionary/english/connected-speech) ／ [Peperkampほか（2008）](https://doi.org/10.1017/S0952675708001425)
+**主な根拠**：[『ケンブリッジ英語辞典（Cambridge Dictionary）』「連続発話（connected speech）」](https://dictionary.cambridge.org/dictionary/english/connected-speech) ／ [Peperkampほか（2008）](https://doi.org/10.1017/S0952675708001425)
 
 ## 8. 5分でできる「保つ」実験は、長さではなく身体の場所を観察する
 
@@ -247,13 +247,13 @@ Research the hypothesis: “For Japanese learners of English, it may be more use
 
 ## 12. 参考文献・資料
 
-- Maekawa, K. (2023). [Production of the utterance-final moraic nasal in Japanese: A real-time MRI study](https://doi.org/10.1017/S0025100321000050). *Journal of the International Phonetic Association, 53*(1), 189–212.
-- Mori, N. (2023). [日本語と英語における語末鼻子音の長さの比較](https://doi.org/10.57375/0002000027). *福井工業大学研究紀要, 53*, 171–178.
-- Sato, Y. (1993). [The Durations of Syllable-Final Nasals and the Mora Hypothesis in Japanese](https://doi.org/10.1159/000261925). *Phonetica, 50*(1), 44–67.
-- Otake, T., Yoneyama, K., Cutler, A., & van der Lugt, A. (1996). [The representation of Japanese moraic nasals](https://doi.org/10.1121/1.417239). *The Journal of the Acoustical Society of America, 100*(6), 3831–3842.
-- Peperkamp, S., Vendelin, I., & Nakamura, K. (2008). [On the perceptual origin of loanword adaptations: experimental evidence from Japanese](https://doi.org/10.1017/S0952675708001425). *Phonology, 25*(1).
-- University of Groningen Open Textbook. [An Introduction to American English Phonetics: Nasals](https://opentextbooks.rug.nl/americanenglishphonetics2/chapter/12-1-nasals/).
-- eCampusOntario. [Essentials of Linguistics: Classifying Consonants](https://ecampusontario.pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/).
-- eCampusOntario. [Introducing the IPA: Syllables and syllabic consonants](https://ecampusontario.pressbooks.pub/introducingtheipa/chapter/syllables/).
-- UC Berkeley. [American English Pronunciation Workbook: Syllabic consonants](https://linguistics.berkeley.edu/~kjohnson/English_Phonetics/cons_syllabic.html).
+- 前川喜久雄（Kikuo Maekawa）(2023). [「日本語の発話末モーラ鼻音の生成――実時間MRI研究（Production of the utterance-final moraic nasal in Japanese: A real-time MRI study）」](https://doi.org/10.1017/S0025100321000050). *Journal of the International Phonetic Association, 53*(1), 189–212.
+- 森直哉（Naoya Mori）(2023). [「日本語と英語における語末鼻子音の長さの比較」](https://doi.org/10.57375/0002000027). *福井工業大学研究紀要, 53*, 171–178.
+- 佐藤由美子（Yumiko Sato）(1993). [「音節末鼻音の持続時間と日本語のモーラ仮説（The Durations of Syllable-Final Nasals and the Mora Hypothesis in Japanese）」](https://doi.org/10.1159/000261925). *Phonetica, 50*(1), 44–67.
+- 大竹孝司（Takashi Otake）ほか (1996). [「日本語モーラ鼻音の表象（The representation of Japanese moraic nasals）」](https://doi.org/10.1121/1.417239). *The Journal of the Acoustical Society of America, 100*(6), 3831–3842.
+- シャロン・ペペルカンプ（Sharon Peperkamp）ほか (2008). [「借用語適応の知覚的起源――日本語からの実験的証拠（On the perceptual origin of loanword adaptations: experimental evidence from Japanese）」](https://doi.org/10.1017/S0952675708001425). *Phonology, 25*(1).
+- フローニンゲン大学公開教科書. [『アメリカ英語音声学入門（An Introduction to American English Phonetics）』「鼻音（Nasals）」](https://opentextbooks.rug.nl/americanenglishphonetics2/chapter/12-1-nasals/).
+- eCampusOntario. [『言語学の基礎（Essentials of Linguistics）』「子音の分類（Classifying Consonants）」](https://ecampusontario.pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/).
+- eCampusOntario. [『国際音声記号入門（Introducing the IPA）』「音節と音節子音（Syllables and syllabic consonants）」](https://ecampusontario.pressbooks.pub/introducingtheipa/chapter/syllables/).
+- カリフォルニア大学バークレー校. [『アメリカ英語発音ワークブック（American English Pronunciation Workbook）』「音節子音（Syllabic consonants）」](https://linguistics.berkeley.edu/~kjohnson/English_Phonetics/cons_syllabic.html).
 - 文化庁. [現代仮名遣い](https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/gendaikana/honbun_dai1.html).
