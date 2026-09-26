@@ -9,7 +9,7 @@ status: "完成"
 tags: ["広告", "コピーライティング", "言葉", "マーケティング", "認知心理学", "ブランド"]
 keywords: ["余白", "キャッチコピー", "おいしい生活", "そうだ 京都、行こう", "モノより思い出", "NO MUSIC NO LIFE", "Just Do It", "Think Different", "got milk", "Because I'm Worth It", "Think Small", "自己参照効果", "生成効果"]
 grow: 5
-abstract: "西武百貨店の「おいしい生活。」を出発点に、日本と海外の著名な広告コピー10本を「何を言ったか」ではなく「何を言わなかったか」で比較する。JR東海、日産、タワーレコード、TOTO、Nike、Apple、got milk?、L'Oréal Paris、Volkswagenを追うと、強いコピーの共通点は短さそのものではなく、読み手が自分の経験、行動、価値観を差し込める場所を残していることだと分かる。一方、曖昧さは万能ではない。自己参照効果、生成効果、好奇心の情報ギャップ、広告の曖昧性研究を参照しながら、「事実は閉じ、意味は少し開く」という実務原則まで整理する。"
+abstract: "西武百貨店の「おいしい生活。」を出発点に、日本と海外の著名な広告コピー10本を「何を言ったか」ではなく「何を言わなかったか」で比較する。JR東海、日産、タワーレコード、TOTO、ナイキ（Nike）、アップル（Apple）、「got milk?」、ロレアル パリ（L'Oréal Paris）、フォルクスワーゲン（Volkswagen）を追うと、強いコピーの共通点は短さそのものではなく、読み手が自分の経験、行動、価値観を差し込める場所を残していることだと分かる。一方、曖昧さは万能ではない。自己参照効果、生成効果、好奇心の情報ギャップ、広告の曖昧性研究を参照しながら、「事実は閉じ、意味は少し開く」という実務原則まで整理する。"
 ---
 
 # 名コピーは、何を言わなかったのか
@@ -54,11 +54,11 @@ abstract: "西武百貨店の「おいしい生活。」を出発点に、日本
 > **書き手が意味を決める ←――――――――――→ 読み手が意味を補う**
 >
 > TOTO「おしりだって、洗ってほしい。」  
-> Volkswagen「Think Small.」  
+> フォルクスワーゲン（Volkswagen）「Think Small.」  
 > 日産「モノより思い出。」  
 > 西武百貨店「おいしい生活。」  
 > JR東海「そうだ 京都、行こう。」  
-> Nike「Just Do It.」
+> ナイキ（Nike）「Just Do It.」
 
 <!-- level:5 role:implication -->
 ただし右へ行けば行くほど良いわけではない。強いコピーは「何でも好きに解釈してください」と放り出すのではなく、**空欄の位置を制御している**。何を売っているかまで空欄にするのではなく、読み手自身が入る場所だけを開けている。
@@ -161,11 +161,11 @@ TOTOの100年史によると、このテレビCMは1982年に放送された。�
 この型は、ブランドがすべてを説明する代わりに、受け手へ役を渡す。「あなたは何をやるのか」「あなたは何を違って考えるのか」。コピーが答えではなく、行動の開始ボタンになる。
 
 <!-- level:1 role:source -->
-[Nike「Why Do It?」キャンペーン資料](https://about.nike.com/ja/newsroom/releases/nike-reintroduces-just-do-it-to-todays-generation-with-why-do-it-campaign) ／ [Apple「『Think Different』を体現してきた50年間」](https://www.apple.com/jp/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/) ／ [Apple「リアルピープル広告キャンペーン」](https://www.apple.com/jp/newsroom/2002/06/10Apple-Launches-Real-People-Ad-Campaign/)
+[ナイキ（Nike）「Why Do It?」キャンペーン資料](https://about.nike.com/ja/newsroom/releases/nike-reintroduces-just-do-it-to-todays-generation-with-why-do-it-campaign) ／ [アップル（Apple）「『Think Different』を体現してきた50年間」](https://www.apple.com/jp/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/) ／ [アップル（Apple）「リアルピープル広告キャンペーン」](https://www.apple.com/jp/newsroom/2002/06/10Apple-Launches-Real-People-Ad-Campaign/)
 
-![街頭に掲出されたAppleの「Think Different」広告。](https://commons.wikimedia.org/wiki/Special:Redirect/file/Think%20different%20-%201997.png)
+![街頭に掲出されたアップル（Apple）の「Think Different」広告。](https://commons.wikimedia.org/wiki/Special:Redirect/file/Think%20different%20-%201997.png)
 
-*図1：「Think Different」広告が掲出された様子。撮影・画像：Nikopol-h、CC BY-SA 4.0。[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Think_different_-_1997.png)。*
+*図1：「Think Different」広告が掲出された様子。撮影・画像：Nikopol-h、CC BY-SA 4.0。[ウィキメディア・コモンズ（Wikimedia Commons）](https://commons.wikimedia.org/wiki/File:Think_different_-_1997.png)。*
 
 ## 7. 「got milk?」と「Because I'm Worth It」は、読み手自身を文の中へ入れる
 
@@ -239,7 +239,7 @@ TOTOの100年史によると、このテレビCMは1982年に放送された。�
 2005年の研究では、多義的な視覚広告は、受け手が使える認知資源が多い場合ほど肯定的反応につながりやすく、実用品より快楽的な商品で効果が大きい傾向が示された。2009年の製品デザイン研究でも、曖昧さへの耐性が低い人ほど、広告スローガンと製品形状の不一致を否定的に受け取りやすかった。
 
 <!-- level:3 role:analysis -->
-要するに、読者に仕事を残すには**仕事をする理由**が必要だ。興味の薄い金融商品、緊急時の案内、医療上の注意、料金条件、BtoBの仕様確認でまで余白を増やせば、参加ではなく負担になる。考えてほしい場所と、迷わせてはいけない場所は違う。
+要するに、読者に仕事を残すには**仕事をする理由**が必要だ。興味の薄い金融商品、緊急時の案内、医療上の注意、料金条件、企業間取引（BtoB）の仕様確認でまで余白を増やせば、参加ではなく負担になる。考えてほしい場所と、迷わせてはいけない場所は違う。
 
 <!-- level:5 role:implication -->
 余白の失敗は「短すぎること」ではない。**重要な事実まで読者に推測させること**である。これは広告だけでなく、ウェブサイトや広報文でも同じだ。
@@ -256,7 +256,7 @@ TOTOの100年史によると、このテレビCMは1982年に放送された。�
 「おいしい生活。」は生活の中身を開ける。「そうだ 京都、行こう。」は行く理由を開ける。「モノより思い出。」は思い出の具体像を開ける。「NO MUSIC, NO LIFE.」は音楽の中身を開ける。「Just Do It.」と「Think Different.」は目的語を開ける。「got milk?」は答えを受け手へ渡す。「Because I'm Worth It」は一人称を受け手へ渡す。
 
 <!-- level:1 role:evidence -->
-一方、TOTOは意味を大きく開けず、身体感覚を起動した。Volkswagenは見出しで常識を反転させ、本文で根拠を閉じた。つまり、名コピーに一つの技法があるわけではない。共通しているのは、**広告を読んだ後に受け手の側で何かが起きるよう設計されていること**だった。
+一方、TOTOは意味を大きく開けず、身体感覚を起動した。フォルクスワーゲン（Volkswagen）は見出しで常識を反転させ、本文で根拠を閉じた。つまり、名コピーに一つの技法があるわけではない。共通しているのは、**広告を読んだ後に受け手の側で何かが起きるよう設計されていること**だった。
 
 <!-- level:3 role:analysis -->
 説明文は、書き手が意味を完成させてから渡す。強いコピーの多くは、完成品ではなく最後の一工程を残して渡す。その一工程が、自分の記憶を探す、問いに答える、行動を想像する、常識をひっくり返す、といった小さな参加になる。
