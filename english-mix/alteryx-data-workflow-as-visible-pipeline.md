@@ -12,7 +12,7 @@ grow: 5
 abstract: "Alteryx is often introduced as a no-code analytics tool. でも、それだけでは特徴を取り逃がす。データ入力、整形、結合、計算、集計、出力を、画面上の部品と線でつないでrepeatable workflowへ変える道具として捉え直し、Excel、Power Query、SQL、Python、Tableau Prepとの違い、歴史、向く仕事と弱点まで整理する。"
 ---
 
-# アルテリックス（Alteryx）は、データ処理を「配線図」にする"
+# アルテリックス（Alteryx）は、データ処理を「配線図」にする
 ## Where the workflow lives――表計算、SQL、Python、Tableau Prepとの違いから正体をつかむ
 
 初めてAlteryx Designerの画面を見ると、data analytics softwareというより配管工事の図に見える。丸い部品が並び、linesが伸び、途中でbranchし、またmergeする。Spreadsheetのような格子も、programming languageのような長いcodeも、主役ではない。分析なのに、why so many lines?
@@ -76,7 +76,7 @@ Designerなら、たとえば“Input Data → Select → Filter → Formula →
 
 [Microsoft Learn「What Is Power Query?」](https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query) ／ [Tableau Help「About Tableau Prep」](https://help.tableau.com/current/prep/en-us/prep_about.htm) ／ [Python Documentation「The Python Tutorial」](https://docs.python.org/3/tutorial/index.html) ／ [Alteryx Help「Data Sources」](https://help.alteryx.com/current/ja/designer/data-sources.html)
 
-## 4. From SRC in 1997 to Alteryx One in 2025――役割は広がった
+## 4. From its 1997 founding to Alteryx One in 2025――役割は広がった
 
 Alteryxのhistoryをたどると、“it was always today’s no-code analytics platform”という理解も崩れる。SECへ提出された2018年のannual reportによると、会社はMarch 1997にCaliforniaでSRC, LLCとしてorganizedされ、November 1997にprincipal operationsを開始した。March 2010にAlteryx, LLCへ改称し、March 2011にAlteryx, Inc.へ移行した。
 
