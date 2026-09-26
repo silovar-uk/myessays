@@ -72,7 +72,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 だから「○○エンジン」という名前を見たら、「どの分類に属するか」を当てるより、「何を受け取り、何を変えるのか」を見るほうがよい。同じ単語がついていても、実装の粒度も責任範囲もかなり違う。
 
-[ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs) ／ [モジラ開発者ネットワーク（MDN）「描画エンジン」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering) ／ [マイエスキューエル公式用語集「記憶エンジン」（storage engine）](https://dev.mysql.com/doc/refman/8.4/en/glossary.html) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [IBM「業務規則管理とは」（What is Business Rules Management?）](https://www.ibm.com/think/topics/business-rules-management-system)
+[ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs) ／ [モジラ開発者ネットワーク（MDN）「描画エンジン」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering) ／ [マイエスキューエル公式用語集「記憶エンジン」（storage engine）](https://dev.mysql.com/doc/refman/8.4/en/glossary.html) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [アイビーエム（IBM）「業務規則管理とは」（What is Business Rules Management?）](https://www.ibm.com/think/topics/business-rules-management-system)
 
 ## 4. 「エンジン除去テスト」をすると、エンジンと製品全体の境界が見えてくる
 
