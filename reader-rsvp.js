@@ -680,11 +680,11 @@
 
   function play() {
     if (playing || !items.length) return;
+    if (index >= items.length - 1) { index = 0; lead = ''; }
     if (items[index]?.kind === 'figure' && visualGate === index) {
       visualGate = -1;
       index = Math.min(index + 1, items.length - 1);
     }
-    if (index >= items.length - 1) { index = 0; lead = ''; }
     els.sheet.hidden = true;
     els.help.hidden = true;
     playing = true;
