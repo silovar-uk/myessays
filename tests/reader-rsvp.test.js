@@ -43,6 +43,18 @@ test('RSVP reader keeps its contracts', () => {
   assert.doesNotMatch(js, /new MutationObserver/);
 });
 
+test('RSVP speed picker reaches 2000 and keeps direct alternatives', () => {
+  const js = read('reader-rsvp.js');
+  const css = read('reader-rsvp.css');
+  assert.match(js, /const SPEED_MAX = 2000;/);
+  assert.match(js, /SPEED_PRESETS = \[[^\]]*2000[^\]]*\]/);
+  assert.match(js, /speedRange\.type = 'range'/);
+  assert.match(js, /rsvp-speed-picker/);
+  assert.match(css, /\.rsvp-speed-value/);
+  assert.match(css, /\.rsvp-speed-presets/);
+  assert.match(css, /\.rsvp-speed-range[^}]*min-height:\s*44px/s);
+});
+
 test('RSVP styles stay readable and quiet', () => {
   const css = read('reader-rsvp.css');
   assert.doesNotMatch(css, /gradient\(/);

@@ -7,8 +7,9 @@
   const PAUSE_LABELS = ['なし', '弱', '標準', '強'];
   const PAUSE_SCALE = [0, 0.5, 1, 1.6];
   const SPEED_MIN = 300;
-  const SPEED_MAX = 1500;
+  const SPEED_MAX = 2000;
   const SPEED_STEP = 50;
+  const SPEED_PRESETS = [400, 600, 800, 1000, 1200, 1500, 2000];
   const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false };
   const BEATS = { comma: 4, period: 8, paragraph: 12 };
   const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, skip: 900, end: 2600 };
@@ -337,6 +338,7 @@
           <div class="rsvp-tools" data-rsvp="tools"></div>
         </div>
       </footer>
+      <section class="rsvp-speed-picker" data-rsvp="speedPicker" aria-label="読む速さ" hidden></section>
       <section class="rsvp-sheet" data-rsvp="sheet" aria-label="表示の設定" hidden></section>
       <section class="rsvp-help" data-rsvp="help" aria-label="ショートカット" hidden></section>`;
     stage.querySelectorAll('[data-rsvp]').forEach(el => { els[el.dataset.rsvp] = el; });
@@ -348,7 +350,8 @@
     stage.querySelector('.rsvp-head').append(stop);
 
     els.slower = button('rsvp-btn', '−', '遅くする(↓)', () => setSpeed(settings.speed - SPEED_STEP));
-    els.speed = document.createElement('output');
+    els.speed = button('rsvp-speed-value', '', '速さを選ぶ', () => toggleSpeedPicker());
+    els.speed.setAttribute('aria-expanded', 'false');
     els.faster = button('rsvp-btn', '+', '速くする(↑)', () => setSpeed(settings.speed + SPEED_STEP));
     els.speedGroup.append(els.slower, els.speed, els.faster);
 
@@ -362,6 +365,7 @@
     els.helpButton = button('rsvp-btn rsvp-help-button', '?', 'ショートカット(?)', () => toggleHelp());
     els.tools.append(els.tune, els.helpButton);
 
+    buildSpeedPicker();
     buildSheet();
     buildHelp();
 
@@ -370,8 +374,8 @@
       toggle();
     });
     stage.addEventListener('cancel', event => { event.preventDefault(); stopAndReturn(); });
-    stage.addEventListener('wheel', event => { if (!event.target.closest('.rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
-    stage.addEventListener('touchmove', event => { if (!event.target.closest('.rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
+    stage.addEventListener('wheel', event => { if (!event.target.closest('.rsvp-speed-picker, .rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
+    stage.addEventListener('touchmove', event => { if (!event.target.closest('.rsvp-speed-picker, .rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
     stage.addEventListener('pointermove', wakeControls);
     document.body.append(stage);
     return stage;
@@ -396,6 +400,79 @@
     return wrap;
   }
 
+  function buildSpeedPicker() {
+    const head = document.createElement('div');
+    head.className = 'rsvp-speed-picker__head';
+    const heading = document.createElement('h2');
+    heading.textContent = '読む速さ';
+    const summary = document.createElement('div');
+    els.speedPickerValue = document.createElement('strong');
+    els.speedPickerMeta = document.createElement('span');
+    summary.append(els.speedPickerValue, els.speedPickerMeta);
+    head.append(heading, summary);
+
+    const rail = document.createElement('div');
+    rail.className = 'rsvp-speed-picker__rail';
+    els.speedRange = document.createElement('input');
+    els.speedRange.type = 'range';
+    els.speedRange.min = String(SPEED_MIN);
+    els.speedRange.max = String(SPEED_MAX);
+    els.speedRange.step = String(SPEED_STEP);
+    els.speedRange.className = 'rsvp-speed-range';
+    els.speedRange.setAttribute('aria-label', '読む速さ');
+    els.speedRange.addEventListener('input', () => {
+      setSpeed(Number(els.speedRange.value), { announce: false, restartPlayback: false });
+    });
+    els.speedRange.addEventListener('change', () => setSpeed(Number(els.speedRange.value)));
+    const scale = document.createElement('div');
+    scale.className = 'rsvp-speed-picker__scale';
+    scale.innerHTML = `<span>${SPEED_MIN}</span><span>${SPEED_MAX} 字/分</span>`;
+    rail.append(els.speedRange, scale);
+
+    els.speedPresets = document.createElement('div');
+    els.speedPresets.className = 'rsvp-speed-presets';
+    els.speedPresets.setAttribute('role', 'group');
+    els.speedPresets.setAttribute('aria-label', '速度のプリセット');
+    SPEED_PRESETS.forEach(value => {
+      const preset = button('', String(value), `${value}字/分`, () => {
+        setSpeed(value);
+        toggleSpeedPicker(false);
+      });
+      preset.dataset.speed = String(value);
+      els.speedPresets.append(preset);
+    });
+
+    const hint = document.createElement('p');
+    hint.className = 'rsvp-speed-picker__hint';
+    hint.textContent = '− / ＋ と ↑ / ↓ は50字ずつ微調整';
+    const close = button('rsvp-btn rsvp-speed-picker__close', '閉じる', '', () => toggleSpeedPicker(false));
+    els.speedPicker.append(head, rail, els.speedPresets, hint, close);
+  }
+
+  function syncSpeedPicker() {
+    if (!els.speedRange) return;
+    els.speedRange.value = String(settings.speed);
+    if (els.speedPickerValue) els.speedPickerValue.textContent = `${settings.speed}字/分`;
+    if (els.speedPickerMeta) els.speedPickerMeta.textContent = remainingText();
+    els.speedPresets?.querySelectorAll('button').forEach(preset => {
+      preset.setAttribute('aria-pressed', String(Number(preset.dataset.speed) === settings.speed));
+    });
+  }
+
+  function toggleSpeedPicker(force) {
+    const show = force ?? els.speedPicker.hidden;
+    if (show) {
+      els.sheet.hidden = true;
+      els.tune.setAttribute('aria-expanded', 'false');
+      els.help.hidden = true;
+      syncSpeedPicker();
+    }
+    els.speedPicker.hidden = !show;
+    els.speed.setAttribute('aria-expanded', String(show));
+    if (show) els.speedRange?.focus({ preventScroll: true });
+    else if (stage.contains(document.activeElement) || document.activeElement === document.body) els.field.focus({ preventScroll: true });
+  }
+
   let sheetGroups = [];
   function buildSheet() {
     const heading = document.createElement('h2');
@@ -418,6 +495,7 @@
       ['→ ←', '1つ進む・戻る(縦では ← で進む)'],
       ['Shift + → ←', '1文進む・戻る'],
       ['↑ ↓', '速さ ±50字/分'],
+      ['速度の数字', '300〜2000字/分から直接選択'],
       ['+ −', '文字の大きさ'],
       ['[ ]', '最少文字数'],
       ['V', '縦・横'],
@@ -441,7 +519,7 @@
 
   function toggleSheet(force) {
     const show = force ?? els.sheet.hidden;
-    if (show) { pause(); toggleHelp(false); syncSheet(); }
+    if (show) { pause(); toggleHelp(false); toggleSpeedPicker(false); syncSheet(); }
     els.sheet.hidden = !show;
     els.tune.setAttribute('aria-expanded', String(show));
     if (show) els.sheet.querySelector('button')?.focus({ preventScroll: true });
@@ -449,7 +527,7 @@
   }
   function toggleHelp(force) {
     const show = force ?? els.help.hidden;
-    if (show) { pause(); els.sheet.hidden = true; els.tune.setAttribute('aria-expanded', 'false'); }
+    if (show) { pause(); els.sheet.hidden = true; els.tune.setAttribute('aria-expanded', 'false'); toggleSpeedPicker(false); }
     els.help.hidden = !show;
     if (!show && !els.sheet.hidden) return;
     if (!show) els.field.focus({ preventScroll: true });
@@ -465,6 +543,7 @@
     els.prev.setAttribute('aria-label', `1文戻る(Shift+${settings.vertical ? '→' : '←'})`);
     els.next.setAttribute('aria-label', `1文進む(Shift+${settings.vertical ? '←' : '→'})`);
     els.speed.textContent = `${settings.speed}字/分`;
+    syncSpeedPicker();
     els.hint.textContent = phone() ? 'タップで一時停止' : 'Space で一時停止 · ? でショートカット';
   }
 
@@ -692,6 +771,7 @@
     els.toggle.setAttribute('aria-label', playing ? '一時停止(Space)' : '再生(Space)');
     els.toggle.title = els.toggle.getAttribute('aria-label');
     els.speed.textContent = `${settings.speed}字/分`;
+    syncSpeedPicker();
   }
 
   function renderWord(item) {
@@ -796,14 +876,15 @@
 
   // ---------- 設定 ----------
   function persist() { writeJSON(KEY_SETTINGS, settings); }
-  function setSpeed(value) {
+  function setSpeed(value, { announce = true, restartPlayback = true } = {}) {
     settings.speed = clamp(Math.round(value / SPEED_STEP) * SPEED_STEP, SPEED_MIN, SPEED_MAX);
     persist();
     retimeOnly();
     render();
     renderMeter();
-    toast(`${settings.speed}字/分 · ${remainingText()}`);
-    if (playing) restart();
+    syncSpeedPicker();
+    if (announce) toast(`${settings.speed}字/分 · ${remainingText()}`);
+    if (playing && restartPlayback) restart();
   }
   function rechunk(message) {
     applyLook();
@@ -910,7 +991,13 @@
       return;
     }
     event.stopPropagation(); // 舞台の裏で / M S T やLibraryへ戻るEscを動かさない
-    if (typing(event.target)) return;
+    if (typing(event.target)) {
+      if (event.key === 'Escape' && !els.speedPicker.hidden) {
+        event.preventDefault();
+        toggleSpeedPicker(false);
+      }
+      return;
+    }
     const onButton = event.target instanceof Element && event.target.closest('button');
     const forward = settings.vertical ? 'ArrowLeft' : 'ArrowRight';
     const backward = settings.vertical ? 'ArrowRight' : 'ArrowLeft';
@@ -942,7 +1029,8 @@
         break;
       case '?': toggleHelp(); break;
       case 'Escape':
-        if (!els.help.hidden) toggleHelp(false);
+        if (!els.speedPicker.hidden) toggleSpeedPicker(false);
+        else if (!els.help.hidden) toggleHelp(false);
         else if (!els.sheet.hidden) toggleSheet(false);
         else stopAndReturn();
         break;
