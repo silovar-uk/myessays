@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">生活道路がマン島TTの競技インフラへ変わる流れ</title>
+  <desc id="desc">生活道路、閉鎖、競技システムの上乗せ、タイムトライアル、再開の5段階を示す概念図。</desc>
+  <rect width="1200" height="700" rx="42" fill="#f6f4ee"/>
+  <text x="70" y="92" fill="#181a1d" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="36" font-weight="700">道路は同じ。状態だけが切り替わる。</text>
+  <text x="70" y="138" fill="#5c6268" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="23">マン島TTを「コース」ではなく、期間限定インフラとして分解する</text>
+  <g font-family="Arial, 'Noto Sans JP', sans-serif">
+    <rect x="70" y="220" width="190" height="160" rx="24" fill="#ffffff" stroke="#c9c4b8" stroke-width="2"/>
+    <text x="165" y="275" text-anchor="middle" fill="#202326" font-size="25" font-weight="700">1｜生活道路</text>
+    <text x="165" y="320" text-anchor="middle" fill="#636970" font-size="20">通勤・移動・</text>
+    <text x="165" y="350" text-anchor="middle" fill="#636970" font-size="20">地域の日常</text>
+
+    <rect x="287" y="220" width="190" height="160" rx="24" fill="#ffffff" stroke="#c9c4b8" stroke-width="2"/>
+    <text x="382" y="275" text-anchor="middle" fill="#202326" font-size="25" font-weight="700">2｜道路閉鎖</text>
+    <text x="382" y="320" text-anchor="middle" fill="#636970" font-size="20">一般交通から</text>
+    <text x="382" y="350" text-anchor="middle" fill="#636970" font-size="20">競技空間へ</text>
+
+    <rect x="504" y="200" width="260" height="200" rx="24" fill="#191c1f"/>
+    <text x="634" y="255" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="700">3｜安全・運用を上乗せ</text>
+    <text x="634" y="300" text-anchor="middle" fill="#d4d8dc" font-size="19">旗・マーシャル・管制</text>
+    <text x="634" y="332" text-anchor="middle" fill="#d4d8dc" font-size="19">追跡・医療・車両検査</text>
+    <text x="634" y="364" text-anchor="middle" fill="#f0c36b" font-size="19">必要なら停止・延期</text>
+
+    <rect x="791" y="220" width="190" height="160" rx="24" fill="#ffffff" stroke="#c9c4b8" stroke-width="2"/>
+    <text x="886" y="275" text-anchor="middle" fill="#202326" font-size="25" font-weight="700">4｜競技</text>
+    <text x="886" y="320" text-anchor="middle" fill="#636970" font-size="20">時間差スタート</text>
+    <text x="886" y="350" text-anchor="middle" fill="#636970" font-size="20">時計との勝負</text>
+
+    <rect x="1008" y="220" width="122" height="160" rx="24" fill="#ffffff" stroke="#c9c4b8" stroke-width="2"/>
+    <text x="1069" y="275" text-anchor="middle" fill="#202326" font-size="25" font-weight="700">5｜再開</text>
+    <text x="1069" y="320" text-anchor="middle" fill="#636970" font-size="20">また</text>
+    <text x="1069" y="350" text-anchor="middle" fill="#636970" font-size="20">日常へ</text>
+  </g>
+  <g stroke="#777d83" stroke-width="4" fill="none">
+    <path d="M260 300 H282"/>
+    <path d="M477 300 H499"/>
+    <path d="M764 300 H786"/>
+    <path d="M981 300 H1003"/>
+  </g>
+  <g fill="#777d83">
+    <path d="M282 300 l-12 -8 v16 z"/>
+    <path d="M499 300 l-12 -8 v16 z"/>
+    <path d="M786 300 l-12 -8 v16 z"/>
+    <path d="M1003 300 l-12 -8 v16 z"/>
+  </g>
+  <text x="70" y="500" fill="#181a1d" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="28" font-weight="700">専用サーキットとの決定的な違い</text>
+  <text x="70" y="548" fill="#50565c" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="22">TTでは道路そのものを別物に作り替えるのではなく、道路の上に一時的な競技システムを重ねる。</text>
+  <text x="70" y="587" fill="#50565c" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="22">だから安全管理も「固定物をなくす」だけでは完結せず、情報・判断・停止・救急まで含む運用になる。</text>
+  <text x="70" y="648" fill="#7e8489" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="17">Concept diagram based on official TT course and safety-management documentation. Created 2026-09-26.</text>
+</svg>

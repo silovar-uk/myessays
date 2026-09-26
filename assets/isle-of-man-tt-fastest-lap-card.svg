@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">マン島TTの最速公式ラップ</title>
+  <desc id="desc">37.73マイルを16分36.115秒、平均136.358マイル毎時、約219.4キロメートル毎時で走った2023年ピーター・ヒックマンの記録を示す図。</desc>
+  <rect width="1200" height="630" rx="42" fill="#101214"/>
+  <text x="80" y="105" fill="#f4f4f0" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="38" font-weight="700">マン島TT｜最速公式ラップ</text>
+  <text x="80" y="180" fill="#b8bec4" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="25">ピーター・ヒックマン（Peter Hickman）｜2023年</text>
+  <line x1="80" y1="225" x2="1120" y2="225" stroke="#394047" stroke-width="2"/>
+  <text x="80" y="330" fill="#ffffff" font-family="Arial, sans-serif" font-size="78" font-weight="700">37.73 mi</text>
+  <text x="80" y="378" fill="#b8bec4" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="24">1周の距離｜約60.72km</text>
+  <text x="480" y="330" fill="#ffffff" font-family="Arial, sans-serif" font-size="78" font-weight="700">16:36.115</text>
+  <text x="480" y="378" fill="#b8bec4" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="24">1周の時間</text>
+  <text x="80" y="505" fill="#ffffff" font-family="Arial, sans-serif" font-size="82" font-weight="700">136.358 mph</text>
+  <text x="705" y="505" fill="#ffffff" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="58" font-weight="700">≈ 219.4 km/h</text>
+  <text x="80" y="558" fill="#f0c36b" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="27" font-weight="700">最高速度ではなく、1周全体の平均速度。</text>
+  <text x="80" y="602" fill="#7f878e" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="18">Source: Isle of Man TT Races — Lap and Race Records</text>
+</svg>
