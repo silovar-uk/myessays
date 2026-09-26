@@ -602,6 +602,7 @@
     if (!keep) return;
     const hit = items.findIndex(item => item.unitIndex === keep.unitIndex && (item.type === 'card' || (item.start <= keep.start && keep.start < item.end)));
     index = hit >= 0 ? hit : clamp(index, 0, items.length - 1);
+    if (keep.kind === 'figure' && !playing) visualGate = index;
   }
 
   function retimeOnly() {
@@ -818,7 +819,10 @@
 
   function previousSentenceText(at = index) {
     let j = at - 1;
-    while (j >= 0 && !isChunk(j)) j -= 1;
+    while (j >= 0 && !isChunk(j)) {
+      if (['title', 'h2', 'h3', 'figure', 'skip'].includes(items[j]?.kind)) return '';
+      j -= 1;
+    }
     if (j < 0) return '';
     const from = sentenceStart(j);
     const first = items[from];
@@ -945,7 +949,7 @@
     const ratio = totalWidth ? item.before / totalWidth : 0;
     els.fill.style.transform = `scaleX(${ratio})`;
     const ms = item.remain;
-    const time = ms >= 60000 ? `本文 残り${Math.ceil(ms / 60000)}分` : `本文 残り${Math.max(1, Math.round(ms / 1000))}秒`;
+    const time = ms >= 60000 ? `自動再生 約${Math.ceil(ms / 60000)}分` : `自動再生 約${Math.max(1, Math.round(ms / 1000))}秒`;
     const figures = items.slice(index + (item.kind === 'figure' ? 1 : 0)).filter(entry => entry.kind === 'figure').length;
     els.remaining.textContent = figures ? `${time} · 図${figures}枚` : time;
   }
