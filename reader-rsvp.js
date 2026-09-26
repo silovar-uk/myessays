@@ -13,7 +13,7 @@
   const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false };
   const BEATS = { comma: 4, period: 8, paragraph: 12 };
   const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, figure: 0, skip: 900, end: 2600 };
-  const MIN_SHOW_MS = 160;
+  const MIN_SHOW_MS = 100;
   const RAMP = [1.5, 1.25, 1.1];
   const PHONE_MAX = 820;
   const BUDOUX = 'https://cdn.jsdelivr.net/npm/budoux@0.9.2/module/';
@@ -619,11 +619,14 @@
     for (let j = Math.min(i, items.length - 1); j >= 0; j -= 1) if (items[j].kind === 'h2') return items[j].text;
     return 'Introduction';
   }
+  function nextChunkAfter(at = index) {
+    for (let j = at + 1; j < items.length; j += 1) if (isChunk(j)) return items[j];
+    return null;
+  }
+
   function currentChunk() {
     if (isChunk(index)) return items[index];
-    for (let j = index + 1; j < items.length; j += 1) if (isChunk(j)) return items[j];
-    for (let j = index - 1; j >= 0; j -= 1) if (isChunk(j)) return items[j];
-    return null;
+    return nextChunkAfter(index) || items.findLast((item, i) => i < index && item.type === 'chunk') || null;
   }
 
   function startIndex(from) {
@@ -643,8 +646,7 @@
     return first;
   }
 
-  function saveResume() {
-    const item = currentChunk();
+  function saveResume(item = currentChunk()) {
     if (!item) return;
     writeJSON(KEY_RESUME, { essayId: essayId(), version: currentVersion(), locator: item.unit.locator, offset: item.start, at: new Date().toISOString() });
   }
@@ -708,7 +710,9 @@
     playedMs += performance.now() - playStartedAt;
     lead = '';
     releaseWake();
-    saveResume();
+    const next = nextChunkAfter(index);
+    if (next) saveResume(next);
+    else writeJSON(KEY_RESUME, null);
     render();
     show(items[index]);
   }
@@ -1028,8 +1032,9 @@
     if (!stage?.open) return;
     if (items[index]?.kind === 'end') { landAfterReading(); return; }
     const visual = items[index]?.kind === 'figure' ? items[index] : null;
-    const item = currentChunk();
-    if (item) saveResume();
+    const item = visual ? nextChunkAfter(index) : currentChunk();
+    if (item) saveResume(item);
+    else if (visual) writeJSON(KEY_RESUME, null);
     closeStage();
     if (visual?.unit?.el?.isConnected) {
       const block = visual.unit.el;
