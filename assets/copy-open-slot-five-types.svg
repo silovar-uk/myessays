@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<rect width="1200" height="675" fill="#f7f5f0"/>
+<text x="80" y="90" font-family="sans-serif" font-size="40" font-weight="700" fill="#222">読者に渡す仕事は、少なくとも5種類ある</text>
+<circle cx="600" cy="365" r="105" fill="#fff" stroke="#222" stroke-width="3"/>
+<text x="538" y="350" font-family="sans-serif" font-size="25" font-weight="700" fill="#222">READER</text>
+<text x="548" y="388" font-family="sans-serif" font-size="25" font-weight="700" fill="#222">JOB</text>
+<g font-family="sans-serif" fill="#222">
+<rect x="115" y="180" width="260" height="105" rx="18" fill="#fff" stroke="#222" stroke-width="2"/><text x="155" y="225" font-size="26" font-weight="700">代入</text><text x="155" y="260" font-size="20">自分の「それ」を入れる</text>
+<rect x="825" y="180" width="260" height="105" rx="18" fill="#fff" stroke="#222" stroke-width="2"/><text x="865" y="225" font-size="26" font-weight="700">想起</text><text x="865" y="260" font-size="20">記憶・場面を呼び戻す</text>
+<rect x="100" y="465" width="280" height="105" rx="18" fill="#fff" stroke="#222" stroke-width="2"/><text x="140" y="510" font-size="26" font-weight="700">理由省略</text><text x="140" y="545" font-size="20">なぜ今かを自分で足す</text>
+<rect x="820" y="465" width="280" height="105" rx="18" fill="#fff" stroke="#222" stroke-width="2"/><text x="860" y="510" font-size="26" font-weight="700">比喩接続</text><text x="860" y="545" font-size="20">離れた意味をつなぐ</text>
+<rect x="455" y="535" width="290" height="100" rx="18" fill="#fff" stroke="#222" stroke-width="2"/><text x="505" y="578" font-size="26" font-weight="700">逆説解決</text><text x="495" y="610" font-size="20">違和感の理由を解く</text>
+</g>
+<g stroke="#777" stroke-width="2"><line x1="520" y1="320" x2="375" y2="265"/><line x1="680" y1="320" x2="825" y2="265"/><line x1="520" y1="420" x2="380" y2="485"/><line x1="680" y1="420" x2="820" y2="485"/><line x1="600" y1="470" x2="600" y2="535"/></g>
+</svg>
