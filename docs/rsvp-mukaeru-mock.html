@@ -1,0 +1,1356 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>流して読む</title>
+<style>
+:root {
+  --paper: #f4f1ea;
+  --paper-2: #ece7dc;
+  --raise: #fbf9f4;
+  --ink: #171717;
+  --ink-soft: #4f4b45;
+  --muted: #6d6a63;
+  --faint: #9a948a;
+  --line: #d5cfc2;
+  --accent: #b43e31;
+  --flash: rgba(180, 62, 49, .10);
+  --body-font: Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  --ui-font: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1b1a17; --paper-2: #25231f; --raise: #2a2823; --ink: #ece6da; --ink-soft: #cfc7b9;
+    --muted: #a39c90; --faint: #6f695f; --line: #3a372f; --accent: #e27463; --flash: rgba(226, 116, 99, .14);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1b1a17; --paper-2: #25231f; --raise: #2a2823; --ink: #ece6da; --ink-soft: #cfc7b9;
+  --muted: #a39c90; --faint: #6f695f; --line: #3a372f; --accent: #e27463; --flash: rgba(226, 116, 99, .14);
+  color-scheme: dark;
+}
+html, body { background: var(--paper); color: var(--ink); }
+body { font-family: var(--ui-font); }
+button { font: inherit; color: inherit; }
+kbd { font: 700 11px/1 var(--ui-font); padding: 2px 5px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper-2); color: var(--muted); }
+
+/* ---- 試作の案内(サイトには無い) ---- */
+.proto-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; max-width: 760px; margin: 0 auto; padding: 10px 16px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.proto-bar strong { color: var(--ink); font-weight: 700; }
+.proto-bar select { font: inherit; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; }
+.proto-bar .proto-keys { margin-left: auto; }
+@media (hover: none) { .proto-bar .proto-keys { display: none; } }
+
+/* ---- Readerの写し(公開版の見た目を簡略化) ---- */
+.reader-shell { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 0 40vh; }
+.reader-topbar { display: flex; align-items: center; justify-content: space-between; padding-block: 6px; }
+.back-button { min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink-soft); font-size: 13px; cursor: pointer; }
+.reader-mode-shell { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-bottom: 26px; border: 1px solid var(--line); border-top: 0; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.reader-mode-shell__inner { display: grid; }
+.reader-mode-shell__inner.has-rsvp { grid-template-columns: minmax(0, 1fr) auto; }
+.reader-mode-shell__inner.has-rsvp > .reader-mode-shell__modes { grid-column: 1 / -1; }
+.reader-mode-shell__modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+.reader-mode-shell__mode { min-height: 44px; border: 0; background: transparent; color: var(--muted); font: 700 13px/1.2 var(--ui-font); cursor: pointer; }
+.reader-mode-shell__mode[aria-checked="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+.reader-mode-shell__mode:disabled { opacity: .4; cursor: not-allowed; }
+.reader-mode-shell__context { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 32px; padding: 5px 8px 6px; border: 0; background: transparent; color: var(--muted); text-align: left; }
+.reader-mode-shell__section { overflow: hidden; font: 650 11px/1.35 var(--ui-font); text-overflow: ellipsis; white-space: nowrap; }
+.reader-mode-shell__percent { font: 700 11px/1 var(--ui-font); font-variant-numeric: tabular-nums; }
+.reader-mode-shell__progress { height: 2px; background: transparent; }
+.reader-mode-shell__progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+
+/* 入口1: 帯の右端 */
+.reader-rsvp-launch { position: relative; display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 0 12px; border: 0; border-left: 1px solid color-mix(in srgb, var(--line) 70%, transparent); background: transparent; color: var(--ink); font: 700 12px/1 var(--ui-font); white-space: nowrap; cursor: pointer; }
+.reader-rsvp-launch::after { content: ""; position: absolute; inset: -6px -4px; }
+.reader-rsvp-launch:hover, .reader-rsvp-launch:focus-visible { color: var(--accent); outline: none; }
+.reader-rsvp-launch:focus-visible { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 38%, transparent); }
+
+.reader-content { font-family: var(--body-font); }
+.reader-content h1 { margin: 8px 0 10px; font: 700 clamp(26px, 5.4vw, 40px)/1.28 var(--body-font); text-wrap: balance; }
+.reader-content h2 { margin: 2.4em 0 .8em; font: 700 21px/1.5 var(--body-font); text-wrap: balance; }
+.reader-content h2.reader-v2-subtitle { margin: 0 0 14px; color: var(--ink-soft); font: 600 14px/1.7 var(--ui-font); }
+.reader-content h3 { margin: 2em 0 .6em; font: 700 17px/1.6 var(--body-font); }
+.reader-content p, .reader-content li { font-size: 16px; line-height: 2.08; }
+.reader-content p { margin: 0 0 1.1em; }
+.reader-content blockquote { margin: 1.4em 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--ink-soft); }
+.reader-content hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+.reader-content a { color: var(--accent); }
+.reader-content .code-block { margin: 1.2em 0; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-2); overflow-x: auto; }
+.reader-content .code-block pre { margin: 0; padding: 12px 14px; font: 13px/1.7 ui-monospace, "Cascadia Mono", Consolas, monospace; }
+.reader-content table { border-collapse: collapse; font: 13px/1.6 var(--ui-font); }
+.reader-content .reader-locator-block { position: relative; border-radius: 4px; }
+.reader-content .is-reading-pivot::before { content: ""; position: absolute; left: -12px; top: .45em; bottom: .45em; width: 3px; border-radius: 2px; background: var(--accent); }
+.reader-content .reader-v2-location-flash { animation: location-flash 1.3s ease-out; }
+@keyframes location-flash { from { background-color: var(--flash); } to { background-color: transparent; } }
+.reader-v2-intro { display: grid; gap: 10px; justify-items: start; margin: 0 0 28px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.reader-v2-intro-meta { display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font: 600 12px/1.4 var(--ui-font); }
+
+/* 入口2: 冒頭 */
+.reader-rsvp-intro { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--raise); color: var(--ink); font: 700 14px/1 var(--ui-font); cursor: pointer; }
+.reader-rsvp-intro:hover, .reader-rsvp-intro:focus-visible { border-color: color-mix(in srgb, var(--accent) 46%, transparent); outline: none; }
+.reader-rsvp-intro:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+.reader-rsvp-intro__time { color: var(--muted); font-weight: 600; font-size: 12px; font-variant-numeric: tabular-nums; }
+@media (hover: none) { .reader-rsvp-intro kbd { display: none; } }
+
+.reader-v2-after-reading { margin-top: 3em; padding-top: 1.6em; border-top: 1px solid var(--line); }
+.reader-resonance { display: grid; justify-items: center; gap: 10px; padding: 18px 0; font-family: var(--ui-font); }
+.reader-seal { min-height: 48px; padding: 0 22px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-weight: 700; cursor: pointer; }
+.reader-seal:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: 3px; }
+.reader-resonance p { margin: 0; color: var(--muted); font-size: 12px; }
+html.rsvp-open { overflow: hidden; }
+
+/* ---- 流して読む: 舞台 ---- */
+.rsvp-stage {
+  --rsvp-size: 38px;
+  position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-columns: minmax(0, 1fr);
+  overscroll-behavior: none; font-family: var(--ui-font);
+}
+.rsvp-stage:not([open]) { display: none; }
+.rsvp-stage::backdrop { background: var(--paper); }
+.rsvp-head, .rsvp-foot { transition: opacity .5s ease; }
+.rsvp-stage[data-state="playing"] .rsvp-head,
+.rsvp-stage[data-state="playing"] .rsvp-foot { opacity: .42; }
+.rsvp-stage[data-state="playing"][data-idle] .rsvp-head,
+.rsvp-stage[data-state="playing"][data-idle] .rsvp-foot { opacity: .1; }
+.rsvp-stage[data-state="playing"] .rsvp-head:focus-within,
+.rsvp-stage[data-state="playing"] .rsvp-foot:focus-within { opacity: 1; }
+
+.rsvp-head { display: flex; align-items: center; gap: 12px; padding: max(10px, env(safe-area-inset-top, 0px)) 16px 6px; }
+.rsvp-section { flex: 1; min-width: 0; margin: 0; overflow: hidden; color: var(--muted); font: 650 12px/1.4 var(--ui-font); text-overflow: ellipsis; white-space: nowrap; }
+.rsvp-stop { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 700 13px/1 var(--ui-font); cursor: pointer; }
+.rsvp-stop kbd { font-size: 11px; }
+@media (hover: none) { .rsvp-stop kbd { display: none; } }
+
+.rsvp-field { position: relative; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; min-height: 0; overflow: hidden; padding: 16px 16px 5vh; outline: none; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.rsvp-focus { display: flex; flex-direction: column; align-items: center; gap: 22px; max-width: 100%; max-height: 100%; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-focus { flex-direction: row-reverse; align-items: center; gap: 28px; height: 100%; }
+.rsvp-word { max-width: 100%; margin: 0; font: 500 var(--rsvp-size)/1.35 var(--body-font); letter-spacing: .02em; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-word { writing-mode: vertical-rl; text-orientation: mixed; max-height: 100%; letter-spacing: .06em; }
+.rsvp-tcy { text-combine-upright: all; }
+.rsvp-bullet { color: var(--faint); margin-inline-end: .15em; }
+
+.rsvp-card { display: grid; justify-items: center; gap: 14px; max-width: min(34em, 100%); text-align: center; }
+.rsvp-card-heading { margin: 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-soft); font: 700 calc(var(--rsvp-size) * .56)/1.55 var(--body-font); text-wrap: balance; }
+.rsvp-card[data-kind="h3"] .rsvp-card-heading { font-size: calc(var(--rsvp-size) * .46); }
+.rsvp-card-title { margin: 0; font: 700 calc(var(--rsvp-size) * .72)/1.4 var(--body-font); text-wrap: balance; }
+.rsvp-card-sub { margin: 0; color: var(--muted); font: 600 14px/1.7 var(--ui-font); text-wrap: balance; }
+.rsvp-card-skip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 1px dashed var(--faint); border-radius: 10px; background: transparent; color: var(--ink-soft); font: 600 14px/1 var(--ui-font); cursor: pointer; }
+.rsvp-card-end { margin: 0; font: 400 calc(var(--rsvp-size) * 1.6)/1 var(--body-font); }
+.rsvp-card-stats { margin: 0; color: var(--muted); font: 600 13px/1.6 var(--ui-font); font-variant-numeric: tabular-nums; }
+.rsvp-card-after { min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 700 13px/1 var(--ui-font); cursor: pointer; }
+
+.rsvp-context { max-width: min(30em, 100%); margin: 0; color: var(--muted); font: 17px/1.95 var(--body-font); text-align: left; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-context { writing-mode: vertical-rl; max-height: 100%; max-width: 40%; overflow: hidden; }
+.rsvp-context button { display: inline; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; border-radius: 3px; }
+.rsvp-context button:hover, .rsvp-context button:focus-visible { color: var(--ink); outline: none; background: var(--paper-2); }
+.rsvp-context button[aria-current="true"] { color: var(--ink); text-decoration: underline 2px var(--accent); text-underline-offset: .32em; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-context button[aria-current="true"] { text-underline-position: right; }
+.rsvp-hint { position: absolute; bottom: 8px; left: 0; right: 0; margin: 0; color: var(--faint); font: 600 11px/1.4 var(--ui-font); text-align: center; pointer-events: none; }
+.rsvp-stage:not([data-state="playing"]) .rsvp-hint,
+.rsvp-stage:not([data-fresh]) .rsvp-hint { display: none; }
+.rsvp-toast { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); margin: 0; padding: 6px 12px; border-radius: 999px; background: var(--ink); color: var(--paper); font: 700 12px/1.3 var(--ui-font); font-variant-numeric: tabular-nums; white-space: nowrap; pointer-events: none; }
+
+.rsvp-foot { display: grid; gap: 10px; padding: 8px 16px max(12px, env(safe-area-inset-bottom, 0px)); }
+.rsvp-meter { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+.rsvp-track { position: relative; height: 3px; border-radius: 2px; background: color-mix(in srgb, var(--line) 80%, transparent); }
+.rsvp-fill { position: absolute; inset: 0; border-radius: inherit; background: var(--accent); transform-origin: left center; transform: scaleX(0); }
+.rsvp-tick { position: absolute; top: -3px; width: 1px; height: 9px; background: var(--faint); }
+.rsvp-stage[data-orientation="vertical"] .rsvp-fill { transform-origin: right center; }
+.rsvp-remaining { margin: 0; color: var(--muted); font: 600 11px/1 var(--ui-font); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rsvp-controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.rsvp-speed, .rsvp-tools { display: flex; align-items: center; gap: 2px; }
+.rsvp-tools { justify-content: flex-end; gap: 6px; }
+.rsvp-transport { display: flex; align-items: center; gap: 10px; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-transport { flex-direction: row-reverse; }
+.rsvp-btn { min-width: 44px; min-height: 44px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--ink-soft); font: 700 13px/1 var(--ui-font); white-space: nowrap; cursor: pointer; }
+.rsvp-btn:hover { color: var(--ink); background: var(--paper-2); }
+.rsvp-speed output { min-width: 5.6em; color: var(--ink); font: 700 12px/1 var(--ui-font); text-align: center; font-variant-numeric: tabular-nums; }
+.rsvp-toggle { width: 60px; height: 60px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font: 700 20px/1 var(--ui-font); cursor: pointer; }
+.rsvp-stage button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: 2px; }
+.rsvp-help-button { display: none; }
+@media (hover: hover) and (min-width: 821px) { .rsvp-help-button { display: inline-block; } }
+
+.rsvp-sheet, .rsvp-help { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; display: grid; gap: 16px; max-height: 78%; overflow: auto; padding: 18px 16px max(18px, env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); border-radius: 16px 16px 0 0; background: var(--raise); box-shadow: 0 -18px 40px rgba(20, 16, 10, .12); overscroll-behavior: contain; }
+.rsvp-sheet h2, .rsvp-help h2 { margin: 0; font: 700 14px/1.4 var(--ui-font); }
+.rsvp-group { display: grid; gap: 8px; }
+.rsvp-group > p { margin: 0; color: var(--muted); font: 700 11px/1.3 var(--ui-font); letter-spacing: .04em; }
+.rsvp-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.rsvp-seg button { min-width: 44px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink-soft); font: 700 13px/1 var(--ui-font); cursor: pointer; }
+.rsvp-seg button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.rsvp-sheet-close { justify-self: end; }
+.rsvp-help table { border-collapse: collapse; font: 13px/1.5 var(--ui-font); }
+.rsvp-help td { padding: 6px 12px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.rsvp-help td:first-child { white-space: nowrap; }
+@media (max-width: 820px) {
+  /* スマホ: 親指が届く下段に再生、上段に速さと設定 */
+  .rsvp-controls { grid-template-columns: 1fr auto; grid-template-areas: "speed tools" "transport transport"; row-gap: 4px; }
+  .rsvp-speed { grid-area: speed; }
+  .rsvp-tools { grid-area: tools; }
+  .rsvp-transport { grid-area: transport; justify-content: center; gap: 18px; }
+}
+@media (min-width: 821px) {
+  .rsvp-sheet, .rsvp-help { left: auto; right: 16px; bottom: 96px; width: 360px; border: 1px solid var(--line); border-radius: 14px; }
+  .rsvp-help { width: 420px; }
+  .rsvp-toggle { width: 56px; height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-head, .rsvp-foot { transition: none; }
+  .reader-content .reader-v2-location-flash { animation: none; background-color: var(--flash); }
+}
+@media (forced-colors: active) {
+  .rsvp-fill { background: Highlight; }
+  .rsvp-context button[aria-current="true"] { text-decoration-color: Highlight; }
+}
+</style>
+
+<div class="proto-bar">
+  <span><strong>試作</strong> 流して読む(RSVP)</span>
+  <label>記事 <select id="protoEssay">
+    <option value="silent">黙読には、「探す」だけでなく…(9/22)</option>
+    <option value="waiting">待ち時間は、時間ではない(8/15・図あり)</option>
+  </select></label>
+  <span class="proto-keys">PCは <kbd>R</kbd> で開く · 舞台で <kbd>?</kbd></span>
+</div>
+
+<main id="readerView" class="reader-shell">
+  <div class="reader-topbar"><button class="back-button" type="button">← Library</button></div>
+  <section id="readerModeShell" class="reader-mode-shell" aria-label="読書モード">
+    <div class="reader-mode-shell__inner">
+      <div class="reader-mode-shell__modes" role="radiogroup" aria-label="表示言語">
+        <button type="button" class="reader-mode-shell__mode" data-reading-mode-intent="ja" role="radio" aria-checked="true">日本語</button>
+        <button type="button" class="reader-mode-shell__mode" data-reading-mode-intent="en-mix" role="radio" aria-checked="false">English Mix</button>
+      </div>
+      <button type="button" class="reader-mode-shell__context"><span class="reader-mode-shell__section">Introduction</span><span class="reader-mode-shell__percent">0%</span></button>
+    </div>
+    <div class="reader-mode-shell__progress" aria-hidden="true"><span></span></div>
+  </section>
+  <article id="readerContent" class="reader-content"></article>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js"></script>
+<script>
+// ===== 記事(本人の公開記事。試作用に埋め込み) =====
+const ESSAYS = {"silent-ja":{"title":"黙読には、「探す」だけでなく「声を立ち上げる」読み方がある","created":"2026-09-22","type":"リサーチエッセイ","md":"\n# 黙読には、「探す」だけでなく「声を立ち上げる」読み方がある\n## 走査読み・意味読み・声の想像を、速さではなく問いで切り替える\n\n\u003c!-- level:4 role:claim -->\n「もういい」\n\nこの四文字を、声に出さずに読んでみる。\n\n\u003c!-- level:2 role:description -->\n怒っていたか。あきらめていたか。本当に納得していたか。文字には、その情報がほとんど書かれていない。それでも読む瞬間、頭の中では勝手に声色がついた人もいるはずだ。逆に、声らしいものはまったく鳴らず、意味だけ取れた人もいる。\n\n\u003c!-- level:3 role:analysis -->\nここが妙である。黙読は、外から見ると全部同じだ。口は閉じている。音も出ていない。ところが内側では、「必要な語を探す」「意味を追う」「誰かが話しているように読む」といった別の処理が起こり得る。読むという一語が、かなり雑に複数の行為をまとめている。\n\n\u003c!-- level:5 role:implication -->\n私はこれまで、黙読の工夫というと、走査読み（scanning）や概略読み（skimming）のような「速く、選んで拾う」方向をまず考えていた。でも研究を追うと、反対側にも操作できるつまみがある。**目で拾う量を減らすのではなく、頭の中に声を足す。** 黙読には、情報探索とは別の意味で「読み方を変える」余地がある。\n\n\u003c!-- level:1 role:source -->\n[ヴィルハウアー（Ruvanee P. Vilhauer）, “Characteristics of inner reading voices,” 2017](https://pubmed.ncbi.nlm.nih.gov/28582587/) ／ [ストルケリュとニーホルスター（Alexander Strukelj & Diederick C. Niehorster）, “One page of text,” 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC7198234/)\n\n> **情報基準日：2026年9月22日**\n>\n> 本稿でいう「声を想像する読み」は、誰にでも常に起こる現象でも、読解力を必ず高める万能技法でもない。研究で確認されている黙読中の内言・聴覚イメージ・暗黙の韻律を手がかりに、実践上の読み分けを考える。\n\n## 1. 黙読は一つの速度ではなく、最初から「目的で形が変わる行為」だった\n\n\u003c!-- level:4 role:claim -->\nまず、速く読むこと自体を悪者にする必要はない。文章から何を取りたいかによって、目の動きは実際に変わる。\n\n\u003c!-- level:2 role:description -->\n2018年の眼球運動研究では、同じような一ページの文章でも、通常読み、精読、概略読み、校正という指示によって読み方が変化した。概略読みでは、視線の移動幅が長くなり、一回あたりの注視時間は短くなり、単語の飛ばし読みが増え、全体の所要時間も短くなった。一方で、理解度は通常読みや精読より低かった。精読では再読が増え、理解度も高かった。\n\n\u003c!-- level:3 role:analysis -->\nつまり、読む速度は能力の単純なメーターではない。探索が目的なら、全部を同じ密度で読む方がむしろ非効率である。逆に、論理や細部を理解したいのに探索モードのまま進めば、処理が浅くなりやすい。速さと理解の交換条件は、速読研究のレビューでも繰り返し指摘されている。\n\n\u003c!-- level:5 role:implication -->\nここから読み方を二択にすると、「速く読むか、じっくり読むか」になる。でも本当は、その前に**文章へ何を質問しているか**がある。走査読みが投げる問いは、「欲しい情報はどこにあるか」である。読む速度は、その問いに合わせた結果にすぎない。\n\n\u003c!-- level:1 role:source -->\n[ストルケリュとニーホルスター（Strukelj & Niehorster）, 2018](https://pubmed.ncbi.nlm.nih.gov/33828678/) ／ [レイナーほか（Keith Rayner et al.）, “So Much to Read, So Little Time,” 2016](https://pubmed.ncbi.nlm.nih.gov/26769745/)\n\n## 2. 黙読中の「声」は、単なる言い回しではなく、アクセントまで持つことがある\n\n\u003c!-- level:4 role:claim -->\nでは、「頭の中で声を想像する」は本当に読み方と言えるのか。ここで研究が急に変なところまで細かい。\n\n\u003c!-- level:2 role:description -->\n2011年、フィリクとバーバー（Ruth Filik & Emma Barber）は、イングランド北部と南部で発音の異なる語を使ったリメリックを黙読させ、眼球運動を調べた。韻が成立するかどうかは、参加者自身の地域アクセントによって変わる。すると、自分のアクセントでは韻が崩れる語に来たとき、視線行動にも乱れが現れた。\n\n\u003c!-- level:3 role:analysis -->\n紙面には音声ファイルが埋め込まれていない。それでも読み手の側で、文字が自分の発音へ変換され、その「頭の中の発音」と韻が照合されていたと考えられる。黙読は、文字から意味へ一直線に飛ぶだけではない。少なくとも一部の場面では、途中に音の表象が入り込む。\n\n\u003c!-- level:5 role:implication -->\nここで「内なる声」は比喩から少し離れる。**黙読中の声は、単に単語を心の中で唱えるだけでなく、読み手自身の発音習慣まで持ち込むことがある。** 文字を読んでいるつもりでも、読み手の身体史が音として紛れ込んでいる。\n\n\u003c!-- level:1 role:source -->\n[フィリクとバーバー（Filik & Barber）, “Inner Speech during Silent Reading Reflects the Reader's Regional Accent,” 2011](https://pmc.ncbi.nlm.nih.gov/articles/PMC3198452/)\n\n## 3. さらに妙なことに、「誰の声か」を想像すると読む速さまで変わる\n\n\u003c!-- level:4 role:claim -->\n声には、発音だけでなく話者がいる。ここまで来ると、黙読はかなり「聞くこと」に近づく。\n\n\u003c!-- level:2 role:description -->\n2008年、アレクサンダーとナイガード（Jessica D. Alexander & Lynne C. Nygaard）は、参加者に速く話す人と遅く話す人の声を先に覚えさせ、その後「この文章はどちらかの話者が書いた」と伝えて読ませた。黙読でも、遅く話す人物が書いたと思った文章の方が、読む時間が長くなった。研究者たちは、読み手が話者固有の聴覚イメージ（auditory imagery）を使っている可能性を示した。\n\n\u003c!-- level:2 role:description -->\n別の研究では、同じ内容でも、間接話法より直接話法を黙読したときの方が、声に選択的に反応する聴覚皮質の領域で強い活動が見られた。文章中に「誰かが実際に言った言葉」が置かれると、読み手は話者の声をより具体的に模擬しているらしい。\n\n\u003c!-- level:3 role:analysis -->\nこれは「想像力豊かな人は小説が上手に読める」という美談ではない。重要なのは、声の想像が読書の飾りではなく、処理時間そのものへ食い込むことだ。遅い話者を頭に置けば、黙読まで遅くなる。つまり、読み手が頭の中に作る話者モデルが、文章を通過する速度を変える。\n\n\u003c!-- level:5 role:implication -->\n速さだけを指標にすると、これは損に見える。でも別の見方をすると、**読む時間を遅くしているのではなく、文字列に「誰が、どう言ったか」という情報層を追加している。** 走査読みが情報を削って速くするなら、声の想像は情報を足して遅くする。方向が逆なのだ。\n\n\u003c!-- level:1 role:source -->\n[アレクサンダーとナイガード（Alexander & Nygaard）, “Reading voices and hearing text,” 2008](https://pubmed.ncbi.nlm.nih.gov/18377181/) ／ [ヤオほか（Bo Yao, Pascal Belin & Christoph Scheepers）, “Silent reading of direct versus indirect speech activates voice-selective areas in the auditory cortex,” 2011](https://pubmed.ncbi.nlm.nih.gov/21452944/)\n\n## 4. そこで、同じ一文を三つのモードで読んでみる\n\n\u003c!-- level:4 role:claim -->\n研究の話だけでは、読み方としてどう使い分けるかが見えにくい。そこで科学的な実験ではなく、操作の違いを見るための紙上テストを一つやってみる。\n\n\u003c!-- level:2 role:description -->\n読む文はこれだけにする。\n\n> 彼女は「大丈夫」と言った。三秒後、同じ質問をもう一度した。\n\nまず、**走査読み**。「大丈夫」「三秒後」「同じ質問」といった情報点を拾う。何が起きたかを探す読みである。\n\n次に、**意味読み**。彼女は大丈夫だと言ったが、直後に同じ質問をしている。発言と行動にずれがある、と文の関係を取る。\n\n最後に、**声を想像する読み**。「大丈夫」を、明るく、平板に、少し急いで、間を空けて、と何通りか頭の中で鳴らしてみる。\n\n\u003c!-- level:3 role:analysis -->\n三番目だけ、文章に書かれていない情報を勝手に足しているように見える。実際、その通りである。声色の正解は本文だけでは決められない。ただ、その勝手さによって逆に、「この文は話者の状態を確定できるほど情報を持っていない」と気づける。声を想像することは、意味を決めるだけでなく、**どこが未決定なのかを発見する方法**にもなる。\n\n\u003c!-- level:5 role:implication -->\n三つの読みは、速い・普通・遅いという一直線ではない。問いが違う。\n\n- 走査読み：「どこにある？」\n- 意味読み：「何を言っている？」\n- 声を想像する読み：「どう言っている？」\n\nこの三つを分けると、黙読は速度調整ではなく**観測項目の切り替え**に見えてくる。\n\n## 5. 「声で読む」が効きやすいのは、声が意味を運んでいる文章である\n\n\u003c!-- level:4 role:claim -->\n声を想像する読みを、全部の文章へ適用する必要はない。むしろ、向いている文章を選ぶ方がいい。\n\n\u003c!-- level:2 role:description -->\n小説の会話、インタビュー、スピーチ、エッセイ、手紙、広告コピー。こうした文章では、語の意味だけでなく、間、強調、ためらい、皮肉、人物らしさが解釈に関わる。黙読でも韻律を心内で組み立てるという「暗黙の韻律（implicit prosody）」の研究は、語の強勢や文のリズムが眼球運動や統語解釈に影響し得ることを示してきた。\n\n\u003c!-- level:3 role:analysis -->\n一方、時刻表から発車時刻を探す、規約から「解約」を探す、長い資料から固有名詞を拾う、といった場面で話者の声を立ち上げても、目的にはあまり寄与しない。文章が「何を言うか」だけで足りるのか、「どう言うか」まで意味の一部なのかで、必要な読み方は変わる。\n\n\u003c!-- level:5 role:implication -->\nだから実践上は、**文章の種類ではなく、いま欲しい答えでモードを選ぶ**のがよい。探しているなら走査する。論理を取りたいなら関係を読む。語り口そのものが情報なら、声を立ち上げる。読書の熟練とは、ずっと深く読むことではなく、必要な深さへ切り替えられることなのかもしれない。\n\n\u003c!-- level:1 role:source -->\n[アシュビーとクリフトン（Jane Ashby & Charles Clifton Jr.）, “The prosodic property of lexical stress affects eye movements during silent reading,” 2005](https://pmc.ncbi.nlm.nih.gov/articles/PMC1479854/) ／ [ブリーン（Mara Breen）, “Empirical Investigations of the Role of Implicit Prosody in Sentence Processing,” 2014](https://onlinelibrary.wiley.com/doi/10.1111/lnc3.12061)\n\n## 6. ただし、「頭の中で声を出せば読解力が上がる」とまでは言えない\n\n\u003c!-- level:4 role:claim -->\nここで一度、便利な読書術にまとめたくなる誘惑を止める必要がある。今回見た研究の多くは、「声を意図的に想像する訓練をすると、誰でも理解度が上がる」と直接実証したものではない。\n\n\u003c!-- level:2 role:description -->\nヴィルハウアー（Vilhauer）の570人への調査では、80.7％が黙読中に「内なる読書声（inner reading voice）」を時々または常に経験すると答えた一方、19.3％は声を聞かずに語を理解すると答えた。声の性別、アクセント、高さ、感情的な調子まで報告する人もいたが、個人差は大きかった。\n\n\u003c!-- level:3 role:analysis -->\nこの数字も、万人に同じ仕組みがある証明ではない。自己報告の調査であり、「声」の感じ方自体も人によって違う。さらに、内言（inner speech）、聴覚イメージ、暗黙の韻律は重なり合うが、同じ概念ではない。口を動かさない発話表象、誰かの声を心内再生する感覚、文にリズムや抑揚を与える処理を、全部「脳内音読」と一語で片づけると雑になる。\n\n\u003c!-- level:5 role:implication -->\nしたがって、声を想像する読みは「正しい黙読」ではない。**使える人が、使える文章で、必要なときに足せる追加チャンネル**くらいに考えるのがちょうどいい。声が鳴らない人を不足とみなす理由もないし、声が鳴る人がそれを消す必要もない。\n\n\u003c!-- level:1 role:source -->\n[ヴィルハウアー（Vilhauer）, 2017](https://pubmed.ncbi.nlm.nih.gov/28582587/) ／ [アルダーソン＝デイとファーンハフ（Ben Alderson-Day & Charles Fernyhough）, “Inner Speech,” 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4538954/)\n\n## 7. 黙読は「無音で読む」ことではなく、「外に音を出さずに読み方を選べる」ことだった\n\n\u003c!-- level:4 role:claim -->\n最初の「もういい」に戻る。あの四文字を見て、必要な箇所だけ拾うこともできる。意味だけ理解することもできる。誰かの声で鳴らすこともできる。\n\n\u003c!-- level:2 role:description -->\n実際の読書では、その三つを一冊の中で行き来しているはずだ。章の冒頭を概略読みし、必要な節を探し、論理を追い、会話文で人物の声が立ち上がる。分からない一文だけ、頭の中で間を置き直すこともある。黙読は、静止した一技法ではなく、かなり忙しい切り替え作業である。\n\n\u003c!-- level:3 role:analysis -->\n調べる前、私は走査読みと「声を想像して読む」を、速い読みと遅い読みの対立として考えていた。でもそれでは少し違った。走査読みは「どこ」を強く見る。声の想像は「どう」を強く見る。どちらも文章の一部を選択的に増幅している点では同じである。\n\n\u003c!-- level:5 role:implication -->\nすると、黙読の意味が少し変わる。**黙読とは、音がない読書ではない。部屋の外へ音を出さないまま、文字の中で何を聞くかまで選べる読書である。** 速く読む技術を覚えるのと同じように、必要な文章では、あえて頭の中に声を呼び戻していい。\n\n---\n\n### 主要参考資料\n\n- [ヴィルハウアー（Ruvanee P. Vilhauer）— Characteristics of inner reading voices](https://pubmed.ncbi.nlm.nih.gov/28582587/)\n- [フィリクとバーバー（Ruth Filik & Emma Barber）— Inner Speech during Silent Reading Reflects the Reader's Regional Accent](https://pmc.ncbi.nlm.nih.gov/articles/PMC3198452/)\n- [アレクサンダーとナイガード（Jessica D. Alexander & Lynne C. Nygaard）— Reading voices and hearing text](https://pubmed.ncbi.nlm.nih.gov/18377181/)\n- [ヤオほか（Bo Yao et al.）— Silent reading of direct versus indirect speech activates voice-selective areas in the auditory cortex](https://pubmed.ncbi.nlm.nih.gov/21452944/)\n- [アシュビーとクリフトン（Jane Ashby & Charles Clifton Jr.）— The prosodic property of lexical stress affects eye movements during silent reading](https://pmc.ncbi.nlm.nih.gov/articles/PMC1479854/)\n- [ストルケリュとニーホルスター（Alexander Strukelj & Diederick C. Niehorster）— One page of text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7198234/)\n- [レイナーほか（Keith Rayner et al.）— So Much to Read, So Little Time](https://pubmed.ncbi.nlm.nih.gov/26769745/)\n"},"silent-en":{"title":"Silent reading is not only about scanning; you can also「声を立ち上げて」read","created":"2026-09-22","type":"Research Essay","md":"\n# Silent reading is not only about scanning; you can also「声を立ち上げて」read\n## Switch among scanning, meaning, and imagined voice by changing the question—not only the speed\n\n\u003c!-- level:4 role:claim -->\n「もういい」\n\nRead these four Japanese characters silently.\n\n\u003c!-- level:2 role:description -->\nWas the speaker angry? Resigned? Calmly satisfied? The letters themselves hardly tell you. それでも読む瞬間、some readers may automatically give the phrase a tone of voice. Others may understand it without experiencing anything that feels like a voice at all.\n\n\u003c!-- level:3 role:analysis -->\nThat is the first strange thing about silent reading. From the outside, everything looks the same: closed mouth, no audible sound. 内側では、however, you may be searching for a keyword, following an argument, or mentally staging somebody's voice. One word—「読む」—covers several different cognitive acts.\n\n\u003c!-- level:5 role:implication -->\nI used to think about silent-reading technique mostly in the direction of scanning and skimming: move faster by selecting less. Research points to another adjustable dial on the opposite side. **Instead of reducing what the eyes process, you can add a voice inside the text.** Silent reading can change not only by becoming faster, but by changing what kind of information you allow into the representation.\n\n\u003c!-- level:1 role:source -->\n[Ruvanee P. Vilhauer, “Characteristics of inner reading voices,” 2017](https://pubmed.ncbi.nlm.nih.gov/28582587/) ／ [Alexander Strukelj & Diederick C. Niehorster, “One page of text,” 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC7198234/)\n\n> **Information cutoff: September 22, 2026**\n>\n> This essay does not claim that imagining a voice is universal or that it automatically improves comprehension. 研究で確認されているinner speech、auditory imagery、implicit prosodyを手がかりに、practical reading modesとしてどう切り替えられるかを考える。\n\n## 1. Silent reading is not one speed; it already changes shape according to purpose\n\n\u003c!-- level:4 role:claim -->\nThere is no need to make fast reading the villain. What matters is what you are trying to get from the page.\n\n\u003c!-- level:2 role:description -->\nA 2018 eye-tracking study compared regular reading, thorough reading, skimming, and spell checking. During skimming, readers made longer saccades, shorter fixations, skipped more words, and finished faster. その代わり、comprehension scores were lower than in regular or thorough reading. Thorough reading involved more rereading and better comprehension.\n\n\u003c!-- level:3 role:analysis -->\nSo reading speed is not a simple ability meter. If your goal is to locate a name, date, or keyword, reading every sentence at equal density can be inefficient. 逆に、論理や細部を理解したいのにsearch modeのまま進めば、processing becomes shallower. Reviews of speed reading likewise emphasize a speed–accuracy trade-off.\n\n\u003c!-- level:5 role:implication -->\nIf we reduce the issue to two choices, we get “read fast” versus “read carefully.” But before speed comes a different variable: **what question are you asking the text?** Scanning asks, “Where is the thing I need?” The faster eye movement is a consequence of that question.\n\n\u003c!-- level:1 role:source -->\n[Strukelj & Niehorster, 2018](https://pubmed.ncbi.nlm.nih.gov/33828678/) ／ [Keith Rayner et al., “So Much to Read, So Little Time,” 2016](https://pubmed.ncbi.nlm.nih.gov/26769745/)\n\n## 2. The「voice」inside silent reading can carry your own accent\n\n\u003c!-- level:4 role:claim -->\nCan imagined voice really count as part of reading? The research gets surprisingly specific here.\n\n\u003c!-- level:2 role:description -->\nIn 2011, Ruth Filik and Emma Barber asked Northern and Southern English speakers to silently read limericks containing words whose pronunciation differs by regional accent. Whether a line rhymed therefore depended on the reader's own accent. When the rhyme failed according to that accent, eye-movement disruption appeared.\n\n\u003c!-- level:3 role:analysis -->\nThere was no audio file on the page. Yet written words seem to have been recoded into the reader's own pronunciation strongly enough for rhyme to matter. 黙読は、文字から意味へstraight lineで飛ぶだけではなく、少なくとも一部の場面ではphonological representationを通る。\n\n\u003c!-- level:5 role:implication -->\nThis makes the “inner voice” less metaphorical. **Silent reading can carry not only words but traces of how the reader would actually say them.** Even with the mouth closed, the reader's history of speaking can leak into the text.\n\n\u003c!-- level:1 role:source -->\n[Ruth Filik & Emma Barber, “Inner Speech during Silent Reading Reflects the Reader's Regional Accent,” 2011](https://pmc.ncbi.nlm.nih.gov/articles/PMC3198452/)\n\n## 3. Stranger still: imagining who is speaking can change reading speed\n\n\u003c!-- level:4 role:claim -->\nA voice is not only pronunciation. It belongs to a speaker.\n\n\u003c!-- level:2 role:description -->\nIn 2008, Jessica D. Alexander and Lynne C. Nygaard familiarized participants with a fast talker and a slow talker. Later, readers were told that a passage had been written by one of those people. Even during silent reading, passages attributed to the slow talker took longer to read. The authors interpreted this as evidence for talker-specific auditory imagery.\n\n\u003c!-- level:2 role:description -->\nAnother study compared direct and indirect speech with similar meaning. Silent reading of direct quotations produced stronger activity in voice-selective auditory-cortex regions than indirect speech. 「誰かが実際に言った言葉」という形式が、more vivid voice simulationを引き出している可能性がある。\n\n\u003c!-- level:3 role:analysis -->\nThis is not a romantic claim that imaginative readers are “better” readers. The useful point is more mechanical: the imagined speaker can reach into processing time itself. 遅いtalkerを頭に置けば、silent readingも遅くなる。A mental model of the speaker can change how quickly the text is traversed.\n\n\u003c!-- level:5 role:implication -->\nIf speed is the only metric, that looks like a loss. But another interpretation is available. **You are not merely slowing down; you are adding a layer called “who said this, and how?”** Scanning removes information to move faster. Voice simulation may add information and therefore move slower. They operate in opposite directions.\n\n\u003c!-- level:1 role:source -->\n[Jessica D. Alexander & Lynne C. Nygaard, “Reading voices and hearing text,” 2008](https://pubmed.ncbi.nlm.nih.gov/18377181/) ／ [Bo Yao, Pascal Belin & Christoph Scheepers, 2011](https://pubmed.ncbi.nlm.nih.gov/21452944/)\n\n## 4. Try the same sentence in three different modes\n\n\u003c!-- level:4 role:claim -->\nResearch alone does not make the practical distinction vivid. So here is a tiny paper exercise—not a scientific experiment, but a way to expose the control knobs.\n\n\u003c!-- level:2 role:description -->\nRead this sentence:\n\n> 彼女は「大丈夫」と言った。三秒後、同じ質問をもう一度した。\n\nFirst, **scanning mode**. You pick up “大丈夫,” “三秒後,” and “同じ質問.” The question is what happened and where the key facts are.\n\nSecond, **meaning mode**. She says she is fine, but three seconds later repeats the question. 発言と行動のずれを取る。\n\nThird, **imagined-voice mode**. Hear「大丈夫」as bright, flat, rushed, delayed, or slightly shaky.\n\n\u003c!-- level:3 role:analysis -->\nThe third mode appears to add information that is not actually written. That is true. There is no correct tone available from the sentence alone. でも、その勝手なsimulationをすると逆に、「the text does not determine the speaker's state this precisely」と気づける。Imagining a voice can reveal not only one possible meaning but also the boundaries of what the text actually specifies.\n\n\u003c!-- level:5 role:implication -->\nThe three modes are not simply fast, medium, and slow. They ask different questions:\n\n- Scanning: “Where is it?”\n- Meaning: “What does it say?”\n- Imagined voice: “How is it being said?”\n\nOnce separated this way, silent reading looks less like speed control and more like **switching the variable you are observing**.\n\n## 5. Imagined voice becomes useful when「how it is said」is part of the meaning\n\n\u003c!-- level:4 role:claim -->\nThere is no reason to add an inner actor to every paragraph you read. The mode makes more sense when voice itself carries information.\n\n\u003c!-- level:2 role:description -->\nDialogue in fiction, interviews, speeches, essays, letters, advertising copy—these forms often depend on pause, emphasis, hesitation, irony, and character. Research on implicit prosody suggests that silent readers generate internal patterns of stress, rhythm, and phrasing, and that these patterns can affect eye movements and even syntactic interpretation.\n\n\u003c!-- level:3 role:analysis -->\nBy contrast, if you are searching a timetable for a departure time, a contract for「解約」, or a report for a proper noun, talker simulation contributes little to the task. 文章が「what is said」だけで足りるのか、それとも「how it is said」までmeaningの一部なのかで、mode choiceは変わる。\n\n\u003c!-- level:5 role:implication -->\nA practical rule follows: **choose the mode by the answer you need, not by the genre label.** Search when you need location. Read relations when you need logic. Bring up a voice when delivery itself carries information. Reading expertise may be less about always going deep and more about knowing when to change depth.\n\n\u003c!-- level:1 role:source -->\n[Jane Ashby & Charles Clifton Jr., “The prosodic property of lexical stress affects eye movements during silent reading,” 2005](https://pmc.ncbi.nlm.nih.gov/articles/PMC1479854/) ／ [Mara Breen, “Empirical Investigations of the Role of Implicit Prosody in Sentence Processing,” 2014](https://onlinelibrary.wiley.com/doi/10.1111/lnc3.12061)\n\n## 6. But research does not show that「hear a voice = understand better」for everyone\n\n\u003c!-- level:4 role:claim -->\nThis is the point where a neat reading hack would be tempting. The evidence does not justify that leap.\n\n\u003c!-- level:2 role:description -->\nIn Vilhauer's survey of 570 respondents, 80.7% reported sometimes or always experiencing an inner reading voice during silent reading, while 19.3% reported understanding written words without hearing such a voice. People who did report voices described differences in gender, accent, pitch, loudness, and emotional tone.\n\n\u003c!-- level:3 role:analysis -->\nThat does not prove one universal mechanism. It is self-report, and the subjective meaning of “hearing” an inner voice varies. Also, inner speech, auditory imagery, and implicit prosody overlap without being identical. 「口を動かさない発話表象」「誰かの声を心内再生する感覚」「文にリズムや抑揚を与える処理」を全部一つの“脳内音読”にまとめると、important distinctions disappear.\n\n\u003c!-- level:5 role:implication -->\nSo imagined-voice reading is not the correct form of silent reading. **It is an optional channel that some readers can add when the text rewards it.** There is no reason to treat people without a vivid inner voice as deficient, and no reason for people with one to eliminate it automatically.\n\n\u003c!-- level:1 role:source -->\n[Ruvanee P. Vilhauer, 2017](https://pubmed.ncbi.nlm.nih.gov/28582587/) ／ [Ben Alderson-Day & Charles Fernyhough, “Inner Speech,” 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4538954/)\n\n## 7. Silent reading is not「reading with no sound」; it is reading without sending the sound outside\n\n\u003c!-- level:4 role:claim -->\nReturn to「もういい」. You can scan past it, understand its dictionary meaning, or hear a particular person say it in your head.\n\n\u003c!-- level:2 role:description -->\nReal reading probably shifts among these modes continuously. You skim the beginning of a chapter, scan for the relevant section, slow down for an argument, then suddenly hear a character's line. 分からない一文だけ、頭の中でpauseを置き直すこともある。Silent reading is not one stable technique; it is a sequence of switches.\n\n\u003c!-- level:3 role:analysis -->\nBefore researching this, I saw scanning and imagined voice as a contrast between fast and slow reading. That was too simple. Scanning amplifies「where」. Voice simulation amplifies「how」. Both are selective ways of increasing the salience of one layer of the text.\n\n\u003c!-- level:5 role:implication -->\nThat changes the meaning of silent reading a little. **Silent reading is not reading without sound. It is reading without putting the sound into the room, while still choosing what—if anything—you want to hear inside the text.** Learning to read faster is useful. So is knowing when to invite the voice back in.\n\n---\n\n### 主要参考資料\n\n- [Ruvanee P. Vilhauer — Characteristics of inner reading voices](https://pubmed.ncbi.nlm.nih.gov/28582587/)\n- [Ruth Filik & Emma Barber — Inner Speech during Silent Reading Reflects the Reader's Regional Accent](https://pmc.ncbi.nlm.nih.gov/articles/PMC3198452/)\n- [Jessica D. Alexander & Lynne C. Nygaard — Reading voices and hearing text](https://pubmed.ncbi.nlm.nih.gov/18377181/)\n- [Bo Yao et al. — Silent reading of direct versus indirect speech activates voice-selective areas in the auditory cortex](https://pubmed.ncbi.nlm.nih.gov/21452944/)\n- [Jane Ashby & Charles Clifton Jr. — The prosodic property of lexical stress affects eye movements during silent reading](https://pmc.ncbi.nlm.nih.gov/articles/PMC1479854/)\n- [Alexander Strukelj & Diederick C. Niehorster — One page of text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7198234/)\n- [Keith Rayner et al. — So Much to Read, So Little Time](https://pubmed.ncbi.nlm.nih.gov/26769745/)\n"},"waiting-ja":{"title":"待ち時間は、時間ではない","created":"2026-08-15","type":"Learning Paper","md":"\n# 待ち時間は、時間ではない\n## UX／サービスデザインから考える「待たされている感覚」の設計\n\n### 要旨\n\n0%から100%まで、一定の速度で進むプログレスバー。\n\nもう一つは、開始直後に99%まで進み、最後の1%だけがいつまでも終わらないプログレスバー。\n\n実時間がまったく同じでも、多くの人は後者を長く感じる。\n\nなぜか。\n\n私たちは、時計だけを待っているわけではないからである。\n\n「あとどれくらいなのか」「ちゃんと進んでいるのか」「忘れられていないか」「自分だけ損をしていないか」「この時間には意味があるのか」。待ち時間の体験は、こうした認知の束としてつくられている。\n\nだからサービスデザインにおける待ち時間の問題は、単純な時間短縮問題ではない。\n\nもちろん、実際の待ち時間を短くできるなら、まず短くするべきである。心理テクニックで性能不足や人員不足を隠すことが目的ではない。\n\nそのうえで、どうしても残る待ち時間をどう扱うか。\n\n本稿では、株式会社pedanticの動画「ディズニーは待ち時間をハックしている…？」で提示された論点を起点に、国内外の事例と待ち行列研究を接続する。そして待ち時間を、次のように捉え直す。\n\n> **待ち時間とは、サービスが止まっている時間ではない。サービスに対する期待・信頼・公平感・主体性が更新され続ける時間である。**\n\n待ち時間をデザインするとは、時間をごまかすことではない。\n\n**待っている人が、自分の時間をどう扱われていると感じるかをデザインすること**である。\n\n---\n\n## 1. 「8分待ち」は、一つの数字ではない\n\nサービス運営では、待ち時間はしばしば平均値で管理される。\n\n- 平均待ち時間 8分\n- 最大待ち時間 15分\n- 95パーセンタイル 12分\n- 離脱率 3%\n\nもちろん重要な数字である。\n\nしかし、UXとして見ると、同じ8分は同じ8分ではない。\n\nたとえば次の二つを考える。\n\n### A\n\n受付後、何の説明もないまま椅子に座る。\n\n自分の前に何人いるのか分からない。受付が通っているのかも分からない。5分後、スタッフに聞くと「もう少々お待ちください」と言われる。\n\n### B\n\n受付後、「現在3組待ち／目安8〜12分」と表示される。\n\nスマートフォンで順番を確認でき、あと2組になったら通知が来る。近くの売店へ行ってもよい。\n\n実際に呼ばれるまでの時間がどちらも10分だったとしても、体験はかなり違う。\n\n違いを生んでいるのは時計ではない。\n\n- 不確実性\n- 注意の向き先\n- 進捗感\n- 自分で選べる感覚\n- 公平感\n- 期待との差\n- 待つことの意味\n\nである。\n\nDavid Maisterは1985年の古典的論考「The Psychology of Waiting Lines」で、待ち時間には客観的な長さとは別に「どう経験されるか」という問題があることを整理した。たとえば「何もしていない時間は、何かしている時間より長く感じる」「不確実な待ちは、分かっている有限の待ちより長く感じる」「不公平な待ちは長く感じる」といった命題である。\n\nそして2026年5月に改訂されたMaister研究40周年のレビューでは、約1,500件の引用と201本の査読論文を調べたうえで、これらを単純な8個の法則としてではなく、次の三層に整理し直している。\n\n```text\n運営・デザイン上のレバー\n        ↓\n心理状態\n注意 / 不確実性 / 不安 / 統制感 / 公平感 / 知覚された進捗\n        ↓\n結果\n体感待ち時間 / 満足 / 離脱 / 待つ意思\n```\n\nこの整理は重要である。\n\n「待っている人に動画を見せれば短く感じる」のような単純な話ではないからだ。\n\n同じ施策でも、状況によって作用する心理状態が違えば、結果も違う。\n\n本稿では、この考え方をさらに実務向けに次のように読む。\n\n> **Actual Wait → Psychological Wait → Remembered Wait**\n>\n> 実際の待ち時間 → 待っている最中の心理 → 後から記憶される待ち時間\n\nサービスデザインが扱うべきなのは、三つすべてである。\n\n---\n\n## 2. 第一原則：まず短くする。その次に、待ちを設計する\n\n待ち時間UXの議論は、ときどき危険な方向へ行く。\n\n「人間は暇だと長く感じる。ならゲームを置けばよい」\n\n「長めに時間を伝えて、早く終われば得した気分になる」\n\n「作業しているように見せれば価値を感じる」\n\nこうした知見は確かに存在する。\n\nしかし、最初に置くべき原則はもっと地味である。\n\n> **実待ち時間を減らせるなら、減らす。**\n\nロードが30秒かかるシステムを10秒にできるなら、まず10秒にする。\n\n料理提供を20分から10分にできるなら、まず10分にする。\n\n窓口のボトルネックを解消できるなら、まず解消する。\n\nShirley Taylorの実験でも、遅延そのものはサービス評価を下げる。待ち時間を埋めたり、遅延に対する統制の認知を変えたりすることで評価は改善するが、「待たせても演出すれば問題ない」という話ではない。\n\nつまり設計順序は、\n\n```text\n1. Remove the wait\n2. Reduce the wait\n3. Explain the wait\n4. Give control during the wait\n5. Transform the wait\n```\n\nである。\n\n待ち時間の心理設計は、性能改善の代用品ではない。\n\n**削り切れなかった待ち時間を、人間にとって扱える時間へ変換する技術**である。\n\n---\n\n## 3. 「暇をつぶす」では弱い――待ちを体験へ変換する\n\nMaisterの命題の中でもっとも有名なのが、Occupied TimeとUnoccupied Timeの違いである。\n\n何もせず時間そのものを意識していると、待ちは長く感じやすい。\n\nしかし、ここを「何か暇つぶしを置けばよい」とだけ理解すると浅い。\n\n良い待ち時間デザインは、単に注意をそらすのではなく、**待っている時間を本編へ接続する。**\n\n### サイゼリヤ――料理が来るまでを「間違い探しの時間」にする\n\n日本で非常に分かりやすい例が、サイゼリヤのキッズメニューにある間違い探しである。\n\nサイゼリヤは採用サイトで、この間違い探しについて、**料理が提供されるまでの時間を楽しんでもらうことを目的に始めた**と説明している。\n\n重要なのは、単なる子ども向け暇つぶしで終わっていない点である。\n\n大人でも苦戦する難度を混ぜることで、家族や同席者の会話が生まれ、さらに従業員との会話のきっかけにもなるという。\n\nつまり一つの印刷物が、\n\n```text\n空白時間\n  ↓\n注意の占有\n  ↓\n同席者との共同作業\n  ↓\n店舗との会話\n```\n\nへ変換されている。\n\n待ち時間を「消した」のではない。\n\n**待ち時間に別の価値を生やした**のである。\n\n### ゲーム――ロード画面を世界観の外へ追い出さない\n\n動画で挙げられていた初代『バイオハザード』のドア演出も、同じ構造で読める。\n\nマップ間のデータ読み込みという、本来ならゲーム世界の外側にある技術的都合を、「扉を開ける」というホラー演出へ変換する。\n\n『ゼルダの伝説 ブレス オブ ザ ワイルド』のTips表示も、ただ暇を埋めるのではなく、プレイヤーを「学び続ける冒険者」として扱う。\n\n良いローディング画面は、\n\n> 「いまゲームが止まっています」\n\nと伝えない。\n\n> 「あなたはいまも、この世界の中にいます」\n\nと伝える。\n\nこれはテーマパークの待機列にも近い。\n\nDisneyは過去にPlay Disney Parksアプリで、実際の待機列を調査し、列の場所や周囲の小道具に合わせて遊び方が変わるインキューゲームを設計していた。単にスマホゲームを置くのではなく、物理空間とデジタル体験を連続させる発想である。\n\nここから得られる原則は明快である。\n\n> **DistractではなくIntegrateする。**\n>\n> 待ちから気をそらすのではなく、待ちを本編へ統合する。\n\n---\n\n## 4. 時間を教えるより、「不確実性」を減らす\n\n「あと何分です」と表示することは、待ち時間デザインの定番である。\n\nしかし、本当に減らしているものは時間ではない。\n\n**不確実性**である。\n\nMichael HuiとDavid Tseは1996年、待ち時間に関する情報がサービス評価へどう影響するかを実験した。結果は単純ではなく、情報提供が必ずしも「体感時間そのもの」を縮めるわけではなかった。一方で、待ちを受け入れられるか、感情的にどう反応するかを通じてサービス評価へ影響した。\n\n2002年の電話サービスを使ったフィールド実験でも、予想待ち時間の情報は待ち時間の過大評価を有意に減らした。\n\nここで大事なのは、\n\n> **「8分です」という数字の価値は、8分を短くすることではなく、8分間の行動を決められるようにすることにある。**\n\nという点である。\n\n### JR東日本――「いつ来るか」から「いまどこにいるか」へ\n\nJR東日本アプリや「どこトレ」では、列車の運行情報だけでなく、列車走行位置をほぼリアルタイムで確認できる。\n\n遅延時に「10分遅れ」とだけ言われるのと、列車がいまどの駅にいて、どちらへ向かっているかが見えるのでは、認知が違う。\n\n後者には**進捗**がある。\n\nさらにJR東日本自身、走行位置が分かることで「待つ・移動するなど次の行動を判断しやすくなる」と説明している。\n\nこれは待ち時間UXにおける重要な転換である。\n\n```text\n情報提供 = 不安をなだめるもの\n```\n\nではなく、\n\n```text\n情報提供 = 次の行動を選べるようにするもの\n```\n\nなのである。\n\n### 東京ディズニーリゾート――列を見る前に、時間を知る\n\n東京ディズニーリゾート公式アプリでは、アトラクションやレストランの待ち時間をマップ上で確認できる。\n\nこれも単なる便利機能ではない。\n\n「並んでから待ち時間を知る」のではなく、**待つかどうかを決める前に知る**ことができる。\n\n情報提供が、待ち時間の最中から意思決定の前へ移動している。\n\nUXとしては、ここがかなり大きい。\n\n待ち時間のストレスを減らす最も強い方法の一つは、待たせ方を工夫することではなく、\n\n> **そもそも、その待ちを選ぶかどうかを本人に返すこと**\n\nだからである。\n\n---\n\n## 5. プログレスバーが欲しいのは、数字ではなく「前に進んでいる証拠」である\n\n冒頭の99%で止まるプログレスバーが不快なのは、単純に残り時間が長いからではない。\n\n最初の急激な進捗が、\n\n> 「これはすぐ終わる」\n\nという期待をつくり、その期待が99%で裏切られるからである。\n\nさらに、99%という表示は「ほぼ完了」を意味するのに、内部では何が起きているのか分からない。\n\nつまり、\n\n- 期待との不一致\n- 進捗の停止\n- 不確実性\n\nが同時に発生する。\n\n2026年のMaister研究レビューが興味深いのは、従来あまり明示されていなかった**perceived progress――知覚された進捗**を、複数の待ち時間研究をつなぐ重要な心理状態として提案している点である。\n\n「何かしているから短く感じる」のではなく、\n\n> **目的へ近づいていると感じられるから、待てる。**\n\nという見方である。\n\nHCI研究でも、プログレス表示の形状やパーセント表示が主観的な速さやUX評価に影響することが報告されている。\n\nだから良い進捗表示は、派手に動けばよいわけではない。\n\n### 良い進捗表示\n\n- 本当に進んでいる\n- 段階が理解できる\n- 止まった場合は理由が分かる\n- 残り時間の精度に合わせた粒度で表示する\n- 完了直前ほど期待を裏切らない\n\n### 悪い進捗表示\n\n- 実処理と無関係に動く\n- 99%で長時間止まる\n- 0.1%単位で精密そうに見せるが根拠がない\n- 同じメッセージを延々繰り返す\n\nここでの原則は、\n\n> **Fake precisionよりCredible progress。**\n\nである。\n\n人は「97.42%」という精密な数字が欲しいのではない。\n\n**自分が忘れられておらず、目的に近づいていると信じられる証拠**を欲しがっている。\n\n---\n\n## 6. 行列を身体から切り離す――Virtual Queueという発想\n\n待ち時間を改善する方法として、もっと根本的なものがある。\n\n**並ばせないこと**である。\n\n待つ必要はあっても、その場所に立ち続ける必要まであるとは限らない。\n\n### ヒューストン空港の有名な逸話\n\n待ち時間論で頻繁に引用される話に、ヒューストンの空港の手荷物受取がある。\n\n2012年のAlex StoneによるNew York Timesのコラムでは、空港が荷物受取の苦情に対応して処理を改善したものの不満が残り、到着ゲートから荷物受取までの歩行を長くしたところ、立ち止まって待つ時間の比率が下がり、苦情が大きく減ったと紹介されている。\n\nただし、この事例は空港の一次資料ではなく、後年のコラムを通じて広く知られた逸話である。本稿では「報告されたケース」として扱い、数値を普遍的な因果法則としては扱わない。\n\nそれでも、着眼点は面白い。\n\n```text\n待つ = その場で停止する\n```\n\nという前提を壊したからである。\n\n### USJ――「列にいること」と「順番を持っていること」を分ける\n\nユニバーサル・スタジオ・ジャパンの公式アプリでは、一部エリアやアトラクションでe整理券を取得できる。公式サイトも、小さな子どもを連れた来場者などが予約時間まで列に並ばず、プレイランドやレストランなどを楽しめることを利点として説明している。\n\nこれはサービス設計として非常に重要である。\n\n> **Queue positionとPhysical positionを分離している。**\n\n順番はシステムが保持し、身体は自由にする。\n\nWalt Disney WorldのVirtual Queueも同じ発想で、順番が来るまで他のパーク体験を楽しめる仕組みとして説明されている。\n\nここから一つ、大きな原則が導ける。\n\n> **行列は、人間が立って保存する必要はない。システムが保存できる。**\n\nこれはテーマパークだけではない。\n\n病院、行政窓口、飲食店、修理受付、イベント物販、コールセンターでも同じである。\n\n「待つ」と「拘束される」を分離できないか。\n\nそれだけで、待ち時間の意味は大きく変わる。\n\n---\n\n## 7. 「思ったより早い」は気持ちいい。しかし、期待値操作には限界がある\n\n動画では、ディズニーの待ち時間表示が実際より長めに出ることがあり、「思ったより早く乗れた」という感覚につながっているのではないか、という話が紹介されている。\n\nこの点について東京ディズニーリゾートが公式に「意図的に長く表示している」と確認できる資料は見当たらないため、事実として断定するべきではない。\n\nただし、**期待と実績の差が評価に影響する**という考え方そのものには、長い研究蓄積がある。\n\nMaisterもサービス満足を、知覚されたサービスと期待との差として捉えていた。\n\n待ち時間でも、\n\n```text\n予想 20分 → 実際 15分\n```\n\nは、\n\n```text\n予想 10分 → 実際 15分\n```\n\nより気分がよい。\n\nしかし、ここで「では全部5時間待ちと表示すればよい」とはならない。\n\nなぜなら待ち時間表示は、満足を調整するだけでなく、**参加するかどうかの意思決定材料**でもあるからである。\n\n過大な見積もりは、利用そのものを諦めさせる。\n\n過小な見積もりは、期待を裏切る。\n\nしたがって実務では、Under-promise / Over-deliverを「盛ってよい」という意味にしない方がよい。\n\nより正確には、\n\n> **Promise conservatively, communicate uncertainty honestly.**\n\nである。\n\nたとえば、\n\n- 約10〜15分\n- 現在4組待ち\n- 混雑により前後します\n- 12:40〜12:50ごろ呼出予定\n\nのように、推定精度に応じてレンジや条件を見せる。\n\n期待値管理は、騙す技術ではない。\n\n**予測の不確実性まで含めて共有する技術**である。\n\n---\n\n## 8. 「すぐ終わる」が、逆に価値を下げることがある\n\nここから話は少し逆転する。\n\n待ち時間は、短ければ短いほど常によいのか。\n\n必ずしもそうではない。\n\n### Duration Heuristic――時間を、仕事量の代理変数にしてしまう\n\nCatherine YeungとDilip Somanは2007年、「Duration Heuristic」を提案した。\n\nサービスの中身を細かく評価しにくいとき、人は「どれだけ時間がかかったか」を、サービス価値を判断する手掛かりとして使うことがある。\n\n鍵屋が数十秒で鍵を開ける。\n\n専門家が複雑そうな修正を5分で終える。\n\n料理を注文した瞬間に出してくる。\n\n本当は速い方が優秀かもしれないのに、利用者側では、\n\n> 「本当にちゃんとやったのか」\n\nという疑念が生まれることがある。\n\n時間が、見えない努力の代理指標になっているからである。\n\n### Labor Illusion――「作業している」と分かると、待てる\n\nRyan BuellとMichael Nortonの2011年の研究「The Labor Illusion」はさらに面白い。\n\nオンライン旅行検索などを模した実験で、同じ結果を返す場合でも、システムが検索・処理している様子を見せると、瞬時に結果を返すサービスよりも価値を高く評価される場合があった。\n\n重要なのは、**遅いこと自体が好まれたわけではない**点である。\n\n待ち時間の中に、\n\n> 「あなたのために、いま仕事が進んでいる」\n\nという意味が見えた。\n\n2016年のOperational Transparency研究でも、サービス提供のプロセスを見えるようにすることで、利用者が従業員の努力をより認識し、評価が高まる効果が報告されている。\n\nここからデジタルサービスへの示唆が出る。\n\n### AIや検索サービスの「考えています」は、何を見せるべきか\n\n生成AI、検索、動画書き出し、データ分析などでは、処理時間をゼロにできない場合がある。\n\nそこで重要なのは、無意味なスピナーを回すことではない。\n\n```text\n検索しています…\n```\n\nだけでなく、たとえば、\n\n```text\n12件の資料を確認\n ↓\n重複を整理\n ↓\n比較軸を作成\n ↓\n回答を構成\n```\n\nのように、**本当に行っている処理の構造**を見せる。\n\nこれは待ち時間を誤魔化す演出ではない。\n\nサービスの不可視な労働を、利用者が理解できる粒度へ翻訳することである。\n\nただし、ここには明確な倫理線がある。\n\n**存在しない仕事を演出するために、わざと遅くしてはいけない。**\n\nLabor Illusionの知見を「遅延を入れると価値が上がる」と理解すると、研究の意味を逆にしてしまう。\n\n見せるべきなのはFake laborではなく、Real workである。\n\n---\n\n## 9. 公平な待ちと、「時間をお金で買う」サービス\n\n待ち時間にはもう一つ、時間とは別の強い変数がある。\n\n**公平性**である。\n\nスーパーで自分より後から並んだ隣のレーンがどんどん進む。\n\n空港の優先レーンを横目に、自分の列だけ動かない。\n\n同じ10分でも、納得できる10分と納得できない10分がある。\n\nMaisterも「Unfair waits are longer than equitable waits」と整理した。\n\n2023年のProduction and Operations Managementの研究では、追加料金を払う優先サービスと通常列を併設する設計において、顧客が感じる**ex ante fairness――利用前の公平感**が事業者の設計にどう影響するかが分析されている。\n\nこれは現在のテーマパークを考えると非常に生々しい。\n\n東京ディズニーリゾートでは2026年8月時点、ディズニー・プレミアアクセスという有料サービスがあり、対象アトラクションでは希望時間を指定し、通常より短い待ち時間で利用できる。USJにもユニバーサル・エクスプレス・パスがある。\n\nここでは、時間そのものが商品になっている。\n\n```text\n通常料金\n+ 時間短縮料金\n```\n\nである。\n\nこれは悪いことだ、と単純には言えない。\n\n時間の価値は人によって違う。\n\n遠方から一度だけ来る人、小さな子どもを連れている人、限られた時間で多く回りたい人にとって、追加料金で選択肢が増えることには価値がある。\n\n一方で、優先レーンは通常列の人からも見える。\n\nそこで利用者は、単に「自分は40分待っている」だけでなく、\n\n> 「お金を払った人は待たなくてよいのに、自分は待っている」\n\nという比較を始める。\n\n待ち時間は、個人の時間感覚から社会的比較へ変わる。\n\nだからPriority QueueのUX設計には、少なくとも次が必要になる。\n\n- ルールが明確である\n- 誰が優先されるかが恣意的でない\n- 通常列のサービス水準が崩壊しない\n- 障害・医療・安全など、価格以外の優先原理と混同しない\n- 有料化によって生まれる不公平感を、存在しないものとして扱わない\n\n**公平感は、平均待ち時間とは別のKPIである。**\n\nここを無視すると、オペレーション上は効率的でも、体験としては荒れる。\n\n---\n\n## 10. ディズニーが本当にハックしているのは、「待ち時間」ではない\n\n動画のタイトルは「ディズニーは待ち時間をハックしている…？」である。\n\nこの問いに対して、本稿では少し違う答えを出したい。\n\nディズニー的な待機列デザインの強さは、時間を短く錯覚させる小技だけではない。\n\n**「アトラクションはどこから始まるのか」という境界を動かしていること**にある。\n\n通常のサービスでは、\n\n```text\n待つ\n↓\nサービス開始\n```\n\nと分かれている。\n\nしかしテーマパークのよくできた待機列では、\n\n```text\n世界観へ入る\n↓\n展示を見る\n↓\n音を聞く\n↓\n物語の前提を知る\n↓\nプレショー\n↓\nライド\n```\n\nと連続している。\n\nどこまでが待ちで、どこからが本編なのか、境界がぼやける。\n\nWalt Disney Imagineering自身も、アトラクション単体ではなく、テーマパーク、リゾート、ショー、空間を一つの体験として設計し、ゲストが経験する細部を統合していく姿勢を説明している。\n\nさらに東京ディズニーリゾート公式アプリでは、待ち時間を見せ、時間指定型のサービスを提供し、物理的な待機だけでなく「いつ体験するか」を管理するレイヤーまで設計している。\n\nつまり待ち時間へのアプローチは一つではない。\n\n```text\n短くする\n見えるようにする\n意味を与える\n別の行動を許す\n時間を予約する\n優先権を売る\n```\n\nこれらを組み合わせている。\n\n「待ち時間をハックする」というより、\n\n> **サービスの開始地点と、客の時間の使い方を再設計する。**\n\nと呼ぶ方が正確である。\n\n---\n\n## 11. 待ち時間UXを設計する7つの順序\n\nここまでを、実務で使える順序へ落とす。\n\n### 0. 実待ち時間を減らせないか\n\n最優先。\n\n- 処理高速化\n- 人員配置\n- 導線改善\n- 予約枠\n- 並列処理\n- ボトルネック除去\n\n心理設計の前にやる。\n\n### 1. 何を待っているかを明確にする\n\n「お待ちください」だけにしない。\n\n```text\n受付済み\n↓\n確認中\n↓\n処理中\n↓\n最終確認\n```\n\nサービスの概念モデルを渡す。\n\n### 2. 残り時間ではなく、進捗を見せる\n\n推定時間が不安定なら、無理に「あと3分」と言わない。\n\n- あと何組\n- いま何段階\n- 列車はいまどこ\n- 処理対象何件中何件\n\nなど、信用できる進捗を出す。\n\n### 3. 選択肢を渡す\n\n- その場を離れてよい\n- 通知を受け取れる\n- 別の時間を選べる\n- 別サービスへ切り替えられる\n- キャンセルできる\n\n待たされる状態から、待つことを選べる状態へ変える。\n\n### 4. 待ちを本編へ接続する\n\nサイゼリヤの間違い探しやテーマパークのQラインのように、単なる暇つぶしではなく、\n\n- 学習\n- 準備\n- 選択\n- 世界観\n- 会話\n\nへつなぐ。\n\n### 5. 公平性を説明する\n\nなぜこの順番なのか。\n\nなぜ別の人が先なのか。\n\n優先条件は何か。\n\n説明できないQueue Disciplineは、UX上の負債になる。\n\n### 6. 終わり方を設計する\n\n待ち時間研究をUX全体へ広げるなら、最後も重要である。\n\nKahnemanらの一連の研究では、人が長い経験を後から評価するとき、経験全体の単純平均ではなく、ピークと終盤の影響を強く受けることが示されている。\n\n待ち終わった瞬間に、\n\n- 呼ばれたのか分からない\n- 次に何をすればよいか分からない\n- また別の列へ並ばされる\n- スタッフの引き継ぎが悪い\n\nとなれば、せっかく丁寧に設計した待ちが最後に壊れる。\n\n**Queueの出口もサービスである。**\n\n---\n\n## 12. KPIも「平均待ち時間」だけでは足りない\n\n実務では、待ち時間改善を平均分数だけで追いがちである。\n\nしかし、本稿の整理に従えば、最低でも複数の層がある。\n\n### Operational\n\n- 平均待ち時間\n- P90 / P95待ち時間\n- 最大待ち時間\n- 処理能力\n- 離脱率\n\n### Psychological\n\n- 推定待ち時間と実待ち時間の差\n- 「進んでいる」と感じた割合\n- 待ち時間への納得度\n- 待っている間に次の行動を選べた割合\n- 公平だと感じた割合\n- 不安／不確実性\n\n### Experiential\n\n- 待ちを含む総合満足\n- 再利用意向\n- 推奨意向\n- 待ち時間に関する問い合わせ率\n- クレーム率\n\n特に面白いのは、**実待ち時間を短くしたのに満足が上がらない**ケースである。\n\nそこでは、時間以外の変数がボトルネックになっている可能性がある。\n\n逆に、待ち時間が同じでも問い合わせや離脱が減ったなら、情報や統制感の設計が効いている可能性がある。\n\n待ち時間UXは、時間計測だけでは見えない。\n\n---\n\n## 13. どこからが「親切」で、どこからが「認知の操作」なのか\n\nここまで読むと、待ち時間をかなり自在に設計できるように見える。\n\n- 注意を別へ向ける\n- 長めの期待をつくる\n- 進捗を演出する\n- 作業している姿を見せる\n- 世界観へ没入させる\n- 優先権を販売する\n\nしかし、ここで一つ立ち止まる必要がある。\n\n**体感待ち時間を短くできれば、それは良いUXなのか。**\n\nたとえば本当は10分で終わる処理を、価値が高く見えるから20分かける。\n\n実際には進んでいないのに、動くプログレスバーを見せる。\n\n恒常的な人員不足を改善せず、ゲームだけ充実させる。\n\n通常列を意図的に悪化させ、有料優先レーンを魅力的に見せる。\n\nこれらも、表面的には「待ち時間体験をデザインしている」と言えてしまう。\n\nだが、それは本稿が目指すサービスデザインとは違う。\n\n良い待ち時間UXには、少なくとも三つの条件が必要だと考える。\n\n### Truthfulness\n\n表示している進捗、理由、待ち時間が、現実と大きく乖離していない。\n\n### Agency\n\n待つ、離れる、別を選ぶ、支払って短縮するなど、本人に選択肢がある。\n\n### Fairness\n\n誰の時間を優先し、誰にコストを負わせているのかを説明できる。\n\nこの三つがなければ、待ち時間デザインは「快適な操作」へ近づく。\n\n---\n\n## 14. 待ち時間を設計すると、サービスの思想が見える\n\n待ち時間は、サービスの余白ではない。\n\nむしろ、サービス提供者が利用者をどう見ているかが、最も露骨に出る場所かもしれない。\n\n何も説明せず待たせるサービスは、利用者の不確実性を自分の問題として扱っていない。\n\nその場を離れられない行列は、利用者の身体をQueue Storageとして使っている。\n\n進捗を見せるサービスは、利用者に状況を理解する権利を渡している。\n\nVirtual Queueは、順番をシステムが引き受け、利用者へ時間を返している。\n\n間違い探しやプレショーは、待つ時間に意味を与えている。\n\nそして有料優先レーンは、「時間には価格がある」という事実をサービスとして可視化する。\n\nだから待ち時間を観察すると、その企業が考える顧客体験の思想が見える。\n\n> **待ち時間とは、サービスが提供されていない時間ではない。**\n>\n> **利用者の時間を、企業がどう扱っているかが最もよく見える時間である。**\n\n---\n\n## 15. 更なる問い――もし不快でなければ、待たせてもよいのか\n\n最後に、答えではなく問いを残したい。\n\nサービスデザインの技術が進めば、人はもっと上手に待てるようになる。\n\n進捗が見える。\n\n暇ではない。\n\n世界観に没入できる。\n\n通知が来るまで別のことができる。\n\nお金を払えば短縮もできる。\n\n待たされていることさえ、忘れられるかもしれない。\n\nでは、そのときサービス提供者は、待ち時間そのものを短くする責任から解放されるのだろうか。\n\n心地よい待ち時間は、本当に改善されたサービスなのか。\n\nそれとも、本来改善されるべき遅延を受け入れやすくしただけなのか。\n\nさらに、時間をお金で買える人と買えない人を分ける優先サービスが当たり前になったとき、私たちは「公平な待ち」をどう定義するのか。\n\nそしてもっと根本には、別の問いがある。\n\n私たちはなぜ、「何もしていない時間」をこれほど強く損失だと感じるのだろう。\n\n待っている間にゲームをし、情報を読み、進捗を確認し、別の予定を処理しなければ、「時間を無駄にした」と感じる。\n\nもしそうなら、待ち時間をハックしているのはサービス提供者だけではない。\n\n**私たち自身が、常に時間を価値へ変換しなければならないという感覚にハックされている可能性もある。**\n\nだから最後の問いは、こうなる。\n\n> **UXデザインが本当に設計すべきなのは、「待ち時間の知覚」なのか。**\n>\n> **それとも、人の時間がどう扱われるべきか、そのものなのか。**\n\n---\n\n## 参考文献・参考資料\n\n- 株式会社pedantic「ディズニーは待ち時間をハックしている…？」YouTube  \n  https://www.youtube.com/watch?v=smx5GAMJ6vw\n\n- Maister, David H. “The Psychology of Waiting Lines.” 1985.  \n  https://davidmaister.com/articles/1/52/\n\n- Arveson, Adam et al. “40 Years of The Psychology of Waiting: A Celebration and Update of Maister's Eight Propositions.” revised May 28, 2026. SSRN.  \n  https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5669790\n\n- Norman, Donald A. “The Psychology of Waiting Lines.” 2008.  \n  https://jnd.org/the-psychology-of-waiting-lines/\n\n- Taylor, Shirley. “The Effects of Filled Waiting Time and Service Provider Control over the Delay on Evaluations of Service.” *Journal of the Academy of Marketing Science*, 1994.  \n  https://doi.org/10.1177/0092070395231005\n\n- Hui, Michael K. & Tse, David K. “What to Tell Consumers in Waits of Different Lengths: An Integrative Model of Service Evaluation.” *Journal of Marketing*, 1996.  \n  https://doi.org/10.1177/002224299606000206\n\n- Antonides, Gerrit, Verhoef, Peter C. & van Aalst, Marcel. “Consumer Perception and Evaluation of Waiting Time: A Field Experiment.” *Journal of Consumer Psychology*, 2002.  \n  https://doi.org/10.1207/S15327663JCP1203_02\n\n- Yeung, Catherine W. M. & Soman, Dilip. “The Duration Heuristic.” *Journal of Consumer Research*, 2007.  \n  https://doi.org/10.1086/519500\n\n- Buell, Ryan W. & Norton, Michael I. “The Labor Illusion: How Operational Transparency Increases Perceived Value.” *Management Science*, 2011.  \n  https://doi.org/10.1287/mnsc.1110.1376\n\n- Buell, Ryan W., Kim, Tami & Tsay, Chia-Jung. “Creating Reciprocal Value Through Operational Transparency.” *Management Science*, 2017.  \n  https://doi.org/10.1287/mnsc.2015.2411\n\n- Liu, Jian, Zhou, Yong-Pin & Chen, Jian. “Customer Segmentation and Ex Ante Fairness: A Queueing Perspective.” *Production and Operations Management*, 2023.  \n  https://doi.org/10.1111/poms.14033\n\n- Kahneman, Daniel, Fredrickson, Barbara L., Schreiber, Charles A. & Redelmeier, Donald A. “When More Pain Is Preferred to Less: Adding a Better End.” *Psychological Science*, 1993.  \n  https://doi.org/10.1111/j.1467-9280.1993.tb00589.x\n\n- Redelmeier, Donald A. & Kahneman, Daniel. “Patients' Memories of Painful Medical Treatments.” *Pain*, 1996.  \n  https://pubmed.ncbi.nlm.nih.gov/8857625/\n\n- Liu, Chia-Hsin et al. “Shape of progress bar effect on subjective evaluation, duration perception and physiological reaction.” *International Journal of Industrial Ergonomics*, 2021.  \n  https://doi.org/10.1016/j.ergon.2020.103031\n\n- サイゼリヤ「新卒採用サイト：お客様への想い」  \n  https://www.saizeriya.co.jp/recruit/\n\n- JR東日本「JR東日本の列車走行位置・運行情報を確認する方法」  \n  https://media.jreast.co.jp/articles/6097\n\n- JR東日本「情報提供の取組み」  \n  https://www.jreast.co.jp/saferelief/operationguide/information.html\n\n- 東京ディズニーリゾート「東京ディズニーリゾート・アプリ」  \n  https://www.tokyodisneyresort.jp/tdr/app/\n\n- 東京ディズニーリゾート「ディズニー・プレミアアクセス」  \n  https://www.tokyodisneyresort.jp/tdr/guide/app_service/disneypremieraccess.html\n\n- Universal Studios Japan「公式アプリ」  \n  https://www.usj.co.jp/web/ja/jp/enjoy/app/\n\n- Universal Studios Japan「ユニバーサル・エクスプレス・パス」  \n  https://prd-origin.usj.co.jp/ticket/expresspass/\n\n- Walt Disney Imagineering, “Our Process.”  \n  https://sites.disney.com/waltdisneyimagineering/our-process/\n\n- Disney News, “We Interviewed the Team That Made the Play Disney Parks App and Here’s What We Learned.” 2018.  \n  https://news.disney.com/play-disney-parks-app\n\n- Walt Disney World Resort, “Virtual Queues.”  \n  https://disneyworld.disney.go.com/guest-services/virtual-queue/\n\n- Stone, Alex. “Why Waiting Is Torture.” *The New York Times*, August 18, 2012. （ヒューストン空港事例の二次資料。本文では一次資料未確認の逸話として扱った）  \n  https://www.nytimes.com/2012/08/19/opinion/sunday/why-waiting-in-line-is-torture.html\n"}};
+
+// ===== Readerの写し: 本文の描画・座標・読んでいる段落(pivot) =====
+const MockReader = (() => {
+  const content = document.getElementById('readerContent');
+  const shell = document.getElementById('readerModeShell');
+  // 受け入れ確認スクリプトと同じURL(#/essay/<記事ID>?lang=<版>)で記事と版を選べるようにする
+  let family = /waiting-time/.test(location.hash) ? 'waiting' : 'silent';
+  let version = /lang=en/.test(location.hash) && family === 'silent' ? 'en-mix' : 'ja';
+  document.getElementById('protoEssay').value = family;
+
+  const key = () => `${family}-${version === 'en-mix' ? 'en' : 'ja'}`;
+
+  function minutesFor(md) {
+    const ja = (md.match(/[぀-ヿ㐀-鿿]/g) || []).length;
+    const en = (md.match(/[A-Za-z]+/g) || []).length;
+    return Math.max(1, Math.ceil(ja / 500 + en / 200));
+  }
+
+  function render() {
+    const essay = ESSAYS[key()];
+    content.innerHTML = marked.parse(essay.md);
+    const h1 = content.querySelector(':scope > h1');
+    const next = h1?.nextElementSibling;
+    if (next?.tagName === 'H2') next.classList.add('reader-v2-subtitle');
+    content.querySelectorAll(':scope > pre').forEach(pre => {
+      const wrap = document.createElement('div');
+      wrap.className = 'code-block';
+      wrap.dataset.language = (pre.querySelector('code')?.className.match(/language-(\w+)/) || [])[1] || 'text';
+      pre.replaceWith(wrap);
+      wrap.append(pre);
+    });
+    let section = 1;
+    let block = 0;
+    for (const el of content.children) {
+      if (el.matches('h2:not(.reader-v2-subtitle)')) { section += 1; block = 0; continue; }
+      if (el.matches('p, ul, ol, blockquote, figure')) {
+        block += 1;
+        el.classList.add('reader-locator-block');
+        el.dataset.readingLocator = `${section}-${block}`;
+      }
+    }
+    const intro = document.createElement('section');
+    intro.className = 'reader-v2-intro';
+    intro.setAttribute('aria-label', '記事情報');
+    const meta = document.createElement('div');
+    meta.className = 'reader-v2-intro-meta';
+    [essay.created.replaceAll('-', '.'), `約${minutesFor(essay.md)}分`, essay.type].forEach((value, i) => {
+      if (i) { const dot = document.createElement('i'); dot.setAttribute('aria-hidden', 'true'); dot.textContent = '·'; meta.append(dot); }
+      const span = document.createElement('span'); span.textContent = value; meta.append(span);
+    });
+    intro.append(meta);
+    (content.querySelector(':scope > .reader-v2-subtitle') || h1)?.after(intro);
+    const after = document.createElement('section');
+    after.className = 'reader-v2-after-reading';
+    after.setAttribute('aria-label', '読後');
+    after.innerHTML = '<section class="reader-resonance" aria-label="読了"><button type="button" class="reader-seal" data-resonance-seal>○ 読了</button><p>どれくらい残った? ・・・・・(公開版の読後欄の代わり)</p></section>';
+    content.append(after);
+    shell.querySelectorAll('[data-reading-mode-intent]').forEach(button => {
+      const on = button.dataset.readingModeIntent === version;
+      button.setAttribute('aria-checked', String(on));
+      button.disabled = button.dataset.readingModeIntent === 'en-mix' && !ESSAYS[`${family}-en`];
+    });
+    document.dispatchEvent(new CustomEvent('myessays:reader-ready'));
+    setTimeout(evaluate, 0);
+  }
+
+  function blocks() { return [...content.querySelectorAll(':scope > .reader-locator-block[data-reading-locator]')]; }
+  function bandBottom() { return Math.max(0, shell.getBoundingClientRect().bottom); }
+  function railY() { const top = bandBottom() + 8; return top + (innerHeight - 18 - top) * 0.36; }
+
+  let pivot = null;
+  function evaluate() {
+    const rail = railY();
+    let best = null;
+    let bestDistance = Infinity;
+    for (const block of blocks()) {
+      const rect = block.getBoundingClientRect();
+      const distance = rect.top <= rail && rect.bottom >= rail ? 0 : Math.min(Math.abs(rect.top - rail), Math.abs(rect.bottom - rail));
+      if (distance < bestDistance) { best = block; bestDistance = distance; }
+    }
+    if (best !== pivot) { pivot?.classList.remove('is-reading-pivot'); pivot = best; pivot?.classList.add('is-reading-pivot'); }
+    const headings = [...content.querySelectorAll(':scope > h2:not(.reader-v2-subtitle)')].filter(h => h.getBoundingClientRect().top < rail);
+    shell.querySelector('.reader-mode-shell__section').textContent = headings.at(-1)?.textContent || 'Introduction';
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const ratio = max > 0 ? Math.min(1, scrollY / max) : 0;
+    shell.querySelector('.reader-mode-shell__percent').textContent = `${Math.round(ratio * 100)}%`;
+    shell.querySelector('.reader-mode-shell__progress span').style.transform = `scaleX(${ratio})`;
+  }
+  // 試作ではrAFを使わない(非表示のタブでも読んでいる段落を更新するため)
+  let frame = 0;
+  addEventListener('scroll', () => { clearTimeout(frame); frame = setTimeout(evaluate, 40); }, { passive: true });
+  addEventListener('resize', () => setTimeout(evaluate, 0));
+
+  shell.addEventListener('click', event => {
+    const button = event.target.closest('[data-reading-mode-intent]');
+    if (!button || button.disabled || button.dataset.readingModeIntent === version) return;
+    const locator = pivot?.dataset.readingLocator;
+    version = button.dataset.readingModeIntent;
+    render();
+    const target = locator && content.querySelector(`[data-reading-locator="${locator}"]`);
+    if (target) scrollTo({ top: scrollY + target.getBoundingClientRect().top - railY(), behavior: 'instant' });
+  });
+  document.getElementById('protoEssay').addEventListener('change', event => {
+    family = event.target.value;
+    version = 'ja';
+    render();
+    scrollTo({ top: 0, behavior: 'instant' });
+  });
+
+  return {
+    render, railY,
+    pivot: () => pivot,
+    essayId: () => family,
+    version: () => version,
+    root: () => content
+  };
+})();
+
+// ===== 流して読む(RSVP) =====
+const Rsvp = (() => {
+  'use strict';
+
+  const SIZE_LABELS = ['小', '中', '大', '特大', '最大'];
+  const SIZE_PX = { phone: [26, 32, 38, 46, 56], wide: [32, 40, 48, 60, 72] };
+  const MIN_STEPS = [1, 4, 6, 8, 10, 12];
+  const PAUSE_LABELS = ['なし', '弱', '標準', '強'];
+  const PAUSE_SCALE = [0, 0.5, 1, 1.6];
+  const SPEED_MIN = 300;
+  const SPEED_MAX = 1500;
+  const SPEED_STEP = 50;
+  const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false };
+  const BEATS = { comma: 4, period: 8, paragraph: 12 };
+  const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, skip: 900, end: 2600 };
+  const MIN_SHOW_MS = 160;
+  const RAMP = [1.5, 1.25, 1.1];
+  const PHONE_MAX = 820;
+  const BUDOUX = 'https://cdn.jsdelivr.net/npm/budoux@0.9.2/module/';
+  const KEY_SETTINGS = 'myessays:rsvp';
+  const KEY_RESUME = 'myessays:rsvp-resume';
+  const REFERENCES = /^(?:[0-9０-９]+[.．、]\s*)?(?:主要)?(?:参考文献|参考資料|引用文献|出典|References|Sources|Bibliography)/i;
+  const SKIP = '.code-block, figure, table, .table-wrap, pre, .essay-figure';
+  const IGNORE = '[aria-hidden="true"], button, rt, rp, script, style';
+  const SENTENCE_END = /[。！？!?]+[」』）)\]】”"’]*|\.(?=\s|$)/g;
+  const CLOSE_PUNCT = /[、。，．,！？!?;；:：」』）)\]】”"’…―]\s*$/;
+  const PERIOD_END = /(?:[。！？!?]+[」』）)\]】”"’]*|\.)$/;
+  const COMMA_END = /[、，,;；:：…―]$/;
+  const SMALL_KANA = /[ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ]/;
+
+  // ---------- 純粋な処理(テスト対象) ----------
+  function widthOf(text) {
+    let width = 0;
+    for (const ch of text) width += ch.charCodeAt(0) < 0x2000 ? 0.5 : 1;
+    return width;
+  }
+
+  // ponytail: 読みの長さ(拍)の概算。漢字1.8・かな1・数字1.5・英字0.6。読み仮名が要るほどの精度は求めない
+  function moraeOf(text) {
+    let morae = 0;
+    for (const ch of text) {
+      if (SMALL_KANA.test(ch)) continue;
+      if (/[ぁ-ゖァ-ヺー]/.test(ch)) morae += 1;
+      else if (/[㐀-鿿豈-﫿々〆ヶ]/.test(ch)) morae += 1.8;
+      else if (/[0-9０-９]/.test(ch)) morae += 1.5;
+      else if (/[A-Za-zＡ-Ｚａ-ｚ]/.test(ch)) morae += 0.6;
+    }
+    return Math.max(1, morae);
+  }
+
+  function splitSentences(text) {
+    const out = [];
+    let start = 0;
+    for (const match of text.matchAll(SENTENCE_END)) {
+      const end = match.index + match[0].length;
+      if (text.slice(start, end).trim()) out.push([start, end]);
+      start = end;
+    }
+    if (text.slice(start).trim()) out.push([start, text.length]);
+    return out;
+  }
+
+  function splitBy(piece, pattern) {
+    let at = piece.start;
+    return piece.text.split(pattern).filter(Boolean).map(text => {
+      const part = { text, start: at, end: at + text.length };
+      at = part.end;
+      return part;
+    });
+  }
+
+  function hardSplit(piece, maxW) {
+    const out = [];
+    let text = '';
+    let start = piece.start;
+    let at = piece.start;
+    for (const ch of piece.text) {
+      const keepNumber = /[0-9.,]/.test(ch) && /[0-9]$/.test(text);
+      if (text && !keepNumber && widthOf(text + ch) > maxW) {
+        out.push({ text, start, end: at });
+        text = '';
+        start = at;
+      }
+      text += ch;
+      at += ch.length;
+    }
+    if (text) out.push({ text, start, end: at });
+    return out;
+  }
+
+  // BudouXは英文を1塊で返すので単語で割る。幅を超える塊は「・」、最後は文字数で割る
+  function splitWide(piece, maxW) {
+    const spaces = (piece.text.match(/ /g) || []).length;
+    let parts = [piece];
+    if ((spaces >= 2 && /[A-Za-z]/.test(piece.text)) || (spaces >= 1 && widthOf(piece.text.trim()) > maxW)) parts = splitBy(piece, /(?<= )/);
+    parts = parts.flatMap(part => widthOf(part.text.trim()) > maxW && part.text.includes('・') ? splitBy(part, /(?<=・)/) : [part]);
+    return parts.flatMap(part => widthOf(part.text.trim()) > maxW ? hardSplit(part, maxW) : [part]);
+  }
+
+  // 最少文字数に満たない塊を次とつなぐ。句読点で終わる塊と、幅を超える結合はつながない
+  function mergeChunks(pieces, minW, maxW) {
+    const out = [];
+    for (const piece of pieces) {
+      const last = out[out.length - 1];
+      const join = last && (!piece.text.trim()
+        || (widthOf(last.text.trim()) < minW && !CLOSE_PUNCT.test(last.text) && widthOf((last.text + piece.text).trim()) <= maxW));
+      if (join) { last.text += piece.text; last.end = piece.end; }
+      else out.push({ ...piece });
+    }
+    return out;
+  }
+
+  function buildItems(units, split, { minW, maxW }) {
+    const list = [];
+    let sentence = 0;
+    units.forEach((unit, unitIndex) => {
+      if (unit.kind !== 'text') {
+        list.push({ type: 'card', kind: unit.kind, unit, unitIndex, text: unit.text, sub: unit.sub });
+        return;
+      }
+      const sentences = splitSentences(unit.text);
+      sentences.forEach(([from, to], si) => {
+        const pieces = [];
+        let at = from;
+        for (const segment of split(unit.text.slice(from, to))) {
+          pieces.push(...splitWide({ text: segment, start: at, end: at + segment.length }, maxW));
+          at += segment.length;
+        }
+        const chunks = mergeChunks(pieces, minW, maxW).filter(chunk => chunk.text.trim());
+        chunks.forEach((chunk, ci) => {
+          const text = chunk.text.trim();
+          const lastInSentence = ci === chunks.length - 1;
+          const lastInUnit = lastInSentence && si === sentences.length - 1;
+          list.push({
+            type: 'chunk', unit, unitIndex, sentence, text,
+            start: chunk.start, end: chunk.end,
+            width: widthOf(text), morae: moraeOf(text),
+            bullet: unit.bullet && si === 0 && ci === 0,
+            pause: lastInUnit ? 'paragraph' : PERIOD_END.test(text) || lastInSentence ? 'period' : COMMA_END.test(text) ? 'comma' : null
+          });
+        });
+        sentence += 1;
+      });
+    });
+    list.push({ type: 'card', kind: 'end', text: '了' });
+    return list;
+  }
+
+  // 速さ(字/分)で記事全体の時間を決め、文節ごとの配分は拍で決める
+  function retime(list, { speed, pause }) {
+    const chunks = list.filter(item => item.type === 'chunk');
+    const width = chunks.reduce((sum, item) => sum + item.width, 0);
+    const morae = chunks.reduce((sum, item) => sum + item.morae, 0);
+    const msPerMora = width && morae ? (width / speed * 60000) / morae : 100;
+    const scale = PAUSE_SCALE[pause] ?? 1;
+    for (const item of list) {
+      if (item.type === 'chunk') {
+        item.ms = Math.max(MIN_SHOW_MS, item.morae * msPerMora);
+        item.rest = item.pause ? BEATS[item.pause] * msPerMora * scale : 0;
+      } else {
+        item.ms = CARD_MS[item.kind] || 900;
+        item.rest = 0;
+      }
+    }
+    let remain = 0;
+    let before = 0;
+    for (let i = list.length - 1; i >= 0; i -= 1) { remain += list[i].ms + list[i].rest; list[i].remain = remain; }
+    for (const item of list) { item.before = before; before += item.type === 'chunk' ? item.width : 0; }
+    return { msPerMora, width };
+  }
+
+  // ---------- 本文から流す単位を集める ----------
+  function textWithMap(root) {
+    let text = '';
+    const map = [];
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
+      acceptNode(node) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.matches(IGNORE)) return NodeFilter.FILTER_REJECT;
+          return node.tagName === 'BR' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.nodeType === Node.ELEMENT_NODE) { text += ' '; continue; }
+      map.push({ node, at: text.length });
+      text += node.data.replace(/[\t\n\r]/g, ' ');
+    }
+    return { text, map };
+  }
+
+  function linkOnly(part, text) {
+    const linked = [...part.querySelectorAll('a')].reduce((sum, a) => sum + a.textContent.trim().length, 0);
+    return linked > 0 && linked / text.trim().length >= 0.8;
+  }
+
+  function skipLabel(el) {
+    if (el.matches('table, .table-wrap') || el.querySelector('table')) return '表';
+    if (el.matches('.code-block') && el.dataset.language && el.dataset.language !== 'text') return 'コード';
+    return '図';
+  }
+
+  function collectUnits(root) {
+    const h1 = root.querySelector(':scope > h1');
+    const units = [{ kind: 'title', text: h1?.textContent.trim() || '', sub: root.querySelector(':scope > .reader-v2-subtitle')?.textContent.trim() || '' }];
+    for (const el of root.children) {
+      if (el.matches('.reader-v2-after-reading')) break;
+      if (el.matches('h1, .reader-v2-subtitle, .reader-v2-intro')) continue;
+      if (el.matches('h2, h3')) {
+        const text = el.textContent.replace(/\s+/g, ' ').trim();
+        if (REFERENCES.test(text)) break;
+        units.push({ kind: el.tagName.toLowerCase(), el, text });
+        continue;
+      }
+      if (el.matches(SKIP)) { units.push({ kind: 'skip', el, text: skipLabel(el) }); continue; }
+      if (!el.matches('.reader-locator-block[data-reading-locator]')) continue;
+      const list = el.matches('ul, ol');
+      const parts = list || el.matches('blockquote') ? [...el.children].filter(child => child.matches('li, p')) : [el];
+      for (const part of parts.length ? parts : [el]) {
+        const { text, map } = textWithMap(part);
+        if (!text.trim() || linkOnly(part, text)) continue;
+        units.push({ kind: 'text', el, part, text, map, locator: el.dataset.readingLocator, bullet: list });
+      }
+    }
+    return units;
+  }
+
+  function pointAt(map, offset) {
+    for (let i = map.length - 1; i >= 0; i -= 1) {
+      if (map[i].at <= offset) return { node: map[i].node, offset: Math.min(offset - map[i].at, map[i].node.length) };
+    }
+    return null;
+  }
+
+  function rangeFor(unit, start, end) {
+    const a = pointAt(unit.map, start);
+    const b = pointAt(unit.map, Math.max(start, end - 1));
+    if (!a || !b) return null;
+    const range = document.createRange();
+    range.setStart(a.node, a.offset);
+    range.setEnd(b.node, Math.min(b.offset + 1, b.node.length));
+    return range;
+  }
+
+  // ---------- 状態 ----------
+  const settings = readSettings();
+  let stage = null;
+  const els = {};
+  let items = [];
+  let index = 0;
+  let playing = false;
+  let timer = 0;
+  let rampStep = 0;
+  let lead = '';
+  let parse = null;
+  let msPerMora = 100;
+  let totalWidth = 0;
+  let capacity = 9;
+  let opener = null;
+  let wake = null;
+  let idleTimer = 0;
+  let toastTimer = 0;
+  let playStartedAt = 0;
+  let playedMs = 0;
+  let widthRead = 0;
+  let syncedBlock = null;
+
+  function readJSON(key) {
+    try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
+  }
+  function writeJSON(key, value) {
+    try { value == null ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(value)); } catch {}
+  }
+  function readSettings() {
+    const saved = readJSON(KEY_SETTINGS) || {};
+    return {
+      speed: clamp(Math.round((Number(saved.speed) || DEFAULTS.speed) / SPEED_STEP) * SPEED_STEP, SPEED_MIN, SPEED_MAX),
+      minChars: MIN_STEPS.includes(saved.minChars) ? saved.minChars : DEFAULTS.minChars,
+      size: Number.isInteger(saved.size) ? clamp(saved.size, 0, SIZE_LABELS.length - 1) : DEFAULTS.size,
+      pause: Number.isInteger(saved.pause) ? clamp(saved.pause, 0, PAUSE_LABELS.length - 1) : DEFAULTS.pause,
+      vertical: typeof saved.vertical === 'boolean' ? saved.vertical : DEFAULTS.vertical
+    };
+  }
+  function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+  const phone = () => innerWidth <= PHONE_MAX;
+  const fontPx = () => SIZE_PX[phone() ? 'phone' : 'wide'][settings.size];
+
+  // ---------- 舞台 ----------
+  function button(className, text, label, onClick) {
+    const el = document.createElement('button');
+    el.type = 'button';
+    el.className = className;
+    el.textContent = text;
+    if (label) { el.setAttribute('aria-label', label); el.title = label; }
+    el.addEventListener('click', event => { event.stopPropagation(); onClick(event); });
+    return el;
+  }
+
+  function ensureStage() {
+    if (stage) return stage;
+    stage = document.createElement('dialog');
+    stage.id = 'rsvpStage';
+    stage.className = 'rsvp-stage';
+    stage.setAttribute('aria-label', '流して読む');
+    stage.innerHTML = `
+      <header class="rsvp-head">
+        <p class="rsvp-section" data-rsvp="section"></p>
+      </header>
+      <div class="rsvp-field" data-rsvp="field" tabindex="-1">
+        <p class="rsvp-toast" data-rsvp="toast" role="status" hidden></p>
+        <div class="rsvp-focus">
+          <p class="rsvp-word" data-rsvp="word" aria-hidden="true"></p>
+          <div class="rsvp-card" data-rsvp="card" hidden></div>
+          <p class="rsvp-context" data-rsvp="context" hidden></p>
+        </div>
+        <p class="rsvp-hint" data-rsvp="hint"></p>
+      </div>
+      <footer class="rsvp-foot">
+        <div class="rsvp-meter">
+          <div class="rsvp-track" data-rsvp="track" aria-hidden="true"><span class="rsvp-fill" data-rsvp="fill"></span></div>
+          <p class="rsvp-remaining" data-rsvp="remaining"></p>
+        </div>
+        <div class="rsvp-controls">
+          <div class="rsvp-speed" role="group" aria-label="速さ" data-rsvp="speedGroup"></div>
+          <div class="rsvp-transport" data-rsvp="transport"></div>
+          <div class="rsvp-tools" data-rsvp="tools"></div>
+        </div>
+      </footer>
+      <section class="rsvp-sheet" data-rsvp="sheet" aria-label="表示の設定" hidden></section>
+      <section class="rsvp-help" data-rsvp="help" aria-label="ショートカット" hidden></section>`;
+    stage.querySelectorAll('[data-rsvp]').forEach(el => { els[el.dataset.rsvp] = el; });
+
+    const stop = button('rsvp-stop', '■ 本文へ', '停止して本文へ戻る(Esc)', stopAndReturn);
+    const kbd = document.createElement('kbd');
+    kbd.textContent = 'Esc';
+    stop.append(kbd);
+    stage.querySelector('.rsvp-head').append(stop);
+
+    els.slower = button('rsvp-btn', '−', '遅くする(↓)', () => setSpeed(settings.speed - SPEED_STEP));
+    els.speed = document.createElement('output');
+    els.faster = button('rsvp-btn', '+', '速くする(↑)', () => setSpeed(settings.speed + SPEED_STEP));
+    els.speedGroup.append(els.slower, els.speed, els.faster);
+
+    els.prev = button('rsvp-btn', '', '', () => prevSentence());
+    els.toggle = button('rsvp-toggle', '▶', '', () => toggle());
+    els.next = button('rsvp-btn', '', '', () => nextSentence());
+    els.transport.append(els.prev, els.toggle, els.next);
+
+    els.tune = button('rsvp-btn', 'Aa', '表示の設定', () => toggleSheet());
+    els.tune.setAttribute('aria-expanded', 'false');
+    els.helpButton = button('rsvp-btn rsvp-help-button', '?', 'ショートカット(?)', () => toggleHelp());
+    els.tools.append(els.tune, els.helpButton);
+
+    buildSheet();
+    buildHelp();
+
+    els.field.addEventListener('click', event => {
+      if (event.target.closest('button')) return;
+      toggle();
+    });
+    stage.addEventListener('cancel', event => { event.preventDefault(); stopAndReturn(); });
+    stage.addEventListener('wheel', event => { if (!event.target.closest('.rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
+    stage.addEventListener('touchmove', event => { if (!event.target.closest('.rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
+    stage.addEventListener('pointermove', wakeControls);
+    document.body.append(stage);
+    return stage;
+  }
+
+  function segButtons(group, labels, isOn, onPick) {
+    const wrap = document.createElement('div');
+    wrap.className = 'rsvp-group';
+    const title = document.createElement('p');
+    title.textContent = group;
+    const row = document.createElement('div');
+    row.className = 'rsvp-seg';
+    row.setAttribute('role', 'group');
+    row.setAttribute('aria-label', group);
+    labels.forEach((label, i) => {
+      const el = button('', label, '', () => { onPick(i); syncSheet(); });
+      el.dataset.on = String(i);
+      row.append(el);
+    });
+    wrap.append(title, row);
+    wrap.sync = () => row.querySelectorAll('button').forEach((el, i) => el.setAttribute('aria-pressed', String(isOn(i))));
+    return wrap;
+  }
+
+  let sheetGroups = [];
+  function buildSheet() {
+    const heading = document.createElement('h2');
+    heading.textContent = '表示の設定';
+    sheetGroups = [
+      segButtons('文字の大きさ(+ −)', SIZE_LABELS, i => settings.size === i, i => setSize(i)),
+      segButtons('最少文字数([ ])', MIN_STEPS.map(n => n === 1 ? '文節ごと' : `${n}字`), i => settings.minChars === MIN_STEPS[i], i => setMin(MIN_STEPS[i])),
+      segButtons('句読点の間(P)', PAUSE_LABELS, i => settings.pause === i, i => setPause(i)),
+      segButtons('向き(V)', ['横', '縦'], i => settings.vertical === (i === 1), i => setVertical(i === 1))
+    ];
+    const close = button('rsvp-btn rsvp-sheet-close', '閉じる', '', () => toggleSheet(false));
+    els.sheet.append(heading, ...sheetGroups, close);
+  }
+  function syncSheet() { sheetGroups.forEach(group => group.sync()); }
+
+  function buildHelp() {
+    const rows = [
+      ['R', '開く・閉じる(閉じると本文のその位置へ)'],
+      ['Space / K', '再生・一時停止'],
+      ['→ ←', '1つ進む・戻る(縦では ← で進む)'],
+      ['Shift + → ←', '1文進む・戻る'],
+      ['↑ ↓', '速さ ±50字/分'],
+      ['+ −', '文字の大きさ'],
+      ['[ ]', '最少文字数'],
+      ['V', '縦・横'],
+      ['P', '句読点の間'],
+      ['PageDown / PageUp', '次の章・前の章'],
+      ['Home', '記事の最初へ'],
+      ['Enter', '図・表の札で、本文のその場所へ'],
+      ['Esc', '停止して本文へ戻る'],
+      ['?', 'この一覧']
+    ];
+    const heading = document.createElement('h2');
+    heading.textContent = 'ショートカット';
+    const table = document.createElement('table');
+    rows.forEach(([keys, text]) => {
+      const tr = table.insertRow();
+      tr.insertCell().textContent = keys;
+      tr.insertCell().textContent = text;
+    });
+    els.help.append(heading, table, button('rsvp-btn rsvp-sheet-close', '閉じる', '', () => toggleHelp(false)));
+  }
+
+  function toggleSheet(force) {
+    const show = force ?? els.sheet.hidden;
+    if (show) { pause(); toggleHelp(false); syncSheet(); }
+    els.sheet.hidden = !show;
+    els.tune.setAttribute('aria-expanded', String(show));
+    if (show) els.sheet.querySelector('button')?.focus({ preventScroll: true });
+    else if (stage.contains(document.activeElement) || document.activeElement === document.body) els.field.focus({ preventScroll: true });
+  }
+  function toggleHelp(force) {
+    const show = force ?? els.help.hidden;
+    if (show) { pause(); els.sheet.hidden = true; els.tune.setAttribute('aria-expanded', 'false'); }
+    els.help.hidden = !show;
+    if (!show && !els.sheet.hidden) return;
+    if (!show) els.field.focus({ preventScroll: true });
+  }
+
+  function applyLook() {
+    stage.dataset.orientation = settings.vertical ? 'vertical' : 'horizontal';
+    stage.style.setProperty('--rsvp-size', `${fontPx()}px`);
+    const forward = settings.vertical ? '‹' : '›';
+    const backward = settings.vertical ? '›' : '‹';
+    els.prev.textContent = settings.vertical ? `前の文 ${backward}` : `${backward} 前の文`;
+    els.next.textContent = settings.vertical ? `${forward} 次の文` : `次の文 ${forward}`;
+    els.prev.setAttribute('aria-label', `1文戻る(Shift+${settings.vertical ? '→' : '←'})`);
+    els.next.setAttribute('aria-label', `1文進む(Shift+${settings.vertical ? '←' : '→'})`);
+    els.speed.textContent = `${settings.speed}字/分`;
+    els.hint.textContent = phone() ? 'タップで一時停止' : 'Space で一時停止 · ? でショートカット';
+  }
+
+  function measureCapacity() {
+    const rect = els.field.getBoundingClientRect();
+    const room = settings.vertical ? rect.height - 72 : Math.min(rect.width, 900) - 40;
+    return Math.max(4, Math.floor(room / (fontPx() * (settings.vertical ? 1.1 : 1.04))));
+  }
+
+  // ---------- 組み立て ----------
+  async function loadParser() {
+    if (parse) return parse;
+    try {
+      const [{ Parser }, { model }] = await Promise.all([import(`${BUDOUX}parser.js`), import(`${BUDOUX}data/models/ja.js`)]);
+      const parser = new Parser(model);
+      parse = text => parser.parse(text);
+    } catch (error) {
+      console.warn('[rsvp] BudouXを読み込めないため、Intl.Segmenterで分割します', error);
+      const segmenter = new Intl.Segmenter('ja', { granularity: 'word' });
+      parse = text => Array.from(segmenter.segment(text), part => part.segment);
+    }
+    return parse;
+  }
+
+  function anchor() {
+    const item = items[index];
+    return item?.unit ? { unit: item.unit.el ? item.unit : null, unitIndex: item.unitIndex, start: item.start ?? -1, kind: item.kind } : null;
+  }
+
+  function rebuild(keep) {
+    capacity = measureCapacity();
+    const minW = Math.min(settings.minChars, capacity);
+    items = buildItems(collectUnits(MockReader.root()), parse, { minW, maxW: capacity });
+    ({ msPerMora, width: totalWidth } = retime(items, settings));
+    renderTicks();
+    if (!keep) return;
+    const hit = items.findIndex(item => item.unitIndex === keep.unitIndex && (item.type === 'card' || (item.start <= keep.start && keep.start < item.end)));
+    index = hit >= 0 ? hit : clamp(index, 0, items.length - 1);
+  }
+
+  function retimeOnly() {
+    ({ msPerMora, width: totalWidth } = retime(items, settings));
+  }
+
+  // ---------- 位置 ----------
+  const isChunk = i => items[i]?.type === 'chunk';
+  function sentenceStart(i) {
+    let j = i;
+    while (j > 0 && isChunk(j - 1) && items[j - 1].sentence === items[i].sentence) j -= 1;
+    return j;
+  }
+  function sectionTitleAt(i) {
+    for (let j = Math.min(i, items.length - 1); j >= 0; j -= 1) if (items[j].kind === 'h2') return items[j].text;
+    return 'Introduction';
+  }
+  function currentChunk() {
+    if (isChunk(index)) return items[index];
+    for (let j = index + 1; j < items.length; j += 1) if (isChunk(j)) return items[j];
+    for (let j = index - 1; j >= 0; j -= 1) if (isChunk(j)) return items[j];
+    return null;
+  }
+
+  function startIndex(from) {
+    if (from === 'top') return 0;
+    const pivot = MockReader.pivot();
+    if (!pivot) return 0;
+    const first = items.findIndex(item => item.unit?.el === pivot);
+    if (first < 0) {
+      const before = items.findLastIndex(item => item.unit?.el && (item.unit.el.compareDocumentPosition(pivot) & Node.DOCUMENT_POSITION_FOLLOWING));
+      return Math.max(0, before);
+    }
+    const resume = readJSON(KEY_RESUME);
+    if (resume && resume.essayId === MockReader.essayId() && resume.version === MockReader.version() && resume.locator === pivot.dataset.readingLocator) {
+      const hit = items.findIndex(item => item.type === 'chunk' && item.unit.el === pivot && item.start <= resume.offset && resume.offset < item.end);
+      if (hit >= 0) return sentenceStart(hit);
+    }
+    return first;
+  }
+
+  function saveResume() {
+    const item = currentChunk();
+    if (!item) return;
+    writeJSON(KEY_RESUME, { essayId: MockReader.essayId(), version: MockReader.version(), locator: item.unit.locator, offset: item.start, at: new Date().toISOString() });
+  }
+
+  // ---------- 再生 ----------
+  function open(from = 'pivot', launcher = document.activeElement) {
+    if (stage?.open) return;
+    ensureStage();
+    opener = launcher instanceof HTMLElement ? launcher : null;
+    applyLook();
+    stage.showModal();
+    document.documentElement.classList.add('rsvp-open');
+    stage.dataset.fresh = '';
+    setTimeout(() => stage.removeAttribute('data-fresh'), 5000); // 操作のヒントは開いた直後だけ
+    els.field.focus({ preventScroll: true });
+    els.word.hidden = true;
+    els.card.hidden = false;
+    els.card.replaceChildren(Object.assign(document.createElement('p'), { className: 'rsvp-card-stats', textContent: '準備しています…' }));
+    loadParser().then(() => {
+      if (!stage.open) return;
+      rebuild();
+      index = startIndex(from);
+      lead = from !== 'top' && items[index]?.kind !== 'h2' && index > 1 ? sectionTitleAt(index) : '';
+      playedMs = 0;
+      widthRead = 0;
+      syncedBlock = null;
+      play();
+    });
+  }
+
+  function play() {
+    if (playing || !items.length) return;
+    if (index >= items.length - 1) { index = 0; lead = ''; }
+    els.sheet.hidden = true;
+    els.help.hidden = true;
+    playing = true;
+    rampStep = 0;
+    playStartedAt = performance.now();
+    requestWake();
+    render();
+    wakeControls();
+    if (lead) {
+      showCard({ kind: 'lead', text: lead });
+      timer = setTimeout(() => { lead = ''; tick(); }, CARD_MS.lead);
+      return;
+    }
+    tick();
+  }
+
+  function pause() {
+    if (!playing) return;
+    playing = false;
+    clearTimeout(timer);
+    playedMs += performance.now() - playStartedAt;
+    lead = '';
+    releaseWake();
+    saveResume();
+    render();
+    show(items[index]);
+  }
+
+  function toggle() { playing ? pause() : play(); }
+
+  function tick() {
+    clearTimeout(timer);
+    if (!playing) return;
+    const item = items[index];
+    if (!item) return;
+    show(item);
+    syncPage(item);
+    if (item.kind === 'end') { finish(); return; }
+    const ramp = item.type === 'chunk' && rampStep < RAMP.length ? RAMP[rampStep++] : 1;
+    timer = setTimeout(() => {
+      if (item.type === 'chunk') widthRead += item.width;
+      index += 1;
+      tick();
+    }, (item.ms + item.rest) * ramp);
+  }
+
+  function restart() {
+    if (!playing) { show(items[index]); return; }
+    lead = '';
+    rampStep = RAMP.length;
+    tick();
+  }
+
+  function seek(i) {
+    index = clamp(i, 0, items.length - 2);
+    restart();
+  }
+
+  function step(delta) {
+    let j = index + delta;
+    while (items[j] && !isChunk(j)) j += delta;
+    if (items[j]) seek(j);
+  }
+
+  function prevSentence() {
+    const start = sentenceStart(index);
+    if (start < index && isChunk(index)) { seek(start); return; }
+    let j = start - 1;
+    while (j > 0 && !isChunk(j)) j -= 1;
+    if (j >= 0 && isChunk(j)) seek(sentenceStart(j));
+  }
+
+  function nextSentence() {
+    const current = items[index]?.sentence;
+    const j = items.findIndex((item, i) => i > index && item.type === 'chunk' && item.sentence !== current);
+    if (j >= 0) seek(j);
+  }
+
+  function jumpSection(delta) {
+    if (delta > 0) {
+      const j = items.findIndex((item, i) => i > index && item.kind === 'h2');
+      if (j >= 0) seek(j);
+      return;
+    }
+    const heads = items.map((item, i) => item.kind === 'h2' ? i : -1).filter(i => i >= 0 && i < index);
+    const target = heads.length && index - heads.at(-1) <= 1 ? heads.at(-2) : heads.at(-1);
+    seek(target ?? 1);
+  }
+
+  function finish() {
+    playing = false;
+    playedMs += performance.now() - playStartedAt;
+    releaseWake();
+    writeJSON(KEY_RESUME, null);
+    render();
+    const minutes = Math.floor(playedMs / 60000);
+    const seconds = Math.round((playedMs % 60000) / 1000);
+    const stats = [`${minutes}分${String(seconds).padStart(2, '0')}秒`, `${Math.round(widthRead).toLocaleString('ja-JP')}字`];
+    // 1分未満は平均がぶれるので出さない。間(句読点・章の札)を含めた実際の速さを出す
+    if (playedMs >= 60000) stats.push(`間を含め平均${Math.round(widthRead / (playedMs / 60000) / 10) * 10}字/分`);
+    showCard({ kind: 'end', text: '了', stats: stats.join(' · ') });
+    timer = setTimeout(landAfterReading, CARD_MS.end);
+  }
+
+  // ---------- 表示 ----------
+  function render() {
+    stage.dataset.state = playing ? 'playing' : (items[index]?.kind === 'end' ? 'ended' : 'paused');
+    els.toggle.textContent = playing ? '❚❚' : '▶';
+    els.toggle.setAttribute('aria-label', playing ? '一時停止(Space)' : '再生(Space)');
+    els.toggle.title = els.toggle.getAttribute('aria-label');
+    els.speed.textContent = `${settings.speed}字/分`;
+  }
+
+  function renderWord(item) {
+    els.word.replaceChildren();
+    if (item.bullet) els.word.append(Object.assign(document.createElement('span'), { className: 'rsvp-bullet', textContent: '・' }));
+    if (!settings.vertical) { els.word.append(item.text); return; }
+    // 縦中横: 1〜2桁の半角数字と「!?」だけを横に組む
+    for (const part of item.text.split(/((?<![0-9.,])[0-9]{1,2}(?![0-9.,])|[!?！？]{2})/)) {
+      if (!part) continue;
+      if (/^(?:[0-9]{1,2}|[!?！？]{2})$/.test(part)) els.word.append(Object.assign(document.createElement('span'), { className: 'rsvp-tcy', textContent: part }));
+      else els.word.append(part);
+    }
+  }
+
+  function showCard(card) {
+    els.word.hidden = true;
+    els.context.hidden = true;
+    els.card.hidden = false;
+    els.card.dataset.kind = card.kind;
+    stage.dataset.kind = card.kind;
+    const nodes = [];
+    if (card.kind === 'title') {
+      nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-title', textContent: card.text }));
+      if (card.sub) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-sub', textContent: card.sub }));
+    } else if (card.kind === 'skip') {
+      nodes.push(button('rsvp-card-skip', `▦ ${card.text}があります · 本文で見る`, `${card.text}を本文で見る(Enter)`, () => goToSkip(card)));
+    } else if (card.kind === 'end') {
+      nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-end', textContent: '了' }));
+      if (card.stats) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-stats', textContent: card.stats }));
+      nodes.push(button('rsvp-card-after', '読後へ ↓', '読後欄へ移る', landAfterReading));
+    } else {
+      nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-heading', textContent: card.text }));
+    }
+    els.card.replaceChildren(...nodes);
+  }
+
+  function show(item) {
+    if (!item) return;
+    if (item.type === 'chunk') {
+      stage.dataset.kind = 'chunk';
+      els.card.hidden = true;
+      els.word.hidden = false;
+      renderWord(item);
+    } else if (item.kind !== 'end' || !playing) {
+      showCard(item);
+    }
+    els.section.textContent = sectionTitleAt(index);
+    renderMeter();
+    renderContext();
+  }
+
+  function renderContext() {
+    const item = items[index];
+    if (playing || !item || item.type !== 'chunk') { els.context.hidden = true; return; }
+    const from = sentenceStart(index);
+    const parts = [];
+    for (let j = from; isChunk(j) && items[j].sentence === item.sentence; j += 1) {
+      // 英単語の間の空白を残すため、本文の区間を使い、前後の空白はボタンの外に置く
+      const [, lead, body, tail] = items[j].unit.text.slice(items[j].start, items[j].end).match(/^(\s*)([\s\S]*?)(\s*)$/);
+      const part = button('', body, '', () => seek(j));
+      if (j === index) part.setAttribute('aria-current', 'true');
+      parts.push(lead, part, tail);
+    }
+    els.context.replaceChildren(...parts);
+    els.context.hidden = false;
+  }
+
+  function renderTicks() {
+    els.track.querySelectorAll('.rsvp-tick').forEach(tick => tick.remove());
+    if (!totalWidth) return;
+    for (const item of items) {
+      if (item.kind !== 'h2') continue;
+      const tick = document.createElement('span');
+      tick.className = 'rsvp-tick';
+      tick.style[settings.vertical ? 'right' : 'left'] = `${(item.before / totalWidth) * 100}%`;
+      els.track.append(tick);
+    }
+  }
+
+  function renderMeter() {
+    const item = items[index];
+    if (!item) return;
+    const ratio = totalWidth ? item.before / totalWidth : 0;
+    els.fill.style.transform = `scaleX(${ratio})`;
+    const ms = item.remain;
+    els.remaining.textContent = ms >= 60000 ? `残り ${Math.ceil(ms / 60000)}分` : `残り ${Math.max(1, Math.round(ms / 1000))}秒`;
+  }
+
+  function toast(text) {
+    els.toast.textContent = text;
+    els.toast.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { els.toast.hidden = true; }, 1400);
+  }
+  function remainingText() { return els.remaining.textContent; }
+
+  function wakeControls() {
+    stage?.removeAttribute('data-idle');
+    clearTimeout(idleTimer);
+    if (playing && !phone()) idleTimer = setTimeout(() => { if (playing) stage.setAttribute('data-idle', ''); }, 1800);
+  }
+
+  // ---------- 設定 ----------
+  function persist() { writeJSON(KEY_SETTINGS, settings); }
+  function setSpeed(value) {
+    settings.speed = clamp(Math.round(value / SPEED_STEP) * SPEED_STEP, SPEED_MIN, SPEED_MAX);
+    persist();
+    retimeOnly();
+    render();
+    renderMeter();
+    toast(`${settings.speed}字/分 · ${remainingText()}`);
+    if (playing) restart();
+  }
+  function rechunk(message) {
+    applyLook();
+    if (!parse) return;
+    const keep = anchor();
+    rebuild(keep);
+    restart();
+    if (message) toast(message);
+  }
+  function setSize(i) { settings.size = clamp(i, 0, SIZE_LABELS.length - 1); persist(); rechunk(`文字 ${SIZE_LABELS[settings.size]}`); }
+  function setMin(n) { settings.minChars = n; persist(); rechunk(n === 1 ? '文節ごと' : `最少${n}字`); }
+  function stepMin(delta) { setMin(MIN_STEPS[clamp(MIN_STEPS.indexOf(settings.minChars) + delta, 0, MIN_STEPS.length - 1)]); }
+  function setPause(i) { settings.pause = i; persist(); retimeOnly(); renderMeter(); toast(`句読点の間 ${PAUSE_LABELS[i]}`); if (playing) restart(); }
+  function setVertical(on) { settings.vertical = on; persist(); rechunk(on ? '縦' : '横'); }
+
+  // ---------- 本文との行き来 ----------
+  function syncPage(item) {
+    const block = item.unit?.el;
+    if (!block || block === syncedBlock || !block.isConnected) return;
+    syncedBlock = block;
+    scrollTo({ top: Math.max(0, scrollY + block.getBoundingClientRect().top - MockReader.railY()), behavior: 'instant' });
+  }
+
+  function closeStage() {
+    pause();
+    clearTimeout(timer);
+    clearTimeout(idleTimer);
+    releaseWake();
+    if (stage?.open) stage.close();
+    document.documentElement.classList.remove('rsvp-open');
+    attach(); // 速さを変えた後の「約N分」を入口に反映する
+  }
+
+  function flash(el) {
+    el.classList.remove('reader-v2-location-flash');
+    void el.offsetWidth;
+    el.classList.add('reader-v2-location-flash');
+    setTimeout(() => el.classList.remove('reader-v2-location-flash'), 1350);
+  }
+
+  function land(item) {
+    const block = item.unit?.el;
+    if (!block?.isConnected) return;
+    const range = item.type === 'chunk' ? rangeFor(item.unit, item.start, item.end) : null;
+    const rect = range?.getClientRects()[0] || block.getBoundingClientRect();
+    scrollTo({ top: Math.max(0, scrollY + rect.top - MockReader.railY()), behavior: 'instant' });
+    flash(block);
+  }
+
+  function returnFocus() {
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+  }
+
+  function stopAndReturn() {
+    if (!stage?.open) return;
+    if (items[index]?.kind === 'end') { landAfterReading(); return; }
+    const item = currentChunk();
+    if (item) saveResume();
+    closeStage();
+    if (item) land(item);
+    returnFocus();
+  }
+
+  function goToSkip(card) {
+    const block = card.unit?.el;
+    closeStage();
+    if (block?.isConnected) {
+      scrollTo({ top: Math.max(0, scrollY + block.getBoundingClientRect().top - MockReader.railY()), behavior: 'instant' });
+      if (block.matches('.reader-locator-block')) flash(block);
+    }
+    returnFocus();
+  }
+
+  function landAfterReading() {
+    clearTimeout(timer);
+    closeStage();
+    const root = MockReader.root();
+    const target = root.querySelector('.reader-resonance') || root.querySelector(':scope > .reader-v2-after-reading');
+    if (!target) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ block: 'center', behavior: reduce ? 'instant' : 'smooth' });
+    target.querySelector('[data-resonance-seal]')?.focus({ preventScroll: true });
+  }
+
+  // ---------- 端末 ----------
+  async function requestWake() {
+    try { wake = await navigator.wakeLock?.request('screen'); } catch { wake = null; }
+    if (wake && !playing) releaseWake();
+  }
+  function releaseWake() { wake?.release?.().catch(() => {}); wake = null; }
+  document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
+  addEventListener('resize', () => { if (stage?.open && parse) requestAnimationFrame(() => rechunk()); });
+
+  // ---------- ショートカット ----------
+  const typing = target => target instanceof Element && !!target.closest('input, textarea, select, [contenteditable=""], [contenteditable="true"]');
+
+  addEventListener('keydown', event => {
+    if (event.ctrlKey || event.metaKey || event.altKey || event.isComposing) return;
+    if (!stage?.open) {
+      if ((event.key === 'r' || event.key === 'R') && !typing(event.target)) {
+        event.preventDefault();
+        open('pivot', document.querySelector('#readerRsvpLaunch'));
+      }
+      return;
+    }
+    event.stopPropagation(); // 舞台の裏で / M S T やLibraryへ戻るEscを動かさない
+    if (typing(event.target)) return;
+    const onButton = event.target instanceof Element && event.target.closest('button');
+    const forward = settings.vertical ? 'ArrowLeft' : 'ArrowRight';
+    const backward = settings.vertical ? 'ArrowRight' : 'ArrowLeft';
+    let handled = true;
+    switch (event.key) {
+      case ' ':
+        if (onButton) { handled = false; break; }
+        toggle();
+        break;
+      case 'k': case 'K': toggle(); break;
+      case forward: event.shiftKey ? nextSentence() : step(1); break;
+      case backward: event.shiftKey ? prevSentence() : step(-1); break;
+      case 'ArrowUp': setSpeed(settings.speed + SPEED_STEP); break;
+      case 'ArrowDown': setSpeed(settings.speed - SPEED_STEP); break;
+      case '+': case '=': setSize(settings.size + 1); break;
+      case '-': case '_': setSize(settings.size - 1); break;
+      case '[': stepMin(-1); break;
+      case ']': stepMin(1); break;
+      case 'v': case 'V': setVertical(!settings.vertical); break;
+      case 'p': case 'P': setPause((settings.pause + 1) % PAUSE_LABELS.length); break;
+      case 'PageDown': jumpSection(1); break;
+      case 'PageUp': jumpSection(-1); break;
+      case 'Home': seek(0); break;
+      case 'Enter':
+        if (onButton) { handled = false; break; }
+        if (items[index]?.kind === 'skip') goToSkip(items[index]);
+        else if (items[index]?.kind === 'end') landAfterReading();
+        else toggle();
+        break;
+      case '?': toggleHelp(); break;
+      case 'Escape':
+        if (!els.help.hidden) toggleHelp(false);
+        else if (!els.sheet.hidden) toggleSheet(false);
+        else stopAndReturn();
+        break;
+      case 'r': case 'R': stopAndReturn(); break;
+      default: handled = false;
+    }
+    if (handled) event.preventDefault();
+    wakeControls();
+  }, true);
+
+  // ---------- 入口 ----------
+  function estimateMinutes() {
+    const units = collectUnits(MockReader.root());
+    const list = buildItems(units, text => text.split(/(?<=[、。，．！？!?\s])/), { minW: 1, maxW: 99 });
+    retime(list, settings);
+    return Math.max(1, Math.round((list[0]?.remain || 0) / 60000));
+  }
+
+  function attach() {
+    const inner = document.querySelector('#readerModeShell .reader-mode-shell__inner');
+    if (inner && !inner.querySelector('#readerRsvpLaunch')) {
+      const launch = document.createElement('button');
+      launch.type = 'button';
+      launch.id = 'readerRsvpLaunch';
+      launch.className = 'reader-rsvp-launch';
+      launch.textContent = '▶ 流す';
+      launch.setAttribute('aria-label', '今読んでいる所から流して読む(R)');
+      launch.title = '今読んでいる所から流して読む(R)';
+      launch.addEventListener('click', () => open('pivot', launch));
+      inner.append(launch);
+      inner.classList.add('has-rsvp');
+    }
+    const meta = document.querySelector('#readerContent .reader-v2-intro-meta');
+    if (meta && !meta.parentElement.querySelector('.reader-rsvp-intro')) {
+      const intro = document.createElement('button');
+      intro.type = 'button';
+      intro.className = 'reader-rsvp-intro';
+      intro.innerHTML = '<span class="reader-rsvp-intro__play">▶ 流して読む</span><span class="reader-rsvp-intro__time"></span><kbd>R</kbd>';
+      intro.addEventListener('click', () => open('top', intro));
+      meta.after(intro);
+    }
+    const time = document.querySelector('.reader-rsvp-intro__time');
+    if (time) {
+      const minutes = estimateMinutes();
+      time.textContent = `約${minutes}分`;
+      time.parentElement.setAttribute('aria-label', `最初から流して読む(約${minutes}分、R)`);
+    }
+  }
+  document.addEventListener('myessays:reader-ready', attach);
+
+  window.MyEssaysRsvp = Object.freeze({
+    installed: true,
+    open,
+    stop: stopAndReturn,
+    seek: i => { if (stage?.open) seek(i); },
+    state: () => ({
+      open: !!stage?.open, playing, index, total: items.length,
+      kind: items[index]?.type === 'chunk' ? 'chunk' : items[index]?.kind,
+      text: items[index]?.text, locator: items[index]?.unit?.locator,
+      capacity, msPerMora: Math.round(msPerMora), settings: { ...settings }
+    }),
+    items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
+    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, buildItems, retime }
+  });
+  return { attach };
+})();
+
+MockReader.render();
+</script>
+</body></html>
