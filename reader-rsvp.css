@@ -89,7 +89,7 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-stage[data-orientation="vertical"] .rsvp-transport { flex-direction: row-reverse; }
 .rsvp-btn { min-width: 44px; min-height: 44px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--ink-soft, #4f4b45); font: 700 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; white-space: nowrap; cursor: pointer; }
 .rsvp-btn:hover { color: var(--ink); background: var(--paper-2); }
-.rsvp-speed-value { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 88px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--raise, #fbf9f4); color: var(--ink); font: 700 12px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; cursor: pointer; }
+.rsvp-speed-value { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 88px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--raise, #fbf9f4); color: var(--ink); font: 700 12px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; cursor: pointer; }
 .rsvp-speed-value::after { content: "⌄"; color: var(--muted); font-size: 11px; transform: translateY(-1px); }
 .rsvp-speed-value:hover { border-color: color-mix(in srgb, var(--ink) 45%, var(--line)); background: var(--paper-2); }
 .rsvp-speed-value[aria-expanded="true"] { border-color: var(--ink); background: var(--paper-2); }
