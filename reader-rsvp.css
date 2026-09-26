@@ -54,11 +54,20 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-bullet { color: var(--faint, #9a948a); margin-inline-end: .15em; }
 
 .rsvp-card { display: grid; justify-items: center; gap: 14px; max-width: min(34em, 100%); text-align: center; }
+.rsvp-card[data-kind="figure"] { width: min(1040px, 100%); max-width: min(1040px, 100%); max-height: 100%; grid-template-rows: auto minmax(0, 1fr) auto auto auto; gap: 10px; }
 .rsvp-card-heading { margin: 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-soft, #4f4b45); font: 700 calc(var(--rsvp-size) * .56)/1.55 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
 .rsvp-card[data-kind="h3"] .rsvp-card-heading { font-size: calc(var(--rsvp-size) * .46); }
 .rsvp-card-title { margin: 0; font: 700 calc(var(--rsvp-size) * .72)/1.4 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
 .rsvp-card-sub { margin: 0; color: var(--muted); font: 600 14px/1.7 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-wrap: balance; }
 .rsvp-card-skip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 1px dashed var(--faint, #9a948a); border-radius: 10px; background: transparent; color: var(--ink-soft, #4f4b45); font: 600 14px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.rsvp-figure-context { max-width: 48em; margin: 0; overflow: hidden; color: var(--muted); font: 600 12px/1.55 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+.rsvp-figure-frame { display: grid; place-items: center; width: 100%; min-height: 0; max-height: min(58svh, 680px); overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--raise, #fbf9f4); }
+.rsvp-figure-image { display: block; width: auto; max-width: 100%; height: auto; max-height: min(58svh, 680px); object-fit: contain; }
+.rsvp-figure-caption { max-width: 54em; margin: 0; color: var(--ink-soft, #4f4b45); font: 500 13px/1.6 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
+.rsvp-figure-paused { margin: 0; color: var(--faint, #9a948a); font: 750 11px/1.2 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; letter-spacing: .12em; }
+.rsvp-figure-resume { min-width: 168px; min-height: 52px; padding: 0 20px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); font: 750 14px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.rsvp-figure-resume:hover { background: var(--paper-2); }
+.rsvp-figure-error { margin: 0; padding: 24px; color: var(--muted); font: 600 13px/1.6 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; }
 .rsvp-card-end { margin: 0; font: 400 calc(var(--rsvp-size) * 1.6)/1 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; }
 .rsvp-card-stats { margin: 0; color: var(--muted); font: 600 13px/1.6 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; }
 .rsvp-card-after { min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 700 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
@@ -107,7 +116,7 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-speed-picker__rail { display: grid; gap: 2px; }
 .rsvp-speed-range { width: 100%; min-height: 44px; margin: 0; accent-color: var(--accent); cursor: pointer; }
 .rsvp-speed-picker__scale { display: flex; justify-content: space-between; color: var(--faint, #9a948a); font: 600 11px/1.2 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; }
-.rsvp-speed-presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.rsvp-speed-presets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .rsvp-speed-presets button { min-height: 44px; padding: 0 8px; border: 1px solid var(--line); border-radius: 10px; background: transparent; color: var(--ink-soft, #4f4b45); font: 750 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; cursor: pointer; }
 .rsvp-speed-presets button:hover { border-color: color-mix(in srgb, var(--ink) 45%, var(--line)); background: var(--paper-2); color: var(--ink); }
 .rsvp-speed-presets button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
@@ -124,6 +133,11 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-help td:first-child { white-space: nowrap; }
 @media (max-width: 820px) {
   /* スマホ: 親指が届く下段に再生、上段に速さと設定 */
+  .rsvp-card[data-kind="figure"] { width: 100%; gap: 8px; }
+  .rsvp-figure-frame, .rsvp-figure-image { max-height: min(48svh, 470px); }
+  .rsvp-figure-context { max-width: 92vw; }
+  .rsvp-figure-caption { max-width: 92vw; font-size: 12px; }
+  .rsvp-figure-resume { min-height: 56px; }
   .rsvp-controls { grid-template-columns: 1fr auto; grid-template-areas: "speed tools" "transport transport"; row-gap: 4px; }
   .rsvp-speed { grid-area: speed; }
   .rsvp-tools { grid-area: tools; }
