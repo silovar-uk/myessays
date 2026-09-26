@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">つんく節とハロプロ節を五つの層で捉える図</title>
+<desc id="desc">時間、発音、言葉、配役、文化の五層が重なり、つんく節からハロプロ節へ継承される構造を示す。</desc>
+<rect width="1200" height="760" fill="#faf8f3"/>
+<text x="600" y="70" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="36" font-weight="700" fill="#202020">「節」を癖ではなく、五つの層で聴く</text>
+<text x="600" y="112" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#555">つんく節＝時間の設計　→　ハロプロ節＝共有された演奏文法</text>
+
+<g font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif">
+  <rect x="120" y="165" width="960" height="86" rx="18" fill="#efe8dc" stroke="#5b5145" stroke-width="2"/>
+  <text x="165" y="202" font-size="25" font-weight="700" fill="#202020">1　時間</text>
+  <text x="330" y="202" font-size="23" fill="#303030">16ビートを数え、拍の「間」まで身体に置く</text>
+  <text x="330" y="231" font-size="18" fill="#666">歌詞・メロディー・振付が同じ細かな格子を共有する</text>
+
+  <rect x="155" y="267" width="890" height="86" rx="18" fill="#f4eee4" stroke="#6c6255" stroke-width="2"/>
+  <text x="200" y="304" font-size="25" font-weight="700" fill="#202020">2　発音</text>
+  <text x="365" y="304" font-size="23" fill="#303030">粘り、子音、母音の滑りで声の着地を調整</text>
+  <text x="365" y="333" font-size="18" fill="#666">「何を言うか」だけでなく「いつ届くか」を変える</text>
+
+  <rect x="190" y="369" width="820" height="86" rx="18" fill="#f7f2e9" stroke="#7c7163" stroke-width="2"/>
+  <text x="235" y="406" font-size="25" font-weight="700" fill="#202020">3　言葉</text>
+  <text x="400" y="406" font-size="23" fill="#303030">耳キャッチ、決めの一行、小さな題材</text>
+  <text x="400" y="435" font-size="18" fill="#666">意味を説明する前に、耳に引っ掛かる場所をつくる</text>
+
+  <rect x="225" y="471" width="750" height="86" rx="18" fill="#f9f5ee" stroke="#8a7f70" stroke-width="2"/>
+  <text x="270" y="508" font-size="25" font-weight="700" fill="#202020">4　配役</text>
+  <text x="435" y="508" font-size="23" fill="#303030">仮歌、歌割り、ユニゾン、少人数</text>
+  <text x="435" y="537" font-size="18" fill="#666">声の個性と役割まで含めて曲を組み立てる</text>
+
+  <rect x="260" y="573" width="680" height="86" rx="18" fill="#fcf9f3" stroke="#998e7e" stroke-width="2"/>
+  <text x="305" y="610" font-size="25" font-weight="700" fill="#202020">5　文化</text>
+  <text x="470" y="610" font-size="23" fill="#303030">レッスン、反復、世代間の継承</text>
+  <text x="470" y="639" font-size="18" fill="#666">作者の方法が、集団の身体知へ移っていく</text>
+</g>
+
+<path d="M600 670 L600 715" stroke="#202020" stroke-width="3"/>
+<path d="M588 701 L600 718 L612 701" fill="none" stroke="#202020" stroke-width="3"/>
+<text x="600" y="744" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="22" font-weight="700" fill="#202020">「あの感じ」は、単独の癖ではなく層どうしの連動で生まれる</text>
+</svg>
