@@ -1,0 +1,126 @@
+.reader-rsvp-intro kbd, .rsvp-stop kbd { font: 700 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; padding: 2px 5px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper-2); color: var(--muted); }
+
+/* 入口1: 帯の右端 */
+.reader-rsvp-launch { position: relative; display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 0 12px; border: 0; border-left: 1px solid color-mix(in srgb, var(--line) 70%, transparent); background: transparent; color: var(--ink); font: 700 12px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; white-space: nowrap; cursor: pointer; }
+.reader-rsvp-launch::after { content: ""; position: absolute; inset: -6px -4px; }
+.reader-rsvp-launch:hover, .reader-rsvp-launch:focus-visible { color: var(--accent); outline: none; }
+.reader-rsvp-launch:focus-visible { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 38%, transparent); }
+.reader-rsvp-launch:disabled { color: var(--faint); cursor: not-allowed; }
+
+.reader-mode-shell__inner.has-rsvp { grid-template-columns: minmax(0, 1fr) auto; }
+.reader-mode-shell__inner.has-rsvp:has(> .reader-subtitle-toggle:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto auto; }
+.reader-mode-shell__inner.has-rsvp > .reader-mode-shell__modes { grid-column: 1 / -1; }
+
+/* 入口2: 冒頭 */
+.reader-rsvp-intro { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--raise, #fbf9f4); color: var(--ink); font: 700 14px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.reader-rsvp-intro:hover, .reader-rsvp-intro:focus-visible { border-color: color-mix(in srgb, var(--accent) 46%, transparent); outline: none; }
+.reader-rsvp-intro:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+.reader-rsvp-intro__time { color: var(--muted); font-weight: 600; font-size: 12px; font-variant-numeric: tabular-nums; }
+@media (hover: none) { .reader-rsvp-intro kbd { display: none; } }
+
+html.rsvp-open { overflow: hidden; }
+
+/* ---- 流して読む: 舞台 ---- */
+.rsvp-stage {
+  --rsvp-size: 38px;
+  position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-columns: minmax(0, 1fr);
+  overscroll-behavior: none; font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+.rsvp-stage:not([open]) { display: none; }
+.rsvp-stage::backdrop { background: var(--paper); }
+.rsvp-head, .rsvp-foot { transition: opacity .5s ease; }
+.rsvp-stage[data-state="playing"] .rsvp-head,
+.rsvp-stage[data-state="playing"] .rsvp-foot { opacity: .42; }
+.rsvp-stage[data-state="playing"][data-idle] .rsvp-head,
+.rsvp-stage[data-state="playing"][data-idle] .rsvp-foot { opacity: .1; }
+.rsvp-stage[data-state="playing"] .rsvp-head:focus-within,
+.rsvp-stage[data-state="playing"] .rsvp-foot:focus-within { opacity: 1; }
+
+.rsvp-head { display: flex; align-items: center; gap: 12px; padding: max(10px, env(safe-area-inset-top, 0px)) 16px 6px; }
+.rsvp-section { flex: 1; min-width: 0; margin: 0; overflow: hidden; color: var(--muted); font: 650 12px/1.4 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+.rsvp-stop { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 700 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.rsvp-stop kbd { font-size: 11px; }
+@media (hover: none) { .rsvp-stop kbd { display: none; } }
+
+.rsvp-field { position: relative; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; min-height: 0; overflow: hidden; padding: 16px 16px 5vh; outline: none; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.rsvp-focus { display: flex; flex-direction: column; align-items: center; gap: 22px; max-width: 100%; max-height: 100%; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-focus { flex-direction: row-reverse; align-items: center; gap: 28px; height: 100%; }
+.rsvp-word { max-width: 100%; margin: 0; font: 500 var(--rsvp-size)/1.35 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; letter-spacing: .02em; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-word { writing-mode: vertical-rl; text-orientation: mixed; max-height: 100%; letter-spacing: .06em; }
+.rsvp-tcy { text-combine-upright: all; }
+.rsvp-bullet { color: var(--faint, #9a948a); margin-inline-end: .15em; }
+
+.rsvp-card { display: grid; justify-items: center; gap: 14px; max-width: min(34em, 100%); text-align: center; }
+.rsvp-card-heading { margin: 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-soft, #4f4b45); font: 700 calc(var(--rsvp-size) * .56)/1.55 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
+.rsvp-card[data-kind="h3"] .rsvp-card-heading { font-size: calc(var(--rsvp-size) * .46); }
+.rsvp-card-title { margin: 0; font: 700 calc(var(--rsvp-size) * .72)/1.4 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-wrap: balance; }
+.rsvp-card-sub { margin: 0; color: var(--muted); font: 600 14px/1.7 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-wrap: balance; }
+.rsvp-card-skip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 1px dashed var(--faint, #9a948a); border-radius: 10px; background: transparent; color: var(--ink-soft, #4f4b45); font: 600 14px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.rsvp-card-end { margin: 0; font: 400 calc(var(--rsvp-size) * 1.6)/1 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; }
+.rsvp-card-stats { margin: 0; color: var(--muted); font: 600 13px/1.6 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+.rsvp-card-after { min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 700 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+
+.rsvp-context { max-width: min(30em, 100%); margin: 0; color: var(--muted); font: 17px/1.95 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; text-align: left; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-context { writing-mode: vertical-rl; max-height: 100%; max-width: 40%; overflow: hidden; }
+.rsvp-context button { display: inline; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; border-radius: 3px; }
+.rsvp-context button:hover, .rsvp-context button:focus-visible { color: var(--ink); outline: none; background: var(--paper-2); }
+.rsvp-context button[aria-current="true"] { color: var(--ink); text-decoration: underline 2px var(--accent); text-underline-offset: .32em; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-context button[aria-current="true"] { text-underline-position: right; }
+.rsvp-hint { position: absolute; bottom: 8px; left: 0; right: 0; margin: 0; color: var(--faint, #9a948a); font: 600 11px/1.4 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-align: center; pointer-events: none; }
+.rsvp-stage:not([data-state="playing"]) .rsvp-hint,
+.rsvp-stage:not([data-fresh]) .rsvp-hint { display: none; }
+.rsvp-toast { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); margin: 0; padding: 6px 12px; border-radius: 999px; background: var(--ink); color: var(--paper); font: 700 12px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; pointer-events: none; }
+
+.rsvp-foot { display: grid; gap: 10px; padding: 8px 16px max(12px, env(safe-area-inset-bottom, 0px)); }
+.rsvp-meter { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+.rsvp-track { position: relative; height: 3px; border-radius: 2px; background: color-mix(in srgb, var(--line) 80%, transparent); }
+.rsvp-fill { position: absolute; inset: 0; border-radius: inherit; background: var(--accent); transform-origin: left center; transform: scaleX(0); }
+.rsvp-tick { position: absolute; top: -3px; width: 1px; height: 9px; background: var(--faint, #9a948a); }
+.rsvp-stage[data-orientation="vertical"] .rsvp-fill { transform-origin: right center; }
+.rsvp-remaining { margin: 0; color: var(--muted); font: 600 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rsvp-controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.rsvp-speed, .rsvp-tools { display: flex; align-items: center; gap: 2px; }
+.rsvp-tools { justify-content: flex-end; gap: 6px; }
+.rsvp-transport { display: flex; align-items: center; gap: 10px; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-transport { flex-direction: row-reverse; }
+.rsvp-btn { min-width: 44px; min-height: 44px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--ink-soft, #4f4b45); font: 700 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; white-space: nowrap; cursor: pointer; }
+.rsvp-btn:hover { color: var(--ink); background: var(--paper-2); }
+.rsvp-speed output { min-width: 5.6em; color: var(--ink); font: 700 12px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; text-align: center; font-variant-numeric: tabular-nums; }
+.rsvp-toggle { width: 60px; height: 60px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font: 700 20px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.rsvp-stage button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: 2px; }
+.rsvp-help-button { display: none; }
+@media (hover: hover) and (min-width: 821px) { .rsvp-help-button { display: inline-block; } }
+
+.rsvp-sheet, .rsvp-help { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; display: grid; gap: 16px; max-height: 78%; overflow: auto; padding: 18px 16px max(18px, env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); border-radius: 16px 16px 0 0; background: var(--raise, #fbf9f4); box-shadow: 0 -18px 40px rgba(20, 16, 10, .12); overscroll-behavior: contain; }
+.rsvp-sheet h2, .rsvp-help h2 { margin: 0; font: 700 14px/1.4 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; }
+.rsvp-group { display: grid; gap: 8px; }
+.rsvp-group > p { margin: 0; color: var(--muted); font: 700 11px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; letter-spacing: .04em; }
+.rsvp-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.rsvp-seg button { min-width: 44px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink-soft, #4f4b45); font: 700 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
+.rsvp-seg button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.rsvp-sheet-close { justify-self: end; }
+.rsvp-help table { border-collapse: collapse; font: 13px/1.5 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; }
+.rsvp-help td { padding: 6px 12px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.rsvp-help td:first-child { white-space: nowrap; }
+@media (max-width: 820px) {
+  /* スマホ: 親指が届く下段に再生、上段に速さと設定 */
+  .rsvp-controls { grid-template-columns: 1fr auto; grid-template-areas: "speed tools" "transport transport"; row-gap: 4px; }
+  .rsvp-speed { grid-area: speed; }
+  .rsvp-tools { grid-area: tools; }
+  .rsvp-transport { grid-area: transport; justify-content: center; gap: 18px; }
+}
+@media (min-width: 821px) {
+  .rsvp-sheet, .rsvp-help { left: auto; right: 16px; bottom: 96px; width: 360px; border: 1px solid var(--line); border-radius: 14px; }
+  .rsvp-help { width: 420px; }
+  .rsvp-toggle { width: 56px; height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-head, .rsvp-foot { transition: none; }
+}
+@media (forced-colors: active) {
+  .rsvp-fill { background: Highlight; }
+  .rsvp-context button[aria-current="true"] { text-decoration-color: Highlight; }
+}
