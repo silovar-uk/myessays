@@ -43,16 +43,31 @@ test('RSVP reader keeps its contracts', () => {
   assert.doesNotMatch(js, /new MutationObserver/);
 });
 
-test('RSVP speed picker reaches 2000 and keeps direct alternatives', () => {
+test('RSVP speed picker reaches 3000 and keeps direct alternatives', () => {
   const js = read('reader-rsvp.js');
   const css = read('reader-rsvp.css');
-  assert.match(js, /const SPEED_MAX = 2000;/);
-  assert.match(js, /SPEED_PRESETS = \[[^\]]*2000[^\]]*\]/);
+  assert.match(js, /const SPEED_MAX = 3000;/);
+  assert.match(js, /SPEED_PRESETS = \[[^\]]*2000[^\]]*2500[^\]]*3000[^\]]*\]/);
   assert.match(js, /speedRange\.type = 'range'/);
   assert.match(js, /rsvp-speed-picker/);
   assert.match(css, /\.rsvp-speed-value/);
   assert.match(css, /\.rsvp-speed-presets/);
   assert.match(css, /\.rsvp-speed-range[^}]*min-height:\s*44px/s);
+});
+
+test('RSVP shows static figures in place and pauses before continuing', () => {
+  const js = read('reader-rsvp.js');
+  const css = read('reader-rsvp.css');
+  assert.match(js, /kind: 'figure'/);
+  assert.match(js, /function staticFigure/);
+  assert.match(js, /function pauseAtFigure/);
+  assert.match(js, /visualGate/);
+  assert.match(js, /FIGURE · PAUSED/);
+  assert.match(js, /rsvp-figure-resume/);
+  assert.match(js, /nextChunkAfter/);
+  assert.match(css, /\.rsvp-card\[data-kind="figure"\]/);
+  assert.match(css, /\.rsvp-figure-image/);
+  assert.match(css, /\.rsvp-figure-resume[^}]*min-height:\s*52px/s);
 });
 
 test('RSVP styles stay readable and quiet', () => {
