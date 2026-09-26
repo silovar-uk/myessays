@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "orca-ade-orchestration-review-bottleneck": {
+      "en-mix": "english-mix/orca-ade-orchestration-review-bottleneck.md"
+    },
     "kamakura-inter-gk-city-councilor-shuya-okazaki": {
       "en-mix": "english-mix/kamakura-inter-gk-city-councilor-shuya-okazaki.md"
     },
