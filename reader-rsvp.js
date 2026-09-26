@@ -7,12 +7,12 @@
   const PAUSE_LABELS = ['なし', '弱', '標準', '強'];
   const PAUSE_SCALE = [0, 0.5, 1, 1.6];
   const SPEED_MIN = 300;
-  const SPEED_MAX = 2000;
+  const SPEED_MAX = 3000;
   const SPEED_STEP = 50;
-  const SPEED_PRESETS = [400, 600, 800, 1000, 1200, 1500, 2000];
+  const SPEED_PRESETS = [400, 600, 800, 1000, 1200, 1500, 2000, 2500, 3000];
   const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false };
   const BEATS = { comma: 4, period: 8, paragraph: 12 };
-  const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, skip: 900, end: 2600 };
+  const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, figure: 0, skip: 900, end: 2600 };
   const MIN_SHOW_MS = 160;
   const RAMP = [1.5, 1.25, 1.1];
   const PHONE_MAX = 820;
@@ -158,7 +158,7 @@
         item.ms = Math.max(MIN_SHOW_MS, item.morae * msPerMora);
         item.rest = item.pause ? BEATS[item.pause] * msPerMora * scale : 0;
       } else {
-        item.ms = CARD_MS[item.kind] || 900;
+        item.ms = CARD_MS[item.kind] ?? 900;
         item.rest = 0;
       }
     }
@@ -202,6 +202,19 @@
     return '図';
   }
 
+  function staticFigure(el) {
+    if (!el || el.querySelector('canvas, video, iframe, object, embed')) return null;
+    const image = el.querySelector('picture img, img');
+    if (!image) return null;
+    const caption = el.querySelector('figcaption, .essay-figure-caption, .figure-caption, [data-caption]')?.textContent
+      ?.replace(/\s+/g, ' ').trim() || '';
+    return {
+      image,
+      alt: image.getAttribute('alt') || '',
+      caption
+    };
+  }
+
   function collectUnits(root) {
     const h1 = root.querySelector(':scope > h1');
     const units = [{ kind: 'title', text: h1?.textContent.trim() || '', sub: root.querySelector(':scope > .reader-v2-subtitle')?.textContent.trim() || '' }];
@@ -214,7 +227,13 @@
         units.push({ kind: el.tagName.toLowerCase(), el, text });
         continue;
       }
-      if (el.matches(SKIP)) { units.push({ kind: 'skip', el, text: skipLabel(el) }); continue; }
+      if (el.matches(SKIP)) {
+        const visual = staticFigure(el);
+        units.push(visual
+          ? { kind: 'figure', el, text: '図', visual }
+          : { kind: 'skip', el, text: skipLabel(el) });
+        continue;
+      }
       if (!el.matches('.reader-locator-block[data-reading-locator]')) continue;
       const list = el.matches('ul, ol');
       const parts = list || el.matches('blockquote') ? [...el.children].filter(child => child.matches('li, p')) : [el];
@@ -276,6 +295,7 @@
   let playedMs = 0;
   let widthRead = 0;
   let syncedBlock = null;
+  let visualGate = -1;
 
   function readJSON(key) {
     try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
@@ -495,7 +515,7 @@
       ['→ ←', '1つ進む・戻る(縦では ← で進む)'],
       ['Shift + → ←', '1文進む・戻る'],
       ['↑ ↓', '速さ ±50字/分'],
-      ['速度の数字', '300〜2000字/分から直接選択'],
+      ['速度の数字', '300〜3000字/分から直接選択'],
       ['+ −', '文字の大きさ'],
       ['[ ]', '最少文字数'],
       ['V', '縦・横'],
@@ -653,12 +673,17 @@
       playedMs = 0;
       widthRead = 0;
       syncedBlock = null;
+      visualGate = -1;
       play();
     });
   }
 
   function play() {
     if (playing || !items.length) return;
+    if (items[index]?.kind === 'figure' && visualGate === index) {
+      visualGate = -1;
+      index = Math.min(index + 1, items.length - 1);
+    }
     if (index >= items.length - 1) { index = 0; lead = ''; }
     els.sheet.hidden = true;
     els.help.hidden = true;
@@ -690,6 +715,18 @@
 
   function toggle() { playing ? pause() : play(); }
 
+  function pauseAtFigure() {
+    if (!playing) return;
+    playing = false;
+    clearTimeout(timer);
+    playedMs += performance.now() - playStartedAt;
+    visualGate = index;
+    lead = '';
+    releaseWake();
+    saveResume();
+    render();
+  }
+
   function tick() {
     clearTimeout(timer);
     if (!playing) return;
@@ -698,6 +735,7 @@
     show(item);
     syncPage(item);
     if (item.kind === 'end') { finish(); return; }
+    if (item.kind === 'figure') { pauseAtFigure(); return; }
     const ramp = item.type === 'chunk' && rampStep < RAMP.length ? RAMP[rampStep++] : 1;
     timer = setTimeout(() => {
       if (item.type === 'chunk') widthRead += item.width;
@@ -774,6 +812,34 @@
     syncSpeedPicker();
   }
 
+  function previousSentenceText(at = index) {
+    let j = at - 1;
+    while (j >= 0 && !isChunk(j)) j -= 1;
+    if (j < 0) return '';
+    const from = sentenceStart(j);
+    const first = items[from];
+    let last = j;
+    while (isChunk(last + 1) && items[last + 1].sentence === first.sentence) last += 1;
+    if (!first?.unit?.text || first.unit !== items[last]?.unit) {
+      return items.slice(from, last + 1).map(item => item.text).join('').replace(/\s+/g, ' ').trim();
+    }
+    return first.unit.text.slice(first.start, items[last].end).replace(/\s+/g, ' ').trim();
+  }
+
+  function cloneFigureImage(card) {
+    const source = card.unit?.visual?.image;
+    if (!source?.cloneNode) return null;
+    const image = source.cloneNode(false);
+    image.removeAttribute('id');
+    image.removeAttribute('tabindex');
+    image.removeAttribute('role');
+    image.removeAttribute('aria-label');
+    image.className = 'rsvp-figure-image';
+    image.loading = 'eager';
+    image.decoding = 'async';
+    return image;
+  }
+
   function renderWord(item) {
     els.word.replaceChildren();
     if (item.bullet) els.word.append(Object.assign(document.createElement('span'), { className: 'rsvp-bullet', textContent: '・' }));
@@ -796,6 +862,24 @@
     if (card.kind === 'title') {
       nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-title', textContent: card.text }));
       if (card.sub) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-sub', textContent: card.sub }));
+    } else if (card.kind === 'figure') {
+      const context = previousSentenceText(index);
+      if (context) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-figure-context', textContent: context }));
+      const frame = document.createElement('div');
+      frame.className = 'rsvp-figure-frame';
+      const image = cloneFigureImage(card);
+      if (image) {
+        const fallback = Object.assign(document.createElement('p'), { className: 'rsvp-figure-error', textContent: '画像を読み込めませんでした' });
+        image.addEventListener('error', () => image.replaceWith(fallback), { once: true });
+        frame.append(image);
+      } else {
+        frame.append(Object.assign(document.createElement('p'), { className: 'rsvp-figure-error', textContent: '画像を表示できませんでした' }));
+      }
+      nodes.push(frame);
+      const caption = card.unit?.visual?.caption || '';
+      if (caption) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-figure-caption', textContent: caption }));
+      nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-figure-paused', textContent: 'FIGURE · PAUSED' }));
+      nodes.push(button('rsvp-figure-resume', '▶ 続きを流す', '図の続きから再生する(Space)', play));
     } else if (card.kind === 'skip') {
       nodes.push(button('rsvp-card-skip', `▦ ${card.text}があります · 本文で見る`, `${card.text}を本文で見る(Enter)`, () => goToSkip(card)));
     } else if (card.kind === 'end') {
@@ -857,7 +941,9 @@
     const ratio = totalWidth ? item.before / totalWidth : 0;
     els.fill.style.transform = `scaleX(${ratio})`;
     const ms = item.remain;
-    els.remaining.textContent = ms >= 60000 ? `残り ${Math.ceil(ms / 60000)}分` : `残り ${Math.max(1, Math.round(ms / 1000))}秒`;
+    const time = ms >= 60000 ? `本文 残り${Math.ceil(ms / 60000)}分` : `本文 残り${Math.max(1, Math.round(ms / 1000))}秒`;
+    const figures = items.slice(index + (item.kind === 'figure' ? 1 : 0)).filter(entry => entry.kind === 'figure').length;
+    els.remaining.textContent = figures ? `${time} · 図${figures}枚` : time;
   }
 
   function toast(text) {
@@ -941,10 +1027,17 @@
   function stopAndReturn() {
     if (!stage?.open) return;
     if (items[index]?.kind === 'end') { landAfterReading(); return; }
+    const visual = items[index]?.kind === 'figure' ? items[index] : null;
     const item = currentChunk();
     if (item) saveResume();
     closeStage();
-    if (item) land(item);
+    if (visual?.unit?.el?.isConnected) {
+      const block = visual.unit.el;
+      scrollTo({ top: Math.max(0, scrollY + block.getBoundingClientRect().top - railY()), behavior: 'instant' });
+      flash(block);
+    } else if (item) {
+      land(item);
+    }
     returnFocus();
   }
 
