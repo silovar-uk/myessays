@@ -28,7 +28,7 @@ When people say「つんく節」, it is tempting to collect visible quirks: 語
 So this essay treats「つんく節」not as a cabinet of quirks but as a **system connecting time, pronunciation, words, casting, and production**. そして「ハロプロ節」は、その一部がlessons, demo vocals, vocal assignment, and generational turnoverを通じてcollective bodily knowledgeへ変わったもの、と仮に分ける。Once separated, a better question appears: why can a song feel “Hello! Project-like” even when Tsunku did not write it?
 
 <!-- level:2 role:evidence -->
-**Key sources**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/242167/)」
+**Key sources**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/227178/p3/)」
 
 ## 1. 「節」を五つに割ると、the actual mechanism starts to appear
 
@@ -86,7 +86,7 @@ Tsunku’s own explanation of subdividing the pronunciation of「幸せ」to kee
 In practice, when you hear an unusual pronunciation, ask not「what quirk is this?」but「how does this change onset, ending, or center of gravity?」. 何も変わらないなら、その発音はcore mechanismではないかもしれない。Tsunku-style pronunciation becomes much more three-dimensional when heard as **a way of editing time with the mouth**.
 
 <!-- level:2 role:evidence -->
-**Key sources**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいな、つんく♂歌唱を語る](https://thetv.jp/news/detail/242167/)」／つんく♂「[前島亜美×つんく♂対談](https://note.tsunku.net/n/n2166c98a0a21)」
+**Key sources**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいな、つんく♂歌唱を語る](https://thetv.jp/news/detail/227178/p3/)」／アニメイトタイムズ「[前島亜美『POLYPHONY』インタビュー](https://www.animatetimes.com/news/details.php?id=1784093350&p=2)」
 
 ## 4. 第三層は言葉――catch the ear before explaining the meaning
 
@@ -146,7 +146,7 @@ This makes the “owner” of「つんく節」slightly blurry. Is it the lyrici
 Then the next question follows naturally. If a singer has internalized the same timing, pronunciation, and role awareness, could a non-Tsunku song still feel “Hello! Project-like”? ここで、つんく節からハロプロ節へ話が移る。
 
 <!-- level:2 role:evidence -->
-**Key sources**：WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/242167/)」／つんく♂「[モーニング娘。'21『よしよししてほしいの』セルフライナーノーツ](https://note.tsunku.net/n/nf9d96afbbc6b)」／つんく♂「[大久保薫×つんく♂対談](https://note.tsunku.net/n/nd8d1a476633a)」
+**Key sources**：WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/227178/p3/)」／つんく♂「[モーニング娘。'21『よしよししてほしいの』セルフライナーノーツ](https://note.tsunku.net/n/nf9d96afbbc6b)」／つんく♂「[大久保薫×つんく♂対談](https://note.tsunku.net/n/nd8d1a476633a)」
 
 ## 7. 「ハロプロ節」は、authorial habit becoming an institution
 
@@ -281,8 +281,8 @@ If style is a living culture, the conclusion should remain revisable. 固定す�
 - つんく♂「[モーニング娘。'26『Lonely...But not Alone』セルフライナーノーツ](https://note.tsunku.net/n/n21d63f2e9586)」
 - つんく♂「[歌詞を書くときに意識すること](https://note.tsunku.net/n/nbef7f48b6b31)」
 - つんく♂「[テーマは針の穴を通すような小さなこと、パンチラインはひとつ](https://note.tsunku.net/n/nf0f53060184f)」
-- つんく♂「[前島亜美×つんく♂対談](https://note.tsunku.net/n/n2166c98a0a21)」
-- WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/242167/)」
+- アニメイトタイムズ「[前島亜美『POLYPHONY』インタビュー](https://www.animatetimes.com/news/details.php?id=1784093350&p=2)」
+- WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/227178/p3/)」
 - 文化放送「[市井紗耶香が語るつんく♂の仮歌](https://www.joqr.co.jp/qr/article/90175/)」
 - つんく♂「[大久保薫×つんく♂対談](https://note.tsunku.net/n/nd8d1a476633a)」
 - Real Sound「[小林郁也によるつんく♂楽曲分析](https://realsound.jp/2014/11/post-1742.html)」
