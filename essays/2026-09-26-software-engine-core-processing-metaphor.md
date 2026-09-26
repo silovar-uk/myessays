@@ -25,13 +25,13 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 本稿では、まず「エンジン」という語が何を意味してきたかを確認し、その後、現代のソフトウェアで何が共通し、どこから共通しなくなるかを実例で確かめる。最後には、技術文書で「○○エンジン」と出会ったとき、名前に圧倒されず中身を読むための見方まで整理する。
 
-[MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [エピック・ゲームズ公式「アンリアル・エンジンの音声」（Audio in Unreal Engine）](https://dev.epicgames.com/documentation/unreal-engine/audio-in-unreal-engine-5)
+[モジラ開発者ネットワーク（MDN）「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [エピック・ゲームズ公式「アンリアル・エンジンの音声」（Audio in Unreal Engine）](https://dev.epicgames.com/documentation/unreal-engine/audio-in-unreal-engine-5)
 
 > **情報基準日：2026年9月26日。** 本稿は「エンジン」という語に一つの公式定義があるとは扱わない。分野ごとの公式文書で実際の用法を比較し、共通項を筆者の整理として提示する。また、現代ソフトウェアで最初に「エンジン」と呼ばれた仕組みを一つに特定できる信頼性の高い資料は確認できなかったため、「最初のソフトウェアエンジン」を断定しない。
 
 ## 1. 「エンジン」は規格名ではなく、「中で処理を回す部分」を示す建築上の比喩である
 
-まず大前提として、エンジンは中央処理装置（CPU）やハイパーテキスト記述言語（HTML）のように、対象が明確に決まった用語ではない。MDNウェブ文書も「エンジンは文脈によって複数の意味を持つ」としたうえで、ジャバスクリプトエンジンと描画エンジンを別々に説明している。つまり、名前だけ見て「これがエンジンの正式定義だ」と一つに固定するほうが危ない。
+まず大前提として、エンジンは中央処理装置（CPU）やハイパーテキスト記述言語（HTML）のように、対象が明確に決まった用語ではない。モジラ開発者ネットワーク（MDN）も「エンジンは文脈によって複数の意味を持つ」としたうえで、ジャバスクリプトエンジンと描画エンジンを別々に説明している。つまり、名前だけ見て「これがエンジンの正式定義だ」と一つに固定するほうが危ない。
 
 それでも、実際の用法にはかなり強い共通項がある。エンジンと呼ばれるものは、しばしば「外側から何かを渡される」「内部の規則や仕組みで処理する」「結果を返す」「同じ処理を何度も呼び出せる」という形を持つ。検索語を渡せば候補を探して順位づけする。プログラムを渡せば解析して実行する。文書とスタイル情報を渡せば画面へ変換する。規則と事実を渡せば判断を返す。
 
@@ -41,7 +41,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 したがって、「エンジンとは何か」という問いは、「何という種類のソフトウェアか」より「この製品は、どの処理の中心をエンジンとして切り出しているのか」と読み替えたほうが理解しやすい。エンジンは部品名というより、責任範囲の名前なのである。
 
-[MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [MDNウェブ文書「描画エンジン」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering)
+[モジラ開発者ネットワーク（MDN）「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [モジラ開発者ネットワーク（MDN）「描画エンジン」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering)
 
 ## 2. 「エンジン」は本来「モーター」より広い言葉で、計算機も19世紀からエンジンだった
 
@@ -55,7 +55,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 それでも重要なのは、エンジンという語が最初から「動力源」だけではなく、**ある仕事を自動で進めるために組み立てられた仕掛け**を指してきたことである。そう考えると、ソフトウェアのエンジンは比喩ではあるが、思ったほど突飛な比喩でもない。
 
-[オンライン語源辞典「engineの語源と歴史」（Engine - Etymology, Origin & Meaning）](https://www.etymonline.com/word/engine) ／ [コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [コンピュータ歴史博物館「簡史」（A Brief History）](https://www.computerhistory.org/babbage/history)
+[オンライン語源辞典「エンジン（engine）の語源と歴史」（Engine - Etymology, Origin & Meaning）](https://www.etymonline.com/word/engine) ／ [コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [コンピュータ歴史博物館「簡史」（A Brief History）](https://www.computerhistory.org/babbage/history)
 
 ## 3. 同じ「エンジン」でも、実際には四つくらいの仕事に分けると見通しがよくなる
 
@@ -72,7 +72,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 だから「○○エンジン」という名前を見たら、「どの分類に属するか」を当てるより、「何を受け取り、何を変えるのか」を見るほうがよい。同じ単語がついていても、実装の粒度も責任範囲もかなり違う。
 
-[ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs) ／ [MDNウェブ文書「描画エンジン」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering) ／ [マイエスキューエル公式用語集「記憶エンジン」（storage engine）](https://dev.mysql.com/doc/refman/8.4/en/glossary.html) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [IBM「業務規則管理とは」（What is Business Rules Management?）](https://www.ibm.com/think/topics/business-rules-management-system)
+[ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs) ／ [モジラ開発者ネットワーク（MDN）「描画エンジン」（Rendering engine）](https://developer.mozilla.org/ja/docs/Glossary/Engine/Rendering) ／ [マイエスキューエル公式用語集「記憶エンジン」（storage engine）](https://dev.mysql.com/doc/refman/8.4/en/glossary.html) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query) ／ [IBM「業務規則管理とは」（What is Business Rules Management?）](https://www.ibm.com/think/topics/business-rules-management-system)
 
 ## 4. 「エンジン除去テスト」をすると、エンジンと製品全体の境界が見えてくる
 
@@ -120,7 +120,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 この違いを知ると、「ブイエイトはジャバスクリプトの実行環境です」と「ノード・ジェイエスはジャバスクリプトエンジンです」のような、少しずれた説明にも気づける。現実には用語の使い方が揺れる場面もあるが、責任範囲を確認すれば混乱はかなり減る。
 
-[MDNウェブ文書「ジャバスクリプトエンジン」（JavaScript engine）](https://github.com/mdn/content/blob/main/files/en-us/glossary/engine/javascript/index.md?plain=1) ／ [ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs)
+[モジラ開発者ネットワーク（MDN）「ジャバスクリプトエンジン」（JavaScript engine）](https://github.com/mdn/content/blob/main/files/en-us/glossary/engine/javascript/index.md?plain=1) ／ [ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs)
 
 ## 7. 「エンジン」という語の弱点は、便利すぎて境界をぼかせることである
 
@@ -136,7 +136,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 だから批判的に読むとは、「エンジンという語を使うな」と言うことではない。「エンジンと書いてあるから分かった気にならない」ことである。
 
-[MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイエスキューエル公式「代替記憶エンジン」（Alternative Storage Engines）](https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html) ／ [エピック・ゲームズ公式「アンリアル・エンジン入門」（Get Started）](https://dev.epicgames.com/documentation/unreal-engine/get-started)
+[モジラ開発者ネットワーク（MDN）「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [マイエスキューエル公式「代替記憶エンジン」（Alternative Storage Engines）](https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html) ／ [エピック・ゲームズ公式「アンリアル・エンジン入門」（Get Started）](https://dev.epicgames.com/documentation/unreal-engine/get-started)
 
 ## 8. 「○○エンジン」と出会ったら、五つの質問でほぼ正体をつかめる
 
@@ -154,7 +154,7 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 ここまで分解できれば、「エンジンだから何となくすごい裏側の何か」という理解から脱出できる。名前ではなく、入力、内部資源、処理、出力、周囲との境界を読む。これはエンジン以外の技術用語にもそのまま使える。
 
-[グーグル検索セントラル「Google検索の仕組み」（How Google Search Works）](https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja) ／ [ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query)
+[グーグル検索セントラル「グーグル検索（Google Search）の仕組み」（How Google Search Works）](https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja) ／ [ブイエイト公式文書「ドキュメント」（Documentation）](https://v8.dev/docs) ／ [マイクロソフト公式「パワークエリとは」（What Is Power Query?）](https://learn.microsoft.com/ja-jp/power-query/power-query-what-is-power-query)
 
 ## 9. 調べたあと、パソコンの中は「エンジンだらけ」ではなく「責任分担だらけ」に見える
 
@@ -170,4 +170,4 @@ abstract: "検索エンジン、描画エンジン、ジャバスクリプトエ
 
 そこにあるのは無数のモーターではない。**複雑な仕事を、それぞれの責任に切り分けて回すための境界線**である。「エンジン」という妙に力強い名前は、その境界に貼られた札だと思うと、かなり正体に近い。
 
-[コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [MDNウェブ文書「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [スタンフォード大学「専門家システムの構築に関する報告」（Knowledge Systems Laboratory report）](https://i.stanford.edu/pub/cstr/reports/cs/tr/86/1094/CS-TR-86-1094.pdf)
+[コンピュータ歴史博物館「バベッジの機関」（The Engines）](https://www.computerhistory.org/babbage/engines) ／ [モジラ開発者ネットワーク（MDN）「エンジン」（Engine）](https://developer.mozilla.org/en-US/docs/Glossary/Engine) ／ [スタンフォード大学「専門家システムの構築に関する報告」（Knowledge Systems Laboratory report）](https://i.stanford.edu/pub/cstr/reports/cs/tr/86/1094/CS-TR-86-1094.pdf)
