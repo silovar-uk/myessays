@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">アジア甲子園を五層で分解した図</title>
+  <desc id="desc">目標、競技、儀礼、祝祭、進路の五層を縦に重ね、現地で意味を持つほど単なる再現から文化へ変わることを示す。</desc>
+  <rect width="1200" height="820" fill="#faf9f6"/>
+  <text x="600" y="72" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="#1f2328">アジア甲子園は「試合」だけではない</text>
+  <text x="600" y="112" text-anchor="middle" font-family="sans-serif" font-size="19" fill="#59636e">目標・競技・儀礼・祝祭・進路が重なって「目指す舞台」になる</text>
+
+  <g font-family="sans-serif">
+    <rect x="190" y="160" width="820" height="92" rx="18" fill="#ffffff" stroke="#2f3740" stroke-width="2"/>
+    <text x="235" y="207" font-size="26" font-weight="700" fill="#1f2328">1　目標</text>
+    <text x="430" y="207" font-size="20" fill="#434c55">若い選手が「ここへ行きたい」と思う舞台</text>
+
+    <rect x="190" y="270" width="820" height="92" rx="18" fill="#ffffff" stroke="#2f3740" stroke-width="2"/>
+    <text x="235" y="317" font-size="26" font-weight="700" fill="#1f2328">2　競技</text>
+    <text x="430" y="317" font-size="20" fill="#434c55">試合方式、参加チーム、選抜、勝敗</text>
+
+    <rect x="190" y="380" width="820" height="92" rx="18" fill="#ffffff" stroke="#2f3740" stroke-width="2"/>
+    <text x="235" y="427" font-size="26" font-weight="700" fill="#1f2328">3　儀礼</text>
+    <text x="430" y="427" font-size="20" fill="#434c55">礼、行進、開会式、フェアプレー、規律</text>
+
+    <rect x="190" y="490" width="820" height="92" rx="18" fill="#ffffff" stroke="#2f3740" stroke-width="2"/>
+    <text x="235" y="537" font-size="26" font-weight="700" fill="#1f2328">4　祝祭</text>
+    <text x="430" y="537" font-size="20" fill="#434c55">応援、吹奏楽、チア、飲食、観客体験</text>
+
+    <rect x="190" y="600" width="820" height="92" rx="18" fill="#ffffff" stroke="#2f3740" stroke-width="2"/>
+    <text x="235" y="647" font-size="26" font-weight="700" fill="#1f2328">5　進路</text>
+    <text x="430" y="647" font-size="20" fill="#434c55">日本訪問、選抜、発掘、進学・留学の機会</text>
+
+    <path d="M1045 192 L1045 660" stroke="#68727d" stroke-width="3" stroke-dasharray="7 8"/>
+    <path d="M1045 660 l-10 -18 M1045 660 l10 -18" stroke="#68727d" stroke-width="3" fill="none"/>
+    <text x="1085" y="310" font-size="17" fill="#59636e" transform="rotate(90 1085 310)">現地で意味を持つほど</text>
+    <text x="1085" y="508" font-size="17" fill="#59636e" transform="rotate(90 1085 508)">「再現」から「文化」へ</text>
+  </g>
+
+  <text x="600" y="760" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#6b7280">本稿の分析モデル。大会公式の分類ではない。</text>
+</svg>
