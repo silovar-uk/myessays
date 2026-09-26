@@ -1,21 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
   <rect width="1200" height="675" rx="36" fill="#f7f7f4"/>
-  <text x="70" y="88" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#171717">2026/27 インドネシアで確認した日本人選手</text>
-  <text x="70" y="132" font-family="system-ui, sans-serif" font-size="22" fill="#555">2026年9月26日時点・I.League公式ロスター基準</text>
-  <rect x="70" y="190" width="620" height="350" rx="30" fill="#ffffff" stroke="#d5d5cf" stroke-width="2"/>
-  <text x="110" y="245" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="#171717">国内リーグ登録</text>
-  <rect x="110" y="285" width="250" height="185" rx="24" fill="#eeeeea"/>
-  <text x="235" y="340" text-anchor="middle" font-family="system-ui, sans-serif" font-size="23" font-weight="700" fill="#171717">1部</text>
-  <text x="235" y="420" text-anchor="middle" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#171717">9</text>
-  <text x="235" y="456" text-anchor="middle" font-family="system-ui, sans-serif" font-size="19" fill="#555">人</text>
-  <rect x="400" y="285" width="250" height="185" rx="24" fill="#eeeeea"/>
-  <text x="525" y="340" text-anchor="middle" font-family="system-ui, sans-serif" font-size="23" font-weight="700" fill="#171717">2部</text>
-  <text x="525" y="420" text-anchor="middle" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#171717">1</text>
-  <text x="525" y="456" text-anchor="middle" font-family="system-ui, sans-serif" font-size="19" fill="#555">人</text>
-  <rect x="740" y="190" width="390" height="350" rx="30" fill="#ffffff" stroke="#171717" stroke-width="2" stroke-dasharray="10 10"/>
-  <text x="780" y="245" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="#171717">クラブ所属</text>
-  <text x="780" y="282" font-family="system-ui, sans-serif" font-size="22" fill="#555">国内1部ロスター外</text>
-  <text x="935" y="397" text-anchor="middle" font-family="system-ui, sans-serif" font-size="92" font-weight="800" fill="#171717">1</text>
-  <text x="935" y="440" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#555">レイ・オカダ</text>
-  <text x="70" y="610" font-family="system-ui, sans-serif" font-size="23" fill="#333">「クラブにいる」と「国内リーグに登録される」は、同じ集合ではない。</text>
+  <text x="70" y="84" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#171717">日本人選手を「何人」と数えるか</text>
+  <text x="70" y="126" font-family="system-ui, sans-serif" font-size="22" fill="#555">2026年9月26日時点・Iリーグ公式情報を照合</text>
+
+  <rect x="70" y="180" width="650" height="330" rx="30" fill="#ffffff" stroke="#d5d5cf" stroke-width="2"/>
+  <text x="110" y="232" font-family="system-ui, sans-serif" font-size="25" font-weight="700" fill="#171717">国内リーグの公式ロスター</text>
+
+  <rect x="110" y="275" width="260" height="175" rx="24" fill="#ecece7"/>
+  <text x="240" y="326" text-anchor="middle" font-family="system-ui, sans-serif" font-size="23" font-weight="700" fill="#171717">1部</text>
+  <text x="240" y="404" text-anchor="middle" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#171717">9</text>
+  <text x="240" y="437" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#555">人</text>
+
+  <rect x="420" y="275" width="260" height="175" rx="24" fill="#ecece7"/>
+  <text x="550" y="326" text-anchor="middle" font-family="system-ui, sans-serif" font-size="23" font-weight="700" fill="#171717">2部</text>
+  <text x="550" y="404" text-anchor="middle" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#171717">8</text>
+  <text x="550" y="437" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#555">登録</text>
+
+  <rect x="770" y="180" width="360" height="330" rx="30" fill="#ffffff" stroke="#171717" stroke-width="2" stroke-dasharray="10 10"/>
+  <text x="810" y="232" font-family="system-ui, sans-serif" font-size="25" font-weight="700" fill="#171717">境界にいる2例</text>
+  <text x="810" y="292" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#171717">松永拓也</text>
+  <text x="810" y="327" font-family="system-ui, sans-serif" font-size="18" fill="#555">加入記事と現行ロスターが不一致</text>
+  <line x1="810" y1="358" x2="1090" y2="358" stroke="#d5d5cf"/>
+  <text x="810" y="410" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#171717">レイ・オカダ</text>
+  <text x="810" y="445" font-family="system-ui, sans-serif" font-size="18" fill="#555">クラブ所属／国内1部ロスター外</text>
+
+  <text x="70" y="575" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#171717">所属 ≠ 大会登録 ≠ 試合出場</text>
+  <text x="70" y="615" font-family="system-ui, sans-serif" font-size="20" fill="#555">「17」という合計だけでは、選手の現在地を十分に表せない。</text>
 </svg>
