@@ -710,9 +710,7 @@
     playedMs += performance.now() - playStartedAt;
     lead = '';
     releaseWake();
-    const next = nextChunkAfter(index);
-    if (next) saveResume(next);
-    else writeJSON(KEY_RESUME, null);
+    saveResume();
     render();
     show(items[index]);
   }
@@ -727,7 +725,9 @@
     visualGate = index;
     lead = '';
     releaseWake();
-    saveResume();
+    const next = nextChunkAfter(index);
+    if (next) saveResume(next);
+    else writeJSON(KEY_RESUME, null);
     render();
   }
 
