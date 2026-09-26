@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+<title id="t">「ンを足す」感覚と「子音を保つ」感覚の模式比較</title>
+<desc id="d">日本語のモーラ的な区切りとして「ン」を別ブロックに置くイメージと、英語の語末子音を先行母音から連続した調音ジェスチャーとして保持するイメージを比較した模式図。実際の音声時間比を示す図ではない。</desc>
+<rect width="1200" height="675" fill="#f7f4ed"/>
+<text x="70" y="82" font-family="system-ui,sans-serif" font-size="34" font-weight="700" fill="#202020">「ンを足す」より、「音の状態を保つ」</text>
+<text x="70" y="126" font-family="system-ui,sans-serif" font-size="20" fill="#555">模式図。長さの実測値ではなく、発音時の注意の置き場所を表す。</text>
+
+<text x="70" y="210" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#333">かな的なイメージ</text>
+<rect x="70" y="245" width="380" height="108" rx="20" fill="#fff" stroke="#999" stroke-width="2"/>
+<text x="100" y="313" font-family="system-ui,sans-serif" font-size="38" fill="#222">母音</text>
+<rect x="470" y="245" width="210" height="108" rx="20" fill="#fff" stroke="#999" stroke-width="2"/>
+<text x="532" y="313" font-family="system-ui,sans-serif" font-size="38" fill="#222">ン</text>
+<text x="710" y="310" font-family="system-ui,sans-serif" font-size="22" fill="#555">別の一拍を置く感じ</text>
+
+<text x="70" y="430" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#333">英語の子音ジェスチャーとしてのイメージ</text>
+<rect x="70" y="465" width="390" height="108" rx="54" fill="#fff" stroke="#555" stroke-width="2"/>
+<text x="106" y="533" font-family="system-ui,sans-serif" font-size="34" fill="#222">vowel</text>
+<path d="M455 519 C520 519, 535 519, 600 519" fill="none" stroke="#555" stroke-width="5"/>
+<rect x="590" y="465" width="390" height="108" rx="54" fill="#fff" stroke="#555" stroke-width="2"/>
+<text x="628" y="533" font-family="system-ui,sans-serif" font-size="34" fill="#222">n n n …</text>
+<text x="1008" y="505" font-family="system-ui,sans-serif" font-size="19" fill="#555">舌の閉鎖＋</text>
+<text x="1008" y="535" font-family="system-ui,sans-serif" font-size="19" fill="#555">鼻への気流を</text>
+<text x="1008" y="565" font-family="system-ui,sans-serif" font-size="19" fill="#555">途切れさせない</text>
+
+<text x="70" y="630" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#333">重要：「保つ」≠「必ず長くする」。実際の持続時間は語・強勢・位置・話速・文脈で変わる。</text>
+</svg>
