@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+<title id="t">英語の音を「保てるか」で分類する練習図</title>
+<desc id="d">鼻音、摩擦音、接近音、破裂音を、発音時の状態を持続できるかという学習上の観点から比較する。音韻論上の厳密な自然類分類ではない。</desc>
+<rect width="1200" height="675" fill="#f7f4ed"/>
+<text x="70" y="82" font-family="system-ui,sans-serif" font-size="34" font-weight="700" fill="#202020">「伸ばせる音」と「伸ばせない音」を分ける</text>
+<text x="70" y="126" font-family="system-ui,sans-serif" font-size="19" fill="#555">ここでの「伸ばす」は、学習用の身体感覚。音韻論上の分類名ではない。</text>
+
+<rect x="70" y="180" width="1060" height="100" rx="18" fill="#fff" stroke="#777"/>
+<text x="100" y="221" font-family="system-ui,sans-serif" font-size="24" font-weight="700">鼻音 /m n ŋ/</text>
+<text x="355" y="221" font-family="system-ui,sans-serif" font-size="28">mmmm / nnnn / ŋŋŋŋ</text>
+<text x="100" y="257" font-family="system-ui,sans-serif" font-size="19" fill="#555">口のどこかを閉じても、鼻へ空気を逃がせるので有声の鼻音を持続できる。</text>
+
+<rect x="70" y="300" width="1060" height="100" rx="18" fill="#fff" stroke="#777"/>
+<text x="100" y="341" font-family="system-ui,sans-serif" font-size="24" font-weight="700">摩擦音 /f v s z …/</text>
+<text x="400" y="341" font-family="system-ui,sans-serif" font-size="28">ffff / ssss / zzzz</text>
+<text x="100" y="377" font-family="system-ui,sans-serif" font-size="19" fill="#555">狭いすき間を流れる空気の摩擦を、一定時間保てる。</text>
+
+<rect x="70" y="420" width="1060" height="100" rx="18" fill="#fff" stroke="#777"/>
+<text x="100" y="461" font-family="system-ui,sans-serif" font-size="24" font-weight="700">接近音 /l ɹ/ など</text>
+<text x="405" y="461" font-family="system-ui,sans-serif" font-size="28">llll / ɹɹɹɹ</text>
+<text x="100" y="497" font-family="system-ui,sans-serif" font-size="19" fill="#555">調音姿勢を保てるが、/w j/のような滑音は「移動」そのものも重要。</text>
+
+<rect x="70" y="540" width="1060" height="100" rx="18" fill="#fff" stroke="#777"/>
+<text x="100" y="581" font-family="system-ui,sans-serif" font-size="24" font-weight="700">破裂音 /p t k b d g/</text>
+<text x="430" y="581" font-family="system-ui,sans-serif" font-size="28">「tttt」はできない</text>
+<text x="100" y="617" font-family="system-ui,sans-serif" font-size="19" fill="#555">閉鎖は保持できても、破裂そのものは瞬間的。すべての英語音へ「伸ばす」を一般化しない。</text>
+</svg>
