@@ -28,7 +28,7 @@ abstract: "「つんく節」「ハロプロ節」は、妙な発音や独特な
 したがって本稿では、「つんく節」を癖の標本箱としてではなく、**時間・発音・言葉・配役・制作を連動させる設計思想**として読む。そして「ハロプロ節」は、その設計思想の一部がレッスン、仮歌、歌割り、世代交代を通じて集団の身体知へ変わったもの、と仮に分ける。この二つを分けると、「つんく♂が書いていない曲にも、なぜハロプロっぽさを感じることがあるのか」という、もう一段おもしろい問いが立ち上がる。
 
 <!-- level:2 role:evidence -->
-**主な根拠**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/242167/)」
+**主な根拠**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/227178/p3/)」
 
 ## 1. 「節」を五つに割ると、急に実物が見えてくる
 
@@ -86,7 +86,7 @@ abstract: "「つんく節」「ハロプロ節」は、妙な発音や独特な
 実践では、特殊な発音を見つけたら「何の癖か」ではなく、「この操作で声の開始点・終点・重心はどう変わるか」と問うとよい。もし何も変わらないなら、その発音は核心ではない可能性がある。**つんく節の発音は、口癖というより時間を編集するための口の使い方**として聴くと、ぐっと立体的になる。
 
 <!-- level:2 role:evidence -->
-**主な根拠**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいな、つんく♂歌唱を語る](https://thetv.jp/news/detail/242167/)」／つんく♂「[前島亜美×つんく♂対談](https://note.tsunku.net/n/n2166c98a0a21)」
+**主な根拠**：つんく♂「[『そうだ！We're ALIVE』セルフライナーノーツ](https://note.tsunku.net/n/nff15e1bc0c9b)」／WEBザテレビジョン「[田中れいな、つんく♂歌唱を語る](https://thetv.jp/news/detail/227178/p3/)」／アニメイトタイムズ「[前島亜美『POLYPHONY』インタビュー](https://www.animatetimes.com/news/details.php?id=1784093350&p=2)」
 
 ## 4. 第三層は言葉――意味を説明する前に、耳をつかむ
 
@@ -146,7 +146,7 @@ abstract: "「つんく節」「ハロプロ節」は、妙な発音や独特な
 この見方をすると、次の問いが自然に出る。つんく♂本人が作詞作曲していない曲でも、歌手が同じ時間感覚、発音の処理、声の役割分担を身に付けていれば、私たちは「ハロプロっぽい」と感じるのではないか。ここで、つんく節からハロプロ節へ話が移る。
 
 <!-- level:2 role:evidence -->
-**主な根拠**：WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/242167/)」／つんく♂「[モーニング娘。'21『よしよししてほしいの』セルフライナーノーツ](https://note.tsunku.net/n/nf9d96afbbc6b)」／つんく♂「[大久保薫×つんく♂対談](https://note.tsunku.net/n/nd8d1a476633a)」
+**主な根拠**：WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/227178/p3/)」／つんく♂「[モーニング娘。'21『よしよししてほしいの』セルフライナーノーツ](https://note.tsunku.net/n/nf9d96afbbc6b)」／つんく♂「[大久保薫×つんく♂対談](https://note.tsunku.net/n/nd8d1a476633a)」
 
 ## 7. 「ハロプロ節」は、作者の癖が制度へ移ったものと考える
 
@@ -281,8 +281,8 @@ abstract: "「つんく節」「ハロプロ節」は、妙な発音や独特な
 - つんく♂「[モーニング娘。'26『Lonely...But not Alone』セルフライナーノーツ](https://note.tsunku.net/n/n21d63f2e9586)」
 - つんく♂「[歌詞を書くときに意識すること](https://note.tsunku.net/n/nbef7f48b6b31)」
 - つんく♂「[テーマは針の穴を通すような小さなこと、パンチラインはひとつ](https://note.tsunku.net/n/nf0f53060184f)」
-- つんく♂「[前島亜美×つんく♂対談](https://note.tsunku.net/n/n2166c98a0a21)」
-- WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/242167/)」
+- アニメイトタイムズ「[前島亜美『POLYPHONY』インタビュー](https://www.animatetimes.com/news/details.php?id=1784093350&p=2)」
+- WEBザテレビジョン「[田中れいなインタビュー](https://thetv.jp/news/detail/227178/p3/)」
 - 文化放送「[市井紗耶香が語るつんく♂の仮歌](https://www.joqr.co.jp/qr/article/90175/)」
 - つんく♂「[大久保薫×つんく♂対談](https://note.tsunku.net/n/nd8d1a476633a)」
 - Real Sound「[小林郁也によるつんく♂楽曲分析](https://realsound.jp/2014/11/post-1742.html)」
