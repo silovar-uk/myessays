@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 560" role="img" aria-labelledby="title desc">
+<title id="title">バルバラの歴史を示す時間軸</title>
+<desc id="desc">紀元前4世紀のアリストテレスの三段論法から、13世紀の中世記憶術、19世紀のフレーゲやパース以降の現代論理学、現代の教育までをつなぐ。</desc>
+<rect width="1400" height="560" fill="#f8f7f3"/>
+<text x="70" y="85" font-family="sans-serif" font-size="34" font-weight="700" fill="#1f2937">Barbara は「古代の論理」ではなく、古代の型に中世が付けた名前</text>
+<line x1="130" y1="300" x2="1270" y2="300" stroke="#6b7280" stroke-width="4"/>
+<g font-family="sans-serif" fill="#111827">
+<circle cx="200" cy="300" r="14" fill="#385b7a"/><text x="200" y="250" text-anchor="middle" font-size="24" font-weight="700">紀元前4世紀</text><text x="200" y="350" text-anchor="middle" font-size="22">アリストテレス</text><text x="200" y="382" text-anchor="middle" font-size="18" fill="#4b5563">『分析論前書』</text>
+<circle cx="545" cy="300" r="14" fill="#536b3e"/><text x="545" y="250" text-anchor="middle" font-size="24" font-weight="700">13世紀ごろ</text><text x="545" y="350" text-anchor="middle" font-size="22">Barbaraという名称</text><text x="545" y="382" text-anchor="middle" font-size="18" fill="#4b5563">記憶詩・還元手順</text>
+<circle cx="900" cy="300" r="14" fill="#8a5e3b"/><text x="900" y="250" text-anchor="middle" font-size="24" font-weight="700">19世紀後半</text><text x="900" y="350" text-anchor="middle" font-size="22">フレーゲ・パース</text><text x="900" y="382" text-anchor="middle" font-size="18" fill="#4b5563">量化・関係の一般化</text>
+<circle cx="1210" cy="300" r="14" fill="#6b4f7d"/><text x="1210" y="250" text-anchor="middle" font-size="24" font-weight="700">現在</text><text x="1210" y="350" text-anchor="middle" font-size="22">妥当な一形式として存続</text><text x="1210" y="382" text-anchor="middle" font-size="18" fill="#4b5563">論理教育・歴史研究</text>
+</g>
+<text x="70" y="500" font-family="sans-serif" font-size="22" fill="#374151">型そのものはアリストテレス、Barbaraという人工的な名前は中世の教育技術。</text>
+</svg>
