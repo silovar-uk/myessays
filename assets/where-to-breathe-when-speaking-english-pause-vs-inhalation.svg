@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">休止と吸気は同じではない</title>
+  <desc id="desc">レッドフォードら（Redford et al., 2026）の実験2で、休止7065回、吸気4094回が記録されたことを比較する横棒グラフ。</desc>
+  <rect width="1200" height="675" fill="#fafafa"/>
+  <text x="90" y="105" font-family="system-ui, sans-serif" font-size="46" font-weight="700" fill="#111">休止 ≠ 息継ぎ</text>
+  <text x="90" y="155" font-family="system-ui, sans-serif" font-size="24" fill="#555">レッドフォードほか（Redford et al., 2026）・実験2</text>
+  <text x="90" y="270" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#222">休止（pause）</text>
+  <rect x="330" y="230" width="710" height="60" rx="12" fill="#444"/>
+  <text x="1060" y="272" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#111">7,065</text>
+  <text x="90" y="405" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#222">吸気（inhalation）</text>
+  <rect x="330" y="365" width="411" height="60" rx="12" fill="#888"/>
+  <text x="760" y="407" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#111">4,094</text>
+  <line x1="330" y1="505" x2="1040" y2="505" stroke="#bbb" stroke-width="2"/>
+  <text x="90" y="565" font-family="system-ui, sans-serif" font-size="27" font-weight="600" fill="#222">口が止まることと、実際に空気を吸うことは別の現象。</text>
+  <text x="90" y="610" font-family="system-ui, sans-serif" font-size="21" fill="#666">※単純な差分を「吸わなかった休止数」と断定する図ではない。</text>
+</svg>
