@@ -268,3 +268,47 @@ abstract: "英語を話していると、どこで息を吸えばよいのか分
 <!-- level:4 role:claim -->
 このテーマは、発話呼吸、韻律、統語、第二言語流暢性の研究が分かれているため、「英語の息継ぎ」で検索するだけでは教育記事へ偏りやすい。再調査するときは、現象を最初から分解するほうが精度が上がる。
 
+<!-- level:3 role:analysis -->
+以下は、同じテーマを別のモデルや将来の研究更新で検証するためのプロンプトである。一次研究と総説を分け、朗読と自発会話を混同せず、日本語話者への一般化を慎重に扱うことを条件にしている。
+
+<!-- level:5 role:implication -->
+プロンプト化の目的は、今回の結論を固定することではない。**どの主張が新しい証拠で更新されても、同じ手順でもう一度調べ直せる状態にすること**である。
+
+```text
+あなたは音声学、心理言語学、呼吸生理学、第二言語習得を横断するリサーチャーです。
+テーマは「英語を話すとき、実際の吸気はどこで起こり、学習者はどこで息継ぎすべきか」です。
+
+1. まず用語を分離してください。
+   - 無音休止（silent pause）／フィラーを伴う休止（filled pause）
+   - 吸気（inhalation）／呼吸休止（breath pause）
+   - 呼吸群（breath group）
+   - イントネーション句（intonational phrase）／トーン単位（tone unit）
+   - 意味のまとまり（thought group）
+   - 統語境界（syntactic boundary）
+   - 発話計画（speech planning）
+2. 2010年以降の総説と、古典的な一次研究、直近3年の一次研究を分けて検索してください。
+3. 各研究について、参加者数、言語、朗読か自発発話か、呼吸を生理計測したか音声上の休止を測ったか、主要結果を表にしてください。
+4. 「休止」と「吸気」を同一視しないでください。
+5. 朗読で得た境界一致率を、自然会話へそのまま一般化しないでください。
+6. 次に続く発話の長さ、統語境界、談話境界、話速、語彙検索負荷が吸気・休止へ与える影響を分けて整理してください。
+7. 日本語を第一言語とする英語学習者の研究を別枠で探し、母語差と習熟度差を混同しないでください。
+8. 事実、研究者の解釈、学習上の提案を明示的に分けてください。
+9. 互いに矛盾する研究結果があれば、課題、測定法、参加者、話速の違いから理由を検討してください。
+10. 最後に、20〜30語程度の自作英文を5本用意し、「小境界 /」「吸気候補 //」「避けたい分割 ×」を複数案示してください。
+11. すべての重要な事実にDOI、PubMed、出版社、学会誌など検証可能なリンクを付けてください。
+12. 「ネイティブは必ずこうする」「日本人はこうなる」のような断定は、再現性の高い証拠がない限り避けてください。
+```
+
+## 13. 参考文献・資料
+
+- Redford, M. A., Kallay, J., & Mayr, U. (2026). [Pausing to breathe and the speech–language relationship in production](https://doi.org/10.1016/j.jml.2026.104763). *Journal of Memory and Language, 149*, 104763.
+- Winkworth, A. L., Davis, P. J., Ellis, E., & Adams, R. D. (1994). [Variability and consistency in speech breathing during reading: lung volumes, speech intensity, and linguistic factors](https://pubmed.ncbi.nlm.nih.gov/8084185/). *Journal of Speech and Hearing Research, 37*(3), 535–556.
+- Winkworth, A. L., Davis, P. J., Adams, R. D., & Ellis, E. (1995). [Breathing patterns during spontaneous speech](https://pubmed.ncbi.nlm.nih.gov/7731204/). *Journal of Speech and Hearing Research*.
+- Grosjean, F., & Collins, M. (1979). [Breathing, pausing and reading](https://pubmed.ncbi.nlm.nih.gov/482374/). *Phonetica, 36*(2), 98–114.
+- Włodarczak, M., & Heldner, M. (2017). [Respiratory Constraints in Verbal and Non-verbal Communication](https://pmc.ncbi.nlm.nih.gov/articles/PMC5434352/). *Frontiers in Psychology, 8*, 708.
+- Conrad, B., & Schönle, P. (1979). [Speech and respiration](https://pubmed.ncbi.nlm.nih.gov/454139/). *Archiv für Psychiatrie und Nervenkrankheiten, 226*(4), 251–268.
+- Yang, X., Shen, X., Li, W., & Yang, Y. (2014). [How Listeners Weight Acoustic Cues to Intonational Phrase Boundaries](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0102166). *PLOS ONE, 9*(7), e102166.
+- Yubune, E., & Tabuchi, R. (2013). [An Analysis on the Duration of Breath Groups in a Speech Corpus of Movies](https://doi.org/10.24539/let.50.0_23). *Language Education & Technology, 50*, 23–41.
+- Coulange, S., & de Jong, N. H. (2026). [Fluency assessment: Incorporating syntactic distance in a new measure of pause location](https://doi.org/10.1075/jslp.25042.cou). *Journal of Second Language Pronunciation*.
+- Mizuguchi, S., & Tateishi, K. (2025). [Prosodic boundary processing is language-dependent](https://doi.org/10.3765/plsa.v10i1.5884). *Proceedings of the Linguistic Society of America, 10*(1).
+- Lester, R. A., & Hoit, J. D. (2014). [Nasal and oral inspiration during natural speech breathing](https://pubmed.ncbi.nlm.nih.gov/24129013/). *Journal of Speech, Language, and Hearing Research, 57*(3), 734–742.
