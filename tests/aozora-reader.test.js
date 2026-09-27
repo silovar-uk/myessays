@@ -42,3 +42,13 @@ test('RSVP recognizes ruby reading metadata', () => {
   assert.match(js, /rubyReadings/);
   assert.match(css, /rsvp-chunk-reading/);
 });
+
+test('URL imports preserve source identity and reuse existing books', () => {
+  const books = read('aozora-books.js');
+  const readerV2 = read('reader-v2.js');
+  assert.match(books, /resolveAozoraSource/);
+  assert.match(books, /existingBySourceKey/);
+  assert.match(books, /sourceKeys*=s*resolved.cardUrls*||s*resolved.xhtmlUrl/);
+  assert.match(readerV2, /図書カード ↗/);
+  assert.match(readerV2, /原文 ↗/);
+});

@@ -190,9 +190,12 @@
       author,
       source: {
         type: 'aozora-xhtml',
-        url: String(options.sourceUrl || ''),
+        url: String(options.sourceUrl || options.xhtmlUrl || ''),
+        cardUrl: String(options.cardUrl || ''),
+        xhtmlUrl: String(options.xhtmlUrl || options.sourceUrl || ''),
         name: String(options.sourceName || ''),
-        encoding: String(options.encoding || '')
+        encoding: String(options.encoding || ''),
+        importedAt: String(options.importedAt || '')
       },
       blocks
     };
