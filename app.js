@@ -569,6 +569,27 @@ function selectionInsideReader() {
   return selection.toString().trim();
 }
 
+function safeAozoraSourceUrl(value='') {
+  try {
+    const url = new URL(String(value || ''));
+    if (url.protocol !== 'https:' || url.hostname !== 'www.aozora.gr.jp' || url.username || url.password || url.port) return '';
+    return url.toString();
+  } catch {
+    return '';
+  }
+}
+
+function aozoraSourceHtml(essay) {
+  if (!essay?.__aozoraBook) return '';
+  const card = safeAozoraSourceUrl(essay.__bookCardUrl);
+  const xhtml = safeAozoraSourceUrl(essay.__bookXhtmlUrl);
+  const links = [];
+  if (card) links.push('<a href="' + escapeHtml(card) + '" target="_blank" rel="noopener noreferrer">図書カード ↗</a>');
+  if (xhtml) links.push('<a href="' + escapeHtml(xhtml) + '" target="_blank" rel="noopener noreferrer">原文 ↗</a>');
+  if (!links.length) return '';
+  return '<dt>Source</dt><dd class="reader-source-links"><span>青空文庫</span>' + links.join('') + '</dd>';
+}
+
 function showReader(essay, { preserveScroll = false } = {}) {
   closeToolPanels();
   state.currentEssay = essay;
@@ -598,6 +619,7 @@ function showReader(essay, { preserveScroll = false } = {}) {
       <dt>Length</dt><dd>${essay.metrics.charCount.toLocaleString('ja-JP')}文字 · 約${essay.metrics.minutes}分</dd>
       <dt>Grow</dt><dd>${essay.grow || 0}/5</dd>
       <dt>Tags</dt><dd>${(essay.tags||[]).map(t=>`#${escapeHtml(t)}`).join(' ')}</dd>
+      ${aozoraSourceHtml(essay)}
     </dl>
     <nav aria-label="目次">${tocHtml}</nav>`;
   els.readerAside.querySelectorAll('[data-anchor]').forEach(a => a.addEventListener('click', ev => {
