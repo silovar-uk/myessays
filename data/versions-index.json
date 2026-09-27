@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "sf6-burnout-ruleset-switch": {
+      "en-mix": "english-mix/sf6-burnout-ruleset-switch.md"
+    },
     "sf6-modern-marisa-anti-air-routing": {
       "en-mix": "english-mix/sf6-modern-marisa-anti-air-routing.md"
     },
