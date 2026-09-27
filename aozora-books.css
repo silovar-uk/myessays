@@ -257,3 +257,31 @@
     min-height: 52px;
   }
 }
+
+
+.reader-v2-info-source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 12px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 600 12px/1.5 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+.reader-v2-info-source > span {
+  color: var(--faint, #9a948a);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.reader-v2-info-source strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.reader-v2-info-source a {
+  color: var(--ink-soft, #4f4b45);
+  text-underline-offset: .2em;
+}
