@@ -142,6 +142,10 @@
     const id = essayId();
     if (!shell || !api?.availableVersions || !id || !readerOpen()) return;
 
+    const isBook = route()?.parse?.().type === 'book';
+    const modes = shell.querySelector('.reader-mode-shell__modes');
+    if (modes) modes.hidden = isBook;
+
     const token = ++availabilityToken;
     let available = [];
     try {
