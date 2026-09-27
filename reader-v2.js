@@ -329,6 +329,27 @@
     }
   }
 
+  function safeAozoraSourceUrl(value = '') {
+    try {
+      const url = new URL(String(value || ''));
+      if (url.protocol !== 'https:' || url.hostname !== 'www.aozora.gr.jp' || url.username || url.password || url.port) return '';
+      return url.toString();
+    } catch {
+      return '';
+    }
+  }
+
+  function aozoraSourceMarkup(essay) {
+    if (!essay?.__aozoraBook) return '';
+    const card = safeAozoraSourceUrl(essay.__bookCardUrl);
+    const xhtml = safeAozoraSourceUrl(essay.__bookXhtmlUrl);
+    const links = [];
+    if (card) links.push('<a href="' + escapeHtml(card) + '" target="_blank" rel="noopener noreferrer">図書カード ↗</a>');
+    if (xhtml) links.push('<a href="' + escapeHtml(xhtml) + '" target="_blank" rel="noopener noreferrer">原文 ↗</a>');
+    if (!links.length) return '';
+    return '<div class="reader-v2-info-source"><span>Source</span><strong>青空文庫</strong>' + links.join('') + '</div>';
+  }
+
   function ensureArticleIntro() {
     const content = readerContent();
     const essay = currentEssay();
@@ -379,6 +400,7 @@
           <div><dt>Grow</dt><dd>${escapeHtml(String(essay.grow || 0))}/5</dd></div>
         </dl>
         <div class="reader-v2-info-tags">${tags}</div>
+        ${aozoraSourceMarkup(essay)}
         <div class="reader-v2-info-actions"></div>`;
     }
     relocateCopyButton();
