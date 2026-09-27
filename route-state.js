@@ -70,6 +70,7 @@
   }
 
   function replaceEssayLanguage(lang, articleId = parse().articleId) {
+    if (parse().type === 'book') return false;
     if (!articleId) return false;
     const normalized = normalizeLang(lang) || 'ja';
     const hash = essayHash({ articleId, lang: normalized });
