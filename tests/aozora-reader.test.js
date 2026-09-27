@@ -27,7 +27,7 @@ test('Books use IndexedDB and the shared reader surface', () => {
 test('Route and page load Aozora integration', () => {
   const route = read('route-state.js');
   const html = read('index.html');
-  assert.match(route, /type:\s*'book'/);
+  assert.match(route, /bookMatch\s*\?\s*'book'\s*:\s*'essay'/);
   assert.match(route, /navigateBook/);
   assert.match(html, /aozora-books\.css/);
   assert.match(html, /aozora-parser\.js/);
