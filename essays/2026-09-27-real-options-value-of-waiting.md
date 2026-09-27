@@ -195,7 +195,7 @@ abstract: "投資案件の正味現在価値がプラスなら、すぐ実行す
 だから実務で混乱しやすい。リアルオプションを使うと言うときは、**価格を計算したいのか、選択肢を設計したいのか**を先に分けた方がよい。
 
 [Myers — Determinants of Corporate Borrowing](https://doi.org/10.1016/0304-405X(77)90015-0)  
-[Dixit & Pindyck — Investment under Uncertainty, Princeton University Press](https://press.princeton.edu/books/hardcover/9780691034102/investment-under-uncertainty)  
+[ディキシット／ピンディク（Dixit & Pindyck）『Investment under Uncertainty』— JSTOR](https://www.jstor.org/stable/j.ctt7sncv)  
 [Luehrman — Investment Opportunities as Real Options](https://hbr.org/1998/07/investment-opportunities-as-real-options-getting-started-on-the-numbers)
 
 ---
