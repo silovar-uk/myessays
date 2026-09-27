@@ -187,7 +187,7 @@ Not every uncertain project deserves real-options treatment. 価値が大きく�
 だから“We should use real options”と言われたら、まず一つ確認したい。**Do we want to price flexibility, or design flexibility?** 同じ言葉でも仕事が違う。
 
 [Myers — Determinants of Corporate Borrowing](https://doi.org/10.1016/0304-405X(77)90015-0)  
-[Dixit & Pindyck — Investment under Uncertainty, Princeton University Press](https://press.princeton.edu/books/hardcover/9780691034102/investment-under-uncertainty)  
+[Dixit & Pindyck — Investment under Uncertainty, JSTOR](https://www.jstor.org/stable/j.ctt7sncv)  
 [Luehrman — Investment Opportunities as Real Options](https://hbr.org/1998/07/investment-opportunities-as-real-options-getting-started-on-the-numbers)
 
 ---
