@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f1ea">
+  <meta name="aozora-proxy-endpoint" content="https://aozora-fetch.silovar-uk.workers.dev/v1/fetch">
   <title>My Essays</title>
   <link rel="icon" type="image/png" sizes="180x180" href="/myessays/apple-touch-icon.png?v=20260814">
   <link rel="apple-touch-icon" sizes="180x180" href="/myessays/apple-touch-icon.png?v=20260814">
@@ -37,7 +38,7 @@
   <link rel="stylesheet" href="reader-mode-shell.css?v=20260918-2">
   <link rel="stylesheet" href="reader-return-navigation.css?v=20260913-1">
   <link rel="stylesheet" href="reader-rsvp.css?v=20260927-2">
-  <link rel="stylesheet" href="aozora-books.css?v=20260927-1">
+  <link rel="stylesheet" href="aozora-books.css?v=20260927-2">
 </head>
 <body>
   <header class="site-header">
@@ -89,11 +90,10 @@
             <p class="books-shelf-kicker">BOOKS / AOZORA</p>
             <h2 id="booksShelfTitle">本を、同じ読み方で。</h2>
           </div>
-          <button id="aozoraImportButton" class="books-import" type="button">＋ XHTMLを開く</button>
-          <input id="aozoraFileInput" type="file" accept=".html,.htm,.xhtml,text/html,application/xhtml+xml" hidden>
+          <button id="aozoraImportButton" class="books-import" type="button">＋ 青空文庫を開く</button>
         </div>
-        <p class="books-note">青空文庫のXHTMLをこの端末の本棚へ保存。通常読書と「流して読む」を同じ位置で往復できます。</p>
-        <p id="aozoraImportStatus" class="books-status" role="status" aria-live="polite"></p>
+        <p class="books-note">図書カードのURLを貼るだけ。本文をこの端末に保存し、通常読書と「流して読む」を同じ位置で往復できます。</p>
+        <p id="aozoraShelfStatus" class="books-status" role="status" aria-live="polite"></p>
         <div id="aozoraBookList" class="books-list" aria-live="polite"></div>
       </section>
 
@@ -136,6 +136,30 @@
     </article>
   </main>
 
+  <dialog id="aozoraImportDialog" class="books-import-dialog" aria-labelledby="aozoraImportTitle">
+    <div class="books-import-card">
+      <div class="books-import-head">
+        <div>
+          <p class="books-shelf-kicker">AOZORA BUNKO</p>
+          <h2 id="aozoraImportTitle">青空文庫を開く</h2>
+        </div>
+        <button id="aozoraImportClose" class="icon-button" type="button" aria-label="閉じる">×</button>
+      </div>
+      <form id="aozoraUrlForm" class="books-url-form">
+        <label for="aozoraUrlInput">図書カードのURL</label>
+        <div class="books-url-row">
+          <input id="aozoraUrlInput" type="url" inputmode="url" autocomplete="url" placeholder="https://www.aozora.gr.jp/cards/…" required>
+          <button id="aozoraUrlSubmit" type="submit">読む</button>
+        </div>
+      </form>
+      <p class="books-import-help">青空文庫の図書カードURLを貼ると、XHTML版を自動で見つけます。XHTMLの直接URLでも読めます。</p>
+      <div class="books-import-separator"><span>または</span></div>
+      <button id="aozoraFileButton" class="books-file-button" type="button">XHTMLファイルを選ぶ</button>
+      <input id="aozoraFileInput" type="file" accept=".html,.htm,.xhtml,text/html,application/xhtml+xml" hidden>
+      <p id="aozoraImportStatus" class="books-status books-dialog-status" role="status" aria-live="polite"></p>
+    </div>
+  </dialog>
+
   <dialog id="guideDialog">
     <form method="dialog" class="dialog-card">
       <div class="dialog-head"><div><p class="eyebrow">ADD A NEW ESSAY</p><h2>1本追加するときの流れ</h2></div><button class="icon-button" value="cancel" aria-label="閉じる">×</button></div>
@@ -150,8 +174,9 @@
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.7/lib/marked.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.12/dist/purify.min.js" defer></script>
   <script src="route-state.js?v=20260927-1" defer></script>
-  <script src="aozora-parser.js?v=20260927-1" defer></script>
-  <script src="aozora-books.js?v=20260927-1" defer></script>
+  <script src="aozora-parser.js?v=20260927-2" defer></script>
+  <script src="aozora-source.js?v=20260927-1" defer></script>
+  <script src="aozora-books.js?v=20260927-2" defer></script>
   <script src="app.js?v=20260927-1" defer></script>
   <script src="argument-metadata-compat.js?v=20260830-2207" defer></script>
   <script src="library-versions.js?v=20260830-2258" defer></script>
