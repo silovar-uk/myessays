@@ -3,7 +3,7 @@
   <desc id="desc">通常時に-4から+1の硬直差が、相手バーンアウト時には0から+5へ4フレーム有利側に移動する。</desc>
   <rect width="1200" height="675" fill="#111318"/>
   <text x="600" y="74" text-anchor="middle" fill="#f3f4f6" font-family="sans-serif" font-size="38" font-weight="700">同じ技でも、ガード後の「時計」が4Fずれる</text>
-  <text x="600" y="116" text-anchor="middle" fill="#aeb4be" font-family="sans-serif" font-size="21">Burnout defender: blockstun +4F</text>
+  <text x="600" y="116" text-anchor="middle" fill="#aeb4be" font-family="sans-serif" font-size="21">バーンアウト側：ガード硬直 +4F</text>
   <text x="235" y="180" text-anchor="middle" fill="#d8dde7" font-family="sans-serif" font-size="24" font-weight="700">通常時の硬直差</text>
   <text x="965" y="180" text-anchor="middle" fill="#ffe1d8" font-family="sans-serif" font-size="24" font-weight="700">相手バーンアウト時</text>
   <g font-family="sans-serif" font-size="29" font-weight="700">
