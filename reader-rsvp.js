@@ -315,6 +315,7 @@
   let index = 0;
   let playing = false;
   let timer = 0;
+  let elapsedTimer = 0;
   let rampStep = 0;
   let lead = '';
   let parse = null;
@@ -350,6 +351,38 @@
   function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
   const phone = () => innerWidth <= PHONE_MAX;
   const fontPx = () => SIZE_PX[phone() ? 'phone' : 'wide'][settings.size];
+
+  function formatElapsed(ms) {
+    const total = Math.max(0, Math.floor(Number(ms || 0) / 1000));
+    const seconds = String(total % 60).padStart(2, '0');
+    const minutes = Math.floor(total / 60);
+    if (minutes < 60) return `${String(minutes).padStart(2, '0')}:${seconds}`;
+    return `${Math.floor(minutes / 60)}:${String(minutes % 60).padStart(2, '0')}:${seconds}`;
+  }
+
+  function activePlayedMs() {
+    return playedMs + (playing && playStartedAt ? performance.now() - playStartedAt : 0);
+  }
+
+  function syncElapsed() {
+    if (!els.elapsed) return;
+    els.elapsed.textContent = formatElapsed(activePlayedMs());
+  }
+
+  function startElapsedClock() {
+    clearTimeout(elapsedTimer);
+    const update = () => {
+      syncElapsed();
+      if (playing) elapsedTimer = setTimeout(update, 250);
+    };
+    update();
+  }
+
+  function stopElapsedClock() {
+    clearTimeout(elapsedTimer);
+    elapsedTimer = 0;
+    syncElapsed();
+  }
 
   // ---------- 舞台 ----------
   function button(className, text, label, onClick) {
@@ -407,7 +440,12 @@
     els.speed = button('rsvp-speed-value', '', '速さを選ぶ', () => toggleSpeedPicker());
     els.speed.setAttribute('aria-expanded', 'false');
     els.faster = button('rsvp-btn', '+', '速くする(↑)', () => setSpeed(settings.speed + SPEED_STEP));
-    els.speedGroup.append(els.slower, els.speed, els.faster);
+    els.elapsed = document.createElement('span');
+    els.elapsed.className = 'rsvp-elapsed';
+    els.elapsed.setAttribute('role', 'timer');
+    els.elapsed.setAttribute('aria-label', '再生時間');
+    els.elapsed.textContent = '00:00';
+    els.speedGroup.append(els.slower, els.speed, els.faster, els.elapsed);
 
     els.prev = button('rsvp-btn', '', '', () => prevSentence());
     els.toggle = button('rsvp-toggle', '▶', '', () => toggle());
@@ -708,6 +746,8 @@
       index = startIndex(from);
       lead = from !== 'top' && items[index]?.kind !== 'h2' && index > 1 ? sectionTitleAt(index) : '';
       playedMs = 0;
+      playStartedAt = 0;
+      syncElapsed();
       widthRead = 0;
       syncedBlock = null;
       visualGate = -1;
@@ -727,6 +767,7 @@
     playing = true;
     rampStep = 0;
     playStartedAt = performance.now();
+    startElapsedClock();
     requestWake();
     render();
     wakeControls();
@@ -743,6 +784,8 @@
     playing = false;
     clearTimeout(timer);
     playedMs += performance.now() - playStartedAt;
+    playStartedAt = 0;
+    stopElapsedClock();
     lead = '';
     releaseWake();
     saveResume();
@@ -757,6 +800,8 @@
     playing = false;
     clearTimeout(timer);
     playedMs += performance.now() - playStartedAt;
+    playStartedAt = 0;
+    stopElapsedClock();
     visualGate = index;
     lead = '';
     releaseWake();
@@ -829,6 +874,8 @@
   function finish() {
     playing = false;
     playedMs += performance.now() - playStartedAt;
+    playStartedAt = 0;
+    stopElapsedClock();
     releaseWake();
     writeJSON(KEY_RESUME, null);
     render();
@@ -1056,6 +1103,7 @@
   function closeStage() {
     pause();
     clearTimeout(timer);
+    stopElapsedClock();
     clearTimeout(idleTimer);
     releaseWake();
     if (stage?.open) stage.close();
@@ -1269,9 +1317,9 @@
       open: !!stage?.open, playing, index, total: items.length,
       kind: items[index]?.type === 'chunk' ? 'chunk' : items[index]?.kind,
       text: items[index]?.text, locator: items[index]?.unit?.locator,
-      capacity, msPerMora: Math.round(msPerMora), settings: { ...settings }
+      capacity, msPerMora: Math.round(msPerMora), elapsedMs: Math.round(activePlayedMs()), settings: { ...settings }
     }),
     items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
-    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, buildItems, retime }
+    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, buildItems, retime, formatElapsed }
   });
 })();
