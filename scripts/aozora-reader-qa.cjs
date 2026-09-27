@@ -70,8 +70,8 @@ const XHTML_URL = 'https://www.aozora.gr.jp/cards/000001/files/1_1.html';
     assert.match(await page.title(), /URL取込テスト作品/);
     assert.equal((await page.locator('#readerContent ruby rt').first().textContent()).trim(), 'ほうこう');
     assert.equal(await page.evaluate(() => window.__aozoraXss), undefined);
-    assert.equal(await page.locator('#readerAside a', { hasText: '図書カード' }).getAttribute('href'), CARD_URL);
-    assert.equal(await page.locator('#readerAside a', { hasText: '原文' }).getAttribute('href'), XHTML_URL);
+    assert.equal(await page.locator('.reader-v2-info-source a', { hasText: '図書カード' }).getAttribute('href'), CARD_URL);
+    assert.equal(await page.locator('.reader-v2-info-source a', { hasText: '原文' }).getAttribute('href'), XHTML_URL);
 
     await page.locator('.reader-rsvp-intro').waitFor();
     await page.locator('.reader-rsvp-intro').click();
