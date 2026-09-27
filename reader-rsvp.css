@@ -105,6 +105,8 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-speed-value::after { content: "⌄"; color: var(--muted); font-size: 11px; transform: translateY(-1px); }
 .rsvp-speed-value:hover { border-color: color-mix(in srgb, var(--ink) 45%, var(--line)); background: var(--paper-2); }
 .rsvp-speed-value[aria-expanded="true"] { border-color: var(--ink); background: var(--paper-2); }
+.rsvp-elapsed { display: inline-block; min-width: 42px; margin-left: 4px; color: var(--muted); opacity: .72; font: 600 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: .02em; white-space: nowrap; pointer-events: none; transition: opacity 180ms ease; }
+.rsvp-stage[data-state="playing"] .rsvp-elapsed { opacity: .38; }
 .rsvp-toggle { width: 60px; height: 60px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font: 700 20px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; cursor: pointer; }
 .rsvp-stage button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: 2px; }
 .rsvp-help-button { display: none; }
@@ -152,7 +154,7 @@ html.rsvp-open { overflow: hidden; }
   .rsvp-toggle { width: 56px; height: 56px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .rsvp-head, .rsvp-foot { transition: none; }
+  .rsvp-head, .rsvp-foot, .rsvp-elapsed { transition: none; }
 }
 @media (forced-colors: active) {
   .rsvp-fill { background: Highlight; }
