@@ -100,6 +100,11 @@ jobs:
       - name: Run Page Reader browser QA
         run: node scripts/page-reader-qa.cjs
 
+      - name: Run Aozora Reader browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/aozora-reader-qa.cjs
+
       - name: Run browser QA
         env:
           BASE_URL: http://127.0.0.1:4173
