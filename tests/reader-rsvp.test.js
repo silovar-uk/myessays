@@ -43,6 +43,22 @@ test('RSVP reader keeps its contracts', () => {
   assert.doesNotMatch(js, /new MutationObserver/);
 });
 
+test('RSVP elapsed timer tracks active playback and stays visually quiet', () => {
+  const js = read('reader-rsvp.js');
+  const css = read('reader-rsvp.css');
+  const lib = loadLib();
+
+  assert.equal(lib.formatElapsed(0), '00:00');
+  assert.equal(lib.formatElapsed(221999), '03:41');
+  assert.equal(lib.formatElapsed(3724000), '1:02:04');
+  assert.match(js, /activePlayedMs\(\)/);
+  assert.match(js, /playedMs \+ \(playing && playStartedAt \? performance\.now\(\) - playStartedAt : 0\)/);
+  assert.match(js, /setAttribute\('role', 'timer'\)/);
+  assert.match(js, /pauseAtFigure[\s\S]*stopElapsedClock\(\)/);
+  assert.match(css, /\.rsvp-elapsed[^}]*font:[^;}]*11px/s);
+  assert.match(css, /\.rsvp-stage\[data-state="playing"\] \.rsvp-elapsed\s*\{[^}]*opacity:\s*\.38/s);
+});
+
 test('RSVP speed picker reaches 3000 and keeps direct alternatives', () => {
   const js = read('reader-rsvp.js');
   const css = read('reader-rsvp.css');
