@@ -1,0 +1,47 @@
+name: Aozora Reader QA Temp
+
+on:
+  push:
+    branches:
+      - 'feat/aozora-rsvp-reader-20260927'
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check aozora-parser.js
+          node --check aozora-books.js
+          node --check route-state.js
+          node --check app.js
+          node --check reader-rsvp.js
+      - name: Static tests
+        run: node --test tests/*.test.js
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/myessays-server.log 2>&1 &
+          for i in {1..20}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/myessays-server.log
+          exit 1
+      - name: Aozora browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/aozora-reader-qa.cjs
