@@ -23,7 +23,9 @@
     const routePath = queryIndex >= 0 ? raw.slice(0, queryIndex) : raw;
     const query = queryIndex >= 0 ? raw.slice(queryIndex + 1) : '';
     const params = new URLSearchParams(query);
-    const match = routePath.match(/^\/essay\/(.+)$/);
+    const essayMatch = routePath.match(/^\/essay\/(.+)$/);
+    const bookMatch = routePath.match(/^\/book\/(.+)$/);
+    const match = essayMatch || bookMatch;
 
     if (!match) {
       return {
@@ -44,7 +46,7 @@
     const lang = normalizeLang(rawLang);
 
     return {
-      type: 'essay',
+      type: bookMatch ? 'book' : 'essay',
       articleId,
       lang,
       hasLang,
@@ -68,6 +70,7 @@
   }
 
   function replaceEssayLanguage(lang, articleId = parse().articleId) {
+    if (parse().type === 'book') return false;
     if (!articleId) return false;
     const normalized = normalizeLang(lang) || 'ja';
     const hash = essayHash({ articleId, lang: normalized });
@@ -88,11 +91,24 @@
     return hash;
   }
 
+  function bookHash(bookId = '') {
+    const encodedId = encodeURIComponent(String(bookId || ''));
+    return encodedId ? '#/book/' + encodedId : '#/';
+  }
+
+  function navigateBook(bookId) {
+    const hash = bookHash(bookId);
+    if (location.hash !== hash) location.hash = hash;
+    return hash;
+  }
+
   window.MyEssaysRoute = Object.freeze({
     installed: true,
     parse,
     essayHash,
     navigateEssay,
+    bookHash,
+    navigateBook,
     replaceEssayLanguage,
     normalizeLang,
     versionForLang,

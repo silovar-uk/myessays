@@ -48,8 +48,11 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-field { position: relative; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; min-height: 0; overflow: hidden; padding: 16px 16px 5vh; outline: none; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
 .rsvp-focus { display: flex; flex-direction: column; align-items: center; gap: 22px; max-width: 100%; max-height: 100%; }
 .rsvp-stage[data-orientation="vertical"] .rsvp-focus { flex-direction: row-reverse; align-items: center; gap: 28px; height: 100%; }
-.rsvp-word { max-width: 100%; margin: 0; font: 500 var(--rsvp-size)/1.35 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; letter-spacing: .02em; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
+.rsvp-word { position: relative; max-width: 100%; margin: 0; font: 500 var(--rsvp-size)/1.35 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; letter-spacing: .02em; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
+.rsvp-chunk-text { display: inline; }
+.rsvp-chunk-reading { display: block; margin-bottom: .45em; color: var(--muted); font: 650 max(11px, calc(var(--rsvp-size) * .34))/1.2 "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; letter-spacing: .06em; }
 .rsvp-stage[data-orientation="vertical"] .rsvp-word { writing-mode: vertical-rl; text-orientation: mixed; max-height: 100%; letter-spacing: .06em; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-chunk-reading { position: absolute; top: 50%; right: calc(100% + 10px); margin: 0; transform: translateY(-50%); writing-mode: horizontal-tb; white-space: nowrap; }
 .rsvp-tcy { text-combine-upright: all; }
 .rsvp-bullet { color: var(--faint, #9a948a); margin-inline-end: .15em; }
 

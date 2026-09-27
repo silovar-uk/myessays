@@ -21,11 +21,13 @@
   }
 
   function originalEssay(id) {
+    const external = window.MyEssaysAozoraBooks?.currentEssay?.();
+    if (external?.id === id) return external;
     try {
       return typeof state !== 'undefined' && Array.isArray(state.essays)
         ? state.essays.find(essay => essay.id === id) || null
         : null;
-    } catch { return null; }
+    } catch { return external?.id === id ? external : null; }
   }
 
   function readerContent() {
