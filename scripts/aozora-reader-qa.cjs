@@ -87,6 +87,7 @@ const XHTML_URL = 'https://www.aozora.gr.jp/cards/000001/files/1_1.html';
     await page.keyboard.press('Escape');
     await page.waitForFunction(() => !window.MyEssaysRsvp?.state?.().open);
 
+    await page.goto(BASE_URL + '/#/', { waitUntil: 'networkidle' });
     await page.evaluate(id => {
       localStorage.setItem('myessays:reading-state:' + id, JSON.stringify({
         lastProgressRatio: 0.42,
@@ -94,7 +95,6 @@ const XHTML_URL = 'https://www.aozora.gr.jp/cards/000001/files/1_1.html';
       }));
     }, bookId);
 
-    await page.goto(BASE_URL + '/#/', { waitUntil: 'networkidle' });
     await page.locator('#aozoraImportButton').click();
     await page.locator('#aozoraUrlInput').fill(CARD_URL);
     await page.locator('#aozoraUrlSubmit').click();
