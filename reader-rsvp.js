@@ -110,6 +110,39 @@
     return out;
   }
 
+  function rubyReadings(part) {
+    try {
+      const value = JSON.parse(part?.dataset?.rsvpReadingMap || '[]');
+      return Array.isArray(value)
+        ? value.filter(item => Number.isFinite(item?.start) && Number.isFinite(item?.end) && item.end > item.start && item.reading)
+        : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function readingForRange(unit, start, end, fallback) {
+    const ranges = unit?.readings || [];
+    if (!ranges.length) return { spoken: fallback, rubyReadings: [] };
+    let cursor = start;
+    let spoken = '';
+    const labels = [];
+    let used = false;
+
+    for (const range of ranges) {
+      if (range.end <= start || range.start >= end) continue;
+      if (range.start < start || range.end > end) continue;
+      spoken += unit.text.slice(cursor, range.start);
+      spoken += range.reading;
+      labels.push(range.reading);
+      cursor = range.end;
+      used = true;
+    }
+    if (!used) return { spoken: fallback, rubyReadings: [] };
+    spoken += unit.text.slice(cursor, end);
+    return { spoken: spoken.trim() || fallback, rubyReadings: labels };
+  }
+
   function buildItems(units, split, { minW, maxW }) {
     const list = [];
     let sentence = 0;
@@ -131,10 +164,11 @@
           const text = chunk.text.trim();
           const lastInSentence = ci === chunks.length - 1;
           const lastInUnit = lastInSentence && si === sentences.length - 1;
+          const reading = readingForRange(unit, chunk.start, chunk.end, text);
           list.push({
             type: 'chunk', unit, unitIndex, sentence, text,
             start: chunk.start, end: chunk.end,
-            width: widthOf(text), morae: moraeOf(text),
+            width: widthOf(text), morae: moraeOf(reading.spoken), rubyReadings: reading.rubyReadings,
             bullet: unit.bullet && si === 0 && ci === 0,
             pause: lastInUnit ? 'paragraph' : PERIOD_END.test(text) || lastInSentence ? 'period' : COMMA_END.test(text) ? 'comma' : null
           });
@@ -240,7 +274,7 @@
       for (const part of parts.length ? parts : [el]) {
         const { text, map } = textWithMap(part);
         if (!text.trim() || linkOnly(part, text)) continue;
-        units.push({ kind: 'text', el, part, text, map, locator: el.dataset.readingLocator, bullet: list });
+        units.push({ kind: 'text', el, part, text, map, readings: rubyReadings(part), locator: el.dataset.readingLocator, bullet: list });
       }
     }
     return units;
@@ -850,14 +884,31 @@
 
   function renderWord(item) {
     els.word.replaceChildren();
-    if (item.bullet) els.word.append(Object.assign(document.createElement('span'), { className: 'rsvp-bullet', textContent: '・' }));
-    if (!settings.vertical) { els.word.append(item.text); return; }
+
+    if (item.rubyReadings?.length) {
+      els.word.append(Object.assign(document.createElement('span'), {
+        className: 'rsvp-chunk-reading',
+        textContent: item.rubyReadings.join('・')
+      }));
+    }
+
+    const base = document.createElement('span');
+    base.className = 'rsvp-chunk-text';
+    if (item.bullet) base.append(Object.assign(document.createElement('span'), { className: 'rsvp-bullet', textContent: '・' }));
+
+    if (!settings.vertical) {
+      base.append(item.text);
+      els.word.append(base);
+      return;
+    }
+
     // 縦中横: 1〜2桁の半角数字と「!?」だけを横に組む
     for (const part of item.text.split(/((?<![0-9.,])[0-9]{1,2}(?![0-9.,])|[!?！？]{2})/)) {
       if (!part) continue;
-      if (/^(?:[0-9]{1,2}|[!?！？]{2})$/.test(part)) els.word.append(Object.assign(document.createElement('span'), { className: 'rsvp-tcy', textContent: part }));
-      else els.word.append(part);
+      if (/^(?:[0-9]{1,2}|[!?！？]{2})$/.test(part)) base.append(Object.assign(document.createElement('span'), { className: 'rsvp-tcy', textContent: part }));
+      else base.append(part);
     }
+    els.word.append(base);
   }
 
   function showCard(card) {
