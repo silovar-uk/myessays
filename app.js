@@ -575,7 +575,12 @@ function showReader(essay, { preserveScroll = false } = {}) {
   setNoteOpen(false);
   els.libraryView.hidden = true;
   els.readerView.hidden = false;
-  els.readerContent.innerHTML = renderMarkdown(essay.body);
+  if (essay.__aozoraBook && essay.__readerDocument && window.MyEssaysAozoraBooks?.renderDocument) {
+    window.MyEssaysAozoraBooks.renderDocument(els.readerContent, essay.__readerDocument);
+  } else {
+    delete els.readerContent.dataset.readerSource;
+    els.readerContent.innerHTML = renderMarkdown(essay.body);
+  }
   els.readerContent.insertAdjacentHTML('afterbegin', `<div class="reading-stats"><span>${essay.metrics.charCount.toLocaleString('ja-JP')}文字</span><span>·</span><span>読了 約${essay.metrics.minutes}分</span></div>`);
   markAcademicSections();
 
@@ -586,6 +591,7 @@ function showReader(essay, { preserveScroll = false } = {}) {
   }).join('');
   els.readerAside.innerHTML = `
     <dl class="meta-block">
+      ${essay.__aozoraBook && essay.subtitle ? `<dt>Author</dt><dd>${escapeHtml(essay.subtitle)}</dd>` : ''}
       <dt>Type</dt><dd>${escapeHtml(essay.type || '')}</dd>
       <dt>Created</dt><dd>${formatDate(essay.created)}</dd>
       <dt>Updated</dt><dd>${formatDate(essay.updated)}</dd>
@@ -613,14 +619,32 @@ function showLibrary() {
   if (state.currentEssay) setNoteOpen(false);
   hideQuoteMenu();
   state.currentEssay = null;
+  window.MyEssaysAozoraBooks?.clearCurrent?.();
   els.readerView.hidden = true;
   els.libraryView.hidden = false;
   document.title = 'My Essays';
 }
 
-function route() {
+let routeSequence = 0;
+async function route() {
+  const sequence = ++routeSequence;
   const currentRoute = window.MyEssaysRoute.parse();
+
+  if (currentRoute.type === 'book' && currentRoute.articleId) {
+    try {
+      const essay = await window.MyEssaysAozoraBooks?.getEssay?.(currentRoute.articleId);
+      const latest = window.MyEssaysRoute.parse();
+      if (sequence !== routeSequence || latest.type !== 'book' || latest.articleId !== currentRoute.articleId) return;
+      essay ? showReader(essay) : showLibrary();
+    } catch (error) {
+      console.error('[AozoraBooks route]', error);
+      if (sequence === routeSequence) showLibrary();
+    }
+    return;
+  }
+
   if (currentRoute.type !== 'essay' || !currentRoute.articleId) { showLibrary(); return; }
+  window.MyEssaysAozoraBooks?.clearCurrent?.();
   const essay = state.essays.find(e => e.id === currentRoute.articleId);
   essay ? showReader(essay) : showLibrary();
 }
