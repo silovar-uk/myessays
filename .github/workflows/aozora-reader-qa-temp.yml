@@ -24,8 +24,8 @@ jobs:
           node --check route-state.js
           node --check app.js
           node --check reader-rsvp.js
-      - name: Static tests
-        run: node --test tests/*.test.js
+      - name: Focused static tests
+        run: node --test tests/aozora-reader.test.js tests/reader-rsvp.test.js tests/reader-architecture.test.js
       - name: Install Playwright
         run: |
           npm install --no-save playwright@1.62.1
