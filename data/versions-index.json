@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "sf6-modern-marisa-anti-air-routing": {
+      "en-mix": "english-mix/sf6-modern-marisa-anti-air-routing.md"
+    },
     "tsunku-bushi-hello-project-style-time-design": {
       "en-mix": "english-mix/tsunku-bushi-hello-project-style-time-design.md"
     },
