@@ -9,8 +9,10 @@
   const READING_PREFIX = 'myessays:reading-state:';
   let dbPromise = null;
   let current = null;
+  let importing = false;
 
   const parser = () => window.MyEssaysAozoraParser;
+  const source = () => window.MyEssaysAozoraSource;
 
   function openDb() {
     if (dbPromise) return dbPromise;
@@ -82,7 +84,10 @@
       __readerDocument: record.document,
       __bookImportedAt: record.importedAt || '',
       __bookSourceName: record.sourceName || '',
-      __bookSourceUrl: record.document.source?.url || ''
+      __bookSourceUrl: record.document.source?.xhtmlUrl || record.document.source?.url || '',
+      __bookCardUrl: record.document.source?.cardUrl || '',
+      __bookXhtmlUrl: record.document.source?.xhtmlUrl || record.document.source?.url || '',
+      __bookSourceKey: record.sourceKey || ''
     };
   }
 
@@ -148,28 +153,137 @@
     return true;
   }
 
+  function setStatus(message = '', state = '') {
+    ['aozoraImportStatus', 'aozoraShelfStatus'].forEach(id => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      element.textContent = message;
+      element.dataset.state = state;
+    });
+  }
+
+  function setBusy(value) {
+    importing = Boolean(value);
+    const submit = document.getElementById('aozoraUrlSubmit');
+    const fileButton = document.getElementById('aozoraFileButton');
+    const input = document.getElementById('aozoraUrlInput');
+    if (submit) submit.disabled = importing;
+    if (fileButton) fileButton.disabled = importing;
+    if (input) input.disabled = importing;
+    document.getElementById('aozoraImportDialog')?.toggleAttribute('aria-busy', importing);
+  }
+
+  function statusForStep(step) {
+    if (step === 'fetching-card') return '図書カードを確認しています…';
+    if (step === 'finding-xhtml') return 'XHTMLを見つけています…';
+    if (step === 'fetching-xhtml') return '本文を読み込んでいます…';
+    return '読み込んでいます…';
+  }
+
+  function friendlyError(error) {
+    const code = String(error?.code || error?.message || '');
+    if (['INVALID_URL', 'UNSUPPORTED_HOST', 'UNSUPPORTED_PATH', 'UNSUPPORTED_URL'].includes(code)) {
+      return '青空文庫の図書カードURLを貼ってください。';
+    }
+    if (code === 'XHTML_NOT_FOUND') {
+      return 'この図書カードには読み込めるXHTML版が見つかりませんでした。';
+    }
+    if (code === 'RATE_LIMITED') {
+      return 'アクセスが集中しています。少し後でもう一度お試しください。';
+    }
+    if (code === 'PROXY_NOT_CONFIGURED') {
+      return 'URL読み込みの接続先がまだ設定されていません。';
+    }
+    return '青空文庫から本文を取得できませんでした。少し後でもう一度お試しください。';
+  }
+
+  async function existingBySourceKey(sourceKey) {
+    if (!sourceKey) return null;
+    const rows = await all();
+    return rows.find(record => record?.sourceKey === sourceKey) || null;
+  }
+
+  async function saveImportedDocument(documentValue, options = {}) {
+    const now = new Date().toISOString();
+    const sourceKey = String(options.sourceKey || '');
+    const existing = await existingBySourceKey(sourceKey);
+    const record = existing
+      ? {
+          ...existing,
+          document: documentValue,
+          sourceKey,
+          sourceName: options.sourceName || existing.sourceName || '',
+          updatedAt: now
+        }
+      : {
+          id: bookId(),
+          document: documentValue,
+          sourceKey,
+          sourceName: options.sourceName || '',
+          importedAt: now,
+          updatedAt: now
+        };
+
+    await put(record);
+    await refreshShelf();
+    return record;
+  }
+
   async function importFile(file) {
-    const status = document.getElementById('aozoraImportStatus');
-    if (status) status.textContent = 'XHTMLを読み込んでいます…';
+    if (importing) return null;
+    setBusy(true);
+    setStatus('XHTMLを読み込んでいます…', 'loading');
     try {
-      const documentValue = await parser().parseFile(file);
       const now = new Date().toISOString();
-      const record = {
-        id: bookId(),
-        document: documentValue,
-        sourceName: file?.name || '',
-        importedAt: now,
-        updatedAt: now
+      const documentValue = await parser().parseFile(file);
+      documentValue.source = {
+        ...(documentValue.source || {}),
+        importedAt: now
       };
-      await put(record);
-      if (status) status.textContent = '「' + documentValue.title + '」を本棚に追加しました';
-      await refreshShelf();
+      const record = await saveImportedDocument(documentValue, { sourceName: file?.name || '' });
+      setStatus('「' + documentValue.title + '」を本棚に追加しました', 'success');
+      closeImportDialog();
       window.MyEssaysRoute?.navigateBook?.(record.id);
       return record;
     } catch (error) {
-      console.error('[AozoraBooks]', error);
-      if (status) status.textContent = error?.message || 'XHTMLを読み込めませんでした';
+      console.error('[AozoraBooks file]', error);
+      setStatus(error?.message || 'XHTMLを読み込めませんでした', 'error');
       throw error;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function importUrl(input) {
+    if (importing) return null;
+    setBusy(true);
+    setStatus('図書カードを確認しています…', 'loading');
+    try {
+      const resolved = await source().resolveAozoraSource(input, {
+        onStatus: step => setStatus(statusForStep(step), 'loading')
+      });
+      const now = new Date().toISOString();
+      const documentValue = parser().parseArrayBuffer(resolved.buffer, {
+        sourceUrl: resolved.xhtmlUrl,
+        xhtmlUrl: resolved.xhtmlUrl,
+        cardUrl: resolved.cardUrl,
+        importedAt: now
+      });
+      const sourceKey = resolved.cardUrl || resolved.xhtmlUrl;
+      const record = await saveImportedDocument(documentValue, {
+        sourceKey,
+        sourceName: new URL(resolved.xhtmlUrl).pathname.split('/').at(-1) || ''
+      });
+      setStatus('「' + documentValue.title + '」を本棚に追加しました', 'success');
+      closeImportDialog();
+      window.MyEssaysRoute?.navigateBook?.(record.id);
+      return record;
+    } catch (error) {
+      console.error('[AozoraBooks URL]', error);
+      setStatus(friendlyError(error), 'error');
+      throw error;
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -196,7 +310,7 @@
     if (!rows.length) {
       list.append(Object.assign(document.createElement('p'), {
         className: 'books-empty',
-        textContent: 'まだ本はありません。青空文庫のXHTMLを1冊入れると、ここから続きが読めます。'
+        textContent: 'まだ本はありません。青空文庫の図書カードURLを貼ると、ここから続きが読めます。'
       }));
       return;
     }
@@ -225,31 +339,67 @@
     });
   }
 
+  function openImportDialog() {
+    const dialog = document.getElementById('aozoraImportDialog');
+    if (!dialog) return;
+    setStatus('', '');
+    dialog.showModal();
+    requestAnimationFrame(() => document.getElementById('aozoraUrlInput')?.focus());
+  }
+
+  function closeImportDialog() {
+    const dialog = document.getElementById('aozoraImportDialog');
+    if (dialog?.open) dialog.close();
+  }
+
   function init() {
     const trigger = document.getElementById('aozoraImportButton');
-    const input = document.getElementById('aozoraFileInput');
-    if (trigger && input) {
-      trigger.addEventListener('click', () => input.click());
-      input.addEventListener('change', async () => {
-        const file = input.files?.[0];
-        input.value = '';
-        if (!file) return;
-        try { await importFile(file); } catch {}
-      });
-    }
+    const dialog = document.getElementById('aozoraImportDialog');
+    const form = document.getElementById('aozoraUrlForm');
+    const input = document.getElementById('aozoraUrlInput');
+    const fileInput = document.getElementById('aozoraFileInput');
+    const fileButton = document.getElementById('aozoraFileButton');
+
+    trigger?.addEventListener('click', openImportDialog);
+    document.getElementById('aozoraImportClose')?.addEventListener('click', closeImportDialog);
+    dialog?.addEventListener('click', event => {
+      if (event.target === dialog && !importing) closeImportDialog();
+    });
+
+    form?.addEventListener('submit', async event => {
+      event.preventDefault();
+      const value = input?.value?.trim() || '';
+      if (!value) {
+        setStatus('青空文庫の図書カードURLを貼ってください。', 'error');
+        input?.focus();
+        return;
+      }
+      try { await importUrl(value); } catch {}
+    });
+
+    fileButton?.addEventListener('click', () => fileInput?.click());
+    fileInput?.addEventListener('change', async () => {
+      const file = fileInput.files?.[0];
+      fileInput.value = '';
+      if (!file) return;
+      try { await importFile(file); } catch {}
+    });
+
     refreshShelf();
     window.addEventListener('focus', refreshShelf);
     document.addEventListener('myessays:reading-progress-changed', refreshShelf);
   }
 
   window.MyEssaysAozoraBooks = Object.freeze({
-    version: '2026.09.27',
+    version: '2026.09.27-url',
     getEssay,
     currentEssay,
     clearCurrent,
     renderDocument,
     importFile,
-    refreshShelf
+    importUrl,
+    refreshShelf,
+    openImportDialog
   });
 
   document.readyState === 'loading'
