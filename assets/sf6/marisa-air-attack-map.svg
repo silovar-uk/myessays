@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+<title id="title">モダンマリーザの空中攻撃地図</title>
+<desc id="desc">通常入力の弱中強とアシスト併用の弱中強、それにヴォラーレコンボとカエルムアークを発生フレームとダメージで整理した図</desc>
+<rect width="1200" height="780" fill="#f7f4ee"/>
+<text x="60" y="70" font-family="sans-serif" font-size="34" font-weight="700" fill="#171717">モダンマリーザの空中攻撃地図</text>
+<text x="60" y="108" font-family="sans-serif" font-size="18" fill="#555">入力は簡潔。でも、空中で解く問題は6種類以上ある。</text>
+
+<text x="60" y="165" font-family="sans-serif" font-size="22" font-weight="700" fill="#222">通常入力</text>
+<g font-family="sans-serif">
+  <rect x="60" y="190" width="330" height="165" rx="18" fill="#ffffff" stroke="#c9c2b7"/>
+  <text x="84" y="228" font-size="18" font-weight="700" fill="#222">弱 → ジャンプ弱P</text>
+  <text x="84" y="259" font-size="26" font-weight="700" fill="#222">4F / 300</text>
+  <text x="84" y="292" font-size="17" fill="#555">ノックフィスト</text>
+  <text x="84" y="322" font-size="17" fill="#555">最速。空中で「間に合わせる」候補。</text>
+
+  <rect x="435" y="190" width="330" height="165" rx="18" fill="#ffffff" stroke="#c9c2b7"/>
+  <text x="459" y="228" font-size="18" font-weight="700" fill="#222">中 → ジャンプ中P</text>
+  <text x="459" y="259" font-size="26" font-weight="700" fill="#222">7F / 700</text>
+  <text x="459" y="292" font-size="17" fill="#555">ヴォラーレフィスト</text>
+  <text x="459" y="322" font-size="17" fill="#555">空中ヒットでダウン。中→中へ派生。</text>
+
+  <rect x="810" y="190" width="330" height="165" rx="18" fill="#ffffff" stroke="#c9c2b7"/>
+  <text x="834" y="228" font-size="18" font-weight="700" fill="#222">強 → ジャンプ強P</text>
+  <text x="834" y="259" font-size="26" font-weight="700" fill="#222">10F / 800</text>
+  <text x="834" y="292" font-size="17" fill="#555">アイテルフィスト</text>
+  <text x="834" y="322" font-size="17" fill="#555">ホールド可。空中ヒットで叩きつけ。</text>
+</g>
+
+<text x="60" y="410" font-family="sans-serif" font-size="22" font-weight="700" fill="#222">アシスト併用</text>
+<g font-family="sans-serif">
+  <rect x="60" y="435" width="330" height="165" rx="18" fill="#ffffff" stroke="#c9c2b7"/>
+  <text x="84" y="473" font-size="18" font-weight="700" fill="#222">A＋弱 → ジャンプ弱K</text>
+  <text x="84" y="504" font-size="26" font-weight="700" fill="#222">5F / 300</text>
+  <text x="84" y="537" font-size="17" fill="#555">シグナスフォール</text>
+  <text x="84" y="567" font-size="17" fill="#555">めくり性能。6通常技中、持続10Fで最長。</text>
+
+  <rect x="435" y="435" width="330" height="165" rx="18" fill="#ffffff" stroke="#c9c2b7"/>
+  <text x="459" y="473" font-size="18" font-weight="700" fill="#222">A＋中 → ジャンプ中K</text>
+  <text x="459" y="504" font-size="26" font-weight="700" fill="#222">8F / 500</text>
+  <text x="459" y="537" font-size="17" fill="#555">ラブリュスフォール</text>
+  <text x="459" y="567" font-size="17" fill="#555">持続8F。用途は距離と判定を実機検証。</text>
+
+  <rect x="810" y="435" width="330" height="165" rx="18" fill="#ffffff" stroke="#c9c2b7"/>
+  <text x="834" y="473" font-size="18" font-weight="700" fill="#222">A＋強 → ジャンプ強K</text>
+  <text x="834" y="504" font-size="26" font-weight="700" fill="#222">10F / 800</text>
+  <text x="834" y="537" font-size="17" fill="#555">ウラノスフォール</text>
+  <text x="834" y="567" font-size="17" fill="#555">ホールド可。強Pと数値は似るが別判定。</text>
+</g>
+
+<rect x="60" y="645" width="1080" height="82" rx="16" fill="#ece7dd"/>
+<text x="84" y="678" font-family="sans-serif" font-size="17" font-weight="700" fill="#222">空中特殊技</text>
+<text x="230" y="678" font-family="sans-serif" font-size="17" fill="#333">ヴォラーレコンボ：空中 中→中　10F / 800</text>
+<text x="665" y="678" font-family="sans-serif" font-size="17" fill="#333">カエルムアーク：垂直J ↓＋強　9F / 800</text>
+<text x="84" y="708" font-family="sans-serif" font-size="14" fill="#666">2026-09-27時点。発生・ダメージはCAPCOM公式参照値。A＝アシスト。</text>
+</svg>
