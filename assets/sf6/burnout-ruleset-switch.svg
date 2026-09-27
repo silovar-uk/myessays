@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">バーンアウトで同時に切り替わる4つのルール</title>
+  <desc id="desc">通常状態からバーンアウトへ移ると、ドライブ行動停止、ガード硬直4フレーム増加、削りダメージ、画面端スタン危険が生じる。</desc>
+  <rect width="1200" height="675" fill="#111318"/>
+  <text x="600" y="72" text-anchor="middle" fill="#f3f4f6" font-family="sans-serif" font-size="38" font-weight="700">BURNOUT = ルールの切替</text>
+  <text x="600" y="112" text-anchor="middle" fill="#aeb4be" font-family="sans-serif" font-size="21">ゲージ0は「技が減る」だけではない</text>
+  <rect x="80" y="180" width="310" height="330" rx="28" fill="#20242c" stroke="#606979" stroke-width="2"/>
+  <text x="235" y="235" text-anchor="middle" fill="#f3f4f6" font-family="sans-serif" font-size="27" font-weight="700">通常状態</text>
+  <text x="235" y="295" text-anchor="middle" fill="#d9dde5" font-family="sans-serif" font-size="22">ドライブ行動 使用可</text>
+  <text x="235" y="345" text-anchor="middle" fill="#d9dde5" font-family="sans-serif" font-size="22">通常のガード硬直</text>
+  <text x="235" y="395" text-anchor="middle" fill="#d9dde5" font-family="sans-serif" font-size="22">ガードでDrive消費</text>
+  <text x="235" y="445" text-anchor="middle" fill="#d9dde5" font-family="sans-serif" font-size="22">端でも通常のDI処理</text>
+  <path d="M430 345 H535" stroke="#c9ced8" stroke-width="5" marker-end="url(#arrow)"/>
+  <text x="482" y="318" text-anchor="middle" fill="#f3f4f6" font-family="sans-serif" font-size="19">Drive = 0</text>
+  <rect x="575" y="155" width="545" height="380" rx="30" fill="#2a2020" stroke="#b26a5c" stroke-width="3"/>
+  <text x="847" y="212" text-anchor="middle" fill="#ffe7df" font-family="sans-serif" font-size="30" font-weight="700">バーンアウト</text>
+  <rect x="620" y="250" width="215" height="92" rx="18" fill="#382827"/>
+  <text x="728" y="288" text-anchor="middle" fill="#ffe7df" font-family="sans-serif" font-size="20" font-weight="700">ドライブ行動</text>
+  <text x="728" y="318" text-anchor="middle" fill="#f0b9aa" font-family="sans-serif" font-size="22">使用不可</text>
+  <rect x="860" y="250" width="215" height="92" rx="18" fill="#382827"/>
+  <text x="968" y="288" text-anchor="middle" fill="#ffe7df" font-family="sans-serif" font-size="20" font-weight="700">ガード硬直</text>
+  <text x="968" y="318" text-anchor="middle" fill="#f0b9aa" font-family="sans-serif" font-size="22">+4F</text>
+  <rect x="620" y="372" width="215" height="92" rx="18" fill="#382827"/>
+  <text x="728" y="410" text-anchor="middle" fill="#ffe7df" font-family="sans-serif" font-size="20" font-weight="700">必殺技など</text>
+  <text x="728" y="440" text-anchor="middle" fill="#f0b9aa" font-family="sans-serif" font-size="22">削りが体力へ</text>
+  <rect x="860" y="372" width="215" height="92" rx="18" fill="#382827"/>
+  <text x="968" y="410" text-anchor="middle" fill="#ffe7df" font-family="sans-serif" font-size="20" font-weight="700">画面端 + DI</text>
+  <text x="968" y="440" text-anchor="middle" fill="#f0b9aa" font-family="sans-serif" font-size="22">スタン危険</text>
+  <text x="600" y="602" text-anchor="middle" fill="#d0d4dc" font-family="sans-serif" font-size="23">普通の格闘は残る。変わるのは「選択肢」と「守りの条件」。</text>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c9ced8"/></marker></defs>
+</svg>
