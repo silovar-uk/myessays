@@ -83,7 +83,7 @@ abstract: "二瓶有加は、なぜ「佐久間宣行のノブロックTV（NOBR
 
 この変化によって、「素」という説明はさらに足りなくなる。自然体に見える演技ほど、観察の蓄積が下に沈んでいることがある。二瓶有加の飲み会企画を、単に「私生活が派手だから面白い」と読むと、その表面だけをなぞることになる。番組が繰り返し使っているのは生活歴そのものではなく、**生活で見たものを、他人が笑える形へ変換する再現力**だと見るほうが、現在の企画の広がりを説明しやすい。
 
-[ノブロックTV公式「福留光帆＆二瓶有加 20イジリ&20飲み会チャレンジ」](https://www.youtube.com/watch?v=mImkHT__dI8) ／ [ノブロックTV公式「二瓶有加、落ち着いた藤森慎吾の飲み会魂を呼び起こせドッキリ！」](https://www.youtube.com/watch?v=hGTyHhdd8EE)
+[ノブロックTV公式「福留光帆＆二瓶有加 20イジリ&20飲み会チャレンジ」](https://www.youtube.com/watch?v=mImkHT__dI8) ／ [ノブロックTV公式「二瓶有加 vs トレンディエンジェル飲み会ノリセッション」](https://www.youtube.com/watch?v=BwynfcrQlHk) ／ [ノブロックTV公式「二瓶有加、落ち着いた藤森慎吾の飲み会魂を呼び起こせドッキリ！」](https://www.youtube.com/watch?v=hGTyHhdd8EE)
 
 ## 6. ドローミーでは、ノブロック以前の「歌える人」という履歴が、後からもう一度効いてきた
 
@@ -127,6 +127,7 @@ abstract: "二瓶有加は、なぜ「佐久間宣行のノブロックTV（NOBR
 - [インターエフエム（InterFM）「二瓶有加、衝撃の下積み期」](https://www.interfm.co.jp/news/single/diglounge_postshow05302024)
 - [スポーツニッポン「『1000万回再生』タレント・二瓶有加」](https://www.sponichi.co.jp/entertainment/news/2023/08/09/kiji/20230809s00041000527000c.html)
 - [ノブロックTV公式「福留光帆＆二瓶有加 20イジリ&20飲み会チャレンジ」](https://www.youtube.com/watch?v=mImkHT__dI8)
+- [ノブロックTV公式「二瓶有加 vs トレンディエンジェル飲み会ノリセッション」](https://www.youtube.com/watch?v=BwynfcrQlHk)
 - [ノブロックTV公式「二瓶有加、落ち着いた藤森慎吾の飲み会魂を呼び起こせドッキリ！」](https://www.youtube.com/watch?v=hGTyHhdd8EE)
 - [フライデーデジタル（FRIDAYデジタル）「佐久間宣行が語る『ノブロックTV（NOBROCK TV）』でアイドル結成！」](https://friday.kodansha.co.jp/article/454706)
 - [J-WAVEニュース（J-WAVE NEWS）「ドローミー（DRAW♡ME）・森脇梨々夏＆二瓶有加が語る、大反響の現状」](https://news.j-wave.co.jp/2026/02/content-4974.html)
