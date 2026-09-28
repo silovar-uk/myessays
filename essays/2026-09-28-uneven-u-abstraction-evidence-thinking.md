@@ -119,7 +119,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 不均等なU字は、守れば良い文章になる規則ではなく、**文章が一つの高さに居座っていないかを発見する診断器**として使うほうが強い。抽象ばかりなら足場がない。具体ばかりなら意味が立ち上がらない。だが、すべての段落を同じ振幅で上下させれば、今度は文章全体の呼吸が単調になる。型を学ぶ目的は、型の存在を忘れられるところまで判断力を育てることにある。
 
-参照：[ハイパーアレルジック（Hyperallergic）「美術批評のABC――近年のハウツー本」（The ABC of Art Criticism: Some Recent How To's）](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/) ／ [ロンドン大学高等法学研究所「形式について」（On form）](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025) ／ [エリック・ハイヨ『アカデミック・スタイルの要素』（The Elements of Academic Style）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
+参照：[ハイパーアレルジック（Hyperallergic）「美術批評入門――近年のハウツー本」（The ABC of Art Criticism: Some Recent How To's）](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/) ／ [ロンドン大学高等法学研究所「形式について」（On form）](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025) ／ [エリック・ハイヨ『アカデミック・スタイルの要素』（The Elements of Academic Style）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
 
 ## 8. 実務では「書く前の型」より「書いた後の診断」に使うと強い
 
@@ -153,9 +153,9 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 ## 参考資料
 
 - エリック・ハイヨ（Eric Hayot）『アカデミック・スタイルの要素――人文学のための書き方』（The Elements of Academic Style: Writing for the Humanities。本稿による便宜的な訳称）、コロンビア大学出版局、2014年。[出版社ページ](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
-- エリック・ハイヨ「第8章 不均等なU字」（The Uneven U）、59–73頁。[章情報・DOI](https://doi.org/10.7312/hayo16800-008)
+- エリック・ハイヨ「第8章 不均等なU字」（The Uneven U）、59–73頁。[章情報・デジタルオブジェクト識別子（DOI）](https://doi.org/10.7312/hayo16800-008)
 - ウィスコンシン大学マディソン校ライティングセンター「長文プロジェクトの改稿戦略」（Revision Strategies for Longer Projects）。[不均等なU字を用いた改稿法](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
 - ワシントン大学セントルイス校人文学センター「研究者エリック・ハイヨへの一問一答」（Q&A with scholar Eric Hayot）、2025年。[書くことを「思考の技術」と捉える本人の説明](https://humanities.washu.edu/news/qa-scholar-eric-hayot)
-- カール・マトン（Karl Maton）「意味の波を作る――累積的な知識形成の鍵」（Making semantic waves: A key to cumulative knowledge-building）、『言語学と教育』（Linguistics and Education）24巻1号、2013年、8–22頁。[DOI](https://doi.org/10.1016/j.linged.2012.11.005)
-- ハイパーアレルジック（Hyperallergic）「美術批評のABC――近年のハウツー本」（The ABC of Art Criticism: Some Recent How To's）、2015年。[書評](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/)
+- カール・マトン（Karl Maton）「意味の波を作る――累積的な知識形成の鍵」（Making semantic waves: A key to cumulative knowledge-building）、『言語学と教育』（Linguistics and Education）24巻1号、2013年、8–22頁。[デジタルオブジェクト識別子（DOI）](https://doi.org/10.1016/j.linged.2012.11.005)
+- ハイパーアレルジック（Hyperallergic）「美術批評入門――近年のハウツー本」（The ABC of Art Criticism: Some Recent How To's）、2015年。[書評](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/)
 - ロンドン大学高等法学研究所「形式について」（On form）、2025年。[体系化された文章形式としての批評的検討](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025)
