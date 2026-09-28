@@ -2,6 +2,7 @@
   'use strict';
 
   const ROOT = '.reader-reflections';
+  const INTRO_ROOT = '.reader-v2-intro';
   const RESONANCE_ROOT = '.reader-resonance';
   const ENTRY_KEY = 'myessays:reader-reflections:v1:';
   const MAX_NOTE_CHARS = 5200;
@@ -230,6 +231,46 @@ ${articleSummary(essay)}
     toolbar.append(button);
   }
 
+  function visualizationButton(root, extraClass = '') {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = ['reader-visualize-button', extraClass].filter(Boolean).join(' ');
+    button.dataset.gptVisualize = '1';
+    button.innerHTML = '<span aria-hidden="true">↗</span><span>GPTで画像化</span>';
+    button.setAttribute('aria-label', 'この記事をChatGPTで画像化する');
+    button.title = '記事の構造を9:16の情報画像に変換';
+    button.addEventListener('click', () => openArticleVisualization(root));
+    return button;
+  }
+
+  function visualizationStatus() {
+    const status = document.createElement('p');
+    status.className = 'reader-visualize-status';
+    status.dataset.gptVisualizeStatus = '1';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    return status;
+  }
+
+  function enhanceIntroVisualization(root) {
+    if (!root || root.dataset.gptIntroVisualizeReady === '1') return;
+    const meta = root.querySelector('.reader-v2-intro-meta');
+    if (!meta) return;
+
+    root.dataset.gptIntroVisualizeReady = '1';
+
+    const block = document.createElement('div');
+    block.className = 'reader-intro-visualize';
+    block.append(
+      visualizationButton(root, 'reader-intro-visualize-button'),
+      visualizationStatus()
+    );
+
+    const details = root.querySelector('.reader-v2-article-info');
+    if (details) details.insertAdjacentElement('beforebegin', block);
+    else root.append(block);
+  }
+
   function enhanceVisualization(root) {
     if (!root || root.dataset.gptVisualizeReady === '1') return;
     const stage = root.querySelector('.reader-seal-stage');
@@ -246,26 +287,24 @@ ${articleSummary(essay)}
       actions.append(seal);
     }
 
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'reader-visualize-button';
-    button.dataset.gptVisualize = '1';
-    button.innerHTML = '<span aria-hidden="true">↗</span><span>GPTで画像化</span>';
-    button.setAttribute('aria-label', 'この記事をChatGPTで画像化する');
-    button.title = '記事の構造を9:16の情報画像に変換';
-    button.addEventListener('click', () => openArticleVisualization(root));
-    actions.append(button);
+    actions.append(visualizationButton(root));
 
-    const status = document.createElement('p');
-    status.className = 'reader-visualize-status';
-    status.dataset.gptVisualizeStatus = '1';
-    status.setAttribute('role', 'status');
-    status.setAttribute('aria-live', 'polite');
-    stage.append(status);
+    const top = document.createElement('a');
+    top.className = 'reader-top-return-button';
+    top.href = '#/';
+    top.innerHTML = '<span aria-hidden="true">←</span><span>TOPへ戻る</span>';
+    top.setAttribute('aria-label', 'TOPへ戻る');
+    top.addEventListener('click', () => {
+      window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
+    });
+    actions.append(top);
+
+    stage.append(visualizationStatus());
   }
 
   function enhanceAll() {
     document.querySelectorAll(ROOT).forEach(enhance);
+    document.querySelectorAll(INTRO_ROOT).forEach(enhanceIntroVisualization);
     document.querySelectorAll(RESONANCE_ROOT).forEach(enhanceVisualization);
   }
 
