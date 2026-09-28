@@ -83,7 +83,7 @@ We cannot measure the internal technique from edited video alone. What we can sa
 
 That shift makes “authenticity” an even thinner explanation. Performances that look natural can sit on top of accumulated observation. If we read the drinking-party series merely as “her private life is wild,” we copy only the surface. What the show repeatedly employs is not private life itself but **the ability to convert things seen in life into recognizable comic performance**.
 
-[Official NOBROCK TV “福留光帆＆二瓶有加 20イジリ&20飲み会チャレンジ”](https://www.youtube.com/watch?v=mImkHT__dI8) ／ [Official NOBROCK TV “二瓶有加、落ち着いた藤森慎吾の飲み会魂を呼び起こせドッキリ！”](https://www.youtube.com/watch?v=hGTyHhdd8EE)
+[Official NOBROCK TV “福留光帆＆二瓶有加 20イジリ&20飲み会チャレンジ”](https://www.youtube.com/watch?v=mImkHT__dI8) ／ [Official NOBROCK TV “二瓶有加 vs トレンディエンジェル飲み会ノリセッション”](https://www.youtube.com/watch?v=BwynfcrQlHk) ／ [Official NOBROCK TV “二瓶有加、落ち着いた藤森慎吾の飲み会魂を呼び起こせドッキリ！”](https://www.youtube.com/watch?v=hGTyHhdd8EE)
 
 ## 6. With DRAW♡ME, the pre-NOBROCK history of “someone who can sing” becomes useful again
 
@@ -127,6 +127,7 @@ And that makes the case useful beyond entertainment. When people search for “w
 - [InterFM “二瓶有加、衝撃の下積み期”](https://www.interfm.co.jp/news/single/diglounge_postshow05302024)
 - [Sports Nippon “『1000万回再生』タレント・二瓶有加”](https://www.sponichi.co.jp/entertainment/news/2023/08/09/kiji/20230809s00041000527000c.html)
 - [Official NOBROCK TV “福留光帆＆二瓶有加 20イジリ&20飲み会チャレンジ”](https://www.youtube.com/watch?v=mImkHT__dI8)
+- [Official NOBROCK TV “二瓶有加 vs トレンディエンジェル飲み会ノリセッション”](https://www.youtube.com/watch?v=BwynfcrQlHk)
 - [Official NOBROCK TV “二瓶有加、落ち着いた藤森慎吾の飲み会魂を呼び起こせドッキリ！”](https://www.youtube.com/watch?v=hGTyHhdd8EE)
 - [FRIDAY Digital “佐久間宣行が語る『NOBROCK TV』でアイドル結成！”](https://friday.kodansha.co.jp/article/454706)
 - [J-WAVE NEWS “DRAW♡ME・森脇梨々夏＆二瓶有加が語る、大反響の現状”](https://news.j-wave.co.jp/2026/02/content-4974.html)
