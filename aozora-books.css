@@ -1,66 +1,224 @@
-.books-shelf {
-  margin: 28px 0 34px;
-  padding: 22px 0 0;
-  border-top: 1px solid var(--line);
-}
-.books-shelf-head {
+.header-actions {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.bookshelf-trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: 700 12px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.site-header.is-library-view .bookshelf-trigger {
+  display: inline-flex;
+  border-color: rgba(244,241,234,.24);
+  color: rgba(244,241,234,.82);
+}
+
+.site-header.is-library-view .bookshelf-trigger:hover,
+.site-header.is-library-view .bookshelf-trigger:focus-visible,
+.site-header.is-library-view .bookshelf-trigger[aria-expanded="true"] {
+  border-color: rgba(244,241,234,.44);
+  background: rgba(244,241,234,.10);
+  color: var(--paper);
+  outline: none;
+}
+
+.bookshelf-trigger-icon {
+  font-size: 13px;
+  line-height: 1;
+  opacity: .82;
+}
+
+.bookshelf-trigger-progress {
+  min-width: 22px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: rgba(244,241,234,.14);
+  color: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.bookshelf-trigger-progress[hidden] {
+  display: none;
+}
+
+.books-shelf-dialog {
+  width: min(420px, calc(100vw - 28px));
+  max-width: none;
+  max-height: min(76svh, 680px);
+  margin: 76px clamp(14px, 4vw, 64px) auto auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 22px 64px rgba(20,16,10,.18);
+  overflow: hidden;
+}
+
+.books-shelf-dialog::backdrop {
+  background: rgba(20,16,10,.20);
+  backdrop-filter: blur(2px);
+}
+
+.books-shelf-card {
+  display: grid;
+  max-height: inherit;
+  grid-template-rows: auto minmax(0, auto) minmax(0, 1fr) auto;
+  padding: 20px;
+}
+
+.books-shelf-dialog-head {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
-  margin-bottom: 14px;
+  padding-bottom: 16px;
 }
+
 .books-shelf-kicker {
   margin: 0 0 5px;
   color: var(--muted);
-  font: 750 11px/1.2 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
-  letter-spacing: .12em;
+  font: 750 10px/1.2 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  letter-spacing: .14em;
 }
-.books-shelf h2 {
+
+.books-shelf-dialog h2 {
   margin: 0;
-  font: 650 clamp(22px, 3vw, 30px)/1.25 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  font: 650 26px/1.2 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
 }
-.books-import {
-  min-height: 44px;
-  padding: 0 16px;
+
+.books-panel-label,
+.books-panel-section-head {
+  color: var(--muted);
+  font: 750 10px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  letter-spacing: .09em;
+}
+
+.books-panel-label {
+  margin: 0 0 8px;
+}
+
+.books-resume-section {
+  padding: 14px 0 18px;
+  border-top: 1px solid var(--line);
+}
+
+.books-resume-button {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 76px;
+  padding: 13px 14px;
   border: 1px solid var(--ink);
-  border-radius: 999px;
+  border-radius: 13px;
   background: var(--ink);
   color: var(--paper);
-  font: 750 13px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  text-align: left;
   cursor: pointer;
+  transition: transform .14s ease, background .14s ease, color .14s ease;
 }
-.books-import:hover,
-.books-import:focus-visible {
+
+.books-resume-button:hover,
+.books-resume-button:focus-visible {
+  transform: translateY(-1px);
   background: var(--paper);
   color: var(--ink);
   outline: none;
 }
-.books-note,
+
+.books-resume-copy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.books-resume-copy strong {
+  overflow: hidden;
+  font: 650 18px/1.3 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.books-resume-copy span,
+.books-resume-progress {
+  opacity: .72;
+  font: 650 11px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+
+.books-resume-progress {
+  min-width: 48px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.books-saved-section {
+  min-height: 0;
+  overflow: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.books-panel-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.books-panel-section-head span:last-child {
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 .books-status,
 .books-empty {
   margin: 0;
   color: var(--muted);
-  font: 500 13px/1.65 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  font: 500 12px/1.65 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
 }
+
 .books-status {
   min-height: 1.65em;
-  margin-top: 8px;
+  margin-top: 6px;
 }
+
 .books-list {
   display: grid;
   gap: 1px;
-  margin-top: 14px;
+  margin-top: 6px;
   border-top: 1px solid var(--line);
 }
+
 .books-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 14px;
   width: 100%;
-  min-height: 64px;
-  padding: 11px 2px;
+  min-height: 62px;
+  padding: 10px 4px;
   border: 0;
   border-bottom: 1px solid var(--line);
   background: transparent;
@@ -68,44 +226,128 @@
   text-align: left;
   cursor: pointer;
 }
+
 .books-row:hover,
 .books-row:focus-visible {
   background: var(--paper-2);
   outline: none;
 }
+
 .books-row-copy {
   display: grid;
   gap: 4px;
   min-width: 0;
 }
+
 .books-row-copy strong {
   overflow: hidden;
-  font: 650 16px/1.35 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  font: 650 15px/1.35 Georgia, "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .books-row-copy span,
 .books-row-progress {
   color: var(--muted);
-  font: 650 11px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  font: 650 10px/1.3 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
 }
+
 .books-row-progress {
   min-width: 38px;
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+.books-shelf-footer {
+  padding-top: 14px;
+}
+
+.books-import-secondary {
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 700 11px/1 Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.books-import-secondary:hover,
+.books-import-secondary:focus-visible {
+  border-color: var(--ink);
+  background: rgba(255,255,255,.55);
+  color: var(--ink);
+  outline: none;
+}
+
 .reader-content[data-reader-source="aozora"] ruby {
   ruby-position: over;
 }
+
 .reader-content[data-reader-source="aozora"] rt {
   color: var(--muted);
   font-size: .52em;
 }
+
 @media (max-width: 640px) {
-  .books-shelf { margin-top: 22px; }
-  .books-shelf-head { align-items: center; }
-  .books-shelf h2 { font-size: 24px; }
-  .books-import { padding-inline: 13px; }
+  .header-actions {
+    gap: 3px;
+  }
+
+  .books-shelf-dialog {
+    width: 100%;
+    max-height: min(78svh, 680px);
+    margin: auto 0 0;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .books-shelf-card {
+    padding: 18px 16px max(18px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .books-resume-button {
+    min-height: 72px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookshelf-trigger,
+  .site-header.is-library-view .bookshelf-trigger {
+    width: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0;
+  }
+
+  .bookshelf-trigger-label,
+  .guide-label {
+    display: none;
+  }
+
+  .bookshelf-trigger-progress {
+    position: absolute;
+    transform: translate(14px,-13px);
+    min-width: 16px;
+    padding: 2px 4px;
+    border: 1px solid rgba(244,241,234,.24);
+    background: var(--ink);
+    font-size: 7px;
+  }
+
+  #openGuide.ghost-button {
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookshelf-trigger,
+  .books-resume-button {
+    transition: none;
+  }
 }
 
 .books-import-dialog {
