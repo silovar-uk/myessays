@@ -52,6 +52,17 @@ test('Aozora bookshelf is a quiet header utility, not a Library section', () => 
   assert.match(books, /aozoraResumeSection/);
 });
 
+test('Header keeps Library utilities quiet and Reader mode focused', () => {
+  const html = read('index.html');
+  const css = read('ui-enhancements.css');
+
+  assert.match(html, /id="bookshelfTrigger"[^>]+title="本棚"/);
+  assert.match(html, /id="openGuide"[^>]+title="論考を追加するには"/);
+  assert.match(css, /\.site-header:not\(\.is-library-view\) \.header-actions[\s\S]*?display:\s*none/);
+  assert.match(css, /\.site-header\.is-library-view #openGuide \.guide-label[\s\S]*?display:\s*none/);
+  assert.match(css, /\.site-header:not\(\.is-library-view\) \.brand-note[\s\S]*?display:\s*none/);
+});
+
 test('RSVP recognizes ruby reading metadata', () => {
   const js = read('reader-rsvp.js');
   const css = read('reader-rsvp.css');
