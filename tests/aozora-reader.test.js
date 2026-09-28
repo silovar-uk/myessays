@@ -35,6 +35,23 @@ test('Route and page load Aozora integration', () => {
   assert.match(html, /id="aozoraImportButton"/);
 });
 
+test('Aozora bookshelf is a quiet header utility, not a Library section', () => {
+  const html = read('index.html');
+  const books = read('aozora-books.js');
+
+  const libraryStart = html.indexOf('<section id="libraryView"');
+  const readerStart = html.indexOf('<article id="readerView"');
+  const libraryMarkup = html.slice(libraryStart, readerStart);
+
+  assert.match(html, /id="bookshelfTrigger"/);
+  assert.match(html, /id="booksShelfDialog"/);
+  assert.doesNotMatch(libraryMarkup, /id="booksShelf"/);
+  assert.match(books, /openShelfFromTrigger/);
+  assert.match(books, /if \(!rows\.length\) \{\s*openImportDialog\(\)/);
+  assert.match(books, /lastBookOpenedAt/);
+  assert.match(books, /aozoraResumeSection/);
+});
+
 test('RSVP recognizes ruby reading metadata', () => {
   const js = read('reader-rsvp.js');
   const css = read('reader-rsvp.css');
