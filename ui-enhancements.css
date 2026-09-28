@@ -492,3 +492,192 @@
     padding-bottom: 8px;
   }
 }
+
+
+/* Library first-view density: shorten the distance from landing to actual essays. */
+.library-shell {
+  padding-top: 30px;
+}
+
+.hero {
+  margin-bottom: 14px;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+  font-size: 9px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 4.2vw, 48px);
+  line-height: 1.05;
+}
+
+.hero-copy {
+  max-width: 620px;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.reading-launcher {
+  grid-template-columns: minmax(240px, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.reading-launcher-label {
+  display: none;
+}
+
+.discovery-search,
+.discovery-search.is-open {
+  height: 42px;
+  border-radius: 10px;
+}
+
+.discovery-search:not(.is-open) .discovery-search-trigger,
+.discovery-search.is-open .search-trigger {
+  min-height: 40px;
+}
+
+.discovery-search:not(.is-open) .discovery-search-trigger {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+
+.discovery-search .search-shortcut {
+  margin-right: 9px;
+}
+
+.discovery-button {
+  min-height: 42px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.discovery-button-icon {
+  font-size: 13px;
+}
+
+.library-toolbar {
+  margin-bottom: 8px;
+}
+
+.essay-grid {
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .library-shell {
+    padding-top: 24px;
+  }
+
+  .hero {
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 8.4vw, 38px);
+    line-height: 1.07;
+  }
+
+  .hero-copy {
+    margin-top: 7px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .reading-launcher {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .reading-launcher-random {
+    margin-top: 0;
+  }
+
+  .discovery-random-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .discovery-search,
+  .discovery-search.is-open {
+    height: 44px;
+  }
+
+  .discovery-search:not(.is-open) .discovery-search-trigger,
+  .discovery-search.is-open .search-trigger,
+  .discovery-button {
+    min-height: 44px;
+  }
+
+  .discovery-button {
+    width: 100%;
+    padding: 6px 6px;
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .discovery-button-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .library-shell {
+    padding-top: 20px;
+  }
+
+  .eyebrow {
+    display: none;
+  }
+
+  .hero {
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero-copy {
+    max-width: 34em;
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .reading-launcher {
+    gap: 6px;
+    margin-bottom: 9px;
+    padding: 7px;
+  }
+
+  .discovery-random-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .discovery-button {
+    min-width: 0;
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+
+  .library-toolbar {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discovery-button {
+    transition: none;
+  }
+}
