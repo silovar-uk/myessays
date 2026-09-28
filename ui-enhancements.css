@@ -401,27 +401,94 @@
   }
 }
 
-/* Library mode: make the archive landing state unmistakable from Reader mode. */
+/* Header hierarchy: Library exposes quiet utilities; Reader removes them. */
 .site-header {
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+  transition: padding .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
 }
+
 .site-header.is-library-view {
+  padding-top: 12px;
+  padding-bottom: 12px;
   background: var(--ink);
   color: var(--paper);
-  border-bottom-color: rgba(244,241,234,.18);
+  border-bottom-color: rgba(244,241,234,.14);
 }
+
 .site-header.is-library-view .brand-note {
-  color: rgba(244,241,234,.58);
+  color: rgba(244,241,234,.46);
+  font-size: 9px;
+  letter-spacing: .12em;
 }
+
 .site-header.is-library-view .ghost-button {
+  color: rgba(244,241,234,.78);
+  border-color: rgba(244,241,234,.22);
+}
+
+.site-header.is-library-view .ghost-button:hover,
+.site-header.is-library-view .ghost-button:focus-visible {
+  background: rgba(244,241,234,.10);
   color: var(--paper);
-  border-color: rgba(244,241,234,.34);
 }
-.site-header.is-library-view .ghost-button:hover {
-  background: rgba(244,241,234,.12);
+
+.site-header.is-library-view #openGuide {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 17px;
+  line-height: 1;
 }
+
+.site-header.is-library-view #openGuide .guide-label {
+  display: none;
+}
+
+/* Reader mode is intentionally almost empty: only a route back to the archive remains. */
+.site-header:not(.is-library-view) {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgba(244,241,234,.72);
+  border-bottom-color: rgba(213,207,194,.46);
+}
+
+.site-header:not(.is-library-view) .header-actions,
+.site-header:not(.is-library-view) .brand-note {
+  display: none;
+}
+
+.site-header:not(.is-library-view) .brand {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.site-header:not(.is-library-view) .brand:hover {
+  color: var(--ink);
+}
+
 .site-header.is-library-view .brand:focus-visible,
 .site-header.is-library-view .ghost-button:focus-visible {
   outline: 2px solid var(--paper);
   outline-offset: 3px;
+}
+
+.site-header:not(.is-library-view) .brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .site-header.is-library-view {
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  .site-header:not(.is-library-view) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 }
