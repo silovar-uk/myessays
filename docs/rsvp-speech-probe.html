@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSVP Speech Probe</title>
+<style>
+body{max-width:760px;margin:40px auto;padding:0 18px;font-family:system-ui,sans-serif;line-height:1.6}
+button,select{min-height:44px;font:inherit}pre{white-space:pre-wrap;background:#f5f5f5;padding:12px}
+.controls{display:flex;flex-wrap:wrap;gap:8px}.row{display:grid;gap:6px;margin:14px 0}
+</style>
+</head>
+<body>
+<h1>RSVP Speech Probe</h1>
+<p>Web Speech APIの実機挙動を計測するための開発用ページです。</p>
+<div class="row"><label>Voice<select id="voice"></select></label></div>
+<div class="row"><label>Rate<select id="rate"><option>0.8</option><option selected>1</option><option>1.5</option><option>2</option></select></label></div>
+<div class="controls"><button id="speak">テスト文を読む</button><button id="pause">一時停止</button><button id="resume">再開</button><button id="cancel">停止</button></div>
+<pre id="log"></pre>
+<script>
+const samples=['今日は新しい本を読みます。','これは少し長めの文章です。途中には、読点もあります。','2026年9月28日、価格は3,500円でした。','Rapid Serial Visual Presentationは文章を時間へ変えます。','吾輩は猫である。名前はまだ無い。'];
+const log=document.getElementById('log'),voice=document.getElementById('voice'),rate=document.getElementById('rate');
+const write=(label,value)=>{log.textContent+=label+': '+value+'\n';};
+function voices(){const list=speechSynthesis.getVoices();voice.replaceChildren(new Option('自動',''));for(const v of list){voice.add(new Option(v.name+' / '+v.lang+(v.localService?' / local':''),v.voiceURI));}write('voices',list.length);write('ja voices',list.filter(v=>/^ja/i.test(v.lang)).length);}
+speechSynthesis.addEventListener?.('voiceschanged',voices);voices();
+document.getElementById('speak').onclick=()=>{speechSynthesis.cancel();log.textContent='';const text=samples.join(' '),u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=Number(rate.value);u.voice=speechSynthesis.getVoices().find(v=>v.voiceURI===voice.value)||null;let started=0,boundaries=0;u.onstart=()=>{started=performance.now();write('start',new Date().toISOString());};u.onboundary=e=>{boundaries++;write('boundary '+boundaries,e.charIndex+' / '+(e.name||''));};u.onend=()=>{write('end ms',Math.round(performance.now()-started));write('boundary count',boundaries);};u.onerror=e=>write('error',e.error);speechSynthesis.speak(u);};
+document.getElementById('pause').onclick=()=>speechSynthesis.pause();document.getElementById('resume').onclick=()=>speechSynthesis.resume();document.getElementById('cancel').onclick=()=>speechSynthesis.cancel();
+write('SpeechSynthesis',Boolean(window.speechSynthesis));write('SpeechSynthesisUtterance',Boolean(window.SpeechSynthesisUtterance));
+</script>
+</body>
+</html>

@@ -19,6 +19,9 @@
   const BUDOUX = 'https://cdn.jsdelivr.net/npm/budoux@0.9.2/module/';
   const KEY_SETTINGS = 'myessays:rsvp';
   const KEY_RESUME = 'myessays:rsvp-resume';
+  const SPEECH_RATE_PRESETS = [0.8, 1, 1.2, 1.5, 2];
+  const SPEECH_MODE_LABELS = { off: '音声なし', sync: '声に合わせる', landmark: '耳の標識' };
+  const LANDMARK_KINDS = new Set(['title', 'h2', 'h3', 'figure', 'end']);
   const REFERENCES = /^(?:[0-9０-９]+[.．、]\s*)?(?:主要)?(?:参考文献|参考資料|引用文献|出典|References|Sources|Bibliography)/i;
   const SKIP = '.code-block, figure, table, .table-wrap, pre, .essay-figure';
   const IGNORE = '[aria-hidden="true"], button, rt, rp, script, style';
@@ -166,7 +169,7 @@
           const lastInUnit = lastInSentence && si === sentences.length - 1;
           const reading = readingForRange(unit, chunk.start, chunk.end, text);
           list.push({
-            type: 'chunk', unit, unitIndex, sentence, text,
+            type: 'chunk', unit, unitIndex, sentence, text, spoken: reading.spoken,
             start: chunk.start, end: chunk.end,
             width: widthOf(text), morae: moraeOf(reading.spoken), rubyReadings: reading.rubyReadings,
             bullet: unit.bullet && si === 0 && ci === 0,
@@ -178,6 +181,29 @@
     });
     list.push({ type: 'card', kind: 'end', text: '了' });
     return list;
+  }
+
+  function buildSentenceMap(list) {
+    const map = new Map();
+    list.forEach((item, itemIndex) => {
+      if (item.type !== 'chunk') return;
+      let entry = map.get(item.sentence);
+      if (!entry) {
+        entry = { id: item.sentence, firstIndex: itemIndex, lastIndex: itemIndex, chunks: [], spoken: '', morae: 0, width: 0 };
+        map.set(item.sentence, entry);
+      }
+      const piece = String(item.spoken || item.text || '').trim();
+      const needsSpace = entry.spoken && /[A-Za-z0-9]$/.test(entry.spoken) && /^[A-Za-z0-9]/.test(piece);
+      const speechStart = entry.spoken.length + (needsSpace ? 1 : 0);
+      if (needsSpace) entry.spoken += ' ';
+      entry.spoken += piece;
+      const speechEnd = entry.spoken.length;
+      entry.lastIndex = itemIndex;
+      entry.chunks.push({ index: itemIndex, speechStart, speechEnd, morae: item.morae, width: item.width });
+      entry.morae += item.morae;
+      entry.width += item.width;
+    });
+    return map;
   }
 
   // 速さ(字/分)で記事全体の時間を決め、文節ごとの配分は拍で決める
@@ -331,6 +357,18 @@
   let widthRead = 0;
   let syncedBlock = null;
   let visualGate = -1;
+  let sentenceMap = new Map();
+  let speechVisualTimers = [];
+  let activeSpeech = null;
+  let speechBindingsReady = false;
+
+  function speechController() { return window.MyEssaysRsvpSpeech || null; }
+  function speechSupported() { return speechController()?.supported?.() === true; }
+  function speechState() { return speechController()?.state?.() || { mode: 'off', rate: 1, status: 'idle', boundaryReliable: false }; }
+  function speechMode() { return speechSupported() ? speechState().mode : 'off'; }
+  function currentSpeechLang() { return 'ja-JP'; }
+  function clearSpeechVisualTimers() { speechVisualTimers.forEach(clearTimeout); speechVisualTimers = []; }
+  function sentenceForIndex(i = index) { return isChunk(i) ? sentenceMap.get(items[i].sentence) || null : null; }
 
   function readJSON(key) {
     try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
@@ -426,6 +464,7 @@
         </div>
       </footer>
       <section class="rsvp-speed-picker" data-rsvp="speedPicker" aria-label="読む速さ" hidden></section>
+      <section class="rsvp-speech-sheet" data-rsvp="speechSheet" aria-label="音声の設定" hidden></section>
       <section class="rsvp-sheet" data-rsvp="sheet" aria-label="表示の設定" hidden></section>
       <section class="rsvp-help" data-rsvp="help" aria-label="ショートカット" hidden></section>`;
     stage.querySelectorAll('[data-rsvp]').forEach(el => { els[el.dataset.rsvp] = el; });
@@ -436,10 +475,10 @@
     stop.append(kbd);
     stage.querySelector('.rsvp-head').append(stop);
 
-    els.slower = button('rsvp-btn', '−', '遅くする(↓)', () => setSpeed(settings.speed - SPEED_STEP));
-    els.speed = button('rsvp-speed-value', '', '速さを選ぶ', () => toggleSpeedPicker());
+    els.slower = button('rsvp-btn', '−', '遅くする(↓)', () => stepPrimarySpeed(-1));
+    els.speed = button('rsvp-speed-value', '', '速さを選ぶ', () => togglePrimarySpeed());
     els.speed.setAttribute('aria-expanded', 'false');
-    els.faster = button('rsvp-btn', '+', '速くする(↑)', () => setSpeed(settings.speed + SPEED_STEP));
+    els.faster = button('rsvp-btn', '+', '速くする(↑)', () => stepPrimarySpeed(1));
     els.elapsed = document.createElement('span');
     els.elapsed.className = 'rsvp-elapsed';
     els.elapsed.setAttribute('role', 'timer');
@@ -452,22 +491,29 @@
     els.next = button('rsvp-btn', '', '', () => nextSentence());
     els.transport.append(els.prev, els.toggle, els.next);
 
+    els.speech = button('rsvp-btn rsvp-speech-button', '音', '音声の設定', () => toggleSpeechSheet());
+    els.speech.setAttribute('aria-expanded', 'false');
+    els.speech.setAttribute('aria-pressed', 'false');
+    els.speech.disabled = !speechSupported();
+    if (!speechSupported()) els.speech.title = 'このブラウザでは音声読み上げを利用できません';
     els.tune = button('rsvp-btn', 'Aa', '表示の設定', () => toggleSheet());
     els.tune.setAttribute('aria-expanded', 'false');
     els.helpButton = button('rsvp-btn rsvp-help-button', '?', 'ショートカット(?)', () => toggleHelp());
-    els.tools.append(els.tune, els.helpButton);
+    els.tools.append(els.speech, els.tune, els.helpButton);
 
     buildSpeedPicker();
+    buildSpeechSheet();
     buildSheet();
     buildHelp();
+    bindSpeechEvents();
 
     els.field.addEventListener('click', event => {
       if (event.target.closest('button')) return;
       toggle();
     });
     stage.addEventListener('cancel', event => { event.preventDefault(); stopAndReturn(); });
-    stage.addEventListener('wheel', event => { if (!event.target.closest('.rsvp-speed-picker, .rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
-    stage.addEventListener('touchmove', event => { if (!event.target.closest('.rsvp-speed-picker, .rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
+    stage.addEventListener('wheel', event => { if (!event.target.closest('.rsvp-speed-picker, .rsvp-speech-sheet, .rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
+    stage.addEventListener('touchmove', event => { if (!event.target.closest('.rsvp-speed-picker, .rsvp-speech-sheet, .rsvp-sheet, .rsvp-help')) event.preventDefault(); }, { passive: false });
     stage.addEventListener('pointermove', wakeControls);
     document.body.append(stage);
     return stage;
@@ -552,8 +598,11 @@
   }
 
   function toggleSpeedPicker(force) {
+    if (speechMode() === 'sync') return toggleSpeechSheet(force);
     const show = force ?? els.speedPicker.hidden;
     if (show) {
+      els.speechSheet.hidden = true;
+      els.speech?.setAttribute('aria-expanded', 'false');
       els.sheet.hidden = true;
       els.tune.setAttribute('aria-expanded', 'false');
       els.help.hidden = true;
@@ -562,6 +611,120 @@
     els.speedPicker.hidden = !show;
     els.speed.setAttribute('aria-expanded', String(show));
     if (show) els.speedRange?.focus({ preventScroll: true });
+    else if (stage.contains(document.activeElement) || document.activeElement === document.body) els.field.focus({ preventScroll: true });
+  }
+
+  function buildSpeechSheet() {
+    const heading = document.createElement('h2');
+    heading.textContent = '音声';
+
+    els.speechMode = document.createElement('div');
+    els.speechMode.className = 'rsvp-speech-mode';
+    [['off', 'OFF'], ['sync', '声に合わせる'], ['landmark', '耳の標識']].forEach(([mode, label]) => {
+      const el = button('', label, '', () => setSpeechMode(mode));
+      el.dataset.speechMode = mode;
+      els.speechMode.append(el);
+    });
+
+    const voiceField = document.createElement('div');
+    voiceField.className = 'rsvp-speech-field';
+    const voiceLabel = document.createElement('label');
+    voiceLabel.textContent = '声';
+    els.speechVoice = document.createElement('select');
+    els.speechVoice.className = 'rsvp-speech-voice';
+    els.speechVoice.setAttribute('aria-label', '読み上げる声');
+    els.speechVoice.addEventListener('change', () => setSpeechVoice(els.speechVoice.value));
+    voiceField.append(voiceLabel, els.speechVoice);
+
+    const rateField = document.createElement('div');
+    rateField.className = 'rsvp-speech-field';
+    const rateLabel = document.createElement('p');
+    rateLabel.textContent = '音声の速さ';
+    els.speechRates = document.createElement('div');
+    els.speechRates.className = 'rsvp-speech-rates';
+    SPEECH_RATE_PRESETS.forEach(value => {
+      const el = button('', `${value}×`, '', () => setSpeechRate(value));
+      el.dataset.speechRate = String(value);
+      els.speechRates.append(el);
+    });
+    rateField.append(rateLabel, els.speechRates);
+
+    els.speechMeta = document.createElement('p');
+    els.speechMeta.className = 'rsvp-speech-meta';
+
+    const remember = document.createElement('label');
+    remember.className = 'rsvp-speech-remember';
+    els.speechRemember = document.createElement('input');
+    els.speechRemember.type = 'checkbox';
+    els.speechRemember.addEventListener('change', () => {
+      speechController()?.configure?.({ rememberEnabled: els.speechRemember.checked });
+      syncSpeechSheet();
+    });
+    remember.append(els.speechRemember, document.createTextNode('次回も音声モードを使う'));
+
+    els.speechUnavailable = document.createElement('p');
+    els.speechUnavailable.className = 'rsvp-speech-unavailable';
+    els.speechUnavailable.textContent = 'このブラウザでは音声読み上げを利用できません。';
+    const close = button('rsvp-btn rsvp-sheet-close', '閉じる', '', () => toggleSpeechSheet(false));
+    els.speechSheet.append(heading, els.speechMode, voiceField, rateField, els.speechMeta, remember, els.speechUnavailable, close);
+    syncSpeechSheet();
+  }
+
+  function populateSpeechVoices() {
+    if (!els.speechVoice) return;
+    const controller = speechController();
+    const current = controller?.state?.().voiceURI || '';
+    const list = controller?.voices?.() || [];
+    els.speechVoice.replaceChildren(new Option('自動', ''));
+    list.forEach(voice => {
+      const suffix = [voice.lang, voice.localService ? '端末内' : ''].filter(Boolean).join(' · ');
+      els.speechVoice.add(new Option(`${voice.name}${suffix ? ` — ${suffix}` : ''}`, voice.voiceURI));
+    });
+    els.speechVoice.value = [...els.speechVoice.options].some(option => option.value === current) ? current : '';
+  }
+
+  function syncSpeechSheet() {
+    if (!els.speechSheet) return;
+    const controller = speechController();
+    const stateValue = controller?.state?.() || { mode: 'off', rate: 1, rememberEnabled: false, supported: false };
+    const available = controller?.supported?.() === true;
+    els.speechUnavailable.hidden = available;
+    els.speechMode.querySelectorAll('button').forEach(el => {
+      el.disabled = !available;
+      el.setAttribute('aria-pressed', String(el.dataset.speechMode === stateValue.mode));
+    });
+    els.speechRates.querySelectorAll('button').forEach(el => {
+      el.disabled = !available;
+      el.setAttribute('aria-pressed', String(Number(el.dataset.speechRate) === Number(stateValue.rate)));
+    });
+    els.speechVoice.disabled = !available;
+    els.speechRemember.disabled = !available;
+    els.speechRemember.checked = Boolean(stateValue.rememberEnabled);
+    populateSpeechVoices();
+    const calibration = controller?.calibration?.({ lang: currentSpeechLang(), rate: stateValue.rate, voiceURI: stateValue.voiceURI });
+    const measured = Number(calibration?.charsPerMinute || 0);
+    els.speechMeta.textContent = stateValue.mode === 'sync'
+      ? (measured > 0 ? `実測 約${Math.round(measured / 10) * 10}字/分 · 文末で同期` : '実測速度を学習中 · 文末で同期')
+      : stateValue.mode === 'landmark'
+        ? '本文は目で、見出しだけ耳で受け取る'
+        : '音声を使わず、表示速度だけで読む';
+  }
+
+  function toggleSpeechSheet(force) {
+    if (!speechSupported()) return;
+    const show = force ?? els.speechSheet.hidden;
+    if (show) {
+      pause();
+      els.speedPicker.hidden = true;
+      els.speed.setAttribute('aria-expanded', 'false');
+      els.sheet.hidden = true;
+      els.tune.setAttribute('aria-expanded', 'false');
+      els.help.hidden = true;
+      syncSpeechSheet();
+    }
+    els.speechSheet.hidden = !show;
+    els.speech.setAttribute('aria-expanded', String(show));
+    if (show) els.speechMode.querySelector('button')?.focus({ preventScroll: true });
     else if (stage.contains(document.activeElement) || document.activeElement === document.body) els.field.focus({ preventScroll: true });
   }
 
@@ -586,8 +749,8 @@
       ['Space / K', '再生・一時停止'],
       ['→ ←', '1つ進む・戻る(縦では ← で進む)'],
       ['Shift + → ←', '1文進む・戻る'],
-      ['↑ ↓', '速さ ±50字/分'],
-      ['速度の数字', '300〜3000字/分から直接選択'],
+      ['↑ ↓', '表示速度±50字/分。声に合わせる時は音声速度'],
+      ['速度の数字', '300〜4000字/分から直接選択'],
       ['+ −', '文字の大きさ'],
       ['[ ]', '最少文字数'],
       ['V', '縦・横'],
@@ -611,7 +774,7 @@
 
   function toggleSheet(force) {
     const show = force ?? els.sheet.hidden;
-    if (show) { pause(); toggleHelp(false); toggleSpeedPicker(false); syncSheet(); }
+    if (show) { pause(); toggleHelp(false); toggleSpeechSheet(false); toggleSpeedPicker(false); syncSheet(); }
     els.sheet.hidden = !show;
     els.tune.setAttribute('aria-expanded', String(show));
     if (show) els.sheet.querySelector('button')?.focus({ preventScroll: true });
@@ -619,7 +782,7 @@
   }
   function toggleHelp(force) {
     const show = force ?? els.help.hidden;
-    if (show) { pause(); els.sheet.hidden = true; els.tune.setAttribute('aria-expanded', 'false'); toggleSpeedPicker(false); }
+    if (show) { pause(); els.speechSheet.hidden = true; els.speech?.setAttribute('aria-expanded', 'false'); els.sheet.hidden = true; els.tune.setAttribute('aria-expanded', 'false'); toggleSpeedPicker(false); }
     els.help.hidden = !show;
     if (!show && !els.sheet.hidden) return;
     if (!show) els.field.focus({ preventScroll: true });
@@ -634,8 +797,7 @@
     els.next.textContent = settings.vertical ? `${forward} 次の文` : `次の文 ${forward}`;
     els.prev.setAttribute('aria-label', `1文戻る(Shift+${settings.vertical ? '→' : '←'})`);
     els.next.setAttribute('aria-label', `1文進む(Shift+${settings.vertical ? '←' : '→'})`);
-    els.speed.textContent = `${settings.speed}字/分`;
-    syncSpeedPicker();
+    syncPrimarySpeedControls();
     els.hint.textContent = phone() ? 'タップで一時停止' : 'Space で一時停止 · ? でショートカット';
   }
 
@@ -669,6 +831,7 @@
     capacity = measureCapacity();
     const minW = Math.min(settings.minChars, capacity);
     items = buildItems(collectUnits(root()), parse, { minW, maxW: capacity });
+    sentenceMap = buildSentenceMap(items);
     ({ msPerMora, width: totalWidth } = retime(items, settings));
     renderTicks();
     if (!keep) return;
@@ -755,6 +918,112 @@
     });
   }
 
+  function cardSpeechText(item, landmark = false) {
+    if (!item) return '';
+    if (item.kind === 'figure') return '図があります';
+    if (item.kind === 'skip') return `${item.text || '図表'}があります`;
+    if (item.kind === 'end') return '読み終わりました';
+    if (landmark && !LANDMARK_KINDS.has(item.kind)) return '';
+    if (item.kind === 'title' && item.sub) return `${item.text}。${item.sub}`;
+    return String(item.text || '').trim();
+  }
+
+  function showSyncedIndex(target) {
+    if (!playing || speechMode() !== 'sync') return;
+    if (!Number.isInteger(target) || !items[target]) return;
+    index = target;
+    show(items[index]);
+    syncPage(items[index]);
+  }
+
+  function scheduleSentenceVisuals(sentence, durationMs) {
+    clearSpeechVisualTimers();
+    if (!sentence?.chunks?.length) return;
+    showSyncedIndex(sentence.firstIndex);
+    const totalMorae = Math.max(1, sentence.morae);
+    let moraeBefore = 0;
+    sentence.chunks.forEach((chunk, order) => {
+      if (order > 0) {
+        const delay = Math.max(30, durationMs * (moraeBefore / totalMorae));
+        speechVisualTimers.push(setTimeout(() => {
+          if (!activeSpeech || activeSpeech.type !== 'sentence' || activeSpeech.sentence.id !== sentence.id) return;
+          showSyncedIndex(chunk.index);
+        }, delay));
+      }
+      moraeBefore += chunk.morae;
+    });
+  }
+
+  function playSyncedSentence() {
+    clearTimeout(timer);
+    clearSpeechVisualTimers();
+    const controller = speechController();
+    if (!playing || !controller?.supported?.()) return;
+
+    const item = items[index];
+    if (!item) return;
+    show(item);
+    syncPage(item);
+
+    if (item.kind === 'end') { finish(); return; }
+    if (item.kind === 'figure') { pauseAtFigure(); return; }
+
+    if (item.type !== 'chunk') {
+      const text = cardSpeechText(item);
+      if (!text) {
+        index = Math.min(index + 1, items.length - 1);
+        playSyncedSentence();
+        return;
+      }
+      const result = controller.speak({
+        sentenceId: `card:${index}`,
+        text,
+        lang: currentSpeechLang(),
+        meta: { kind: 'card', morae: moraeOf(text), width: widthOf(text), index }
+      });
+      if (!result.ok) return handleSpeechFailure(result.reason || 'synthesis-failed');
+      activeSpeech = { type: 'card', index, generation: result.generation };
+      return;
+    }
+
+    const sentence = sentenceForIndex(index);
+    if (!sentence) return handleSpeechFailure('sentence-map');
+    index = sentence.firstIndex;
+    const stateValue = controller.state();
+    const durationMs = controller.estimateMs({
+      morae: sentence.morae,
+      lang: currentSpeechLang(),
+      voiceURI: stateValue.voiceURI,
+      rate: stateValue.rate
+    });
+    scheduleSentenceVisuals(sentence, durationMs);
+    const result = controller.speak({
+      sentenceId: sentence.id,
+      text: sentence.spoken,
+      lang: currentSpeechLang(),
+      meta: { kind: 'sentence', morae: sentence.morae, width: sentence.width, sentenceId: sentence.id }
+    });
+    if (!result.ok) return handleSpeechFailure(result.reason || 'synthesis-failed');
+    activeSpeech = { type: 'sentence', sentence, generation: result.generation };
+  }
+
+  function speakLandmark(item) {
+    if (speechMode() !== 'landmark' || !LANDMARK_KINDS.has(item?.kind)) return;
+    const text = cardSpeechText(item, true);
+    if (!text) return;
+    speechController()?.speak?.({
+      sentenceId: `landmark:${item.kind}:${index}`,
+      text,
+      lang: currentSpeechLang(),
+      meta: { kind: 'landmark', morae: moraeOf(text), width: widthOf(text) }
+    });
+  }
+
+  function continuePlayback() {
+    if (speechMode() === 'sync') playSyncedSentence();
+    else tick();
+  }
+
   function play() {
     if (playing || !items.length) return;
     if (index >= items.length - 1) { index = 0; lead = ''; }
@@ -762,8 +1031,13 @@
       visualGate = -1;
       index = Math.min(index + 1, items.length - 1);
     }
+    els.speedPicker.hidden = true;
+    els.speechSheet.hidden = true;
     els.sheet.hidden = true;
     els.help.hidden = true;
+    els.speed.setAttribute('aria-expanded', 'false');
+    els.speech?.setAttribute('aria-expanded', 'false');
+    if (speechState().status === 'paused') speechController()?.cancel?.();
     playing = true;
     rampStep = 0;
     playStartedAt = performance.now();
@@ -773,16 +1047,18 @@
     wakeControls();
     if (lead) {
       showCard({ kind: 'lead', text: lead });
-      timer = setTimeout(() => { lead = ''; tick(); }, CARD_MS.lead);
+      timer = setTimeout(() => { lead = ''; continuePlayback(); }, CARD_MS.lead);
       return;
     }
-    tick();
+    continuePlayback();
   }
 
   function pause() {
     if (!playing) return;
     playing = false;
     clearTimeout(timer);
+    clearSpeechVisualTimers();
+    if (speechMode() !== 'off') speechController()?.pause?.();
     playedMs += performance.now() - playStartedAt;
     playStartedAt = 0;
     stopElapsedClock();
@@ -799,6 +1075,8 @@
     if (!playing) return;
     playing = false;
     clearTimeout(timer);
+    clearSpeechVisualTimers();
+    if (speechMode() === 'sync') speechController()?.cancel?.();
     playedMs += performance.now() - playStartedAt;
     playStartedAt = 0;
     stopElapsedClock();
@@ -818,6 +1096,7 @@
     if (!item) return;
     show(item);
     syncPage(item);
+    if (speechMode() === 'landmark') speakLandmark(item);
     if (item.kind === 'end') { finish(); return; }
     if (item.kind === 'figure') { pauseAtFigure(); return; }
     const ramp = item.type === 'chunk' && rampStep < RAMP.length ? RAMP[rampStep++] : 1;
@@ -832,11 +1111,19 @@
     if (!playing) { show(items[index]); return; }
     lead = '';
     rampStep = RAMP.length;
-    tick();
+    if (speechMode() === 'sync') {
+      speechController()?.cancel?.();
+      if (isChunk(index)) index = sentenceStart(index);
+      playSyncedSentence();
+    } else tick();
   }
 
   function seek(i) {
+    speechController()?.cancel?.();
+    clearSpeechVisualTimers();
+    activeSpeech = null;
     index = clamp(i, 0, items.length - 2);
+    if (playing && speechMode() === 'sync' && isChunk(index)) index = sentenceStart(index);
     restart();
   }
 
@@ -872,6 +1159,9 @@
   }
 
   function finish() {
+    clearSpeechVisualTimers();
+    activeSpeech = null;
+    if (speechMode() === 'sync') speechController()?.cancel?.();
     playing = false;
     playedMs += performance.now() - playStartedAt;
     playStartedAt = 0;
@@ -889,13 +1179,32 @@
   }
 
   // ---------- 表示 ----------
+  function syncPrimarySpeedControls() {
+    if (!els.speed) return;
+    const sync = speechMode() === 'sync';
+    const stateValue = speechState();
+    els.speed.textContent = sync ? `声 ${stateValue.rate}×` : `${settings.speed}字/分`;
+    els.speed.setAttribute('aria-label', sync ? '音声の速さを選ぶ' : '読む速さを選ぶ');
+    els.slower.setAttribute('aria-label', sync ? '音声を遅くする(↓)' : '遅くする(↓)');
+    els.faster.setAttribute('aria-label', sync ? '音声を速くする(↑)' : '速くする(↑)');
+  }
+
   function render() {
     stage.dataset.state = playing ? 'playing' : (items[index]?.kind === 'end' ? 'ended' : 'paused');
+    stage.dataset.speechMode = speechMode();
+    stage.dataset.speechState = speechState().status;
     els.toggle.textContent = playing ? '❚❚' : '▶';
     els.toggle.setAttribute('aria-label', playing ? '一時停止(Space)' : '再生(Space)');
     els.toggle.title = els.toggle.getAttribute('aria-label');
-    els.speed.textContent = `${settings.speed}字/分`;
+    if (els.speech) {
+      const active = speechMode() !== 'off';
+      els.speech.setAttribute('aria-pressed', String(active));
+      els.speech.textContent = active ? '音●' : '音';
+      els.speech.title = speechSupported() ? `音声: ${SPEECH_MODE_LABELS[speechMode()] || '音声なし'}` : 'このブラウザでは音声読み上げを利用できません';
+    }
+    syncPrimarySpeedControls();
     syncSpeedPicker();
+    syncSpeechSheet();
   }
 
   function previousSentenceText(at = index) {
@@ -1076,16 +1385,116 @@
     renderMeter();
     syncSpeedPicker();
     if (announce) toast(`${settings.speed}字/分 · ${remainingText()}`);
-    if (playing && restartPlayback) restart();
+    if (playing && restartPlayback && speechMode() !== 'sync') restart();
   }
-  function rechunk(message) {
-    applyLook();
-    if (!parse) return;
-    const keep = anchor();
-    rebuild(keep);
-    restart();
-    if (message) toast(message);
+
+  function stepPrimarySpeed(delta) {
+    if (speechMode() !== 'sync') {
+      setSpeed(settings.speed + delta * SPEED_STEP);
+      return;
+    }
+    const current = Number(speechState().rate || 1);
+    let at = SPEECH_RATE_PRESETS.findIndex(value => value >= current - 0.001);
+    if (at < 0) at = SPEECH_RATE_PRESETS.length - 1;
+    setSpeechRate(SPEECH_RATE_PRESETS[clamp(at + delta, 0, SPEECH_RATE_PRESETS.length - 1)]);
   }
+
+  function togglePrimarySpeed() {
+    if (speechMode() === 'sync') toggleSpeechSheet();
+    else toggleSpeedPicker();
+  }
+
+  function setSpeechMode(mode) {
+    const controller = speechController();
+    if (!controller?.supported?.()) return;
+    const wasPlaying = playing;
+    controller.setMode(mode);
+    clearTimeout(timer);
+    clearSpeechVisualTimers();
+    activeSpeech = null;
+    if (wasPlaying) {
+      if (mode === 'sync' && isChunk(index)) index = sentenceStart(index);
+      continuePlayback();
+    }
+    render();
+    toast(`音声 ${SPEECH_MODE_LABELS[mode] || 'OFF'}`);
+  }
+
+  function setSpeechRate(rate) {
+    const controller = speechController();
+    if (!controller?.supported?.()) return;
+    controller.setRate(rate);
+    if (playing && speechMode() === 'sync') {
+      controller.cancel();
+      clearSpeechVisualTimers();
+      if (isChunk(index)) index = sentenceStart(index);
+      playSyncedSentence();
+    }
+    render();
+    toast(`声 ${rate}×`);
+  }
+
+  function setSpeechVoice(voiceURI) {
+    const controller = speechController();
+    if (!controller?.supported?.()) return;
+    controller.setVoice(voiceURI);
+    if (playing && speechMode() === 'sync') {
+      controller.cancel();
+      clearSpeechVisualTimers();
+      if (isChunk(index)) index = sentenceStart(index);
+      playSyncedSentence();
+    }
+    render();
+  }
+
+  function handleSpeechFailure(code) {
+    const controller = speechController();
+    clearSpeechVisualTimers();
+    activeSpeech = null;
+    controller?.setMode?.('off');
+    render();
+    toast('音声を再生できません。流して読むだけで続けます');
+    if (playing) tick();
+    console.warn('[rsvp-speech] fallback to visual RSVP', code);
+  }
+
+  function bindSpeechEvents() {
+    if (speechBindingsReady) return;
+    const controller = speechController();
+    if (!controller?.on) return;
+    speechBindingsReady = true;
+    controller.on('voices', () => { populateSpeechVoices(); syncSpeechSheet(); });
+    controller.on('calibration', () => syncSpeechSheet());
+    controller.on('boundary', event => {
+      if (!playing || speechMode() !== 'sync' || !activeSpeech || activeSpeech.type !== 'sentence') return;
+      if (event.detail.generation !== activeSpeech.generation || !event.detail.reliable) return;
+      const charIndex = Number(event.detail.charIndex);
+      const hit = activeSpeech.sentence.chunks.find(chunk => chunk.speechStart <= charIndex && charIndex < chunk.speechEnd);
+      if (hit && hit.index >= index) showSyncedIndex(hit.index);
+    });
+    controller.on('end', event => {
+      if (!playing || speechMode() !== 'sync' || !activeSpeech) return;
+      if (event.detail.generation !== activeSpeech.generation) return;
+      clearSpeechVisualTimers();
+      const finished = activeSpeech;
+      activeSpeech = null;
+      if (finished.type === 'sentence') {
+        widthRead += finished.sentence.width;
+        index = Math.min(finished.sentence.lastIndex + 1, items.length - 1);
+      } else {
+        index = Math.min(finished.index + 1, items.length - 1);
+      }
+      continuePlayback();
+    });
+    controller.on('error', event => {
+      if (event.detail.code === 'canceled' || event.detail.code === 'interrupted') return;
+      if (speechMode() === 'off') return;
+      handleSpeechFailure(event.detail.code);
+    });
+    controller.on('modechange', () => render());
+    controller.on('ratechange', () => render());
+  }
+
   function setSize(i) { settings.size = clamp(i, 0, SIZE_LABELS.length - 1); persist(); rechunk(`文字 ${SIZE_LABELS[settings.size]}`); }
   function setMin(n) { settings.minChars = n; persist(); rechunk(n === 1 ? '文節ごと' : `最少${n}字`); }
   function stepMin(delta) { setMin(MIN_STEPS[clamp(MIN_STEPS.indexOf(settings.minChars) + delta, 0, MIN_STEPS.length - 1)]); }
@@ -1102,6 +1511,9 @@
 
   function closeStage() {
     pause();
+    speechController()?.cancel?.();
+    clearSpeechVisualTimers();
+    activeSpeech = null;
     clearTimeout(timer);
     stopElapsedClock();
     clearTimeout(idleTimer);
@@ -1211,8 +1623,8 @@
       case 'k': case 'K': toggle(); break;
       case forward: event.shiftKey ? nextSentence() : step(1); break;
       case backward: event.shiftKey ? prevSentence() : step(-1); break;
-      case 'ArrowUp': setSpeed(settings.speed + SPEED_STEP); break;
-      case 'ArrowDown': setSpeed(settings.speed - SPEED_STEP); break;
+      case 'ArrowUp': stepPrimarySpeed(1); break;
+      case 'ArrowDown': stepPrimarySpeed(-1); break;
       case '+': case '=': setSize(settings.size + 1); break;
       case '-': case '_': setSize(settings.size - 1); break;
       case '[': stepMin(-1); break;
@@ -1231,6 +1643,7 @@
       case '?': toggleHelp(); break;
       case 'Escape':
         if (!els.speedPicker.hidden) toggleSpeedPicker(false);
+        else if (!els.speechSheet.hidden) toggleSpeechSheet(false);
         else if (!els.help.hidden) toggleHelp(false);
         else if (!els.sheet.hidden) toggleSheet(false);
         else stopAndReturn();
@@ -1301,9 +1714,13 @@
   document.addEventListener('myessays:reading-location-changed', attach); // 帯は後から作られる
 
   function closeWithoutLanding() {
+    speechController()?.cancel?.();
+    clearSpeechVisualTimers();
+    activeSpeech = null;
     if (!stage?.open) return;
     closeStage();
     items = [];
+    sentenceMap = new Map();
   }
   window.addEventListener('hashchange', closeWithoutLanding);
   document.addEventListener('myessays:reader-version-changed', closeWithoutLanding);
@@ -1319,7 +1736,8 @@
       text: items[index]?.text, locator: items[index]?.unit?.locator,
       capacity, msPerMora: Math.round(msPerMora), elapsedMs: Math.round(activePlayedMs()), settings: { ...settings }
     }),
-    items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
-    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, buildItems, retime, formatElapsed }
+    items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, spoken: item.spoken, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
+    speech: () => ({ supported: speechSupported(), ...speechState() }),
+    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, buildItems, buildSentenceMap, retime, formatElapsed }
   });
 })();

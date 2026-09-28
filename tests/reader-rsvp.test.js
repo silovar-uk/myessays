@@ -130,3 +130,19 @@ test('timing follows the speed and pauses grow with punctuation', () => {
   assert.ok(chunks.every(c => c.rest === 0));
   assert.equal(items.at(-1).kind, 'end');
 });
+
+
+test('RSVP speech integration keeps speech optional and sentence-scoped', () => {
+  const js = read('reader-rsvp.js');
+  const html = read('index.html');
+  assert.match(js, /spoken: reading\.spoken/);
+  assert.match(js, /function buildSentenceMap/);
+  assert.match(js, /function playSyncedSentence/);
+  assert.match(js, /function scheduleSentenceVisuals/);
+  assert.match(js, /SPEECH_MODE_LABELS = \{ off: '音声なし', sync: '声に合わせる', landmark: '耳の標識' \}/);
+  assert.match(js, /boundaryReliable/);
+  assert.match(js, /speechController\(\)\?\.cancel/);
+  assert.match(js, /音声を再生できません。流して読むだけで続けます/);
+  assert.match(html, /reader-rsvp-speech\.js\?v=20260928-1/);
+  assert.ok(html.indexOf('reader-rsvp-speech.js') < html.indexOf('reader-rsvp.js'));
+});
