@@ -7,9 +7,9 @@
   const PAUSE_LABELS = ['なし', '弱', '標準', '強'];
   const PAUSE_SCALE = [0, 0.5, 1, 1.6];
   const SPEED_MIN = 300;
-  const SPEED_MAX = 3000;
+  const SPEED_MAX = 4000;
   const SPEED_STEP = 50;
-  const SPEED_PRESETS = [400, 600, 800, 1000, 1200, 1500, 2000, 2500, 3000];
+  const SPEED_PRESETS = [400, 600, 800, 1000, 1200, 1500, 2000, 2500, 3000, 3500, 4000];
   const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false };
   const BEATS = { comma: 4, period: 8, paragraph: 12 };
   const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, figure: 0, skip: 900, end: 2600 };

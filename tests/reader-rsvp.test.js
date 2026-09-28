@@ -59,11 +59,11 @@ test('RSVP elapsed timer tracks active playback and stays visually quiet', () =>
   assert.match(css, /\.rsvp-stage\[data-state="playing"\] \.rsvp-elapsed\s*\{[^}]*opacity:\s*\.38/s);
 });
 
-test('RSVP speed picker reaches 3000 and keeps direct alternatives', () => {
+test('RSVP speed picker reaches 4000 and keeps direct alternatives', () => {
   const js = read('reader-rsvp.js');
   const css = read('reader-rsvp.css');
-  assert.match(js, /const SPEED_MAX = 3000;/);
-  assert.match(js, /SPEED_PRESETS = \[[^\]]*2000[^\]]*2500[^\]]*3000[^\]]*\]/);
+  assert.match(js, /const SPEED_MAX = 4000;/);
+  assert.match(js, /SPEED_PRESETS = \[[^\]]*3000[^\]]*3500[^\]]*4000[^\]]*\]/);
   assert.match(js, /speedRange\.type = 'range'/);
   assert.match(js, /rsvp-speed-picker/);
   assert.match(css, /\.rsvp-speed-value/);

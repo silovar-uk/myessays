@@ -57,3 +57,81 @@
     min-height: 38px;
   }
 }
+
+
+/* Read-finish transform: keep GPT secondary until the reader chooses it. */
+.reader-post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.reader-visualize-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, var(--line));
+  border-radius: 999px;
+  background: transparent;
+  color: color-mix(in srgb, var(--ink) 76%, var(--muted));
+  font: 700 11.5px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  letter-spacing: .025em;
+  cursor: pointer;
+  transition: transform .16s ease, background .16s ease, border-color .16s ease, color .16s ease, box-shadow .2s ease;
+}
+
+.reader-visualize-button:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--ink) 34%, var(--line));
+  background: rgba(255,255,255,.42);
+  color: var(--ink);
+}
+
+.reader-visualize-button:active {
+  transform: translateY(0) scale(.985);
+}
+
+.reader-visualize-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, #5b89a9 30%, transparent);
+  outline-offset: 4px;
+}
+
+.reader-visualize-status {
+  min-height: 14px;
+  margin: 5px 0 0 !important;
+  color: var(--muted) !important;
+  font: 600 9px/1.4 Inter, "Hiragino Sans", sans-serif !important;
+}
+
+.reader-visualize-status:empty {
+  display: none;
+}
+
+.reader-resonance.just-completed .reader-visualize-button {
+  animation: reader-visualize-awake .72s ease-out both;
+}
+
+@keyframes reader-visualize-awake {
+  0% { box-shadow: 0 0 0 0 rgba(91,137,169,0); }
+  45% { box-shadow: 0 0 0 6px rgba(91,137,169,.10), 0 8px 22px rgba(91,137,169,.08); }
+  100% { box-shadow: 0 0 0 0 rgba(91,137,169,0); }
+}
+
+@media (max-width: 420px) {
+  .reader-post-actions { gap: 7px; }
+  .reader-visualize-button {
+    min-height: 44px;
+    padding-inline: 12px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-visualize-button { transition: none; }
+  .reader-resonance.just-completed .reader-visualize-button { animation: none; }
+}
