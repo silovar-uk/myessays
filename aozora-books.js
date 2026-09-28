@@ -10,6 +10,8 @@
   let dbPromise = null;
   let current = null;
   let importing = false;
+  let shelfRows = [];
+  let restoreShelfFocus = true;
 
   const parser = () => window.MyEssaysAozoraParser;
   const source = () => window.MyEssaysAozoraSource;
@@ -64,6 +66,34 @@
     }
   }
 
+  function writeReadingState(id, patch = {}) {
+    if (!id) return;
+    try {
+      localStorage.setItem(READING_PREFIX + id, JSON.stringify({ ...readingState(id), ...patch }));
+    } catch {}
+  }
+
+  function markBookAccessed(id) {
+    writeReadingState(id, { lastBookOpenedAt: new Date().toISOString() });
+  }
+
+  function progressRatio(record) {
+    const value = Number(readingState(record?.id).lastProgressRatio);
+    if (!Number.isFinite(value)) return null;
+    return Math.max(0, Math.min(1, value));
+  }
+
+  function bookActivityTime(record) {
+    const state = readingState(record?.id);
+    return String(state.lastBookOpenedAt || state.openedAt || record?.updatedAt || record?.importedAt || '');
+  }
+
+  function isResumeCandidate(record) {
+    const state = readingState(record?.id);
+    if (state.completedAt) return false;
+    return Boolean(state.lastBookOpenedAt || state.openedAt || Number.isFinite(Number(state.lastProgressRatio)));
+  }
+
   function recordToEssay(record) {
     if (!record?.document) return null;
     const metrics = parser()?.metrics?.(record.document) || { charCount: 0, minutes: 1 };
@@ -93,6 +123,7 @@
 
   async function getEssay(id) {
     const record = await get(id);
+    if (record) markBookAccessed(id);
     current = recordToEssay(record);
     return current;
   }
@@ -288,54 +319,173 @@
   }
 
   function formatProgress(record) {
-    const value = readingState(record.id);
-    if (!Number.isFinite(Number(value.lastProgressRatio))) return '';
-    return Math.round(Number(value.lastProgressRatio) * 100) + '%';
+    const value = progressRatio(record);
+    if (value == null) return '';
+    return Math.round(value * 100) + '%';
+  }
+
+  function resumeCandidate(rows) {
+    return rows
+      .filter(isResumeCandidate)
+      .sort((a, b) => bookActivityTime(b).localeCompare(bookActivityTime(a)))[0] || null;
+  }
+
+  function closeShelfDialog({ restoreFocus = true } = {}) {
+    const dialog = document.getElementById('booksShelfDialog');
+    restoreShelfFocus = restoreFocus;
+    if (dialog?.open) dialog.close();
+  }
+
+  function navigateBook(id) {
+    closeShelfDialog({ restoreFocus: false });
+    window.MyEssaysRoute?.navigateBook?.(id);
+  }
+
+  function makeBookRow(record) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'books-row';
+    button.dataset.bookId = record.id;
+
+    const copy = document.createElement('span');
+    copy.className = 'books-row-copy';
+    const title = document.createElement('strong');
+    title.textContent = record.document?.title || '名称未設定';
+    const author = document.createElement('span');
+    author.textContent = record.document?.author || '著者名なし';
+    copy.append(title, author);
+
+    const progress = document.createElement('span');
+    progress.className = 'books-row-progress';
+    progress.textContent = formatProgress(record) || '読む';
+
+    button.append(copy, progress);
+    button.addEventListener('click', () => navigateBook(record.id));
+    return button;
+  }
+
+  function renderResume(record) {
+    const section = document.getElementById('aozoraResumeSection');
+    const button = document.getElementById('aozoraResumeButton');
+    if (!section || !button) return;
+
+    if (!record) {
+      section.hidden = true;
+      button.dataset.bookId = '';
+      return;
+    }
+
+    const title = record.document?.title || '名称未設定';
+    const author = record.document?.author || '著者名なし';
+    const progress = formatProgress(record);
+
+    document.getElementById('aozoraResumeTitle').textContent = title;
+    document.getElementById('aozoraResumeAuthor').textContent = author;
+    document.getElementById('aozoraResumeProgress').textContent = progress || '続きから';
+    button.dataset.bookId = record.id;
+    button.setAttribute('aria-label', progress ? `${title}の続きを読む、${progress}` : `${title}の続きを読む`);
+    section.hidden = false;
+  }
+
+  function updateShelfTrigger(rows, resume) {
+    const trigger = document.getElementById('bookshelfTrigger');
+    const badge = document.getElementById('bookshelfTriggerProgress');
+    if (!trigger || !badge) return;
+
+    trigger.dataset.hasBooks = rows.length ? 'true' : 'false';
+    if (!rows.length) {
+      trigger.setAttribute('aria-label', '本棚。青空文庫から本を追加');
+      badge.hidden = true;
+      badge.textContent = '';
+      return;
+    }
+
+    if (resume) {
+      const progress = formatProgress(resume);
+      const title = resume.document?.title || '本';
+      trigger.setAttribute('aria-label', progress
+        ? `本棚。${title}の続きを読む、${progress}`
+        : `本棚。${title}の続きを読む`);
+      badge.textContent = progress || '•';
+      badge.hidden = false;
+      return;
+    }
+
+    trigger.setAttribute('aria-label', `本棚。${rows.length}冊保存済み`);
+    badge.hidden = true;
+    badge.textContent = '';
   }
 
   async function refreshShelf() {
     const list = document.getElementById('aozoraBookList');
-    if (!list) return;
     let rows = [];
-    try { rows = await all(); }
-    catch (error) {
-      list.replaceChildren();
-      list.append(Object.assign(document.createElement('p'), { className: 'books-empty', textContent: error?.message || '本棚を読み込めませんでした' }));
-      return;
+    try {
+      rows = await all();
+    } catch (error) {
+      shelfRows = [];
+      updateShelfTrigger([], null);
+      if (list) {
+        list.replaceChildren();
+        list.append(Object.assign(document.createElement('p'), {
+          className: 'books-empty',
+          textContent: error?.message || '本棚を読み込めませんでした'
+        }));
+      }
+      return [];
     }
 
     rows.sort((a, b) => String(b.updatedAt || b.importedAt || '').localeCompare(String(a.updatedAt || a.importedAt || '')));
+    shelfRows = rows;
+
+    const resume = resumeCandidate(rows);
+    updateShelfTrigger(rows, resume);
+    renderResume(resume);
+
+    const count = document.getElementById('aozoraBookCount');
+    if (count) count.textContent = rows.length + '冊';
+
+    if (!list) return rows;
     list.replaceChildren();
 
     if (!rows.length) {
       list.append(Object.assign(document.createElement('p'), {
         className: 'books-empty',
-        textContent: 'まだ本はありません。青空文庫の図書カードURLを貼ると、ここから続きが読めます。'
+        textContent: 'まだ本はありません。青空文庫から追加できます。'
       }));
+      document.getElementById('aozoraSavedSection')?.removeAttribute('hidden');
+      return rows;
+    }
+
+    const remaining = resume ? rows.filter(record => record.id !== resume.id) : rows;
+    const savedSection = document.getElementById('aozoraSavedSection');
+    if (savedSection) savedSection.hidden = remaining.length === 0;
+
+    remaining.forEach(record => list.append(makeBookRow(record)));
+    return rows;
+  }
+
+  async function openShelfFromTrigger() {
+    const rows = await refreshShelf();
+    if (!rows.length) {
+      openImportDialog();
       return;
     }
 
-    rows.forEach(record => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'books-row';
-      button.dataset.bookId = record.id;
+    const dialog = document.getElementById('booksShelfDialog');
+    const trigger = document.getElementById('bookshelfTrigger');
+    if (!dialog || dialog.open) return;
 
-      const copy = document.createElement('span');
-      copy.className = 'books-row-copy';
-      const title = document.createElement('strong');
-      title.textContent = record.document?.title || '名称未設定';
-      const author = document.createElement('span');
-      author.textContent = record.document?.author || '著者名なし';
-      copy.append(title, author);
+    restoreShelfFocus = true;
+    dialog.showModal();
+    trigger?.setAttribute('aria-expanded', 'true');
 
-      const progress = document.createElement('span');
-      progress.className = 'books-row-progress';
-      progress.textContent = formatProgress(record) || '読む';
-
-      button.append(copy, progress);
-      button.addEventListener('click', () => window.MyEssaysRoute?.navigateBook?.(record.id));
-      list.append(button);
+    requestAnimationFrame(() => {
+      const resume = document.getElementById('aozoraResumeButton');
+      const firstBook = dialog.querySelector('.books-row');
+      const importButton = document.getElementById('aozoraImportButton');
+      if (resume && !document.getElementById('aozoraResumeSection')?.hidden) resume.focus();
+      else if (firstBook instanceof HTMLElement) firstBook.focus();
+      else importButton?.focus();
     });
   }
 
@@ -353,14 +503,36 @@
   }
 
   function init() {
-    const trigger = document.getElementById('aozoraImportButton');
+    const shelfTrigger = document.getElementById('bookshelfTrigger');
+    const shelfDialog = document.getElementById('booksShelfDialog');
+    const importTrigger = document.getElementById('aozoraImportButton');
     const dialog = document.getElementById('aozoraImportDialog');
     const form = document.getElementById('aozoraUrlForm');
     const input = document.getElementById('aozoraUrlInput');
     const fileInput = document.getElementById('aozoraFileInput');
     const fileButton = document.getElementById('aozoraFileButton');
 
-    trigger?.addEventListener('click', openImportDialog);
+    shelfTrigger?.addEventListener('click', openShelfFromTrigger);
+    document.getElementById('booksShelfClose')?.addEventListener('click', () => closeShelfDialog());
+    shelfDialog?.addEventListener('click', event => {
+      if (event.target === shelfDialog) closeShelfDialog();
+    });
+    shelfDialog?.addEventListener('close', () => {
+      shelfTrigger?.setAttribute('aria-expanded', 'false');
+      if (restoreShelfFocus) shelfTrigger?.focus();
+      restoreShelfFocus = true;
+    });
+
+    document.getElementById('aozoraResumeButton')?.addEventListener('click', event => {
+      const id = event.currentTarget?.dataset?.bookId;
+      if (id) navigateBook(id);
+    });
+
+    importTrigger?.addEventListener('click', () => {
+      closeShelfDialog({ restoreFocus: false });
+      requestAnimationFrame(openImportDialog);
+    });
+
     document.getElementById('aozoraImportClose')?.addEventListener('click', closeImportDialog);
     dialog?.addEventListener('click', event => {
       if (event.target === dialog && !importing) closeImportDialog();
@@ -391,7 +563,7 @@
   }
 
   window.MyEssaysAozoraBooks = Object.freeze({
-    version: '2026.09.27-url',
+    version: '2026.09.28-quiet-bookshelf',
     getEssay,
     currentEssay,
     clearCurrent,
@@ -399,6 +571,7 @@
     importFile,
     importUrl,
     refreshShelf,
+    openShelfFromTrigger,
     openImportDialog
   });
 
