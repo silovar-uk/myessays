@@ -123,7 +123,7 @@ ${notes.text}${omittedNote}
     return `以下の記事を読み、その内容を1枚の情報画像として再構成してください。
 
 記事タイトル:
-${essay?.title || document.title.replace(/\\s*\\|\\s*My Essays\\s*$/, '')}
+${essay?.title || document.title.replace(/\s*\|\s*My Essays\s*$/, '')}
 
 記事URL:
 ${articleUrl(essay)}
