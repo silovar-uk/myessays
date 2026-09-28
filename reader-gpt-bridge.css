@@ -135,3 +135,64 @@
   .reader-visualize-button { transition: none; }
   .reader-resonance.just-completed .reader-visualize-button { animation: none; }
 }
+
+
+/* Article entry: offer the same visualization action before reading. */
+.reader-intro-visualize {
+  display: grid;
+  justify-items: start;
+  gap: 3px;
+  margin-top: 10px;
+}
+
+.reader-intro-visualize-button {
+  min-height: 38px;
+  padding-inline: 12px;
+  font-size: 11px;
+}
+
+/* Reading completion: a direct route back to the Library top. */
+.reader-top-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, var(--line));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted) !important;
+  font: 700 11.5px/1 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  letter-spacing: .025em;
+  text-decoration: none !important;
+  transition: transform .16s ease, background .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.reader-top-return-button:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--ink) 30%, var(--line));
+  background: rgba(255,255,255,.42);
+  color: var(--ink) !important;
+}
+
+.reader-top-return-button:active {
+  transform: translateY(0) scale(.985);
+}
+
+.reader-top-return-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, #5b89a9 30%, transparent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 420px) {
+  .reader-top-return-button {
+    min-height: 44px;
+    padding-inline: 12px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-top-return-button { transition: none; }
+}
