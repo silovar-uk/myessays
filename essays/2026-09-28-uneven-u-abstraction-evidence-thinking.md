@@ -7,7 +7,7 @@ updated: "2026-09-28"
 type: "リサーチエッセイ"
 status: "完成"
 tags: ["文章術", "アカデミックライティング", "論証", "構造化", "エリック・ハイヨ"]
-keywords: ["Uneven U", "Eric Hayot", "The Elements of Academic Style", "抽象度", "具体例", "論証", "semantic waves"]
+keywords: ["不均等なU字", "エリック・ハイヨ", "アカデミック・スタイルの要素", "抽象度", "具体例", "論証", "意味の波"]
 grow: 5
 abstract: "エリック・ハイヨが『アカデミック・スタイルの要素』で示した「不均等なU字（Uneven U）」は、文章を抽象から具体へ降ろし、証拠を通過したあと、出発点より一段高い抽象へ戻す構造である。本稿では五つの水準、典型的な4→3→2→1→3→4→5、段落から論文全体へ拡張する自己相似性、背景となる「書くことは考えること」という立場、類似概念との違い、批判と限界、実務での使い方まで整理する。"
 ---
@@ -43,7 +43,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 ゆえに、この五段階を使うときに問うべきは「この文は3か4か」ではない。「この文は前の文より証拠へ近づいたのか、それとも意味を広げたのか」である。水準を正確に当てることより、**文章がどちらへ動いているかを読むこと**のほうが重要になる。数値化しているように見えて、実は運動を見るための概念なのだ。
 
-参照：[Eric Hayot, *The Elements of Academic Style*（Columbia University Press）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/) ／ [University of Wisconsin–Madison Writing Center「Revision Strategies for Longer Projects」](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
+参照：[エリック・ハイヨ『アカデミック・スタイルの要素』（コロンビア大学出版局）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/) ／ [ウィスコンシン大学マディソン校ライティングセンター「長文プロジェクトの改稿戦略」（Revision Strategies for Longer Projects）](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
 
 ## 2. 「4→3→2→1→3→4→5」は型ではなく、認識を前進させる軌道である
 
@@ -57,7 +57,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 この見方に立つと、「具体例を入れなさい」という助言の意味も変わる。必要なのは具体例の有無ではない。具体例のあとで何が言えるようになったかである。証拠を置いただけの文章と、証拠によって考えが前進した文章との差は、U字の底ではなく、そこからの上り坂に現れる。
 
-参照：[Eric Hayot, *The Elements of Academic Style*, Chapter 8 “The Uneven U”](https://doi.org/10.7312/hayo16800-008) ／ [University of Wisconsin–Madison Writing Center「Revision Strategies for Longer Projects」](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
+参照：[エリック・ハイヨ『アカデミック・スタイルの要素』第8章「不均等なU字」（The Uneven U）](https://doi.org/10.7312/hayo16800-008) ／ [ウィスコンシン大学マディソン校ライティングセンター「長文プロジェクトの改稿戦略」（Revision Strategies for Longer Projects）](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
 
 ## 3. 段落末を「まとめ」にすると止まり、「新しく言えること」にすると進む
 
@@ -81,7 +81,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 したがって、全体構成を作るときには「第1段落はA、第2段落はB、第3段落はC」と話題だけを並べるより、「Aを検討した結果Bが問題になり、Bを検討した結果Cが言える」という接続を作るほうが強い。**不均等なU字は段落の形ではなく、前の到達点を次の未解決問題へ変える連鎖の原理**として読むことができる。
 
-参照：[Eric Hayot, *The Elements of Academic Style*（Columbia University Press）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/) ／ [University of Wisconsin–Madison Writing Center「Revision Strategies for Longer Projects」](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
+参照：[エリック・ハイヨ『アカデミック・スタイルの要素』（コロンビア大学出版局）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/) ／ [ウィスコンシン大学マディソン校ライティングセンター「長文プロジェクトの改稿戦略」（Revision Strategies for Longer Projects）](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
 
 ## 5. この段落論の背景には、「書くことは考えを運ぶのでなく、考えを作る」という立場がある
 
@@ -93,7 +93,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 このため不均等なU字は、「うまく見える文章」の型以上のものになる。書き手は、段落末に達するまで完全な答えを持たなくてもよい。むしろ、証拠との摩擦を通じて答えを更新する。その余地を残すことが、ハイヨの本全体にある「早く全部を言い切らない」という構造観とも響き合っている。
 
-参照：[Washington University in St. Louis Center for the Humanities「Q&A with scholar Eric Hayot」](https://humanities.washu.edu/news/qa-scholar-eric-hayot) ／ [Columbia University Press, *The Elements of Academic Style*](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
+参照：[ワシントン大学セントルイス校人文学センター「研究者エリック・ハイヨへの一問一答」（Q&A with scholar Eric Hayot）](https://humanities.washu.edu/news/qa-scholar-eric-hayot) ／ [コロンビア大学出版局『アカデミック・スタイルの要素』（The Elements of Academic Style）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
 
 ## 6. 「抽象と具体の往復」という似姿はあるが、不均等なU字は修辞の設計図である
 
@@ -105,7 +105,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 ただし、確認できる資料の範囲では、意味の波を不均等なU字の起源や直接の理論的背景とみなす根拠はない。目的も違う。マトンは知識が教育実践の中でどう移動し蓄積されるかを分析する社会学的枠組みを作り、ハイヨは主として人文学の学術文章をどう配列するかという修辞上の技法を論じる。両者を並べる価値は「同じ理論だから」ではなく、**抽象と具体の往復が、文章構造と知識形成という別々の場所で重要になることを照らし合わせられるから**である。
 
-参照：[Karl Maton「Making semantic waves: A key to cumulative knowledge-building」](https://doi.org/10.1016/j.linged.2012.11.005) ／ [ERIC「Making Semantic Waves」書誌情報](https://eric.ed.gov/?id=EJ995527)
+参照：[カール・マトン「意味の波を作る――累積的な知識形成の鍵」（Making semantic waves: A key to cumulative knowledge-building）](https://doi.org/10.1016/j.linged.2012.11.005) ／ [教育資源情報センター（ERIC）「意味の波を作る」（Making Semantic Waves）書誌情報](https://eric.ed.gov/?id=EJ995527)
 
 ## 7. 最大の弱点は、便利すぎるため文章を「番号どおり」にしてしまえることである
 
@@ -119,7 +119,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 不均等なU字は、守れば良い文章になる規則ではなく、**文章が一つの高さに居座っていないかを発見する診断器**として使うほうが強い。抽象ばかりなら足場がない。具体ばかりなら意味が立ち上がらない。だが、すべての段落を同じ振幅で上下させれば、今度は文章全体の呼吸が単調になる。型を学ぶ目的は、型の存在を忘れられるところまで判断力を育てることにある。
 
-参照：[Hyperallergic「The ABC of Art Criticism: Some Recent How To's」](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/) ／ [Institute of Advanced Legal Studies「On form」](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025) ／ [Eric Hayot, *The Elements of Academic Style*](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
+参照：[ハイパーアレルジック（Hyperallergic）「美術批評のABC――近年のハウツー本」（The ABC of Art Criticism: Some Recent How To's）](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/) ／ [ロンドン大学高等法学研究所「形式について」（On form）](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025) ／ [エリック・ハイヨ『アカデミック・スタイルの要素』（The Elements of Academic Style）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
 
 ## 8. 実務では「書く前の型」より「書いた後の診断」に使うと強い
 
@@ -138,7 +138,7 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 不均等なU字を使う目的は、きれいな軌跡を描くことではない。改稿前には見えなかった「証拠不足」「解釈不足」「同じ結論の反復」「段落間の断絶」を、抽象度の動きとして見つけることである。**番号を付ける作業は一時的でよく、最後に残すべきなのは、文章が動いている感覚のほう**である。
 
-参照：[University of Wisconsin–Madison Writing Center「Revision Strategies for Longer Projects」](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
+参照：[ウィスコンシン大学マディソン校ライティングセンター「長文プロジェクトの改稿戦略」（Revision Strategies for Longer Projects）](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
 
 ## 9. 核心は具体へ降りることではなく、具体を通過して「別の高さ」へ戻ることにある
 
@@ -152,10 +152,10 @@ abstract: "エリック・ハイヨが『アカデミック・スタイルの要
 
 ## 参考資料
 
-- エリック・ハイヨ（Eric Hayot）『アカデミック・スタイルの要素――人文学のための書き方』（*The Elements of Academic Style: Writing for the Humanities*）, Columbia University Press, 2014. [出版社ページ](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
-- エリック・ハイヨ「第8章 不均等なU字」（“The Uneven U”）, pp.59–73. [章情報・DOI](https://doi.org/10.7312/hayo16800-008)
-- University of Wisconsin–Madison Writing Center「Revision Strategies for Longer Projects」. [不均等なU字を用いた改稿法](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
-- Washington University in St. Louis Center for the Humanities「Q&A with scholar Eric Hayot」, 2025. [書くことを「思考の技術」と捉える本人の説明](https://humanities.washu.edu/news/qa-scholar-eric-hayot)
-- Karl Maton, “Making semantic waves: A key to cumulative knowledge-building,” *Linguistics and Education*, 24(1), 2013, pp.8–22. [DOI](https://doi.org/10.1016/j.linged.2012.11.005)
-- Hyperallergic「The ABC of Art Criticism: Some Recent How To's」, 2015. [書評](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/)
-- Institute of Advanced Legal Studies「On form」, 2025. [体系化された文章形式としての批評的検討](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025)
+- エリック・ハイヨ（Eric Hayot）『アカデミック・スタイルの要素――人文学のための書き方』（The Elements of Academic Style: Writing for the Humanities。本稿による便宜的な訳称）、コロンビア大学出版局、2014年。[出版社ページ](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)
+- エリック・ハイヨ「第8章 不均等なU字」（The Uneven U）、59–73頁。[章情報・DOI](https://doi.org/10.7312/hayo16800-008)
+- ウィスコンシン大学マディソン校ライティングセンター「長文プロジェクトの改稿戦略」（Revision Strategies for Longer Projects）。[不均等なU字を用いた改稿法](https://writing.wisc.edu/handbook/processandstructure/revisinglongprojects/)
+- ワシントン大学セントルイス校人文学センター「研究者エリック・ハイヨへの一問一答」（Q&A with scholar Eric Hayot）、2025年。[書くことを「思考の技術」と捉える本人の説明](https://humanities.washu.edu/news/qa-scholar-eric-hayot)
+- カール・マトン（Karl Maton）「意味の波を作る――累積的な知識形成の鍵」（Making semantic waves: A key to cumulative knowledge-building）、『言語学と教育』（Linguistics and Education）24巻1号、2013年、8–22頁。[DOI](https://doi.org/10.1016/j.linged.2012.11.005)
+- ハイパーアレルジック（Hyperallergic）「美術批評のABC――近年のハウツー本」（The ABC of Art Criticism: Some Recent How To's）、2015年。[書評](https://hyperallergic.com/the-abc-of-art-criticism-some-recent-how-tos/)
+- ロンドン大学高等法学研究所「形式について」（On form）、2025年。[体系化された文章形式としての批評的検討](https://ials.sas.ac.uk/law-humanities-hub/blogs/form-14th-january-2025)
