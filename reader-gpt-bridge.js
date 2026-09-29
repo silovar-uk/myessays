@@ -150,6 +150,51 @@ ${articleSummary(essay)}
 最終的に画像を生成してください。`;
   }
 
+
+  function buildSequelPrompt(essay) {
+    return `以下の記事を読み、その記事から自然に生まれる「続編」にあたる新しい1本の記事を作ってください。
+
+記事タイトル:
+${essay?.title || document.title.replace(/\s*\|\s*My Essays\s*$/, '')}
+
+記事URL:
+${articleUrl(essay)}
+
+記事の要約:
+${articleSummary(essay)}
+
+【続編の考え方】
+原記事を単純に長くしたり、同じ説明を言い換えたりしないでください。
+続編とは「前の記事の続きを書く」ことではなく、「前の記事によって生まれた次の問いへ進む」こととして扱ってください。
+
+まず内部で次を整理してください。
+1. 原記事がすでに答えたこと
+2. 原記事が意図的・非意図的に残した未解決点
+3. 原記事から自然につながる周辺論点
+4. 読者の理解を一段進める問い
+5. 単なる焼き直しにならない続編の中心命題
+
+そのうえで、最も価値の高い1つの方向を選び、ユーザーへ複数案を選ばせず、そのまま調査と執筆まで進めてください。
+
+【進め方】
+- リサーチ → 構造化 → 不足点の特定 → 再リサーチ → 記事構成 → 執筆 → 事実確認 → 推敲、の順で進めてください。
+- 必要な場合はWebで再調査し、時点によって変わる情報は最新情報を確認してください。
+- 可能な限り一次情報・公式資料・原典を優先してください。
+- 続編単体でも意味が分かるようにしてください。
+- 冒頭で原記事を長々と要約せず、続編に必要な前提だけを短く示してください。
+- 原記事と同じ結論をもう一度証明するだけの記事は禁止です。
+- 「原記事を読んだあとだからこそ生まれる問い」を扱ってください。
+- 日本語は自然な日本語にし、不要な英語の翻訳語をそのまま残さないでください。
+- 固有名詞や定着した専門用語で原語が有用な場合は、日本語名称の後ろに括弧で添えてください。
+- 初見の読者にも理解できるよう、「そもそも → 具体的な事実 → そこから分かること → 一段抽象化した意味」を往復してください。
+- 各段落を単調な「主張 → 例 → まとめ」だけにせず、抽象度が不均等に上下しながら思考が前進する構成にしてください。
+- 重要な外部情報には出典URLを付けてください。
+- 最後は単なるまとめではなく、「この続編によって、原記事の見え方がどう変わったか」まで到達してください。
+- タイトルも新しく付けてください。「続編」「Part 2」を付けただけのタイトルは禁止です。
+
+最終的に、完成した記事本文を出力してください。`;
+  }
+
   function copyPrompt(text) {
     if (navigator.clipboard?.writeText) return navigator.clipboard.writeText(text);
     return new Promise((resolve, reject) => {
@@ -188,6 +233,23 @@ ${articleSummary(essay)}
       announceVisualization(
         root,
         copied ? '画像化の指示をコピーしてChatGPTを開きました' : 'ChatGPTを開きました',
+        'success'
+      );
+    });
+  }
+
+
+  function openArticleSequel(root) {
+    const essay = essayNow();
+    const prompt = buildSequelPrompt(essay);
+    const url = `https://chatgpt.com/?prompt=${encodeURIComponent(prompt)}`;
+    const copyTask = copyPrompt(prompt).then(() => true).catch(() => false);
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+    copyTask.then(copied => {
+      announceVisualization(
+        root,
+        copied ? '続編の指示をコピーしてChatGPTを開きました' : 'ChatGPTを開きました',
         'success'
       );
     });
@@ -243,6 +305,19 @@ ${articleSummary(essay)}
     return button;
   }
 
+
+  function sequelButton(root) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'reader-sequel-button';
+    button.dataset.gptSequel = '1';
+    button.innerHTML = '<span aria-hidden="true">→</span><span>GPTで続編</span>';
+    button.setAttribute('aria-label', 'この記事から次の問いを見つけてChatGPTで続編を作る');
+    button.title = '原記事が残した次の問いから、新しい記事を作る';
+    button.addEventListener('click', () => openArticleSequel(root));
+    return button;
+  }
+
   function visualizationStatus() {
     const status = document.createElement('p');
     status.className = 'reader-visualize-status';
@@ -287,8 +362,19 @@ ${articleSummary(essay)}
       actions.append(seal);
     }
 
-    actions.append(visualizationButton(root));
+    const expand = document.createElement('div');
+    expand.className = 'reader-expand';
+    const label = document.createElement('p');
+    label.className = 'reader-expand-label';
+    label.textContent = 'この記事から';
+    const expandActions = document.createElement('div');
+    expandActions.className = 'reader-expand-actions';
+    expandActions.append(visualizationButton(root), sequelButton(root));
+    expand.append(label, expandActions);
+    actions.append(expand);
 
+    const returns = document.createElement('div');
+    returns.className = 'reader-return-actions';
     const top = document.createElement('a');
     top.className = 'reader-top-return-button';
     top.href = '#/';
@@ -297,7 +383,8 @@ ${articleSummary(essay)}
     top.addEventListener('click', () => {
       window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
     });
-    actions.append(top);
+    returns.append(top);
+    actions.append(returns);
 
     stage.append(visualizationStatus());
   }
