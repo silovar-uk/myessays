@@ -111,37 +111,58 @@
     return out;
   }
 
-  // RSVP版の禁則処理。閉じ側の句読点だけを1フレームにしない。
-  // 前が満杯なら、直前の1文字を句読点側へ移して「か。」のような塊にする。
+  // RSVP版の禁則処理。閉じ側の句読点をチャンク先頭や単独フレームにしない。
+  // 前が満杯なら、直前の1文字を句読点側へ移して「か。」のような橋渡しチャンクを作る。
   function attachOrphanClosing(pieces, maxW) {
     const out = pieces.map(piece => ({ ...piece }));
+    const leadingClosing = new RegExp('^' + ORPHAN_CLOSING.source.slice(1, -1));
+
     for (let i = 1; i < out.length; i += 1) {
       const piece = out[i];
-      if (!ORPHAN_CLOSING.test(piece.text.trim())) continue;
+      const match = piece.text.match(leadingClosing);
+      if (!match) continue;
 
+      const closing = match[0];
       const last = out[i - 1];
-      if (widthOf((last.text + piece.text).trim()) <= maxW) {
-        last.text += piece.text;
-        last.end = piece.end;
-        out.splice(i, 1);
-        i -= 1;
+
+      if (widthOf((last.text + closing).trim()) <= maxW) {
+        last.text += closing;
+        last.end += closing.length;
+        piece.text = piece.text.slice(closing.length);
+        piece.start += closing.length;
+        if (!piece.text) {
+          out.splice(i, 1);
+          i -= 1;
+        }
         continue;
       }
 
       const chars = Array.from(last.text);
       const tail = chars.pop();
-      if (!tail) continue;
-      const moved = tail + piece.text;
-      if (widthOf(moved.trim()) > maxW) continue;
+      if (!tail || widthOf((tail + closing).trim()) > maxW) continue;
 
+      const boundary = piece.start;
       last.text = chars.join('');
       last.end -= tail.length;
-      piece.text = moved;
-      piece.start -= tail.length;
+
+      const bridge = {
+        text: tail + closing,
+        start: boundary - tail.length,
+        end: boundary + closing.length
+      };
+      piece.text = piece.text.slice(closing.length);
+      piece.start += closing.length;
 
       if (!last.text.trim()) {
         out.splice(i - 1, 1);
         i -= 1;
+      }
+
+      if (piece.text) {
+        out.splice(i, 0, bridge);
+        i += 1;
+      } else {
+        out[i] = bridge;
       }
     }
     return out;
