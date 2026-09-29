@@ -104,6 +104,33 @@ test('phrases merge up to the minimum and close at punctuation', () => {
   assert.deepEqual(Array.from(lib.mergeChunks(pieces(['本当に', '納得していたか。']), 6, 10), c => c.text), ['本当に', '納得していたか。']);
 });
 
+test('RSVP never strands closing punctuation as its own frame', () => {
+  const lib = loadLib();
+
+  const normalized = Array.from(lib.attachOrphanClosing(pieces(['あいうえおか', '。']), 6));
+  assert.deepEqual(normalized.map(p => p.text), ['あいうえお', 'か。']);
+  assert.ok(normalized.every(p => lib.widthOf(p.text) <= 6));
+  assert.deepEqual(normalized.map(p => [p.start, p.end]), [[0, 5], [5, 7]]);
+
+  const cases = [
+    ['これは文章です。', text => text.split(/(?=。)/)],
+    ['え、本当に？', text => text.split(/(?=[、？])/)],
+    ['違う！', text => text.split(/(?=!)/)]
+  ];
+  for (const [text, split] of cases) {
+    const items = lib.buildItems([{ kind: 'text', text }], split, { minW: 1, maxW: 6 });
+    const chunks = Array.from(items).filter(item => item.type === 'chunk');
+    assert.ok(chunks.every(chunk => !/^[、。，．,！？!?;；:：」』）)\]】》〉〕〗〙〛”"’…―]+$/.test(chunk.text)), chunks.map(c => c.text).join('|'));
+    assert.equal(chunks.map(c => c.text).join(''), text);
+    assert.ok(chunks.every(chunk => chunk.width <= 6), chunks.map(c => c.text).join('|'));
+  }
+
+  const periodItems = lib.buildItems([{ kind: 'text', text: 'そう思った。' }], text => text.split(/(?=。)/), { minW: 1, maxW: 6 });
+  const periodChunks = Array.from(periodItems).filter(item => item.type === 'chunk');
+  assert.equal(periodChunks.at(-1).text.endsWith('。'), true);
+  assert.equal(periodChunks.at(-1).pause, 'paragraph');
+});
+
 test('sentences, English words, katakana compounds and numbers split safely', () => {
   const lib = loadLib();
   const text = '約60.72kmある。37.73 miles. 公式ガイドがはっきり書いている。';
