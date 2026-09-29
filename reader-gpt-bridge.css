@@ -61,14 +61,42 @@
 
 /* Read-finish transform: keep GPT secondary until the reader chooses it. */
 .reader-post-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.reader-expand {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 286px);
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.reader-expand-label {
+  margin: 0 !important;
+  color: color-mix(in srgb, var(--muted) 82%, transparent) !important;
+  font: 650 11px/1.4 Inter, "Hiragino Sans", "Yu Gothic UI", sans-serif !important;
+  letter-spacing: .055em !important;
+}
+
+.reader-expand-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
   gap: 8px;
 }
 
-.reader-visualize-button {
+.reader-return-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.reader-visualize-button,
+.reader-sequel-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -85,18 +113,21 @@
   transition: transform .16s ease, background .16s ease, border-color .16s ease, color .16s ease, box-shadow .2s ease;
 }
 
-.reader-visualize-button:hover {
+.reader-visualize-button:hover,
+.reader-sequel-button:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--ink) 34%, var(--line));
   background: rgba(255,255,255,.42);
   color: var(--ink);
 }
 
-.reader-visualize-button:active {
+.reader-visualize-button:active,
+.reader-sequel-button:active {
   transform: translateY(0) scale(.985);
 }
 
-.reader-visualize-button:focus-visible {
+.reader-visualize-button:focus-visible,
+.reader-sequel-button:focus-visible {
   outline: 3px solid color-mix(in srgb, #5b89a9 30%, transparent);
   outline-offset: 4px;
 }
@@ -112,7 +143,8 @@
   display: none;
 }
 
-.reader-resonance.just-completed .reader-visualize-button {
+.reader-resonance.just-completed .reader-visualize-button,
+.reader-resonance.just-completed .reader-sequel-button {
   animation: reader-visualize-awake .72s ease-out both;
 }
 
@@ -123,17 +155,27 @@
 }
 
 @media (max-width: 420px) {
-  .reader-post-actions { gap: 7px; }
-  .reader-visualize-button {
+  .reader-post-actions { gap: 10px; }
+  .reader-expand-actions { gap: 7px; }
+  .reader-visualize-button,
+  .reader-sequel-button {
     min-height: 44px;
-    padding-inline: 12px;
+    padding-inline: 10px;
     font-size: 11px;
   }
 }
 
+@media (max-width: 350px) {
+  .reader-expand-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .reader-visualize-button { transition: none; }
-  .reader-resonance.just-completed .reader-visualize-button { animation: none; }
+  .reader-visualize-button,
+  .reader-sequel-button { transition: none; }
+  .reader-resonance.just-completed .reader-visualize-button,
+  .reader-resonance.just-completed .reader-sequel-button { animation: none; }
 }
 
 
