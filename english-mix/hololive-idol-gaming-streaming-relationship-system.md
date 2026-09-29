@@ -225,3 +225,27 @@ global expansionの難しさは、2020年の台湾をめぐる問題に凝縮さ
 
 ## 参考資料
 
+- カバー株式会社「会社情報・沿革」: https://cover-corp.com/company
+- カバー株式会社「バーチャルユーチューバー（VTuber）プロダクション運営」: https://cover-corp.com/business/vtuber
+- カバー株式会社「事業紹介」: https://cover-corp.com/en/business
+- カバー株式会社「キャラクターに会えるライブ視聴アプリ hololive 提供開始」: https://cover-corp.com/news/detail/20171221
+- カバー株式会社「ホロライブ バーチャルユーチューバー（VTuber）向けなりきりアプリへリニューアル」: https://cover-corp.com/news/detail/20180405
+- カバーエッジ（COVERedge）「取締役・最高技術責任者（CTO）が語るバーチャルユーチューバー（VTuber）・ホロアース・技術」: https://coveredge.cover-corp.com/en/list/964
+- キズナアイ公式「経歴（BIOGRAPHY）」: https://kizunaai.com/biography/
+- ホロライブプロダクション「二次創作ガイドライン（fan derivative works guidelines）」: https://hololivepro.com/terms/
+- カバー株式会社「弊社における無許諾配信の不手際のお詫び」: https://cover-corp.com/news/detail/20200605
+- カバー株式会社「権利者様の許諾を得られていない著作物使用に関するお詫び」: https://cover-corp.com/news/detail/20200730
+- カバー株式会社「任天堂株式会社の著作物に関する包括的使用許諾契約」: https://cover-corp.com/news/detail/20200801
+- アイティメディアニュース（ITmedia NEWS）「ホロライブ、所属バーチャルユーチューバー（VTuber）に不適切な言動あったと謝罪」: https://www.itmedia.co.jp/news/article/2009/28/1200928135/
+- アイティメディアニュース（ITmedia NEWS）「中国向けの発表は強く言及しないと解決が難しかった」: https://www.itmedia.co.jp/news/article/2009/30/1200930142/
+- 公正取引委員会「カバー株式会社に対する勧告等について」: https://www.jftc.go.jp/houdou/pressrelease/2024/oct/241025_cover.html
+- カバー株式会社公式ノート（note）「配信活動終了（conclusion of streaming activities）について」: https://note.cover-corp.com/n/ne3a8b7a553c0
+- アイティメディアニュース（ITmedia NEWS）「24年はバーチャルユーチューバー（VTuber）卒業ラッシュ？」: https://www.itmedia.co.jp/news/article/2412/12/1241212133/
+- アイティメディアニュース（ITmedia NEWS）「卒業ラッシュにカバー谷郷社長がコメント」: https://www.itmedia.co.jp/news/article/2505/13/1250513180/
+- マッコーリー大学（Macquarie University）『仮想世界における新しい協働（New collaboration in a virtual world）』: https://figshare.mq.edu.au/articles/thesis/New_collaboration_in_a_virtual_world_studying_Vtubers_through_identity_gender_and_fan_engagement/22197799/1
+- カバー株式会社「2025年度の誹謗中傷等への対応」: https://cover-corp.com/en/news/detail/c2026043001
+- カバー株式会社「ホロライブドリームズ（hololive Dreams）正式サービス開始」: https://cover-corp.com/news/detail/20260723-01
+- カバー株式会社「ホロアース サービス終了」: https://cover-corp.com/news/detail/20260514-01
+- カバー株式会社「スタジオ・ステラ（Studio STELLAR）設立」: https://cover-corp.com/news/detail/c2026032201
+- カバー株式会社「ホロスターズ運営体制の変更」: https://cover-corp.com/news/detail/c2026040301
+- カバー株式会社「9周年・10周年プロジェクト」: https://cover-corp.com/news/detail/20260907-01
