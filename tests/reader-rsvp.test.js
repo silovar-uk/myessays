@@ -120,7 +120,7 @@ test('RSVP never strands closing punctuation as its own frame', () => {
   for (const [text, split] of cases) {
     const items = lib.buildItems([{ kind: 'text', text }], split, { minW: 1, maxW: 6 });
     const chunks = Array.from(items).filter(item => item.type === 'chunk');
-    assert.ok(chunks.every(chunk => !/^[、。，．,！？!?;；:：」』）)\]】》〉〕〗〙〛”"’…―]+$/.test(chunk.text)), chunks.map(c => c.text).join('|'));
+    assert.ok(chunks.every(chunk => !/^[、。，．,！？!?;；:：」』）)\]】》〉〕〗〙〛”"’…―]/.test(chunk.text)), chunks.map(c => c.text).join('|'));
     assert.equal(chunks.map(c => c.text).join(''), text);
     assert.ok(chunks.every(chunk => chunk.width <= 6), chunks.map(c => c.text).join('|'));
   }
