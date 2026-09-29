@@ -26,6 +26,7 @@
   const CLOSE_PUNCT = /[、。，．,！？!?;；:：」』）)\]】”"’…―]\s*$/;
   const PERIOD_END = /(?:[。！？!?]+[」』）)\]】”"’]*|\.)$/;
   const COMMA_END = /[、，,;；:：…―]$/;
+  const ORPHAN_CLOSING = /^[、。，．,！？!?;；:：」』）)\]】》〉〕〗〙〛”"’…―]+$/;
   const SMALL_KANA = /[ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ]/;
 
   // ---------- 純粋な処理(テスト対象) ----------
@@ -110,6 +111,42 @@
     return out;
   }
 
+  // RSVP版の禁則処理。閉じ側の句読点だけを1フレームにしない。
+  // 前が満杯なら、直前の1文字を句読点側へ移して「か。」のような塊にする。
+  function attachOrphanClosing(pieces, maxW) {
+    const out = pieces.map(piece => ({ ...piece }));
+    for (let i = 1; i < out.length; i += 1) {
+      const piece = out[i];
+      if (!ORPHAN_CLOSING.test(piece.text.trim())) continue;
+
+      const last = out[i - 1];
+      if (widthOf((last.text + piece.text).trim()) <= maxW) {
+        last.text += piece.text;
+        last.end = piece.end;
+        out.splice(i, 1);
+        i -= 1;
+        continue;
+      }
+
+      const chars = Array.from(last.text);
+      const tail = chars.pop();
+      if (!tail) continue;
+      const moved = tail + piece.text;
+      if (widthOf(moved.trim()) > maxW) continue;
+
+      last.text = chars.join('');
+      last.end -= tail.length;
+      piece.text = moved;
+      piece.start -= tail.length;
+
+      if (!last.text.trim()) {
+        out.splice(i - 1, 1);
+        i -= 1;
+      }
+    }
+    return out;
+  }
+
   function rubyReadings(part) {
     try {
       const value = JSON.parse(part?.dataset?.rsvpReadingMap || '[]');
@@ -159,7 +196,7 @@
           pieces.push(...splitWide({ text: segment, start: at, end: at + segment.length }, maxW));
           at += segment.length;
         }
-        const chunks = mergeChunks(pieces, minW, maxW).filter(chunk => chunk.text.trim());
+        const chunks = attachOrphanClosing(mergeChunks(pieces, minW, maxW), maxW).filter(chunk => chunk.text.trim());
         chunks.forEach((chunk, ci) => {
           const text = chunk.text.trim();
           const lastInSentence = ci === chunks.length - 1;
@@ -1320,6 +1357,6 @@
       capacity, msPerMora: Math.round(msPerMora), elapsedMs: Math.round(activePlayedMs()), settings: { ...settings }
     }),
     items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
-    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, buildItems, retime, formatElapsed }
+    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, attachOrphanClosing, buildItems, retime, formatElapsed }
   });
 })();
