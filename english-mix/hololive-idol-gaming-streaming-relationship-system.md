@@ -165,3 +165,63 @@ global expansionの難しさは、2020年の台湾をめぐる問題に凝縮さ
 
 ホロライブEnglishの成功を見ると、海外展開は「日本のものを翻訳して出す」だけではなかった。英語圏・インドネシアなど、それぞれの言語とネット文化に根差す演者が中心になる。一方で、会社は一つのブランドとして各地域の法律、政治、platform rules、安全を同時に扱う。**globalizationとは市場が広がることではなく、the number of meanings attached to the same act increases**なのである。
 
+参照：[アイティメディアニュース（ITmedia NEWS）「ホロライブ、所属バーチャルユーチューバー（VTuber）に不適切な言動あったと謝罪」](https://www.itmedia.co.jp/news/article/2009/28/1200928135/) ／ [アイティメディアニュース（ITmedia NEWS）「中国向けの発表は強く言及しないと解決が難しかった」](https://www.itmedia.co.jp/news/article/2009/30/1200930142/) ／ [カバー「ホロライブ中国メンバーの卒業に関するお知らせ」](https://cover-corp.com/news/detail/20201112)
+
+## 10. 卒業が増えたときに見えるのは、「キャラクターは残せても、活動する人の時間は無限ではない」という限界である
+
+長期運営の難しさは、タレントの卒業や配信活動終了（conclusion of streaming activities）にも現れる。2024年には湊あくあが卒業し、沙花叉クロヱが配信活動終了（conclusion of streaming activities）を発表、セレス・ファウナも卒業を発表した。報道では、本人たちが会社との方向性の違い、稼働量などを理由として語った例が伝えられ、ファンの間では運営体制への疑問も出た。
+
+ただし、ここを「会社が忙しくさせすぎたから全員辞めた」と一本化すると、別の雑さが生まれる。2025年5月、谷郷元昭社長は決算説明会で、1期生開始から6年以上が経ち、各タレントのcareerやlife planningが変化する時期でもあると述べ、個々の事情を同一原因で扱わない認識を示した。本人が公表した理由がある場合はそれを尊重し、それ以上を推測しないのが最低限である。
+
+それでも、卒業が経営上の重要論点であることは変わらない。バーチャルユーチューバー（VTuber）の価値は、会社が保有・管理するキャラクター資産だけでは成立せず、長年活動してきた本人の声、判断、関係性、記憶に依存する。キャラクター設定だけを別の人へ渡せば同じ存在になる、という単純な工業製品ではない。
+
+カバー自身も退出の形を変え始めた。2024年に「配信活動終了（conclusion of streaming activities）」という区分を説明し、2026年には星街すいせいのpersonal agency「スタジオ・ステラ」（Studio STELLAR）を設け、ソロの音楽・配信・新規グッズなどをpersonal agency側へ移しつつ、ホロライブプロダクション所属としての共同活動は続ける新しい支援体制へ移行した。
+
+これは、成長の答えが常に「全員を同じ会社の同じ仕組みで抱える」ことではない可能性を示す。**タレントが大きくなるほど、プロダクション側もone-size-fits-all affiliation modelから、a system that allows multiple distances of affiliationへ変わらなければならない。** 卒業は終点の話であると同時に、所属とは何かを作り直す圧力でもある。
+
+参照：[アイティメディアニュース（ITmedia NEWS）「24年はバーチャルユーチューバー（VTuber）卒業ラッシュ？」](https://www.itmedia.co.jp/news/article/2412/12/1241212133/) ／ [アイティメディアニュース（ITmedia NEWS）「卒業ラッシュにカバー谷郷社長がコメント」](https://www.itmedia.co.jp/news/article/2505/13/1250513180/) ／ [カバー公式ノート（note）「配信活動終了（conclusion of streaming activities）について」](https://note.cover-corp.com/n/ne3a8b7a553c0) ／ [カバー「スタジオ・ステラ（Studio STELLAR）設立」](https://cover-corp.com/news/detail/c2026032201)
+
+## 11. 「距離が近すぎる」という批判は半分正しいが、ファンを受け身の消費者とみなすと別の半分を落とす
+
+バーチャルユーチューバー（VTuber）文化を批判するとき、よく出てくるのが「距離が近すぎる」「pseudo-romanceを売っている」という見方である。確かに、名前を呼ばれる、paid messageを読んでもらう、毎日の雑談を聞く、誕生日を祝うといった仕組みは、テレビのスターより個人的な親密さを感じやすい。メディア研究では、受け手がメディア上の人物へone-way sense of intimacyを持つ現象を、パラソーシャル関係（parasocial relationship）という概念で扱ってきた。
+
+ただし、「一方向だから偽物」「親密だから危険」と短絡すると、現在のファン文化は説明しきれない。ファンは配信を見るだけでなく、切り抜きを編集し、字幕を付け、絵を描き、曲を演奏し、fan gameを作り、別のファンへ文脈を説明する。ホロライブイングリッシュ（hololive English）を研究したマッコーリー大学の2022年修士論文は、単純な一方向的関係だけではなく、ファンとバーチャルユーチューバー（VTuber）が互いの創作活動を促す「共生的な共同創造（symbiotic co-creativity）」という見方を提案している。これは一つの研究上の提案であり、すべてのfan relationshipを説明する確定理論ではない。
+
+一方、親密さが強いからこそ、boundary violationも現実になる。根拠のない噂、誹謗中傷、脅迫、個人情報探索、他のファンへの私的制裁が起こりうる。カバーは2025年度の権利侵害対策として、発信者情報開示（sender-information disclosure）、悪質まとめサイトの閉鎖、警察との連携、配信モデレーションなどを報告している。公式の二次創作ガイドライン（fan derivative works guidelines）も、違反を見つけても他のファンを攻撃・晒し上げず、運営やプラットフォームへ通報するよう求めている。
+
+したがって、健全さを測るなら「推しにどれだけ近く感じるか」だけでは足りない。お金や時間を自分で管理できるか、本人の私生活を所有物のように扱わないか、他のファンを取り締まる側へ回らないか、公式と二次創作（fan derivative works）の境界を守れるか、といった行動のほうが具体的である。
+
+ホロライブのファン文化は、距離の近さを商品にする面を確かに持つ。しかし同時に、その距離から創作、翻訳、記憶の共有が生まれる。**問題はintimacy itselfではなく、親密さを「a right over the other person」と取り違えた瞬間に境界が壊れること**なのである。
+
+参照：[マッコーリー大学（Macquarie University）「仮想世界における新しい協働（New collaboration in a virtual world）」](https://figshare.mq.edu.au/articles/thesis/New_collaboration_in_a_virtual_world_studying_Vtubers_through_identity_gender_and_fan_engagement/22197799/1) ／ [カバー「2025年度の誹謗中傷等への対応」](https://cover-corp.com/en/news/detail/c2026043001) ／ [ホロライブプロダクション「二次創作ガイドライン（fan derivative works guidelines）」](https://hololivepro.com/terms/)
+
+## 12. 2026年のホロライブは、“make everything bigger”から“what to continue, what to close, and what to separate”を選ぶ段階へ入っている
+
+成長物語は、普通は「次はもっと大きくなる」で終わる。だが2026年のホロライブを見ると、拡大だけでは説明しにくい動きが同時に起きている。これはむしろ、成熟した組織らしい。
+
+一方では、2026年6月時点で所属バーチャルユーチューバー（VTuber）78名、ユーチューブ合計登録者9525万人という規模を持ち、7月には初の公式スマートフォンゲーム「ホロライブドリームズ（hololive Dreams）」が世界向けに始まった。9月には9周年を迎え、10周年へ向けた企画も動き出している。外から見れば、まだ十分にexpansion phaseである。
+
+しかし同じ年の6月28日、仮想共有空間（shared virtual world）サービスのホロアース（Holoearth）は終了した。2025年4月の正式開始から約1年である。カバーは将来にわたるサービス提供を検討した結果として終了を決めた。さらにホロスターズでは事業状況を踏まえて運営体制を変更し、会社主導のグループ活動や一部サポートを縮小、複数タレントが配信活動終了（conclusion of streaming activities）を選んだ。
+
+反対方向には、星街すいせいのStudio STELLARのようなindividual support modelがある。そして9月7日には、地域・グループ別に分かれてきた女性タレント側のbrandsを、順次one “hololive”へまとめる方針も発表された。つまり2026年に同時進行しているのは、simple centralizationでもsimple decentralizationでもない。front-facing brandはまとめながら、how activities are supported and where projects liveはむしろ細かく分け始めている。
+
+ここで最初の「知的財産の運営装置」という見方が変わる。装置なら、成功した部品をsame standardで増やせばよい。しかし人が活動する仕組みでは、全員の目標、負荷、成長速度、地域、媒体が違う。**規模が大きくなるほど、“one brand to the outside” and “not one-size-fits-all support inside”を同時に成立させる能力が重要になる。**
+
+ホロライブが10周年へ向かうときに問われるのは、何人増やせるかだけではない。どの活動を会社で支え、どこから個人へ渡し、何をやめ、どこをstandardizeし、どんな関係だけは守るのか。その選別の質が、次の十年を決める段階に入っている。
+
+参照：[カバー「バーチャルユーチューバー（VTuber）プロダクション運営」](https://cover-corp.com/business/vtuber) ／ [カバー「ホロライブドリームズ（hololive Dreams）正式サービス開始」](https://cover-corp.com/news/detail/20260723-01) ／ [カバー「ホロアース サービス終了」](https://cover-corp.com/news/detail/20260514-01) ／ [カバー「ホロスターズ運営体制の変更」](https://cover-corp.com/news/detail/c2026040301) ／ [カバー「ホロスターズ一部タレントの配信活動終了（conclusion of streaming activities）」](https://cover-corp.com/news/detail/c2026052601) ／ [カバー「スタジオ・ステラ（Studio STELLAR）設立」](https://cover-corp.com/news/detail/c2026032201) ／ [カバー「10周年に向けたプロダクションリニューアル」](https://cover-corp.com/news/detail/20260907-01)
+
+## 13. 結局、ゲームをしている時間こそが、ライブを「その人のライブ」に変えている
+
+最初の疑問へ戻る。アイドルなのに、why do they stream games all day?。調べる前には「配信で人気を作り、ライブとグッズで収益化するため」と答えれば十分に見えた。いまは、それでは順序を一つ取り違えているように思う。
+
+ゲームの勝敗、雑談の脱線、誰かとの掛け合い、配信事故、ファンが作った切り抜き。そうした小さな出来事の反復が「この人ならこうする」という人格の輪郭を作る。その輪郭があるから、三次元ライブ（3D live）で歌った一曲が、単に上手い歌ではなく「この人がここまで来た」という出来事になる。グッズも、絵柄だけでなく記憶を持ち運ぶものになる。
+
+同時に、その関係が大きくなれば、著作権、地域政治、制作委託、労働量、退出、誹謗中傷といった問題も大きくなる。関係が価値の源泉なら、relationship boundariesはそのままmanagement vulnerabilityにもなる。success and criticismは別々の話ではなく、同じ構造の表裏である。
+
+だからホロライブは、単なる「バーチャルなアイドル事務所」でも、「配信者をキャラクター化した会社」でもない。より近いのは、**演者の人格をアバターで可視化し、日々の配信でファンとのshared timeを蓄積し、その関係を音楽・ライブ・商品・二次創作（fan derivative works）へ運びながら、同時に権利と安全と退出を調整し続ける仕組み**である。
+
+そして、ここまで来ると「一日中ゲームをしている」の見え方が変わる。あれは本番前の暇つぶしではない。むしろ、あの長い日常が本番の土台である。華やかなライブは関係を作る瞬間というより、**何百時間もの何でもない時間が、突然ひとつの意味に集まる瞬間**なのだ。
+
+## 参考資料
+
