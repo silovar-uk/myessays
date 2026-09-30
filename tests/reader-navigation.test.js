@@ -201,3 +201,19 @@ test('after-reading owner keeps the intended semantic order', () => {
   assert.ok(order.every(index => index >= 0), 'all after-reading surfaces should be registered');
   assert.deepEqual([...order].sort((a, b) => a - b), order);
 });
+
+
+test('next-step styling is mobile-safe, quiet, and readable', () => {
+  const css = fs.readFileSync(path.join(__dirname, '..', 'reader-navigation.css'), 'utf8');
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+
+  assert.match(css, /\.reader-next-step-link[\s\S]*?min-height:\s*104px/);
+  assert.match(css, /\.reader-next-step-link:focus-visible/);
+  assert.match(css, /\.reader-next-step-copy strong[\s\S]*?-webkit-line-clamp:\s*3/);
+  assert.match(css, /\.reader-next-step-label[\s\S]*?font-size:\s*11px/);
+  assert.match(css, /\.reader-next-step-copy small[\s\S]*?font-size:\s*11px/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)/);
+  assert.match(html, /reader-navigation\.css\?v=20260930-2/);
+  assert.match(html, /reader-navigation\.js\?v=20260930-2/);
+  assert.match(html, /reader-v2\.js\?v=20260930-1/);
+});
