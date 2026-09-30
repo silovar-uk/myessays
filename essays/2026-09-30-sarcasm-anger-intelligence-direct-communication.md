@@ -242,7 +242,7 @@ abstract: "アンガーマネジメントの本を読み、「怒りを皮肉で
 
 ---
 
-## Sources
+## 参考文献
 
 - [American Psychological Association — Anger: How to recognize and deal with a common emotion](https://www.apa.org/news/press/releases/2012/05/anger)
 - [Huang, Gino & Galinsky — The highest form of intelligence: Sarcasm increases creativity for both expressers and recipients](https://doi.org/10.1016/j.obhdp.2015.07.001)
