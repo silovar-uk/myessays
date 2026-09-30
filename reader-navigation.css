@@ -9,7 +9,7 @@
 .reader-next-step-kicker {
   margin: 0 0 8px !important;
   color: var(--accent);
-  font: 800 9px/1 Inter, "Hiragino Sans", sans-serif !important;
+  font: 800 11px/1 Inter, "Hiragino Sans", sans-serif !important;
   letter-spacing: .18em;
 }
 
