@@ -54,7 +54,7 @@ test('GPT sequel remains an expansion action after reflection', () => {
   assert.match(js, /前の記事によって生まれた次の問いへ進む/);
   assert.match(js, /未解決点/);
   assert.match(js, /原記事と同じ結論をもう一度証明するだけの記事は禁止/);
-  assert.match(js, /リサーチ → 構化|リサーチ → 構造化 → 不足点の特定 → 再リサーチ/);
+  assert.match(js, /リサーチ → 構造化 → 不足点の特定 → 再リサーチ/);
   assert.match(js, /function openArticleSequel\(root\)/);
   assert.match(js, /続編の指示をコピーしてChatGPTを開きました/);
   assert.match(js, /reader-sequel-button/);
