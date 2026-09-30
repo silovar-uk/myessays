@@ -64,7 +64,7 @@ Then one invitation changed the route. 高校の先輩に誘われて競技を�
 
 That history makes the simple “born talented” story harder to sustain. この経歴は、才能の物語を少し扱いにくくする。報道では、トーゴ出身の父を持つ背景が紹介されることもある。しかし、そこから身体能力や成功を出自だけで説明する根拠にはならない。公開資料から追えるのは、教師に誘われたこと、複数種目からハードルを選んだこと、一度は辞めようとしたこと、先輩に誘われ直したこと、成長に合わせて技術を作り替えたことだ。**競技者の「背景」は血統の説明ではなく、何度も起きた選択と適応の履歴として読むほうが情報量が多い。**
 
-参照：[松戸市「広報まつど2025年11月15日号 村竹ラシッド選手」](https://www.city.matsudo.chiba.jp/shisei/matsudo_kouhou/kouhou/spotlight/spotlight2025/20251115.html) ／ [TOKYO FORWARD 2025「村竹ラシッド」](https://www.sports-tokyo-info.metro.tokyo.lg.jp/tokyoforward2025-legacy/player/muratake-rachid/) ／ [日本陸上競技連盟「村竹ラシッド」](https://www.jaaf.or.jp/athletes/profile/rachid_muratake/)
+参照：[松戸市「広報まつど2025年11月15日号 村竹ラシッド選手」](https://www.city.matsudo.chiba.jp/shisei/matsudo_kouhou/kouhou/spotlight/spotlight2025/20251115.html) ／ [TOKYO FORWARD 2025「村竹ラシッド」](https://www.sports-tokyo-info.metro.tokyo.lg.jp/tokyoforward2025-legacy/player/muratake-rachid/) ／ [日本陸上競技連盟「村竹ラシッド」](https://www.jaaf.or.jp/athletes/profile/rachid_muratake/) ／ [日刊スポーツ「世界陸上 村竹ラシッド5位入賞」](https://www.nikkansports.com/sports/athletics/news/202509160001567.html)
 
 ## 4. 13秒04へ行く前に、失格、世界選手権予選敗退、肉離れがあった
 
@@ -196,4 +196,5 @@ Those nine fallen hurdles are not a scorecard of mistakes. 9台の倒れたハ�
 - [日本陸上競技連盟「東京2025世界陸上 村竹ラシッド5位コメント」](https://www.jaaf.or.jp/news/article/22725/)
 - [日本陸上競技連盟「木南記念 村竹ラシッドが13秒05」](https://www.jaaf.or.jp/news/article/23413/)
 - [日本陸上競技連盟「愛知・名古屋2026アジア競技大会 日本代表リザルト」](https://www.jaaf.or.jp/asian-games/2026/news/article/24151/)
+- [日刊スポーツ「世界陸上 村竹ラシッド5位入賞」](https://www.nikkansports.com/sports/athletics/news/202509160001567.html)
 - [デイリースポーツ「村竹ラシッドは悔しい銀メダル」](https://www.daily.co.jp/general/2026/09/27/0020867054.shtml)
