@@ -107,20 +107,22 @@
   }
 
   function primaryNextSection(item) {
-    if (!item?.essay) return '';
+    if (!item?.essay) return null;
     const essay = item.essay;
-    return `
-      <section class="reader-next-step" aria-labelledby="readerNextStepTitle">
-        <p class="reader-next-step-kicker">NEXT</p>
-        <a class="reader-next-step-link" href="#/essay/${encodeURIComponent(essay.id)}">
-          <span class="reader-next-step-copy">
-            <span class="reader-next-step-label" id="readerNextStepTitle">次に読む</span>
-            <strong>${escapeNavigationHtml(essay.title || '')}</strong>
-            <small>${escapeNavigationHtml(item.reason || '')}</small>
-          </span>
-          <span class="reader-next-step-arrow" aria-hidden="true">→</span>
-        </a>
-      </section>`;
+    const section = document.createElement('section');
+    section.className = 'reader-next-step';
+    section.setAttribute('aria-labelledby', 'readerNextStepTitle');
+    section.innerHTML = `
+      <p class="reader-next-step-kicker">NEXT</p>
+      <a class="reader-next-step-link" href="#/essay/${encodeURIComponent(essay.id)}">
+        <span class="reader-next-step-copy">
+          <span class="reader-next-step-label" id="readerNextStepTitle">次に読む</span>
+          <strong>${escapeNavigationHtml(essay.title || '')}</strong>
+          <small>${escapeNavigationHtml(item.reason || '')}</small>
+        </span>
+        <span class="reader-next-step-arrow" aria-hidden="true">→</span>
+      </a>`;
+    return section;
   }
 
   function seriesLink(essay, direction) {
@@ -183,9 +185,7 @@
 
     const host = root.querySelector(':scope > .reader-v2-after-reading') || root;
     if (primary) {
-      const holder = document.createElement('div');
-      holder.innerHTML = primaryNextSection(primary);
-      const nextStep = holder.firstElementChild;
+      const nextStep = primaryNextSection(primary);
       if (nextStep) host.appendChild(nextStep);
     }
 
@@ -216,7 +216,10 @@
     host.appendChild(nav);
   }
 
-  window.MyEssaysReaderNavigation = Object.freeze({ render: renderReaderEndNavigation });
+  window.MyEssaysReaderNavigation = Object.freeze({
+    render: renderReaderEndNavigation,
+    lib: { getSeriesSequence, relatedCandidates, primaryNext, relatedReason }
+  });
 
   function init() {
     if (window.MyEssaysReaderRuntime?.register) {
