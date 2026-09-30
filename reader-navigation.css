@@ -1,3 +1,77 @@
+.reader-next-step {
+  width: min(100%, 560px);
+  margin: 30px auto 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+}
+
+.reader-next-step-kicker {
+  margin: 0 0 8px !important;
+  color: var(--accent);
+  font: 800 11px/1 Inter, "Hiragino Sans", sans-serif !important;
+  letter-spacing: .18em;
+}
+
+.reader-next-step-link {
+  display: flex;
+  min-height: 104px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 17px 4px 16px;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 24%, var(--line));
+  border-bottom: 1px solid var(--line);
+  color: var(--ink) !important;
+  text-decoration: none !important;
+  transition: border-color .16s ease, transform .16s ease;
+}
+
+.reader-next-step-link:hover {
+  border-top-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.reader-next-step-link:focus-visible {
+  outline: 3px solid color-mix(in srgb, #5b89a9 30%, transparent);
+  outline-offset: 4px;
+}
+
+.reader-next-step-copy {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.reader-next-step-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .04em;
+}
+
+.reader-next-step-copy strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font: 700 20px/1.45 Georgia, "Yu Mincho", serif;
+  letter-spacing: -.015em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.reader-next-step-copy small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.reader-next-step-arrow {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font: 700 21px/1 Georgia, serif;
+}
+
 .reader-end-navigation {
   margin: 78px 0 8px;
   font-family: Inter, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
@@ -116,8 +190,18 @@
 }
 
 .reader-sequence-navigation {
-  padding-top: 28px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
+}
+
+.reader-series-navigation {
+  margin-bottom: 20px;
+}
+
+.reader-series-note {
+  max-width: none;
+  margin: 0 0 12px !important;
+  text-align: left;
 }
 
 .reader-end-links {
@@ -199,6 +283,27 @@
 }
 
 @media (max-width: 620px) {
+  .reader-next-step {
+    width: 100%;
+    margin: 24px auto 30px;
+    padding-top: 18px;
+  }
+
+  .reader-next-step-link {
+    min-height: 92px;
+    padding: 15px 2px 14px;
+  }
+
+  .reader-next-step-copy strong {
+    font-size: 18px;
+    -webkit-line-clamp: 3;
+  }
+
+  .reader-next-step-label,
+  .reader-next-step-copy small {
+    font-size: 11px;
+  }
+
   .reader-end-navigation {
     display: block;
     width: 100%;
@@ -271,5 +376,14 @@
 
   .reader-nav-label {
     font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-next-step-link,
+  .reader-related-item,
+  .reader-end-link,
+  .reader-top-link {
+    transition: none;
   }
 }

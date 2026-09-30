@@ -645,9 +645,15 @@
       zone.dataset.closing = 'seal';
       content.append(zone);
     }
-    ['.reader-resonance', '.reader-reflections', '.reader-end-navigation'].forEach(selector => {
-      const element = content.querySelector(`:scope > ${selector}`);
-      if (element && element.parentElement !== zone) zone.append(element);
+    [
+      '.reader-resonance',
+      '.reader-next-step',
+      '.reader-reflections',
+      '.reader-gpt-expansion',
+      '.reader-end-navigation'
+    ].forEach(selector => {
+      const element = content.querySelector(`:scope > ${selector}`) || zone.querySelector(`:scope > ${selector}`);
+      if (element) zone.append(element);
     });
   }
 

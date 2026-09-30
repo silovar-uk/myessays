@@ -2,20 +2,12 @@
   'use strict';
 
   const navSelector = '.reader-end-navigation';
+  const nextSelector = '.reader-next-step';
 
   function escapeNavigationHtml(value = '') {
     return String(value).replace(/[&<>'"]/g, char => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[char]));
-  }
-
-  function getVisibleEssayOrder() {
-    return [...document.querySelectorAll('#essayGrid [data-id]')]
-      .map(card => ({
-        id: card.dataset.id || '',
-        title: card.querySelector('h2')?.textContent?.trim() || ''
-      }))
-      .filter(essay => essay.id);
   }
 
   function getAllEssays() {
@@ -60,21 +52,15 @@
     return [year, month, day].filter(Boolean).join('.');
   }
 
-  function essayLink(essay, direction, { series = false } = {}) {
-    if (!essay) return '<div class="reader-end-link reader-end-link--empty" aria-hidden="true"></div>';
-    const previous = direction === 'previous';
-    const label = series
-      ? (previous ? '← シリーズ前へ' : 'シリーズ次へ →')
-      : (previous ? '← 前の記事' : '次の記事 →');
-    const directionClass = previous ? 'reader-end-link--previous' : 'reader-end-link--next';
-    return `
-      <a class="reader-end-link ${directionClass}" href="#/essay/${encodeURIComponent(essay.id)}">
-        <span class="reader-nav-label">${label}</span>
-        <strong>${escapeNavigationHtml(essay.title)}</strong>
-      </a>`;
+  function readingStatus(id) {
+    try {
+      return window.MyEssaysReadingState?.status?.(id) || 'unread';
+    } catch {
+      return 'unread';
+    }
   }
 
-  function relatedEssays(currentEssay) {
+  function relatedCandidates(currentEssay) {
     const currentTags = new Set((currentEssay?.tags || []).filter(Boolean));
     if (!currentTags.size) return [];
 
@@ -82,6 +68,7 @@
       .filter(essay => essay.id !== currentEssay.id)
       .map(essay => ({
         essay,
+        status: readingStatus(essay.id),
         sharedTags: [...new Set((essay.tags || []).filter(tag => currentTags.has(tag)))]
       }))
       .filter(item => item.sharedTags.length > 0)
@@ -91,8 +78,61 @@
         const created = String(b.essay.created || '').localeCompare(String(a.essay.created || ''));
         if (created) return created;
         return String(a.essay.title || '').localeCompare(String(b.essay.title || ''), 'ja');
-      })
-      .slice(0, 4);
+      });
+  }
+
+  function primaryNext(currentEssay, seriesSequence, related) {
+    if (seriesSequence?.next) {
+      return {
+        essay: seriesSequence.next,
+        kind: 'series',
+        reason: 'シリーズ次回',
+        sharedTags: []
+      };
+    }
+
+    const unread = related.find(item => item.status === 'unread');
+    if (unread) return { ...unread, kind: 'related', reason: relatedReason(unread.sharedTags) };
+
+    const opened = related.find(item => item.status === 'opened');
+    if (opened) return { ...opened, kind: 'related', reason: relatedReason(opened.sharedTags) };
+
+    const fallback = related[0];
+    return fallback ? { ...fallback, kind: 'related', reason: relatedReason(fallback.sharedTags) } : null;
+  }
+
+  function relatedReason(tags) {
+    const visible = (tags || []).slice(0, 2);
+    return visible.length ? `${visible.map(tag => `#${tag}`).join(' ')} が共通` : '関連する記事';
+  }
+
+  function primaryNextSection(item) {
+    if (!item?.essay) return null;
+    const essay = item.essay;
+    const section = document.createElement('section');
+    section.className = 'reader-next-step';
+    section.setAttribute('aria-labelledby', 'readerNextStepTitle');
+    section.innerHTML = `
+      <p class="reader-next-step-kicker">NEXT</p>
+      <a class="reader-next-step-link" href="#/essay/${encodeURIComponent(essay.id)}">
+        <span class="reader-next-step-copy">
+          <span class="reader-next-step-label" id="readerNextStepTitle">次に読む</span>
+          <strong>${escapeNavigationHtml(essay.title || '')}</strong>
+          <small>${escapeNavigationHtml(item.reason || '')}</small>
+        </span>
+        <span class="reader-next-step-arrow" aria-hidden="true">→</span>
+      </a>`;
+    return section;
+  }
+
+  function seriesLink(essay, direction) {
+    if (!essay) return '<div class="reader-end-link reader-end-link--empty" aria-hidden="true"></div>';
+    const previous = direction === 'previous';
+    return `
+      <a class="reader-end-link ${previous ? 'reader-end-link--previous' : 'reader-end-link--next'}" href="#/essay/${encodeURIComponent(essay.id)}">
+        <span class="reader-nav-label">${previous ? '← シリーズ前へ' : 'シリーズ次へ →'}</span>
+        <strong>${escapeNavigationHtml(essay.title)}</strong>
+      </a>`;
   }
 
   function relatedCard(item, index) {
@@ -110,17 +150,16 @@
       </a>`;
   }
 
-  function relatedSection(currentEssay) {
-    const items = relatedEssays(currentEssay);
+  function relatedSection(items) {
     if (!items.length) return '';
     return `
       <section class="reader-related" aria-labelledby="readerRelatedTitle">
         <div class="reader-related-heading">
           <div>
             <p class="reader-related-kicker">RELATED</p>
-            <h2 id="readerRelatedTitle">同じ関心から、もう一本。</h2>
+            <h2 id="readerRelatedTitle">ほかの関連記事</h2>
           </div>
-          <p class="reader-related-note">共通タグが多い順。並んだ場合は新しい記事を優先。</p>
+          <p class="reader-related-note">同じ関心から、もう少し読む。</p>
         </div>
         <div class="reader-related-grid">${items.map(relatedCard).join('')}</div>
       </section>`;
@@ -131,55 +170,56 @@
     const currentEssay = context?.essay || getCurrentEssay();
     if (!root || !currentEssay) return;
 
+    root.querySelector(nextSelector)?.remove();
     root.querySelector(navSelector)?.remove();
 
+    const routeType = window.MyEssaysRoute?.parse?.().type || 'essay';
+    if (routeType === 'book' || currentEssay.__aozoraBook) return;
+
     const seriesSequence = getSeriesSequence(currentEssay);
-    let previous = null;
-    let next = null;
-    let sequenceHeader = '';
-    let isSeries = false;
+    const related = relatedCandidates(currentEssay);
+    const primary = primaryNext(currentEssay, seriesSequence, related);
+    const relatedSecondary = related
+      .filter(item => item.essay.id !== primary?.essay?.id)
+      .slice(0, 3);
 
+    const host = root.querySelector(':scope > .reader-v2-after-reading') || root;
+    if (primary) {
+      const nextStep = primaryNextSection(primary);
+      if (nextStep) host.appendChild(nextStep);
+    }
+
+    let seriesNavigation = '';
     if (seriesSequence) {
-      previous = seriesSequence.previous;
-      next = seriesSequence.next;
-      isSeries = true;
-      sequenceHeader = `
-        <p class="reader-related-kicker">SERIES</p>
-        <p class="reader-related-note" style="max-width:none;margin:0 0 12px !important;text-align:left;">
-          ${escapeNavigationHtml(currentEssay.series)} · ${seriesSequence.index + 1}/${seriesSequence.items.length}
-        </p>`;
-    } else {
-      const visible = getVisibleEssayOrder();
-      let currentIndex = visible.findIndex(essay => essay.id === currentEssay.id);
-      let order = visible;
-
-      if (currentIndex === -1) {
-        order = getAllEssays().map(essay => ({ id: essay.id, title: essay.title || '' }));
-        currentIndex = order.findIndex(essay => essay.id === currentEssay.id);
-      }
-      if (currentIndex === -1) return;
-
-      previous = currentIndex > 0 ? order[currentIndex - 1] : null;
-      next = currentIndex < order.length - 1 ? order[currentIndex + 1] : null;
+      seriesNavigation = `
+        <div class="reader-series-navigation">
+          <p class="reader-related-kicker">SERIES</p>
+          <p class="reader-related-note reader-series-note">
+            ${escapeNavigationHtml(currentEssay.series)} · ${seriesSequence.index + 1}/${seriesSequence.items.length}
+          </p>
+          <div class="reader-end-links">
+            ${seriesLink(seriesSequence.previous, 'previous')}
+            ${seriesLink(seriesSequence.next, 'next')}
+          </div>
+        </div>`;
     }
 
     const nav = document.createElement('div');
     nav.className = 'reader-end-navigation';
     nav.dataset.essayId = currentEssay.id;
     nav.innerHTML = `
-      ${relatedSection(currentEssay)}
-      <nav class="reader-sequence-navigation" aria-label="${isSeries ? 'シリーズ前後の記事' : '前後の記事'}">
-        ${sequenceHeader}
-        <div class="reader-end-links">
-          ${essayLink(previous, 'previous', { series: isSeries })}
-          ${essayLink(next, 'next', { series: isSeries })}
-        </div>
+      ${relatedSection(relatedSecondary)}
+      <nav class="reader-sequence-navigation" aria-label="${seriesSequence ? 'シリーズとLibraryへの移動' : 'Libraryへの移動'}">
+        ${seriesNavigation}
         <a class="reader-top-link" href="#/" aria-label="Libraryへ戻る">← Libraryへ戻る</a>
       </nav>`;
-    root.appendChild(nav);
+    host.appendChild(nav);
   }
 
-  window.MyEssaysReaderNavigation = Object.freeze({ render: renderReaderEndNavigation });
+  window.MyEssaysReaderNavigation = Object.freeze({
+    render: renderReaderEndNavigation,
+    lib: { getSeriesSequence, relatedCandidates, primaryNext, relatedReason }
+  });
 
   function init() {
     if (window.MyEssaysReaderRuntime?.register) {

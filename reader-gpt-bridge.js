@@ -350,43 +350,31 @@ ${articleSummary(essay)}
     if (!root || root.dataset.gptVisualizeReady === '1') return;
     const stage = root.querySelector('.reader-seal-stage');
     const seal = stage?.querySelector('[data-resonance-seal]');
-    if (!stage || !seal) return;
+    const afterReading = root.closest('.reader-v2-after-reading');
+    if (!stage || !seal || !afterReading) return;
 
-    root.dataset.gptVisualizeReady = '1';
+    let expand = afterReading.querySelector(':scope > .reader-gpt-expansion');
+    if (!expand) {
+      expand = document.createElement('section');
+      expand.className = 'reader-gpt-expansion';
+      expand.setAttribute('aria-label', 'この記事から広げる');
 
-    let actions = stage.querySelector('.reader-post-actions');
-    if (!actions) {
-      actions = document.createElement('div');
-      actions.className = 'reader-post-actions';
-      seal.insertAdjacentElement('beforebegin', actions);
-      actions.append(seal);
+      const label = document.createElement('p');
+      label.className = 'reader-expand-label';
+      label.textContent = 'この記事から';
+
+      const expandActions = document.createElement('div');
+      expandActions.className = 'reader-expand-actions';
+      expandActions.append(visualizationButton(expand), sequelButton(expand));
+
+      expand.append(label, expandActions, visualizationStatus());
+
+      const navigation = afterReading.querySelector(':scope > .reader-end-navigation');
+      if (navigation) afterReading.insertBefore(expand, navigation);
+      else afterReading.append(expand);
     }
 
-    const expand = document.createElement('div');
-    expand.className = 'reader-expand';
-    const label = document.createElement('p');
-    label.className = 'reader-expand-label';
-    label.textContent = 'この記事から';
-    const expandActions = document.createElement('div');
-    expandActions.className = 'reader-expand-actions';
-    expandActions.append(visualizationButton(root), sequelButton(root));
-    expand.append(label, expandActions);
-    actions.append(expand);
-
-    const returns = document.createElement('div');
-    returns.className = 'reader-return-actions';
-    const top = document.createElement('a');
-    top.className = 'reader-top-return-button';
-    top.href = '#/';
-    top.innerHTML = '<span aria-hidden="true">←</span><span>TOPへ戻る</span>';
-    top.setAttribute('aria-label', 'TOPへ戻る');
-    top.addEventListener('click', () => {
-      window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
-    });
-    returns.append(top);
-    actions.append(returns);
-
-    stage.append(visualizationStatus());
+    root.dataset.gptVisualizeReady = '1';
   }
 
   function enhanceAll() {
