@@ -32,6 +32,8 @@ abstract: "男子110mハードル日本記録12秒92を持つ村竹ラシッド�
 
 男子110mハードルには、高さ106.7cmのハードルが10台ある。スタートから第1ハードルまでは13.72m。そこからハードル同士は9.14m間隔で9区間並び、最後のハードルからフィニッシュまでは14.02m。足してみると、13.72＋9.14×9＋14.02＝110.00mになる。110mという距離にあとから障害物を置いたというより、**競技の110mそのものが障害の位置関係でできている**。
 
+この妙に細かい寸法には歴史が残っている。世界陸連によれば、ハードル競走は1830年代の英国で形を取り始め、オックスフォード大学とケンブリッジ大学が1864年に42インチのハードルを用いて標準化を試みた。42インチは現在の106.7cmである。120ヤードで行われた競技は、1888年にフランスで110mへ整えられ、1896年の第1回近代オリンピックから実施されてきた。**いまの選手は、160年以上前に固まった規格へ、現代のスプリント速度を流し込んでいる。**
+
 9.14mのハードル間だけで82.26mあり、全体の約74.8％を占める。しかも一流選手の多くは、その各区間を3歩で刻む。自由に大きなストライドを伸ばしたい局面でも、次のハードルは勝手に遠ざかってくれない。速くなればなるほど、固定された9.14mへ自分の歩幅と接地のタイミングを合わせ続ける必要がある。
 
 ここが100m走との大きな違いである。100mでは、加速に伴って歩幅や回転数を変えながら自分なりの最高速度へ向かえる。110mハードルでは、それに加えて10回の離地と着地があり、次の障害物までの空間が固定されている。つまり「速く走る能力」と「速さを規格へ収める能力」を同時に問われる。
@@ -48,9 +50,9 @@ abstract: "男子110mハードル日本記録12秒92を持つ村竹ラシッド�
 
 村竹は第1ハードルまでを7歩で入る。世界陸連も、アリエス・メリット（Aries Merritt）や劉翔（Liu Xiang）のようなトップ選手が7歩で第1ハードルへ達する例を紹介している。7歩は「8歩より1歩少ないから速い」という単純な算術ではない。スタート直後の加速をより大きな歩幅と強い力で作りながら、13.72m先の踏み切り位置へ正確に合わせなければならない。
 
-しかも、選手が速くなれば問題は勝手に解決しない。村竹は大学時代、自身の走速度が上がるにつれて、ハードル間が感覚的には「近く」なると説明していた。能力が上がると、同じ9.14mが新しい制約になる。**110mハードルでは、強くなることが新しい調整問題を発生させる。速さの成長と技術の成長を別々にできない競技なのである。**
+しかも、選手が速くなれば問題は勝手に解決しない。山崎一彦コーチによる2025年の分析では、村竹はスタートの出力が上がったことで、第1ハードル通過後の歩幅が大きくなりすぎ、2台目までをうまく刻めない時期があったという。能力が上がると、同じ9.14mが新しい制約になる。**110mハードルでは、強くなることが新しい調整問題を発生させる。速さの成長と技術の成長を別々にできない競技なのである。**
 
-参照：[World Athletics「110 Metres Hurdles」](https://worldathletics.org/disciplines/hurdling-event/110-metres-hurdles) ／ [日本陸上競技連盟「村竹ラシッド選手インタビュー」](https://www.jaaf.or.jp/diamond-athletes/finalist/rachid_muratake.html)
+参照：[World Athletics「110 Metres Hurdles」](https://worldathletics.org/disciplines/hurdling-event/110-metres-hurdles) ／ [Sportiva「村竹ラシッドのハードリングと男子110mハードルの進化」](https://sportiva.shueisha.co.jp/clm/othersports/rikujo/2025/09/14/_110m/)
 
 ## 3. 村竹ラシッドの競技人生は、最初から「世界を目指す天才」の物語ではなかった
 
@@ -90,7 +92,7 @@ abstract: "男子110mハードル日本記録12秒92を持つ村竹ラシッド�
 
 ## 6. 12秒92の意味は「13秒を切った」より、世界記録12秒80まで0.12秒に入ったことにある
 
-2025年8月16日、福井。村竹は追い風0.6m/sの条件で12秒92を記録した。日本人初の12秒台で、日本新記録。2025年の世界リストでは当時2位、世界歴代11位タイ、アジア歴代では劉翔の12秒88に次ぐ2位へ入った。数字だけでも、国内新記録という枠を越えたことが分かる。
+2025年は5月のアジア選手権を13秒22で制し、その約2か月半後の8月16日、福井で追い風0.6m/sの12秒92を記録した。日本人初の12秒台で、日本新記録。2025年の世界リストでは当時2位、世界歴代11位タイ、アジア歴代では劉翔の12秒88に次ぐ2位へ入った。数字だけでも、国内新記録という枠を越えたことが分かる。
 
 男子110mハードルの世界記録は、アリエス・メリットが2012年に記録した12秒80。村竹との差は0.12秒である。13秒前後の競技における0.12秒は巨大でもあり、小さくもある。スタート反応、1台の接触、着地の位置、最後の14.02mの伸びが積み重なれば動きうる一方、世界最高水準では誰も簡単に削れない時間でもある。
 
@@ -98,7 +100,7 @@ abstract: "男子110mハードル日本記録12秒92を持つ村竹ラシッド�
 
 この違いは翌月、東京世界選手権で鮮明になった。村竹は決勝へ進み13秒18で5位。銅メダルは13秒12で、差は0.06秒だった。自己最高だけなら村竹の12秒92は十分に速い。それでも、その日の決勝で必要だったのは「12秒92を持っていること」ではなく、13秒前後の動作をもう一度組み上げることだった。**記録は能力の証明だが、メダルは能力の再現試験である。**
 
-参照：[World Athletics「Muratake sets 12.92 Japanese 110m hurdles record」](https://worldathletics.org/competitions/world-athletics-championships/world-athletics-championships-tokyo-2025-7190593/news/report/rachid-muratake-japanese-110m-hurdles-record-fukui) ／ [World Athletics「Rachid MURATAKE Profile」](https://worldathletics.org/athletes/japan/rachid-muratake-14854913) ／ [World Athletics「Tokyo 25 110m Hurdles Final」](https://worldathletics.org/competitions/world-athletics-championships/tokyo25-7190593/results/men/110-metres-hurdles/final/result)
+参照：[日本陸上競技連盟「クミ2025アジア選手権 村竹ラシッド金メダル」](https://www.jaaf.or.jp/news/article/21752/) ／ [World Athletics「Muratake sets 12.92 Japanese 110m hurdles record」](https://worldathletics.org/competitions/world-athletics-championships/world-athletics-championships-tokyo-2025-7190593/news/report/rachid-muratake-japanese-110m-hurdles-record-fukui) ／ [World Athletics「Rachid MURATAKE Profile」](https://worldathletics.org/athletes/japan/rachid-muratake-14854913) ／ [World Athletics「Tokyo 25 110m Hurdles Final」](https://worldathletics.org/competitions/world-athletics-championships/tokyo25-7190593/results/men/110-metres-hurdles/final/result)
 
 ## 7. 村竹の技術課題は、「もっと力を出す」より「力を同じ軌道へ通す」に近づいている
 
