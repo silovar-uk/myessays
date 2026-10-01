@@ -69,11 +69,12 @@ Implication:
 
 ### 6. Rebuildability can be captured as data
 
-Microsoft’s WinGet documentation supports exporting recognized installed packages to JSON and importing that list on another machine. Export can warn when installed software has no match in the available sources, which means the export is useful but not exhaustive.
+Microsoft’s WinGet documentation supports exporting recognized installed packages to JSON and importing that list on another machine. Export can warn when installed software has no match in the available sources, which means the export is useful but not exhaustive. Current WinGet documentation also describes WinGet Configuration as a more complete desired-state approach that can combine package installation with system settings.
 
 Sources:
 - https://learn.microsoft.com/en-us/windows/package-manager/winget/export
 - https://learn.microsoft.com/en-us/windows/package-manager/winget/import
+- https://learn.microsoft.com/en-us/windows/package-manager/winget/configure
 
 Implication:
 - A partial, inspectable reconstruction recipe is often safer than opaque cloning because exceptions become visible and obsolete software can be intentionally discarded.
