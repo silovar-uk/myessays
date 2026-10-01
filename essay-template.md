@@ -10,6 +10,8 @@ tags: ["タグ1", "タグ2"]
 keywords: ["keyword1", "keyword2"]
 grow: 3
 abstract: "150〜250字程度の概要"
+originId: ""
+relation: ""
 ---
 
 # タイトル
