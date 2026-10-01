@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "interest-is-a-chain-not-a-switch": {
+      "en-mix": "english-mix/interest-is-a-chain-not-a-switch.md"
+    },
     "self-expression-borrowed-codes-legibility": {
       "en-mix": "english-mix/self-expression-borrowed-codes-legibility.md"
     },
