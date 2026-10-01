@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="t d">
+<title id="t">自己表現は翻訳ループ</title><desc id="d">内面から選択、共有記号、媒体、観客の解釈、反応、自己理解へ戻る循環</desc>
+<rect width="1200" height="680" fill="#f4f1ea"/>
+<text x="80" y="92" font-family="sans-serif" font-size="42" font-weight="700" fill="#171717">自己表現は「放出」より、翻訳ループに近い</text>
+<text x="82" y="132" font-family="sans-serif" font-size="21" fill="#5b564d">inner state → selection → shared code → medium → interpretation → feedback → revised self</text>
+<g font-family="sans-serif">
+<rect x="85" y="220" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="180" y="265" text-anchor="middle" font-size="24" font-weight="700">内面</text><text x="180" y="300" text-anchor="middle" font-size="17">感情・価値・好み</text>
+<rect x="330" y="220" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="425" y="265" text-anchor="middle" font-size="24" font-weight="700">選択</text><text x="425" y="300" text-anchor="middle" font-size="17">何を出し／隠すか</text>
+<rect x="575" y="220" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="670" y="265" text-anchor="middle" font-size="24" font-weight="700">共有記号</text><text x="670" y="300" text-anchor="middle" font-size="17">言葉・服・ジャンル</text>
+<rect x="820" y="220" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="915" y="265" text-anchor="middle" font-size="24" font-weight="700">媒体</text><text x="915" y="300" text-anchor="middle" font-size="17">対面・SNS・物</text>
+<rect x="820" y="430" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="915" y="475" text-anchor="middle" font-size="24" font-weight="700">解釈</text><text x="915" y="510" text-anchor="middle" font-size="17">観客が意味を読む</text>
+<rect x="575" y="430" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="670" y="475" text-anchor="middle" font-size="24" font-weight="700">反応</text><text x="670" y="510" text-anchor="middle" font-size="17">応答・無視・誤読</text>
+<rect x="330" y="430" rx="24" ry="24" width="190" height="110" fill="#fff" stroke="#222" stroke-width="2"/><text x="425" y="475" text-anchor="middle" font-size="24" font-weight="700">自己理解</text><text x="425" y="510" text-anchor="middle" font-size="17">「自分はこうかも」</text>
+</g>
+<g fill="none" stroke="#7a746a" stroke-width="4" marker-end="url(#a)">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7a746a"/></marker></defs>
+<path d="M275 275 H320"/><path d="M520 275 H565"/><path d="M765 275 H810"/><path d="M915 330 V418"/><path d="M810 485 H775"/><path d="M575 485 H530"/><path d="M425 430 C425 380 250 385 195 340"/>
+</g>
+<text x="82" y="624" font-family="sans-serif" font-size="20" fill="#5b564d">表現は外へ出た時点で終わらない。読まれ方が戻り、次の「自分」に混ざる。</text>
+</svg>
