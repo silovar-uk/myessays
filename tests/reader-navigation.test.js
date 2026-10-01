@@ -115,6 +115,28 @@ test('series next wins even when a related unread article exists', () => {
   assert.match(navigation.innerHTML, /Series 2/);
 });
 
+test('explicit sequel lineage outranks inferred tag similarity when no series next exists', () => {
+  const essays = [
+    { id: 'current', title: 'Current', tags: ['UX'], created: '2026-08-01' },
+    { id: 'tag-related', title: 'Tag related', tags: ['UX'], created: '2026-10-01' },
+    { id: 'sequel', title: 'Explicit sequel', tags: ['Other'], originId: 'current', relation: 'sequel', created: '2026-09-01' }
+  ];
+  const harness = createNavigationHarness({ essays });
+  const lib = harness.window.MyEssaysReaderNavigation.lib;
+  const current = essays[0];
+  const lineage = lib.lineageChildren(current);
+  const related = lib.relatedCandidates(current);
+  const selected = lib.primaryNext(current, null, lineage, related);
+
+  assert.deepEqual(Array.from(lineage, item => item.essay.id), ['sequel']);
+  assert.equal(selected.essay.id, 'sequel');
+  assert.equal(selected.reason, 'この論考から続く');
+
+  harness.window.MyEssaysReaderNavigation.render();
+  assert.match(harness.getNextStep().innerHTML, /Explicit sequel/);
+  assert.match(harness.getNextStep().innerHTML, /この論考から続く/);
+});
+
 test('related primary prefers unread, then opened, then completed', () => {
   const essays = [
     { id: 'current', title: 'Current', tags: ['UX', 'Reading'], created: '2026-08-01' },
@@ -130,15 +152,15 @@ test('related primary prefers unread, then opened, then completed', () => {
   const current = essays[0];
   const related = lib.relatedCandidates(current);
 
-  assert.equal(lib.primaryNext(current, null, related).essay.id, 'unread');
+  assert.equal(lib.primaryNext(current, null, [], related).essay.id, 'unread');
 
   harness.window.MyEssaysReadingState.status = id => id === 'completed' ? 'completed' : 'opened';
   const reopened = lib.relatedCandidates(current);
-  assert.equal(lib.primaryNext(current, null, reopened).essay.id, 'opened');
+  assert.equal(lib.primaryNext(current, null, [], reopened).essay.id, 'opened');
 
   harness.window.MyEssaysReadingState.status = () => 'completed';
   const completedOnly = lib.relatedCandidates(current);
-  assert.equal(lib.primaryNext(current, null, completedOnly).essay.id, 'completed');
+  assert.equal(lib.primaryNext(current, null, [], completedOnly).essay.id, 'completed');
 });
 
 test('related ranking uses shared-tag count then recency inside the same reading status', () => {
@@ -214,6 +236,6 @@ test('next-step styling is mobile-safe, quiet, and readable', () => {
   assert.match(css, /\.reader-next-step-copy small[\s\S]*?font-size:\s*11px/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)/);
   assert.match(html, /reader-navigation\.css\?v=20260930-2/);
-  assert.match(html, /reader-navigation\.js\?v=20260930-2/);
+  assert.match(html, /reader-navigation\.js\?v=20261002-1/);
   assert.match(html, /reader-v2\.js\?v=20260930-1/);
 });
