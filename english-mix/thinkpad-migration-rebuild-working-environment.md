@@ -96,7 +96,7 @@ Once the five layers are visible, “migration complete” becomes stricter. **S
 <!-- level:4 role:claim -->
 The most reassuring migration is the one that recreates the same desktop, the same apps, the same arrangement. But perfect copies have a hidden cost: unused apps, stale settings, mystery startup utilities, and years of accidental history can all survive. You buy a new machine and preserve the old machine's sediment.
 
-A better model is reconstruction instead of cloning. Windows Package Manager, ウィンゲット（WinGet）, can export recognized installed applications to JSON and import that list on another PC. It is not perfect. Microsoft notes that apps that cannot be matched to an available package source produce warnings. But that imperfection is useful: anything not reproducible automatically becomes an exception you can inspect.
+A better model is reconstruction instead of cloning. Windows Package Manager, ウィンゲット（WinGet）, can export recognized installed applications to JSON and import that list on another PC. It is not perfect. Microsoft notes that apps that cannot be matched to an available package source produce warnings. But that imperfection is useful: anything not reproducible automatically becomes an exception you can inspect. As of 2026, WinGet also offers **WinGet Configuration**, which can describe packages together with some system settings as a desired machine state. That moves the idea one step beyond restoring an app list toward reproducing the environment itself.
 
 ```powershell
 winget export -o apps.json
@@ -109,7 +109,7 @@ For people who code or maintain small tools, go one layer deeper. WSL supports `
 
 An environment that has to be remembered from scratch every time is fragile even if it feels familiar. **Once a migration leaves a reproducible procedure behind, the setup becomes more truly yours than a perfect but unexplained clone.**
 
-参照：[Microsoft Learn, winget export](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) ／ [Microsoft Learn, winget import](https://learn.microsoft.com/en-us/windows/package-manager/winget/import) ／ [Microsoft Learn, WSL basic commands](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) ／ [GitHub Docs, Adding a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=windows)
+参照：[Microsoft Learn, winget export](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) ／ [Microsoft Learn, winget import](https://learn.microsoft.com/en-us/windows/package-manager/winget/import) ／ [Microsoft Learn, winget configure](https://learn.microsoft.com/en-us/windows/package-manager/winget/configure) ／ [Microsoft Learn, WSL basic commands](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) ／ [GitHub Docs, Adding a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=windows)
 
 ## 6. いちばん危険なのは、“I thought it was synced”である
 
@@ -206,4 +206,5 @@ Once those three decisions are explicit, “migration” becomes something more 
 - [Microsoft, Manage your saved passkeys](https://support.microsoft.com/en-us/accounts-billing/security/manage-your-saved-passkeys)
 - [Microsoft Learn, winget export](https://learn.microsoft.com/en-us/windows/package-manager/winget/export)
 - [Microsoft Learn, winget import](https://learn.microsoft.com/en-us/windows/package-manager/winget/import)
+- [Microsoft Learn, winget configure](https://learn.microsoft.com/en-us/windows/package-manager/winget/configure)
 - [Microsoft Learn, WSL basic commands](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
