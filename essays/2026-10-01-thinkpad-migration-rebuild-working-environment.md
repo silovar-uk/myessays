@@ -96,7 +96,7 @@ abstract: "新しいシンクパッド（ThinkPad）へ移るとき、必要な�
 <!-- level:4 role:claim -->
 移行で安心感が高いのは、旧PCと同じ画面、同じアプリ、同じ配置が再現されたときである。しかし完全なコピーには弱点がある。使っていないアプリ、古い設定、理由の分からない常駐ソフトまで一緒に持ち込みやすい。新PCを買ったのに、旧PCの歴史的なゴミまで保存してしまう。
 
-そこで使えるのが「複製」ではなく「再構築」という考え方である。たとえばウィンドウズ・パッケージ・マネージャーのウィンゲット（WinGet）は、認識できるインストール済みアプリをJSON形式へ書き出し、その一覧を別PCでまとめてインストールできる。完全ではない。マイクロソフトも、利用可能なパッケージ情報と一致しないアプリは警告されると説明している。しかし、その不完全さがむしろよい。自動復元できないものが、手作業で管理すべき例外として見えるからだ。
+そこで使えるのが「複製」ではなく「再構築」という考え方である。たとえばウィンドウズ・パッケージ・マネージャーのウィンゲット（WinGet）は、認識できるインストール済みアプリをJSON形式へ書き出し、その一覧を別PCでまとめてインストールできる。完全ではない。マイクロソフトも、利用可能なパッケージ情報と一致しないアプリは警告されると説明している。しかし、その不完全さがむしろよい。自動復元できないものが、手作業で管理すべき例外として見えるからだ。さらに2026年時点のウィンゲットには、パッケージだけでなく一部のシステム設定も含めて「望ましい状態」を構成ファイルへ記述するウィンゲット・コンフィギュレーション（WinGet Configuration）がある。アプリ一覧の復元から、環境そのものの再現へ一段進む選択肢である。
 
 ```powershell
 winget export -o apps.json
@@ -109,7 +109,7 @@ winget import -i apps.json --ignore-unavailable
 
 PCが変わるたびに一から思い出す環境は、使い慣れていても脆い。**移行を一度経験した環境が、次回は手順から再現できるなら、その環境は初めて自分のものになったと言える。**
 
-参照：[マイクロソフト・ラーン（Microsoft Learn）「winget export」](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) ／ [マイクロソフト・ラーン（Microsoft Learn）「winget import」](https://learn.microsoft.com/en-us/windows/package-manager/winget/import) ／ [マイクロソフト・ラーン（Microsoft Learn）「WSLの基本的なコマンド」](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) ／ [ギットハブ・ドキュメント（GitHub Docs）「GitHubアカウントへの新しいSSH鍵の追加（Adding a new SSH key to your GitHub account）」](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=windows)
+参照：[マイクロソフト・ラーン（Microsoft Learn）「winget export」](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) ／ [マイクロソフト・ラーン（Microsoft Learn）「winget import」](https://learn.microsoft.com/en-us/windows/package-manager/winget/import) ／ [マイクロソフト・ラーン（Microsoft Learn）「winget configure」](https://learn.microsoft.com/en-us/windows/package-manager/winget/configure) ／ [マイクロソフト・ラーン（Microsoft Learn）「WSLの基本的なコマンド」](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) ／ [ギットハブ・ドキュメント（GitHub Docs）「GitHubアカウントへの新しいSSH鍵の追加（Adding a new SSH key to your GitHub account）」](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=windows)
 
 ## 6. いちばん危険なのは、「同期されていると思っていたもの」である
 
@@ -206,4 +206,5 @@ PCが変わるたびに一から思い出す環境は、使い慣れていても
 - [マイクロソフト（Microsoft）「保存済みパスキーの管理（Manage your saved passkeys）」](https://support.microsoft.com/en-us/accounts-billing/security/manage-your-saved-passkeys)
 - [マイクロソフト・ラーン（Microsoft Learn）「winget export」](https://learn.microsoft.com/en-us/windows/package-manager/winget/export)
 - [マイクロソフト・ラーン（Microsoft Learn）「winget import」](https://learn.microsoft.com/en-us/windows/package-manager/winget/import)
+- [マイクロソフト・ラーン（Microsoft Learn）「winget configure」](https://learn.microsoft.com/en-us/windows/package-manager/winget/configure)
 - [マイクロソフト・ラーン（Microsoft Learn）「WSLの基本的なコマンド」](https://learn.microsoft.com/en-us/windows/wsl/basic-commands)
