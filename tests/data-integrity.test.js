@@ -67,6 +67,25 @@ test('canonical article ids are unique and have minimum required metadata', () =
   });
 });
 
+test('explicit article lineage points to an existing canonical origin', () => {
+  const metas = canonicalPaths.map(file => ({ file, meta: frontMatter(file) }));
+  const canonicalIds = new Set(metas.map(({ meta }) => String(meta.id || '').trim()));
+
+  metas.forEach(({ file, meta }) => {
+    const id = String(meta.id || '').trim();
+    const originId = String(meta.originId || '').trim();
+    const relation = String(meta.relation || '').trim();
+
+    if (!originId && !relation) return;
+
+    assert.ok(originId, `${file} has relation without originId`);
+    assert.ok(relation, `${file} has originId without relation`);
+    assert.notEqual(originId, id, `${file} must not point to itself as origin`);
+    assert.ok(canonicalIds.has(originId), `${file} points to missing originId: ${originId}`);
+    assert.equal(relation, 'sequel', `${file} has unsupported relation: ${relation}`);
+  });
+});
+
 test('every derived version belongs to a canonical article and declares the same id', () => {
   const canonicalIds = new Set(canonicalPaths.map(file => String(frontMatter(file).id || '').trim()));
 
