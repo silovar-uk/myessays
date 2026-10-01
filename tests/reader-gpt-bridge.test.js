@@ -12,7 +12,7 @@ test('GPT bridge keeps visualization available but secondary to the reading flow
   const html = read('index.html');
 
   assert.match(html, /reader-gpt-bridge\.css\?v=20260930-2/);
-  assert.match(html, /reader-gpt-bridge\.js\?v=20260930-2/);
+  assert.match(html, /reader-gpt-bridge\.js\?v=20261002-1/);
   assert.match(js, /const RESONANCE_ROOT = '\.reader-resonance'/);
   assert.match(js, /GPTで画像化/);
   assert.match(js, /縦長9:16/);
@@ -71,6 +71,18 @@ test('GPT sequel remains an expansion action after reflection', () => {
   assert.match(css, /grid-template-columns:\s*repeat\(2/);
   assert.match(css, /@media \(max-width: 350px\)[\s\S]*grid-template-columns:\s*1fr/);
   assert.match(css, /\.reader-sequel-button[\s\S]*min-height:\s*46px/);
+});
+
+test('GPT sequel returns publish-ready My Essays markdown with lineage metadata', () => {
+  const js = read('reader-gpt-bridge.js');
+
+  assert.match(js, /function localDateIso\(\)/);
+  assert.match(js, /【My Essaysへ戻すための出力契約】/);
+  assert.match(js, /originId:/);
+  assert.match(js, /relation: "sequel"/);
+  assert.match(js, /front matterを含む完全なMarkdownだけ/);
+  assert.match(js, /関連：\[元記事タイトル\]|関連:\[元記事タイトル\]|関連：\[元記事タイトル\]\(#\/essay\//);
+  assert.match(js, /data\/index\.jsonのJSONは出力しなくて構いません/);
 });
 
 test('Library return is owned by reader navigation, not the GPT bridge', () => {

@@ -81,13 +81,38 @@
       });
   }
 
-  function primaryNext(currentEssay, seriesSequence, related) {
+  function lineageChildren(currentEssay) {
+    if (!currentEssay?.id) return [];
+    const statusRank = { unread: 0, opened: 1, completed: 2 };
+
+    return getAllEssays()
+      .filter(essay => String(essay.originId || '').trim() === currentEssay.id && String(essay.relation || '').trim() === 'sequel')
+      .map(essay => ({ essay, status: readingStatus(essay.id), sharedTags: [] }))
+      .sort((a, b) => {
+        const rank = (statusRank[a.status] ?? 3) - (statusRank[b.status] ?? 3);
+        if (rank) return rank;
+        const created = String(b.essay.created || '').localeCompare(String(a.essay.created || ''));
+        if (created) return created;
+        return String(a.essay.title || '').localeCompare(String(b.essay.title || ''), 'ja');
+      });
+  }
+
+  function primaryNext(currentEssay, seriesSequence, lineage, related) {
     if (seriesSequence?.next) {
       return {
         essay: seriesSequence.next,
         kind: 'series',
         reason: 'シリーズ次回',
         sharedTags: []
+      };
+    }
+
+    const explicitSequel = lineage[0];
+    if (explicitSequel) {
+      return {
+        ...explicitSequel,
+        kind: 'sequel',
+        reason: 'この論考から続く'
       };
     }
 
@@ -177,8 +202,9 @@
     if (routeType === 'book' || currentEssay.__aozoraBook) return;
 
     const seriesSequence = getSeriesSequence(currentEssay);
+    const lineage = lineageChildren(currentEssay);
     const related = relatedCandidates(currentEssay);
-    const primary = primaryNext(currentEssay, seriesSequence, related);
+    const primary = primaryNext(currentEssay, seriesSequence, lineage, related);
     const relatedSecondary = related
       .filter(item => item.essay.id !== primary?.essay?.id)
       .slice(0, 3);
@@ -218,7 +244,7 @@
 
   window.MyEssaysReaderNavigation = Object.freeze({
     render: renderReaderEndNavigation,
-    lib: { getSeriesSequence, relatedCandidates, primaryNext, relatedReason }
+    lib: { getSeriesSequence, relatedCandidates, lineageChildren, primaryNext, relatedReason }
   });
 
   function init() {

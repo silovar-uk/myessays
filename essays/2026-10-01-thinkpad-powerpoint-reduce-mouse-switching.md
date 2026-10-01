@@ -10,6 +10,8 @@ tags: ["シンクパッド（ThinkPad）", "パワーポイント（PowerPoint�
 keywords: ["PowerPoint 高速化", "ThinkPad PowerPoint", "クイック アクセス ツール バー", "TrackPoint", "Ctrl D", "選択ウィンドウ", "資料作成"]
 grow: 5
 abstract: "パワーポイント（PowerPoint）を速く使うとは、マウス操作を速めることではない。遅さの正体を、コマンドを探す「探索」、キーボードとマウスを往復する「移動」、毎回レイアウトを考え直す「再判断」に分けると、シンクパッド（ThinkPad）のトラックポイント、Fn/Ctrl設定、PowerPointの複製、クイック アクセス ツール バー、選択ウィンドウ、整列機能が一つの設計としてつながる。本稿は、資料作成を「描く仕事」から「型を複製し、差分を編集する仕事」へ変える。"
+originId: "thinkpad-migration-rebuild-working-environment"
+relation: "sequel"
 ---
 
 # パワーポイント（PowerPoint）は、マウスを速くするより触る回数を減らせ
