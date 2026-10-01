@@ -72,6 +72,14 @@ Checked against:
 - https://learn.microsoft.com/en-us/windows/package-manager/winget/export
 - https://learn.microsoft.com/en-us/windows/package-manager/winget/import
 
+### WinGet Configuration
+Correction:
+- Add the 2026-current WinGet Configuration path as a more complete desired-state option beyond package-list export/import.
+- Keep export/import as the simpler migration path, while identifying Configuration as the stronger reproducibility mechanism.
+
+Checked against:
+- https://learn.microsoft.com/en-us/windows/package-manager/winget/configure
+
 ### WSL / Git / SSH
 Correction:
 - Keep these in an “advanced / if relevant” layer rather than implying every reader needs them.
