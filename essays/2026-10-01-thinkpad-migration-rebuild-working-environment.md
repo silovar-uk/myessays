@@ -47,7 +47,7 @@ abstract: "新しいシンクパッド（ThinkPad）へ移るとき、必要な�
 <!-- level:4 role:claim -->
 トラックポイントを、タッチパッドの代用品と考えると魅力が分かりにくい。ポインターを動かすだけなら、タッチパッドもマウスもある。トラックポイントの違いは、ホームポジション付近から手を大きく動かさずに、ポインター操作とスクロールへ移れることにある。効率の差は一回の速さより、キーボードとポインティング装置の往復回数に現れる。
 
-Lenovoのユーザー・ガイドでは、トラックポイントへ加える力が大きいほどポインターが速く動くと説明されている。中央ボタンを押しながらスティックを上下左右へ動かすとスクロールし、Ctrlキーを加えると拡大・縮小に使える構成もある。対応機種のトラックポイント・クイック・メニューでは、赤いスティックのダブルタップからカメラ、マイク、音声入力、バッテリー、音声再生などへ触れられる。これは「カーソルを動かす部品」が、入力の中継点へ拡張されているということだ。
+レノボのユーザー・ガイドでは、トラックポイントへ加える力が大きいほどポインターが速く動くと説明されている。中央ボタンを押しながらスティックを上下左右へ動かすとスクロールし、Ctrlキーを加えると拡大・縮小に使える構成もある。対応機種のトラックポイント・クイック・メニューでは、赤いスティックのダブルタップからカメラ、マイク、音声入力、バッテリー、音声再生などへ触れられる。これは「カーソルを動かす部品」が、入力の中継点へ拡張されているということだ。
 
 ただし、初日にトラックポイントだけで全部やろうとすると、たいてい遅い。そこで本稿から一つ、**10分だけトラックパッドへ手を移さない実験**を提案したい。文章を読み、リンクを開き、長いページをスクロールし、少し拡大する。その10分で「速いか」ではなく、「どの操作で手の移動が減るか」だけを見る。向いていなければ戻せばよい。便利さを信じるのではなく、自分の作業で検証する。
 
@@ -68,7 +68,7 @@ Lenovoのユーザー・ガイドでは、トラックポイントへ加える�
 
 シンクパッドへの移行で最初にバンテージを見る意味は、ドライバーを最新にすることだけではない。**OSの設定だけでは見えなかった「このPCをどう使うか」という第二の設定層を発見することにある。**
 
-参照：[レノボ・コマーシャル・バンテージ（Lenovo Commercial Vantage）](https://download.lenovo.com/manual/thinkpad_l14g5_l16g1/ug/html_en/en/The_Vantage_app.html) ／ [レノボ（Lenovo）「バッテリー充電しきい値（Battery Charge Threshold）」](https://support.lenovo.com/ax/en/videos/nvid500286) ／ [レノボ（Lenovo）「バッテリーのQ&A」](https://support.lenovo.com/jp/ja/solutions/ht509084-battery-qa) ／ [Lenovo「Update UEFI BIOS」](https://download.lenovo.com/pccbbs/pubs/ts_p5/ug/html_en/en/Update_UEFI_BIOS.html)
+参照：[レノボ・コマーシャル・バンテージ（Lenovo Commercial Vantage）](https://download.lenovo.com/manual/thinkpad_l14g5_l16g1/ug/html_en/en/The_Vantage_app.html) ／ [レノボ（Lenovo）「バッテリー充電しきい値（Battery Charge Threshold）」](https://support.lenovo.com/ax/en/videos/nvid500286) ／ [レノボ（Lenovo）「バッテリーのQ&A」](https://support.lenovo.com/jp/ja/solutions/ht509084-battery-qa) ／ [レノボ（Lenovo）「UEFI BIOSの更新（Update UEFI BIOS）」](https://download.lenovo.com/pccbbs/pubs/ts_p5/ug/html_en/en/Update_UEFI_BIOS.html)
 
 ## 4. 「PCを移す」を一つの作業にすると、必ず何かを落とす
 
@@ -89,7 +89,7 @@ Lenovoのユーザー・ガイドでは、トラックポイントへ加える�
 
 五層へ分けると、「移行完了」の意味も変わる。**ファイルが見えることは移行の一部にすぎず、仕事が再開できることが移行の完了条件になる。**
 
-参照：[マイクロソフト（Microsoft）「新しいWindows PCへのファイルと設定の転送（Transfer your files and settings to a new Windows PC）」](https://support.microsoft.com/en-us/windows/experience/backup-recovery/transfer-your-files-and-settings-to-a-new-windows-pc) ／ [マイクロソフト（Microsoft）「Windows Backupによるバックアップと復元（Back up and restore with Windows Backup）」](https://support.microsoft.com/en-us/windows/experience/backup-recovery/back-up-and-restore-with-windows-backup) ／ [Microsoft「Configure ウィンドウズ・ハロー（Windows Hello）」](https://support.microsoft.com/en-us/windows/security/configure-windows-hello) ／ [マイクロソフト（Microsoft）「保存済みパスキーの管理（Manage your saved passkeys）」](https://support.microsoft.com/en-us/accounts-billing/security/manage-your-saved-passkeys) ／ [Microsoft「Back Up Your ビットロッカー（BitLocker） Recovery Key」](https://support.microsoft.com/en-us/windows/security/encryption/back-up-your-bitlocker-recovery-key)
+参照：[マイクロソフト（Microsoft）「新しいWindows PCへのファイルと設定の転送（Transfer your files and settings to a new Windows PC）」](https://support.microsoft.com/en-us/windows/experience/backup-recovery/transfer-your-files-and-settings-to-a-new-windows-pc) ／ [マイクロソフト（Microsoft）「Windows Backupによるバックアップと復元（Back up and restore with Windows Backup）」](https://support.microsoft.com/en-us/windows/experience/backup-recovery/back-up-and-restore-with-windows-backup) ／ [マイクロソフト（Microsoft）「Windows Helloの構成（Configure Windows Hello）」](https://support.microsoft.com/en-us/windows/security/configure-windows-hello) ／ [マイクロソフト（Microsoft）「保存済みパスキーの管理（Manage your saved passkeys）」](https://support.microsoft.com/en-us/accounts-billing/security/manage-your-saved-passkeys) ／ [マイクロソフト（Microsoft）「BitLocker回復キーのバックアップ（Back Up Your BitLocker Recovery Key）」](https://support.microsoft.com/en-us/windows/security/encryption/back-up-your-bitlocker-recovery-key)
 
 ## 5. 旧PCの完全コピーより、「何を再構築できるか」を残す
 
@@ -109,7 +109,7 @@ winget import -i apps.json --ignore-unavailable
 
 PCが変わるたびに一から思い出す環境は、使い慣れていても脆い。**移行を一度経験した環境が、次回は手順から再現できるなら、その環境は初めて自分のものになったと言える。**
 
-参照：[マイクロソフト・ラーン（Microsoft Learn）「winget export」](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) ／ [マイクロソフト・ラーン（Microsoft Learn）「winget import」](https://learn.microsoft.com/en-us/windows/package-manager/winget/import) ／ [マイクロソフト・ラーン（Microsoft Learn）「WSLの基本的なコマンド」](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) ／ [GitHub Docs「Adding a new SSH key to your GitHub account」](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=windows)
+参照：[マイクロソフト・ラーン（Microsoft Learn）「winget export」](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) ／ [マイクロソフト・ラーン（Microsoft Learn）「winget import」](https://learn.microsoft.com/en-us/windows/package-manager/winget/import) ／ [マイクロソフト・ラーン（Microsoft Learn）「WSLの基本的なコマンド」](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) ／ [ギットハブ・ドキュメント（GitHub Docs）「GitHubアカウントへの新しいSSH鍵の追加（Adding a new SSH key to your GitHub account）」](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?platform=windows)
 
 ## 6. いちばん危険なのは、「同期されていると思っていたもの」である
 
