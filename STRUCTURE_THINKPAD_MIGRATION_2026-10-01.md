@@ -61,7 +61,7 @@ The ending must say something that could not responsibly be said at the opening:
 
 ### 5. Prefer reconstruction over perfect cloning
 - Claim: exact copying also imports stale history.
-- Evidence: WinGet export/import, its unmatched-package warning, WSL export/import, SSH keys.
+- Evidence: WinGet export/import, its unmatched-package warning, WinGet Configuration desired-state setup, WSL export/import, SSH keys.
 - Proposal: inspect the app manifest before reinstallation.
 - New altitude: a system becomes truly “yours” when it can be rebuilt after loss.
 
