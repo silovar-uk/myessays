@@ -93,6 +93,13 @@
     return `${location.origin}${location.pathname}#/essay/${encodeURIComponent(essay?.id || idFromHash())}`;
   }
 
+
+  function localDateIso() {
+    const now = new Date();
+    const offset = now.getTimezoneOffset() * 60000;
+    return new Date(now.getTime() - offset).toISOString().slice(0, 10);
+  }
+
   function buildPrompt(essay, entries) {
     const notes = notesForPrompt(entries);
     const articleUrlValue = articleUrl(essay);
@@ -152,10 +159,17 @@ ${articleSummary(essay)}
 
 
   function buildSequelPrompt(essay) {
+    const originId = essay?.id || idFromHash();
+    const originTitle = essay?.title || document.title.replace(/\s*\|\s*My Essays\s*$/, '');
+    const today = localDateIso();
+
     return `以下の記事を読み、その記事から自然に生まれる「続編」にあたる新しい1本の記事を作ってください。
 
 記事タイトル:
-${essay?.title || document.title.replace(/\s*\|\s*My Essays\s*$/, '')}
+${originTitle}
+
+記事ID:
+${originId}
 
 記事URL:
 ${articleUrl(essay)}
@@ -192,7 +206,40 @@ ${articleSummary(essay)}
 - 最後は単なるまとめではなく、「この続編によって、原記事の見え方がどう変わったか」まで到達してください。
 - タイトルも新しく付けてください。「続編」「Part 2」を付けただけのタイトルは禁止です。
 
-最終的に、完成した記事本文を出力してください。`;
+【My Essaysへ戻すための出力契約】
+最終出力は、そのままMy Essaysへ追加できるMarkdown 1ファイルだけにしてください。
+説明、前置き、コード外の補足は付けないでください。
+
+front matterには最低限、次を含めてください。
+
+---
+id: "新しい一意の英数字ハイフンslug"
+title: "新しいタイトル"
+subtitle: "必要ならサブタイトル"
+created: "${today}"
+updated: "${today}"
+type: "原記事に近い適切な記事種別"
+status: "完成"
+tags: ["日本語タグ"]
+keywords: ["検索用キーワード"]
+grow: 5
+abstract: "150〜250字程度の概要"
+originId: "${originId}"
+relation: "sequel"
+---
+
+- idは原記事と重複させず、英小文字・数字・ハイフンで作ってください。
+- originIdは必ず上記の原記事ID ${originId} をそのまま使ってください。
+- relationは必ず sequel にしてください。
+- 本文冒頭のタイトル・サブタイトルの後に、次の形式で元記事への内部リンクを1行だけ入れてください。
+
+関連：[元記事タイトル](#/essay/${originId})
+
+- 元記事タイトルには「${originTitle}」を使ってください。
+- front matterを含む完全なMarkdownだけを最終回答にしてください。
+- data/index.jsonのJSONは出力しなくて構いません。
+
+最終的に、公開可能な完成記事Markdownを出力してください。`;
   }
 
   function copyPrompt(text) {
