@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F3EFE7"/>
+  <rect x="38" y="38" width="1124" height="554" rx="28" fill="#171717"/>
+  <rect x="72" y="72" width="12" height="486" rx="6" fill="#D94A3A"/>
+  <text x="120" y="130" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="26" font-weight="700" fill="#CFC7BB" letter-spacing="3">打ち返しの原則</text>
+  <text x="120" y="250" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="58" font-weight="800" fill="#FFFFFF">
+    <tspan x="120" dy="0">「ガードさせた時に</tspan>
+    <tspan x="120" dy="82">何が一番おいしいか」</tspan>
+    <tspan x="120" dy="82">を先に考える。</tspan>
+  </text>
+  <line x1="120" y1="505" x2="1030" y2="505" stroke="#4A4742" stroke-width="2"/>
+  <text x="120" y="548" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="23" fill="#CFC7BB">りゅうせい「打ち返し」解説より ─ モダンマリーザへの応用</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="920" viewBox="0 0 1400 920">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#2B2B2B"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="920" fill="#F5F2EA"/>
+  <text x="70" y="78" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="38" font-weight="800" fill="#171717">モダンマリーザの「打ち返し」判断フロー</text>
+  <text x="70" y="118" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" fill="#5A5650">技名から選ばず、連係終了 → 確定反撃 → 速度 → ゲージ → 次の状態、の順で決める</text>
+
+  <rect x="480" y="165" width="440" height="92" rx="22" fill="#171717"/>
+  <text x="700" y="221" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="30" font-weight="800" fill="#FFFFFF">相手の連係は終わった？</text>
+
+  <line x1="480" y1="211" x2="265" y2="211" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="370" y="195" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700" fill="#7A2E25">いいえ</text>
+  <rect x="70" y="165" width="190" height="92" rx="22" fill="#E7DDD0"/>
+  <text x="165" y="221" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="28" font-weight="800" fill="#171717">まだ待つ</text>
+
+  <line x1="700" y1="257" x2="700" y2="330" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="725" y="298" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700" fill="#2B6A52">はい</text>
+
+  <rect x="480" y="338" width="440" height="92" rx="22" fill="#FFFFFF" stroke="#171717" stroke-width="3"/>
+  <text x="700" y="394" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="30" font-weight="800" fill="#171717">確定反撃になる？</text>
+
+  <line x1="920" y1="384" x2="1112" y2="384" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="1005" y="366" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700" fill="#2B6A52">はい</text>
+  <rect x="1120" y="338" width="220" height="92" rx="22" fill="#DDE9E2"/>
+  <text x="1230" y="378" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="24" font-weight="800" fill="#171717">届く最大の</text>
+  <text x="1230" y="410" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="24" font-weight="800" fill="#171717">確定反撃</text>
+
+  <line x1="700" y1="430" x2="700" y2="505" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="725" y="470" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700" fill="#7A2E25">いいえ</text>
+
+  <rect x="440" y="513" width="520" height="108" rx="22" fill="#FFF6E8" stroke="#B9863D" stroke-width="3"/>
+  <text x="700" y="555" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="27" font-weight="800" fill="#171717">この時間と距離で間に合う技は？</text>
+  <text x="700" y="590" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="21" fill="#5A5650">最速：2弱 ／ 7F：5中 ／ 8F：2中・4強</text>
+
+  <line x1="700" y1="621" x2="700" y2="692" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <rect x="440" y="700" width="520" height="92" rx="22" fill="#FFFFFF" stroke="#171717" stroke-width="3"/>
+  <text x="700" y="756" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="28" font-weight="800" fill="#171717">3本払って攻めを買い直す？</text>
+
+  <line x1="440" y1="746" x2="265" y2="746" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="360" y="728" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700" fill="#7A2E25">いいえ</text>
+  <rect x="70" y="690" width="190" height="112" rx="22" fill="#E7DDD0"/>
+  <text x="165" y="735" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="24" font-weight="800" fill="#171717">5中・4強など</text>
+  <text x="165" y="768" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="21" fill="#5A5650">一度区切る</text>
+
+  <line x1="960" y1="746" x2="1112" y2="746" stroke="#2B2B2B" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="1032" y="728" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700" fill="#2B6A52">はい</text>
+  <rect x="1120" y="690" width="220" height="112" rx="22" fill="#DDE9E2"/>
+  <text x="1230" y="733" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="23" font-weight="800" fill="#171717">2中 →</text>
+  <text x="1230" y="765" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="23" font-weight="800" fill="#171717">キャンセルラッシュ</text>
+
+  <rect x="300" y="835" width="800" height="52" rx="16" fill="#171717"/>
+  <text x="700" y="869" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="20" fill="#FFFFFF">相手が固まる読みが立った後に、溜め4強・ファランクス・強クアドリガを別レイヤーで検討</text>
+  <text x="70" y="905" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="17" fill="#6B665F">※実戦では距離、押し戻し、相手の最速行動、キャンセル先をトレーニングモードで確認する。</text>
+</svg>

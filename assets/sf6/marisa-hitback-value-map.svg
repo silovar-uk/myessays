@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+  <rect width="1400" height="980" fill="#F5F2EA"/>
+  <text x="70" y="72" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="38" font-weight="800" fill="#171717">「速い」と「ガード後に得する」は別の価値</text>
+  <text x="70" y="112" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="22" fill="#5A5650">モダンマリーザ主要候補｜発生 / ガード時硬直差 / キャンセル可否 / 主な役割</text>
+
+  <rect x="70" y="155" width="1260" height="58" rx="16" fill="#171717"/>
+  <text x="95" y="193" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="25" font-weight="800" fill="#FFFFFF">A　ターンを取り戻す：まず「間に合う」ことを優先</text>
+
+  <g font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif">
+    <rect x="70" y="235" width="290" height="190" rx="22" fill="#FFFFFF" stroke="#D3CCC0" stroke-width="2"/>
+    <text x="95" y="278" font-size="30" font-weight="800" fill="#171717">2弱</text>
+    <text x="95" y="320" font-size="23" fill="#444">発生 4F　／　ガード -1</text>
+    <text x="95" y="356" font-size="23" fill="#444">キャンセル ○</text>
+    <text x="95" y="397" font-size="22" font-weight="700" fill="#7A2E25">最速の回収・確反候補</text>
+
+    <rect x="390" y="235" width="290" height="190" rx="22" fill="#FFFFFF" stroke="#D3CCC0" stroke-width="2"/>
+    <text x="415" y="278" font-size="30" font-weight="800" fill="#171717">5中</text>
+    <text x="415" y="320" font-size="23" fill="#444">発生 7F　／　ガード -1</text>
+    <text x="415" y="356" font-size="23" fill="#444">通常キャンセル ―</text>
+    <text x="415" y="397" font-size="22" font-weight="700" fill="#7A2E25">安全寄りに攻撃権を回収</text>
+
+    <rect x="710" y="235" width="290" height="190" rx="22" fill="#FFFFFF" stroke="#D3CCC0" stroke-width="2"/>
+    <text x="735" y="278" font-size="30" font-weight="800" fill="#171717">2中</text>
+    <text x="735" y="320" font-size="23" fill="#444">発生 8F　／　ガード -2</text>
+    <text x="735" y="356" font-size="23" fill="#444">キャンセル ○</text>
+    <text x="735" y="397" font-size="22" font-weight="700" fill="#7A2E25">3本で攻めを買い直せる</text>
+
+    <rect x="1030" y="235" width="300" height="190" rx="22" fill="#FFFFFF" stroke="#D3CCC0" stroke-width="2"/>
+    <text x="1055" y="278" font-size="30" font-weight="800" fill="#171717">4強</text>
+    <text x="1055" y="320" font-size="23" fill="#444">発生 8F　／　ガード -1</text>
+    <text x="1055" y="356" font-size="23" fill="#444">キャンセル ○</text>
+    <text x="1055" y="397" font-size="22" font-weight="700" fill="#7A2E25">ノーゲージの有力候補</text>
+  </g>
+
+  <rect x="70" y="475" width="1260" height="58" rx="16" fill="#B9863D"/>
+  <text x="95" y="513" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="25" font-weight="800" fill="#FFFFFF">B　一手先を買う：遅さを受け入れ、ガード後の主導権を作る</text>
+
+  <g font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif">
+    <rect x="70" y="555" width="290" height="220" rx="22" fill="#FFF9ED" stroke="#DFC99B" stroke-width="2"/>
+    <text x="95" y="598" font-size="30" font-weight="800" fill="#171717">溜め4強</text>
+    <text x="95" y="640" font-size="23" fill="#444">発生 20F　／　ガード +4</text>
+    <text x="95" y="676" font-size="23" fill="#444">キャンセル ○</text>
+    <text x="95" y="718" font-size="22" font-weight="700" fill="#7A2E25">固まり読み → 攻め継続</text>
+    <text x="95" y="750" font-size="19" fill="#6B665F">即時の打ち返しとは別レイヤー</text>
+
+    <rect x="390" y="555" width="290" height="220" rx="22" fill="#FFF9ED" stroke="#DFC99B" stroke-width="2"/>
+    <text x="415" y="598" font-size="30" font-weight="800" fill="#171717">5強 / 溜め5強</text>
+    <text x="415" y="640" font-size="23" fill="#444">12F / 23F</text>
+    <text x="415" y="676" font-size="23" fill="#444">ガード -3 / +5</text>
+    <text x="415" y="718" font-size="22" font-weight="700" fill="#7A2E25">差し返し / 固まり読み</text>
+    <text x="415" y="750" font-size="19" fill="#6B665F">「大きいから押す」をやめる</text>
+
+    <rect x="710" y="555" width="290" height="220" rx="22" fill="#FFF9ED" stroke="#DFC99B" stroke-width="2"/>
+    <text x="735" y="598" font-size="30" font-weight="800" fill="#171717">弱ファランクス</text>
+    <text x="735" y="640" font-size="23" fill="#444">発生 25F　／　ガード +3</text>
+    <text x="735" y="676" font-size="23" fill="#444">途中にアーマー</text>
+    <text x="735" y="718" font-size="22" font-weight="700" fill="#7A2E25">遅いが、守らせれば先手</text>
+    <text x="735" y="750" font-size="19" fill="#6B665F">読み・距離込みで使う</text>
+
+    <rect x="1030" y="555" width="300" height="220" rx="22" fill="#FFF9ED" stroke="#DFC99B" stroke-width="2"/>
+    <text x="1055" y="598" font-size="30" font-weight="800" fill="#171717">強クアドリガ</text>
+    <text x="1055" y="640" font-size="23" fill="#444">発生 29F　／　ガード +1</text>
+    <text x="1055" y="676" font-size="23" fill="#444">長い前進</text>
+    <text x="1055" y="718" font-size="22" font-weight="700" fill="#7A2E25">間合いから次の先手を買う</text>
+    <text x="1055" y="750" font-size="19" fill="#6B665F">即時の暴れ合いには使わない</text>
+  </g>
+
+  <rect x="70" y="825" width="1260" height="86" rx="20" fill="#171717"/>
+  <text x="700" y="860" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">原則：発生で「今押せるか」を決め、ガード後で「次に何が残るか」を決める。</text>
+  <text x="700" y="892" text-anchor="middle" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="19" fill="#D6D0C8">数値は2026年10月2日時点のSF6 Lab現行フレームデータを基準。距離・押し戻し・キャンセル先は実機確認。</text>
+  <text x="70" y="950" font-family="system-ui, -apple-system, 'Noto Sans JP', sans-serif" font-size="17" fill="#6B665F">C＝通常技からのキャンセル可。必殺技は役割比較のためキャンセル欄を省略。</text>
+</svg>
