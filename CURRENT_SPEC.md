@@ -100,6 +100,19 @@ Preferred current article metadata follows `essay-template.md` and normally incl
 - `abstract`
 - optional `series`
 - optional `seriesOrder`
+- optional `originId`
+- optional `relation`
+
+### Explicit article lineage
+
+Use lineage metadata only when one article was intentionally created from another article.
+
+- `originId` — canonical article ID of the direct source article.
+- `relation` — currently supported value: `sequel`.
+- The origin article must exist in the canonical article index.
+- Do not infer lineage merely because two articles share tags, topics or a Series.
+- Series expresses ordered membership; lineage expresses editorial derivation. They are different contracts.
+- Reading Mode derivatives do not get their own lineage metadata; lineage belongs to the canonical article ID.
 
 Migration rules:
 
