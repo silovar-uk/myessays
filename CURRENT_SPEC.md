@@ -1,6 +1,6 @@
 # MyEssays Current Content Specification
 
-Updated: 2026-08-30
+Updated: 2026-10-02
 Status: migration baseline
 
 This document defines the current content contract for MyEssays. It exists so older articles can be migrated against one explicit target instead of against whichever historical README or directory convention they were created under.
