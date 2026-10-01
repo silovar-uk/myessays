@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="t d">
+<title id="t">自己表現の五つの軸</title><desc id="d">観客、持続性、可読性、コスト、制約の五軸で表現条件を比べる</desc>
+<rect width="1200" height="760" fill="#f4f1ea"/>
+<text x="80" y="88" font-family="sans-serif" font-size="42" font-weight="700" fill="#171717">自己表現を「内容」だけで見ないための五軸</text>
+<text x="82" y="128" font-family="sans-serif" font-size="20" fill="#5b564d">誰に／どれだけ残り／どれだけ読め／どれだけ戻せず／どれだけ自由か</text>
+<g font-family="sans-serif" fill="#171717">
+<rect x="100" y="190" width="1000" height="82" rx="18" fill="#fff" stroke="#2a2a2a"/><text x="140" y="225" font-size="25" font-weight="700">1　観客</text><text x="360" y="225" font-size="20">自分だけ ←──── 一人／小集団 ────→ 不特定多数</text>
+<rect x="100" y="292" width="1000" height="82" rx="18" fill="#fff" stroke="#2a2a2a"/><text x="140" y="327" font-size="25" font-weight="700">2　持続性</text><text x="360" y="327" font-size="20">一瞬で消える ←────────────→ 長く残る</text>
+<rect x="100" y="394" width="1000" height="82" rx="18" fill="#fff" stroke="#2a2a2a"/><text x="140" y="429" font-size="25" font-weight="700">3　可読性</text><text x="360" y="429" font-size="20">私的な暗号 ←────────────→ 共有コード</text>
+<rect x="100" y="496" width="1000" height="82" rx="18" fill="#fff" stroke="#2a2a2a"/><text x="140" y="531" font-size="25" font-weight="700">4　コスト</text><text x="360" y="531" font-size="20">すぐ戻せる ←────────────→ 変更しにくい</text>
+<rect x="100" y="598" width="1000" height="82" rx="18" fill="#fff" stroke="#2a2a2a"/><text x="140" y="633" font-size="25" font-weight="700">5　制約</text><text x="360" y="633" font-size="20">自由選択 ←────────────→ 役割・制度で規定</text>
+</g>
+<text x="82" y="724" font-family="sans-serif" font-size="18" fill="#5b564d">※ 採点表ではない。タトゥー、日記、制服、SNS投稿など「条件の違い」を比べるための補助線。</text>
+</svg>
