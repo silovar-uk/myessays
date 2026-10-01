@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="t d">
+<title id="t">独自性と可読性</title><desc id="d">完全な共有コードと完全な私的コードの中間に自己表現が成立する概念図</desc>
+<rect width="1200" height="650" fill="#f4f1ea"/>
+<text x="80" y="90" font-family="sans-serif" font-size="42" font-weight="700" fill="#171717">「自分だけ」を増やすほど、伝わるとは限らない</text>
+<line x1="120" y1="470" x2="1080" y2="470" stroke="#222" stroke-width="3"/>
+<line x1="120" y1="470" x2="120" y2="170" stroke="#222" stroke-width="3"/>
+<text x="1035" y="520" font-family="sans-serif" font-size="20">私的コード →</text>
+<text x="40" y="190" font-family="sans-serif" font-size="20" transform="rotate(-90 40 190)">可読性 →</text>
+<path d="M150 230 C330 235 410 275 560 335 C700 390 840 430 1040 455" fill="none" stroke="#2f2f2f" stroke-width="5"/>
+<circle cx="180" cy="240" r="14" fill="#222"/><circle cx="590" cy="347" r="18" fill="#222"/><circle cx="1000" cy="447" r="14" fill="#222"/>
+<text x="145" y="205" font-family="sans-serif" font-size="21" font-weight="700">共有コードだけ</text><text x="145" y="555" font-family="sans-serif" font-size="18">読めるが、差分が薄い</text>
+<text x="515" y="305" font-family="sans-serif" font-size="25" font-weight="700">自己表現の作業域</text><text x="490" y="555" font-family="sans-serif" font-size="18">共有語彙＋固有の組み替え</text>
+<text x="905" y="405" font-family="sans-serif" font-size="21" font-weight="700">完全な私的コード</text><text x="900" y="555" font-family="sans-serif" font-size="18">独自だが、暗号化する</text>
+<text x="80" y="610" font-family="sans-serif" font-size="18" fill="#5b564d">※ 実証された数理曲線ではなく、記号の共有性と独自性の緊張を示す概念図。</text>
+</svg>
