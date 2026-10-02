@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect width="1200" height="720" fill="#f4f1ea"/>
+<text x="70" y="85" font-family="system-ui,sans-serif" font-size="44" font-weight="700" fill="#171717">SAME 77 WINS, DIFFERENT WORLD</text>
+<text x="70" y="125" font-family="system-ui,sans-serif" font-size="22" fill="#555">2026-10-02 / relational standings</text>
+<line x1="600" y1="170" x2="600" y2="640" stroke="#bbb" stroke-width="2"/>
+<text x="90" y="220" font-family="system-ui,sans-serif" font-size="30" font-weight="700" fill="#171717">CENTRAL</text>
+<text x="660" y="220" font-family="system-ui,sans-serif" font-size="30" font-weight="700" fill="#171717">PACIFIC</text>
+<text x="90" y="305" font-family="system-ui,sans-serif" font-size="72" font-weight="800" fill="#171717">77–59</text>
+<text x="660" y="305" font-family="system-ui,sans-serif" font-size="72" font-weight="800" fill="#171717">77–60</text>
+<text x="90" y="360" font-family="system-ui,sans-serif" font-size="28" fill="#555">阪神タイガース</text>
+<text x="660" y="360" font-family="system-ui,sans-serif" font-size="28" fill="#555">埼玉西武ライオンズ</text>
+<rect x="90" y="405" width="420" height="105" rx="14" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="125" y="450" font-family="system-ui,sans-serif" font-size="24" fill="#555">優勝マジック</text>
+<text x="125" y="495" font-family="system-ui,sans-serif" font-size="50" font-weight="800" fill="#171717">1</text>
+<rect x="660" y="405" width="450" height="105" rx="14" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="695" y="450" font-family="system-ui,sans-serif" font-size="24" fill="#555">首位ソフトバンクとの差</text>
+<text x="695" y="495" font-family="system-ui,sans-serif" font-size="50" font-weight="800" fill="#171717">13.5 GB</text>
+<text x="90" y="585" font-family="system-ui,sans-serif" font-size="24" fill="#333">77勝の意味を決めたのは、77勝そのものではない。</text>
+<text x="90" y="625" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#171717">比較対象が、数字の意味を変える。</text>
+</svg>
