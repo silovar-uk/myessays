@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<rect width="1200" height="675" fill="#fffaf5"/>
+<text x="70" y="78" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="38" font-weight="700" fill="#172554">図表10を足し算すると、2.2億円ずれる</text>
+<text x="70" y="120" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#475569">公開PDFの記載値をそのまま算術監査</text>
+<rect x="70" y="185" width="300" height="160" rx="18" fill="#fff" stroke="#f97316" stroke-width="3"/>
+<text x="220" y="230" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#7c2d12">V・ファーレン長崎</text>
+<text x="220" y="300" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="52" font-weight="800" fill="#c2410c">89.4億円</text>
+<text x="400" y="278" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="44" font-weight="800" fill="#64748b">＋</text>
+<rect x="450" y="185" width="300" height="160" rx="18" fill="#fff" stroke="#d4a72c" stroke-width="3"/>
+<text x="600" y="230" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#5b4a08">長崎ヴェルカ</text>
+<text x="600" y="300" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="52" font-weight="800" fill="#7a640e">39.3億円</text>
+<text x="775" y="278" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="44" font-weight="800" fill="#64748b">＝</text>
+<rect x="830" y="170" width="300" height="190" rx="18" fill="#172554"/>
+<text x="980" y="220" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#cbd5e1">算術上の合計</text>
+<text x="980" y="290" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="56" font-weight="800" fill="#ffffff">128.7億円</text>
+<text x="980" y="330" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#cbd5e1">＋ 非試合日162.2 ＝ 290.9</text>
+<rect x="175" y="420" width="850" height="120" rx="18" fill="#fff1f2" stroke="#e11d48" stroke-width="3"/>
+<text x="220" y="465" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="23" font-weight="700" fill="#9f1239">PDF表記：試合日計 130.9億円</text>
+<text x="220" y="510" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="30" font-weight="800" fill="#be123c">128.7との差は 2.2億円</text>
+<text x="70" y="605" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#475569">発行元の訂正確認前のため、本稿では「公開資料上の算術的不整合／誤記可能性」として扱う。</text>
+<text x="70" y="638" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="16" fill="#64748b">Source: 株式会社船井総合研究所「統合的インパクト評価レポート」図表10｜本図は公開数値を再計算</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<rect width="1200" height="675" fill="#f8fafc"/>
+<text x="70" y="80" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="38" font-weight="700" fill="#172554">378.3億円のうち、47％は施設の外へ</text>
+<text x="70" y="122" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#475569">「施設外178億円」＝ 直接消費40億円 ＋ 波及需要138億円</text>
+<rect x="70" y="200" width="520" height="220" rx="22" fill="#172554"/>
+<text x="110" y="255" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="24" fill="#cbd5e1">施設・クラブの事業として生まれる需要</text>
+<text x="110" y="340" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="64" font-weight="800" fill="#ffffff">約200億円</text>
+<text x="110" y="385" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#cbd5e1">興行・テナント・宿泊など</text>
+<rect x="620" y="200" width="190" height="220" rx="22" fill="#f97316"/>
+<text x="650" y="255" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="22" fill="#fff7ed">市中で直接</text>
+<text x="650" y="332" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="50" font-weight="800" fill="#ffffff">約40</text>
+<text x="650" y="372" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#fff7ed">億円</text>
+<rect x="830" y="200" width="300" height="220" rx="22" fill="#d4a72c"/>
+<text x="865" y="255" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="22" fill="#4a3a04">県内産業へ波及</text>
+<text x="865" y="332" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="50" font-weight="800" fill="#382f0a">約138</text>
+<text x="865" y="372" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#4a3a04">億円</text>
+<path d="M620 465 H1130" stroke="#f97316" stroke-width="4"/>
+<text x="875" y="515" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="34" font-weight="800" fill="#c2410c">施設外 約178億円（47％）</text>
+<text x="875" y="555" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#64748b">※178億円すべてが市中店舗の直接売上という意味ではない</text>
+<text x="70" y="630" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="17" fill="#64748b">Source: 株式会社船井総合研究所「統合的インパクト評価レポート」2026年10月｜本図は公開数値を再構成</text>
+</svg>

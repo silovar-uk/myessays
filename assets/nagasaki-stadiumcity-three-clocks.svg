@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<rect width="1200" height="675" fill="#f8fafc"/>
+<text x="70" y="78" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="38" font-weight="700" fill="#172554">長崎モデルは「三つの需要時計」を重ねる</text>
+<text x="70" y="120" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#475569">同じ曜日・同じ季節に依存しないから、年間の谷を埋められる</text>
+<circle cx="250" cy="300" r="135" fill="#fff7ed" stroke="#f97316" stroke-width="4"/>
+<text x="250" y="260" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="24" font-weight="700" fill="#9a3412">サッカー</text>
+<text x="250" y="305" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#7c2d12">遠征・宿泊</text>
+<text x="250" y="345" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#7c2d12">外から大きく呼ぶ</text>
+<circle cx="600" cy="300" r="135" fill="#fffbeb" stroke="#d4a72c" stroke-width="4"/>
+<text x="600" y="260" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="24" font-weight="700" fill="#5b4a08">バスケットボール</text>
+<text x="600" y="305" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#6b570c">高頻度・屋内</text>
+<text x="600" y="345" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#6b570c">週末を繰り返し埋める</text>
+<circle cx="950" cy="300" r="135" fill="#eff6ff" stroke="#2563eb" stroke-width="4"/>
+<text x="950" y="250" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="24" font-weight="700" fill="#1e3a8a">複合施設</text>
+<text x="950" y="295" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#1d4ed8">ホテル・商業・オフィス</text>
+<text x="950" y="335" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#1d4ed8">非試合日・平日を埋める</text>
+<path d="M385 300 H465" stroke="#94a3b8" stroke-width="4"/>
+<path d="M735 300 H815" stroke="#94a3b8" stroke-width="4"/>
+<rect x="250" y="500" width="700" height="90" rx="20" fill="#172554"/>
+<text x="600" y="555" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="30" font-weight="800" fill="#ffffff">目的：スタジアムの稼働率ではなく、街区の時間稼働率を上げる</text>
+<text x="70" y="635" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="16" fill="#64748b">Concept: 本稿独自の再構成｜三類型の基礎は株式会社船井総合研究所「統合的インパクト評価レポート」</text>
+</svg>

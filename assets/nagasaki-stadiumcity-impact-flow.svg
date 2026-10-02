@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<rect width="1200" height="675" fill="#f7f4ee"/>
+<text x="70" y="80" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="38" font-weight="700" fill="#172554">290.9億円の需要は、どう378.3億円へ広がるか</text>
+<text x="70" y="120" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#475569">2026年推計｜長崎県内の生産誘発構造</text>
+<rect x="70" y="190" width="230" height="180" rx="18" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+<text x="185" y="245" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#475569">最終需要</text>
+<text x="185" y="305" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="42" font-weight="800" fill="#172554">290.9</text>
+<text x="185" y="338" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#64748b">億円</text>
+<path d="M310 280 H380" stroke="#f97316" stroke-width="5" marker-end="url(#a)"/>
+<rect x="390" y="190" width="230" height="180" rx="18" fill="#172554"/>
+<text x="505" y="245" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#e2e8f0">直接効果</text>
+<text x="505" y="305" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="42" font-weight="800" fill="#ffffff">240.8</text>
+<text x="505" y="338" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#cbd5e1">億円</text>
+<path d="M630 280 H700" stroke="#f97316" stroke-width="5" marker-end="url(#a)"/>
+<rect x="710" y="190" width="180" height="180" rx="18" fill="#2563eb"/>
+<text x="800" y="245" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="19" fill="#dbeafe">第1次波及</text>
+<text x="800" y="305" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="40" font-weight="800" fill="#ffffff">87.0</text>
+<text x="800" y="338" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#dbeafe">億円</text>
+<text x="915" y="285" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="38" font-weight="700" fill="#64748b">＋</text>
+<rect x="960" y="190" width="170" height="180" rx="18" fill="#60a5fa"/>
+<text x="1045" y="245" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="19" fill="#172554">第2次波及</text>
+<text x="1045" y="305" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="40" font-weight="800" fill="#172554">50.5</text>
+<text x="1045" y="338" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#172554">億円</text>
+<rect x="390" y="430" width="740" height="150" rx="20" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+<text x="420" y="478" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="22" font-weight="700" fill="#9a3412">県内で連鎖した生産誘発</text>
+<text x="420" y="535" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="44" font-weight="800" fill="#c2410c">総額 378.3億円</text>
+<text x="790" y="530" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="20" fill="#7c2d12">波及倍率 1.57倍</text>
+<text x="70" y="630" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="17" fill="#64748b">Source: 株式会社船井総合研究所「統合的インパクト評価レポート」2026年10月｜本図は公開数値を再構成</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f97316"/></marker></defs>
+</svg>
