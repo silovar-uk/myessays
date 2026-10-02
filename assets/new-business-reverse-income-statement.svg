@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="t d">
+<title id="t">逆算型の事業採算</title><desc id="d">目標利益から必要売上、顧客数、獲得能力、供給能力へ逆算し、仮定を露出させる。</desc>
+<rect width="1200" height="720" rx="36" fill="#fff7ed"/>
+<text x="70" y="90" font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',sans-serif" font-size="42" font-weight="700" fill="#431407">未来を当てるより、「何が真なら成立するか」を逆算する</text>
+<text x="70" y="132" font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',sans-serif" font-size="22" fill="#9a3412">Discovery-Driven Planningの発想を、本稿向けに単純化</text>
+<g font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+<rect x="70" y="220" width="185" height="120" rx="18" fill="#7c2d12"/><text x="96" y="260" font-size="18" fill="#fed7aa">GOAL</text><text x="96" y="300" font-size="27" font-weight="700" fill="#fff">目標利益</text>
+<rect x="295" y="220" width="185" height="120" rx="18" fill="#9a3412"/><text x="321" y="260" font-size="18" fill="#fed7aa">REVERSE 1</text><text x="321" y="300" font-size="27" font-weight="700" fill="#fff">必要売上</text>
+<rect x="520" y="220" width="185" height="120" rx="18" fill="#c2410c"/><text x="546" y="260" font-size="18" fill="#ffedd5">REVERSE 2</text><text x="546" y="300" font-size="27" font-weight="700" fill="#fff">必要顧客数</text>
+<rect x="745" y="220" width="185" height="120" rx="18" fill="#ea580c"/><text x="771" y="260" font-size="18" fill="#fff7ed">REVERSE 3</text><text x="771" y="300" font-size="27" font-weight="700" fill="#fff">獲得能力</text>
+<rect x="970" y="220" width="160" height="120" rx="18" fill="#f97316"/><text x="994" y="260" font-size="18" fill="#fff7ed">REVERSE 4</text><text x="994" y="300" font-size="27" font-weight="700" fill="#fff">供給能力</text>
+<g stroke="#9a3412" stroke-width="4" fill="none"><path d="M255 280H282"/><path d="M480 280H507"/><path d="M705 280H732"/><path d="M930 280H957"/></g>
+<g fill="#9a3412"><path d="M282 280l-13-8v16z"/><path d="M507 280l-13-8v16z"/><path d="M732 280l-13-8v16z"/><path d="M957 280l-13-8v16z"/></g>
+<rect x="130" y="430" width="940" height="160" rx="24" fill="#ffffff" stroke="#fdba74" stroke-width="3"/>
+<text x="175" y="476" font-size="20" fill="#9a3412">各箱の下で問う</text>
+<text x="175" y="522" font-size="30" font-weight="700" fill="#431407">「この数字が成立するには、何が真でなければならない？」</text>
+<text x="175" y="563" font-size="20" fill="#7c2d12">価格、粗利、転換率、継続率、営業生産性、原価、人員、規制——仮定を先に露出させる。</text>
+<text x="70" y="650" font-size="18" fill="#9a3412">数字は予言ではなく、次に検証する仮説を見つけるために使う。</text>
+</g></svg>

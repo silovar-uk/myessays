@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="t d">
+<title id="t">新規事業の七つの関門</title><desc id="d">戦略仮説、課題存在、解決反応、行動・約束、事業採算、反復性、拡大・組織を順に示し、証拠が否定すれば戻ることを表す。</desc>
+<rect width="1200" height="760" rx="36" fill="#0b1220"/>
+<text x="70" y="88" font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',sans-serif" font-size="42" font-weight="700" fill="#f8fafc">新規事業の七つの関門</text>
+<text x="70" y="130" font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',sans-serif" font-size="22" fill="#94a3b8">証拠が増えた分だけ、次の賭けを大きくする</text>
+<g font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+<rect x="70" y="190" width="300" height="108" rx="20" fill="#162033" stroke="#38bdf8" stroke-width="2"/><text x="96" y="229" font-size="18" fill="#7dd3fc">GATE 1</text><text x="96" y="266" font-size="28" font-weight="700" fill="#f8fafc">戦略仮説</text>
+<rect x="450" y="190" width="300" height="108" rx="20" fill="#162033" stroke="#38bdf8" stroke-width="2"/><text x="476" y="229" font-size="18" fill="#7dd3fc">GATE 2</text><text x="476" y="266" font-size="28" font-weight="700" fill="#f8fafc">課題存在</text>
+<rect x="830" y="190" width="300" height="108" rx="20" fill="#162033" stroke="#38bdf8" stroke-width="2"/><text x="856" y="229" font-size="18" fill="#7dd3fc">GATE 3</text><text x="856" y="266" font-size="28" font-weight="700" fill="#f8fafc">解決反応</text>
+<rect x="830" y="360" width="300" height="108" rx="20" fill="#162033" stroke="#f59e0b" stroke-width="2"/><text x="856" y="399" font-size="18" fill="#fbbf24">GATE 4</text><text x="856" y="436" font-size="28" font-weight="700" fill="#f8fafc">行動・約束</text>
+<rect x="450" y="360" width="300" height="108" rx="20" fill="#162033" stroke="#f59e0b" stroke-width="2"/><text x="476" y="399" font-size="18" fill="#fbbf24">GATE 5</text><text x="476" y="436" font-size="28" font-weight="700" fill="#f8fafc">事業採算</text>
+<rect x="70" y="360" width="300" height="108" rx="20" fill="#162033" stroke="#34d399" stroke-width="2"/><text x="96" y="399" font-size="18" fill="#6ee7b7">GATE 6</text><text x="96" y="436" font-size="28" font-weight="700" fill="#f8fafc">反復性</text>
+<rect x="450" y="530" width="300" height="108" rx="20" fill="#162033" stroke="#34d399" stroke-width="2"/><text x="476" y="569" font-size="18" fill="#6ee7b7">GATE 7</text><text x="476" y="606" font-size="28" font-weight="700" fill="#f8fafc">拡大・組織</text>
+<g stroke="#64748b" stroke-width="4" fill="none" stroke-linecap="round"><path d="M370 244H430"/><path d="M750 244H810"/><path d="M980 298V340"/><path d="M830 414H770"/><path d="M450 414H390"/><path d="M220 468V510 Q220 584 430 584"/></g>
+<g fill="#64748b"><path d="M430 244l-14-9v18z"/><path d="M810 244l-14-9v18z"/><path d="M980 340l-9-14h18z"/><path d="M770 414l14-9v18z"/><path d="M390 414l14-9v18z"/><path d="M430 584l-14-9v18z"/></g>
+<path d="M750 584 C980 584 1080 650 1060 690 C1030 730 240 730 180 670" fill="none" stroke="#475569" stroke-width="3" stroke-dasharray="10 10"/>
+<text x="785" y="666" font-size="18" fill="#94a3b8">仮説が崩れたら、前の関門へ戻る</text>
+<text x="70" y="706" font-size="17" fill="#64748b">本稿の統合モデル。一本道の工程ではなく、不確実性の位置を特定するための地図。</text>
+</g></svg>
