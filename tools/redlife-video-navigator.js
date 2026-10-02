@@ -1,8 +1,8 @@
-/* REDLife Video Navigator 0.2.0 — navigate the existing page video without replacing it. */
+/* REDLife Video Navigator 0.2.1 — navigate the existing page video without replacing it. */
 (function(){
 'use strict';
 if(window.REDLIFE_VIDEO_NAVIGATOR){window.REDLIFE_VIDEO_NAVIGATOR.toggle();return;}
-var VERSION='0.2.0',HOST='__redlife_video_navigator_host__',PREFIX='__redlife_video_nav_v1__:',video=null,open=false,observer=null,scanTimer=0,raf=0,preview=null,A=null,B=null,loop=false,mode='compact',state=null,stateKey='',backTime=null,touchStart=null,lastTap=null;
+var VERSION='0.2.1',HOST='__redlife_video_navigator_host__',PREFIX='__redlife_video_nav_v1__:',video=null,open=false,observer=null,scanTimer=0,raf=0,preview=null,A=null,B=null,loop=false,mode='compact',state=null,stateKey='',backTime=null,touchStart=null,lastTap=null;
 var host=document.createElement('div');host.id=HOST;host.style.cssText='all:initial!important;position:fixed!important;inset:0!important;z-index:2147483646!important;pointer-events:none!important;display:block!important;';
 var root=host.attachShadow({mode:'open'}),style=document.createElement('style');
 style.textContent=[
