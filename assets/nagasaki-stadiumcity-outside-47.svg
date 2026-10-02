@@ -17,5 +17,5 @@
 <path d="M620 465 H1130" stroke="#f97316" stroke-width="4"/>
 <text x="875" y="515" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="34" font-weight="800" fill="#c2410c">施設外 約178億円（47％）</text>
 <text x="875" y="555" text-anchor="middle" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="18" fill="#64748b">※178億円すべてが市中店舗の直接売上という意味ではない</text>
-<text x="70" y="630" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="17" fill="#64748b">Source: 株式会社船井総合研究所「統合的インパクト評価レポート」2026年10月｜本図は公開数値を再構成</text>
+<text x="70" y="630" font-family="system-ui,-apple-system,'Noto Sans JP',sans-serif" font-size="17" fill="#64748b">出典： 株式会社船井総合研究所「統合的インパクト評価レポート」2026年10月｜本図は公開数値を再構成</text>
 </svg>

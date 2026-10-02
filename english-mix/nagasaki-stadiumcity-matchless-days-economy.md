@@ -143,7 +143,7 @@ For another city, copying Nagasaki does not mean placing a hotel beside a stadiu
 
 Source: [Funai report, Chapters 3 and 4](https://asset.funaisoken.ne.jp/official/press-release/nagasaki-stadiumcity.pdf)
 
-## 9. 次に見るべきKPIは、378.3億円そのものより「外へ出た比率」と「空白時間の減り方」である
+## 9. 次に見るべき指標は、378.3億円そのものより「外へ出た比率」と「空白時間の減り方」である
 
 From here, this is my proposal. 次年度以降を追うなら、total economic impactだけでなくstructural KPIsを並べたほうが、managementにもpolicyにも使いやすい。Track the non-match-day demand share, direct spending outside the complex, Nagasaki-observed away-fan overnight rate and nights stayed, city circulation, spending by external-event stakeholders, hotel occupancy, tenant sales, and office occupancy.
 
