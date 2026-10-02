@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect width="1200" height="720" fill="#f4f1ea"/>
+<text x="70" y="82" font-family="system-ui,sans-serif" font-size="42" font-weight="700" fill="#171717">THE TEAMS STOOD STILL. THE METRICS MOVED.</text>
+<text x="70" y="124" font-family="system-ui,sans-serif" font-size="22" fill="#555">October 2, 2026</text>
+<rect x="80" y="175" width="480" height="180" rx="16" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="115" y="220" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#171717">阪神 / 77勝のまま</text>
+<text x="115" y="270" font-family="system-ui,sans-serif" font-size="25" fill="#555">巨人が敗戦</text>
+<text x="115" y="325" font-family="system-ui,sans-serif" font-size="40" font-weight="800" fill="#171717">M2 → M1</text>
+<rect x="640" y="175" width="480" height="180" rx="16" fill="#fff" stroke="#222" stroke-width="2"/>
+<text x="675" y="220" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#171717">西武 / 77勝のまま</text>
+<text x="675" y="270" font-family="system-ui,sans-serif" font-size="25" fill="#555">ソフトバンクが勝利</text>
+<text x="675" y="325" font-family="system-ui,sans-serif" font-size="40" font-weight="800" fill="#171717">13.0 → 13.5 GB</text>
+<path d="M320 400 L320 495 L880 495 L880 400" fill="none" stroke="#777" stroke-width="3"/>
+<text x="360" y="550" font-family="system-ui,sans-serif" font-size="28" fill="#333">自分が動かなくても、他者が動けば変わる。</text>
+<text x="300" y="605" font-family="system-ui,sans-serif" font-size="38" font-weight="800" fill="#171717">RELATIONAL METRICS</text>
+</svg>
