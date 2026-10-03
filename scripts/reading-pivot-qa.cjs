@@ -152,13 +152,28 @@ async function waitForReader(page) {
   const afterTinyScroll = await readingState(page);
   assert.equal(afterTinyScroll.physicalLocator, beforeTinyScroll.physicalLocator, '8px scroll should remain inside Pivot hysteresis');
 
-  // Crossing a paragraph boundary must move the Rail anchor.
-  await page.evaluate(() => {
+  // Move the next readable paragraph onto the Rail so this test crosses
+  // a real paragraph boundary rather than assuming a fixed pixel delta is enough.
+  const boundaryTarget = await page.evaluate(() => {
+    const paragraphs = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')]
+      .filter(block => !block.classList.contains('language-source-hidden'));
     const pivot = window.MyEssaysReadingPivot?.current?.();
-    const distance = Math.max(96, (pivot?.getBoundingClientRect().height || 0) + 40);
-    window.scrollBy({ top: distance, behavior: 'auto' });
+    const index = pivot ? paragraphs.indexOf(pivot) : -1;
+    const next = index >= 0 ? paragraphs[index + 1] : null;
+    const rail = window.MyEssaysReadingPivot?.readingRailY?.();
+    if (!next || !Number.isFinite(rail)) return '';
+    const rect = next.getBoundingClientRect();
+    const targetPoint = rect.top + Math.min(Math.max(12, rect.height * .35), Math.max(12, rect.height - 12));
+    window.scrollBy({ top: targetPoint - rail, behavior: 'auto' });
+    return next.dataset.readingLocator || '';
   });
-  await waitForPivotChange(page, afterTinyScroll.physicalLocator);
+  assert.ok(boundaryTarget, 'a next readable paragraph should exist for the boundary-scroll test');
+  await page.waitForFunction(locator => {
+    const current = window.MyEssaysReadingPivot?.physicalLocator?.()
+      || document.querySelector('#readerContent > p.reader-locator-block.is-reading-pivot')?.dataset.readingLocator
+      || '';
+    return current === locator;
+  }, boundaryTarget, { timeout: 3000 });
   const readingPivot = await readingState(page);
   assertRailOwnsPivot(readingPivot, 'after boundary scroll');
 

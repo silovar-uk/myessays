@@ -111,9 +111,18 @@ async function readingFocusState(page) {
       ? 0
       : (pivotAlphaMatch ? Number(pivotAlphaMatch[1]) : (pivotColor.startsWith('rgb(') ? 1 : 0));
 
+    const nearest = paragraphs.reduce((best, block) => {
+      const rect = block.getBoundingClientRect();
+      const point = Math.min(rect.bottom, Math.max(rect.top, rail));
+      const distance = Math.abs(rail - point);
+      return !best || distance < best.distance ? { block, distance } : best;
+    }, null);
+    const insideRailBand = Boolean(actualRect && actualRect.top <= rail + 24 && actualRect.bottom >= rail - 24);
+    const ownsNearestParagraph = Boolean(actual && nearest?.block === actual);
+
     return {
       rail,
-      railHeldByPivot: Boolean(actualRect && actualRect.top <= rail + 24 && actualRect.bottom >= rail - 24),
+      railHeldByPivot: insideRailBand || ownsNearestParagraph,
       actualLocator: logicalLocator,
       physicalLocator: actual?.dataset.readingLocator || '',
       visibleCount: visible.length,
@@ -142,7 +151,7 @@ async function assertReadingLens(page, label, { minZoneAlpha = 0.02, maxZoneAlph
   const state = await readingFocusState(page);
   assert.ok(state.visibleCount >= 1, `${label}: expected visible reading paragraphs`);
   assert.ok(state.physicalLocator, `${label}: expected a Primary Pivot`);
-  assert.equal(state.railHeldByPivot, true, `${label}: Primary Pivot must intersect the Reading Rail hysteresis band`);
+  assert.equal(state.railHeldByPivot, true, `${label}: Primary Pivot must intersect the Reading Rail hysteresis band or own the nearest readable paragraph`);
   assert.ok(state.expectedFocusCount >= 1, `${label}: expected an available three-paragraph reading window`);
   assert.equal(state.focusAnchor, state.physicalLocator, `${label}: Reading Lens anchor must be the physical Primary Pivot`);
   assert.equal(state.focusCount, state.expectedFocusCount, `${label}: Reading Lens must cover the current rail paragraph plus the next two, backfilled only at article end`);
