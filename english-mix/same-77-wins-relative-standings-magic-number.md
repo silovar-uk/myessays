@@ -38,10 +38,7 @@ But they live in different competitive distributions.
 
 10月1日終了時点、阪神は77勝59敗2分、2位巨人は76勝62敗3分。Hanshin was already the league leader. 西武は77勝60敗4分だったが、SoftBank had 90 wins and only 47 losses.
 
-So the same number means different things:
-
-- Hanshin world: 77 wins was the top of the league.
-- Seibu world: 77 wins was strong, but another team had already reached 90.
+So the same number means different things. In Hanshin's world, 77 wins was the top of the league. In Seibu's world, 77 wins was strong, but another team had already reached 90.
 
 Nothing mysterious happened to the number 77. **The benchmark changed.**
 
@@ -73,13 +70,9 @@ So games behind is not the standings themselves. It is a **readable distance bet
 
 ## 3. Magic number measures a shrinking future, not today's distance
 
-Games behind looks at current separation. A **magic number** looks forward.
+Games behind looks at current separation. A **magic number** looks forward. On October 1, Hanshin was 77–59–2 and Yomiuri 76–62–3, with Hanshin's magic number at two.
 
-On October 1, Hanshin was 77–59–2 and Yomiuri 76–62–3. Hanshin's magic number was two.
-
-Then October 2 produced the weirdest part: Hanshin did not play.
-
-Yet Yomiuri lost to Yakult, and Hanshin's magic number fell from two to one.
+Then October 2 produced the weirdest part: Hanshin did not play, but Yomiuri lost to Yakult and Hanshin's magic number fell from two to one.
 
 阪神の77勝は増えていない。What changed was the set of futures in which Yomiuri could still overtake Hanshin.
 
@@ -91,17 +84,11 @@ A better mental model is: **magic number counts how close the race is to becomin
 
 ## 4. The funniest part: neither Hanshin nor Seibu had to do anything
 
-On October 1:
+On October 1, Hanshin was 77–59–2 with M2, while Seibu was 77–60–4 and 13.0 games behind.
 
-- Hanshin: 77–59–2, M2
-- Seibu: 77–60–4, 13.0 GB
+On October 2, both teams were idle. Then other teams moved.
 
-On October 2, both teams were idle.
-
-Then other teams moved.
-
-Yomiuri lost → Hanshin became M1.  
-SoftBank won → Seibu became 13.5 GB.
+Yomiuri lost → Hanshin became M1. SoftBank won → Seibu became 13.5 GB.
 
 ![Relational metrics can move while the measured team stays still.](https://silovar-uk.github.io/myessays/assets/standings-relational-metrics.svg)
 
@@ -115,14 +102,9 @@ So a useful question for any KPI is not only **“What does this number measure?
 
 The contrast gets stranger when we look at winning percentage.
 
-As of October 1:
+As of October 1, Hanshin was .566 and Seibu was .562.
 
-- Hanshin: .566
-- Seibu: .562
-
-Difference: only .004.
-
-In one league, .566 was first place. In the other, .562 sat far behind a .657 SoftBank team.
+Difference: only .004. In one league, .566 was first place. In the other, .562 sat far behind a .657 SoftBank team.
 
 This tells us why “good performance” and “good competitive position” need separate lenses.
 
@@ -134,6 +116,8 @@ Both views are incomplete.
 
 ## 6. Build imaginary leagues and the meaning of 77 flips immediately
 
+ここで一歩やりすぎて、imagine four artificial leagues.
+
 Imagine League A. The leader has 77 wins and second place has 70. Then 77 is dominant.
 
 Imagine League B. The leader has 100, second has 90, third has 77. Same 77, very different status.
@@ -142,9 +126,11 @@ Imagine League C where every club sits around 70 wins. 77 looks huge.
 
 Imagine League D where most clubs sit around 80. 77 might be below average.
 
-The lesson is broader than baseball: **an absolute value tells you output; a distribution tells you position.**
+The lesson is broader than baseball: “How many wins is strong?” does not stand alone. You need both the absolute value and the distribution around it.
 
-You need both.
+Baseball gives every club the same 143-game frame, so win totals are relatively easy to compare. Even then, the meaning of the same total changes with the league distribution.
+
+**An absolute value describes the team; a distribution describes its position.**
 
 ## 7. The same “77-win problem” appears in business KPIs
 
@@ -168,43 +154,55 @@ A baseball standings table is, in that sense, a compact dashboard combining **pe
 
 ## 8. Ask one extra question: who else can move this number?
 
-The practical takeaway is simple.
+The most practical lesson from the 77-win puzzle is simpler than memorizing every formula: when a metric appears, ask whether it can move even if we do nothing.
 
-When a metric appears, ask:
+KPIを見るときも同じである。
 
-**“Can this number change even if we do nothing?”**
+Market share moves when competitors move.
 
-If yes, it is at least partly relational.
+Search rank moves when other sites move.
 
-Market share moves when competitors move.  
-Search rank moves when other sites move.  
-Percentile moves when the reference group moves.  
-Magic number moves when the rival loses.  
-Games behind moves when the leader wins.
+Percentile moves when the reference group moves.
 
-On October 2, Hanshin and Seibu gave us the cleanest possible example. Their own records stayed frozen at 77 wins, while the surrounding system changed their displayed position.
+Achievement rate changes with the target and the deadline.
 
-A metric is never just a number. **It is a rule connecting an object to a system.**
+Magic number moves with the remaining schedule and the rival's results.
+
+**Along with “What does this number measure?”, ask “Whose behavior can move it?”**
+
+That one extra question makes a metric much harder to misread.
 
 ## 9. Same 77 wins. Different world.
 
-At first, the puzzle was:
+At first, return to the original puzzle.
 
-“How can 77 wins mean title almost clinched for one team and 13.5 games back for another?”
+Hanshin: 77–59, magic number 1.
 
-After looking at the math, the question changes.
+Seibu: 77–60, 13.5 games behind the leader.
 
-Why did we expect 77 wins, by itself, to tell us where a team should stand?
+At first, the table looks almost broken. With the same number of wins, you expect the two teams to occupy more similar positions.
 
-Hanshin's 77 wins lived in a league where no one had more. Seibu's 77 lived next to a SoftBank team already at 91.
+But the numbers were not broken at all. They were being unusually honest.
 
-Then, on October 2, neither team played, and both numbers moved anyway.
+Hanshin's 77 wins lived in a league where no team had built a much larger win total.
 
-That is the final clue.
+Seibu's 77 lived next to a SoftBank team already at 91 wins.
 
-**Same 77 wins. Different relationship. Different meaning.**
+Then, on October 2, neither Hanshin nor Seibu played, yet the surrounding results moved both displayed numbers.
 
-数字は一人では順位になれない。
+Before looking into it, the question was simply: “How can the same 77 wins mean such different things?”
+
+After looking into it, the question changes.
+
+**Why did we expect one isolated number—77 wins—to tell us the team's position as well?**
+
+Numbers do not speak alone.
+
+Especially in a standings table, a number only gains its full meaning through its relation to the teams beside it.
+
+Same 77 wins.
+
+Different world.
 
 ## Sources
 

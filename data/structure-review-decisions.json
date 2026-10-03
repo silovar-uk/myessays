@@ -1,12 +1,59 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-14",
+  "updatedAt": "2026-10-03",
   "decisions": {
-    "hello-project-1997-2026-overview:en-mix": {"status":"EDITORIAL_REWRITE_REQUIRED","strategy":"REGENERATE_SECTION","reviewedAt":"2026-09-14","priority":"MEDIUM","reason":"The ENMIX ending condenses the canonical closing semantic block into the preceding gradual-sequence setup, so restoring block count mechanically would duplicate or distort meaning. Rebuild the affected section from canonical blocks when editorial migration is scheduled."},
-    "os-world-under-the-city:en-mix": {"status":"EDITORIAL_REWRITE_REQUIRED","strategy":"REGENERATE_SECTION","reviewedAt":"2026-09-14","priority":"LOW","reason":"The ENMIX version compresses two canonical shutdown blocks into one sentence. The missing boundary cannot be restored by whitespace-only segmentation without inventing wording."},
-    "design-literacy-ornament-and-crime-semantic-decoration:en-mix": {"status":"EDITORIAL_REWRITE_REQUIRED","strategy":"REGENERATE_SECTION","reviewedAt":"2026-09-14","priority":"MEDIUM","reason":"The ENMIX section intentionally omits short bridge paragraphs around the paired quotations. Matching the canonical block contract requires editorial regeneration rather than a mechanical paragraph-count fix."},
-    "design-literacy-grid-shared-coordinate-system:en-mix": {"status":"EDITORIAL_REWRITE_REQUIRED","strategy":"REGENERATE_SECTION","reviewedAt":"2026-09-14","priority":"MEDIUM","reason":"Several canonical Visual Lesson and explanatory HTML blocks are absent from the ENMIX version. The high-confidence local boundaries are useful for diagnosis, but restoring structure requires editorial regeneration rather than whitespace repair."},
-    "nikkei-headlines-four-vectors:en-mix": {"status":"ALIGNED","strategy":"FIX","reviewedAt":"2026-09-14","priority":"HIGH","migrationBatch":"batch-003","migratedAt":"2026-09-14","reason":"Batch 003 restored one omitted canonical bridge block and repaired two paragraph boundaries with exact replacements; strict structure validation passed."},
-    "america-cities-02-boston:en-mix": {"status":"ALIGNED","strategy":"FIX","reviewedAt":"2026-09-14","priority":"HIGH","migrationBatch":"batch-003","migratedAt":"2026-09-14","reason":"Batch 003 restored two omitted canonical bridge blocks and repaired the closing paragraph boundary with exact replacements; strict structure validation passed."}
+    "hello-project-1997-2026-overview:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "MEDIUM",
+      "reason": "The ENMIX ending condenses the canonical closing semantic block into the preceding gradual-sequence setup, so restoring block count mechanically would duplicate or distort meaning. Rebuild the affected section from canonical blocks when editorial migration is scheduled."
+    },
+    "os-world-under-the-city:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "LOW",
+      "reason": "The ENMIX version compresses two canonical shutdown blocks into one sentence. The missing boundary cannot be restored by whitespace-only segmentation without inventing wording."
+    },
+    "design-literacy-ornament-and-crime-semantic-decoration:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "MEDIUM",
+      "reason": "The ENMIX section intentionally omits short bridge paragraphs around the paired quotations. Matching the canonical block contract requires editorial regeneration rather than a mechanical paragraph-count fix."
+    },
+    "design-literacy-grid-shared-coordinate-system:en-mix": {
+      "status": "EDITORIAL_REWRITE_REQUIRED",
+      "strategy": "REGENERATE_SECTION",
+      "reviewedAt": "2026-09-14",
+      "priority": "MEDIUM",
+      "reason": "Several canonical Visual Lesson and explanatory HTML blocks are absent from the ENMIX version. The high-confidence local boundaries are useful for diagnosis, but restoring structure requires editorial regeneration rather than whitespace repair."
+    },
+    "nikkei-headlines-four-vectors:en-mix": {
+      "status": "ALIGNED",
+      "strategy": "FIX",
+      "reviewedAt": "2026-09-14",
+      "priority": "HIGH",
+      "migrationBatch": "batch-003",
+      "migratedAt": "2026-09-14",
+      "reason": "Batch 003 restored one omitted canonical bridge block and repaired two paragraph boundaries with exact replacements; strict structure validation passed."
+    },
+    "america-cities-02-boston:en-mix": {
+      "status": "ALIGNED",
+      "strategy": "FIX",
+      "reviewedAt": "2026-09-14",
+      "priority": "HIGH",
+      "migrationBatch": "batch-003",
+      "migratedAt": "2026-09-14",
+      "reason": "Batch 003 restored two omitted canonical bridge blocks and repaired the closing paragraph boundary with exact replacements; strict structure validation passed."
+    },
+    "same-77-wins-relative-standings-magic-number:en-mix": {
+      "status": "ALIGNED",
+      "strategy": "REGENERATE",
+      "reviewedAt": "2026-10-03",
+      "priority": "HIGH",
+      "reason": "The English Mix variant compressed and reformatted several canonical blocks, including list-vs-paragraph differences and omitted bridge/closing blocks. The affected sections were regenerated from the canonical Japanese block structure without adding new factual claims; all section block types now align."
+    }
   }
 }
