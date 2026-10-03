@@ -112,6 +112,19 @@
     return Math.min(canonicalCount - 1, Math.max(0, Math.floor(midpoint * canonicalCount)));
   }
 
+  function proportionalCanonicalCoverage(currentIndex, currentCount, canonicalCount) {
+    if (currentCount <= 0 || canonicalCount <= 0) return [];
+    const covered = [];
+    for (let canonicalIndex = 0; canonicalIndex < canonicalCount; canonicalIndex += 1) {
+      const renderedIndex = Math.min(
+        currentCount - 1,
+        Math.max(0, Math.floor(((canonicalIndex + 0.5) / canonicalCount) * currentCount))
+      );
+      if (renderedIndex === currentIndex) covered.push(canonicalIndex);
+    }
+    return covered;
+  }
+
   function canonicalTextForLocator(locator, id = currentEssayId()) {
     const parsed = parseLocator(locator);
     if (!parsed || !id) return '';
@@ -128,9 +141,12 @@
     );
   }
 
-  function semanticCoverage(block, sectionIndex, mappedIndex, canonicalBlocks) {
+  function semanticCoverage(block, sectionIndex, currentIndex, currentCount, mappedIndex, canonicalBlocks) {
     const rendered = normalizeText(block.textContent);
-    const covered = new Set([mappedIndex]);
+    const covered = new Set([
+      mappedIndex,
+      ...proportionalCanonicalCoverage(currentIndex, currentCount, canonicalBlocks.length)
+    ]);
     uniqueCanonicalFragments(canonicalBlocks).forEach(item => {
       if (rendered.includes(item.normalized)) covered.add(item.canonicalIndex);
     });
@@ -166,6 +182,8 @@
         block.dataset.readingLocatorCoverage = semanticCoverage(
           block,
           sectionIndex,
+          index,
+          blocks.length,
           canonicalIndex,
           canonicalBlocks
         ).join(' ');

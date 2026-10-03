@@ -9,6 +9,8 @@ const source = fs.readFileSync(path.join(root, 'reading-locators.js'), 'utf8');
 test('derived reading blocks retain canonical locator coverage', () => {
   assert.match(source, /dataset\.readingLocatorCoverage/);
   assert.match(source, /semanticCoverage\(/);
+  assert.match(source, /proportionalCanonicalCoverage\(/);
+  assert.match(source, /renderedIndex === currentIndex/);
   assert.match(source, /canonicalTextForLocator\(/);
   assert.match(source, /findContainingBlock\(/);
 });

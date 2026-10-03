@@ -13,6 +13,8 @@ test('reading pivot follows a viewport Reading Rail with hysteresis instead of c
   assert.match(pivot, /const ANCHOR_HYSTERESIS_PX = 24/);
   assert.match(pivot, /:scope > p\.reader-locator-block\[data-reading-locator\]/);
   assert.match(pivot, /function findRailAnchor/);
+  assert.match(pivot, /myessays:reader-mode-shell-ready/);
+  assert.match(pivot, /scheduleEvaluate\(\{ immediate: true \}\)/);
   assert.match(pivot, /rect\.top <= rail && rect\.bottom >= rail/);
   assert.match(pivot, /function shouldHoldAnchor/);
   assert.match(pivot, /rect\.top <= rail \+ ANCHOR_HYSTERESIS_PX/);

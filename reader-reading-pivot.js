@@ -439,6 +439,10 @@
     refresh: initialize
   });
 
+  document.addEventListener('myessays:reader-mode-shell-ready', () => {
+    refreshReadingBlocks();
+    requestAnimationFrame(() => scheduleEvaluate({ immediate: true }));
+  });
   document.addEventListener('myessays:reader-ready', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:reader-rendered', () => requestAnimationFrame(initialize));
   document.addEventListener('myessays:semantic-locators-ready', () => requestAnimationFrame(initialize));

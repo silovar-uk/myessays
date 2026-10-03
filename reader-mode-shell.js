@@ -16,6 +16,7 @@
   let lastEssayId = '';
   let contextFrame = 0;
   let contentResizeObserver = null;
+  let shellAnnounced = false;
 
   const versions = () => window.MyEssaysReaderVersions;
   const route = () => window.MyEssaysRoute;
@@ -115,6 +116,12 @@
       if (shell.previousElementSibling !== header) header.after(shell);
     } else if (shell.parentElement !== view) {
       view.prepend(shell);
+    }
+    if (!shellAnnounced && shell.isConnected) {
+      shellAnnounced = true;
+      requestAnimationFrame(() => {
+        document.dispatchEvent(new CustomEvent('myessays:reader-mode-shell-ready'));
+      });
     }
     return shell;
   }
