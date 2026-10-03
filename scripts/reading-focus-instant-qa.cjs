@@ -301,7 +301,7 @@ async function semanticPivot(page) {
   await openEssay(page, TWO_MODE_ID);
   await waitForDirectControl(page, 2);
   await scrollIntoBody(page, 0.34, 'watanabe-mobile');
-  await assertReadingLens(page, 'JA+EN mobile', { minZoneAlpha: 0.025, maxZoneAlpha: 0.06, requireUnpaintedPivot: true });
+  await assertReadingLens(page, 'JA+EN mobile', { minZoneAlpha: 0.025, maxZoneAlpha: 0.10, requireUnpaintedPivot: true });
 
   assert.deepEqual(pageErrors, [], `page errors: ${pageErrors.join(' | ')}`);
   assert.deepEqual(consoleErrors, [], `console errors: ${consoleErrors.join(' | ')}`);

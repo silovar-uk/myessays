@@ -371,20 +371,23 @@
     requestAnimationFrame(() => {
       if (matches && anchor.essayId === currentEssayId()) correctSemanticEyeLine(anchor);
       requestAnimationFrame(() => {
-        if (matches && anchor.essayId === currentEssayId()) {
-          semanticEyeLineReference = {
-            essayId: anchor.essayId,
-            locator: anchor.locator,
-            viewportTop: anchor.viewportTop
-          };
-        }
-        dispatchReadingModeStable(event);
+        if (matches && anchor.essayId === currentEssayId()) correctSemanticEyeLine(anchor);
         requestAnimationFrame(() => {
-          semanticRestoreActive = false;
-          frozenSemanticProgress = null;
-          document.dispatchEvent(new CustomEvent('myessays:reading-progress-changed', {
-            detail: semanticProgress()
-          }));
+          if (matches && anchor.essayId === currentEssayId()) {
+            semanticEyeLineReference = {
+              essayId: anchor.essayId,
+              locator: anchor.locator,
+              viewportTop: anchor.viewportTop
+            };
+          }
+          dispatchReadingModeStable(event);
+          requestAnimationFrame(() => {
+            semanticRestoreActive = false;
+            frozenSemanticProgress = null;
+            document.dispatchEvent(new CustomEvent('myessays:reading-progress-changed', {
+              detail: semanticProgress()
+            }));
+          });
         });
       });
     });

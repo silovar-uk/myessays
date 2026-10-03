@@ -163,8 +163,9 @@ async function waitForReader(page) {
     const rail = window.MyEssaysReadingPivot?.readingRailY?.();
     if (!next || !Number.isFinite(rail)) return '';
     const rect = next.getBoundingClientRect();
-    const targetPoint = rect.top + Math.min(Math.max(12, rect.height * .35), Math.max(12, rect.height - 12));
-    window.scrollBy({ top: targetPoint - rail, behavior: 'auto' });
+    // Put the next paragraph slightly above the Rail. This guarantees the
+    // previous paragraph has left its 24px hysteresis band.
+    window.scrollBy({ top: rect.top - (rail - 40), behavior: 'auto' });
     return next.dataset.readingLocator || '';
   });
   assert.ok(boundaryTarget, 'a next readable paragraph should exist for the boundary-scroll test');
