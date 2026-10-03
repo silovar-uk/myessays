@@ -54,6 +54,7 @@ jobs:
 
       - name: Run content migration audit
         run: |
+          set -o pipefail
           mkdir -p qa-artifacts
           node tools/audit-content.mjs --strict | tee qa-artifacts/migration-audit.md
 
