@@ -1,5 +1,5 @@
 ---
-id: expression-creative-translation-en-mix
+id: expression-creative-translation
 title: "Expression Is Translation――『自分を出す』より、意味を変換する"
 subtitle: "Creativity lives between intention, form, constraints, and reception"
 created: "2026-09-13"

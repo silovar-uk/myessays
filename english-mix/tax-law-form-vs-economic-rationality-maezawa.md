@@ -1,5 +1,5 @@
 ---
-id: tax-law-form-vs-economic-rationality-maezawa-en-mix
+id: tax-law-form-vs-economic-rationality-maezawa
 title: "Legal, But Still Denied――前澤友作の社債スキームから見るEconomic Rationality"
 subtitle: "Tax law cares about economic substance, not only legal form"
 created: "2026-09-13"

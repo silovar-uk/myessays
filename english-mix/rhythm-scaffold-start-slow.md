@@ -1,5 +1,5 @@
 ---
-id: rhythm-scaffold-start-slow-en-mix
+id: rhythm-scaffold-start-slow
 title: "Borrow the Rhythm First――乗れるまでは、まずゆっくり"
 subtitle: "Build a predictable tempo before chasing speed"
 created: "2026-09-13"

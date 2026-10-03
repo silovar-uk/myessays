@@ -1,5 +1,5 @@
 ---
-id: worry-unresolved-goals-values-en-mix
+id: worry-unresolved-goals-values
 title: "Worry May Be the Sound of Unresolved Values――悩みのある人のほうが好き"
 subtitle: "Not because suffering is noble, but because conflict reveals what matters"
 created: "2026-09-13"

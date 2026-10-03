@@ -1,5 +1,5 @@
 ---
-id: acl-tear-diagonal-knee-stopper-en-mix
+id: acl-tear-diagonal-knee-stopper
 title: "ACLは膝の前にはない――What Actually Tears in an ACL Injury?"
 subtitle: "サッカーで何度も聞く大怪我を、the diagonal structure inside the kneeから理解する"
 created: "2026-09-17"

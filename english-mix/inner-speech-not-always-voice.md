@@ -1,5 +1,5 @@
 ---
-id: inner-speech-not-always-voice-en-mix
+id: inner-speech-not-always-voice
 title: "Is Your Inner Voice Really a Voice?――頭の中のことばを捕まえる"
 subtitle: "Not every thought comes with a narrator"
 created: "2026-09-13"

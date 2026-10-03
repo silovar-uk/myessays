@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Affordance", "Ecological Psychology", "Design", "UX", "Accessibility", "Sports", "Robotics", "James J. Gibson", "Don Norman"]
 keywords: ["affordance", "Gibson", "Norman", "signifier", "action possibility", "ecological psychology", "representative learning design", "robotics", "stadium UX"]
-favorite: 5
 grow: 5
 abstract: "アフォーダンスを「押せそうな見た目」の同義語として扱わず、行為者と環境の関係として捉え直す。Gibsonの原義、Normanによるデザイン領域での整理、Warrenの階段研究、GaverのHCI、スポーツ、ロボティクスを横断し、最後に実務で使えるAffordance AuditとAgent-Swap Testへ落とし込む。"
 ---

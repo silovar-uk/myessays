@@ -11,7 +11,6 @@ english_ratio: 0.45
 mix_unit: "sentence"
 tags: ["Design Literacy", "UI", "UX", "Signifier", "Affordance", "Discoverability", "Accessibility", "Don Norman"]
 keywords: ["signifier", "affordance", "discoverability", "cue removal test", "interaction design", "feedback", "focus visible", "target size", "Don Norman", "James J. Gibson"]
-favorite: 5
 grow: 5
 series: "Design Literacy｜細部から思想まで"
 seriesOrder: 57

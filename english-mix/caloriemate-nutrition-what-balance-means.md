@@ -1,5 +1,5 @@
 ---
-id: caloriemate-nutrition-what-balance-means-en-mix
+id: caloriemate-nutrition-what-balance-means
 title: "What Does CalorieMate Mean by “Balanced”?――400kcalの黄色い箱を栄養基準で分解する"
 subtitle: "Half a day of vitamins, but only 2g of fiber"
 created: "2026-09-16"

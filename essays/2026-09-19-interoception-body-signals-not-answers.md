@@ -8,7 +8,6 @@ type: "Essay"
 status: "完成"
 tags: ["Interoception", "Neuroscience", "Psychology", "Emotion", "Predictive Processing", "Body Awareness"]
 keywords: ["interoception", "interoceptive accuracy", "interoceptive sensibility", "body awareness", "heartbeat", "allostasis", "predictive processing", "MAIA"]
-favorite: 5
 grow: 5
 abstract: "内受容を「身体の声を聞く力」という一語で片づけず、身体内部の信号を感知・解釈・統合・調節する仕組みとして捉え直す。心拍課題の測定問題、accuracy・sensibility・awarenessの分離、感情との関係、予測処理とアロスタシス、不安研究までたどり、最後に「身体信号と解釈を分ける」ための実用モデルへ落とし込む。"
 ---

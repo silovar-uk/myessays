@@ -1,5 +1,5 @@
 ---
-id: koki-kumasaka-zero-caps-return-to-japan-en-mix
+id: koki-kumasaka-zero-caps-return-to-japan
 title: "Zero Caps Does Not Mean an Empty Story――熊坂光希が日本代表へ戻るまで"
 subtitle: "A代表0 caps、ACL tear、349 days to return。「0」に詰まった物語を調べた"
 created: "2026-09-17"

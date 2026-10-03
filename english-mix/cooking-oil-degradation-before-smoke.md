@@ -1,5 +1,5 @@
 ---
-id: cooking-oil-degradation-before-smoke-en-mix
+id: cooking-oil-degradation-before-smoke
 title: "Oil Starts Changing Before It Smokes――『中火で温める』を分子まで追う"
 subtitle: "Oil degradation is not simply 'getting old'"
 created: "2026-09-13"
