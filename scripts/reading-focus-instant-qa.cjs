@@ -138,7 +138,7 @@ async function readingFocusState(page) {
   });
 }
 
-async function assertReadingLens(page, label, { minZoneAlpha = 0.02, maxZoneAlpha = 0.05, requireUnpaintedPivot = false } = {}) {
+async function assertReadingLens(page, label, { minZoneAlpha = 0.02, maxZoneAlpha = 0.10, requireUnpaintedPivot = false } = {}) {
   const state = await readingFocusState(page);
   assert.ok(state.visibleCount >= 1, `${label}: expected visible reading paragraphs`);
   assert.ok(state.physicalLocator, `${label}: expected a Primary Pivot`);

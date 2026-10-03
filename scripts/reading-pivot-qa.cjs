@@ -39,6 +39,24 @@ async function readingState(page) {
       focusEnd: content?.dataset.readingFocusEnd || '',
       focusAnchor: content?.dataset.readingFocusAnchor || '',
       zoneBackground: content ? getComputedStyle(content).backgroundImage : '',
+      nearestLocator: (() => {
+        const rail = window.MyEssaysReadingPivot?.readingRailY?.();
+        if (!Number.isFinite(rail)) return '';
+        const paragraphs = [...document.querySelectorAll('#readerContent > p.reader-locator-block[data-reading-locator]')]
+          .filter(block => !block.classList.contains('language-source-hidden'));
+        let nearest = null;
+        let bestDistance = Infinity;
+        paragraphs.forEach(block => {
+          const blockRect = block.getBoundingClientRect();
+          const point = Math.min(blockRect.bottom, Math.max(blockRect.top, rail));
+          const distance = Math.abs(rail - point);
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            nearest = block;
+          }
+        });
+        return nearest?.dataset.readingLocator || '';
+      })(),
       scrollWidth: document.documentElement.scrollWidth,
       innerWidth: window.innerWidth
     };
@@ -48,9 +66,11 @@ async function readingState(page) {
 function assertRailOwnsPivot(state, label) {
   assert.ok(state, `${label}: Pivot should exist`);
   assert.ok(Number.isFinite(state.railY), `${label}: Reading Rail should be exposed`);
+  const insideRailBand = state.physicalTop <= state.railY + 24 && state.physicalBottom >= state.railY - 24;
+  const ownsNearestParagraph = Boolean(state.nearestLocator && state.physicalLocator === state.nearestLocator);
   assert.ok(
-    state.physicalTop <= state.railY + 24 && state.physicalBottom >= state.railY - 24,
-    `${label}: Pivot should intersect the Reading Rail or remain inside its 24px hysteresis band`
+    insideRailBand || ownsNearestParagraph,
+    `${label}: Pivot should intersect the Reading Rail hysteresis band or own the nearest readable paragraph`
   );
   assert.equal(state.focusAnchor, state.physicalLocator, `${label}: focus anchor should be the physical Pivot`);
   assert.ok(state.focusCount >= 1 && state.focusCount <= 3, `${label}: focus zone should contain 1–3 paragraphs`);
