@@ -25,9 +25,8 @@
   // Programmatic switches may not originate from the persistent control.
   document.addEventListener('myessays:reader-version-changed', engage);
 
-  // reading-mode-stable is emitted only after semantic eye-line correction.
+  // Keep scroll restoration instantaneous until semantic correction explicitly declares stability.
   document.addEventListener('myessays:reading-mode-stable', release);
-  document.addEventListener('myessays:reading-mode-settled', release);
   document.addEventListener('myessays:reader-version-missing', release);
 
   // A genuine reader gesture ends any stale handoff state immediately.

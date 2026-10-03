@@ -46,6 +46,6 @@ test('shareable Reading Mode runtime assets use current cache keys and route sta
   assert.match(html, /reader-v2\.js\?v=20260930-1/);
   assert.match(html, /reader-reading-pivot\.js\?v=20261003-1/);
   assert.match(html, /reader-reading-pivot\.css\?v=20260914-3/);
-  assert.match(html, /reader-reading-pivot-scroll-guard\.js\?v=20260909-3/);
+  assert.match(html, /reader-reading-pivot-scroll-guard\.js\?v=20261003-1/);
   assert.ok(html.indexOf('route-state.js') < html.indexOf('app.js'), 'route-state.js must load before app.js');
 });
