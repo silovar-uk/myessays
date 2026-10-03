@@ -121,25 +121,6 @@ body.reader-v2-open .reader-shell {
   outline: none;
 }
 
-.reader-v2-header-progress {
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  height: 2px;
-  overflow: hidden;
-  background: rgba(213, 207, 194, .35);
-}
-
-.reader-v2-header-progress span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform .12s linear;
-}
 
 /* Reuse legacy controls inside the compact Reader Header. */
 .reader-v2-header .note-tab {
@@ -843,7 +824,6 @@ body.reader-v2-open .reader-shell {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reader-v2-header-progress span,
   .reader-v2-map,
   .reader-locator-block.reader-v2-location-flash {
     transition: none;

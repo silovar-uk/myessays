@@ -310,7 +310,6 @@
     window.setTimeout(scheduleContextSync, 0);
   });
 
-  window.addEventListener('scroll', scheduleContextSync, { passive: true });
   window.addEventListener('resize', scheduleContextSync);
   window.addEventListener('hashchange', () => {
     availabilityToken += 1;
