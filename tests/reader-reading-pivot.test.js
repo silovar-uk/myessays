@@ -170,6 +170,7 @@ test('Reader Versions owns content swaps, never semantic eye-line restoration', 
 
 test('semantic locator layer emits stable only after semantic eye-line correction', () => {
   const locators = read('reading-locators.js');
+  assert.match(locators, /behavior: 'instant'/);
   const correction = locators.indexOf('window.scrollBy({ top: delta');
   const stable = locators.indexOf("myessays:reading-mode-stable");
   assert.ok(correction >= 0 && stable > correction, 'stable boundary must follow semantic correction');

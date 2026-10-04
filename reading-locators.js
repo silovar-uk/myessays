@@ -342,7 +342,7 @@
     const targetTop = semanticTop(anchor.locator, target);
     if (targetTop == null) return false;
     const delta = targetTop - anchor.viewportTop;
-    if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'auto' });
+    if (Math.abs(delta) > 0.75) window.scrollBy({ top: delta, behavior: 'instant' });
     return true;
   }
 

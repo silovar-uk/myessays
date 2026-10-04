@@ -31,6 +31,8 @@ async function readingState(page) {
       top: semanticRect?.top ?? rect.top,
       physicalTop: rect.top,
       physicalBottom: rect.bottom,
+      scrollY: window.scrollY,
+      guardActive: Boolean(window.MyEssaysReadingPivotScrollGuard?.active?.()),
       railY: window.MyEssaysReadingPivot?.readingRailY?.() ?? null,
       backgroundColor: getComputedStyle(pivot).backgroundColor,
       boxShadow: getComputedStyle(pivot).boxShadow,
