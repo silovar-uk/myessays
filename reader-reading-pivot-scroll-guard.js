@@ -25,8 +25,9 @@
   // Programmatic switches may not originate from the persistent control.
   document.addEventListener('myessays:reader-version-changed', engage);
 
-  // Keep scroll restoration instantaneous until semantic correction explicitly declares stability.
-  document.addEventListener('myessays:reading-mode-stable', release);
+  // Keep smooth scrolling disabled through controller/shell finalization.
+  // "settled" is the public boundary after the final semantic correction.
+  document.addEventListener('myessays:reading-mode-settled', release);
   document.addEventListener('myessays:reader-version-missing', release);
 
   // A genuine reader gesture ends any stale handoff state immediately.

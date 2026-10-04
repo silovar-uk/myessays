@@ -302,7 +302,6 @@
   document.addEventListener('myessays:reader-version-intent', event => renderActive(event.detail?.version || selectedVersion()));
   document.addEventListener('myessays:reader-version-changed', () => scheduleSync({ availability: true }));
   document.addEventListener('myessays:reader-language-changed', () => scheduleSync({ availability: true }));
-  document.addEventListener('myessays:reading-mode-settled', () => scheduleSync({ availability: true }));
   document.addEventListener('myessays:reading-mode-stable', () => scheduleSync());
   document.addEventListener('myessays:reading-progress-changed', () => scheduleSync());
   document.addEventListener('myessays:reading-location-changed', event => {

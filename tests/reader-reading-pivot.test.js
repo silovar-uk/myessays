@@ -152,6 +152,8 @@ test('instant Reading Mode controller is the only latest-intent owner', () => {
   assert.match(instant, /function requestVersion\(/);
   assert.match(instant, /myessays:reader-version-intent/);
   assert.match(instant, /myessays:reading-mode-stable/);
+  assert.match(instant, /alignReference\?\.\(\)/);
+  assert.match(instant, /myessays:reading-mode-settled/);
   assert.match(instant, /event\.stopImmediatePropagation\(\)/);
   assert.match(instant, /getVersionDocument/);
   assert.doesNotMatch(locators, /queuedSwitchVersion|pendingVersion/);
@@ -177,7 +179,8 @@ test('semantic locator layer emits stable only after semantic eye-line correctio
 test('scroll guard owns lifecycle only, never a competing eye-line coordinate', () => {
   const guard = read('reader-reading-pivot-scroll-guard.js');
   assert.match(guard, /myessays:reader-version-intent/);
-  assert.match(guard, /myessays:reading-mode-stable/);
+  assert.match(guard, /myessays:reading-mode-settled/);
+  assert.doesNotMatch(guard, /myessays:reading-mode-stable', release/);
   assert.doesNotMatch(guard, /anchorTop|correctEyeLine|window\.scrollBy|setTimeout/);
 });
 

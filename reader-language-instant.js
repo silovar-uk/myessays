@@ -13,6 +13,7 @@
   let controlEssayId = '';
   let controlSignature = '';
   let routeSyncToken = 0;
+  let stableFinalizeToken = 0;
   const preloadedVersions = new Set();
 
   const versions = () => window.MyEssaysReaderVersions;
@@ -315,26 +316,39 @@
     if (event.detail?.essayId && event.detail.essayId !== id) return;
 
     const actual = versions()?.currentVersion?.() || 'ja';
-    transitionActive = false;
-    activeTransitionVersion = '';
+    const token = ++stableFinalizeToken;
 
-    if (desiredVersion && desiredVersion !== actual) {
-      // The previous semantic handoff is fully stable. Start only the latest
-      // user intent; intermediate choices are intentionally discarded.
-      startTransition(desiredVersion);
-      return;
-    }
+    // Locator stability is only the first boundary. Keep the transition active
+    // while shell/context work settles, then re-align the semantic reference
+    // before exposing the public "settled" boundary.
+    requestAnimationFrame(() => {
+      if (token !== stableFinalizeToken || !transitionActive) return;
+      window.MyEssaysReadingLocators?.alignReference?.();
 
-    desiredVersion = actual;
-    renderIntent(actual);
-    syncUrlToVersion(actual);
-    document.dispatchEvent(new CustomEvent('myessays:reading-mode-settled', {
-      detail: {
-        essayId: id,
-        version: actual,
-        locator: event.detail?.locator || ''
-      }
-    }));
+      requestAnimationFrame(() => {
+        if (token !== stableFinalizeToken || !transitionActive) return;
+        window.MyEssaysReadingLocators?.alignReference?.();
+
+        transitionActive = false;
+        activeTransitionVersion = '';
+
+        if (desiredVersion && desiredVersion !== actual) {
+          startTransition(desiredVersion);
+          return;
+        }
+
+        desiredVersion = actual;
+        renderIntent(actual);
+        syncUrlToVersion(actual);
+        document.dispatchEvent(new CustomEvent('myessays:reading-mode-settled', {
+          detail: {
+            essayId: id,
+            version: actual,
+            locator: event.detail?.locator || ''
+          }
+        }));
+      });
+    });
   }
 
   function syncAfterActualVersion(event) {
@@ -388,6 +402,7 @@
     activeTransitionVersion = '';
     desiredVersion = '';
     routeSyncToken += 1;
+    stableFinalizeToken += 1;
     preloadToken += 1;
     controlToken += 1;
     resetPreloadState('');

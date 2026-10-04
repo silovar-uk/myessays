@@ -9,7 +9,7 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 test('page loads the reading mode shell after the existing reader layers', () => {
   const html = read('index.html');
   assert.match(html, /reader-mode-shell\.css\?v=20260918-2/);
-  assert.match(html, /reader-mode-shell\.js\?v=20261003-1/);
+  assert.match(html, /reader-mode-shell\.js\?v=20261004-1/);
   assert.ok(html.indexOf('reader-v2.js') < html.indexOf('reader-mode-shell.js'));
   assert.ok(html.indexOf('reader-reading-pivot.js') < html.indexOf('reader-mode-shell.js'));
 });
@@ -25,6 +25,7 @@ test('shell keeps the three supported reading modes as direct controls', () => {
 
 test('shell reuses reader location and version events instead of adding scroll state', () => {
   const source = read('reader-mode-shell.js');
+  assert.doesNotMatch(source, /reading-mode-settled[^\n]*availability:\s*true/);
   assert.match(source, /myessays:reading-location-changed/);
   assert.match(source, /myessays:reader-version-intent/);
   assert.match(source, /MyEssaysInstantReadingModes/);

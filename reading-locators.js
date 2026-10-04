@@ -670,6 +670,10 @@
     return semanticSwitchAnchor ? correctSemanticEyeLine(semanticSwitchAnchor) : false;
   }
 
+  function alignSemanticReference() {
+    return semanticEyeLineReference ? correctSemanticEyeLine(semanticEyeLineReference) : false;
+  }
+
   function nearestLocatorBlock() {
     const content = readerContent();
     if (!content) return null;
@@ -719,6 +723,7 @@
     semanticTop,
     progress: semanticProgress,
     alignCapturedForSnapshot,
+    alignReference: alignSemanticReference,
     captureForSwitch: captureSemanticAnchorNow,
     hasSwitchAnchor: () => Boolean(semanticSwitchAnchor),
     eyeLineReference: () => semanticEyeLineReference ? { ...semanticEyeLineReference } : null
@@ -734,10 +739,15 @@
       flashCurrentLocator();
     });
   });
-  document.addEventListener('myessays:reading-location-changed', clearSemanticEyeLineReference);
 
   window.addEventListener('wheel', readerGesture, { passive: true });
   window.addEventListener('touchmove', readerGesture, { passive: true });
+  document.addEventListener('pointerdown', event => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target || !target.closest('#readerView')) return;
+    if (target.closest('#readerModeShell,[data-reading-mode-intent],[data-reader-mode-version],[data-reader-version],#readerLanguageSwitch')) return;
+    if (target.closest('a,button,[role="button"]')) readerGesture();
+  }, true);
   // A raw scroll event is not sufficient evidence of reader intent: semantic
   // correction and View Transition layout settling also generate scroll events.
   window.addEventListener('keydown', event => {

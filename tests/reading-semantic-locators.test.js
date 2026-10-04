@@ -29,6 +29,8 @@ test('language-only switching freezes canonical progress until real reader inten
   assert.match(source, /function clearSemanticEyeLineReference\(\)[\s\S]*?frozenSemanticProgress = null/);
   assert.match(source, /addEventListener\('wheel', readerGesture/);
   assert.match(source, /addEventListener\('touchmove', readerGesture/);
+  assert.match(source, /alignReference: alignSemanticReference/);
+  assert.doesNotMatch(source, /reading-location-changed', clearSemanticEyeLineReference/);
 });
 
 test('language switching corrects the semantic eye-line before declaring Reading Mode stable', () => {
