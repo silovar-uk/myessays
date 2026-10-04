@@ -40,7 +40,7 @@ test('shareable Reading Mode runtime assets use current cache keys and route sta
   const html = read('index.html');
   assert.match(html, /route-state\.js\?v=20260927-1/);
   assert.match(html, /app\.js\?v=20260927-1/);
-  assert.match(html, /reading-locators\.js\?v=20261003-2/);
+  assert.match(html, /reading-locators\.js\?v=20261004-1/);
   assert.match(html, /reader-language-instant\.js\?v=20260910-1/);
   assert.match(html, /reader-versions\.js\?v=20260927-1/);
   assert.match(html, /reader-v2\.js\?v=20260930-1/);

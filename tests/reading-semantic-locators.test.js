@@ -19,7 +19,16 @@ test('semantic eye-line can target text inside a merged physical paragraph', () 
   assert.match(source, /document\.createRange\(\)/);
   assert.match(source, /rangeForExactText\(/);
   assert.match(source, /semanticRect\(/);
+  assert.match(source, /textBounds\(target\) \|\| target\.getBoundingClientRect\(\)/);
   assert.match(source, /semanticTop\(/);
+});
+
+test('language-only switching freezes canonical progress until real reader intent', () => {
+  assert.match(source, /frozenSemanticProgress = computeSemanticProgress\(\)/);
+  assert.match(source, /frozenSemanticProgress && semanticEyeLineReference\?\.essayId === currentEssayId\(\)/);
+  assert.match(source, /function clearSemanticEyeLineReference\(\)[\s\S]*?frozenSemanticProgress = null/);
+  assert.match(source, /addEventListener\('wheel', readerGesture/);
+  assert.match(source, /addEventListener\('touchmove', readerGesture/);
 });
 
 test('language switching corrects the semantic eye-line before declaring Reading Mode stable', () => {

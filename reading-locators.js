@@ -278,7 +278,10 @@
         };
       }
     }
-    const rect = target.getBoundingClientRect();
+    // A translated/condensed paragraph may not contain the canonical text
+    // verbatim. In that case preserve the reader's eye-line against rendered
+    // text bounds rather than the paragraph box (which includes line-box leading).
+    const rect = textBounds(target) || target.getBoundingClientRect();
     return {
       top: rect.top,
       bottom: rect.bottom,
@@ -297,6 +300,7 @@
 
   function clearSemanticEyeLineReference() {
     semanticEyeLineReference = null;
+    frozenSemanticProgress = null;
   }
 
   function captureSemanticAnchorNow() {
@@ -317,6 +321,9 @@
       && semanticEyeLineReference.locator === locator;
     if (!reusable) {
       semanticEyeLineReference = { essayId: id, locator, viewportTop: top };
+      frozenSemanticProgress = computeSemanticProgress();
+    } else if (!frozenSemanticProgress) {
+      frozenSemanticProgress = computeSemanticProgress();
     }
 
     semanticSwitchAnchor = {
@@ -324,7 +331,6 @@
       locator,
       viewportTop: semanticEyeLineReference.viewportTop
     };
-    frozenSemanticProgress = computeSemanticProgress();
     semanticRestoreActive = true;
     return { ...semanticSwitchAnchor };
   }
@@ -383,7 +389,6 @@
           dispatchReadingModeStable(event);
           requestAnimationFrame(() => {
             semanticRestoreActive = false;
-            frozenSemanticProgress = null;
             document.dispatchEvent(new CustomEvent('myessays:reading-progress-changed', {
               detail: semanticProgress()
             }));
@@ -653,7 +658,11 @@
   }
 
   function semanticProgress() {
-    if (semanticRestoreActive && frozenSemanticProgress) return { ...frozenSemanticProgress };
+    // A language-only transition must not alter canonical progress. Keep the
+    // captured value until an actual reader gesture/location change resumes it.
+    if (frozenSemanticProgress && semanticEyeLineReference?.essayId === currentEssayId()) {
+      return { ...frozenSemanticProgress };
+    }
     return computeSemanticProgress();
   }
 
