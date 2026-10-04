@@ -187,7 +187,12 @@ async function waitForReader(page) {
 
   await switchTo(page, 'en-mix');
   const english = await readingState(page);
-  console.log('PIVOT_SWITCH_DIAGNOSTIC', JSON.stringify({ beforeSwitch, english }));
+  const manualAlignResult = await page.evaluate(() => {
+    const aligned = window.MyEssaysReadingLocators?.alignReference?.() ?? false;
+    return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve(aligned))));
+  });
+  const englishAfterManualAlign = await readingState(page);
+  console.log('PIVOT_SWITCH_DIAGNOSTIC', JSON.stringify({ beforeSwitch, english, manualAlignResult, englishAfterManualAlign }));
   assert.equal(english?.locator, beforeSwitch.locator, 'JA → EN must preserve the exact logical Pivot locator');
   assert.ok(Math.abs(english.top - beforeSwitch.top) <= 3, `JA → EN semantic Pivot top drifted by ${english.top - beforeSwitch.top}px`);
 

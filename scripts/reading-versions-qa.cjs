@@ -150,12 +150,19 @@ async function pivotState(page, includeScrollY = false) {
   assert.equal(await page.locator('[data-reader-mode-compare]').getAttribute('aria-pressed'), 'true');
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('.reader-compare-view'));
+  console.log('COMPARE_RETURN_DIAGNOSTIC', JSON.stringify({
+    baseline: before,
+    afterCompare: await pivotState(page, true)
+  }));
 
   // Sequential round-trips must preserve the same semantic eye-line.
   for (let i = 0; i < 2; i += 1) {
     await switchTo('en-mix');
+    console.log('REPEATED_SWITCH_DIAGNOSTIC', JSON.stringify({ round: i + 1, mode: 'en-mix', state: await pivotState(page, true) }));
     await switchTo('es-mix');
+    console.log('REPEATED_SWITCH_DIAGNOSTIC', JSON.stringify({ round: i + 1, mode: 'es-mix', state: await pivotState(page, true) }));
     await switchTo('ja');
+    console.log('REPEATED_SWITCH_DIAGNOSTIC', JSON.stringify({ round: i + 1, mode: 'ja', state: await pivotState(page, true) }));
   }
 
   let finalPivot = await pivotState(page);
