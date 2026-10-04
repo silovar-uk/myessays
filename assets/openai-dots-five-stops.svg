@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Five meanings of stop in OpenAI dots</title>
+<desc id="desc">Pause、委任作業停止、定期実行解除、連携切断、dot削除の五つが別々の対象を止めることを示す図。</desc>
+<rect width="1200" height="675" fill="#f7f7f5"/>
+<style>
+text{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;fill:#171717}
+.h{font-size:34px;font-weight:700}.s{font-size:18px}.n{font-size:28px;font-weight:800}.b{font-size:21px;font-weight:700}.small{font-size:15px}
+.card{fill:#fff;stroke:#222;stroke-width:2}
+</style>
+<text x="70" y="70" class="h">「止める」が5種類ある理由</text>
+<text x="70" y="105" class="s">dotは、仕事・委任・予定・アクセス・文脈を別々の状態として持つ</text>
+
+<g transform="translate(70 155)">
+<rect width="205" height="360" rx="20" class="card"/>
+<text x="28" y="52" class="n">1</text><text x="70" y="50" class="b">Pause</text>
+<text x="28" y="92" class="small">止まる:</text><text x="28" y="118" class="s">現在の主作業</text>
+<text x="28" y="170" class="small">残りうる:</text><text x="28" y="196" class="s">委任作業</text><text x="28" y="224" class="s">定期実行</text>
+</g>
+
+<g transform="translate(295 155)">
+<rect width="205" height="360" rx="20" class="card"/>
+<text x="28" y="52" class="n">2</text><text x="70" y="50" class="b">Task停止</text>
+<text x="28" y="92" class="small">止まる:</text><text x="28" y="118" class="s">個別の背景作業</text>
+<text x="28" y="170" class="small">残りうる:</text><text x="28" y="196" class="s">dot本体</text><text x="28" y="224" class="s">他の作業</text>
+</g>
+
+<g transform="translate(520 155)">
+<rect width="205" height="360" rx="20" class="card"/>
+<text x="28" y="52" class="n">3</text><text x="70" y="50" class="b">Scheduled解除</text>
+<text x="28" y="92" class="small">止まる:</text><text x="28" y="118" class="s">未来の定期実行</text>
+<text x="28" y="170" class="small">残りうる:</text><text x="28" y="196" class="s">現在の作業</text><text x="28" y="224" class="s">過去の成果</text>
+</g>
+
+<g transform="translate(745 155)">
+<rect width="205" height="360" rx="20" class="card"/>
+<text x="28" y="52" class="n">4</text><text x="70" y="50" class="b">連携切断</text>
+<text x="28" y="92" class="small">止まる:</text><text x="28" y="118" class="s">新しいアクセス</text>
+<text x="28" y="170" class="small">残りうる:</text><text x="28" y="196" class="s">既に得た文脈</text>
+</g>
+
+<g transform="translate(970 155)">
+<rect width="160" height="360" rx="20" class="card"/>
+<text x="22" y="52" class="n">5</text><text x="58" y="50" class="b">dot削除</text>
+<text x="22" y="92" class="small">消える:</text><text x="22" y="118" class="s">dot固有文脈</text>
+<text x="22" y="170" class="small">残りうる:</text><text x="22" y="196" class="s">ファイル</text><text x="22" y="224" class="s">会話</text><text x="22" y="252" class="s">外部変更</text>
+</g>
+
+<text x="70" y="585" class="b">一つの「停止」で済まない = 一つの「会話」ではない。</text>
+<text x="70" y="620" class="s">dotsを使うとは、AIの開始条件だけでなく、仕事ごとの寿命と終了条件を設計すること。</text>
+</svg>
