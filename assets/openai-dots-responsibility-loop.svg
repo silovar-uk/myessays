@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">OpenAI dots responsibility loop</title>
+<desc id="desc">利用者の目的を中心に、dotが情報源を読み、背景作業へ委任し、行動前の確認を経て成果を返す循環を示す図。</desc>
+<rect width="1200" height="675" fill="#f7f7f5"/>
+<style>
+text{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;fill:#171717}
+.h{font-size:34px;font-weight:700}.s{font-size:19px}.b{font-size:22px;font-weight:700}.small{font-size:16px}
+.box{fill:#fff;stroke:#1f1f1f;stroke-width:2}.soft{fill:#efefe9;stroke:#777;stroke-width:1.5}.dot{fill:#111}
+.line{stroke:#444;stroke-width:3;fill:none;marker-end:url(#a)}
+</style>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#444"/></marker></defs>
+<text x="70" y="70" class="h">dots = 「仕事を持ち続ける」調整役</text>
+<text x="70" y="105" class="s">一回の回答ではなく、変化 → 調査 → 作業 → 確認 → 更新を時間の中で回す</text>
+<rect x="70" y="170" rx="20" ry="20" width="250" height="120" class="box"/>
+<text x="195" y="215" text-anchor="middle" class="b">利用者</text>
+<text x="195" y="250" text-anchor="middle" class="s">目的・基準・承認</text>
+<circle cx="600" cy="300" r="105" class="dot"/>
+<text x="600" y="292" text-anchor="middle" style="fill:#fff;font-family:system-ui,-apple-system,'Noto Sans JP',sans-serif;font-size:36px;font-weight:700">dot</text>
+<text x="600" y="332" text-anchor="middle" style="fill:#fff;font-family:system-ui,-apple-system,'Noto Sans JP',sans-serif;font-size:18px">継続責任を保持</text>
+<rect x="875" y="145" rx="18" ry="18" width="250" height="120" class="soft"/>
+<text x="1000" y="190" text-anchor="middle" class="b">接続情報源</text>
+<text x="1000" y="223" text-anchor="middle" class="small">Gmail / Drive / Slack</text>
+<text x="1000" y="246" text-anchor="middle" class="small">GitHub / Web / Calendar</text>
+<rect x="875" y="355" rx="18" ry="18" width="250" height="120" class="soft"/>
+<text x="1000" y="400" text-anchor="middle" class="b">背景の作業</text>
+<text x="1000" y="433" text-anchor="middle" class="small">調査 / Work / Codex</text>
+<text x="1000" y="456" text-anchor="middle" class="small">複数タスクを委任</text>
+<rect x="430" y="515" rx="18" ry="18" width="340" height="105" class="box"/>
+<text x="600" y="557" text-anchor="middle" class="b">行動前の境界</text>
+<text x="600" y="589" text-anchor="middle" class="small">権限 / Custom Rules / Auto-review / 承認</text>
+<path d="M320 230 C410 210 455 225 500 255" class="line"/>
+<path d="M700 245 C770 205 820 195 875 200" class="line"/>
+<path d="M875 250 C800 285 760 300 710 305" class="line"/>
+<path d="M705 345 C770 380 815 400 875 410" class="line"/>
+<path d="M900 470 C825 520 760 545 770 555" class="line"/>
+<path d="M430 560 C340 535 295 450 360 330 C395 265 440 250 500 270" class="line"/>
+<text x="365" y="185" class="small">方向づけ</text>
+<text x="775" y="177" class="small">読む</text>
+<text x="788" y="378" class="small">委任</text>
+<text x="325" y="505" class="small">結果・判断事項を戻す</text>
+</svg>
