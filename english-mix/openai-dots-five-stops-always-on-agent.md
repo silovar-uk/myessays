@@ -31,7 +31,7 @@ That tiny awkwardness reveals the product. これは単にChatGPTを24/7 awake�
 >
 > This essay checks OpenAI’s launch post, ChatGPT Learn guides, Help Center, safety post, and GPT-6 Astra System Card as primary sources. 製品はlaunch直後で仕様変更の可能性が高い。Safety evaluation numbers are test results under specific conditions, not production incident rates. 実務活用の分類とprompt examplesは、公開仕様から導いた本稿のproposalである。
 
-## 1. 「Pauseしても全部は止まらない」ところから、dotsの構造が見える
+## 1. 「一時停止（Pause）しても全部は止まらない」ところから、dotsの構造が見える
 
 A normal chat AI feels like one bounded interaction. 質問し、返事を受け取り、画面を閉じる。The underlying system is complex, but from the user side it behaves like “the thing I’m talking to right now.”
 
