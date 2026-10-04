@@ -21,10 +21,14 @@ async function readingState(page) {
     const after = getComputedStyle(pivot, '::after');
     const content = document.getElementById('readerContent');
     const focus = window.MyEssaysReadingPivot?.focusBlocks?.() || [];
+    const semanticRect = window.MyEssaysReadingLocators?.semanticRect?.(locator, pivot) || null;
     return {
       locator,
       physicalLocator: pivot.dataset.readingLocator || '',
-      top: window.MyEssaysReadingLocators?.semanticTop?.(locator, pivot) ?? rect.top,
+      coverage: String(pivot.dataset.readingLocatorCoverage || ''),
+      semanticExactText: semanticRect?.exactText ?? null,
+      textSample: String(pivot.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 180),
+      top: semanticRect?.top ?? rect.top,
       physicalTop: rect.top,
       physicalBottom: rect.bottom,
       railY: window.MyEssaysReadingPivot?.readingRailY?.() ?? null,
@@ -183,6 +187,7 @@ async function waitForReader(page) {
 
   await switchTo(page, 'en-mix');
   const english = await readingState(page);
+  console.log('PIVOT_SWITCH_DIAGNOSTIC', JSON.stringify({ beforeSwitch, english }));
   assert.equal(english?.locator, beforeSwitch.locator, 'JA → EN must preserve the exact logical Pivot locator');
   assert.ok(Math.abs(english.top - beforeSwitch.top) <= 3, `JA → EN semantic Pivot top drifted by ${english.top - beforeSwitch.top}px`);
 
