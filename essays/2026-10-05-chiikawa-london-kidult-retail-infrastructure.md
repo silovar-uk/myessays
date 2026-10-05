@@ -95,7 +95,7 @@ abstract: "ロンドンの百貨店セルフリッジズでは、ちいかわの
 
 ここから見ると、2024年の米国ちいかわ期間限定店も単発のコラボレーションではなく、ミニソウ自身の変化の一部に見える。**キャラクターを世界へ運ぶには、出版社や映像会社だけでなく、世界各地の一等地に「キャラクターを発見する棚」を持つ小売網が強い。**ミニソウは、ちいかわにとって一つの販売先であると同時に、世界のキャラクター消費をつなぐ流通媒体になりつつある。
 
-参照：[ミニソウ「2025年ライセンシング賞でレーダー賞を受賞」](https://miniso.com/brand/news_173.html) ／ [ミニソウ「ミニソウ・ランドが2025年MAPIC賞の最優秀新店舗コンセプトを受賞」](https://miniso.com/brand/news_174.html) ／ [ミニソウ「ワルシャワ初の旗艦店」](https://www.miniso.com/brand/news_181.html) ／ [ミニソウ・グループ「2025年通期決算」](https://ir.miniso.com/2026-03-31-MINISO-Group-Announces-December-Quarter-and-Full-Year-of-2025-Unaudited-Financial-Results) ／ [ミニソウ・グループ「2026年6月四半期決算」](https://ir.miniso.com/2026-08-28-MINISO-Group-Announces-2026-June-Quarter-and-Interim-Unaudited-Financial-Results)
+参照：[ミニソウ「2025年ライセンシング賞でレーダー賞を受賞」](https://miniso.com/brand/news_173.html) ／ [ミニソウ「ミニソウ・ランドが2025年国際不動産見本市（MAPIC）賞の最優秀新店舗コンセプトを受賞」](https://miniso.com/brand/news_174.html) ／ [ミニソウ「ワルシャワ初の旗艦店」](https://www.miniso.com/brand/news_181.html) ／ [ミニソウ・グループ「2025年通期決算」](https://ir.miniso.com/2026-03-31-MINISO-Group-Announces-December-Quarter-and-Full-Year-of-2025-Unaudited-Financial-Results) ／ [ミニソウ・グループ「2026年6月四半期決算」](https://ir.miniso.com/2026-08-28-MINISO-Group-Announces-2026-June-Quarter-and-Interim-Unaudited-Financial-Results)
 
 ## 7. ちいかわの海外展開は、「翻訳」より「受け皿」の問題として見ると分かりやすい
 
