@@ -63,7 +63,7 @@ IMAGICA GROUPの現在の事業を眺めると、普通の「映像会社」と�
 
 「映像」という名詞より、「使えるようにする」という動詞の方が、この会社をよく説明する。
 
-参照：[IMAGICA GROUP「会社概要」](https://www.imagicagroup.co.jp/about/overview.html) ／ [IMAGICA GROUP「事業紹介」](https://www.imagicagroup.co.jp/group/) ／ [IMAGICA GROUP「グループ企業一覧」](https://www.imagicagroup.co.jp/about/group.html)
+参照：[IMAGICA GROUP「会社概要」](https://www.imagicagroup.co.jp/about/overview.html) ／ [IMAGICA GROUP「事業紹介」](https://www.imagicagroup.co.jp/group/) ／ [IMAGICA GROUP「グループ企業一覧」](https://www.imagicagroup.co.jp/about/group.html) ／ [フォトロン「FASTCAM Nova Sシリーズ」](https://www.photron.co.jp/service/hsvcam/products/nova/)
 
 ## 2. 1935年の創業時から、実は「作品を作る会社」ではなかった
 
@@ -316,6 +316,6 @@ IMAGICA GROUPの歴史は、映像というものの意味が広がった歴史�
 - [IMAGICA GROUP「Jリーグの映像を支える3社」](https://www.note.imagicagroup.co.jp/n/n56b6cbdd83a8)
 - [IMAGICA GROUP「イマジカ・ライヴとフォトロンの統合」](https://www.note.imagicagroup.co.jp/n/n04decd825d8c)
 - [フォトロン「イマジカ・ライヴとの合併」](https://www.photron.co.jp/news/20240227_newsrelease_01/)
-- [フォトロン「AOS Technologies AGの株式取得」](https://www.photron.co.jp/news/aos/)
+- [フォトロン「FASTCAM Nova Sシリーズ」](https://www.photron.co.jp/service/hsvcam/products/nova/)\n- [フォトロン「AOS Technologies AGの株式取得」](https://www.photron.co.jp/news/aos/)
 - [フォトロン「映像システム事業の譲渡」](https://www.photron.co.jp/news/260326vsb/)
 - [フォトロン「映像システム事業の譲渡完了」](https://www.photron.co.jp/news/260630vsb/)
