@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "jingu-hawkeye-big6-shared-data-infrastructure": {
+      "en-mix": "english-mix/jingu-hawkeye-big6-shared-data-infrastructure.md"
+    },
     "onenote-what-kind-of-box-binder-infinite-canvas": {
       "en-mix": "english-mix/onenote-what-kind-of-box-binder-infinite-canvas.md"
     },
