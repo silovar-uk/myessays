@@ -26,7 +26,7 @@ abstract: "Licensing Expoはキャラクターの即売会ではなく、企業�
 
 [主催者の概要](https://www.licensingexpo.com/about/about/)によると、Licensing Expo（ライセンシング・エキスポ）は、ブランドや知的財産の利用許諾に特化した国際的な企業間見本市だ。1980年に始まり、米国ラスベガスのマンダレイベイ・コンベンションセンターで開催されてきた。主催はInforma Markets。業界団体Licensing Internationalが協賛している。
 
-来場するのは、キャラクターやブランドの権利を持つ会社だけではない。玩具・アパレルなどの製造会社、小売業者、流通会社、ライセンス代理店、コンサルタントも集まる。会場には商談ブースのほか、新企画の紹介、業界講演、商談の事前予約、関係づくりの催しがある。[2026年の主催者発表](https://licensinginternational.org/news/licensing-expo-concludes-with-record-breaking-show-floor-and-participation-from-cultural-icons-cementing-status-as-global-epicenter-for-brand-collaboration/)では、410の出展企業が5,000を超えるブランドを紹介し、来場者は12,500人超、うち適格小売業者は1,500社・人相当ではなく**1,500人超の小売関係者**と記されている。集計単位を企業数へ読み替えてはいけない。
+来場するのは、キャラクターやブランドの権利を持つ会社だけではない。玩具・アパレルなどの製造会社、小売業者、流通会社、ライセンス代理店、コンサルタントも集まる。会場には商談ブースのほか、新企画の紹介、業界講演、商談の事前予約、関係づくりの催しがある。[2026年の主催者発表](https://licensinginternational.org/news/licensing-expo-concludes-with-record-breaking-show-floor-and-participation-from-cultural-icons-cementing-status-as-global-epicenter-for-brand-collaboration/)では、410の出展企業が5,000を超えるブランドを紹介し、来場者は12,500人超、うち小売関係者は1,500人超と報告している。これは来場者数であり、商談した小売企業の社数ではない。
 
 発表に登場する企業・ブランドには、ポケモン、セガ、レゴ、コカ・コーラ、ペプシコ、ネットフリックス、NASCAR、ATP、レアル・マドリードなどがある。アニメだけの展示会ではない。生活のあらゆる場面に、他社ブランドを利用した商品やサービスを広げる取引の場なのである。
 
