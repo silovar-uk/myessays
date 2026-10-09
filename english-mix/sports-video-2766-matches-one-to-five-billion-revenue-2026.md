@@ -40,6 +40,23 @@ These are **scheduled regular-season volumes**, not confirmed completed producti
 
 ![From match volume to billable operations](https://silovar-uk.github.io/myessays/assets/sports-video-funnel-2026.svg "Official match counts pass through video scope, buying authority and rights before they can become paid services. The ¥40,000 unit price is hypothetical.")
 
+### Other sports add volume, but they don't make the data uniform
+
+The earlier league-volume ledger includes other calculable regular-season counts: SV.LEAGUE 530 matches across men and women in 2026/27, League One 206 across three divisions, League H 320 across men's and women's leagues, and men's F.LEAGUE F1/F2 234. For 2026, Japan's NPB schedule implies 858 games including interleague play, and JD.LEAGUE has 232 in the earlier ledger.
+
+| Competition | Year | Scheduled regular-season games | Caveat |
+| --- | --- | ---: | --- |
+| SV.LEAGUE (men and women) | 2026/27 | 530 | 264 + 266, not completed video deliveries |
+| League One (three divisions) | 2026/27 | 206 | 108 + 56 + 42 |
+| League H (men and women) | 2026/27 | 320 | 210 + 110 |
+| Men's F.LEAGUE F1/F2 | 2026/27 | 234 | 162 + 72; women's separate |
+| NPB | 2026 | 858 | 143 games per club, no double count of interleague |
+| JD.LEAGUE | 2026 | 232 | East/West accounting needs care |
+
+Sources: [SV.LEAGUE](https://www.svleague.jp/ja/sv_men/topics/detail/23530), [League One](https://league-one.jp/news/6096), [League H](https://leagueh.jp/news/?id=22611), [F.LEAGUE](https://www.fleague.jp/league/outline.html), [NPB](https://npb.jp/games/2026/), [JD.LEAGUE](https://jdleague.jp/news/detail/11580/).
+
+These are scheduled volumes—not verified recordings, delivered assets, or accessible contracts. 他競技の数字を足し上げても、契約の壁は消えない。The wider the catalogue, the greater the need for consistent definitions.
+
 ## 2. Counting the same match twice is surprisingly easy
 
 Twenty J1 clubs each play 38 matches. 20 × 38 = 760 team appearances, but only 380 actual matches. ホーム開催も別の試合が増えるわけではない。One match may also trigger pre-game setup, file ingest, monitoring, archiving, multiple deliveries and rights review.
