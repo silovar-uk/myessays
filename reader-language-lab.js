@@ -291,9 +291,29 @@
 
   function positionPinnedLens(panel, block) {
     const rect = block.getBoundingClientRect();
-    const panelHeight = Math.min(520, Math.max(180, panel.offsetHeight || 260));
+    const article = content.getBoundingClientRect();
+    const rightSpace = innerWidth - article.right - 24;
+    const leftSpace = article.left - 20;
+
+    // Prefer a margin sidecar over an overlay on top of the article.
+    if (rightSpace >= 268) {
+      const width = Math.min(340, rightSpace - 12);
+      panel.style.width = `${Math.round(width)}px`;
+      panel.style.left = `${Math.round(article.right + 12)}px`;
+      panel.style.right = 'auto';
+    } else if (leftSpace >= 268) {
+      const width = Math.min(330, leftSpace - 16);
+      panel.style.width = `${Math.round(width)}px`;
+      panel.style.left = `${Math.max(10, Math.round(article.left - width - 12))}px`;
+      panel.style.right = 'auto';
+    } else {
+      panel.style.width = 'min(350px, calc(100vw - 24px))';
+      panel.style.left = 'auto';
+      panel.style.right = '12px';
+    }
+    const panelHeight = Math.min(innerHeight - 110, Math.max(180, panel.offsetHeight || 260));
     const top = Math.max(88, Math.min(innerHeight - panelHeight - 18, rect.top - 10));
-    panel.style.top = `${top}px`;
+    panel.style.top = `${Math.round(top)}px`;
   }
 
   async function openLens(block, { preview = false } = {}) {
@@ -339,6 +359,7 @@
     panel.querySelector('.language-lens-flip').disabled = !counterpart;
     panel.querySelector('.language-lens-full').textContent = `全文を${targetDef.label}で読む`;
     panel.querySelector('.language-lens-flip').textContent = flipState.has(block) ? '元に戻す' : 'この段落だけ切替';
+    if (!isMobile()) positionPinnedLens(panel, block);
 
     const blocks = readablePairBlocks();
     const index = blocks.indexOf(block);
@@ -526,7 +547,11 @@
 
   window.addEventListener('scroll', positionAffordance, { passive: true });
   window.addEventListener('resize', () => {
-    if (isMobile()) closeLens({ force: true });
+    if (isMobile()) {
+      closeLens();
+      const panel = ensureLens();
+      for (const prop of ['left', 'right', 'top', 'width']) panel.style.removeProperty(prop);
+    }
     positionAffordance();
     placeModeBar();
   });
