@@ -68,7 +68,7 @@
   function sessionFor(id) {
     if (!sessions.has(id)) sessions.set(id,{
       tab:'scene',scene:'rush',phase:'activate',frame:9,era:'ultimate3',
-      collapsed:false,choice:null,drillIndex:0,drillChoice:null,drillSeen:0,drillMatched:0,
+      collapsed:false,choice:null,drillIndex:0,drillChoice:null,drillSeen:0,drillMatched:0,drillOrder:null,
       draft:{situation:'rush',result:'space',note:''},message:''
     });
     return sessions.get(id);
@@ -186,10 +186,17 @@
   }
   function drill(data,st,locale) {
     const c=ui[locale],items=data.scenarios.items;
+    if(!Array.isArray(st.drillOrder)||st.drillOrder.length!==items.length){
+      st.drillOrder=items.map((_,index)=>index);
+      for(let index=st.drillOrder.length-1;index>0;index--){
+        const other=Math.floor(Math.random()*(index+1));
+        [st.drillOrder[index],st.drillOrder[other]]=[st.drillOrder[other],st.drillOrder[index]];
+      }
+    }
     if(st.drillIndex>=items.length) return '<div class="leaflab-finish"><strong>'+escape(c.drillDone)+'</strong>'+
       '<div class="leaflab-finish-stats"><span>'+escape(c.drillReview)+': '+st.drillSeen+'/'+items.length+'</span><span>'+escape(c.drillResult)+': '+st.drillMatched+'/'+items.length+'</span></div>'+
       '<p>'+escape(c.disclaimer)+'</p>'+button('drillReset','',c.drillAgain)+'</div>';
-    const current=items[st.drillIndex];
+    const current=items[st.drillOrder[st.drillIndex]];
     let feedback='';
     if(st.drillChoice!==null){
       const chosen=current.options[st.drillChoice];
@@ -326,13 +333,13 @@
         if(action==='era'){st.era=value;rerender({action,value});return;}
         if(action==='drillChoice'){
           if(st.drillChoice!==null)return;
-          const item=data.scenarios.items[st.drillIndex];const choice=item?.options[Number(value)];
+          const item=data.scenarios.items[st.drillOrder?.[st.drillIndex]??st.drillIndex];const choice=item?.options[Number(value)];
           st.drillChoice=Number(value);st.drillSeen++;
           if(choice?.value==='best')st.drillMatched++;
           rerender({action,value});return;
         }
         if(action==='drillNext'){st.drillIndex++;st.drillChoice=null;rerender();return;}
-        if(action==='drillReset'){st.drillIndex=0;st.drillSeen=0;st.drillMatched=0;st.drillChoice=null;rerender();return;}
+        if(action==='drillReset'){st.drillIndex=0;st.drillSeen=0;st.drillMatched=0;st.drillChoice=null;st.drillOrder=null;rerender();return;}
         if(action==='logSave'){
           const item={at:new Date().toISOString(),situation:st.draft.situation,result:st.draft.result,note:st.draft.note.slice(0,160)};
           if(persist([item,...stored()])){
