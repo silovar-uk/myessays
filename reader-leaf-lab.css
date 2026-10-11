@@ -1,0 +1,279 @@
+/* Leaf Shield Research Lab — isolated to its article marker.
+   No fixed panels: mobile reading, selection, and Reader V2 remain in control. */
+.reader-content .leaflab-host {
+  display:block;
+  width:100%;
+  min-width:0;
+  margin:clamp(25px,5vw,46px) 0 48px;
+  padding:0;
+  contain:layout style;
+  scroll-margin-top:95px;
+}
+.leaflab-host *, .leaflab-host *::before, .leaflab-host *::after {box-sizing:border-box}
+.leaflab-host .leaflab {
+  color:#24372d;
+  background:#f1f5ee;
+  border:1px solid #b4c8b7;
+  border-radius:20px;
+  box-shadow:0 12px 34px rgba(28,59,34,.065);
+  overflow:hidden;
+  font-family:Inter,"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+}
+.leaflab-host p {margin:0;line-height:1.68;max-width:unset;text-wrap:pretty}
+.leaflab-host a {color:#245e53;text-decoration:underline;text-underline-offset:2px}
+.leaflab-host a:hover {color:#164338}
+.leaflab-host .leaflab-head {
+  padding:clamp(16px,3.5vw,27px);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  background:radial-gradient(circle at 94% 15%,rgba(91,147,108,.18),transparent 34%),#e3ece2;
+  border-bottom:1px solid #bdcfc0;
+}
+.leaflab-host .leaflab-kicker,.leaflab-host .leaflab-eyebrow {
+  font:800 10px/1.4 ui-monospace,Consolas,monospace;
+  letter-spacing:.11em;text-transform:uppercase;color:#557d65;
+}
+.leaflab-host .leaflab-title {
+  display:block;font-size:clamp(19px,3.3vw,26px);letter-spacing:-.025em;
+  line-height:1.35;margin:5px 0 6px;color:#163d2c;
+}
+.leaflab-host .leaflab-head p:last-child {font-size:12px;color:#566d5b}
+.leaflab-host button,.leaflab-host select,.leaflab-host textarea,.leaflab-host input {font:inherit}
+.leaflab-host button {
+  display:inline-flex;align-items:center;justify-content:center;
+  appearance:none;cursor:pointer;background:#fff;color:#234435;
+  border:1px solid #b5c9b9;border-radius:11px;
+  padding:10px 12px;min-height:43px;font-size:12px;
+  font-weight:700;line-height:1.4;text-align:center;
+  transition:border-color .13s,background-color .13s,box-shadow .13s;
+}
+.leaflab-host button:hover {background:#e9f1ea;border-color:#47755a}
+.leaflab-host button:focus-visible,
+.leaflab-host select:focus-visible,
+.leaflab-host textarea:focus-visible,
+.leaflab-host input:focus-visible,
+.leaflab-host summary:focus-visible {
+  outline:3px solid #367e69;outline-offset:3px;
+}
+.leaflab-host button[aria-pressed="true"] {
+  background:#245b48;color:#fff;border-color:#245b48;
+}
+.leaflab-host .leaflab-collapse {white-space:nowrap;min-width:94px;font-size:11px}
+.leaflab-host .leaflab-tabs {
+  display:flex;flex-wrap:nowrap;gap:5px;overflow-x:auto;
+  scrollbar-width:thin;scrollbar-color:#b5c9b9 transparent;
+  padding:12px clamp(12px,2.7vw,20px) 0;
+  border-bottom:1px solid #cbdacd;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.leaflab-host .leaflab-tabs button {
+  flex:0 0 auto;border:0;border-radius:9px 9px 0 0;background:transparent;
+  color:#567062;min-width:80px;min-height:47px;
+  padding:12px 13px;border-bottom:3px solid transparent;
+}
+.leaflab-host .leaflab-tabs button[aria-selected="true"] {
+  color:#174a39;border-bottom-color:#236a53;
+  background:#fff;
+}
+.leaflab-host .leaflab-panel {
+  padding:clamp(13px,3.2vw,22px);
+  background:#f8faf6;
+  min-width:0;
+}
+.leaflab-host .leaflab-picker {
+  display:flex;gap:7px;flex-wrap:wrap;
+  margin:0 0 15px;
+}
+.leaflab-host .leaflab-picker button {flex:0 1 auto}
+.leaflab-host .leaflab-stage {
+  margin:0 0 14px;
+  border-radius:13px;border:1px solid #d2ddd4;
+  padding:10px 10px 5px;
+  background:linear-gradient(#f5faf8,#f1f5ef);
+}
+.leaflab-host .leaflab-svg {
+  display:block;width:100%;height:auto;max-width:580px;
+  max-height:262px;margin:auto;overflow:visible;
+}
+.leaflab-host .leaflab-legend {
+  font-size:10px;line-height:1.5;text-align:center;color:#667c6c;
+}
+.leaflab-host .leaflab-prompt {
+  font-size:clamp(15px,2.7vw,18px);font-weight:800;line-height:1.58;
+  margin:12px 0 12px;
+}
+.leaflab-host .leaflab-prompt-hint,.leaflab-host .leaflab-muted{
+  color:#6a7b6b;font-size:11px;line-height:1.65;
+}
+.leaflab-host .leaflab-prompt-hint{margin-top:10px}
+.leaflab-host .leaflab-choices{display:grid;gap:8px;margin:10px 0}
+.leaflab-host .leaflab-choice {
+  justify-content:flex-start;text-align:left;padding:12px 14px;
+  width:100%;min-height:47px;background:#fff;font-size:13px;
+  border-color:#c8d7ca;
+}
+.leaflab-host .leaflab-choice[aria-pressed="true"]{background:#245b48;color:white}
+.leaflab-host .leaflab-choice-locked:not([aria-pressed="true"]){opacity:.65}
+.leaflab-host .leaflab-reason {
+  border:1px solid #acc8b7;border-left:4px solid #2d765a;
+  background:#eaf3ed;border-radius:12px;padding:15px 16px;
+  display:grid;gap:10px;margin-top:14px;font-size:12px;
+}
+.leaflab-host .leaflab-reason strong{color:#184a36}
+.leaflab-host .leaflab-badge {
+  display:inline-flex;align-items:center;justify-content:center;
+  width:max-content;max-width:100%;
+  border-radius:999px;background:#d7e8dc;color:#1f6344;
+  padding:5px 9px;font:700 10px/1.4 ui-monospace,monospace;
+}
+.leaflab-host .leaflab-framebox,
+.leaflab-host .leaflab-history,
+.leaflab-host .leaflab-finish {
+  border:1px solid #d2dfd4;border-radius:14px;
+  background:#fff;padding:clamp(14px,3vw,21px);
+  display:grid;gap:14px;
+}
+.leaflab-host .leaflab-big-number{
+  display:flex;align-items:baseline;gap:7px;color:#1d5d42;
+  font:700 16px/1.1 ui-monospace,Consolas,monospace;
+}
+.leaflab-host .leaflab-big-number [data-current-frame] {
+  font-size:clamp(36px,8vw,54px);font-weight:800;letter-spacing:-.06em;
+}
+.leaflab-host .leaflab-timeline-visual{
+  width:100%;height:24px;position:relative;
+  display:flex;align-items:center;
+}
+.leaflab-host .leaflab-track,.leaflab-host .leaflab-progress {
+  height:12px;border-radius:999px;
+  position:absolute;top:6px;left:0;
+}
+.leaflab-host .leaflab-track{width:100%;background:#dfebdd}
+.leaflab-host .leaflab-progress{background:#468b6b;min-width:3px}
+.leaflab-host .leaflab-marker{
+  position:absolute;z-index:2;top:0;height:23px;width:3px;
+  border-radius:4px;background:#cf8751;box-shadow:0 0 0 3px #fff;
+}
+.leaflab-host .leaflab-slider-label {font-size:11px;font-weight:700;color:#526c5b}
+.leaflab-host input[type="range"]{
+  display:block;width:100%;accent-color:#2f7657;
+  min-height:30px;touch-action:pan-y;
+}
+.leaflab-host .leaflab-playback{display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap}
+.leaflab-host .leaflab-playback button{flex:1}
+.leaflab-host .leaflab-emphasis {
+  padding:9px 12px;background:#ecf3ed;border-radius:9px;
+  font-weight:800;color:#275942;font-size:12px;
+}
+.leaflab-host .leaflab-reference {display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:11px}
+.leaflab-host .leaflab-evidence{
+  border:1px solid #d0decf;border-radius:12px;margin-top:13px;
+  background:#fff;
+}
+.leaflab-host .leaflab-evidence summary{cursor:pointer;padding:12px 14px;font-size:12px;font-weight:800;list-style:revert}
+.leaflab-host .leaflab-facts{padding:0 14px 14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.leaflab-host .leaflab-fact{
+  border:1px solid #dfebde;border-radius:10px;
+  padding:10px;display:grid;gap:5px;
+  min-width:0;
+}
+.leaflab-host .leaflab-fact strong{font-size:11px}
+.leaflab-host .leaflab-fact b{font:800 22px/1.2 ui-monospace,monospace;color:#245b48}
+.leaflab-host .leaflab-fact span,.leaflab-host .leaflab-fact small{font-size:10px;line-height:1.5;color:#66786a}
+.leaflab-host .leaflab-section-title{font-size:19px;color:#24523b}
+.leaflab-host .leaflab-history p{font-size:13px}
+.leaflab-host .leaflab-permissions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.leaflab-host .leaflab-permission {
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:10px;border-radius:9px;background:#f0f5ef;
+  font-size:11px;
+}
+.leaflab-host .leaflab-permission strong{font-size:11px;white-space:nowrap}
+.leaflab-host .leaflab-flag-no{color:#a2554a}
+.leaflab-host .leaflab-flag-yes{color:#2a7450}
+.leaflab-host .leaflab-flag-unverified,
+.leaflab-host .leaflab-flag-not-applicable{color:#7a806f}
+.leaflab-host .leaflab-drill-progress {
+  display:flex;justify-content:space-between;gap:10px;
+  font:700 11px/1.5 ui-monospace,monospace;
+  margin:15px 0 9px;color:#54735c;
+}
+.leaflab-host .leaflab-finish{margin:16px 0}
+.leaflab-host .leaflab-finish>strong{font-size:20px}
+.leaflab-host .leaflab-finish-stats{display:flex;gap:14px;flex-wrap:wrap;font-size:12px}
+.leaflab-host .leaflab-logform {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:end;gap:12px;margin:16px 0;
+}
+.leaflab-host .leaflab-logform label{display:grid;gap:7px;font-size:11px;font-weight:800}
+.leaflab-host .leaflab-logform select,
+.leaflab-host .leaflab-logform textarea {
+  appearance:auto;width:100%;min-width:0;padding:10px;
+  color:#214433;background:#fff;border:1px solid #a9c1af;
+  border-radius:9px;font-size:13px;line-height:1.5;min-height:43px;
+}
+.leaflab-host .leaflab-logform textarea{resize:vertical;max-height:150px}
+.leaflab-host .leaflab-note-label{grid-column:1/-1}
+.leaflab-host .leaflab-primary{
+  background:#246447;color:#fff;border-color:#246447;
+  min-height:45px;padding:11px 16px;
+}
+.leaflab-host .leaflab-primary:hover{background:#1b4e37;color:#fff}
+.leaflab-host .leaflab-log-summary{
+  display:flex;gap:8px;flex-wrap:wrap;
+  background:#e9f1e7;border-radius:10px;
+  padding:12px;margin:17px 0;
+  font-size:11px;line-height:1.6;
+}
+.leaflab-host .leaflab-log-summary strong{color:#174f36}
+.leaflab-host .leaflab-log-summary span{padding-left:8px;border-left:1px solid #b6cbbb}
+.leaflab-host .leaflab-log-list{list-style:none;margin:9px 0;padding:0;display:grid;gap:7px}
+.leaflab-host .leaflab-log-list li{
+  margin:0;padding:10px 12px;border:1px solid #d6e2d5;
+  border-radius:9px;background:#fff;
+  display:flex;gap:10px;justify-content:space-between;align-items:center;
+}
+.leaflab-host .leaflab-log-list li>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.leaflab-host .leaflab-log-list small{font-size:10px;color:#788577}
+.leaflab-host .leaflab-log-list strong{font-size:12px}
+.leaflab-host .leaflab-log-list span,
+.leaflab-host .leaflab-log-list p{font-size:11px;color:#556c58;overflow-wrap:anywhere}
+.leaflab-host .leaflab-log-tools{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+.leaflab-host .leaflab-log-tools button{font-size:11px}
+.leaflab-host .leaflab-live{color:#225c41;font-size:12px;font-weight:700;margin:8px 0!important}
+.leaflab-host .leaflab-footer{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:10px 18px 15px;background:#f0f5ee;
+  border-top:1px solid #d1ded0;
+  font-size:10px;line-height:1.5;color:#6a806d;
+}
+.leaflab-host .leaflab-footer span:first-child{flex:1}
+.leaflab-host .leaflab-footer span:last-child{white-space:nowrap}
+.leaflab-host .leaflab-loading,.leaflab-host .leaflab-error{
+  padding:18px;background:#f0f5ed;border-radius:13px;
+  border:1px solid #ccdbcb;
+  font-size:13px;color:#416b4a;
+}
+@media(max-width:600px){
+  .reader-content .leaflab-host{margin:30px 0 40px;contain:layout style}
+  .leaflab-host .leaflab{border-radius:13px}
+  .leaflab-host .leaflab-head{padding:16px 13px}
+  .leaflab-host .leaflab-title{font-size:19px}
+  .leaflab-host .leaflab-head p:last-child{font-size:11px}
+  .leaflab-host .leaflab-collapse{min-width:69px;padding:7px;font-size:10px;min-height:40px}
+  .leaflab-host .leaflab-panel{padding:13px}
+  .leaflab-host .leaflab-tabs{padding:8px 10px 0}
+  .leaflab-host .leaflab-tabs button{min-height:45px;padding:10px}
+  .leaflab-host .leaflab-picker{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .leaflab-host .leaflab-picker button{flex-shrink:0;font-size:11px;min-height:42px}
+  .leaflab-host .leaflab-facts{grid-template-columns:1fr}
+  .leaflab-host .leaflab-history{padding:12px}
+  .leaflab-host .leaflab-permissions{grid-template-columns:1fr}
+  .leaflab-host .leaflab-logform{grid-template-columns:1fr}
+  .leaflab-host .leaflab-footer{flex-wrap:wrap}
+  .leaflab-host .leaflab-playback{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+  .leaflab-host .leaflab-playback button{min-width:0;padding:8px 3px}
+}
+@media(prefers-reduced-motion:reduce){
+  .leaflab-host button{transition:none}
+}
