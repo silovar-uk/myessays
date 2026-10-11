@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "articleId": "the-live-kannai-reviews-second-stadium-economics-2026",
+  "question": "球場の隣に、なぜもう一つの観戦場所か",
+  "shortThesis": "映像・共同観戦・街の日常需要を別の商売として見る。",
+  "status": "editor-reviewed",
+  "nodes": [
+    {
+      "id": "live",
+      "label": "THE LIVE",
+      "fullLabel": "THE LIVEという映像観戦施設",
+      "description": "球場のそばで映像による共同観戦を提供する施設。",
+      "sectionIndex": 0,
+      "kind": "core",
+      "x": 50,
+      "y": 49
+    },
+    {
+      "id": "experience",
+      "label": "共同観戦",
+      "fullLabel": "人と見る観戦体験",
+      "description": "画面だけでなく、一緒に盛り上がれることが価値を持つ。",
+      "sectionIndex": 1,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 17
+    },
+    {
+      "id": "review",
+      "label": "口コミ",
+      "fullLabel": "評判・料金の評価",
+      "description": "席、音、料金、注文など、映像以外の要素も評価される。",
+      "sectionIndex": 2,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 17
+    },
+    {
+      "id": "operation",
+      "label": "注文動線",
+      "fullLabel": "飲食と現場運営",
+      "description": "注文・提供の導線が体験の良し悪しを左右する。",
+      "sectionIndex": 3,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 49
+    },
+    {
+      "id": "rights",
+      "label": "映像の権利",
+      "fullLabel": "映像上映の権利処理",
+      "description": "映像を上映・利用するには権利処理と運営体制が必要。",
+      "sectionIndex": 7,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 49
+    },
+    {
+      "id": "revenue",
+      "label": "複合収益",
+      "fullLabel": "観戦と飲食などの収益",
+      "description": "一種類の入場料金だけでは施設の損益を判断できない。",
+      "sectionIndex": 6,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 81
+    },
+    {
+      "id": "everyday",
+      "label": "街の日常",
+      "fullLabel": "試合のない日の需要",
+      "description": "施設を試合日のためだけでなく、街の日常の用途として捉える。",
+      "sectionIndex": 8,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 81
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "live",
+      "to": "experience",
+      "type": "associated-with",
+      "label": "観戦体験を提供する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e2",
+      "from": "experience",
+      "to": "review",
+      "type": "associated-with",
+      "label": "視聴環境や一体感が評判に表れる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e3",
+      "from": "review",
+      "to": "operation",
+      "type": "associated-with",
+      "label": "注文の使いやすさが評価に影響する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e4",
+      "from": "live",
+      "to": "rights",
+      "type": "associated-with",
+      "label": "映像の利用条件が成立条件になる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e5",
+      "from": "live",
+      "to": "revenue",
+      "type": "associated-with",
+      "label": "複数の収益経路を持つ",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e6",
+      "from": "revenue",
+      "to": "everyday",
+      "type": "associated-with",
+      "label": "日常営業が収益の幅を広げる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e7",
+      "from": "experience",
+      "to": "everyday",
+      "type": "associated-with",
+      "label": "観戦以外の街の用途へ広げられる",
+      "certainty": "interpretation"
+    }
+  ]
+}
