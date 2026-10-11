@@ -482,6 +482,7 @@
 
     wrapper.querySelector('.reader-v2-map-close')?.addEventListener('click', () => setMapOpen(false));
     renderReaderMapItems();
+    window.MyEssaysConceptMap?.attach?.();
     if (window.innerWidth <= MOBILE_BREAKPOINT && !aside.classList.contains('is-open')) {
       aside.setAttribute('aria-hidden', 'true');
     } else {
