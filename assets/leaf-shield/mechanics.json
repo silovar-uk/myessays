@@ -48,10 +48,10 @@
     {
       "id": "hold",
       "frames": 40,
-      "mark": 11,
+      "mark": null,
       "markLabel": {
-        "ja": "再ヒット間隔：11F",
-        "en": "Rehit interval: 11F"
+        "ja": "再ヒットは11F間隔（保持開始からの固定時点ではない）",
+        "en": "11F rehit interval (not tied to hold-phase frame 11)"
       },
       "name": {
         "ja": "追加保持の猶予",
