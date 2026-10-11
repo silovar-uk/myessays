@@ -359,7 +359,6 @@
   const references = new WeakMap();
   let version = 'ja';
   let essayId = '';
-  let timer = 0;
 
   function renderRoot(markdown) {
     const root = document.createElement('div');
@@ -521,26 +520,26 @@
     };
   }
 
-  function resolve() {
-    clearTimeout(timer);
-    if (view.hidden || version === 'ja' || essayId !== (content.dataset.readerEssayId || essayId)) return;
-    const selection = selectionContext();
-    if (selection?.block) show(references.get(selection.block) || null, selection);
+  // Keep contextual source comparison available, but never open it just
+  // because the reader selects text. The selection toolbar owns the intent.
+  function canOpenSelection() {
+    return !view.hidden && version !== 'ja'
+      && essayId === (content.dataset.readerEssayId || essayId);
   }
 
-  const schedule = delay => {
-    clearTimeout(timer);
-    timer = setTimeout(resolve, delay);
-  };
+  function openSelection() {
+    if (!canOpenSelection()) return false;
+    const selection = selectionContext();
+    if (!selection?.block) return false;
+    window.MyEssaysLanguageLab?.close?.();
+    show(references.get(selection.block) || null, selection);
+    return true;
+  }
 
-  content.addEventListener('pointerup', event => {
-    if (event.pointerType !== 'touch') schedule(50);
-  });
-  content.addEventListener('touchend', () => schedule(240), { passive: true });
-  document.addEventListener('selectionchange', () => {
-    if (!view.hidden && version !== 'ja') {
-      schedule(matchMedia(`(max-width:${CONFIG.breakpoint}px)`).matches ? 240 : 180);
-    }
+  window.MyEssaysJapaneseReference = Object.freeze({
+    canOpenSelection,
+    openSelection,
+    close: closePanel
   });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closePanel();
