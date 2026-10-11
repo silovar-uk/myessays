@@ -16,6 +16,10 @@ abstract: "A shield that stops you from shielding. That is the strange design of
 
 You activate a shield. Then you discover you cannot shield.
 
+**First, hold the B button below.** Then see why the shield works the way it does.
+
+<div data-leaf-lab="en-mix"></div>
+
 That sounds like a joke, but it is a rule. In **Super Smash Bros. Ultimate**（『大乱闘スマッシュブラザーズ SPECIAL』）、ロックマンの下必殺ワザ「リーフシールド（Leaf Shield）」を展開すると、通常シールドとつかみが使えない。Four leaves orbit your body, dealing damage to nearby opponents. Yet they do not make you invincible.
 
 So what exactly is this thing? A shield? A weapon? Or a temporary contract that restricts both players?
@@ -23,12 +27,6 @@ So what exactly is this thing? A shield? A weapon? Or a temporary contract that 
 資料を読み進めると、別の問題も見つかる。Some online guides still mix mechanics from **Smash 4**（『スマブラfor』）with those of Ultimate. We must date the evidence before learning the strategy.
 
 > **Research scope — October 11, 2026.** Mechanics refer to Smash Ultimate after the published balance patches through version 13.0.1. Frame data comes from public references; tactical recommendations are reasoned hypotheses. 本稿で新たな実機測定を行ったわけではない。
-
-Before reading further, try a small experiment. What if the opponent rushes in? What if they patiently hold shield? 同じLeaf Shieldでも、the decision should change with the situation. Choose your prediction in the interactive lab, then compare it with the underlying mechanic and tactical reasoning.
-
-<div data-leaf-lab="en-mix"></div>
-
-The five views are Opponent / Frame Lab / Version / Decision Drill / Match Log. これは教育用の図と判断練習であり、actual hitbox geometry or win rates are not simulated. **The aim is to discover which conditions change the correct decision.**
 
 
 ## 1. そもそもリーフシールドは、木の葉でできた攻撃兼障壁である
