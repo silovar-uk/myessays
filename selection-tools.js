@@ -96,6 +96,13 @@
       contextLabel: analysis => `${analysis.translationLabel}する`
     },
     {
+      id: 'original',
+      icon: '⇄',
+      toolbarLabel: '原文',
+      contextLabel: '選択箇所の日本語原文を見る',
+      visible: () => window.MyEssaysJapaneseReference?.canOpenSelection?.() === true
+    },
+    {
       id: 'memo',
       icon: '✎',
       toolbarLabel: 'メモ',
@@ -219,6 +226,7 @@
     if (!text) return;
 
     if (action === 'memo') requestMemoAppend(text);
+    else if (action === 'original') window.MyEssaysJapaneseReference?.openSelection?.();
     else openExternal(action, text);
 
     hideSelectionTools();
