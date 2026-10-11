@@ -1,0 +1,30 @@
+name: Leaf Shield Lab QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'reader-leaf-lab.js'
+      - 'reader-leaf-lab.css'
+      - 'assets/leaf-shield/**'
+      - 'scripts/check-leaf-lab.mjs'
+      - 'essays/2026-10-11-ssbu-megaman-leaf-shield-four-leaves-commitment.md'
+      - 'english-mix/ssbu-megaman-leaf-shield-four-leaves-commitment.md'
+      - 'index.html'
+      - '.github/workflows/leaf-lab-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-leaf-lab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check bilingual data, JS syntax, sources and article markers
+        run: node scripts/check-leaf-lab.mjs
