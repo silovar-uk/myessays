@@ -65,6 +65,12 @@ for(const item of cases.items) {
 assert(css.includes('@media(max-width:600px)'),'mobile styles required');
 assert(css.includes('@media(prefers-reduced-motion:reduce)'),'reduced motion required');
 assert(js.includes('localStorage') && js.includes('csvText(entries)'),'local match-log and export are required');
+assert(js.includes('function demoHtml('),'interactive first impression must be present');
+assert(js.includes("host.addEventListener('pointerdown'"),'hold demo must support pointer input');
+assert(js.includes("host.addEventListener('keyup'"),'hold demo must support keyboard release');
+assert(js.includes("st.toolsOpen?"),'advanced analysis must be progressively disclosed');
+assert(japanese.indexOf('data-leaf-lab="ja"') < japanese.indexOf('何を言っているのかと思う。'),'interactive lab should appear before the long lead');
+assert(english.indexOf('data-leaf-lab="en-mix"') < english.indexOf('That sounds like a joke'),'English lab should appear before the long lead');
 assert(js.includes('escape(st.draft.note)'),'saved note must be escaped before HTML insertion');
 
 console.log('PASS: Leaf Lab JS syntax, article markers, bilingual scenarios, provenance, visual constraints and local log wiring');
