@@ -24,6 +24,13 @@ So what exactly is this thing? A shield? A weapon? Or a temporary contract that 
 
 > **Research scope — October 11, 2026.** Mechanics refer to Smash Ultimate after the published balance patches through version 13.0.1. Frame data comes from public references; tactical recommendations are reasoned hypotheses. 本稿で新たな実機測定を行ったわけではない。
 
+Before reading further, try a small experiment. What if the opponent rushes in? What if they patiently hold shield? 同じLeaf Shieldでも、the decision should change with the situation. Choose your prediction in the interactive lab, then compare it with the underlying mechanic and tactical reasoning.
+
+<div data-leaf-lab="en-mix"></div>
+
+The five views are Opponent / Frame Lab / Version / Decision Drill / Match Log. これは教育用の図と判断練習であり、actual hitbox geometry or win rates are not simulated. **The aim is to discover which conditions change the correct decision.**
+
+
 ## 1. そもそもリーフシールドは、木の葉でできた攻撃兼障壁である
 
 There are two meanings of “shield” in a fighting game: the normal defensive action, and a move that happens to look like protection. Leaf Shield belongs to the second category.
