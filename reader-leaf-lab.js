@@ -111,8 +111,8 @@
     const type=s.id;
     const near=type==='rush',high=type==='jump',corner=type==='corner',edge=type==='edge',shield=type==='shield';
     const x=near?176:shield?250:corner?248:217;
-    const y=high?32:77;
-    const floor=edge?'M28 115 H138 M225 115 H322':'M20 115 H322';
+    const y=high?32:edge?26:77;
+    const floor=edge?'M20 66 H48 M145 66 H322':'M20 115 H322';
     const figure='<svg class="leaflab-svg" viewBox="0 0 342 153" role="img" aria-label="'+escape(pick(s.title,locale))+'">'
       +'<path d="'+floor+'" stroke="#88928a" stroke-width="6" stroke-linecap="round" fill="none"/>'
       +'<rect x="58" y="80" width="37" height="33" rx="8" fill="#326e9a"/>'
@@ -125,7 +125,7 @@
       +(near?'<path d="M251 91 H207 M215 83 L207 91 L215 99" stroke="#ba6864" stroke-width="3" fill="none" stroke-linecap="round"/>':'')
       +(high?'<path d="M270 100 Q225 4 152 51 M159 40 L152 51 L166 52" stroke="#ba6864" stroke-dasharray="5 6" stroke-width="2" fill="none"/>':'')
       +(type==='projectile'?'<circle cx="146" cy="91" r="6" fill="#dbab58"/><path d="M194 91 H158" stroke="#ba6864" stroke-width="2" stroke-dasharray="4 4"/>':'')
-      +(edge?'<path d="M132 115 V138 M225 115 V138" stroke="#88928a" stroke-width="3" stroke-dasharray="4 4"/>':'')
+      +(edge?'<path d="M48 66 V138 M145 66 V138" stroke="#88928a" stroke-width="3" stroke-dasharray="4 4"/>':'')
       +'<text x="77" y="149" font-size="10" text-anchor="middle" fill="currentColor">'+escape(c.megaman)+'</text>'
       +'<text x="'+(x+18)+'" y="'+(high?24:149)+'" font-size="10" text-anchor="middle" fill="currentColor">'+escape(c.opponent)+'</text>'
       +'</svg>';
