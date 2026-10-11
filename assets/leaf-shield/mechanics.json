@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "checkedAt": "2026-10-11",
+  "game": "Super Smash Bros. Ultimate",
+  "patch": "3.0.0–13.0.1",
+  "fps": 60,
+  "sources": [
+    {
+      "id": "ufd",
+      "label": "Ultimate Frame Data — Mega Man",
+      "url": "https://ultimateframedata.com/mega_man"
+    },
+    {
+      "id": "patch",
+      "label": "SmashWiki — Ver.3.0.0 changelog",
+      "url": "https://www.ssbwiki.com/List_of_updates_(SSBU)/3.0.0_changelog"
+    },
+    {
+      "id": "mega",
+      "label": "SmashWiki — Mega Man (SSBU)",
+      "url": "https://www.ssbwiki.com/Mega_Man_(SSBU)"
+    },
+    {
+      "id": "leaf",
+      "label": "SmashWiki — Leaf Shield (historical)",
+      "url": "https://www.ssbwiki.com/Leaf_Shield"
+    }
+  ],
+  "phases": [
+    {
+      "id": "activate",
+      "frames": 35,
+      "mark": 9,
+      "markLabel": {
+        "ja": "初回攻撃判定：9F",
+        "en": "First hitbox: F9"
+      },
+      "name": {
+        "ja": "展開動作",
+        "en": "Activation"
+      },
+      "detail": {
+        "ja": "開始動作は全体35F。9F目から葉の攻撃判定が出る。35Fは葉の総寿命ではない。",
+        "en": "Activation totals 35 frames; the first orbit hitbox appears on frame 9. This is not the full shield lifetime."
+      },
+      "source": "ufd"
+    },
+    {
+      "id": "hold",
+      "frames": 40,
+      "mark": 11,
+      "markLabel": {
+        "ja": "再ヒット間隔：11F",
+        "en": "Rehit interval: 11F"
+      },
+      "name": {
+        "ja": "追加保持の猶予",
+        "en": "Additional holding window"
+      },
+      "detail": {
+        "ja": "必殺ワザボタンを押し続けると発射を最大約40F遅らせられる。11Fは再ヒット可能になる間隔で、命中を保証しない。",
+        "en": "Holding the special button delays the throw by up to about 40 frames. An 11F rehit interval does not guarantee hits at fixed intervals."
+      },
+      "source": "ufd"
+    },
+    {
+      "id": "throw",
+      "frames": 55,
+      "mark": null,
+      "markLabel": {
+        "ja": "射出動作",
+        "en": "Throw action"
+      },
+      "name": {
+        "ja": "射出動作",
+        "en": "Throw action"
+      },
+      "detail": {
+        "ja": "射出動作の全体は55F。これは別の動作の値で、展開35F＋保持40F＋55Fを一本の確定連続時間として扱わない。",
+        "en": "The throw action has 55 total frames. Do not present 35+40+55 as one guaranteed continuous timeline."
+      },
+      "source": "ufd"
+    }
+  ],
+  "facts": [
+    {
+      "id": "startup",
+      "ja": "展開の攻撃判定",
+      "en": "Orbit startup",
+      "value": "9F",
+      "explainJa": "Ver.3.0.0で7F→9Fに変更。",
+      "explainEn": "Changed from 7F to 9F in v3.0.0.",
+      "source": "patch",
+      "status": "confirmed"
+    },
+    {
+      "id": "orbit",
+      "ja": "展開中の基礎ダメージ",
+      "en": "Orbit base damage",
+      "value": "1.5%",
+      "explainJa": "命中1回あたりの基礎値。",
+      "explainEn": "Base value per hit.",
+      "source": "ufd",
+      "status": "confirmed"
+    },
+    {
+      "id": "rehit",
+      "ja": "再ヒット間隔",
+      "en": "Rehit interval",
+      "value": "11F",
+      "explainJa": "必ず11Fごとに当たる意味ではない。",
+      "explainEn": "Does not guarantee a hit every 11 frames.",
+      "source": "ufd",
+      "status": "confirmed"
+    },
+    {
+      "id": "thrown",
+      "ja": "射出時の基礎ダメージ",
+      "en": "Throw base damage",
+      "value": "3.8%",
+      "explainJa": "射出した葉の基礎値。",
+      "explainEn": "Base damage of the thrown leaves.",
+      "source": "ufd",
+      "status": "confirmed"
+    },
+    {
+      "id": "starttotal",
+      "ja": "展開開始の全体動作",
+      "en": "Activation total",
+      "value": "35F",
+      "explainJa": "葉の保持時間とは区別する。",
+      "explainEn": "Separate from shield hold duration.",
+      "source": "ufd",
+      "status": "confirmed"
+    },
+    {
+      "id": "throwtotal",
+      "ja": "射出動作の全体",
+      "en": "Throw total",
+      "value": "55F",
+      "explainJa": "飛び道具の寿命とは区別する。",
+      "explainEn": "Separate from projectile lifetime.",
+      "source": "ufd",
+      "status": "confirmed"
+    },
+    {
+      "id": "hold",
+      "ja": "追加の保持猶予",
+      "en": "Additional hold",
+      "value": "約40F",
+      "explainJa": "長押し中、限界で自動射出。",
+      "explainEn": "Auto-release at the hold limit.",
+      "source": "ufd",
+      "status": "confirmed"
+    }
+  ],
+  "eras": [
+    {
+      "id": "origin",
+      "year": "1988",
+      "name": {
+        "ja": "『ロックマン2』",
+        "en": "Mega Man 2"
+      },
+      "badge": {
+        "ja": "原作",
+        "en": "Origin"
+      },
+      "description": {
+        "ja": "ウッドマンの武器。静止して保持し、移動すると発射する。『スマブラSP』のフレーム値とは比較しない。",
+        "en": "Wood Man's weapon. Holding required staying still; moving triggered the throw. Not comparable in Ultimate frame values."
+      },
+      "capabilities": {
+        "move": "no",
+        "shield": "not-applicable",
+        "grab": "not-applicable",
+        "ledge": "not-applicable"
+      },
+      "source": "leaf"
+    },
+    {
+      "id": "smash4",
+      "year": "2014",
+      "name": {
+        "ja": "『スマブラfor』",
+        "en": "Smash 4"
+      },
+      "badge": {
+        "ja": "旧作",
+        "en": "Predecessor"
+      },
+      "description": {
+        "ja": "展開中も通常シールド・つかみが可能だった。現在の攻略に転用しない。",
+        "en": "Shield and grab remained available during the orbit. Do not transplant these tricks into Ultimate."
+      },
+      "capabilities": {
+        "move": "yes",
+        "shield": "yes",
+        "grab": "yes",
+        "ledge": "unverified"
+      },
+      "source": "leaf"
+    },
+    {
+      "id": "ultimate0",
+      "year": "2018",
+      "name": {
+        "ja": "『スマブラSP』初期",
+        "en": "Ultimate launch"
+      },
+      "badge": {
+        "ja": "発売時",
+        "en": "Launch"
+      },
+      "description": {
+        "ja": "展開判定は7F。通常シールド・つかみ・崖つかまりは制限。のちに更新。",
+        "en": "Orbit started on frame 7. Shield, grab and ledge hang restricted; later updated."
+      },
+      "capabilities": {
+        "move": "yes",
+        "shield": "no",
+        "grab": "no",
+        "ledge": "no"
+      },
+      "source": "mega"
+    },
+    {
+      "id": "ultimate3",
+      "year": "2019–",
+      "name": {
+        "ja": "『スマブラSP』Ver.3.0.0以降",
+        "en": "Ultimate 3.0.0+"
+      },
+      "badge": {
+        "ja": "現行基準",
+        "en": "Current baseline"
+      },
+      "description": {
+        "ja": "展開9F、全体35F。通常シールド・つかみ・アイテム投げ・崖つかまり不可。",
+        "en": "Frame-9 orbit, 35F activation. Shield, grab, item throw and ledge hang unavailable while active."
+      },
+      "capabilities": {
+        "move": "yes",
+        "shield": "no",
+        "grab": "no",
+        "ledge": "no"
+      },
+      "source": "patch"
+    }
+  ]
+}
