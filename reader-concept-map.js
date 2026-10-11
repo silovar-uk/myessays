@@ -135,6 +135,7 @@
         button.style.left = Number(node.x) + '%';
         button.style.top = Number(node.y) + '%';
         button.title = node.fullLabel || node.label;
+        button.dataset.sectionIndex = String(node.sectionIndex);
         button.setAttribute('aria-label', (node.fullLabel || node.label) + 'の関係を表示');
         button.setAttribute('aria-pressed', String(node.id === selectedId));
         if (node.kind === 'core') button.classList.add('is-core');
@@ -154,6 +155,7 @@
         const label = el('span', '', node.fullLabel || node.label);
         button.append(number, label);
         button.setAttribute('aria-pressed', String(node.id === selectedId));
+        button.dataset.sectionIndex = String(node.sectionIndex);
         button.addEventListener('click', () => selectNode(node.id));
         list.append(button);
         nodeButtons.set(node.id, button);
@@ -245,6 +247,9 @@
     function activate(view) {
       activeView = view;
       const enabled = view === 'relations';
+      if (enabled && document.getElementById('argumentContentsPanel')?.hidden) {
+        document.querySelector('[data-argument-tab="contents"]')?.click();
+      }
       body.classList.toggle('reader-concept-active', enabled);
       panel.hidden = !enabled;
       tabs.querySelectorAll('button').forEach(button =>
@@ -280,9 +285,9 @@
     sectionNow = Number.isInteger(event.detail.sectionIndex) ? event.detail.sectionIndex : -1;
     const panel = $('.reader-concept-panel');
     if (!panel) return;
-    panel.querySelectorAll('.reader-concept-node, .reader-concept-flow-item').forEach(button =>
-      button.classList.remove('is-reading'));
-    // Active reading state is refreshed on the next map selection/render, not by DOM order.
+    panel.querySelectorAll('.reader-concept-node, .reader-concept-flow-item').forEach(button => {
+      button.classList.toggle('is-reading', sectionNow >= 0 && Number(button.dataset.sectionIndex) === sectionNow);
+    });
   });
 
   window.MyEssaysConceptMap = Object.freeze({ installed: true, attach, mapAvailable });
