@@ -32,7 +32,10 @@
   outline: 2px solid #29766e;
   outline-offset: 2px;
 }
-.reader-concept-active .reader-v2-map-nav,
+/* Legacy mobile CSS hides every aside nav. Restore the Reader V2 contents explicitly. */
+.reader-v2-map nav.reader-v2-map-nav { display: grid; }
+.reader-v2-map .reader-v2-map-nav::before { content: none; }
+.reader-v2-map .reader-concept-active nav.reader-v2-map-nav,
 .reader-concept-active .reader-v2-map-summary { display: none; }
 .reader-concept-panel[hidden] { display: none !important; }
 .reader-concept-panel { min-width: 0; }
