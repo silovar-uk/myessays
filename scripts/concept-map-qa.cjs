@@ -13,7 +13,7 @@ const noMap = 'value-chain-competitive-advantage';
   async function open(page, id) {
     await page.goto(base + '/#/essay/' + id, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.waitForSelector('#readerView:not([hidden])', { timeout: 60000 });
-    await page.waitForSelector('.reader-v2-map-nav', { timeout: 30000 });
+    await page.waitForSelector('.reader-v2-map-nav', { state: 'attached', timeout: 30000 });
   }
 
   for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 844 }, { width: 1280, height: 800 }]) {
