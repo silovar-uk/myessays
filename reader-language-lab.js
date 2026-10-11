@@ -109,7 +109,7 @@
       ? `<button type="button" class="reader-mode-button reader-mode-compare${compareMode ? ' is-active' : ''}" data-reader-mode-compare data-short-label="⇄" aria-label="日本語と外国語Mixを比較" aria-pressed="${compareMode}">比較</button>`
       : '';
     const reference = available.length
-      ? '<button type="button" class="reader-mode-button reader-mode-reference" data-reader-mode-reference aria-label="現在の段落に対応する原文を開く">原文</button>'
+      ? '<button type="button" class="reader-mode-button reader-mode-reference" data-reader-mode-reference aria-label="現在の段落に対応する言語版を確認する">参照</button>'
       : '';
     bar.innerHTML = `${buttons}${reference}${compare}`;
     document.body.classList.add('language-lab-ready');
@@ -147,6 +147,8 @@
       momentaryLensActive = false;
       suppressHoldClick = true;
       closeLens();
+      // Some browsers do not emit click after a long press; never suppress a later click.
+      window.setTimeout(() => { suppressHoldClick = false; }, 0);
     });
     button.addEventListener('pointercancel', () => {
       clearTimeout(momentaryHoldTimer);
@@ -376,6 +378,7 @@
     const current = currentVersion();
     const currentDef = definition(current);
     const targetDef = definition(target);
+    panel.querySelector('.language-lens-head h2').textContent = target === 'ja' ? '日本語原文' : '対応する言語版';
     panel.querySelector('.language-lens-current .language-lens-label').textContent = currentDef.label.toUpperCase();
     panel.querySelector('.language-lens-counterpart .language-lens-label').textContent = targetDef.label.toUpperCase();
     panel.querySelector('.language-lens-current-copy').textContent = block.textContent.trim();
