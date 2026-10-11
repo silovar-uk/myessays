@@ -1,0 +1,59 @@
+name: Concept map QA
+on:
+  push:
+    branches: [main, 'feature/concept-map-mobile-20261011']
+    paths:
+      - 'reader-concept-map.js'
+      - 'reader-concept-map.css'
+      - 'reader-v2.js'
+      - 'index.html'
+      - 'data/concept-maps/**'
+      - 'tests/concept-map.test.js'
+      - 'scripts/concept-map-qa.cjs'
+      - '.github/workflows/concept-map-qa.yml'
+  pull_request:
+    paths:
+      - 'reader-concept-map.js'
+      - 'reader-concept-map.css'
+      - 'reader-v2.js'
+      - 'index.html'
+      - 'data/concept-maps/**'
+      - 'tests/concept-map.test.js'
+      - 'scripts/concept-map-qa.cjs'
+      - '.github/workflows/concept-map-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  concept-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and data model
+        run: |
+          node --check reader-concept-map.js
+          node --check scripts/concept-map-qa.cjs
+          node --test tests/concept-map.test.js
+      - name: Install browser
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Start site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/concept-map-server.log 2>&1 &
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/concept-map-server.log
+          exit 1
+      - name: Browser QA
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/concept-map-qa.cjs
