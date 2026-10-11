@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "guidance": "Educational judgments, not a physics simulation or guaranteed matchup outcomes.",
+  "items": [
+    {
+      "id": "rush",
+      "symbol": "↘",
+      "position": "near",
+      "title": {
+        "ja": "相手が直線的に踏み込む",
+        "en": "Opponent rushes in"
+      },
+      "prompt": {
+        "ja": "相手がこちらの間合いに入り始めた。葉っぱはどのタイミングで出す？",
+        "en": "The opponent is entering your range. When should the leaves come out?"
+      },
+      "options": [
+        {
+          "ja": "近づく前に先置きする",
+          "en": "Place it before contact",
+          "value": "best"
+        },
+        {
+          "ja": "密着されてから反応する",
+          "en": "React after point-blank contact",
+          "value": "risk"
+        },
+        {
+          "ja": "必ず当たるので連打する",
+          "en": "Mash; it always hits",
+          "value": "risk"
+        }
+      ],
+      "insight": {
+        "ja": "事前展開なら相手の進路を塞げる場合がある。発生9Fなので密着の緊急回避としては保証されない。",
+        "en": "Preemptive activation may cover the approach. Frame-9 startup does not make it a guaranteed point-blank escape."
+      },
+      "condition": {
+        "ja": "相手のリーチ・先行した攻撃・葉の外縁との距離で結果が変わる。",
+        "en": "Spacing, opponent's active attacks and range change the outcome."
+      },
+      "question": {
+        "ja": "どの距離で先出しすれば被反撃が減る？",
+        "en": "Which spacing reduces counter-hits?"
+      }
+    },
+    {
+      "id": "shield",
+      "symbol": "▣",
+      "position": "far",
+      "title": {
+        "ja": "相手がガードで待つ",
+        "en": "Opponent holds shield"
+      },
+      "prompt": {
+        "ja": "目の前で相手がガードを固めている。葉っぱをどう使う？",
+        "en": "The opponent is patiently shielding. How do you proceed?"
+      },
+      "options": [
+        {
+          "ja": "相手との距離と射出後の位置を優先",
+          "en": "Manage spacing and post-throw position",
+          "value": "best"
+        },
+        {
+          "ja": "すべての葉をガードに密着させる",
+          "en": "Press all hits into their shield",
+          "value": "risk"
+        },
+        {
+          "ja": "多段だから必ず割れると考える",
+          "en": "Assume multi-hits always shield-break",
+          "value": "risk"
+        }
+      ],
+      "insight": {
+        "ja": "多段ヒットと安全なガード攻めは別。相手が待つなら射出後の動作を狙われるおそれがある。",
+        "en": "Multiple hits do not mean safe shield pressure. A patient defender may punish the release."
+      },
+      "condition": {
+        "ja": "反撃の有無は密着距離・ガード残量・相手のワザなどに依存する。",
+        "en": "Punish availability depends on distance, shield health and opponent's options."
+      },
+      "question": {
+        "ja": "相手は射出後どのワザで反撃できる？",
+        "en": "Which punish reaches after the throw?"
+      }
+    },
+    {
+      "id": "jump",
+      "symbol": "↗",
+      "position": "high",
+      "title": {
+        "ja": "相手がジャンプで越える",
+        "en": "Opponent jumps over"
+      },
+      "prompt": {
+        "ja": "相手が空中から葉の上を通る。何を守る？",
+        "en": "The opponent travels above the leaves. What should you defend?"
+      },
+      "options": [
+        {
+          "ja": "着地する場所と逃げ道を優先",
+          "en": "Protect landing position and exit route",
+          "value": "best"
+        },
+        {
+          "ja": "空中のすべてを葉が守ると信じる",
+          "en": "Assume the leaves cover all aerial space",
+          "value": "risk"
+        },
+        {
+          "ja": "崖外へ追って必ず当てに行く",
+          "en": "Chase offstage regardless of height",
+          "value": "risk"
+        }
+      ],
+      "insight": {
+        "ja": "展開中はガード不可。上を越えられる場面では、葉の向きより自分の移動先の設計が重要。",
+        "en": "You cannot shield while orbiting. Against an overhead approach, plan your movement and landing."
+      },
+      "condition": {
+        "ja": "空中ダッシュの入力精度や残りジャンプで対応範囲が変わる。",
+        "en": "B-reverse timing and remaining jumps affect options."
+      },
+      "question": {
+        "ja": "相手が地上で待つ場合も同じ選択で良い？",
+        "en": "What if they stay grounded instead?"
+      }
+    },
+    {
+      "id": "edge",
+      "symbol": "⌁",
+      "position": "edge",
+      "title": {
+        "ja": "崖外の低い位置にいる",
+        "en": "Low offstage"
+      },
+      "prompt": {
+        "ja": "復帰中に相手が接近する。葉っぱで守る？",
+        "en": "You're recovering low and the opponent approaches. Shield yourself with leaves?"
+      },
+      "options": [
+        {
+          "ja": "崖つかまり不可と射出の隙を優先",
+          "en": "Account for ledge restriction and release lag",
+          "value": "best"
+        },
+        {
+          "ja": "盾だから絶対に安全だと判断",
+          "en": "Assume a shield guarantees safety",
+          "value": "risk"
+        },
+        {
+          "ja": "低いまま保持を最大まで続ける",
+          "en": "Hold until auto-release while low",
+          "value": "risk"
+        }
+      ],
+      "insight": {
+        "ja": "展開中は崖つかまり不可。低い位置で発動すると復帰失敗につながるため、トレーニングで高さを検証したい。",
+        "en": "Ledge grabbing is unavailable during orbit. Activating low may cost the recovery; train height margins."
+      },
+      "condition": {
+        "ja": "残りジャンプ、上下の距離、射出時機によって危険度が違う。",
+        "en": "Remaining jumps, height and release timing all matter."
+      },
+      "question": {
+        "ja": "ジャンプが残っているとリスクはどれだけ違う？",
+        "en": "How much does one remaining jump change the risk?"
+      }
+    },
+    {
+      "id": "projectile",
+      "symbol": "→",
+      "position": "mid",
+      "title": {
+        "ja": "相手が飛び道具を連発する",
+        "en": "Projectile-heavy opponent"
+      },
+      "prompt": {
+        "ja": "前から小さい弾が飛んでくる。葉っぱを出す理由は？",
+        "en": "A small projectile is approaching. Why use Leaf Shield?"
+      },
+      "options": [
+        {
+          "ja": "弾への対応と位置取りを両方評価",
+          "en": "Evaluate both collision and positioning",
+          "value": "best"
+        },
+        {
+          "ja": "弾を1発止めたら無条件で有利",
+          "en": "Assume blocking one shot always wins neutral",
+          "value": "risk"
+        },
+        {
+          "ja": "反射技を見ずに必ず射出する",
+          "en": "Throw regardless of enemy reflector",
+          "value": "risk"
+        }
+      ],
+      "insight": {
+        "ja": "葉と弾の衝突は局所的な成功。続く弾、飛び込み、反射まで含めて得失を見る。",
+        "en": "A leaf/projectile collision is only local success. Consider follow-up shots, jumps and reflectors."
+      },
+      "condition": {
+        "ja": "飛び道具ごとの相殺・反射条件は個別に実測が必要。",
+        "en": "Collision and reflection depend on the specific projectile."
+      },
+      "question": {
+        "ja": "弾を消した後に中央へ進めたか？",
+        "en": "Did you gain useful stage position?"
+      }
+    },
+    {
+      "id": "corner",
+      "symbol": "⇤",
+      "position": "edge",
+      "title": {
+        "ja": "自分が画面端に追い込まれた",
+        "en": "You're cornered"
+      },
+      "prompt": {
+        "ja": "相手は接近を警戒して一歩下がった。何を成果とみなす？",
+        "en": "Your opponent backs off cautiously. What counts as success?"
+      },
+      "options": [
+        {
+          "ja": "命中しなくても中央へ戻れれば成果",
+          "en": "Regaining center can succeed without hitting",
+          "value": "best"
+        },
+        {
+          "ja": "葉を絶対に命中させるまで追う",
+          "en": "Chase until you force a hit",
+          "value": "risk"
+        },
+        {
+          "ja": "位置よりヒット数だけを重視",
+          "en": "Only count hits, ignore position",
+          "value": "risk"
+        }
+      ],
+      "insight": {
+        "ja": "リーフシールドが相手に距離の再計算をさせたなら、ダメージ0でも状況が改善する場合がある。",
+        "en": "Forcing the opponent to respect your route can buy stage space even without damage."
+      },
+      "condition": {
+        "ja": "相手がガードして止まれば踏み込みは逆効果になり得る。",
+        "en": "If the opponent shields and waits, advancing too far may backfire."
+      },
+      "question": {
+        "ja": "最終的に自分はどこで再行動できた？",
+        "en": "Where could you act again?"
+      }
+    }
+  ]
+}
