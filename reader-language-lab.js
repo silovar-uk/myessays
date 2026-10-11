@@ -2,6 +2,7 @@
   'use strict';
 
   const BREAKPOINT = 760;
+  const MOMENTARY_HOLD_MS = 320;
   const PREVIEW_DELAY_MS = 160;
   const PREVIEW_CLOSE_DELAY_MS = 280;
   const view = document.getElementById('readerView');
@@ -17,6 +18,9 @@
   let closeTimer = 0;
   let lensPinned = false;
   let affordanceTimer = 0;
+  let momentaryHoldTimer = 0;
+  let momentaryLensActive = false;
+  let suppressHoldClick = false;
   let lensRequestId = 0;
   let compareRequestId = 0;
   let compareReturnAnchor = null;
@@ -126,8 +130,36 @@
       clearTimeout(affordanceTimer);
       affordanceTimer = window.setTimeout(hideAffordance, 240);
     });
+    button.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+      clearTimeout(momentaryHoldTimer);
+      suppressHoldClick = false;
+      try { button.setPointerCapture(event.pointerId); } catch {}
+      momentaryHoldTimer = window.setTimeout(() => {
+        if (!activeBlock || button.hidden) return;
+        momentaryLensActive = true;
+        openLens(activeBlock);
+      }, MOMENTARY_HOLD_MS);
+    });
+    button.addEventListener('pointerup', () => {
+      clearTimeout(momentaryHoldTimer);
+      if (!momentaryLensActive) return;
+      momentaryLensActive = false;
+      suppressHoldClick = true;
+      closeLens();
+    });
+    button.addEventListener('pointercancel', () => {
+      clearTimeout(momentaryHoldTimer);
+      if (momentaryLensActive) closeLens();
+      momentaryLensActive = false;
+      suppressHoldClick = false;
+    });
     button.addEventListener('click', event => {
       event.stopPropagation();
+      if (suppressHoldClick) {
+        suppressHoldClick = false;
+        return;
+      }
       if (activeBlock) openLens(activeBlock);
     });
     document.body.appendChild(button);
@@ -172,7 +204,7 @@
     const button = ensurePeekButton();
     const label = currentVersion() === 'ja' ? `${d.badge} ↗` : '原文 ↗';
     button.textContent = label;
-    button.setAttribute('aria-label', `${d.label}でこの段落を確認`);
+    button.setAttribute('aria-label', `${d.label}でこの段落を確認。長押し中だけ一時表示も可能`);
     button.style.left = `${Math.max(8, Math.min(innerWidth - 92, rect.left - 86))}px`;
     button.style.top = `${Math.max(76, Math.min(innerHeight - 48, rect.top + 8))}px`;
     button.hidden = false;
@@ -338,7 +370,7 @@
     panel.dataset.pairId = pairId;
     panel.dataset.targetVersion = target;
     panel.hidden = false;
-    hideAffordance();
+    if (!momentaryLensActive) hideAffordance();
     window.MyEssaysJapaneseReference?.close?.();
 
     const current = currentVersion();
