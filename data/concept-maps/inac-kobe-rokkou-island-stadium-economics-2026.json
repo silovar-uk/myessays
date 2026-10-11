@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "articleId": "inac-kobe-rokkou-island-stadium-economics-2026",
+  "question": "新スタジアムは、誰の財布で成り立つか",
+  "shortThesis": "クラブ収支と施設収支、都市側の便益を分けて考える。",
+  "status": "editor-reviewed",
+  "nodes": [
+    {
+      "id": "stadium",
+      "label": "新施設",
+      "fullLabel": "INAC神戸の新スタジアム計画",
+      "description": "六甲アイランドの新施設計画を、競技・経営・まちづくりから考える。",
+      "sectionIndex": 0,
+      "kind": "core",
+      "x": 50,
+      "y": 49
+    },
+    {
+      "id": "rent",
+      "label": "土地賃料",
+      "fullLabel": "市有地の土地賃料",
+      "description": "年8,272万円程度の土地賃料という固定的負担。",
+      "sectionIndex": 0,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 17
+    },
+    {
+      "id": "finance",
+      "label": "クラブ財務",
+      "fullLabel": "INACの財務状況",
+      "description": "競技上の強さと収益・損益は同じ指標ではない。",
+      "sectionIndex": 3,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 17
+    },
+    {
+      "id": "attendance",
+      "label": "観客動員",
+      "fullLabel": "観客動員と施設規模",
+      "description": "平均観客数だけで新施設の全需要を説明することはできない。",
+      "sectionIndex": 5,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 49
+    },
+    {
+      "id": "operation",
+      "label": "施設運営",
+      "fullLabel": "施設の運営採算",
+      "description": "費用・収益の帰属主体を確認する必要がある。",
+      "sectionIndex": 9,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 49
+    },
+    {
+      "id": "daily",
+      "label": "日常商業",
+      "fullLabel": "カフェや温浴などの日常需要",
+      "description": "サッカーがない日にも人を呼ぶ機能が事業の一部となる。",
+      "sectionIndex": 7,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 81
+    },
+    {
+      "id": "city",
+      "label": "都市政策",
+      "fullLabel": "六甲アイランドの地域施策",
+      "description": "クラブだけでなく都市側にとっての波及や便益も判断軸になる。",
+      "sectionIndex": 8,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 81
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "stadium",
+      "to": "rent",
+      "type": "associated-with",
+      "label": "土地を借りる費用が発生する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e2",
+      "from": "stadium",
+      "to": "finance",
+      "type": "associated-with",
+      "label": "クラブ財務との関係を確かめる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e3",
+      "from": "stadium",
+      "to": "attendance",
+      "type": "associated-with",
+      "label": "席の規模と試合需要を照合する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e4",
+      "from": "stadium",
+      "to": "operation",
+      "type": "associated-with",
+      "label": "別個の運営収支を確認する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e5",
+      "from": "operation",
+      "to": "daily",
+      "type": "associated-with",
+      "label": "商業機能が施設収支を補う可能性",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e6",
+      "from": "daily",
+      "to": "city",
+      "type": "associated-with",
+      "label": "街の来訪理由を増やす",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e7",
+      "from": "rent",
+      "to": "operation",
+      "type": "associated-with",
+      "label": "固定費を誰が負担するかが論点",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e8",
+      "from": "finance",
+      "to": "operation",
+      "type": "associated-with",
+      "label": "運営主体の財布を混同しない",
+      "certainty": "interpretation"
+    }
+  ]
+}
