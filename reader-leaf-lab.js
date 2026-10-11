@@ -11,7 +11,8 @@
 
   const ui = {
     ja: {
-      title:'リーフシールド研究所', sub:'まず予測し、根拠を見て、自分の試合で確かめる。',
+      title:'リーフシールド研究所', sub:'Bを離すと、葉っぱが飛ぶ。',
+      demo:{hint:'まず、Bを押し続けてみよう。', headline:'Bを押し続けると、盾になる。', subtitle:'離すと発射。離さなくても限界で発射。', hold:'Bを長押し', pin:'タップで保持', unpin:'発射する', tool:'もっと調べる', close:'分析を閉じる', next:'相手がガードしたら？ →',idle:'長押しするとどうなる？',ready:'Bを押すと葉が展開する', startup:'展開動作中',orbit:'葉をまとって移動できる',extra:'追加保持中',released:'Bを離した → 発射',auto:'保持の限界 → 自動発射',again:'もう一度、長押ししてみよう',holding:'押している間は葉を保持。通常ガードはできない。',autoHint:'離さなくても最後は発射される。', releaseHint:'Bを離すと葉は前へ飛ぶ。', note:'時間の表示は公開フレーム値に基づく簡易モデル。実際の判定や発射時刻の完全再現ではありません。', short:'短く押すと保持時間が短い', long:'長押しすると発射を遅らせられる', sample:'約', action:'実戦では何が変わる？', cta:'他の場面も試す', frames:'経過（概算）'},
       intro:'図は説明用の模式図。実際の判定・移動速度・勝率を再現していません。',
       tabs:{scene:'相手を変える',frame:'1Fずつ見る',history:'時代を変える',drill:'判断ドリル',log:'対戦記録'},
       a:'選択する', reveal:'解説を見る',reset:'選び直す', recommended:'推奨される考え方', caution:'注意が必要な考え方',
@@ -34,7 +35,8 @@
       disclaimer:'「推奨」は公開仕様から考えた戦術仮説です。判定の正確な再現や勝率の予測ではありません。'
     },
     'en-mix': {
-      title:'Leaf Shield Lab / 研究所',sub:'Predict first. 根拠を見て、then test in your own matches.',
+      title:'Leaf Shield Lab / 研究所',sub:'Release B and the leaves fly.',
+      demo:{hint:'Try holding B / Bを長押し',headline:'Hold B to keep the leaves.',subtitle:'Release to throw. Holding too long triggers auto-release.',hold:'Hold B',pin:'Tap to hold',unpin:'Release / 発射',tool:'Explore more',close:'Close tools',next:'What if they shield? →',idle:'What happens when you hold B?',ready:'Press B to begin',startup:'Activation',orbit:'Leaves are orbiting',extra:'Additional hold',released:'Release B → Throw',auto:'Time limit → Auto throw',again:'Try holding B again',holding:'Hold the leaves, but normal shield is unavailable.',autoHint:'Even without releasing B, the leaves will be thrown.',releaseHint:'Releasing B launches the leaves.',note:'Illustrative timing, based on published frame data. Not a complete game physics or release-timing simulation.',short:'Short hold',long:'Long hold delays the throw',sample:'~',action:'What changes in a real match?',cta:'Try more situations',frames:'Elapsed (approx.)'},
       intro:'Educational diagrams only. 実際のhitboxes, movement speed, or win rates are not simulated.',
       tabs:{scene:'Opponent',frame:'Frame Lab',history:'Version',drill:'Decision Drill',log:'Match Log'},
       a:'Choose',reveal:'Read the reasoning',reset:'Try another',recommended:'Recommended approach / 推奨',caution:'Risky assumption / 要注意',
@@ -68,7 +70,7 @@
   function sessionFor(id) {
     if (!sessions.has(id)) sessions.set(id,{
       tab:'scene',scene:'rush',phase:'activate',frame:9,era:'ultimate3',
-      collapsed:false,choice:null,drillIndex:0,drillChoice:null,drillSeen:0,drillMatched:0,drillOrder:null,
+      collapsed:false,toolsOpen:false,demo:{state:'idle',frame:0,startedAt:0,pinned:false,phase:''},choice:null,drillIndex:0,drillChoice:null,drillSeen:0,drillMatched:0,drillOrder:null,
       draft:{situation:'rush',result:'space',note:''},message:''
     });
     return sessions.get(id);
@@ -250,28 +252,92 @@
       default:return scenes(data,st,locale);
     }
   }
-  function render(host,data,st,locale,focusAct) {
-    const c=ui[locale];
-    const oldTabs=host.querySelector('.leaflab-tabs');
-    const previousScroll=oldTabs?.scrollLeft || 0;
-    const tabOrder=['scene','frame','history','drill','log'];
-    host.innerHTML='<section class="leaflab" aria-label="'+escape(c.title)+'">'+
-      '<div class="leaflab-head"><div><p class="leaflab-kicker">LEAF SHIELD / RESEARCH LAB</p>'+
-      '<strong class="leaflab-title">'+escape(c.title)+'</strong><p>'+escape(c.sub)+'</p></div>'+
-      button('collapse','',st.collapsed?c.collapsed:c.expanded,{className:'leaflab-collapse'})+'</div>'+
-      (st.collapsed?'':('<div class="leaflab-content"><div class="leaflab-tabs" role="tablist" aria-label="'+escape(c.title)+'">'+
-        tabOrder.map(tab=>'<button id="leaflab-tab-'+tab+'" type="button" role="tab" aria-selected="'+(st.tab===tab)+'" tabindex="'+(st.tab===tab?0:-1)+'" aria-controls="leaflab-panel" data-leaf-action="tab" data-value="'+tab+'">'+escape(c.tabs[tab])+'</button>').join('')+
-        '</div><div id="leaflab-panel" role="tabpanel" aria-labelledby="leaflab-tab-'+st.tab+'" tabindex="0" class="leaflab-panel">'+
-        panel(data,st,locale)+'</div>'+
-        '<div class="leaflab-footer"><span>'+escape(c.intro)+'</span>'+
-        '<span>'+sourceLink(data,'ufd',c.sources)+'</span></div></div>'))+
+
+  /* One primary interaction, not a menu of five tools. The timer is illustrative;
+     it is NOT a gameplay, collision or release-lag emulator. */
+  function demoHtml(st,locale){
+    const c=ui[locale],t=c.demo;
+    return '<section class="leaflab-demo" aria-label="'+escape(t.hint)+'">'+
+      '<p class="leaflab-demo-hint">'+escape(t.hint)+'</p>'+
+      '<strong class="leaflab-demo-title">'+escape(t.headline)+'</strong>'+
+      '<p class="leaflab-demo-subtitle">'+escape(t.subtitle)+'</p>'+
+      '<div class="leaflab-demo-stage" data-demo-stage data-state="'+escape(st.demo.state)+'">'+
+        '<div class="leaflab-demo-grid"></div>'+
+        '<div class="leaflab-demo-ground"></div>'+
+        '<div class="leaflab-demo-avatar" aria-hidden="true"><span class="leaflab-demo-helmet"></span><span class="leaflab-demo-eyes"></span>'+
+          '<div class="leaflab-demo-leaves"><i></i><i></i><i></i><i></i></div></div>'+
+        '<div class="leaflab-demo-flight" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'+
+        '<span class="leaflab-demo-key">B</span>'+
+        '<span class="leaflab-demo-frame" data-demo-frame>'+escape(t.sample)+' '+st.demo.frame+'F</span>'+
+      '</div>'+
+      '<div class="leaflab-demo-track" aria-hidden="true"><span data-demo-progress style="width:'+Math.min(100,st.demo.frame/76*100)+'%"></span><i></i><i></i></div>'+
+      '<div class="leaflab-demo-feedback"><strong data-demo-status aria-live="polite">'+escape(t.idle)+'</strong>'+
+        '<span data-demo-detail>'+escape(t.ready)+'</span></div>'+
+      '<div class="leaflab-demo-actions"><button data-leaf-hold type="button" class="leaflab-demo-b" aria-label="'+escape(t.hold)+'">'+
+        '<span class="leaflab-demo-b-key" aria-hidden="true">B</span><span>'+escape(t.hold)+'</span></button>'+
+        '<button data-leaf-action="pinHold" data-value="" type="button" class="leaflab-demo-pin">'+escape(st.demo.pinned?t.unpin:t.pin)+'</button></div>'+
+      '<p class="leaflab-demo-note">'+escape(t.note)+'</p>'+
       '</section>';
+  }
+  function updateDemo(host,st,locale){
+    const t=ui[locale].demo, demo=st.demo;
+    const stage=host.querySelector('[data-demo-stage]');
+    if(!stage)return;
+    stage.dataset.state=demo.state;
+    const frame=host.querySelector('[data-demo-frame]');
+    if(frame)frame.textContent=t.sample+' '+demo.frame+'F';
+    const progress=host.querySelector('[data-demo-progress]');
+    if(progress)progress.style.width=Math.min(100,demo.frame/76*100)+'%';
+    let name=t.idle,description=t.ready;
+    if(demo.state==='holding'){
+      name=demo.frame<9?t.startup:(demo.frame<=35?t.orbit:t.extra);
+      description=t.holding;
+    }else if(demo.state==='released'){
+      name=t.released;description=demo.frame<9?t.short:t.releaseHint;
+    }else if(demo.state==='auto'){
+      name=t.auto;description=t.autoHint;
+    }
+    const status=host.querySelector('[data-demo-status]');
+    if(status && status.textContent!==name)status.textContent=name;
+    const detail=host.querySelector('[data-demo-detail]');
+    if(detail&&detail.textContent!==description)detail.textContent=description;
+    const pin=host.querySelector('[data-leaf-action="pinHold"]');
+    if(pin){
+      const text=demo.pinned?t.unpin:t.pin;
+      if(pin.textContent!==text)pin.textContent=text;
+      pin.setAttribute('aria-pressed',String(demo.pinned));
+    }
+    const main=host.querySelector('[data-leaf-hold]');
+    if(main)main.setAttribute('aria-pressed',String(demo.state==='holding'));
+  }
+
+  function render(host,data,st,locale,focusAct) {
+    const c=ui[locale],t=c.demo;
+    const oldTabs=host.querySelector('.leaflab-tabs');
+    const previousScroll=oldTabs?.scrollLeft||0;
+    const tabOrder=['scene','frame','history','drill','log'];
+    host.innerHTML='<section class="leaflab leaflab-v2" aria-label="'+escape(c.title)+'">'+
+      '<div class="leaflab-head"><div><p class="leaflab-kicker">LEAF SHIELD / PLAY FIRST</p>'+
+        '<strong class="leaflab-title">'+escape(c.title)+'</strong><p>'+escape(c.sub)+'</p></div></div>'+
+      demoHtml(st,locale)+
+      '<div class="leaflab-next">'+
+        '<div><strong>'+escape(t.action)+'</strong><p>'+escape(locale==='ja'?'相手の行動が変わると、葉っぱの正解も変わる。':'Change the opponent, and your best option changes.')+'</p></div>'+
+        button('openScene','',t.next,{className:'leaflab-next-button'})+'</div>'+
+      '<div class="leaflab-more">'+
+        button('toolsToggle','',st.toolsOpen?t.close:t.tool,{className:'leaflab-more-button'})+
+        (st.toolsOpen?'<div class="leaflab-content"><div class="leaflab-tabs" role="tablist" aria-label="'+escape(c.title)+'">'+
+            tabOrder.map(tab=>'<button id="leaflab-tab-'+tab+'" type="button" role="tab" aria-selected="'+(st.tab===tab)+'" tabindex="'+(st.tab===tab?0:-1)+'" aria-controls="leaflab-panel" data-leaf-action="tab" data-value="'+tab+'">'+escape(c.tabs[tab])+'</button>').join('')+
+            '</div><div id="leaflab-panel" role="tabpanel" aria-labelledby="leaflab-tab-'+st.tab+'" tabindex="0" class="leaflab-panel">'+
+            panel(data,st,locale)+'</div>'+
+            '<div class="leaflab-footer"><span>'+escape(c.intro)+'</span><span>'+sourceLink(data,'ufd',c.sources)+'</span></div></div>':'')+
+      '</div></section>';
     const tabs=host.querySelector('.leaflab-tabs');
-    if(tabs) tabs.scrollLeft=previousScroll;
-    if(focusAct) {
-      const target=host.querySelector('[data-leaf-action="'+focusAct.action+'"][data-value="'+focusAct.value+'"]');
+    if(tabs)tabs.scrollLeft=previousScroll;
+    if(focusAct){
+      const target=host.querySelector('[data-leaf-action="'+focusAct.action+'"]'+(focusAct.value!==undefined?'[data-value="'+focusAct.value+'"]':''));
       target?.focus({preventScroll:true});
     }
+    updateDemo(host,st,locale);
     updateTimeline(host,data,st);
   }
   function updateTimeline(host,data,st) {
@@ -317,11 +383,70 @@
     host.innerHTML='<p class="leaflab-loading" role="status">'+escape(c.title)+' …</p>';
     readData().then(data=>{
       if(!host.isConnected||host.dataset.readerDead==='1')return;
+      let demoRaf=0;
+      let demoPointer=null;
       function rerender(focusAct){render(host,data,st,locale,focusAct);}
+      function stopDemo(mode='released'){
+        if(st.demo.state!=='holding')return;
+        if(demoRaf){cancelAnimationFrame(demoRaf);demoRaf=0;}
+        st.demo.state=mode;
+        st.demo.pinned=false;
+        demoPointer=null;
+        updateDemo(host,st,locale);
+      }
+      function tickDemo(){
+        demoRaf=0;
+        if(!host.isConnected || host.dataset.readerDead==='1'){
+          st.demo.state='released';st.demo.pinned=false;return;
+        }
+        if(st.demo.state!=='holding')return;
+        // Approximate 76F total activation + holding window; display only.
+        st.demo.frame=Math.max(0,Math.min(76,Math.floor((performance.now()-st.demo.startedAt)*60/1000)));
+        if(st.demo.frame>=76){stopDemo('auto');return;}
+        updateDemo(host,st,locale);
+        demoRaf=requestAnimationFrame(tickDemo);
+      }
+      function startDemo(pinned=false){
+        if(st.demo.state==='holding')stopDemo();
+        st.demo={state:'holding',frame:0,startedAt:performance.now(),pinned,phase:''};
+        updateDemo(host,st,locale);
+        demoRaf=requestAnimationFrame(tickDemo);
+      }
+      host.addEventListener('pointerdown',event=>{
+        const button=event.target.closest?.('[data-leaf-hold]');
+        if(!button||!host.contains(button)||event.button!==0)return;
+        event.preventDefault();
+        demoPointer=event.pointerId;
+        button.setPointerCapture?.(event.pointerId);
+        startDemo(false);
+      });
+      host.addEventListener('pointerup',event=>{
+        if(demoPointer===null||event.pointerId!==demoPointer)return;
+        stopDemo();
+      });
+      host.addEventListener('pointercancel',event=>{
+        if(demoPointer!==null&&event.pointerId===demoPointer)stopDemo();
+      });
+      host.addEventListener('lostpointercapture',event=>{
+        if(demoPointer!==null&&event.pointerId===demoPointer)stopDemo();
+      });
+      host.addEventListener('keyup',event=>{
+        if(!event.target.closest?.('[data-leaf-hold]') || !['Enter',' '].includes(event.key))return;
+        event.preventDefault();
+        stopDemo();
+      });
+
       host.addEventListener('click',async event=>{
         const control=event.target.closest('button[data-leaf-action]');
         if(!control||!host.contains(control))return;
         const action=control.dataset.leafAction, value=control.dataset.value;
+        if(action==='openScene'){st.toolsOpen=true;st.tab='scene';rerender();host.querySelector('#leaflab-panel')?.scrollIntoView({block:'nearest',behavior:'auto'});return;}
+        if(action==='toolsToggle'){st.toolsOpen=!st.toolsOpen;rerender({action:'toolsToggle'});return;}
+        if(action==='pinHold'){
+          if(st.demo.state==='holding')stopDemo();
+          else startDemo(true);
+          return;
+        }
         if(action==='tab'){st.tab=value;st.message='';rerender({action,value});return;}
         if(action==='collapse'){st.collapsed=!st.collapsed;rerender({action,value:''});return;}
         if(action==='scene'){st.scene=value;st.choice=null;st.draft.situation=value;rerender({action,value});return;}
@@ -369,6 +494,10 @@
         if(key&&Object.prototype.hasOwnProperty.call(st.draft,key))st.draft[key]=String(event.target.value).slice(0,60);
       });
       host.addEventListener('keydown',event=>{
+        if(event.target.closest?.('[data-leaf-hold]') && (event.key===' '||event.key==='Enter')){
+          event.preventDefault();if(st.demo.state!=='holding')startDemo(false);
+          return;
+        }
         const current=event.target.closest('[role="tab"]');
         if(!current||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
         const tabs=['scene','frame','history','drill','log'];
