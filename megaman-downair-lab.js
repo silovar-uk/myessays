@@ -93,7 +93,10 @@
     }
   } catch { /* Private-mode storage may be disabled. */ }
 
-  const selectLanguage = essay => essay?.__readingVersion === 'en-mix';
+  const selectLanguage = essay => {
+    const current = window.MyEssaysReaderVersions?.currentVersion?.();
+    return current === 'en-mix' || (!current && essay?.__readingVersion === 'en-mix');
+  };
   const trans = (english, ja, en) => english ? en : ja;
   const make = (tag, className, text) => {
     const element = document.createElement(tag);
