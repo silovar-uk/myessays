@@ -14,6 +14,8 @@ abstract: "Mega Man's down air is a timing puzzle. The stronger early hit does n
 
 # ロックマンの空下は、強い3コマではメテオにならない――Timing the Hard Knuckle
 
+**How to use this article:** Chapter 3 has an interactive timeline; chapter 6 explores the lowest timing boundary; chapter 7 diagnoses failures; chapter 8 tests decisions. 「空下研究所」はa hands-on companion to the article, not a full game emulator. Verify the final result on console.
+
 ## 1. 「速く当てる」が正解ではない / The three-frame paradox
 
 Mega Man points down and launches a fist. それがハードナックル（Hard Knuckle）、つまり空中下攻撃だ。A fist falls. The opponent gets hit. So far, nothing mysterious.
