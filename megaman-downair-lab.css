@@ -1,0 +1,200 @@
+/* Mega Man Hard Knuckle lab — scoped, responsive, progressive enhancement. */
+.reader-content .mm-lab {
+  --mm-ink: #2d3638;
+  --mm-surface: #f9f8f4;
+  --mm-muted: #637072;
+  --mm-line: #ccd4d0;
+  --mm-green: #167b69;
+  --mm-flight: #697c96;
+  --mm-startup: #8292a4;
+  --mm-projectile: #167b69;
+  --mm-hero: #368abb;
+  --mm-target: #d16c4c;
+  --mm-ground: #c7d8d0;
+  --mm-geometry-bg: #e7f0f0;
+  box-sizing: border-box;
+  margin: 20px 0 36px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: clamp(16px, 3.4vw, 27px);
+  border: 1px solid var(--mm-line);
+  border-radius: 18px;
+  background: var(--mm-surface);
+  color: var(--mm-ink);
+  box-shadow: 0 8px 28px rgba(29, 50, 47, .045);
+  font-size: 15px;
+  line-height: 1.65;
+  text-align: left;
+  contain: layout style;
+}
+.reader-content .mm-lab,
+.reader-content .mm-lab * { box-sizing: border-box; }
+.reader-content .mm-lab-head { margin-bottom: 16px; }
+.reader-content .mm-lab-tag {
+  display: block; margin-bottom: 10px; font-size: 10px;
+  font-weight: 800; letter-spacing: .13em; color: var(--mm-green);
+}
+.reader-content .mm-lab .mm-lab-title {
+  margin: 0 0 10px; line-height: 1.3; color: var(--mm-ink);
+  font-size: clamp(18px, 3vw, 23px); letter-spacing: -.02em;
+}
+.reader-content .mm-lab .mm-lab-desc,
+.reader-content .mm-lab .mm-lab-small,
+.reader-content .mm-lab .mm-lab-caution,
+.reader-content .mm-lab .mm-lab-sources {
+  margin: 0; font-size: 12px; line-height: 1.75; color: var(--mm-muted);
+}
+.reader-content .mm-lab .mm-lab-desc { font-size: 13px; }
+.reader-content .mm-lab-controls {
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 15px 16px; padding-bottom: 16px;
+}
+.reader-content .mm-lab-field { display: flex; flex-direction: column; min-width: 0; gap: 5px; font-size: 13px; }
+.reader-content .mm-lab-field-label { color: var(--mm-muted); font-size: 11px; font-weight: 700; }
+.reader-content .mm-lab-select, .reader-content .mm-lab-number {
+  display: block; width: 100%; min-width: 0; max-width: 100%;
+  border: 1px solid #aabbb7; border-radius: 8px;
+  min-height: 42px; padding: 7px 10px;
+  background: white; color: var(--mm-ink); font: inherit; font-size: 13px;
+}
+.reader-content .mm-lab-range {
+  appearance: auto; accent-color: var(--mm-green); width: 100%;
+  min-height: 30px; touch-action: pan-y;
+}
+.reader-content .mm-lab-value { font-size: 13px; font-variant-numeric: tabular-nums; color: var(--mm-green); }
+.reader-content .mm-lab-check {
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+  min-height: 42px; font-size: 13px;
+}
+.reader-content .mm-lab-check input { width: 20px; height: 20px; accent-color: var(--mm-green); }
+.reader-content .mm-lab-timeline {
+  display: grid; gap: 15px; padding: 15px 0 6px;
+  border-top: 1px solid var(--mm-line); min-width: 0;
+}
+.reader-content .mm-lab-time-row {
+  display: grid; grid-template-columns: minmax(95px,120px) minmax(0,1fr);
+  align-items: center; gap: 8px;
+}
+.reader-content .mm-lab-time-label { font-size: 11px; color: var(--mm-muted); font-weight: 700; }
+.reader-content .mm-lab-time-track {
+  position: relative; height: 22px; border-radius: 5px; overflow: visible;
+  background: linear-gradient(90deg,rgba(120,147,150,.12),rgba(120,147,150,.06));
+}
+.reader-content .mm-lab-time-bar,
+.reader-content .mm-lab-hit-early,
+.reader-content .mm-lab-hit-late {
+  position: absolute; top: 0; height: 100%; border-radius: 2px;
+}
+.reader-content .mm-lab-hit-early { background: #d09a36; }
+.reader-content .mm-lab-hit-late { background: #278b70; }
+.reader-content .mm-lab-time-marker {
+  position: absolute; width: 2px; top: -5px; bottom: -5px;
+  border-left: 2px dashed #d6504b; opacity: .85;
+}
+.reader-content .mm-lab-axis {
+  position: relative; height: 20px; margin-left: clamp(103px, 25%, 128px);
+}
+.reader-content .mm-lab-axis span {
+  position: absolute; top: 0; transform: translateX(-50%);
+  color: var(--mm-muted); font-size: 10px; font-variant-numeric: tabular-nums;
+}
+.reader-content .mm-lab .mm-lab-outcomes { margin: 6px 0 0; }
+.reader-content .mm-lab .mm-lab-legend {
+  margin: 0; font-size: 11px; line-height: 1.6; color: var(--mm-muted);
+}
+.reader-content .mm-lab-output,
+.reader-content .mm-lab-museum-detail,
+.reader-content .mm-lab-quiz-feedback {
+  margin-top: 15px; padding: 14px; background: #eff3ed;
+  border-radius: 10px; border-left: 3px solid var(--mm-green);
+  min-width: 0;
+}
+.reader-content .mm-lab .mm-lab-finding {
+  margin: 0 0 7px; font-size: 14px; font-weight: 700; line-height: 1.6;
+}
+.reader-content .mm-lab .mm-lab-finding-emphasis { color: #0b6455; }
+.reader-content .mm-lab-output > :last-child,
+.reader-content .mm-lab-museum-detail > :last-child { margin-bottom: 0; }
+.reader-content .mm-lab .mm-lab-caution {
+  margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--mm-line);
+}
+.reader-content .mm-lab .mm-lab-sources { margin-top: 7px; }
+.reader-content .mm-lab .mm-lab-sources a { color: #116d63; text-decoration: underline; }
+.reader-content .mm-lab-geometry { width: 100%; overflow: hidden; }
+.reader-content .mm-lab-geometry-svg { display: block; width: 100%; max-width: 520px; margin: 0 auto; height: auto; }
+.reader-content .mm-lab .mm-lab-geometry + p { margin-top: 10px; }
+.reader-content .mm-lab-process {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px; margin-top: 16px;
+}
+.reader-content .mm-lab-checkpoint {
+  display: flex; align-items: center; gap: 10px; padding: 10px;
+  border-radius: 10px; border: 1px solid var(--mm-line);
+  background: #fff; font-size: 12px;
+}
+.reader-content .mm-lab-checkpoint-number {
+  display: grid; place-items: center; flex: 0 0 auto;
+  border-radius: 50%; width: 27px; height: 27px;
+  background: var(--mm-green); color: white; font-weight: 800;
+}
+.reader-content .mm-lab-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.reader-content .mm-lab-button {
+  border: 1px solid #a6b6b2; background: #fff;
+  border-radius: 9px; min-height: 44px; padding: 10px 13px;
+  color: #253e3b; font: inherit; font-size: 13px; line-height: 1.4;
+  font-weight: 650; text-align: center; cursor: pointer; max-width: 100%;
+}
+.reader-content .mm-lab-button.is-selected,
+.reader-content .mm-lab-button[aria-pressed="true"] {
+  border-color: var(--mm-green); background: #dcece4; color: #075545;
+}
+.reader-content .mm-lab-button-primary { background: #116b5b; color: #fff; border-color: #116b5b; }
+.reader-content .mm-lab-button-quiet { background: transparent; color: var(--mm-muted); }
+.reader-content .mm-lab-button:disabled { opacity: .52; cursor: default; }
+.reader-content .mm-lab-button.is-selected:disabled { opacity: 1; }
+.reader-content .mm-lab :is(button,input,select):focus-visible {
+  outline: 3px solid #b56924; outline-offset: 3px;
+}
+.reader-content .mm-lab-museum-detail h4 {
+  margin: 0 0 4px; font-size: 13px; font-weight: 800; color: var(--mm-ink);
+}
+.reader-content .mm-lab-museum-detail h4:not(:first-child) { margin-top: 14px; }
+.reader-content .mm-lab-museum-detail p { margin: 0; font-size: 13px; line-height: 1.75; }
+.reader-content .mm-lab-museum-detail p.mm-lab-small { font-size: 11px; color: var(--mm-muted); margin-top: 10px; }
+.reader-content .mm-lab-journal {
+  margin-top: 20px; border-top: 1px solid var(--mm-line); padding-top: 16px;
+}
+.reader-content .mm-lab-journal h4 { font-size: 15px; margin: 0 0 12px; }
+.reader-content .mm-lab-log-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
+.reader-content .mm-lab-log-summary {
+  margin: 12px 0; padding: 10px 12px; font-weight: 600; font-size: 12px;
+  background: #edf3ed; border-radius: 8px;
+}
+.reader-content .mm-lab-quiz-progress { margin: 0; color: var(--mm-green); font-size: 12px; font-weight: 800; }
+.reader-content .mm-lab .mm-lab-question { font-size: 15px; font-weight: 750; margin: 7px 0 13px; }
+.reader-content .mm-lab-quiz-choices { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.reader-content .mm-lab-quiz-navigation { display: flex; justify-content: space-between; gap: 10px; margin-top: 15px; }
+.reader-content .mm-lab-quiz-feedback p { font-size: 13px; margin: 0 0 8px; }
+.reader-content .mm-lab-quiz-feedback > :last-child { margin-bottom: 0; }
+.reader-content .mm-lab p,
+.reader-content .mm-lab h3,
+.reader-content .mm-lab h4 { overflow-wrap: anywhere; }
+@media (max-width: 550px) {
+  .reader-content .mm-lab { margin: 14px 0 24px; padding: 15px 12px 17px; border-radius: 13px; font-size: 14px; }
+  .reader-content .mm-lab-controls { grid-template-columns: 1fr; gap: 10px; }
+  .reader-content .mm-lab-time-row { grid-template-columns: 74px minmax(0,1fr); gap: 6px; }
+  .reader-content .mm-lab-time-label { font-size: 10px; line-height: 1.35; }
+  .reader-content .mm-lab-axis { margin-left: 79px; }
+  .reader-content .mm-lab-axis span { font-size: 9px; }
+  .reader-content .mm-lab-axis span:nth-child(even) { top: 8px; }
+  .reader-content .mm-lab-process, .reader-content .mm-lab-log-grid { grid-template-columns: 1fr 1fr; }
+  .reader-content .mm-lab-quiz-choices { grid-template-columns: 1fr; }
+  .reader-content .mm-lab-tabs .mm-lab-button { flex: 1 1 calc(50% - 4px); }
+}
+@media (max-width: 350px) {
+  .reader-content .mm-lab-process, .reader-content .mm-lab-log-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reader-content .mm-lab * { transition: none !important; animation: none !important; }
+}
