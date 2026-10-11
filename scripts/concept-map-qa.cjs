@@ -69,7 +69,8 @@ const noMap = 'value-chain-competitive-advantage';
       await page.locator('.reader-v2-map-toggle').click();
     }
     await page.locator('.reader-concept-tabs button[data-view="contents"]').click();
-    assert.equal(await page.locator('.reader-v2-map-nav').isVisible(), true);
+    const navDebug = await page.evaluate(() => { const nav = document.querySelector('.reader-v2-map-nav'); const aside = document.getElementById('readerAside'); const body = document.querySelector('.reader-v2-map-body'); return {navDisplay:getComputedStyle(nav).display, navHidden:nav.hidden, asideClass:aside.className, asideAria:aside.getAttribute('aria-hidden'), bodyClass:body.className, navParent:nav.parentElement?.id||nav.parentElement?.className}; });
+    assert.equal(await page.locator('.reader-v2-map-nav').isVisible(), true, JSON.stringify(navDebug));
     await page.locator('.reader-concept-tabs button[data-view="relations"]').click();
     await page.locator('.reader-concept-node').first().waitFor({ state: 'visible' });
 
