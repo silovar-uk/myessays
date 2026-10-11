@@ -226,6 +226,7 @@
     const body = $('.reader-v2-map-body');
     if (!body) return;
     if (id !== lastId) {
+      window.MyEssaysReaderV2?.setMapOpen?.(false);
       lastId = id;
       activeView = 'contents';
       displayMode = 'graph';
