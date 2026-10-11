@@ -284,6 +284,7 @@
     const stage=host.querySelector('[data-demo-stage]');
     if(!stage)return;
     stage.dataset.state=demo.state;
+    stage.dataset.phase=demo.state==='holding'?(demo.frame<9?'startup':demo.frame<=35?'orbit':'hold'):demo.state;
     const frame=host.querySelector('[data-demo-frame]');
     if(frame)frame.textContent=t.sample+' '+demo.frame+'F';
     const progress=host.querySelector('[data-demo-progress]');
