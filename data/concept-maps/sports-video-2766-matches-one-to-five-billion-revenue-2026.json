@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "articleId": "sports-video-2766-matches-one-to-five-billion-revenue-2026",
+  "question": "試合数は多いのに、なぜ受注は難しいか",
+  "shortThesis": "市場規模は、買い手・権利・単価・稼働で絞られる。",
+  "status": "editor-reviewed",
+  "nodes": [
+    {
+      "id": "business",
+      "label": "映像事業",
+      "fullLabel": "スポーツ映像の新規事業",
+      "description": "映像を作るだけでなく、継続的に売れる業務を探す。",
+      "sectionIndex": 0,
+      "kind": "core",
+      "x": 50,
+      "y": 49
+    },
+    {
+      "id": "volume",
+      "label": "試合数",
+      "fullLabel": "見込み試合数2,766",
+      "description": "試合の母数は大きいが、すべてが新規受注可能とは限らない。",
+      "sectionIndex": 0,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 17
+    },
+    {
+      "id": "reachable",
+      "label": "受注可能性",
+      "fullLabel": "実際に受注できる対象",
+      "description": "既存契約や権利条件により、参入できる試合は絞られる。",
+      "sectionIndex": 1,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 17
+    },
+    {
+      "id": "unit",
+      "label": "単価",
+      "fullLabel": "一試合当たりの受注単価",
+      "description": "単価と必要な受注数を合わせて売上を試算する。",
+      "sectionIndex": 2,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 49
+    },
+    {
+      "id": "rights",
+      "label": "権利",
+      "fullLabel": "映像権利と既存契約",
+      "description": "配信・販売・二次利用できるかは権利で変わる。",
+      "sectionIndex": 4,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 49
+    },
+    {
+      "id": "cost",
+      "label": "運用工数",
+      "fullLabel": "映像制作の反復工数",
+      "description": "制作・整理・納品などの工数を差し引いて採算を考える。",
+      "sectionIndex": 5,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 81
+    },
+    {
+      "id": "buyer",
+      "label": "束ねる買い手",
+      "fullLabel": "反復業務を発注する主体",
+      "description": "競技単位より、繰り返し業務をまとめて買う主体が重要となる。",
+      "sectionIndex": 8,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 81
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "business",
+      "to": "volume",
+      "type": "associated-with",
+      "label": "潜在的な対象数を把握する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e2",
+      "from": "volume",
+      "to": "reachable",
+      "type": "associated-with",
+      "label": "数えた試合すべては受注できない",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e3",
+      "from": "reachable",
+      "to": "rights",
+      "type": "associated-with",
+      "label": "参入可否を左右する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e4",
+      "from": "reachable",
+      "to": "buyer",
+      "type": "associated-with",
+      "label": "発注主体が需要を具体化する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e5",
+      "from": "business",
+      "to": "unit",
+      "type": "associated-with",
+      "label": "売上を受注件数と単価で捉える",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e6",
+      "from": "business",
+      "to": "cost",
+      "type": "associated-with",
+      "label": "工数を考慮して採算を試す",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e7",
+      "from": "buyer",
+      "to": "cost",
+      "type": "associated-with",
+      "label": "反復業務を束ねると工数設計が変わる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e8",
+      "from": "unit",
+      "to": "reachable",
+      "type": "associated-with",
+      "label": "単価と受注数の積で売上が決まる",
+      "certainty": "interpretation"
+    }
+  ]
+}

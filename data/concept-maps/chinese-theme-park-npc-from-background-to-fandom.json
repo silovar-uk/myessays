@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "articleId": "chinese-theme-park-npc-from-background-to-fandom",
+  "question": "出演者は、なぜ旅の目的になるのか",
+  "shortThesis": "施設の登場人物が、訪問の理由と事業の構造を変える。",
+  "status": "editor-reviewed",
+  "nodes": [
+    {
+      "id": "npc",
+      "label": "景区NPC",
+      "fullLabel": "観光施設のNPC",
+      "description": "来場者と交流する人間の出演者。ゲーム内の非操作キャラクターという原義とは異なる。",
+      "sectionIndex": 0,
+      "kind": "core",
+      "x": 50,
+      "y": 49
+    },
+    {
+      "id": "world",
+      "label": "世界観",
+      "fullLabel": "世界観のある施設",
+      "description": "出演者の即興性や街の演出が、来場者を物語へ招き入れる。",
+      "sectionIndex": 1,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 17
+    },
+    {
+      "id": "video",
+      "label": "短動画",
+      "fullLabel": "短動画での拡散",
+      "description": "短い動画が特定の出演者や場面への関心を広げる。",
+      "sectionIndex": 1,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 17
+    },
+    {
+      "id": "fan",
+      "label": "推し活",
+      "fullLabel": "出演者への推し活",
+      "description": "施設だけでなく特定の出演者に会いたい気持ちが生じる。",
+      "sectionIndex": 3,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 49
+    },
+    {
+      "id": "visit",
+      "label": "遠征",
+      "fullLabel": "人物目的の来訪",
+      "description": "出演者との交流を目的に遠方から訪れる例がある。",
+      "sectionIndex": 3,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 49
+    },
+    {
+      "id": "sales",
+      "label": "収益経路",
+      "fullLabel": "複数の収益経路",
+      "description": "入場券・体験・物販などを区別し、実績と可能性を混同しない。",
+      "sectionIndex": 4,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 81
+    },
+    {
+      "id": "care",
+      "label": "出演者保護",
+      "fullLabel": "出演者の労働と安全",
+      "description": "出演者の人気が高まるほど労働負荷や私生活、安全への配慮が必要となる。",
+      "sectionIndex": 6,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 81
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "npc",
+      "to": "world",
+      "type": "associated-with",
+      "label": "施設の物語を対面の体験に変える",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e2",
+      "from": "npc",
+      "to": "video",
+      "type": "associated-with",
+      "label": "映像で紹介される接点になる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e3",
+      "from": "video",
+      "to": "fan",
+      "type": "associated-with",
+      "label": "映像流通が人物への関心を広げる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e4",
+      "from": "npc",
+      "to": "fan",
+      "type": "associated-with",
+      "label": "出演者が『推し』の対象となる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e5",
+      "from": "fan",
+      "to": "visit",
+      "type": "associated-with",
+      "label": "人物への関心が訪問理由になる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e6",
+      "from": "visit",
+      "to": "sales",
+      "type": "associated-with",
+      "label": "来訪と消費の可能性につながる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e7",
+      "from": "npc",
+      "to": "care",
+      "type": "associated-with",
+      "label": "交流が労働・安全の課題を生む",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e8",
+      "from": "fan",
+      "to": "care",
+      "type": "associated-with",
+      "label": "人気の高まりが保護を重要にする",
+      "certainty": "interpretation"
+    }
+  ]
+}

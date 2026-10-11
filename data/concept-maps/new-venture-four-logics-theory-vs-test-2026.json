@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "articleId": "new-venture-four-logics-theory-vs-test-2026",
+  "question": "不確実な未来に、どう働きかけるか",
+  "shortThesis": "四つの方法論は、異なる問いへの答えを持つ。",
+  "status": "editor-reviewed",
+  "nodes": [
+    {
+      "id": "venture",
+      "label": "事業創出",
+      "fullLabel": "新規事業の創出",
+      "description": "顧客も市場も確定していない状況で、事業の成立条件を探る。",
+      "sectionIndex": 0,
+      "kind": "core",
+      "x": 50,
+      "y": 49
+    },
+    {
+      "id": "lean",
+      "label": "リーン",
+      "fullLabel": "リーン・スタートアップ",
+      "description": "小さな実験を通じて顧客の反応や購入を検証する。",
+      "sectionIndex": 1,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 17
+    },
+    {
+      "id": "effect",
+      "label": "手持ちと仲間",
+      "fullLabel": "エフェクチュエーション",
+      "description": "手持ちの資源と協力者から、実現可能な未来を形づくる。",
+      "sectionIndex": 2,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 17
+    },
+    {
+      "id": "creation",
+      "label": "機会の創造",
+      "fullLabel": "創造理論",
+      "description": "事業機会は発見するだけでなく、行動によって形成され得る。",
+      "sectionIndex": 3,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 49
+    },
+    {
+      "id": "theory",
+      "label": "因果理論",
+      "fullLabel": "理論に基づく事業創出",
+      "description": "常識とは違う因果関係を仮説として立て、反証を試みる。",
+      "sectionIndex": 4,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 49
+    },
+    {
+      "id": "test",
+      "label": "顧客検証",
+      "fullLabel": "顧客・需要の検証",
+      "description": "価値を感じる相手と支払いの意思を、具体的な行動から確かめる。",
+      "sectionIndex": 6,
+      "kind": "mechanism",
+      "x": 18,
+      "y": 81
+    },
+    {
+      "id": "blend",
+      "label": "併用設計",
+      "fullLabel": "方法論の使い分け",
+      "description": "状況によって問いや手順を組み合わせ、万能な一手法を仮定しない。",
+      "sectionIndex": 8,
+      "kind": "mechanism",
+      "x": 82,
+      "y": 81
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "venture",
+      "to": "lean",
+      "type": "associated-with",
+      "label": "実験を通じて確かめる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e2",
+      "from": "venture",
+      "to": "effect",
+      "type": "associated-with",
+      "label": "資源と協力から形づくる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e3",
+      "from": "venture",
+      "to": "creation",
+      "type": "associated-with",
+      "label": "新しい機会を形成する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e4",
+      "from": "venture",
+      "to": "theory",
+      "type": "associated-with",
+      "label": "因果仮説を立てる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e5",
+      "from": "lean",
+      "to": "test",
+      "type": "associated-with",
+      "label": "購入などの行動で確かめる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e6",
+      "from": "theory",
+      "to": "test",
+      "type": "associated-with",
+      "label": "因果の説明を反証する",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e7",
+      "from": "effect",
+      "to": "blend",
+      "type": "associated-with",
+      "label": "協力関係に応じて進め方が変わる",
+      "certainty": "interpretation"
+    },
+    {
+      "id": "e8",
+      "from": "creation",
+      "to": "blend",
+      "type": "associated-with",
+      "label": "市場形成の余地を含めて使い分ける",
+      "certainty": "interpretation"
+    }
+  ]
+}
