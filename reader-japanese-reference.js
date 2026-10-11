@@ -541,6 +541,13 @@
     openSelection,
     close: closePanel
   });
+  document.addEventListener('pointerdown', event => {
+    const referencePanel = document.getElementById('japaneseReferencePanel');
+    if (!referencePanel || referencePanel.hidden || referencePanel.contains(event.target)) return;
+    // Opening through the selection toolbar must not dismiss the newly opened panel.
+    if (event.target.closest?.('#selectionTools,.selection-context-action')) return;
+    closePanel();
+  }, true);
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closePanel();
   });
