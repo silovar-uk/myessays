@@ -16,6 +16,10 @@
   let previewTimer = 0;
   let closeTimer = 0;
   let lensPinned = false;
+  let affordanceTimer = 0;
+  let lensRequestId = 0;
+  let compareRequestId = 0;
+  let compareReturnAnchor = null;
   const flipState = new WeakMap();
   const counterpartCache = new Map();
 
@@ -68,7 +72,16 @@
       return;
     }
 
-    if (event.target.closest?.('[data-reader-mode-compare]')) enterCompare();
+    if (event.target.closest?.('[data-reader-mode-reference]')) {
+      const visible = readablePairBlocks().find(block => block.getBoundingClientRect().bottom > 120);
+      const block = activeBlock?.isConnected && activeBlock.getBoundingClientRect().bottom > 0 ? activeBlock : visible;
+      if (block) openLens(block);
+      return;
+    }
+    if (event.target.closest?.('[data-reader-mode-compare]')) {
+      if (compareMode) exitCompare();
+      else enterCompare();
+    }
   }
 
   function ensureModeBar() {
@@ -91,7 +104,10 @@
     const compare = available.length
       ? `<button type="button" class="reader-mode-button reader-mode-compare${compareMode ? ' is-active' : ''}" data-reader-mode-compare data-short-label="⇄" aria-label="日本語と外国語Mixを比較" aria-pressed="${compareMode}">比較</button>`
       : '';
-    bar.innerHTML = `${buttons}${compare}`;
+    const reference = available.length
+      ? '<button type="button" class="reader-mode-button reader-mode-reference" data-reader-mode-reference aria-label="現在の段落に対応する原文を開く">原文</button>'
+      : '';
+    bar.innerHTML = `${buttons}${reference}${compare}`;
     document.body.classList.add('language-lab-ready');
     placeModeBar(bar);
     return bar;
@@ -105,7 +121,15 @@
     button.className = 'paragraph-language-peek';
     button.type = 'button';
     button.hidden = true;
-    button.addEventListener('click', () => activeBlock && openLens(activeBlock));
+    button.addEventListener('pointerenter', () => clearTimeout(affordanceTimer));
+    button.addEventListener('pointerleave', () => {
+      clearTimeout(affordanceTimer);
+      affordanceTimer = window.setTimeout(hideAffordance, 240);
+    });
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      if (activeBlock) openLens(activeBlock);
+    });
     document.body.appendChild(button);
     return button;
   }
@@ -129,7 +153,7 @@
   }
 
   function positionAffordance() {
-    if (!activeBlock || compareMode || !targetVersion()) return hideAffordance();
+    if (!activeBlock || compareMode || !targetVersion() || noteIsOpen() || !ensureLens().hidden) return hideAffordance();
     const rect = activeBlock.getBoundingClientRect();
     if (rect.bottom < 72 || rect.top > innerHeight - 52) return hideAffordance();
     const target = targetVersion();
@@ -145,8 +169,13 @@
       return;
     }
 
-    // Desktop uses direct hover preview. The extra JA button is only needed on touch layouts.
-    ensurePeekButton().hidden = true;
+    const button = ensurePeekButton();
+    const label = currentVersion() === 'ja' ? `${d.badge} ↗` : '原文 ↗';
+    button.textContent = label;
+    button.setAttribute('aria-label', `${d.label}でこの段落を確認`);
+    button.style.left = `${Math.max(8, Math.min(innerWidth - 92, rect.left - 86))}px`;
+    button.style.top = `${Math.max(76, Math.min(innerHeight - 48, rect.top + 8))}px`;
+    button.hidden = false;
     ensureMobileDock().hidden = true;
   }
 
@@ -171,14 +200,15 @@
     panel.setAttribute('aria-label', '段落の言語比較');
     panel.innerHTML = `
       <div class="language-lens-handle" aria-hidden="true"></div>
-      <div class="language-lens-head"><div><p>LANGUAGE MIRROR</p><h2>対応する原文</h2></div><div class="language-lens-head-actions"><span class="language-lens-pin-state" hidden>PINNED</span><button type="button" class="language-lens-close" aria-label="閉じる">×</button></div></div>
+      <div class="language-lens-head"><div><p>LANGUAGE MIRROR</p><h2>対応する原文</h2></div><div class="language-lens-head-actions"><span class="language-lens-pin-state" hidden>PINNED</span><button type="button" class="language-lens-pin" aria-label="原文パネルを固定する" aria-pressed="false" title="固定する">固定</button><button type="button" class="language-lens-close" aria-label="閉じる">×</button></div></div>
       <div class="language-lens-status" aria-live="polite"></div>
       <section class="language-lens-current"><span class="language-lens-label"></span><div class="language-lens-current-copy"></div></section>
       <section class="language-lens-counterpart"><span class="language-lens-label"></span><div class="language-lens-counterpart-copy"></div></section>
       <div class="language-lens-nav"><button type="button" data-lens-prev>← 前</button><span class="language-lens-position"></span><button type="button" data-lens-next>次 →</button></div>
       <div class="language-lens-actions"><button type="button" class="language-lens-flip">この段落だけ切替</button><button type="button" class="language-lens-full">全文を切替</button></div>`;
     view.appendChild(panel);
-    panel.querySelector('.language-lens-close').addEventListener('click', closeLens);
+    panel.querySelector('.language-lens-close').addEventListener('click', () => closeLens());
+    panel.querySelector('.language-lens-pin').addEventListener('click', togglePinnedLens);
     panel.querySelector('[data-lens-prev]').addEventListener('click', () => moveLens(-1));
     panel.querySelector('[data-lens-next]').addEventListener('click', () => moveLens(1));
     panel.querySelector('.language-lens-flip').addEventListener('click', toggleFlip);
@@ -191,8 +221,9 @@
     return panel;
   }
 
-  function closeLens({ force = false } = {}) {
-    if (lensPinned && !force) return;
+  function closeLens() {
+    // A user-initiated close always wins, even when the panel was pinned.
+    lensRequestId++;
     clearTimeout(previewTimer);
     clearTimeout(closeTimer);
     const panel = document.getElementById('languageLensPanel');
@@ -200,19 +231,26 @@
       panel.hidden = true;
       panel.classList.remove('is-preview', 'is-pinned');
       panel.querySelector('.language-lens-pin-state')?.toggleAttribute('hidden', true);
+      const pin = panel.querySelector('.language-lens-pin');
+      if (pin) {
+        pin.textContent = '固定';
+        pin.setAttribute('aria-label', '原文パネルを固定する');
+        pin.setAttribute('aria-pressed', 'false');
+      }
     }
     lensPinned = false;
   }
 
-  function pinLens(block = activeBlock) {
-    if (!block || isMobile()) return;
-    clearTimeout(closeTimer);
-    lensPinned = true;
+  function togglePinnedLens() {
     const panel = ensureLens();
-    panel.classList.remove('is-preview');
-    panel.classList.add('is-pinned');
-    panel.querySelector('.language-lens-pin-state')?.toggleAttribute('hidden', false);
-    openLens(block, { preview: false });
+    if (panel.hidden) return;
+    lensPinned = !lensPinned;
+    panel.classList.toggle('is-pinned', lensPinned);
+    panel.querySelector('.language-lens-pin-state')?.toggleAttribute('hidden', !lensPinned);
+    const pin = panel.querySelector('.language-lens-pin');
+    pin.textContent = lensPinned ? '固定解除' : '固定';
+    pin.setAttribute('aria-label', lensPinned ? '原文パネルの固定を解除する' : '原文パネルを固定する');
+    pin.setAttribute('aria-pressed', String(lensPinned));
   }
 
   function scheduleCloseLens() {
@@ -261,6 +299,7 @@
   async function openLens(block, { preview = false } = {}) {
     const pairId = block?.dataset?.readingLocator || block?.dataset?.pairId || '';
     if (!pairId || compareMode) return;
+    const requestId = ++lensRequestId;
     setActiveBlock(block);
     const panel = ensureLens();
     cancelCloseLens();
@@ -279,6 +318,8 @@
     panel.dataset.pairId = pairId;
     panel.dataset.targetVersion = target;
     panel.hidden = false;
+    hideAffordance();
+    window.MyEssaysJapaneseReference?.close?.();
 
     const current = currentVersion();
     const currentDef = definition(current);
@@ -290,7 +331,7 @@
     panel.querySelector('.language-lens-status').textContent = previewMode ? '' : '対応段落を確認中';
 
     const counterpart = await counterpartFor(pairId, target);
-    if (panel.dataset.pairId !== pairId) return;
+    if (requestId !== lensRequestId || panel.hidden || panel.dataset.pairId !== pairId) return;
     panel.querySelector('.language-lens-counterpart-copy').textContent =
       counterpart?.textContent?.trim() || (previewMode ? '対応する段落なし' : '');
     panel.querySelector('.language-lens-status').textContent = counterpart ? '同じ読書位置' : 'この段落は対応版なし';
@@ -345,7 +386,22 @@
     panel.querySelector('.language-lens-flip').textContent = '元に戻す';
   }
 
+  function readingAnchor() {
+    const block = readablePairBlocks().find(el => el.getBoundingClientRect().bottom >= 110);
+    return block ? { pairId: block.dataset.readingLocator || block.dataset.pairId, top: block.getBoundingClientRect().top } : null;
+  }
+
+  function restoreReadingAnchor(anchor, root, selector) {
+    if (!anchor) return;
+    const blocks = [...root.querySelectorAll(selector)];
+    const block = blocks.find(el => (el.dataset.readingLocator || el.dataset.pairId) === anchor.pairId);
+    if (block) window.scrollBy(0, block.getBoundingClientRect().top - anchor.top);
+  }
+
   function exitCompare() {
+    const anchor = compareReturnAnchor;
+    compareReturnAnchor = null;
+    compareRequestId++;
     compareMode = false;
     view.classList.remove('language-compare-mode');
     content.querySelector('.reader-compare-view')?.remove();
@@ -353,6 +409,7 @@
     ensureModeBar();
     positionAffordance();
     window.MyEssaysReaderV2?.sync?.();
+    requestAnimationFrame(() => restoreReadingAnchor(anchor, content, '[data-reading-locator],[data-pair-id]'));
   }
 
   async function enterCompare(target = '') {
@@ -361,8 +418,10 @@
     if (target === 'ja') target = available.includes('en-mix') ? 'en-mix' : available[0];
     if (!target) return;
 
+    if (!compareMode) compareReturnAnchor = readingAnchor();
+    const compareRequest = ++compareRequestId;
     compareMode = true;
-    closeLens({ force: true });
+    closeLens();
     hideAffordance();
     ensureModeBar();
     view.classList.add('language-compare-mode');
@@ -382,7 +441,7 @@
 
     const jaRoot = await versions()?.rootForVersion?.(ctx.essayId, 'ja');
     const altRoot = await versions()?.rootForVersion?.(ctx.essayId, target);
-    if (!jaRoot || !altRoot || !compareMode) return;
+    if (!jaRoot || !altRoot || !compareMode || compareRequest !== compareRequestId) return;
 
     const jaBlocks = (pairs()?.eligibleBlocks?.(jaRoot) || []).filter(el => el.dataset.readingLocator || el.dataset.pairId);
     const targetDef = definition(target);
@@ -400,11 +459,17 @@
     compare.innerHTML = `<div class="reader-compare-head"><div><p>PARAGRAPH COMPARE</p><h2>同じ位置を、並べて読む</h2></div>${switcher}</div>${rows}`;
     compare.querySelectorAll('[data-compare-target]').forEach(button => button.addEventListener('click', () => enterCompare(button.dataset.compareTarget)));
     window.MyEssaysReaderV2?.sync?.();
+    const anchor = compareReturnAnchor;
+    requestAnimationFrame(() => {
+      if (compareMode && compareRequest === compareRequestId) restoreReadingAnchor(anchor, compare, '[data-pair-id]');
+    });
   }
 
   async function mount(context) {
     ctx = context;
     compareMode = false;
+    compareRequestId++;
+    compareReturnAnchor = null;
     activeBlock = null;
     activePairId = '';
     lensPinned = false;
@@ -420,12 +485,10 @@
   content.addEventListener('pointerover', event => {
     if (compareMode || isMobile() || noteIsOpen() || lensPinned) return;
     const block = event.target.closest?.('[data-reading-locator],[data-pair-id]');
-    if (!block || !content.contains(block)) return;
-    cancelCloseLens();
-    if (block === activeBlock && !ensureLens().hidden) return;
+    if (!block || !content.contains(block) || !ensureLens().hidden) return;
+    clearTimeout(affordanceTimer);
     setActiveBlock(block);
-    clearTimeout(previewTimer);
-    previewTimer = window.setTimeout(() => openLens(block, { preview: true }), PREVIEW_DELAY_MS);
+    positionAffordance();
   });
 
   content.addEventListener('pointerout', event => {
@@ -433,26 +496,33 @@
     const fromBlock = event.target.closest?.('[data-reading-locator],[data-pair-id]');
     if (!fromBlock) return;
     const next = event.relatedTarget;
-    if (next && (fromBlock.contains(next) || ensureLens().contains(next))) return;
-    clearTimeout(previewTimer);
-    scheduleCloseLens();
+    if (next && (fromBlock.contains(next) || ensurePeekButton().contains(next) || ensureLens().contains(next))) return;
+    clearTimeout(affordanceTimer);
+    affordanceTimer = window.setTimeout(hideAffordance, 240);
   });
 
   content.addEventListener('click', event => {
-    if (compareMode) return;
+    if (compareMode || !isMobile()) return;
     if (event.target.closest?.('a,button,input,textarea,select,summary,code,pre')) return;
     const block = event.target.closest?.('[data-reading-locator],[data-pair-id]');
-    if (!block || !content.contains(block)) return;
-    if (isMobile()) {
-      setActiveBlock(block);
-      return;
-    }
-    pinLens(block);
+    if (block && content.contains(block)) setActiveBlock(block);
   });
 
-  const lens = ensureLens();
-  lens.addEventListener('pointerenter', cancelCloseLens);
-  lens.addEventListener('pointerleave', scheduleCloseLens);
+  content.addEventListener('focusin', event => {
+    const block = event.target.closest?.('[data-reading-locator],[data-pair-id]');
+    if (block && !compareMode && !isMobile()) setActiveBlock(block);
+  });
+
+  document.addEventListener('pointerdown', event => {
+    const panel = document.getElementById('languageLensPanel');
+    if (!panel || panel.hidden || lensPinned) return;
+    if (panel.contains(event.target) || ensurePeekButton().contains(event.target) ||
+        ensureMobileDock().contains(event.target) ||
+        event.target.closest?.('[data-reader-mode-reference]')) return;
+    closeLens();
+  }, true);
+
+  ensureLens();
 
   window.addEventListener('scroll', positionAffordance, { passive: true });
   window.addEventListener('resize', () => {
@@ -484,6 +554,8 @@
     compareMode = false;
     view.classList.remove('language-compare-mode');
   });
+
+  window.MyEssaysLanguageLab = Object.freeze({ close: closeLens });
 
   if (window.MyEssaysReaderRuntime?.register) {
     window.MyEssaysReaderRuntime.register('language-lab', mount, { priority: 12 });
