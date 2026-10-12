@@ -32,7 +32,7 @@ A second turning point arrived with the **House v. NCAA settlement**, approved i
 
 There are **two wallets**. One is a third-party NIL agreement, typically payment for real commercial use of an athlete's identity. The other is university-funded direct compensation under the settlement framework. 同じ選手が両方を受け取れる。Yet a reported NIL contract value and an actual university distribution are not the same accounting measure. [College Sports Commission](https://www.collegesportscommission.org/)
 
-![Two payment routes for college athletes: original diagram](../assets/us-college-nil-two-wallets-2026.svg)
+![Two payment routes for college athletes: original diagram](https://silovar-uk.github.io/myessays/assets/us-college-nil-two-wallets-2026.svg)
 
 *Figure 1: Original conceptual diagram. Actual contracts may have additional parties and restrictions. Sources: [NCAA](https://www.ncaa.org/student-athletes/name-image-likeness/) and [CSC](https://www.collegesportscommission.org/).*
 
@@ -66,7 +66,7 @@ Copying American dollar amounts into Japanese university sports would be mislead
 
 Japan already confronts these questions. A UNIVAS match-streaming project required universities to clear rights concerning the images and personal information of people appearing in footage. ここから分かるのは、**permission to stream a match does not automatically mean permission to reuse a student's face in a sponsor advertisement**。A clear license needs a defined purpose. [UNIVAS requirements](https://univas.jp/news/article/202405311107262/)
 
-![A rights-clearance map for Japanese university sports: original diagram](../assets/us-college-nil-japan-rights-2026.svg)
+![A rights-clearance map for Japanese university sports: original diagram](https://silovar-uk.github.io/myessays/assets/us-college-nil-japan-rights-2026.svg)
 
 *Figure 2: Original rights map for business design. It does not assign legal ownership in every specific case. Reference: [UNIVAS](https://univas.jp/news/article/202405311107262/).*
 
