@@ -32,7 +32,7 @@ abstract: "米国の学生選手は2021年に氏名・肖像等の商業利用�
 
 制度の核心は、**企業等が選手の氏名・肖像を使う対価**と、**大学が選手に直接配分する金銭等**を分けて考えることにある。前者は商品宣伝など実際の商業利用に結びつく個別契約であり、後者は大学が制度に従って配分する利益である。同じ選手が双方を受け取る場合もある。「学生に年何億円流れた」という数字を見るとき、この二つを同一の指標と思い込むと、制度の変化を見誤る。[大学スポーツ委員会](https://www.collegesportscommission.org/)
 
-![学生選手に届く二つの資金経路を区別した独自図解](../assets/us-college-nil-two-wallets-2026.svg)
+![学生選手に届く二つの資金経路を区別した独自図解](https://silovar-uk.github.io/myessays/assets/us-college-nil-two-wallets-2026.svg)
 
 *図1：著者作成。制度の概念図であり、大学・企業・学生の具体的契約関係を単純化したもの。参照：[NCAAの規則](https://www.ncaa.org/student-athletes/name-image-likeness/)、[大学スポーツ委員会](https://www.collegesportscommission.org/)。*
 
@@ -66,7 +66,7 @@ abstract: "米国の学生選手は2021年に氏名・肖像等の商業利用�
 
 実際、大学スポーツ協会（UNIVAS）の試合配信事業では、映り込む選手・指導者等の肖像と個人情報について、参加大学側があらかじめ権利処理することを応募条件にしていた。ここに日本の現実がよく現れている。競技映像を撮れることと、映像に登場する個々の選手の顔を企業広告へ再利用できることは別である。競技者に報酬を払うか否かの前段階で、用途ごとの許諾を整理しなくてはならない。[UNIVAS配信事業の募集要件](https://univas.jp/news/article/202405311107262/)
 
-![日本の大学スポーツで整理すべき権利と許諾の階層を示す独自図解](../assets/us-college-nil-japan-rights-2026.svg)
+![日本の大学スポーツで整理すべき権利と許諾の階層を示す独自図解](https://silovar-uk.github.io/myessays/assets/us-college-nil-japan-rights-2026.svg)
 
 *図2：著者作成。日本での事業設計に向けた検討用の分類であり、具体的な法律上の所有権を一律に断定するものではない。参考：[UNIVAS](https://univas.jp/news/article/202405311107262/)。*
 
