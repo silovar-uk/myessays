@@ -78,6 +78,12 @@ For a new venture, test five questions: who pays, what problem is solved, which 
 
 The opening puzzle was about permission to hold a tournament. 調べると、esports connects intellectual property, competition, promotion, production and public policy. Who owns the rules, who builds the audience, and who captures value? その答えが市場規模の数字より先に必要になる。
 
+## 競技ジャンルの名前と、興行を担う人の名前は分けて覚えたい
+
+Genre terms describe gameplay. 一人称視点の射撃ゲーム（FPS）はaim and team tactics、多人数の拠点攻略型の戦略ゲーム（MOBA）はroles and collective decisionsが要になる。生き残り対戦（バトルロイヤル）は最後まで残る形式。Fighting games, puzzles and racing simulationsもあり、esports is not one ruleset.
+
+Business terms describe roles. ゲームの発売・運営会社（パブリッシャー）、tournament organizer、競技登録選手（ロスター）、動画配信者（ストリーマー）は同じではない。A creator is not automatically a professional player; an organizer is not necessarily a video-production company. 契約上の役割で分けて考える。
+
 ## 資料と続編
 
 Primary sources: [white paper](https://jesu.or.jp/contents/news/news-260326/), [market data](https://jesu.or.jp/contents/about-market/), [prize regulations](https://jesu.or.jp/contents/news/news_0912/), [Nintendo policy](https://www.nintendo.co.jp/tournament_guideline/index.html), [Asian Games](https://prtimes.jp/main/html/rd/p/000000228.000039144.html). 有料白書の非公開の集計詳細は確認していない。
