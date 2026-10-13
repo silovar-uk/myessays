@@ -16,7 +16,7 @@ abstract: "育成stageの図が人のrankingに変わる瞬間を疑い、病院
 
 *日本版FTEMから、referral letterへ。*
 
-成長をstagesで区切る図は、いつの間にか人のrankingに見えてくる。けれども、病院のreferral letterに書くべきは患者の順位ではない。何を試し、what remains uncertainで、次の医師に何を託すかである。スポーツ選手の育成を整理するFTEMも、talent rankingではなく、支援のhandoverを助けるshared languageとして読める。そう考えると、育成の失敗は選手が次のstageへ進めないことだけではなく、担当者が替わるたびにknowledgeが途切れる場所にも潜んでいる。
+成長を「stage」で区切る図は、いつの間にか人のrankingに見えてくる。けれども、病院の紹介状（referral letter）に必要なのは患者の順位ではない。何を試し、どこにuncertaintyが残り、次の医師に何を託すかである。競技者育成のFTEMも、talent rankingではなく、支援を引き継ぐためのshared languageとして読める。そう考えると、育成の失敗は選手が次のstageに進めないことだけではない。担当者が替わるたびにknowledgeが途切れる場所にも潜んでいる。
 
 ## 根拠と解釈の境界
 
