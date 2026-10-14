@@ -360,9 +360,9 @@ function latestEssayIds() {
     if (essay?.id && !featured.some(item => item.id === essay.id)) featured.push(essay);
   };
 
-  // Reserve one of the four front-page cards for a recently revised essay.
-  // If there are no revisions, all four cards show newly created essays.
-  if (revised.length) addUnique(revised[0]);
+  // Feature revisions only while they remain at least as recent as the fourth newest essay.
+  const newestThreshold = String(newest[3]?.created || newest[newest.length - 1]?.created || '');
+  if (revised[0] && String(revised[0].updated) >= newestThreshold) addUnique(revised[0]);
   newest.forEach(essay => {
     if (featured.length < 4) addUnique(essay);
   });
