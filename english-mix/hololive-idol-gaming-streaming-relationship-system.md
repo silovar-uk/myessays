@@ -10,9 +10,15 @@ tags: ["ホロライブ", "バーチャルユーチューバー", "配信文化"
 keywords: ["ホロライブプロダクション", "カバー", "バーチャルユーチューバー", "ときのそら", "ホロライブEnglish", "卒業", "配信活動終了", "切り抜き", "二次創作", "スーパーチャット", "ホロアース"]
 grow: 5
 abstract: "ホロライブとは何かを、バーチャルユーチューバー（VTuber）という形式の基礎、カバーの技術企業としての出発、2017年以降の歴史、日常配信（everyday streaming）とライブ・物販をつなぐ事業構造、ファン文化と用語、著作権・global expansion・卒業・制作労働をめぐる批判まで、初心者向けに整理する。出発点の「アイドルなのに、なぜゲーム配信（game streaming）ばかりしているのか」という疑問から、ホロライブを単なる芸能事務所やキャラクター事業ではなく、人・アバター・プラットフォーム・ファン・会社・権利者を毎日つなぎ直す関係の仕組みとして捉え直す。"
+series: "ホロライブを読み解く"
+seriesId: "hololive-explained"
+seriesOrder: 1
 ---
 
 # アイドルなのに、why do they stream games all day?――ホロライブ入門
+
+*Sequel：[カバー株式会社の社員と組織――People and operations behind hololive](https://silovar-uk.github.io/myessays/#/essay/cover-corporation-740-employees-organization-2026)。*
+
 ## バーチャルユーチューバー（VTuber）、streaming、company、fan culture、history and criticismを「そもそも」から理解する
 
 「アイドル事務所」と聞いたあと、所属タレントの活動予定を開く。すると歌番組より先に、ゲーム実況（game streaming）、雑談、朝活、同時視聴、歌枠がずらりと並ぶ。数時間ゲームをして、翌日は誰かと雑談し、記念日になると三次元ライブ（3D live）で歌って踊る。かなり忙しい。だが、初見では役割がよく分からない。**アイドルなのに、why do they stream games all day?。**

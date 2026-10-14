@@ -10,6 +10,9 @@ tags: ["ホロライブ","カバー株式会社","組織構造","人的資本","
 keywords: ["社員数","従業員740人","正社員735人","事業部門","スタジオ","タレントマネージャー","マーチャンダイジング","営業利益","配信制作","ガバナンス","公正取引委員会"]
 grow: 5
 abstract: "ホロライブの運営会社カバーは、2026年6月末の決算説明資料で従業員740人、3月末の有価証券報告書で正社員735人を公表。四つの職種群、事業所別の人員、事業分野別の売上を混同せず、制作・商品・法務の仕事がどうつながるかを解説。約29,000本の配信を支える仕組みと組織の課題を2026年10月時点で検証する。"
+series: "ホロライブを読み解く"
+seriesId: "hololive-explained"
+seriesOrder: 2
 ---
 
 # One performer on screen, 740 people behind it――カバー株式会社の会社・組織を知る
@@ -17,6 +20,9 @@ abstract: "ホロライブの運営会社カバーは、2026年6月末の決算�
 *Understanding COVER through people, workflow, revenue, studios, and governance*
 
 *Information cutoff: October 14, 2026. Verified disclosures, illustrative workflows, and interpretation are kept distinct.*
+
+
+*First essay：[ホロライブ入門――Why do virtual idols stream games?](https://silovar-uk.github.io/myessays/#/essay/hololive-idol-gaming-streaming-relationship-system)。*
 
 ## 一年に2万9,000本以上。画面に一人、会社に740人
 

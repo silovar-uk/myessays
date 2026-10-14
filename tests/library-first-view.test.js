@@ -30,3 +30,12 @@ test('Density stylesheet cache token is current', () => {
   const html = read('index.html');
   assert.match(html, /ui-enhancements\.css\?v=20260928-2/);
 });
+
+test('Latest front-page cards reserve room for a recently revised article', () => {
+  const app = read('app.js');
+  const html = read('index.html');
+  assert.match(app, /\.filter\(e => e\.updated && e\.created && String\(e\.updated\) > String\(e\.created\)\)/);
+  assert.match(app, /if \(revised\.length\) addUnique\(revised\[0\]\)/);
+  assert.match(app, /新着・最近改訂した論考/);
+  assert.match(html, /app\.js\?v=20261014-latest-revisions-1/);
+});

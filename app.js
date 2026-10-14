@@ -342,12 +342,31 @@ function filteredEssays() {
 }
 
 function latestEssayIds() {
-  return new Set(
-    [...state.essays]
-      .sort((a,b)=>String(b.created||'').localeCompare(String(a.created||'')))
-      .slice(0,4)
-      .map(e=>e.id)
+  const newest = [...state.essays].sort((a, b) =>
+    String(b.created || '').localeCompare(String(a.created || ''))
+      || String(b.updated || '').localeCompare(String(a.updated || ''))
   );
+
+  // A substantial revision should be discoverable without changing its original creation date.
+  const revised = [...state.essays]
+    .filter(e => e.updated && e.created && String(e.updated) > String(e.created))
+    .sort((a, b) =>
+      String(b.updated).localeCompare(String(a.updated))
+        || String(b.created).localeCompare(String(a.created))
+    );
+
+  const featured = [];
+  const addUnique = essay => {
+    if (essay?.id && !featured.some(item => item.id === essay.id)) featured.push(essay);
+  };
+
+  // Reserve one of the four front-page cards for a recently revised essay.
+  // If there are no revisions, all four cards show newly created essays.
+  if (revised.length) addUnique(revised[0]);
+  newest.forEach(essay => {
+    if (featured.length < 4) addUnique(essay);
+  });
+  return new Set(featured.slice(0, 4).map(essay => essay.id));
 }
 
 function activeFilterCount() {
@@ -367,7 +386,7 @@ function syncToolbarState() {
 function renderFeaturedCard(e) {
   return `
     <article class="featured-card" data-id="${escapeHtml(e.id)}" tabindex="0" role="link" aria-label="${escapeHtml(e.title)}を読む">
-      <div class="featured-meta"><span>${escapeHtml(e.type || 'Essay')}</span><span>${formatDate(e.created)}</span></div>
+      <div class="featured-meta"><span>${escapeHtml(e.type || 'Essay')}</span><span>${e.updated && e.created && e.updated > e.created ? `改訂 ${formatDate(e.updated)}` : formatDate(e.created)}</span></div>
       <h2>${escapeHtml(e.title)}</h2>
       <p class="featured-abstract">${escapeHtml(e.abstract || '')}</p>
       <div class="featured-footer">
@@ -421,7 +440,7 @@ function renderLibrary() {
 
   const featuredHtml = featured.length ? `
     <section class="library-section">
-      <div class="section-heading"><strong>Latest</strong><span>新しく追加した論考</span></div>
+      <div class="section-heading"><strong>Latest</strong><span>新着・最近改訂した論考</span></div>
       <div class="featured-grid">${featured.map(renderFeaturedCard).join('')}</div>
     </section>` : '';
   const archiveHtml = archive.length ? `
