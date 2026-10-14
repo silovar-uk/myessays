@@ -133,7 +133,7 @@ abstract: "市場規模という言葉は、売上高、取引総額、消費者
 
 これが**制約を順番に入れる推計**だ。ただし、15団体という契約見込みにも証拠がない。導入済み数、提案先数、見積り承諾率、販売に要する期間などと結びつけて初めて事業計画になる。獲得可能市場は、単に「提供可能市場の何％」と置くより、営業経路から検証するほうが筋がよい。
 
-二つの経路で推計した結果を突き合わせ、違いの原因を調べる作業を**複数手法による照合（トライアンギュレーション：triangulation）**という。ただし、**独立した資料や仮定による照合**でなければ、誤りを一緒に再生産する。出典：[米国中小企業庁の市場検証項目](https://www.sba.gov/counseling/plan-your-business/) ／ [世界銀行の市場規模推計教材（原典案内）](https://beamexchange.org/documents/5832/2303_Discerning-Demand_A-Guide-to-Scale-driven-Product-Development-and-Introduction.pdf)
+二つの経路で推計した結果を突き合わせ、違いの原因を調べる作業を**複数手法による照合（トライアンギュレーション：triangulation）**という。ただし、**独立した資料や仮定による照合**でなければ、誤りを一緒に再生産する。出典：[米国中小企業庁の市場検証項目](https://www.sba.gov/counseling/plan-your-business/) ／ [市場規模推計の実務ガイド](https://beamexchange.org/documents/5832/2303_Discerning-Demand_A-Guide-to-Scale-driven-Product-Development-and-Introduction.pdf)
 
 ## 8. もう一段疑う――そもそも年間12件、15万円で買われるのか
 
