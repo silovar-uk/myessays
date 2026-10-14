@@ -3,7 +3,7 @@ id: hololive-idol-gaming-streaming-relationship-system
 title: "アイドルなのに、why do they stream games all day?――ホロライブ入門"
 subtitle: "バーチャルユーチューバー（VTuber）、streaming、company、fan culture、history and criticismを「そもそも」から理解する"
 created: "2026-09-29"
-updated: "2026-09-30"
+updated: "2026-10-14"
 type: "リサーチエッセイ"
 status: "完成"
 tags: ["ホロライブ", "バーチャルユーチューバー", "配信文化", "ファン文化", "コンテンツ産業", "カバー"]
@@ -23,7 +23,7 @@ abstract: "ホロライブとは何かを、バーチャルユーチューバー
 
 最初、私はこれを「巨大なIP operating system」と呼べば片づくと思った。実際、カバー自身もバーチャルユーチューバー（VTuber）の知的財産を育て、複数媒体展開（media mix）へ広げる事業を説明している。だが、歴史と失敗例まで調べると、その言い方も少し冷たすぎた。ホロライブの強さも、たびたび起きた摩擦も、知的財産そのものより**person-to-person、person-to-company、person-to-rights-holderのあいだを、キャラクター越しにどう結び続けるか**という問題に集まっていた。
 
-> **Information cutoff：2026年9月30日**
+> **Information cutoff：2026年10月14日**
 > 本稿はカバー、ホロライブプロダクション、公正取引委員会などの一次情報を中心に、報道記事と研究資料を照合した。個々のタレントの人格や非公開の事情は推測せず、公開された制度・発言・出来事だけを扱う。
 
 参照：[カバー「会社沿革」](https://cover-corp.com/company) ／ [カバー「バーチャルユーチューバー（VTuber）プロダクション運営」](https://cover-corp.com/business/vtuber) ／ [キズナアイ公式「経歴（BIOGRAPHY）」](https://kizunaai.com/biography/)
@@ -96,7 +96,15 @@ abstract: "ホロライブとは何かを、バーチャルユーチューバー
 
 そのため、事業の本質を一本のsales funnelだけで描くより、**同じ人格を中心に、公式とファンが別々の媒体で文脈を増やし、その文脈が次の配信へ戻ってくる循環**として見るほうが近い。ホロライブの商品価値は「キャラクター画像」だけでなく、長い時間をかけてshared historyにも宿っている。
 
-参照：[カバー「事業紹介」](https://cover-corp.com/en/business) ／ [ホロライブプロダクション「二次創作ガイドライン（fan derivative works guidelines）」](https://hololivepro.com/terms/) ／ [ホロライブプロダクション「よくある質問」](https://hololivepro.com/question/)
+**Where does the money actually come from?** COVER's revenue for the fiscal year ended March 2026 was 493億3,000万円, with operating profit of 70億5,600万円. Revenue rose from 434億100万円 a year earlier, while operating profit fell from 80億100万円. Growing popularity does not automatically mean growing profit. Concert production, staff, studios, inventory, and distribution all have real costs.
+
+The April–June 2026 quarter provides a more concrete breakdown. Total revenue of 88億2,500万円 consisted of four revenue streams: ①配信・コンテンツ（streaming/content）20億9,200万円, ②ライブ・イベント（concerts/events）9億800万円, ③商品販売（merchandising）45億4,600万円, and ④ライセンス・企業協業（licensing/collaborations）12億7,900万円. Merchandise was the largest category in that quarter. A VTuber company is not necessarily funded mainly by video advertising. But **quarterly revenue mix is not annual revenue mix**, and none of these figures reveals an individual talent's earnings.
+
+The quarter also showed an 8.3% year-on-year revenue decline and a 33.0% decline in operating profit. Management cited changes in the talent roster, product availability and inventory operations, and trading-card release timing. At the same time, events grew 109.6% and licensing/collaborations 8.2% year on year. Within one company, one business line can accelerate while another contracts. So we must keep subscriber counts, revenue, profit, business categories, and time periods separate.
+
+For comparison, エニーカラー（ANYCOLOR）, the operator of にじさんじ（NIJISANJI）, also develops merchandising, events, and corporate collaborations around livestreaming talent. Their talent portfolios and operating systems are not identical, however. The shortcut “hololive is idols; NIJISANJI is streamers” is useful only up to a point: both have music and gaming. A better comparison asks **who produces what, who supports it, and where revenues and costs arise**, rather than treating brand images as exclusive categories.
+
+参照：[カバー「事業紹介」](https://cover-corp.com/en/business) ／ [ホロライブプロダクション「二次創作ガイドライン（fan derivative works guidelines）」](https://hololivepro.com/terms/) ／ [ホロライブプロダクション「よくある質問」](https://hololivepro.com/question/) ／ [COVER「2027年3月期第1四半期決算説明会（Financial Results Briefing）」](https://finance.logmi.jp/en/articles/385775) ／ [決算短信データ（2026年3月期）](https://disclosure.catr.jp/companies/ead1c/81497/tdnet/4142a/752123) ／ [ANYCOLOR「事業紹介（Services）」](https://www.anycolor.co.jp/service)
 
 ## 6. 「バーチャル」は省力化ではない――見えないところで技術者、イラストレーター、モデル制作者、権利担当が増える
 
@@ -135,7 +143,13 @@ abstract: "ホロライブとは何かを、バーチャルユーチューバー
 
 面白いのは、こうした語が「work-centered viewing」の語彙より、「staying with the same person over time」語彙に近いことである。枠、推し、卒業、記念日。作品は完結して棚に置けるが、配信文化は予定表の上で進む。**ホロライブを理解する語彙そのものが、コンテンツよりrelationship timeを数えている。**
 
-参照：[カバー公式ノート（note）「配信活動終了（conclusion of streaming activities）について」](https://note.cover-corp.com/n/ne3a8b7a553c0) ／ [ホロライブプロダクション「二次創作ガイドライン（fan derivative works guidelines）」](https://hololivepro.com/terms/)
+**Here is a small beginner's experiment.** You do not need to sit through a three-hour stream. Choose one short gaming or chatting clip, one song video, and one three-dimensional concert video from official channels, then watch five minutes of each. This is an observation exercise, not a promise that everyone will become a fan.
+
+In a gaming or chatting stream, watch how the performer responds in real time, not just what happens on screen. In the song, focus on voice and musical expression as a finished work. At the concert, look for costumes, camera work, lighting, and audience participation. Together, these three samples reveal one person moving between **everyday conversation, a produced work, and a shared occasion**. It is a quick way to understand the format before learning all the lore.
+
+You can also begin with different talents: ときのそら for the early history, 星街すいせい for music, or 宝鐘マリン and 白上フブキ for different styles of streaming and programming. These are entry points rather than a ranking. Discovering what you personally enjoy is more helpful than memorizing names or fan vocabulary first.
+
+参照：[カバー公式ノート（note）「配信活動終了（conclusion of streaming activities）について」](https://note.cover-corp.com/n/ne3a8b7a553c0) ／ [ホロライブプロダクション「二次創作ガイドライン（fan derivative works guidelines）」](https://hololivepro.com/terms/) ／ [COVER「VTuber activities and live events」](https://cover-corp.com/en/business/vtuber)
 
 ## 8. 「炎上」を五つに分解すると、problemの多くはcharacterではなくinterfaceで起きている
 
@@ -209,7 +223,13 @@ global expansionの難しさは、2020年の台湾をめぐる問題に凝縮さ
 
 ホロライブが10周年へ向かうときに問われるのは、何人増やせるかだけではない。どの活動を会社で支え、どこから個人へ渡し、何をやめ、どこをstandardizeし、どんな関係だけは守るのか。その選別の質が、次の十年を決める段階に入っている。
 
-参照：[カバー「バーチャルユーチューバー（VTuber）プロダクション運営」](https://cover-corp.com/business/vtuber) ／ [カバー「ホロライブドリームズ（hololive Dreams）正式サービス開始」](https://cover-corp.com/news/detail/20260723-01) ／ [カバー「ホロアース サービス終了」](https://cover-corp.com/news/detail/20260514-01) ／ [カバー「ホロスターズ運営体制の変更」](https://cover-corp.com/news/detail/c2026040301) ／ [カバー「ホロスターズ一部タレントの配信活動終了（conclusion of streaming activities）」](https://cover-corp.com/news/detail/c2026052601) ／ [カバー「スタジオ・ステラ（Studio STELLAR）設立」](https://cover-corp.com/news/detail/c2026032201) ／ [カバー「10周年に向けたプロダクションリニューアル」](https://cover-corp.com/news/detail/20260907-01)
+That shift became more visible in September 2026. COVER announced a gradual move toward a unified “hololive” brand, unveiled an updated look for ときのそら, and said future visual updates would be considered individually with each talent. It also introduced the home-streaming application 「ホロライブ・ラク（hololive raku）」. Building a standalone virtual world and transferring the technologies developed there into everyday streaming are two different strategic choices.
+
+On September 24 and 25, the new four-member unit 「アソビ★まわり隊！」made its debut broadcasts. The previously cited figure of 78 affiliated VTubers is **a June 2026 snapshot**, not a live count for October. A reader must distinguish a statistical reference date from subsequent debuts and departures. It sounds dull, but it is a necessary habit when studying a fast-moving talent business.
+
+At the August 2026 earnings briefing, the company said it would bring Holoearth technology and know-how into existing businesses and focus its resources. Ending a standalone service does not necessarily mean abandoning the technology beneath it. Yet we should not assume that every promised feature has already been shipped. What was announced, what was released, and what viewers actually use are different levels of evidence.
+
+参照：[カバー「バーチャルユーチューバー（VTuber）プロダクション運営」](https://cover-corp.com/business/vtuber) ／ [カバー「ホロライブドリームズ（hololive Dreams）正式サービス開始」](https://cover-corp.com/news/detail/20260723-01) ／ [カバー「ホロアース サービス終了」](https://cover-corp.com/news/detail/20260514-01) ／ [カバー「ホロスターズ運営体制の変更」](https://cover-corp.com/news/detail/c2026040301) ／ [カバー「ホロスターズ一部タレントの配信活動終了（conclusion of streaming activities）」](https://cover-corp.com/news/detail/c2026052601) ／ [カバー「スタジオ・ステラ（Studio STELLAR）設立」](https://cover-corp.com/news/detail/c2026032201) ／ [カバー「10周年に向けたプロダクションリニューアル」](https://cover-corp.com/news/detail/20260907-01) ／ [COVER「2026年9月の刷新」](https://cover-corp.com/news/detail/20260907-01) ／ [COVER「アソビ★まわり隊！Debut」](https://cover-corp.com/news/detail/20260918-01) ／ [FY2027/3 Q1 Earnings](https://finance.logmi.jp/en/articles/385775)
 
 ## 13. 結局、ゲームをしている時間こそが、ライブを「その人のライブ」に変えている
 
@@ -249,3 +269,8 @@ global expansionの難しさは、2020年の台湾をめぐる問題に凝縮さ
 - カバー株式会社「スタジオ・ステラ（Studio STELLAR）設立」: https://cover-corp.com/news/detail/c2026032201
 - カバー株式会社「ホロスターズ運営体制の変更」: https://cover-corp.com/news/detail/c2026040301
 - カバー株式会社「9周年・10周年プロジェクト」: https://cover-corp.com/news/detail/20260907-01
+- COVER「FY2026/3 results（決算短信データ）」: https://disclosure.catr.jp/companies/ead1c/81497/tdnet/4142a/752123
+- COVER「FY2027/3 Q1 financial results briefing」: https://finance.logmi.jp/en/articles/385775
+- ANYCOLOR「にじさんじ／Services」: https://www.anycolor.co.jp/service
+- COVER「September 2026 brand renewal and streaming app」: https://cover-corp.com/news/detail/20260907-01
+- COVER「アソビ★まわり隊！debut」: https://cover-corp.com/news/detail/20260918-01
