@@ -100,7 +100,7 @@ Will a camera help? Sometimes. 映像が危険の把握、成長の理解、記�
 
 あの椅子は、運動の反対側にあるものではなかった。It may be part of what makes participation possible. スポーツの価値は、身体を動かす瞬間だけでは決まらない。And the value of video may begin with someone standing—or sitting—outside the frame.
 
-## Sources and limitations／出典と限界
+## 調査の出典と限界
 
 - [関市・屋内遊び場調査](https://www.city.seki.lg.jp/0000021642.html)／[原資料PDF](https://www.city.seki.lg.jp/cmsfiles/contents/0000021/21642/syousai.pdf)
 - [スポーツ庁・スポーツ実施状況調査](https://www.mext.go.jp/sports/b_menu/houdou/jsa_00234.html)
