@@ -7,7 +7,7 @@ updated: "2026-10-16"
 type: "リサーチエッセイ"
 status: "完成"
 tags: ["株式会社ポケモン", "The Pokémon Company International", "ポケモン", "任天堂", "知的財産", "English Mix"]
-keywords: ["The Pokémon Company", "TPCi", "Nintendo", "Creators", "GAME FREAK", "IP", "Licensing", "Localization", "Vertical Integration"]
+keywords: ["The Pokémon Company", "TPCi", "Nintendo", "Creatures", "GAME FREAK", "IP", "Licensing", "Localization", "Vertical Integration"]
 grow: 5
 abstract: "Why does Pokémon need a company in Japan and another in the US? 日本語を足場に、三社の権利関係、米国でアニメを先行させた戦略、海外のカード印刷・流通、2026年決算と批判を理解するEnglish Mix。"
 ---
