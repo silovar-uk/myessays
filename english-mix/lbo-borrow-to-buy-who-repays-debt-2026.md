@@ -11,6 +11,9 @@ keywords: ["Leveraged Buyout", "LBO Model", "Cash Flow", "Enterprise Value", "IR
 grow: 5
 abstract: "What happens when a company is bought largely with borrowed money? LBOの仕組みを100億円の仮想買収で検証し、返済原資、レバレッジ、1980年代の熱狂、企業・従業員への影響、日本の金融庁レポートをつなぐ。数字の裏にあるassumptionsを読み解く記事。"
 ---
+# 買った会社が借金を返す？――Inside a Leveraged Buyout
+
+## 100億円の仮想買収から、1980年代の熱狂、金融庁の警告、コンサルの実務まで
 
 # 買った会社が借金を返す？――Inside a Leveraged Buyout
 
@@ -22,35 +25,59 @@ This essay uses a hypothetical 100億円 deal, then checks history and risks aga
 
 ## 1. LBOでは「買収価格」と「買い手の自己資金」が一致しない
 
-**LBO means Leveraged Buyout.** Imagine buying a business with enterprise value (EV) of 100億円. Instead of paying all 100億円 from your own pocket, you put in 30億円 of equity and arrange 70億円 of debt. Assume the target initially has no debt or excess cash.
+**LBO means Leveraged Buyout.** Imagine buying a business with enterprise value (EV) of 100億円.
+
+Instead of paying all 100億円 from your own pocket, you put in 30億円 of equity and arrange 70億円 of debt.
+
+Assume the target initially has no debt or excess cash.
 
 The leverage works like a financial lever: a relatively small equity commitment controls a larger asset. これは投資の規模を広げる手法であり、事業価値を保証する方法ではない。An expensive acquisition remains expensive even if lenders finance it. [Kaplan & Strömberg, Journal of Economic Perspectives](https://www.aeaweb.org/articles?id=10.1257/jep.23.1.121)
 
 ## 2. 100億円の会社が成長しなくても、出資者の持分は増えることがある
 
-Let's do the arithmetic. **Entry EV: 100億円. Entry debt: 70億円. Entry equity: 30億円.** Suppose the business pays down debt to 40億円 and the exit EV remains 100億円, ignoring transaction costs, taxes, additional cash and debt.
+Let's do the arithmetic. 企業価値100億円の買収で、借入による株主価値の変化を考える。
 
-Exit equity value = 100 − 40 = **60億円**. MOIC (Multiple on Invested Capital) = 60 ÷ 30 = **2.0x**. Enterprise value did not increase; the equity slice expanded as debt fell.
+**Illustrative assumptions（説明用の仮定）**
 
-But financial leverage magnifies losses, too. Exit EV of 80億円 leaves equity of 40億円 and MOIC of roughly 1.33x. At EV of 70億円 with the same remaining debt, equity returns to 30億円: 1.0x. **Leverage doesn't manufacture value. It changes how value changes are borne by equity.**
+- Entry enterprise value (EV): 100億円
+- Equity financing: 30億円
+- Debt financing: 70億円
+- Exit debt balance after repayment: 40億円
+- Exit EV: 100億円, assuming no excess cash, additional debt, taxes or transaction costs
+
+At entry, equity value is 100 − 70 = **30億円**. At exit it becomes 100 − 40 = **60億円**. MOIC (Multiple on Invested Capital) = 60 ÷ 30 = **2.0x**. 企業価値が横ばいでも、deleveragingによって株式持分の価値が増える場合がある。
+
+The downside also grows. With exit EV of 80億円, remaining equity value is 40億円 and MOIC roughly 1.33x. If exit EV is 70億円, equity value is 30億円 and MOIC 1.0x. 売却価格の変動が自己資本へ強く伝わる。
+
+**Leverage does not manufacture value.** 借入は、事業価値の変化を株主がどれほど受けるかを変える。That is why returns and risks rise together.
 
 ## 3. 利益が出ていても、借金を返せない会社はあり得る
 
 The hidden question is: **Where does the cash actually come from?** EBITDA is useful for comparing operating profitability, but it is not freely available cash.
 
-A simplified example: EBITDA 15億円, capital expenditure 4億円, cash taxes 2億円, and increased working capital 1億円. That leaves roughly 8億円 before debt service. At 7% interest on 70億円, annualized opening-balance interest is 4.9億円. Add 6億円 scheduled principal repayment and debt service is around 10.9億円. **Cash shortfall: 2.9億円.**
+A simplified example: EBITDA 15億円, capital expenditure 4億円, cash taxes 2億円, and increased working capital 1億円. That leaves roughly 8億円 before debt service.
+
+At 7% interest on 70億円, annualized opening-balance interest is 4.9億円.
+
+Add 6億円 scheduled principal repayment and debt service is around 10.9億円. **Cash shortfall: 2.9億円.**
 
 税効果、期中の残高変化、正確な支払スケジュールは省略した例。それでも、the distinction survives: **profitable is not the same as cash-generative enough to repay debt.** Cash flow, not a pretty EBITDA chart, keeps lenders paid.
 
 ## 4. 買収に使う会社と、買収される会社は必ずしも同一ではない
 
-A buyer may form an **SPC or SPV (special-purpose company)**, fund it with equity and acquisition loans, and let it acquire shares in the target. A merger or reorganization may follow, but not automatically.
+A buyer may form an **SPC or SPV (special-purpose company)**, fund it with equity and acquisition loans, and let it acquire shares in the target.
 
-Senior loans generally have a higher priority than mezzanine capital. Covenants are contractual restrictions, including financial-maintenance tests in some deals. 「誰が借りる」「何を担保にする」「どの会社の資金で返す」を別々に確認する必要がある。The cash-flow story and the legal structure are related, not identical.
+A merger or reorganization may follow, but not automatically.
+
+Senior loans generally have a higher priority than mezzanine capital. Covenants are contractual restrictions, including financial-maintenance tests in some deals.
+
+「誰が借りる」「何を担保にする」「どの会社の資金で返す」を別々に確認する必要がある。The cash-flow story and the legal structure are related, not identical.
 
 ## 5. 1980年代、LBOはウォール街の象徴になった
 
-The boom of the 1980s made leveraged buyouts a Wall Street symbol. The 1988 battle for **RJR Nabisco**, at around $24.9 billion, became an emblem of the era. The Chicago Fed wrote in January 1989 that LBOs represented roughly **7–8% of US M&A transactions by number, but over 20% by value**. [Chicago Fed, 1989](https://www.chicagofed.org/publications/chicago-fed-letter/1989/january-17) / [UPI contemporary report](https://www.upi.com/Archives/1989/11/30/Editors-longer-version-moving-financial-wire/8740628405200/)
+The boom of the 1980s made leveraged buyouts a Wall Street symbol. The 1988 battle for **RJR Nabisco**, at around $24.9 billion, became an emblem of the era.
+
+The Chicago Fed wrote in January 1989 that LBOs represented roughly **7–8% of US M&A transactions by number, but over 20% by value**. [Chicago Fed, 1989](https://www.chicagofed.org/publications/chicago-fed-letter/1989/january-17) / [UPI contemporary report](https://www.upi.com/Archives/1989/11/30/Editors-longer-version-moving-financial-wire/8740628405200/)
 
 The crucial question wasn't only whether shareholders profited. **Did buyouts create new wealth, or shift wealth away from creditors?** 当時から、value creationとvalue transferの区別が問題だった。
 
@@ -60,7 +87,9 @@ After the 2000s boom and the financial crisis, US supervisors updated leveraged-
 
 Supporters point to ownership discipline and operational improvement; critics worry about debt pressure, layoffs and underinvestment. Empirical studies suggest neither slogan is universally true.
 
-In a large US study (2019, revised 2024), employment after buyouts fell **12% over two years for previously public targets**, but rose **15% for previously private targets**, relative to matched controls. The effects varied with deal type and credit conditions. [Davis et al., NBER](https://www.nber.org/papers/w26371)
+In a large US study (2019, revised 2024), employment after buyouts fell **12% over two years for previously public targets**, but rose **15% for previously private targets**, relative to matched controls.
+
+The effects varied with deal type and credit conditions. [Davis et al., NBER](https://www.nber.org/papers/w26371)
 
 Another study covering 1,157 buyouts finds that borrowing costs and credit conditions strongly influence debt levels and purchase prices. [Axelson et al., NBER](https://www.nber.org/papers/w15952) つまり、borrow moreとcreate more valueは同義ではない。Deal structure, business quality and economic timing matter.
 
@@ -78,11 +107,20 @@ The US benchmark that **debt/EBITDA above 6x raises concern in many industries**
 
 ## 8. LBO案件でコンサルタントが調べるべきなのは、倍率より「仮説のつなぎ目」である
 
-「LBOをやってる」は、実際の買収そのものかもしれないし、**building an LBO model**（買収・返済・売却を一体で予測する財務モデルを作る作業）かもしれない。Context determines the meaning.
+「LBOやってる」は買収そのもの、due diligence、valuation、financial advisory、または **building an LBO model**（財務モデルの作成）を指す可能性がある。Context decides.
 
-A useful workflow is: **business due diligence → cash-flow forecast → valuation → debt sizing and terms → equity returns → downside stress tests.** 見るべきは、売上の確からしさ、更新契約、設備投資、現金化のタイミング、金利、返済期限、契約制限だ。
+A useful LBO analysis connects six stages, but each requires evidence:
 
-For a sports school operator, membership churn, recurring payment collection, coach costs and facility maintenance all affect repayment capacity. **Revenue growth is not automatically free cash flow.** 実態のある運営指標を、金融モデルへ接続することがコンサルタントの仕事になる。
+1. **Business due diligence:** 顧客、売上、継続率、競争力を確認する。
+2. **Cash-flow forecast:** 売上、利益、設備投資、運転資金、税金を組み合わせる。
+3. **Valuation:** 類似会社倍率や将来キャッシュフローを点検する。
+4. **Debt structure:** 金利、返済期限、担保、コベナンツを検証する。
+5. **Equity returns:** 売却価格と純有利子負債からMOIC・IRRを求める。
+6. **Downside stress:** 売上減、金利上昇、exit multiple低下を試す。
+
+The handoffs matter more than the labels. **Does the operating forecast actually support the debt schedule?** モデル作成と実際の融資契約・買収実行は別の作業だ。
+
+For a sports school operator, churn, coach costs, facility capex, and payment collection affect debt-service capacity. **Revenue growth is not automatically free cash flow.** ここに、経営現場を理解したコンサルタントの役割がある。
 
 ## 9. 会議で役立つ用語は「価値」「資金」「返済」「成果」に分けて覚える
 
@@ -102,18 +140,29 @@ All three can be expressed in “times”: EV/EBITDA, debt/EBITDA, and MOIC. で
 
 ## 10. 借入の魔法に見えたものは、未来への厳しい約束だった
 
-LBOは、ownership can be financed by a claim on future cash flowsという仕組みだ。Deleveraging may increase equity value even without EV growth. Yet cash flows can disappoint, interest rates can move, and reinvestment can be unavoidable.
+LBOは、ownership can be financed by a claim on future cash flowsという仕組みだ。Deleveraging may increase equity value even without EV growth.
+
+Yet cash flows can disappoint, interest rates can move, and reinvestment can be unavoidable.
 
 The story began with a quirky question: **Why can the company being bought help finance the price paid to buy it?** It ends with a broader one: who receives the business's future cash, when, and under what conditions?
 
 派手なMOICのセルより先に見るべきは、**where repayment cash is assumed to come from**. The financial model is only as defensible as that answer.
 
-## Sources and research limits
+## 調査ノート：一次資料からの再検証と、実務での追加調査
 
-Primary and original materials: [Bank of Japan review (2024)](https://www.boj.or.jp/research/wps_rev/rev_2024/rev24j08.htm); [FSA domestic LBO loan report (2025)](https://www.fsa.go.jp/news/r6/ginkou/20250630-2/02.pdf); [Federal Reserve leveraged-lending guidance (2013)](https://www.federalreserve.gov/frrs/guidance/interagency-guidance-on-leveraged-lending.htm); [Chicago Fed (1989)](https://www.chicagofed.org/publications/chicago-fed-letter/1989/january-17); [Kaplan & Strömberg (2009)](https://www.aeaweb.org/articles?id=10.1257/jep.23.1.121); [Davis et al. (2019/2024)](https://www.nber.org/papers/w26371); [Axelson et al. (2010)](https://www.nber.org/papers/w15952).
+**Verified sources and original research（確認済み資料）**
 
-実案件の借入契約や非公開モデルを検証したわけではない。All numerical deal assumptions are illustrative.
+- [Bank of Japan review (2024)](https://www.boj.or.jp/research/wps_rev/rev_2024/rev24j08.htm): 金利・信用リスク。
+- [FSA domestic LBO report (2025)](https://www.fsa.go.jp/news/r6/ginkou/20250630-2/02.pdf): 買収価格、事業計画、融資審査。
+- [Federal Reserve lending guidance (2013)](https://www.federalreserve.gov/frrs/guidance/interagency-guidance-on-leveraged-lending.htm): 与信条件・ストレステスト。
+- [Chicago Fed (1989)](https://www.chicagofed.org/publications/chicago-fed-letter/1989/january-17): 社債権者と株主の利害。
+- [Kaplan & Strömberg (2009)](https://www.aeaweb.org/articles?id=10.1257/jep.23.1.121): LBOの仕組みと歴史。
+- [Davis et al. (2019/2024)](https://www.nber.org/papers/w26371): 雇用・生産性の違い。
+- [Axelson et al. (2010)](https://www.nber.org/papers/w15952): 借入条件と価格の関係。
 
-## Reusable analysis prompt
+**Research limits.** 本稿では特定案件の非公開契約や財務モデルは確認していない。The 30億円 equity and 7% interest are hypothetical—not market averages. 個別案件には月次キャッシュフローや借入契約の再検証が必要だ。
+
+## 再利用可能な分析プロンプト
 
 > Assess whether a proposed acquisition can support an LBO. Separate sourced facts, assumptions, calculations and interpretations. Evaluate business quality, cash conversion, valuation, sources and uses, annual debt amortization, interest and covenants, exit proceeds, MOIC, IRR, and downside scenarios. Distinguish enterprise value from equity value and net debt. Identify the three weakest assumptions and the primary data needed to test them.
+
