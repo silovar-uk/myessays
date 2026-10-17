@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "blank-cell-right-not-to-decide": {
+      "en-mix": "english-mix/blank-cell-right-not-to-decide.md"
+    },
     "meaning-and-letting-pass-two-spoons": {
       "en-mix": "english-mix/meaning-and-letting-pass-two-spoons.md"
     },
