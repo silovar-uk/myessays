@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "is-it-quiet-now-here-i-am": {
+      "en-mix": "english-mix/is-it-quiet-now-here-i-am.md"
+    },
     "urawa-mito-20261017-one-shot-twenty-eight-questions": {
       "en-mix": "english-mix/urawa-mito-20261017-one-shot-twenty-eight-questions.md"
     },
