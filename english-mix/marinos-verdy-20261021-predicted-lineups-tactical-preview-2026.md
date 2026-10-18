@@ -54,6 +54,8 @@ The earlier infographic failed a basic data check. The official match page place
 
 ![マリノスが前進する経路、ヴェルディが守備を始める位置、ボール奪取後の2本目のパスを対照させた自作戦術概念図](assets/2026-10-19-marinos-verdy-three-battles.svg "監督・選手の発言を基に設定した観戦用の概念図。実際の走行軌跡ではない。")
 
+![両監督の公式会見から、マリノスは相手中盤の背後を使うこと、ヴェルディは奪った後に前進することを課題として整理した発言要旨の自作画像](assets/2026-10-19-marinos-verdy-coaches-voices.svg "コリカ監督と相馬監督の10月17日公式会見を筆者が要約。直接引用ではない。")
+
 To describe Soma's Verdy simply as a team that always presses high would miss the key detail. Sporting director **Atsuhiko Ejiri (江尻篤彦)** discussed reviving Verdy's collective pressure and ball recovery high up the pitch. Defender **Naoki Hayashi (林尚輝)**, meanwhile, described inviting the opponent into selected areas before regaining the ball. These ideas are not necessarily incompatible: **wanting to win high is different from pressing the very first pass every time**. [Soma unveiling](https://www.verdy.co.jp/beleza/news/15291) / [J.League preview](https://www.jleague.jp/match/j1/2026/101708/)
 
 ここでマリノスの課題が重なる。コリカ監督は千葉戦後、相手の前方からの圧力への対応を課題とし、外側の攻撃選手が広がりすぎ、相手中盤の背後に使いたかった空間を十分利用できなかったと説明した。**外へ人を配置することと、外へ相手を動かして内側を使うことは違う**。[マリノス公式・コリカ監督の千葉戦会見](https://www.f-marinos.com/tricolore_plus/article/1562)
