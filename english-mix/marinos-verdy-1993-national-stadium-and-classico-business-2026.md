@@ -112,6 +112,11 @@ The 1993 match opened a brand-new professional league in May. The October 2026 C
 
 Perhaps tradition does not mean preserving everything unchanged. It can also mean making a history legible to people who did not experience its beginning. **The important question is not whether October 21 reproduces 1993. It is what, if anything, the experience will make possible after October 21.**
 
+## 関連する論考 / Related reading
+
+- [Original match preview：マリノス対ヴェルディ、二つの沈黙](https://silovar-uk.github.io/myessays/#/essay/marinos-verdy-20261021-shots-and-silence-2026)
+- [Tactical sequel：保持率58％と攻撃の工程](https://silovar-uk.github.io/myessays/#/essay/marinos-verdy-why-possession-does-not-become-goals-2026)
+
 ## 主な一次資料・未確認事項
 
 - [Ｊリーグデータサイト・1993年5月15日の公式試合記録](https://data.j-league.or.jp/SFMS02/?match_card_id=49)――クラブ名・開始時刻・入場者数・得点。
