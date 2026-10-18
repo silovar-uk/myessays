@@ -50,6 +50,8 @@ relation: "sequel"
 
 ![マリノスが前進する経路、ヴェルディが守備を始める位置、ボール奪取後の2本目のパスを対照させた自作戦術概念図](assets/2026-10-19-marinos-verdy-three-battles.svg "監督・選手の発言を基に設定した観戦用の概念図。実際の走行軌跡ではない。")
 
+![両監督の公式会見から、マリノスは相手中盤の背後を使うこと、ヴェルディは奪った後に前進することを課題として整理した発言要旨の自作画像](assets/2026-10-19-marinos-verdy-coaches-voices.svg "コリカ監督と相馬監督の10月17日公式会見を筆者が要約。直接引用ではない。")
+
 相馬監督のヴェルディを「激しく前から追う」とだけ理解すると、重要な違いを見落とす。クラブの江尻篤彦強化部長は、前線から追って高い位置で奪う従来のヴェルディらしさを回復する方針を説明した。一方、選手の林尚輝は、新体制の守備ではただ追うのではなく、相手を誘導して奪うという趣旨を語っている。**奪いたい場所が高いことと、常に最初のパスから飛び出すことは別**である。[ヴェルディ公式・相馬監督就任会見](https://www.verdy.co.jp/beleza/news/15291)／[Ｊリーグ公式・FC東京戦の見どころ](https://www.jleague.jp/match/j1/2026/101708/)
 
 ここでマリノスの課題が重なる。コリカ監督は千葉戦後、相手の前方からの圧力への対応を課題とし、外側の攻撃選手が広がりすぎ、相手中盤の背後に使いたかった空間を十分利用できなかったと説明した。**外へ人を配置することと、外へ相手を動かして内側を使うことは違う**。[マリノス公式・コリカ監督の千葉戦会見](https://www.f-marinos.com/tricolore_plus/article/1562)
@@ -118,7 +120,7 @@ relation: "sequel"
 - [東京ヴェルディ公式・相馬監督の広島戦会見](https://www.verdy.co.jp/match/info/2026101103/report)：前半・後半の違いと起用上の課題。
 - [Ｊリーグ公式・FC東京戦プレビュー](https://www.jleague.jp/match/j1/2026/101708/)／[ヴェルディ公式・就任会見](https://www.verdy.co.jp/beleza/news/15291)：守備の方向性と継承する戦い方。
 - [マリノス公式・10月21日試合情報](https://www.f-marinos.com/matches/schedule)／[ヴェルディ公式・試合情報](https://www.verdy.co.jp/match/info/2026102107/event)：日時・会場・放送。
-- 図は筆者制作の**仮説図**で、追跡装置による位置情報や監督の配布資料を再現したものではない。画像ファイル：[マリノス予想配置](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-prediction-marinos.svg)／[ヴェルディ予想配置](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-prediction-verdy.svg)／[三つの攻防](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-three-battles.svg)。
+- 図は筆者制作の**仮説図**で、追跡装置による位置情報や監督の配布資料を再現したものではない。画像ファイル：[マリノス予想配置](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-prediction-marinos.svg)／[ヴェルディ予想配置](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-prediction-verdy.svg)／[三つの攻防](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-three-battles.svg)／[監督発言の要旨図](https://silovar-uk.github.io/myessays/assets/2026-10-19-marinos-verdy-coaches-voices.svg)。
 - **未確定**：2026年10月21日の出場選手・配置・結果、福田の負傷程度、ポジション変更の実際、各監督が当日に採る戦術。これらを確定した情報として書いていない。
 
 ## 関連記事
