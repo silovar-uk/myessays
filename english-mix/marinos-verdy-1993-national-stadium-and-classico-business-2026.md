@@ -12,118 +12,115 @@ grow: 5
 abstract: "1993年のＪリーグにはリーグ戦の引き分けがなかった。The inaugural Verdy Kawasaki–Yokohama Marinos match drew 59,626, yet its winner was not the first league champion. 2026年、クラブ名も国立競技場も大会暦も変わったなかで、CLASICOという伝統カードをどう興行へつなぐのかを、チケット販売と公式記録から考える。"
 ---
 
-# No Draws in 1993――国立の「CLASICO」は何を売るのか
+# 1993年の開幕戦には引き分けがなかった――33年後、国立で「伝統の一戦」を売るとはどういうことか
 
-## Same fixture, different names, different stadium, different rules
+## 同じ二つのクラブが対戦するのに、同じものはほとんど残っていない
 
-On **May 15, 1993**, **59,626 people** attended Verdy Kawasaki versus Yokohama Marinos at the National Stadium. It was the opening match of the new J.League. 2026年10月21日、東京ヴェルディと横浜F・マリノスが再び国立の地で対戦する。
-
-But here is the odd detail: in 1993, an ordinary J.League match **could not finish as a draw**. Even at 0–0 after 90 minutes, the teams would play extra time and, if needed, penalties. [J.League historical timeline](https://www.jleague.jp/corporate/about_j/history_j/) / [The original match record](https://data.j-league.or.jp/SFMS02/?match_card_id=49)
+1993年5月15日、国立競技場に**59,626人**が集まった。Ｊリーグの開幕戦、ヴェルディ川崎対横浜マリノス。2026年10月21日にも、東京ヴェルディ対横浜F・マリノスという名前になった両クラブが国立の地で顔を合わせる。ところが、当時のリーグには現在なら当たり前の**「引き分け」という結末がなかった**。[Ｊリーグ・1993年の公式試合記録](https://data.j-league.or.jp/SFMS02/?match_card_id=49)／[Ｊリーグ・公式沿革](https://www.jleague.jp/corporate/about_j/history_j/)
 
 The club names have changed. The physical stadium has changed. The league calendar and rules have changed. それでも横浜F・マリノスは2026年の国立開催を**「CLASICO」**と呼び、歴史的な対戦として販売している。[Marinos ticket announcement](https://www.f-marinos.com/news/ticket/10432)
 
-What exactly is being preserved? A memory of an opening match, the identities of the clubs, or a reason to attend a new event? この問いを競技史、クラブ史、販売実務に分けて調べる。Evidence cutoff: **October 19, 2026**. We do not invent future attendance, ticket revenue or promotional results.
+では、この興行が売っている「伝統」は何なのだろう。昔のものを再現するのか。それとも、変わってしまったもの同士をもう一度つなぐのか。競技の記録とクラブの沿革、チケットや来場者向け施策を行き来しながら考えたい。調査基準日は**2026年10月19日**。試合当日の集客数や売上、来場者の満足度はまだ存在しない結果として扱い、推測しない。
 
-## 1. A goalless draw meant something different in 1993
+## 1. 1993年は、90分で同点なら延長とＰＫで勝敗を決めた
 
 According to J.League's own chronology, the 1993 competition did not accept a draw as a final outcome. Tied after 90 minutes? **Extra time**. The first extra-time goal ended the match under a sudden-death rule. If neither team scored, a **penalty shoot-out** decided the winner. [J.League official history](https://www.jleague.jp/corporate/about_j/history_j/)
 
-In the current J1 league, a 0–0 draw means a point for each team. 横浜F・マリノスは2026年10月10日と17日のリーグ戦で、ともに0–0を記録している。しかし1993年の規則なら、90分で0–0となっても、さらに勝者を決める時間があった。[Cerezo–Marinos](https://www.jleague.jp/match/j1/2026/101008/) / [Chiba–Marinos](https://www.jleague.jp/match/j1/2026/101707/)
+現在のリーグ戦で90分後の0対0といえば勝点1ずつの引き分けになる。例えばマリノスは2026年10月10日のＣ大阪戦と17日の千葉戦で、いずれも0対0を記録した。しかし1993年の制度なら、同点になった時点でまだ試合は終わらない。**同じ「0対0」という表示が持つ意味は、制度によって変わる**。[Ｊリーグ公式・10月10日](https://www.jleague.jp/match/j1/2026/101008/)／[同・10月17日](https://www.jleague.jp/match/j1/2026/101707/)
 
-This does not prove that 1993 produced better football or more satisfied audiences. It proves something narrower and more useful: **even the meaning of a scoreline depends on the rules governing the competition**. A score cannot be detached from the system that produced it.
+勝者を必ず決める制度は観戦体験にも関わる。終了間際の同点を、少なくとも当時のリーグ戦では「勝点を分け合う結果」として固定できなかった。だが、当時の観客が現在の観客より満足した、攻撃的な戦術が増えた、という因果まではここから言えない。制度の変更と体験の違いは記述できても、観客心理への効果は別途調査が必要だ。
 
-## 2. Yokohama won the opener, but Verdy won the first league title
+## 2. 開幕戦は横浜が勝った。しかし初代王者はヴェルディだった
 
-The original match began at **19:29** on May 15 at **National Kasumigaoka Stadium**. Meyer put Verdy ahead after 19 minutes. Everton equalized after 48, and **Ramón Díaz** scored after 59. **Verdy Kawasaki 1–2 Yokohama Marinos.** The official attendance was **59,626**. [J.League Data Site](https://data.j-league.or.jp/SFMS02/?match_card_id=49)
+1993年の試合記録を開こう。**5月15日19時29分開始、国立霞ヶ丘競技場、59,626人。** 試合はヴェルディ川崎の**マイヤー**が先制し、横浜マリノスの**エバートン**と**ラモン・ディアス**が決め、横浜の**2対1**で終わった。[Ｊリーグデータサイト・試合記録](https://data.j-league.or.jp/SFMS02/?match_card_id=49)／[Ｊリーグ・開幕戦についての回想](https://www.jleague.jp/special/heisei_history/)
 
 Such a result invites a simple historical narrative: Yokohama won the first match, so Yokohama set the tone for the new league. しかし、**1993年の年間王者はヴェルディ川崎**。1994年も同クラブが優勝し、横浜マリノスの初優勝は1995年だった。[Official list of champions](https://www.jleague.jp/corporate/about_competitions/tournament_history/)
 
-The memorable opening game and the longer season are different units of evidence. **An iconic moment is not an annual performance measure.** 2026年の一戦も、クラブの全体像を示す象徴にはなれても、一試合で長期的な実力が証明されるわけではない。
+開幕戦の勝敗は歴史の象徴として記憶されやすいが、その一年の競技力を総括しない。これは2026年10月のマリノスとヴェルディを考えるときにも効く警告だ。一試合を「どちらの時代か」を証明する儀式にしない。**歴史を彩る象徴的な一日と、チームの年間の仕事は別の評価単位**だからである。
 
-## 3. Club identity survived changes that a nostalgic headline conceals
+## 3. 1993年のチーム名をそのまま2026年へ置き換えると、歴史の断層が消える
 
-Today's Marinos trace their origin to the **Nissan Motor football team founded in 1972**. They participated in the first J.League season as Yokohama Marinos. In **1999**, Yokohama Marinos **merged with Yokohama Flügels**, becoming Yokohama F. Marinos. [Marinos official club history](https://www.f-marinos.com/club/history)
+横浜マリノスの源流は**1972年創部の日産自動車サッカー部**。1999年には**横浜フリューゲルスと合併**し、横浜F・マリノスとなった。クラブ公式の沿革では、横浜マリノスと横浜フリューゲルスの歴史を別々に記録した後、一つの系譜へつないでいる。[横浜F・マリノス公式・クラブヒストリー](https://www.f-marinos.com/club/history)
 
 Verdy's roots go back to **Yomiuri Soccer Club, founded in 1969**. They appeared in the 1993 opener as Verdy Kawasaki. The club's official record documents its **move to Tokyo in 2001** and adoption of the name Tokyo Verdy 1969. [Tokyo Verdy official history](https://www.verdy.co.jp/content/clubstadium/history)
 
-A merger and a geographical move are not interchangeable events. 合併は二つのクラブの履歴が一つにつながる転換であり、移転は活動する場所と地域との関係を変える転換だ。We cannot infer individual supporters' feelings about those changes without asking them.
+どちらも「同じクラブ」ではある。だが法人、名称、活動地域、ファンの記憶まで、すべてが変わらず連続してきたわけではない。**合併**と**移転**は別の出来事であり、一方は二つのクラブの歴史を統合し、もう一方は活動の地理的な基盤を変更した。これらがそれぞれ誰の経験をどう変えたのかは、当事者への聞き取りなしに断定できない。
 
-Still, this distinction matters. To say "the same two clubs meet again" is true at the level of historical lineage, but incomplete if it implies nothing changed. **Continuity is real, yet continuity includes discontinuities.** That is what gives a tradition depth.
+スポーツではクラブ名に歴史が保存される。しかし名前は履歴書の要約であって、全履歴ではない。**「33年前と同じ二つのクラブ」と言うには、何が残り、何が別のものになったかを明示する責任がある。** 「伝統」はその断層まで読めるとき、単なる懐古から一段先へ進む。
 
-## 4. Verdy's story did not stop when the early titles ended
+## 4. ヴェルディは「昔の王者」のまま止まっていたわけではない
 
 Verdy were relegated to J2 in **2008** and earned their return to J1 through the **2023 promotion play-offs**. Their recent top-flight finishes included **sixth in 2024** and **seventeenth in 2025**. This trajectory is documented in the club's history. [Verdy history](https://www.verdy.co.jp/content/clubstadium/history) / [J.League promotion announcement](https://www.jleague.jp/news/article/26624/)
 
-Marinos, meanwhile, have won the J1 title **five times: 1995, 2003, 2004, 2019 and 2022**. [J.League champions record](https://www.jleague.jp/corporate/about_competitions/tournament_history/)
+一方、マリノスはリーグ公式の優勝記録で**1995、2003、2004、2019、2022年の5度**の年間王者となっている。これをもって2026年のチームに自動的な優位が与えられるわけではない。スポーツのブランドには過去の積み重ねがあるが、ピッチ上の競争は現在の選手と条件で行われる。[Ｊリーグ公式・歴代優勝クラブ](https://www.jleague.jp/corporate/about_competitions/tournament_history/)
 
-The clubs have different kinds of accumulated memory. 一方は複数回の王座を積み重ね、もう一方はかつての頂点から長いＪ２生活を経て戻ってきた。This does not mean one group of fans values history more, or one club has greater moral standing. Such claims would require evidence from the people themselves.
+同じ「名門」でも意味が違う。タイトルを継続的に積み上げた歴史と、昇格・降格を経て競争の場を取り戻した歴史では、支える人が記憶している節目も異なるはずだ。ただしファンの感情をここで代弁することはできない。必要なのは、当事者が何をクラブの核として認識しているかを聞くことだ。
 
-History creates stories, but a current match is played by current squads. **Prestige is a narrative resource, not an extra player on the pitch.**
+## 5. 国立競技場も、1993年と2026年では同じ建物ではない
 
-## 5. The National Stadium is both familiar and physically new
-
-The 1993 fixture took place in the old **National Kasumigaoka Stadium**. The October 2026 match is scheduled at **MUFG Stadium (National Stadium)**, built as a new facility after the old ground was demolished. Both sites belong to the National Stadium's historical landscape, but they are **not the same physical building**. [1993 record](https://data.j-league.or.jp/SFMS02/?match_card_id=49) / [2026 venue information](https://www.f-marinos.com/matches/20261021/event/)
+2026年10月21日の会場は**MUFGスタジアム（国立競技場）**。1993年の会場は**国立霞ヶ丘競技場**。旧施設は解体され、現在の国立競技場は新しい施設として整備された。「同じ国立で再会」という言い方は場所と象徴についての表現であって、建造物の同一性を意味しない。[1993年の公式試合記録](https://data.j-league.or.jp/SFMS02/?match_card_id=49)／[2026年のマリノス試合案内](https://www.f-marinos.com/matches/20261021/event/)
 
 In its stadium-operation announcement, **Mitsubishi UFJ Financial Group** described ambitions for a venue connected to culture, business, communities and society, not solely to sporting competitions. These are stated **plans and aspirations**, not measured commercial outcomes. [MUFG primary announcement](https://www.mufg.jp/dam/pressrelease/2025/pdf/news-20251015-001_ja.pdf)
 
-The name "National Stadium" preserves a familiar landmark. Yet ticketing, seating, food service, facilities and commercial arrangements can change. **A place may carry old memory while supporting a new business model.** This is precisely why the current event's sales materials deserve attention.
+同じ場所の記憶を再利用することはできる。だが観客のアクセス、飲食、観戦設備、開催費用、施設の事業主体は変わり得る。**競技場という名前は記憶を固定するが、そこで成立する興行の仕組みは固定しない。** 2026年の開催を読むには、試合結果だけでなく販売方法も見た方がいい。
 
-## 6. Forty thousand tumblers do not equal forty thousand spectators
+## 6. 先着4万人に贈るタンブラーは、観客が4万人来た証拠ではない
 
-Marinos market the October 21 fixture as a **CLASICO**, explicitly referring to the original J.League opening match. The club announced a colour-changing aluminium tumbler for the first **40,000 eligible attendees**, excluding the away supporters' section. There are also promotional tickets aimed at students and groups. [Ticket sales announcement, September 2](https://www.f-marinos.com/news/ticket/10432) / [Special ticket offers](https://www.f-marinos.com/news/ticket/10433)
+マリノスは10月21日の試合を**「CLASICO」**と銘打って告知し、**ビジターサポーターズシートを除く先着40,000人**へ、冷たい飲み物で見た目が変わるアルミタンブラーを配布すると案内している。さらに仕事帰りの観戦も想定し、グループ向けや学生向けなどの企画チケットを用意した。[横浜F・マリノス公式・2026年9月2日チケット発表](https://www.f-marinos.com/news/ticket/10432)／[企画チケット](https://www.f-marinos.com/news/ticket/10433)
 
 The number looks temptingly comparable to the **59,626 attendance in 1993**. But 40,000 is an announced **giveaway allocation**, not a verified audience total, number of tickets sold or even a confirmed number of gifts distributed. The eligibility conditions also differ. The two numbers cannot support a story of decline or growth.
 
-**Interpretation, not evidence of effect:** a take-home commemorative object may be intended to extend the memory of the occasion beyond the 90 minutes. しかし受け取った人が再来場するか、購入動機として働いたかは、まだ分からない。A promotional idea is not its measured result.
+ではなぜ配るのか。**解釈・仮説**としては、開催の記憶を持ち帰れる物を用意し、観戦体験を一日の試合以外へ延ばそうとしていると読める。しかし購買意欲が増すか、再来場につながるかは検証前。企画の存在と成果は別だ。記念品は企画したから価値が発生するのでなく、受け取った人が後でどう行動するかに意味がある。
 
-## 7. A home fixture can still require a separate ticket
+## 7. 「ホームゲーム」でも、普段のシーズンチケットで入れるとは限らない
 
 The event is formally a **Marinos home match**, but their official information says that the **2026/27 individual season ticket** and the **Tricolore Members QR admission entitlement** are **not valid** for this National Stadium fixture. **Corporate season tickets remain applicable.** Fans are directed to purchase the appropriate match ticket; the seating plan differs from Nissan Stadium. [Official ticket policy](https://www.f-marinos.com/news/ticket/10432)
 
-This is an operational detail with a larger meaning. The term "home" describes the fixture's sporting designation, but does not automatically guarantee that every usual admission arrangement remains unchanged. 特別開催の魅力を増やすほど、普段から観戦する人への説明も重要になる。
+なかなか奇妙だ。ホームゲームだからいつもの席で観られる、と常連客は考えそうだが、**開催地と座席制度が変われば、購入のルールも変わる**。これは特定のファンが不満を持ったという確認済みの事実ではない。設計上、周知が必要な条件だと読み取れる、という話である。
 
-We do **not** claim supporters are dissatisfied; no such evidence has been collected here. The verifiable point is that the event has **different ticket entitlements**. The practical implication is a clear communication requirement, rather than a fictional controversy.
+この区別には興行の構造が現れる。「ホーム」という競技上の地位と、「誰が、どの券で、どこに座れるか」という販売・運用上の約束は同じではない。特別開催を成功させるには、限定演出の魅力だけでなく、既存の顧客が迷わず来場できる説明も必要になる。
 
-## 8. The league calendar itself changed between the two eras
+## 8. 2026年はリーグそのものも、春に始まる制度を変えた
 
-J.League resolved in **December 2023** to introduce a new seasonal calendar beginning with **2026/27**. A special **J.League 100 Year Vision League** was scheduled for February–June 2026, ahead of the new season beginning in August and extending into 2027 with a winter break. [J.League season-transition decision](https://www.jleague.jp/news/article/26796/?mode=pc) / [Special competition announcement](https://www.jleague.jp/news/article/32052/?mode=pc)
+クラブだけでなく大会の時間軸も変わった。Ｊリーグは**2023年12月に、2026/27シーズンから秋春制へ移行する方針を決定**。2026年2～6月にはシーズン移行前の特別大会「Ｊリーグ百年構想リーグ」を開催し、8月に2026/27シーズンを始める予定を公表した。冬には長い中断期間を設ける設計である。[Ｊリーグ・2023年12月の決定](https://www.jleague.jp/news/article/26796/?mode=pc)／[Ｊリーグ・百年構想リーグの大会名発表](https://www.jleague.jp/news/article/32052/?mode=pc)
 
 The 1993 match opened a brand-new professional league in May. The October 2026 CLASICO takes place part-way through a league season whose calendar has itself been redesigned. 同じ「始まり」という言葉でも、前者はリーグそのものの創設、後者は新しい制度の中で歴史を呼び起こす企画だ。
 
-Neither label predicts ticket sales. But together they show that historical memory can be used to create a contemporary reason to attend. **What must still be proven is whether the story actually changes people's behaviour.**
+ここで歴史は単なる飾りではなく、興行に参加する理由を説明する素材となる。だが、歴史的な呼称がどれだけチケット購買を増やしたかは非公開の販売実績なしには決定できない。「伝統があるから売れる」とも「記念品があるから売れる」とも結論づけない方が、この施策を正しく評価できる。
 
-## 9. The business question is not simply how many tickets sold
+## 9. 思い出を商品へ変えるなら、「売れた」と「残った」を分けて測る
 
 **Proposal:** evaluate the event in separate stages. **Awareness**—who learned about the historical fixture; **consideration**—who visited the ticket information; **purchase and attendance**—who bought and actually entered; **return behaviour**—who later attended other games or engaged with club services.
 
-One possible research design is to ask visitors whether they knew about 1993 beforehand, what triggered their purchase, and whether they intend to return. ただし来場者に聞くだけでは、来なかった人の事情が分からない。Self-reported motives also cannot by themselves demonstrate that the historical branding caused a purchase.
+比較対象も重要になる。「1993年を知っている層」「今回初めて知った層」「単に国立に来てみたかった層」をアンケートで区別できれば、伝統カードの訴求がどこへ届くか調べられる。ただし来場者への事後アンケートだけでは来なかった人の理由が分からないし、回答と購買の因果も直接証明しない。販売時の流入経路、同条件の過去の興行、非来場者調査などとの照合が必要だ。
 
-Where permitted, ticket referral data, campaign exposure, attendance records and later return visits could be compared. Sponsorship and giveaway costs would be needed to assess commercial value. 4万人分の記念品を用意したという事実から、配布実績や収益性を算出することはできない。
+限定の記念品はさらに慎重に扱う。40,000個を用意した事実から、配布実数、受け取り率、販促効果、利益までは分からない。厳密な評価には費用、配布時間、対象座席、来場動機、再来場の履歴がいる。**「宣伝をした」ことと「宣伝が効いた」ことの間にも、サッカーの攻撃と同じように、観測すべき工程がある。**
 
-The lesson is a distinction between **an action and an outcome**. Promotion is an intervention; its measurable effects are a separate research problem.
+## 10. 前提・一次資料・実装手順を分けて、懐古を歴史研究に戻す
 
-## 10. Three checks protect history from becoming convenient fiction
-
-**Skeptic:** "Same National Stadium" does not mean same building. "Same clubs" does not mean unchanged names or geography. "40,000 gifts" is not "40,000 spectators". "Won the inaugural game" does not mean "won the inaugural season".
+**前提を疑う担当**は三つの言い換えを禁じる。「同じ国立」は同じ建物ではない。「同じクラブ」は名称も活動地域も不変だったという意味ではない。「先着4万人」は観客数の実績ではない。「開幕戦で勝った」はその年の優勝を意味しない。美しい物語ほど、取りこぼす事実がある。
 
 **Researcher:** Cross-check the **1993 J.League match report**, official competition history, both clubs' chronologies, the **September 2026 ticket terms**, and the decision on the new calendar. Do not guess revenue, visitor satisfaction or the personal intentions of supporters.
 
-**Process designer:** After the match, record official attendance separately from ticket sales or gift redemption. For a later investigation, design a survey that distinguishes familiarity with history, purchase triggers, satisfaction and repeat attendance. Compare those results with non-attendees or other matches where possible. 事実と計算、解釈、提案を分けて残す。
+**手順担当**は、追加検証の仕様を具体化する。試合後に公開される確定入場者数を記録し、販売枚数や招待券を推測で置かない。興行側の協力が得られるなら、販促施策の接触経路と来場・再訪の関係を比較する。観客への質問は「歴史を知っていたか」「何をきっかけに買ったか」「再び観たいか」を分け、すべてを「満足したか」の一問に畳み込まない。
 
-## 11. You cannot replay the first opening match
+## 11. 33年後の国立には、同じ開幕戦は二度と来ない
 
-In 1993, 59,626 people watched Yokohama win the opening fixture and then saw Verdy become the first league champion. The clubs subsequently changed names and geographical or organisational structures. The stadium was rebuilt. The league calendar changed.
+1993年は59,626人の前で、横浜マリノスがヴェルディ川崎に逆転勝利した。その年のリーグ王者はヴェルディだった。クラブは合併と移転を経験し、競技場は建て替えられ、リーグの季節も変わった。その時代の出来事は戻せない。
 
-Now, Marinos are preparing to stage a CLASICO with a special venue, sales arrangements and a commemorative giveaway. それが集客面で成功するかは、2026年10月19日時点では未確認だ。The event is a documented attempt to turn a shared past into a reason for present-day participation.
+それでも、2026年のクラブはこの対戦を「CLASICO」と呼び、特別な会場、企画チケット、記念品、演出を用意している。その事実だけで集客施策の成功は証明されないが、少なくとも過去を現在の行動へつなぐ**試み**は具体的に観察できる。
 
 Perhaps tradition does not mean preserving everything unchanged. It can also mean making a history legible to people who did not experience its beginning. **The important question is not whether October 21 reproduces 1993. It is what, if anything, the experience will make possible after October 21.**
 
-## Sources and limitations
+## 主な一次資料・未確認事項
 
-- [J.League Data Site: May 15, 1993](https://data.j-league.or.jp/SFMS02/?match_card_id=49) — 19:29 kick-off, 59,626 attendance, scorers.
-- [J.League official history](https://www.jleague.jp/corporate/about_j/history_j/) and [list of champions](https://www.jleague.jp/corporate/about_competitions/tournament_history/) — original competition rules and league winners.
-- [Marinos club history](https://www.f-marinos.com/club/history) — 1999 merger and earlier roots.
-- [Verdy club history](https://www.verdy.co.jp/content/clubstadium/history) — 1969 origin, 2001 relocation, relegation and return.
-- [Marinos official event ticket conditions](https://www.f-marinos.com/news/ticket/10432) and [special ticket offers](https://www.f-marinos.com/news/ticket/10433) — 40,000 giveaway allocation and season-ticket exceptions.
-- [J.League season transition](https://www.jleague.jp/news/article/26796/?mode=pc) and [MUFG stadium statement](https://www.mufg.jp/dam/pressrelease/2025/pdf/news-20251015-001_ja.pdf).
-- **Not verified as of October 19:** 2026 attendance, revenue, actual distribution, visitor satisfaction, direct causal effects of campaign messaging, or any individual's emotional response.
+- [Ｊリーグデータサイト・1993年5月15日の公式試合記録](https://data.j-league.or.jp/SFMS02/?match_card_id=49)――クラブ名・開始時刻・入場者数・得点。
+- [Ｊリーグ公式・沿革（1993年）](https://www.jleague.jp/corporate/about_j/history_j/)――当初の延長・ＰＫ制度。
+- [Ｊリーグ公式・歴代優勝クラブ](https://www.jleague.jp/corporate/about_competitions/tournament_history/)――1993・1994年ヴェルディ、1995年横浜の優勝。
+- [横浜F・マリノス公式・クラブヒストリー](https://www.f-marinos.com/club/history)――1972年の源流と1999年の合併。
+- [東京ヴェルディ公式・クラブのあゆみ](https://www.verdy.co.jp/content/clubstadium/history)――1969年創部、2001年東京移転、2008年降格、2023年昇格、近年成績。
+- [マリノス公式・10月21日チケット発売概要](https://www.f-marinos.com/news/ticket/10432)――CLASICO、先着4万人、個人／法人シーズン券の扱い。
+- [マリノス公式・企画チケット](https://www.f-marinos.com/news/ticket/10433)――観戦促進の販売施策。
+- [Ｊリーグ公式・2026/27シーズン移行](https://www.jleague.jp/news/article/26796/?mode=pc)――大会暦の変更。
+- [三菱UFJフィナンシャル・グループ・スタジアム運営構想](https://www.mufg.jp/dam/pressrelease/2025/pdf/news-20251015-001_ja.pdf)――命名と施設運営の方針。
+- **現時点で断定しないもの**：2026年10月21日の実入場者数、チケット販売実績、販促物配布実績、販促施策と購買の因果、ファン個々人の歴史認識や感情。
