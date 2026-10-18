@@ -110,4 +110,4 @@ At first, a completed spreadsheet looks like progress. After checking the source
 - [Nomura Research Institute (2026), INSIGHT SIGNAL](https://www.nri.com/en/knowledge/report/20260728_1.html)――participation friction; regional sample of 3,018.
 - [e-Stat, 2024 economic structure survey](https://www.e-stat.go.jp/dbview?sid=0004030059)――classification of sports/health instruction; monetary cell remains to be verified.
 
-**Editorial processing note:** This essay derives from the workbook PT_小野寺_1016.xlsx and a research portal, then cross-checks the original publications. The 56.41-million walking figure is a workbook extrapolation, not an official headcount. Not every industry-value cell has been independently reverified. **Published: 19 October 2026.**
+**Editorial processing note:** This essay derives from the workbook 調査整理用のExcel and a research portal, then cross-checks the original publications. The 56.41-million walking figure is a workbook extrapolation, not an official headcount. Not every industry-value cell has been independently reverified. **Published: 19 October 2026.**
