@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 970" role="img" aria-label="マリノス対ヴェルディの戦術上の3つの噛み合わせ">
+<title>予想先発から読む三つの攻防</title>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#081b31"/><stop offset="1" stop-color="#102f3a"/></linearGradient>
+<marker id="red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#ff7a87" stroke-width="2"/></marker>
+<marker id="green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#48e1a4" stroke-width="2"/></marker>
+</defs>
+<rect width="760" height="970" rx="0" fill="url(#bg)"/>
+<rect x="0" y="0" width="13" height="970" fill="#f05365"/>
+<text x="39" y="60" fill="#8aafc9" font-size="19" font-family="Noto Sans JP, Meiryo">PRE-MATCH ANALYSIS / 2026.10.21</text>
+<text x="39" y="119" fill="#ffffff" font-size="40" font-weight="800" font-family="Noto Sans JP, Meiryo">予想先発から読む三つの攻防</text>
+<text x="40" y="161" fill="#c6dbe6" font-size="22" font-family="Noto Sans JP, Meiryo">青＝マリノスの前進　 緑＝ヴェルディの圧力と速攻</text>
+<rect x="45" y="188" width="670" height="348" rx="17" fill="#0d4d43" stroke="#6d9f94" stroke-width="3"/>
+<g stroke="#a1d5c6" fill="none" stroke-width="2.5" opacity=".55">
+<rect x="65" y="206" width="630" height="312"/>
+<line x1="380" y1="206" x2="380" y2="518"/>
+<circle cx="380" cy="362" r="58"/>
+<rect x="65" y="277" width="110" height="170"/><rect x="585" y="277" width="110" height="170"/>
+</g>
+<g opacity=".7" fill="none" stroke-width="7" stroke-linecap="round">
+<path d="M116 430 C210 400 270 385 345 365" stroke="#ff7a87" marker-end="url(#red)"/>
+<path d="M170 255 C250 279 282 315 345 365" stroke="#ff7a87" marker-end="url(#red)"/>
+<path d="M640 435 C570 398 504 397 416 365" stroke="#48e1a4" marker-end="url(#green)"/>
+<path d="M630 261 C550 279 510 310 423 350" stroke="#48e1a4" marker-end="url(#green)"/>
+<path d="M408 390 C465 451 535 465 608 474" stroke="#48e1a4" stroke-dasharray="12 12" marker-end="url(#green)"/>
+</g>
+<g font-family="Noto Sans JP, Meiryo" font-weight="800" font-size="25">
+<rect x="72" y="316" width="164" height="58" rx="13" fill="#0c2843" stroke="#ff7a87" stroke-width="2"/>
+<text x="154" y="355" text-anchor="middle" fill="#fff">マリノス保持</text>
+<rect x="520" y="316" width="167" height="58" rx="13" fill="#0b3430" stroke="#48e1a4" stroke-width="2"/>
+<text x="604" y="355" text-anchor="middle" fill="#fff">ヴェルディ守備</text>
+</g>
+<circle cx="380" cy="362" r="14" fill="#f5eec5" stroke="#fff" stroke-width="2"/>
+<text x="75" y="506" fill="#d4efdf" font-family="Noto Sans JP, Meiryo" font-size="18">概念図。実測した走行位置・パス経路ではない。</text>
+<rect x="45" y="570" width="670" height="104" rx="18" fill="#132f48"/>
+<rect x="45" y="570" width="7" height="104" fill="#ff6e7b"/>
+<text x="74" y="608" fill="#ffcbd2" font-size="25" font-weight="800" font-family="Noto Sans JP, Meiryo">01　ヴェルディは、どのパスで奪いに出るか</text>
+<text x="74" y="643" fill="#fff" font-size="21" font-family="Noto Sans JP, Meiryo">無条件に追うか、外へ誘導してから複数人で寄せるか。</text>
+<rect x="45" y="687" width="670" height="104" rx="18" fill="#133e40"/>
+<rect x="45" y="687" width="7" height="104" fill="#48e1a4"/>
+<text x="74" y="725" fill="#b9f5da" font-size="25" font-weight="800" font-family="Noto Sans JP, Meiryo">02　マリノスは、空いた内側を使えるか</text>
+<text x="74" y="760" fill="#fff" font-size="21" font-family="Noto Sans JP, Meiryo">山根・天野から、松村と谷村へどの経路で届くか。</text>
+<rect x="45" y="804" width="670" height="104" rx="18" fill="#132f48"/>
+<rect x="45" y="804" width="7" height="104" fill="#f6ca6b"/>
+<text x="74" y="842" fill="#ffe5ad" font-size="25" font-weight="800" font-family="Noto Sans JP, Meiryo">03　奪ったあと、二本目のパスがつながるか</text>
+<text x="74" y="877" fill="#fff" font-size="21" font-family="Noto Sans JP, Meiryo">一美・キムへの最初の球、その次に走る選手に注目。</text>
+<text x="46" y="945" fill="#a5c2d4" font-size="17" font-family="Noto Sans JP, Meiryo">出典：両クラブの10/17試合後会見　｜　解釈・予想：筆者</text>
+</svg>
