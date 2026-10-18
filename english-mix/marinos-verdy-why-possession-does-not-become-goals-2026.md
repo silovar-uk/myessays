@@ -102,6 +102,11 @@ The goal is the last event in a chain of choices. A 0–0 scoreboard conceals th
 
 だから10月21日は、シュート数が増えたかだけで判断しない。**相手の守備者が一歩動いたとき、その背後へマリノスの誰が入ったか。ヴェルディが奪ったとき、その次の二人は動けたか。** 得点表が空白でも、その問いには答えが見えてくるかもしれない。無得点を調べるとは、見えないものを「ない」と決めず、得点の手前で起こっていることを探す仕事なのだ。
 
+## 関連する論考 / Related reading
+
+- [Original match preview：マリノス対ヴェルディ、二つの沈黙](https://silovar-uk.github.io/myessays/#/essay/marinos-verdy-20261021-shots-and-silence-2026)
+- [Historical sequel：1993年開幕戦とCLASICO興行](https://silovar-uk.github.io/myessays/#/essay/marinos-verdy-1993-national-stadium-and-classico-business-2026)
+
 ## 出典と次の検証計画
 
 - [Ｊリーグ公式・2026年10月10日Ｃ大阪対横浜FMの統計](https://www.jleague.jp/match/j1/2026/101008/stats/)――保持率52％、マリノス11本・枠内1本、Ｃ大阪8本・枠内2本。
