@@ -1,7 +1,7 @@
 ---
 id: gamechanger-free-scorekeeping-family-revenue-flywheel-2026
-title: "スコア係が年1.5億ドルの事業を生む――GameChanger's hidden business model"
-subtitle: "From free scorekeeping to family subscriptions and searchable sports memories"
+title: "少年野球のスコア係が年1.5億ドルを生む――GameChangerの仕組み"
+subtitle: "Free scorekeeping, family subscriptions, and searchable sports memories"
 created: "2026-10-19"
 updated: "2026-10-19"
 type: "事業リサーチ"
@@ -9,176 +9,182 @@ status: "完成"
 tags: ["GameChanger", "スポーツテック", "新規事業", "toC", "サブスクリプション", "スポーツ映像", "事業モデル"]
 keywords: ["GameChanger", "DICK'S Sporting Goods", "Scorekeeping", "Freemium", "Youth Sports", "Video Highlights", "Two-Sided Adoption", "Business Model"]
 grow: 5
-abstract: "GameChanger turns free scorekeeping into a connected experience for families. 親会社の開示に基づく2025年度約1億5,000万ドルの売上、料金・競技別の例外、video + event metadataの結合、競争優位、未成年者のプライバシー、日本での事業検証を、英語と日本語を往復して分析する。"
+abstract: "GameChangerの事業を日本語と英語で交互に読み解く。無料のスコア記録が家族の課金体験とつながる仕組み、約1億5,000万ドルの売上、競技別料金、映像とイベントデータの結合、競争優位とプライバシー、日本での実証方法まで検討する。"
 ---
 
-# 少年野球のスコア係が、年1.5億ドルの事業を生む
+# 少年野球のスコア係が、年1.5億ドルの事業を生む――GameChanger
 
-### Free scorekeeping, family payments, and the value of moments nobody else watches
+### Free scorekeeping, family subscriptions, and the value of everyday games
 
-Youth baseball has a very ordinary job: someone keeps score. 得点、打順、アウトカウント、誰が打ったか。It's useful, repetitive, and often done by a volunteer. You wouldn't normally call this a media business.
+A youth baseball game has a humble job: someone keeps score. 得点、打順、アウトカウント、誰が打ったか。It is not glamorous, and the record itself is rarely treated as a product at the field.
 
-And yet GameChanger — a youth-sports app owned by DICK'S Sporting Goods — generated **nearly $150 million in fiscal 2025 revenue**, with about **10 million unique active users** according to the parent company's annual filing. These are not necessarily famous teams or nationally televised matches. They are the games that matter most to the families involved. [DICK'S 2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm).
+ところが米国には、この記録を入り口に**年間約1億5,000万ドルを売り上げる事業**がある。名前はゲームチェンジャー（GameChanger）。親会社ディックス・スポーティング・グッズ（DICK'S Sporting Goods）の2025年度開示によれば、年間の固有アクティブ利用者は約1,000万人。対象は主として、テレビ中継されない少年・地域スポーツだ。[親会社の2025年度年次報告書](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm)。
 
-How does a free scorekeeping tool become that big? 実は「動画を配信したから」だけでは説明できない。The more interesting mechanism is a connection between **the person who produces the record and the people who value the memory**. That is our analytical hypothesis, not a disclosed causal breakdown of revenue.
+This is the strange part. GameChanger does not have to buy professional broadcasting rights or sign famous athletes. The scorekeeper gets the core tools for free. **So where does the revenue come from?**
 
-## 1. GameChanger serves games that are tiny to the world but huge to a family
+調べる前は、単にスポーツ動画の配信アプリだと思っていた。But the more interesting structure connects **routine records made at the field** with **moments a family wants to watch from afar**. Public data does not tell us exactly how much revenue that mechanism produces, so this is an interpretation, not a proven causal account.
 
-GameChanger was founded in 2009 and now operates within DICK'S Sporting Goods. It offers team scheduling, scorekeeping, messaging, livestreams, statistics, and athlete profiles across baseball, softball, basketball, soccer, and other sports. [Official company profile](https://gc.com/about-us).
+## 1. GameChangerは、プロの試合を買わずに「身内にとっての大一番」を扱う
 
-The usual sports-media model concentrates attention: acquire a major event and distribute it to many viewers. GameChanger points toward a different logic — **aggregate many small events, each with its own highly interested audience**. 無名の試合でも、その家庭にとっては替えのきかない試合になる。
+GameChangerは2009年設立。現在は米国のスポーツ用品小売大手DICK'S Sporting Goods傘下の企業で、野球、ソフトボール、バスケットボール、サッカー、バレーボールなどのチーム向けに、試合の得点記録、チーム連絡、日程管理、ライブ映像、個人記録を提供する。[公式会社紹介](https://gc.com/about-us)。
 
-This does not prove willingness to pay for every youth game. It's a way to understand the market's structure: **audience size and audience intensity are different variables**. 「有名でない＝コンテンツ価値がない」という前提が、ここでは崩れる。
+Here the usual media logic flips. Traditional sports broadcasting gathers large audiences around famous games. A youth game might be unknown nationally, but a parent may care deeply because their child is playing. **Audience size and intensity of interest are not the same thing.**
 
-## 2. The product follows the whole season, not just the livestream
+大きなリーグの試合を何万人に届けるのではなく、何万もの小さな試合を、それぞれの関係者に届ける。これは市場規模に関する本稿の解釈であり、個々の家族の支払意思を証明する数字ではない。それでも、なぜ「誰も知らない試合」が商品になるのかを説明する助けになる。
 
-Follow a single game, from before the first pitch to after the final whistle.
+## 2. 試合の前・中・後を一つにつなぐから、毎週の作業が利用の入口になる
 
-- **Before:** rosters, schedules, RSVP, and team messaging. 現場で最初に必要になるのは、しばしば連絡の整理だ。
-- **During:** scorekeeping, live updates, smartphone or supported-camera streaming. Families can follow a game even when they cannot attend.
-- **After:** box scores, season stats, on-demand video, automatically created clips, and athlete career profiles. 記録が「その日の連絡」から「あとで使う履歴」になる。
+The easiest way to understand the product is to follow one game through time: **before, during, and after**.
 
-These features come from [GameChanger's feature guide](https://gc.com/app-features) and its [February 2026 product announcement](https://gc.com/partner-news/gamechanger-announces-most-comprehensive-product-update-in-its-15-year-history). Availability differs by sport, plan and permission.
+- **試合前：**チーム名簿、予定、集合連絡、出欠管理。最初の利用動機は、監督や保護者が散らばった連絡を整理すること。
+- **試合中：**得点・打席・プレーの入力と、スマートフォンや対応カメラからの配信。遠くにいる家族が試合経過を確認できる。
+- **試合後：**ボックススコア（試合の統計表）、個人・シーズン成績、試合映像、自動切り出しのハイライト、選手の経歴プロフィールへ展開する。
 
-The essential shift is from a single-purpose tool to a **season-long workflow**. A utility used by the coach becomes a service families may revisit. The same event travels from operations to viewing to memory. 毎週続く仕事が、次の利用を生む接点になっている。
+これらはGameChangerの[公式機能一覧](https://gc.com/app-features)と[2026年2月の製品更新発表](https://gc.com/partner-news/gamechanger-announces-most-comprehensive-product-update-in-its-15-year-history)に掲載された機能を再分類したものだ。すべての競技、権限、料金プランで同じ機能を使えるわけではない。
 
-## 3. The adopter and the payer are not necessarily the same person
+A tool opened for scorekeeping can become a place for viewing and reflection after the match. If a utility only saves work, people leave when the task is done. But if the same records also enable replay, analysis and memories, the reasons to return may grow. これは機能一覧ではなく、利用の時間軸を捉えた仮説だ。
 
-Here is the unusual part of the pricing design. Team coaches and staff can manage their own teams, score games and livestream for free. Parents and fans also have free access, but certain advanced viewing, archived content and statistics require subscriptions. [Feature overview](https://gc.com/app-features), [Individual subscription FAQ](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs).
+## 3. 一番重要なのは、「使わせたい人」と「支払ってほしい人」が違うこと
 
-Think in distinct roles rather than in a single vague category called “users.”
+2026年10月時点、GameChangerは、チームを管理する指導者・スタッフに自チームの主要機能を無料提供する。スコア入力や試合配信も含む。一方、保護者やファンには無料機能に加え、映像・統計・試合後コンテンツなどの有料プランを提供している。[公式機能説明](https://gc.com/app-features)、[個人契約FAQ（2026年10月更新）](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs)。
 
-- **Coach / scorekeeper:** creates or maintains the team's records and routine. They are critical adopters, but don't have to be paying customers.
-- **Parents / grandparents / fans:** want to watch, replay and track their athlete. They may become paying customers.
-- **Athlete:** accumulates stats and clips, subject to the team's privacy and sharing settings.
-- **Club / league:** can adopt and standardize the tool across multiple teams.
-- **Platform:** connects these activities to teams, games, accounts, and paid experiences.
+To understand the monetization model, separate the roles. **Who starts using it, who produces the data, and who is willing to pay?** They need not be the same person.
 
-In strategy language, this is **separating adoption incentives from monetization incentives**. 普及を担う人へ高い料金を課すと、記録そのものが始まらない。However, we cannot claim the free coach offer caused GameChanger's growth: the public sources do not isolate that causal effect.
+- **指導者・記録担当者：**チームを作り、予定を整え、スコアや映像の入口を作る。導入を左右する利用者であり、必ずしも課金者ではない。
+- **保護者・祖父母・ファン：**試合結果を知り、映像を見返し、特定の選手の成長を追う。利用価値を強く感じれば課金候補となる。
+- **選手：**試合記録や映像が自分の履歴として積み重なる。ただし、記録の閲覧・共有は権限設定に左右される。
+- **クラブ・リーグ：**複数チームの導入先。組織的な普及や運用標準化の単位となる。
+- **GameChanger：**入力と閲覧を同じアカウント・競技・チーム・試合の構造にまとめ、配信と有料機能を提供する。
 
-## 4. Pricing separates “watching now” from “learning and reliving later”
+The striking design choice is **not charging the primary record creator in the same way as the person receiving premium value**. 一般的な「利用者＝課金者」の前提を外してみると、普及と収益化に別々の役割があることが見えてくる。
 
-The official FAQ updated October 6, 2026 lists these reference prices in USD. [Source](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs).
+However, no public customer-acquisition data isolates the effect of free coaching tools. **Free adoption is a plausible mechanism, not a proven single cause of growth.**
 
-| Plan | Listed price | Main reason to choose |
+## 4. 料金は「試合を見る」から「記録を持ち帰る」へ段階を分ける
+
+The [official subscription FAQ, updated October 6, 2026](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs), lists the following reference prices in USD.
+
+| 区分 | 料金（米ドル） | 主な位置づけ |
 | --- | ---: | --- |
-| Free | $0 | Team operations, scoring, alerts and free viewing within sport-specific limits |
-| Plus annual | $39.99/year | Mainly for live viewing |
-| Plus monthly | $9.99/month | Shorter seasonal usage |
-| Premium annual | $99.99/year | Replays, clips, season statistics and deeper analysis |
-| Family annual | $179.99/year | Premium access shared by up to four accounts |
+| 無料 | 0ドル | チーム運営、スコア記録、基本通知、競技ごとの無料配信範囲 |
+| Plus 年間 | 39.99ドル／年 | ライブ視聴を主に使う利用者向け |
+| Plus 月間 | 9.99ドル／月 | シーズン中だけ契約したい利用者向け |
+| Premium 年間 | 99.99ドル／年 | 試合後映像、ハイライト、シーズン成績、分析を使う利用者向け |
+| Family 年間 | 179.99ドル／年 | 最大4アカウントでPremium機能を利用する家族向け |
 
-A **Team Pass** is another model: one season of paid features for followers of a specific team rather than an individual account-wide subscription. [Official Team Pass](https://gc.com/pricing/team-pass).
+There is also a **Team Pass**, which unlocks paid features for followers of one team for a season. It is different from an account-wide individual subscription. [Official Team Pass details](https://gc.com/pricing/team-pass).
 
-Do not flatten this into “all GameChanger livestreams are paid.” In 2026, baseball and softball offer five complimentary live games to free viewers, while unlimited live viewing remains free for sports such as basketball and soccer. [2026 update](https://gc.com/partner-news/gamechanger-announces-most-comprehensive-product-update-in-its-15-year-history).
+重要な例外がある。野球・ソフトボールのライブ配信には、無料利用者向けの視聴回数制限があり、2026年の更新では最初の5試合を無料とした。一方、バスケットボールやサッカーなど他競技のライブ配信は無料視聴を継続している。[公式FAQ](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs)、[2026年新機能発表](https://gc.com/partner-news/gamechanger-announces-most-comprehensive-product-update-in-its-15-year-history)。
 
-So the paywall is not a simple wall around video. It reflects **sport, depth of engagement, and use case**. ライブで追うだけなのか、シーズン全体の成長や自分のハイライトを持ち帰りたいのか。Those are different products inside one app.
+Calling the entire app a paid streaming service would be misleading. **The boundary differs by sport and by depth of use.** ライブを少し見るのか、試合後の映像や統計を繰り返し使うのか。その違いが商品設計に反映されている、と解釈できる。
 
-## 5. The clever video technology also depends on a human scorekeeper
+## 5. 本当に面白い技術は、映像のAIより「人間が入力したスコアとの接続」にある
 
-A camera can record a whole game. But how does someone find *one player's double in the third inning*? That requires knowing what happened, to whom, and when.
+Recording a whole game and finding one player's double are two different tasks. A camera is enough for the first. The second requires **who did what, and when**. 映像の中にある「意味」を探せなければ、思い出は長い動画の中に埋もれてしまう。
 
-GameChanger links scoring events to the live video stream to generate relevant clips. It also provides post-game highlight reels, including for supported baseball, softball and basketball matches. [Automatic Clips FAQ](https://help.gc.com/hc/en-us/articles/21334712734733-Automatic-Video-Clips-FAQs), [Game Highlight Reels](https://help.gc.com/hc/en-us/articles/42069092531469-Game-Highlight-Reels).
+GameChangerの自動ハイライトには、得点記録とライブ映像を組み合わせる仕組みがある。野球・ソフトボールやバスケットボールでは、対象プレーのデータを参照して短い映像を生成する。2026年2月には、重要プレーをまとめる試合ハイライト集も発表した。[自動切り出しFAQ](https://help.gc.com/hc/en-us/articles/21334712734733-Automatic-Video-Clips-FAQs)、[試合ハイライトの仕様](https://help.gc.com/hc/en-us/articles/42069092531469-Game-Highlight-Reels)。
 
-There is a wonderful, slightly awkward detail: the FAQ warns that if a scorekeeper logs a play **more than 20 seconds late**, the resulting clip may capture a later moment. つまり、華やかな自動ハイライトの裏に「できるだけ早く入力してください」という現場の運用条件がある。
+注意したいのは、すべてを「AIが動画だけ見て理解する」と説明してはいけないことだ。公式FAQは、**スコア記録がプレーから20秒以上遅れると、別の場面を切り出しかねない**と明記する。人が入力したイベントの時刻や対象選手が、クリップ品質に関わっている。[自動切り出しFAQ](https://help.gc.com/hc/en-us/articles/21334712734733-Automatic-Video-Clips-FAQs)。
 
-This is not proof that AI plays no role. Some clips can also be generated without manual scoring, with limitations on the plays and player identification. But the documented mechanism shows the importance of **event metadata + video**, rather than assuming pure visual recognition does everything.
+Oddly, this makes the technology more interesting. A sophisticated highlight service still depends on a very ordinary instruction: **please keep the score on time**. High-value video does not come from cameras alone. It also needs operations that turn real-world actions into searchable events. Some clips can be generated without scoring, but with limits by sport and play type.
 
-The lesson is practical: **smart video depends on the reliability of its operating process**. 撮影性能、イベント時刻、選手への紐づけ、記録の修正。These are part of one technical product, not boring tasks outside it.
+## 6. 数字は巨大だが、「1,000万人が有料会員」ではない
 
-## 6. Revenue is public; conversion and unit economics largely are not
+A few figures help establish the scale, but their definitions matter as much as their size.
 
-The growth figures are impressive, but different metrics must not be mixed.
+- **売上：**2024年度は1億ドル超。2025年度は約1億5,000万ドル。
+- **利用者：**2025年度の固有アクティブ利用者は約1,000万人。
+- **利用量：**投資家向け資料には、年間約1,000万試合、年間100万超の新規チーム、年間600万時間超のライブ配信、月間アクティブ利用者平均400万人超という数値が掲載されている。
 
-- **FY2024:** revenue above $100 million.
-- **FY2025:** revenue nearly $150 million, and about 10 million unique active users.
-- **FY2025 investor presentation:** nearly 10 million games covered, over one million teams created annually, more than six million livestreaming hours, and over four million average monthly active users.
+出典：[DICK'S 2024年次報告](https://www.sec.gov/Archives/edgar/data/1089063/000108906325000052/dickssportinggoodsar2024.pdf)、[2025年度10-K（2026年1月31日終了年度）](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm)、[2025年度投資家向け説明資料](https://s27.q4cdn.com/812551136/files/doc_financials/2025/q4/4Q25_DKS-Investor-Presentation_vF.pdf)。
 
-Sources: [2024 annual report](https://www.sec.gov/Archives/edgar/data/1089063/000108906325000052/dickssportinggoodsar2024.pdf), [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm), [FY2025 investor presentation](https://s27.q4cdn.com/812551136/files/doc_financials/2025/q4/4Q25_DKS-Investor-Presentation_vF.pdf).
+ただし「年間固有利用者」「月間利用者」「課金者数」「登録ユーザー」は別物。年間約1,000万人をそのまま有料会員数に置き換えることはできない。売上には個人契約以外の収益が含まれる可能性があり、商品別構成や有料転換率、解約率、粗利益率の内訳は上記資料で明らかではない。
 
-But **10 million active users ≠ 10 million subscribers**. We do not have verified paid conversion, churn, gross margin or product-level revenue mix from these disclosures. Dividing revenue by annual active users is not the same as calculating subscriber ARPU, because the denominator and revenue sources are not matched.
+Even dividing annual revenue by annual users would not give an official subscriber ARPU. 何人が有料契約し、何を買い、どのくらい継続するかは、その割り算では見えない。**The missing numbers matter more for replication than the impressive headline.**
 
-What is missing matters. Without those metrics, scale can be observed, but the precise **unit economics** — revenue and cost per customer or team — cannot be reverse engineered with confidence. 事業を真似するなら、売上高よりも「誰が何回使い、どの瞬間に払ったのか」が必要になる。
+## 7. 普及はアプリ広告だけではなく、「チームを束ねる組織」からも進める
 
-## 7. Distribution begins with organizations as well as individual users
+この事業を純粋な個人向けアプリとしてだけ見ると、もう一つの入口を見落とす。GameChangerは2026年、バスケットボールクラブ向けに無料の組織導入プログラムを設けた。研修、導入支援、継続サポートに加え、一定の導入目標に応じた金銭的な奨励措置を案内している。[GameChanger for Clubs公式ページ](https://gc.com/basketball-program)。
 
-GameChanger is not simply an app trying to buy individual installs. In 2026 it offered a free **GameChanger for Clubs** partnership program for basketball organizations, with onboarding, training and support. The official page also describes financial incentives tied to adoption milestones. [Program details](https://gc.com/basketball-program).
+This supports a plausible **B2B2C distribution hypothesis**: a club can introduce one platform to many teams and families. In other words, sales and onboarding can be organizational, while the everyday experience is personal. ただし、その経路の成果は公表されていない。
 
-That suggests a **B2B2C distribution hypothesis**: work with a club to reach multiple teams, then connect those teams to their families. ただし、この経路が全体の獲得に何割寄与したかは非公開だ。
+さらに親会社の開示では、DICK'S Media NetworkがGameChangerアプリを広告接点に含めると説明されている。2026年8月には、チームやリーグが配信画面にスポンサーのロゴを表示する試験機能も公表された。[親会社10-K](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm)、[スポンサー表示の公式発表](https://gc.com/post/sponsor-logos-live-stream)。
 
-There are also adjacent opportunities. DICK'S describes its media network using GameChanger as an advertising touchpoint. GameChanger separately announced a beta feature allowing teams and leagues to overlay local sponsor logos on streams. [DICK'S Form 10-K](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm), [Sponsor-logo announcement](https://gc.com/post/sponsor-logos-live-stream).
+A sponsor logo in a stream is not proof of advertising revenue earned by GameChanger itself. Nor does the parent company's media network disclose the subscription-versus-advertising mix for this app. **Business channels and verified revenue allocation are different facts.**
 
-Important distinction: a team showing its sponsor's logo does not prove GameChanger earns that sponsorship fee. Nor does the parent's advertising strategy reveal GameChanger's precise revenue breakdown. **Confirmed business channels are not the same as confirmed revenue allocation.**
+## 8. 真似しにくいのは画面ではなく、「チームと家族の運用履歴」かもしれない
 
-## 8. The likely moat is not a feature list but a shared history of use
+「スコア管理、動画、チャット」という機能の一覧を見れば、AI時代には容易に模倣できそうに思える。実際、チームスナップ（TeamSnap）は登録・決済・連絡・配信を、ハドル（Hudl）は映像・選手ハイライト・ファン体験をそれぞれ拡張しており、GameChangerの全機能が唯一無二というわけではない。[TeamSnap ONE](https://www.teamsnap.com/one)、[Hudl for Parents and Fans](https://www.hudl.com/parents-and-fans)。
 
-What would be difficult to copy? Not scores, chat, video or highlights in isolation. Competitors such as [TeamSnap ONE](https://www.teamsnap.com/one) and [Hudl for Parents and Fans](https://www.hudl.com/parents-and-fans) already cover overlapping organization, streaming and athlete-media needs.
+So what might become hard to copy? These are **our hypotheses about switching costs**, not established measurements.
 
-A more interesting hypothesis is **embedded coordination** — multiple people building habits and histories around the same team.
+- **日常の業務接点：**毎週の予定とスコア入力に組み込まれるほど、別アプリへの移行には説明と調整が必要になる。
+- **関係者のつながり：**選手、保護者、祖父母、指導者、クラブが同じ試合を中心に接続すると、各人が別々に移ることは難しくなる。
+- **記録の蓄積：**過去の試合、個人成績、映像が連続すると、新しいサービスへの切り替えで失う文脈が増える。
+- **外部機材や組織との接続：**GoProなどとの連携やクラブ導入支援は、単独のアプリ画面を超えた利用経路を作る。[GoPro提携発表](https://gc.com/partner-news/gamechanger-and-gopro-partner-to-transform-how-families-capture-and-share-youth-sports)。
 
-- **Recurring workflow:** schedules and scores make the app part of weekly operations.
-- **Social graph around a team:** coaches, parents, players and relatives rely on shared information.
-- **Accumulated records:** season stats and video clips make a move to another platform feel like a loss of context.
-- **Distribution partnerships:** a club program and integrations with equipment partners such as [GoPro](https://gc.com/partner-news/gamechanger-and-gopro-partner-to-transform-how-families-capture-and-share-youth-sports) create touchpoints beyond an individual app.
+Without cohort retention and migration data, these mechanisms remain hypotheses. The stronger question is not **Can a rival recreate the interface?** but **Can it replace a coordination system that many people already use together?**
 
-These are **candidate switching costs**, not verified causal findings. We would need retention data, migration behavior and cohort comparisons to prove them. 競争優位の問いは「同じ画面を作れるか」ではなく、「すでに成立している人々の連携を置き換えられるか」になる。
+## 9. 少年スポーツの映像は、便利さより先に守るべき境界がある
 
-## 9. A youth-sports media business has non-negotiable privacy boundaries
+家族の感情が強く、記録が長く残るサービスだからこそ、慎重に扱うべき領域がある。GameChangerでは、配信範囲を家族等に限定する設定があり、統計の閲覧範囲もチーム側が指定できる。[配信範囲の説明](https://help.gc.com/hc/en-us/articles/360057524931-Viewing-a-Live-Video-Stream)、[統計の公開範囲](https://help.gc.com/hc/en-us/articles/360038142452-Team-Stats-Privacy-Settings)。
 
-A child's highlight can be a treasured memory; it can also be sensitive personal content. GameChanger lets teams restrict stream audiences and control access to certain player statistics. [Livestream audience settings](https://help.gc.com/hc/en-us/articles/360057524931-Viewing-a-Live-Video-Stream), [Stats privacy](https://help.gc.com/hc/en-us/articles/360038142452-Team-Stats-Privacy-Settings).
+利用規約には、13歳未満の子どもの情報や映像を掲載する際の保護者の同意に関する条件もある。閲覧可能な画面を作ることと、撮影・公開の権限があることは別だ。[GameChanger利用規約](https://gc.com/terms)。
 
-Its Terms of Use also set consent requirements for content involving children under 13. [Terms](https://gc.com/terms). Permission to view a video is different from permission to record and share it. 特に第三者の子ども、対戦相手、退団した選手の扱いは、運用設計の問題になる。
+Technical constraints are equally mundane: someone must bring a camera, charge it, connect to the internet, and keep accurate records. Better video quality does not help when nobody can film the next match. 信頼できる運用がなければ、アーカイブ自体が生まれない。
 
-And there are basic production costs: devices, volunteers, bandwidth, batteries, and accurate records. Without reliable capture, there is no archive; without trust, the archive can become a liability.
+A viable youth-sports media product has to answer **Who can film? Who has consented? Who may view the recording? Who can remove it later?** These are product and governance decisions, not paperwork to postpone until after launch.
 
-The product question is therefore not just *Who wants to watch?* It is also **Who can film, who can consent, who can access, and who can remove a recording?** ここを後回しにした収益化は、長期的には脆い。
+## 10. 日本で年商10億円を目指すなら、アプリを真似る前に「誰が毎試合入力するか」を確かめたい
 
-## 10. To build a ¥1 billion business in Japan, first validate the recording habit
+仮に日本で月額500円の個人向け定額プランだけで**年商10億円**を作るとすると、年12か月課金される換算で約16万7,000件の有料契約が必要だ。計算は10億円 ÷（500円×12か月）。税・手数料・返金・休眠・契約期間を考慮しない**単純な算術例**であって、GameChangerの実際の価格や転換率を反映したものではない。
 
-Suppose a hypothetical Japan-only subscription charges **¥500 per month**, and all subscribers remain paying for 12 months. Annual revenue of **¥1 billion（10億円）** would require roughly **167,000 paying subscription equivalents**: ¥1,000,000,000 ÷ (¥500 × 12). This is illustrative arithmetic, excluding tax, fees and churn — not a forecast or a GameChanger metric.
+Before spending on customer acquisition, test a more basic problem: imagine 20 families connected to one team. If nobody records the game, its video-and-statistics value never exists. If recording continues, one match can serve multiple viewers. **Distribution depends on reliable supply.**
 
-Before buying ads to acquire that many customers, ask a more basic question: **Will someone keep the game records every week?** 20 families may care about one team, but if no one scores or records its games, the proposed video-and-stats product cannot deliver its core value.
+The proposed Japanese test order is therefore **operational persistence first, paid growth second**. Start with the simplest meaningful event for each sport — a goal, a score update, or a selected at-bat. 精緻な統計を初日から求める必要はない。
 
-For a Japan pilot, test operational persistence before scaling paid acquisition. A useful minimal event can differ by sport: goals for soccer, scores for basketball, or selected at-bats for baseball. You do not need to recreate every advanced statistic on day one.
+This is a proposed approach for Japan, not a statement of GameChanger's own strategy. Differences in household budgets, volunteer roles, venue policies and existing communication habits mean U.S. adoption cannot be assumed to transfer.
 
-This is our proposal, not GameChanger management's stated strategy. Household willingness to pay, volunteer culture, venue policies and privacy expectations may differ in Japan. 米国の成功を、需要の実証なしに日本へ輸入しない。
+## 11. 実証では「好きか」より「毎週続くか」を測る
 
-## 11. Measure repeated behavior, not only excitement at launch
+The first validation unit should be **a sport, a club, and several consecutive games**, rather than a large download count. The following experiment has not been carried out; it is a research proposal.
 
-A practical pilot should cover one sport, one or more clubs, and several consecutive matches. The following is a **proposed validation plan**, not a completed experiment.
+**Step 1 — Observe the real workflow.** Interview coaches, scorekeepers, videographers and parents separately. Follow scheduling, handoffs, filming, and post-game sharing. Measure hidden work rather than asking only whether a new app sounds convenient.
 
-**Step 1 — Observe operations.** Interview coaches, scorekeepers, videographers and families separately. Watch the actual process from scheduling to filming to sharing. Find who carries the hidden work and what breaks when someone is absent.
+**Step 2 — Verify repeat use of the free product.** Does scoring happen again next week? Can someone else take over when the volunteer is absent? How often does recording fail? 初日の好評と、翌月の継続利用は同じではない。
 
-**Step 2 — Test free repeat usage.** Track whether games get scored on time, how recording duties are handed over, and whether video capture succeeds. 初日の「便利そう」と、翌月の継続利用は別の指標だ。
+**Step 3 — Separate paid value propositions.** Test livestreams, player clips, season stats, family access, and long-term archives separately. Compare real purchasing behavior instead of treating stated willingness to pay as revenue.
 
-**Step 3 — Test paid use cases.** Offer livestreaming, individual clips, season stats, family sharing and long-term archives as distinguishable value propositions. Measure purchases rather than relying exclusively on stated willingness to pay.
+Track **active-team rate, scorekeeping completion, video success, replay rate, paid-household conversion, next-season return, and cost per game**. All KPIs need consistent denominators and time periods.
 
-Recommended KPIs: active-team rate, completed-game-record rate, successful-video rate, replay rate, paid family conversion, next-season retention, and operational cost per game. Use consistent denominators and observation periods.
+## 12. 取材していない数字こそ、次のリサーチ対象になる
 
-## 12. The next research should target missing economics and quality data
+We know a great deal about published revenue, users, prices, features and access controls. But the most important decision variables for entering this market are still missing.
 
-Public documents establish substantial facts about revenue, usage, product design, pricing and access control. They do not give us the entire business model.
+- 個人サブスク、チームパス、広告などの売上構成比と粗利益。
+- 無料の記録担当者一人が、平均何人の家族を招待し、何人の有料会員につながるか。
+- 競技別・季節別の課金継続率と、年間契約・月間契約の構成。
+- スコア入力遅延、映像欠損、許諾トラブルの頻度。
+- 2026年の機能刷新やクラブ導入支援が、利用・課金・解約率をどう変えたか。
 
-The highest-value unanswered questions are: **subscription vs. other revenue mix; paying-family conversion per active team; sport-level seasonality and churn; gross margin; livestream failures and scorekeeping errors; consent-related incidents; and the actual effect of 2026's product and club-program changes**.
+Next, compare future DICK'S filings, archive changes to prices and privacy terms, and speak with both the person who records the score and the relative who pays. **The gap between those two people is the research question.**
 
-A next-stage research program should track subsequent DICK'S filings, capture dated pricing changes, and interview both the person who scores and the family member who pays. That is where the **supply-side activity** and **consumer-side value** finally meet.
+## 13. スコア係は、いつ「映像メディアの制作担当者」になったのか
 
-## 13. When did a volunteer scorekeeper become part of a media system?
+Return to the opening mystery: how does a tiny task like entering a score connect to a very large consumer business?
 
-We started with a trivial task: tap the score, update the play, move to the next inning. How could that become a large consumer-technology business?
+At first I could explain it away as demand for youth-sports video. But video alone cannot tell you where one child's best moment is, and a score sheet alone cannot show a grandparent how it happened. **Connecting them on the same game timeline** turns two incomplete records into something useful. ここにGameChangerの事業を理解する入口がある。
 
-“Families want video” is true enough as an intuition, but it misses the key mechanism. Raw footage cannot automatically answer *Where was my daughter's best play?* A score sheet cannot show *How did that moment feel?*
+This is interpretation, not a claim about management's private intentions. The game is not valuable because it resembles professional sports. **It can be valuable because it is irreplaceable to the people involved.**
 
-GameChanger's product joins these records in the same game timeline. その結果、現場の記録と家族の記憶が、同じサービスの中で行き来できるようになる。It does not turn every volunteer into a television producer. It shows that **mundane operational data can become the infrastructure for personal media**.
-
-And that changes the way we look at youth sports. The content is not valuable because the match is famous. It may be valuable because **the person on the field matters to someone watching**. 小さな試合を大きく見せたのではなく、小さな試合の意味を見失わないようにした。この違いに、事業設計の本質がある。
+Every tap by a volunteer can help make footage searchable, connect families, and preserve a player's history. The scorekeeper did not suddenly become a TV producer. **Routine operations became infrastructure for personal media.** そう見ると、スコア記録という小さな仕事の意味が変わる。
 
 ---
 
-## Sources, limitations, and verification notes
+## 調査上の注記と一次資料
 
-**Evidence vs. inference:** Revenue, user figures, pricing, feature specifications and consent conditions are taken from public disclosures. The idea that free scorekeeping drives adoption or accumulated video reduces churn is an **unverified business hypothesis**, not an established causal result. Fiscal 2025 ends on January 31, 2026 for DICK'S Sporting Goods; it is not calendar 2025.
+**事実と解釈の境界：**本稿で確認した売上・利用規模・料金・機能・同意条件は各社の公表情報に基づく。「無料戦略が成長の主因」「記録が解約防止の要因」などの因果は未検証の仮説として扱った。また、2025年度は親会社の会計年度（2026年1月31日終了）を指し、2025年1〜12月とは一致しない。料金・権限は2026年10月19日時点の参照情報で、変更されうる。
 
-Primary sources: [DICK'S FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm) / [FY2024 annual report](https://www.sec.gov/Archives/edgar/data/1089063/000108906325000052/dickssportinggoodsar2024.pdf) / [GameChanger](https://gc.com/) / [Features](https://gc.com/app-features) / [Subscription FAQ](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs) / [2026 feature release](https://gc.com/partner-news/gamechanger-announces-most-comprehensive-product-update-in-its-15-year-history) / [Automatic Clips FAQ](https://help.gc.com/hc/en-us/articles/21334712734733-Automatic-Video-Clips-FAQs) / [GameChanger for Clubs](https://gc.com/basketball-program) / [Terms](https://gc.com/terms).
+主要資料：[SEC：DICK'S 2025年度10-K](https://www.sec.gov/Archives/edgar/data/1089063/000108906326000007/dks-20260131.htm)／[SEC：2024年次報告](https://www.sec.gov/Archives/edgar/data/1089063/000108906325000052/dickssportinggoodsar2024.pdf)／[GameChanger公式](https://gc.com/)／[公式機能](https://gc.com/app-features)／[公式料金FAQ](https://help.gc.com/hc/en-us/articles/28521445314957-Individual-Subscription-FAQs)／[2026年2月の製品更新](https://gc.com/partner-news/gamechanger-announces-most-comprehensive-product-update-in-its-15-year-history)／[自動クリップ仕様](https://help.gc.com/hc/en-us/articles/21334712734733-Automatic-Video-Clips-FAQs)／[クラブ導入プログラム](https://gc.com/basketball-program)／[利用規約](https://gc.com/terms)。
 
-Competitor references: [TeamSnap ONE](https://www.teamsnap.com/one) / [Hudl for Parents and Fans](https://www.hudl.com/parents-and-fans). This article does not claim a verified market-share ranking or compare competitor unit economics.
+**比較対象：**[TeamSnap ONE](https://www.teamsnap.com/one)／[Hudl for Parents and Fans](https://www.hudl.com/parents-and-fans)。いずれも各社の公開製品説明に基づき、料金、シェア、利用継続率の横並び比較は行っていない。
