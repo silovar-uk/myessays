@@ -1,7 +1,7 @@
 ---
 id: "waseda-ashiki-2026-return-form-relegation-17-rounds"
 title: "4季ぶりの1部で4位から9位へ――Wasedaア式の2026 season"
-subtitle: "A 17-match review: the promising first half, five straight losses, and what 3-0 actually tells us"
+subtitle: "A 17-match review: 昇格初年度の健闘と失速、3-0の価値、そして残り5試合"
 created: "2026-10-22"
 updated: "2026-10-22"
 type: "リサーチエッセイ"
@@ -9,133 +9,121 @@ status: "完成"
 tags: ["早稲田大学", "ア式蹴球部", "大学サッカー", "関東大学サッカーリーグ", "2026シーズン", "スポーツ分析", "一次情報"]
 keywords: ["Waseda University", "association football", "2026", "Takeshi Ito", "Shingo Hyodo", "Kanto University Football League"]
 grow: 5
-abstract: "Waseda returned to the Kanto first division after four seasons away. 前期は4位で折り返したが、実際の開催日順では5連敗も経験した。This English Mix reviews all 17 league results, the national cup disappointment, the 3-0 victory over Toin Yokohama, and the five matches still to come, with clear limits on what match scores can prove."
+abstract: "Waseda returned to the Kanto first division after four seasons away. 前期は4位で折り返したが、実際の開催日順では5連敗も経験した。This English Mix follows all 17 league results, the national cup disappointment, and the 3-0 win over Toin Yokohama, while separating facts from interpretations."
 ---
 
 # 4季ぶりの1部で4位から9位へ――Wasedaア式の2026 season
 
-### A 17-match review: the promising first half, five straight losses, and what 3-0 actually tells us
+### A 17-match review: 昇格初年度の健闘と失速、3-0の価値、そして残り5試合
 
-**As of October 22, 2026.** 対象は早稲田大学ア式蹴球部の男子トップチーム、関東大学サッカーリーグ1部・第17節まで。Cup results are discussed separately. Official facts, our calculations, interpretations, and proposed research are clearly separated.
+**As of October 22, 2026.** 対象は早稲田大学ア式蹴球部の男子トップチーム。The analysis covers the first 17 Kanto Division 1 matches. カップ戦は別集計とし、数字の再計算と競技上の解釈を分ける。
 
 ## 昨日の3-0を読むには、6月に一度到達した4位から始めなければならない
 
-On October 21, Waseda beat Toin Yokohama University **3-0** at Higashifushimi. Takeshi Ito scored in the 45th and 52nd minutes; Rito Onishi added the third in the 72nd. It was Waseda's first league win since June 7. [Official results](https://www.jufa-kanto.jp/news/detail/4306/) / [Match record](https://web.gekisaka.jp/competition/match?match_id=77543).
+10月21日、早稲田大学東伏見サッカー場。Waseda beat Toin Yokohama University **3-0**. 伊藤猛志（Takeshi Ito）が45分と52分、大西利都（Rito Onishi）が72分に得点した。It was the team's first league win since June 7. [関東大学サッカー連盟・第17節結果](https://www.jufa-kanto.jp/news/detail/4306/)／[試合記録](https://web.gekisaka.jp/competition/match?match_id=77543)
 
-But this was not simply a struggling team winning once. 早稲田は2025年に関東2部2位となり、**4季ぶりに1部へ復帰**。At the end of the first 11 matches, it stood fourth. A promoted team had shown promise, then fallen to ninth. **What changed between being competitive and collecting almost no points?** [2025 official record](https://www.waseda-afc.jp/news-men/143396) / [University summer feature](https://www.waseda.jp/inst/athletic/news/2026/08/05/59763/).
+But one win does not explain a season. 早稲田は2025年に関東2部2位となり、4季ぶりの1部復帰を果たした。After the first 11 matches in 2026, the team was fourth. その後9位まで下がったからこそ、問いは「昨日勝ったか」ではなく、**where Waseda stopped collecting points, and why** となる。[2025年戦績](https://www.waseda-afc.jp/news-men/143396)／[大学・夏季特集](https://www.waseda.jp/inst/athletic/news/2026/08/05/59763/)
 
 ## 「ア式」は古い呼び名だが、2026年の苦闘は新しい環境への適応である
 
-The name ア式蹴球 comes from **Association Football**, the older Japanese label for soccer. Founded in 1924, Waseda has a long history. But history did not give the 2026 squad experience in the first division. [University history](https://www.waseda.jp/inst/athletic/club/soccer/) / [Team FAQ](https://www.waseda-afc.jp/guide/faq).
+「ア式蹴球」はアソシエーション式フットボール（Association Football）に由来する。The club was founded in 1924. 部名には歴史が残るが、今季の選手にとって1部は経験の少ない舞台だった。[大学・沿革](https://www.waseda.jp/inst/athletic/club/soccer/)／[部公式FAQ](https://www.waseda-afc.jp/guide/faq)
 
-In 2025, Waseda went **14 wins, 4 draws, 4 losses**, finishing second in Division 2 with 46 points. 兵藤慎剛（Shingo Hyodo）監督は2023年に就任し、2026年も指揮。鈴木大翔が主将を務める。The manager has spoken about growth, daily habits and building value as well as wins. These are the club's stated principles, **not verified explanations for any specific result**. [Club profile](https://www.waseda-afc.jp/club).
+2025年の関東2部では**14勝4分4敗、勝点46、2位**。Shingo Hyodo（兵藤慎剛）has coached the team since 2023, and Daisho Suzuki（鈴木大翔）is the 2026 captain. 兵藤監督は勝利とともに、日常の積み重ねと成長を重視する考えを示している。That is a stated philosophy—not proof of why a specific match was won or lost. [2026年チーム紹介](https://www.waseda-afc.jp/club)
 
-Moving up a division changes the test. 同じミスでも、失点や勝点喪失につながる条件が違う。We need match evidence, not nostalgia.
+**A new division is a new test.** 伝統と目の前の結果を混同せず、何が記録から言えるかを確かめたい。
 
 ## 前期11試合は勝点17の4位――「何もできないチーム」という評価は当たらない
 
-Across the first 11 league matches, Waseda recorded **5 wins, 2 draws, 4 losses: 17 points, 19 goals for, 16 against**. It beat Tsukuba 2-1 in the opener and later defeated Komazawa 3-0, Nippon Sport Science University 3-2, Toyo 2-1, and Toin Yokohama 3-2. The university described the team as fourth at the halfway stage. [Official fixtures](https://www.waseda-afc.jp/game-men) / [University feature](https://www.waseda.jp/inst/athletic/news/2026/08/05/59763/).
+前期11試合の結果は**5勝2分4敗、勝点17、19得点16失点**。Waseda defeated Tsukuba 2-1 on opening day, Komazawa 3-0, Nippon Sport Science University 3-2, Toyo 2-1, and Toin Yokohama 3-2. 大学側も前半戦4位と紹介している。[部公式・試合一覧](https://www.waseda-afc.jp/game-men)／[大学・前半戦の振り返り](https://www.waseda.jp/inst/athletic/news/2026/08/05/59763/)
 
-One calendar detail changes the story: **Matchday 4 was played on June 13**, after Matchday 11 on June 7. Waseda lost that rescheduled game 0-1 to Kokushikan. 節番号順と開催日順は違う。If we ignore this, we will later count the losing streak incorrectly.
+A crucial scheduling detail: **Matchday 4 was postponed until June 13**. 6月7日の第11節の後に、国士舘大学との第4節を戦い0-1で敗れた。The round number and the actual match date do not tell the same chronological story. 後述する連敗数の違いはここから生まれる。
 
-The first-half average was about **1.73 goals scored per game**. これは「1部でまったく戦えなかった」という評価を否定する。しかし、前期の健闘だけで通年の安定性を証明するわけでもない。
+前期の1試合平均得点は約1.73。This does not prove dominance, but it disproves the idea that Waseda never competed successfully in the first division. 前半戦でできていたことを基準に、後期の変化を見る必要がある。
 
 ## 全国大会への切符は取った。しかし全国では1回戦で止まった
 
-In June's regional tournament, the **Amino Vital Cup**, Waseda finished **fifth** and qualified for the Prime Minister's Cup national tournament. It beat Juntendo 2-1 and Sanno 1-0; after a 1-1 draw with Senshu, it lost the penalty shootout 4-5. It then beat Toin Yokohama 5-4 and Nippon Sport Science University 3-1 in placement matches. [Waseda cup results](https://www.waseda-afc.jp/game-men).
+リーグ戦とは別に、6月の関東大学サッカートーナメント大会「アミノバイタルカップ」で**5位**に入り、全国大会への出場権を得た。Waseda beat Juntendo 2-1 and Sanno 1-0. 専修大学とは1-1の末にペナルティーキック戦で4-5と敗れたが、順位決定戦では桐蔭横浜大学に5-4、日本体育大学に3-1で勝った。[カップ戦公式記録](https://www.waseda-afc.jp/game-men)
 
-At the national tournament on September 2, however, Waseda lost **1-2 to Kyushu Sangyo University** in the first round. 今西正之輔が22分に同点ゴールを決めたが、69分に勝ち越された。**Qualification is an achievement; progression is a different measure of success.** [Japan Football Association official match record](https://www.jfa.jp/match/prime_minister_cup_2026/match_page/m13.html).
+On September 2, the national Prime Minister's Cup began—and ended—for Waseda. 九州産業大学に**1-2**。今西正之輔が22分に同点弾を決めた後、69分に勝ち越された。**Qualifying for a national tournament and winning there are different achievements.** その違いを省くと、今季の実績を正しく評価できない。[日本サッカー協会・試合記録](https://www.jfa.jp/match/prime_minister_cup_2026/match_page/m13.html)
 
 ## 後期再開後の4試合は0勝・4得点10失点――変わったのは勝点の取り方だった
 
-The first four league games after the autumn restart were all defeats: **2-3 against Tokai, 0-3 against Kokushikan, 0-1 against Toyo, and 2-3 against Tsukuba**. Four matches, no points, four goals scored, ten conceded. This is a results-based description, not a tactical diagnosis. [Official match list](https://www.waseda-afc.jp/game-men).
+後期再開後の4試合は、東海大学に2-3、国士舘大学に0-3、東洋大学に0-1、筑波大学に2-3。**Four losses, zero points, four goals scored, ten conceded.** 前期に積み上げた勝点17は、この期間まったく増えなかった。[公式戦一覧](https://www.waseda-afc.jp/game-men)
 
-The Tsukuba match tells us why the stretch felt painful. Waseda led 2-0 through 伊藤稜介 and 伊藤猛志, then conceded in the 64th, 90+1st and 90+4th minutes to lose 2-3. **A lead became a defeat**. Yet this alone does not prove whether substitutions, fatigue or mentality caused the collapse. [Official Tsukuba match report](https://www.waseda-afc.jp/news-men/149489).
+The Tsukuba match is the clearest example of points slipping away. 38分に伊藤稜介、41分に伊藤猛志が得点して2-0。しかし64分、90分＋1分、90分＋4分に失点し2-3となった。A two-goal lead turned into defeat. ただし、体力不足や交代策を原因と断言できるだけの資料はない。[部公式・筑波大学戦](https://www.waseda-afc.jp/news-men/149489)
 
-Was it a **four-game or five-game losing streak**? Both labels appear. Four refers to the autumn restart. Count chronologically from the June 13 defeat, including the postponed Matchday 4, and it becomes **five straight league defeats**. The league organizer used “four”; university coverage used “five.” The numbers describe different windows. [Fixture calendar](https://www.waseda-afc.jp/game-men) / [League report](https://www.jufa-kanto.jp/2026_league_report/div1/sec_16/) / [University report](https://www.waseda.jp/inst/athletic/news/2026/10/19/62086/).
+Was it **four straight losses or five**? 後期再開後だけなら4連敗。一方、6月13日の延期分第4節の敗戦を開催日順に加えると5連敗になる。The league organizer referred to four; other university coverage reported five. **Both need a stated time window.** [開催日一覧](https://www.waseda-afc.jp/game-men)／[連盟第16節記事](https://www.jufa-kanto.jp/2026_league_report/div1/sec_16/)／[大学・5連敗の報道](https://www.waseda.jp/inst/athletic/news/2026/10/19/62086/)
 
-This is a small but important lesson in research: **the definition of a streak is part of the claim**.
+数字から確認できるのは、得失点の悪化と勝点を取れなかった事実。**A scoreline shows the outcome, not the whole mechanism.** 守備がなぜ崩れたのかは、試合映像と得失点場面を調べる次の課題だ。
 
 ## 10月17日と21日の勝点4は反転の兆しだが、復調の証明ではない
 
-On October 17 against Nihon University, Waseda conceded in the 90+2nd minute and equalized in the 90+4th through Ito: **1-1**. Four days later came the **3-0** victory over Toin Yokohama. Combined: **1 win, 1 draw, 4 points, four goals scored, one conceded**. [Nihon match record](https://www.waseda-afc.jp/news-men/149661) / [October 21 official results](https://www.jufa-kanto.jp/news/detail/4306/).
+10月17日の日本大学戦では、90分＋2分に失点した直後、90分＋4分に伊藤猛志が同点弾を決めた。Four days later, Waseda won **3-0** against Toin Yokohama. 直近2試合の合計は**1勝1分、勝点4、4得点1失点**。[日本大学戦公式記録](https://www.waseda-afc.jp/news-men/149661)／[第17節結果](https://www.jufa-kanto.jp/news/detail/4306/)
 
-After 17 games, the totals are **6 wins, 3 draws, 8 defeats, 21 points, 27 goals for and 27 against**. By combining the Matchday 16 standings with all six Matchday 17 results, we calculate Waseda's position as **ninth**. Komazawa is tenth with 18 points, Toin Yokohama eleventh with 17, and Tokai twelfth with 16. This is a reconstructed table, not a claim that the team website had already updated. [Organizer's results](https://www.jufa-kanto.jp/news/detail/4306/) / [Prior standings](https://web.gekisaka.jp/competition/standings?id=1340).
+Across all 17 matches, the record is **6W–3D–8L, 21 points, 27 goals for and 27 against**. 第16節の順位表に第17節の全6試合を反映して再計算すると、早稲田は9位。10位駒澤大学18点、11位桐蔭横浜大学17点、12位東海大学16点となる。This is a reconstructed standing, not an already-updated claim from the club website. [連盟・第17節全結果](https://www.jufa-kanto.jp/news/detail/4306/)／[第16節時点順位表](https://web.gekisaka.jp/competition/standings?id=1340)
 
-Two games can indicate change, but cannot establish a stable new level. 昨日の勝利の価値は「復調確定」ではなく、残留争いで勝点を積み上げたことにある。
+Two better games matter. しかし **a short run is not proof of a stable recovery**. 今回の勝利は残留争いで距離をつくったのであって、今季の問題がすべて解消した証拠ではない。
 
 ## 伊藤猛志の12得点は明るい材料だが、得点力の全体像を代弁しない
 
-Ito reached **10 league goals** against Nihon University and scored twice more on October 21. That makes **12 of Waseda's 27 league goals: about 44.4%**. [League Matchday 16 report](https://www.jufa-kanto.jp/2026_league_report/div1/sec_16/) / [Matchday 17 scorers](https://www.jufa-kanto.jp/news/detail/4306/).
+日本大学戦で伊藤猛志はリーグ戦10得点目を記録し、21日の2得点で**12得点**に達した。That is **12 out of Waseda's 27 league goals, about 44.4%**. 得点を決める役割の大きさは、この数値で確認できる。[連盟第16節・得点ランキング](https://www.jufa-kanto.jp/2026_league_report/div1/sec_16/)／[第17節得点者](https://www.jufa-kanto.jp/news/detail/4306/)
 
-This is strong evidence of his scoring contribution. しかし「得点の44.4％を記録した」ことと「攻撃が一人に依存している」ことは同じではない。Assists, off-ball movement, chance creation, and the attacking structure are missing from this metric. Onishi's goal against Toin is another starting point for analysis, not proof that the system is now balanced.
-
-**A goal share describes who finished attacks; it does not explain how the attacks were built.**
+But 44.4% is a **goal share**, not a complete description of the attack. 得点直前のパス、相手の守備を動かす役割、他の選手が作った決定機までは数えていない。大西利都の3点目も、新たな得点経路を検討する材料になる。**Who scores and how a team creates chances are different questions.**
 
 ## 降格の仕組みを知ると、9位の意味が「ひと安心」では終わらなくなる
 
-The Kanto Division 1 has 12 teams. Under the organizer's rules, **11th and 12th go down automatically**, while **10th enters a relegation/promotion playoff** against the third-place team from Division 2. Staying ninth has a clear institutional meaning. [League organizer's beginner guide](https://www.jufa-kanto.jp/beginner/beginner1/).
+関東大学サッカーリーグ1部は12チーム制。**11位と12位は自動降格、10位は2部3位との入れ替え戦**に進む。So ninth place is not just a number; it determines the type of survival battle the club may face. [連盟・入れ替え制度](https://www.jufa-kanto.jp/beginner/beginner1/)
 
-Following Matchday 17, ninth-place Waseda has **21 points**, just **three ahead of tenth-place Komazawa** and four ahead of eleventh-place Toin Yokohama. Five fixtures remain: Hosei on October 24, Chuo on October 31, Komazawa on November 3, Meiji on November 7, and Nippon Sport Science University in the final round. The club's fixture list does not yet show a date for the last match; we do not invent one. [Official fixtures](https://www.waseda-afc.jp/game-men).
+第17節終了時点で、9位早稲田21点、10位駒澤18点。The gap to the playoff position is **three points**; the gap to eleventh-place Toin Yokohama is four. 残り5試合の対戦相手は法政大学（10月24日）、中央大学（10月31日）、駒澤大学（11月3日）、明治大学（11月7日）、日本体育大学（最終節・日付未掲載）。[部公式・日程](https://www.waseda-afc.jp/game-men)
 
-**The next Komazawa game is especially relevant**, because it currently pits ninth against tenth. ただし、そこで何が起こるかはまだ分からない。The important question is whether Waseda can turn competitive spells into points consistently.
+The Komazawa game is especially important: it is currently **ninth versus tenth**. ただし、その試合だけで残留が決まるとは限らない。Every remaining point matters.
 
 ## 17試合を開催日順に並べると、順位表だけでは見えない山と谷が見える
 
-Every score below is from Waseda's perspective. We sort by **actual date, not round number**, so the rescheduled fourth round appears on June 13. [Official list](https://www.waseda-afc.jp/game-men).
+Below are all 17 scores from Waseda's perspective, in **actual date order**. 第4節は6月13日に置き、開催日順で連敗を数えられるようにした。[部公式・リーグ結果](https://www.waseda-afc.jp/game-men)
 
-- Apr 4 / Rd 1 / Tsukuba: **2-1 W**
-- Apr 11 / Rd 2 / Tokai: **2-2 D**
-- Apr 18 / Rd 3 / Chuo: **0-1 L**
-- May 2 / Rd 5 / Meiji: **1-2 L**
-- May 5 / Rd 6 / Komazawa: **3-0 W**
-- May 9 / Rd 7 / Nihon: **2-2 D**
-- May 16 / Rd 8 / Nippon Sport Science: **3-2 W**
-- May 23 / Rd 9 / Toyo: **2-1 W**
-- May 30 / Rd 10 / Hosei: **1-2 L**
-- Jun 7 / Rd 11 / Toin Yokohama: **3-2 W**
-- Jun 13 / Rd 4 / Kokushikan: **0-1 L**
-- Sep 23 / Rd 12 / Tokai: **2-3 L**
-- Sep 26 / Rd 13 / Kokushikan: **0-3 L**
-- Oct 3 / Rd 14 / Toyo: **0-1 L**
-- Oct 10 / Rd 15 / Tsukuba: **2-3 L**
-- Oct 17 / Rd 16 / Nihon: **1-1 D**
-- Oct 21 / Rd 17 / Toin Yokohama: **3-0 W**
+- 4月4日 / 第1節 / 筑波大学：**2-1 勝**
+- 4月11日 / 第2節 / 東海大学：**2-2 分**
+- 4月18日 / 第3節 / 中央大学：**0-1 敗**
+- 5月2日 / 第5節 / 明治大学：**1-2 敗**
+- 5月5日 / 第6節 / 駒澤大学：**3-0 勝**
+- 5月9日 / 第7節 / 日本大学：**2-2 分**
+- 5月16日 / 第8節 / 日本体育大学：**3-2 勝**
+- 5月23日 / 第9節 / 東洋大学：**2-1 勝**
+- 5月30日 / 第10節 / 法政大学：**1-2 敗**
+- 6月7日 / 第11節 / 桐蔭横浜大学：**3-2 勝**
+- 6月13日 / 第4節 / 国士舘大学：**0-1 敗**
+- 9月23日 / 第12節 / 東海大学：**2-3 敗**
+- 9月26日 / 第13節 / 国士舘大学：**0-3 敗**
+- 10月3日 / 第14節 / 東洋大学：**0-1 敗**
+- 10月10日 / 第15節 / 筑波大学：**2-3 敗**
+- 10月17日 / 第16節 / 日本大学：**1-1 分**
+- 10月21日 / 第17節 / 桐蔭横浜大学：**3-0 勝**
 
-Three different phases emerge:
-
-- **First 11:** 5W–2D–4L; 17 points; 19 goals scored, 16 conceded.
-- **First four after restart:** 0W–0D–4L; 0 points; 4 goals scored, 10 conceded.
-- **Latest two:** 1W–1D–0L; 4 points; 4 goals scored, 1 conceded.
-
-These groups are not equally sized and the opponents differ. You cannot treat their per-game averages as a controlled experiment. Still, **the sequence of competitive results, a scoring drought in points, then a partial recovery of points** is unmistakable.
+Three periods tell us something useful. **First 11:** 5W–2D–4L, 17 points, 19-16 goals. **Next four:** 0W–0D–4L, 0 points, 4-10 goals. **Latest two:** 1W–1D–0L, 4 points, 4-1 goals. それぞれ試合数も相手も違うため、平均値で単純に戦力を比較してはいけない。それでも **the movement from points, to no points, and back to points** は明確だ。
 
 ## 勝負所は「昨日の形」を再現できるか――ここから先は仮説検証になる
 
-Here is the conclusion supported by the evidence: **Waseda has proved it can win in the first division, but it has not yet proved it can collect points consistently across the season**. 4位での折り返し、全国大会出場、5連敗、全国初戦敗退、そして3-0。They all belong to the same season. None should be erased to fit a simple narrative.
+ここまでを一文にすると、**早稲田は1部で勝てることを示したが、継続して勝点を取る安定性はまだ証明していない**。It finished the first half fourth, reached a national tournament, lost five straight league matches in calendar order, exited the national cup in round one, and then won 3-0. どれも同じ2026年の一部である。
 
-What should we test next? **Proposal one:** code each goal conceded by time, match situation and set piece versus open play. This would help test whether Tsukuba's late collapse resembles a repeated pattern. **Proposal two:** map scoring sequences, including Ito's finishing and the actions of teammates. **Proposal three:** connect starting lineups and substitutions to events—but never turn a small-sample correlation into a claim about coaching causation.
+What should be studied next? **First**, classify every conceded goal by time, game state and set piece versus open play. **Second**, trace scoring sequences, including Ito's finishing and teammates' contributions. **Third**, compare lineups and substitutions with match events. これらは今後の**調査提案**であり、原因が既に判明したという意味ではない。
 
-For now, consistent possession figures, expected-goals data and detailed positional data have not been verified across all 17 matches. だから「守備組織が改善した」とまでは言わない。**A win is evidence of a result, not automatically evidence of its mechanism.**
-
-The 3-0 does not rewrite the entire season. It gives us a sharper question: **Which parts of the first-half competitiveness have returned, and can they survive the next five matches?**
+現時点では、17試合すべてに共通する精度・定義でボール保持率や期待得点値を検証できていない。**We should not claim that the defensive system has improved without that evidence.** 昨日の3-0は大きな結果である。だからこそ、次に必要なのは賛辞だけでなく、再現性の確認だ。
 
 ## 調査と再検証――数え方の違いを解決し、言えないことを残した
 
-We separated the work into three editorial roles. **Challenge the assumptions:** Does 3-0 prove recovery? Is the postponed Matchday 4 in the correct chronological position? **Investigate the sources:** Compare club fixtures, the league organizer's Matchday 16 and 17 releases, and the national cup's official match record. **Design the method:** Recalculate all 17 results and specify the data still needed. These are analytical roles in this article, not an independent third-party audit.
+検討では三つの役割を置いた。**Challenge assumptions:** 3-0だけで復調と言えるか、第4節の順序は正しいか。**Research evidence:** 部の試合一覧、連盟の第16・17節結果、日本サッカー協会の全国大会公式記録を照合。**Build a method:** 17試合の勝点・得失点を再計算し、次の検証項目を決めた。これは分析上の役割分担であり、独立した第三者監査ではない。
 
-The first check produced **6W–3D–8L, 21 points, 27-27 goals**. The second check exposed four risks: an unrefreshed club fixture page for Round 17; four versus five losses depending on the time window; mixing cup and league data; and confusing Ito's goal share with tactical causality.
-
-For future research, gather all goal times and playing minutes, then recheck the next matches against Hosei, Chuo and Komazawa. Compare full equal-length segments after the season. **Until that work is done, we should not pretend the explanation for the turnaround is settled.**
+The verified totals are **6W–3D–8L, 21 points, 27-27 goals**. 見つかった注意点は、第17節の部公式一覧への反映遅れ、4連敗と5連敗の期間の違い、リーグとカップの混同、得点割合から原因へ飛躍する危険の四つ。Next, collect goal times, minutes played and substitutions, then examine the games against Hosei, Chuo and Komazawa. **Leave the cause open until the data can actually test it.**
 
 ## 主な一次資料と確認上の注意
 
-- [Waseda club: league and cup fixtures](https://www.waseda-afc.jp/game-men) — rounds 1–16, the delayed fourth round, the cup, and upcoming games. Round 17 had not yet been entered when checked.
-- [Kanto University Football Association: October 21 results](https://www.jufa-kanto.jp/news/detail/4306/) — the 3-0 result and five other first-division matches.
-- [League organizer: Matchday 16 report](https://www.jufa-kanto.jp/2026_league_report/div1/sec_16/) — prior standings and Ito's tenth goal.
-- [Japan Football Association: national cup first round](https://www.jfa.jp/match/prime_minister_cup_2026/match_page/m13.html) — 1-2 against Kyushu Sangyo.
-- [Waseda University: summer feature](https://www.waseda.jp/inst/athletic/news/2026/08/05/59763/) — fourth place in the first half and fifth at the regional cup.
-- [Waseda club: 2025 season record](https://www.waseda-afc.jp/news-men/143396) — promotion from Division 2.
-- [League organizer: promotion and relegation rules](https://www.jufa-kanto.jp/beginner/beginner1/) — tenth-place playoff and automatic relegation positions.
+- [早稲田大学ア式蹴球部・試合結果](https://www.waseda-afc.jp/game-men)：リーグ第1～16節、延期された第4節、カップ戦、残り日程。第17節は調査時点で未更新。
+- [関東大学サッカー連盟・第17節公式結果](https://www.jufa-kanto.jp/news/detail/4306/)：3-0の得点者と他5試合。
+- [関東大学サッカー連盟・第16節報告](https://www.jufa-kanto.jp/2026_league_report/div1/sec_16/)：前節時点の順位と伊藤猛志の得点数。
+- [日本サッカー協会・総理大臣杯公式記録](https://www.jfa.jp/match/prime_minister_cup_2026/match_page/m13.html)：九州産業大学との1回戦。
+- [早稲田大学・2026年夏季特集](https://www.waseda.jp/inst/athletic/news/2026/08/05/59763/)：前半戦4位、地域大会5位。
+- [部公式・2025年戦績](https://www.waseda-afc.jp/news-men/143396)：関東2部からの昇格。
+- [関東大学サッカー連盟・入れ替え制度](https://www.jufa-kanto.jp/beginner/beginner1/)：10位の入れ替え戦、11・12位の自動降格。
 
-**Calculation note:** Goals, points, reconstructed Matchday 17 positions and Ito's 44.4% share include arithmetic performed from the cited results. No unverified tactical or expected-goals figures are presented as established facts.
+**Calculation note:** 勝点、得失点、順位、得点割合の一部は公式結果から再計算した。They are documented calculations, not independent tactical measurements.
