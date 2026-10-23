@@ -93,11 +93,11 @@ In that same interview she said idol, modeling, and acting work now influence on
 
 Her career crosses two media environments. The 2009 children's-TV era relied on shared broadcast slots. フルーツジッパー emerged in a world where a short performance clip can circulate independently and connect to concerts or fan communities. The agency itself credits ティックトック（TikTok）with helping 『わたしの一番かわいいところ』gain attention. Same person, different distribution logic.[所属会社の説明](https://asobisystem.com/talent/fruitszipper/)
 
-2024年のラジオで、『天才てれびくん』時代に共演した近藤春菜と約15年ぶりに再会した。Then came a striking geographical coincidence. On December 31, 2025, she appeared at **NHK紅白歌合戦** with フルーツジッパー, in the same NHK Hall where she had sung 『ダン！ドン！』alone as a new TV performer in 2009. The stage was the same; the meaning of standing there was different. 「会場のほうが、出演者の成長を見守っていたのか」と言いたくなるが、会場には感情がない。2026年1月の本人投稿を報じた記事によると、本人もこのつながりを振り返っている。Her 2023 birthday-show account writes the song name as 『ダンドン』.[TOKYO FM](https://news.audee.jp/news/nWQ2DL1Tm4.html)／[めざましメディア](https://mezamashi.media/articles/-/241339)
+2024年のラジオで、『天才てれびくん』時代に共演した近藤春菜と約15年ぶりに再会した。Then came a striking geographical coincidence. On December 31, 2025, she appeared at **NHK紅白歌合戦** with フルーツジッパー, in the same NHK Hall where she had sung 『ダン！ドン！』alone as a new TV performer in 2009. The stage was the same; the meaning of standing there was different. 「会場のほうが、出演者の成長を見守っていたのか」と言いたくなるが、会場には感情がない。2026年1月の本人投稿を報じた記事によると、本人もこのつながりを振り返っている。Her 2023 birthday-show account writes the song name as 『ダンドン』. そして壮大なreturnの直後に、小さなunsolved problem。忙しくてNHK食堂の年越しラーメンを食べられなかったという。**The dream came true; the ramen did not.** [TOKYO FM](https://news.audee.jp/news/nWQ2DL1Tm4.html)／[めざましメディア](https://mezamashi.media/articles/-/241339)
 
-![2026年の鎮西寿々歌関連記事の写真](https://mezamashi.ismcdn.jp/mwimgs/f/a/700mw/img_fa90b96e5473b03afe09f4505ba2f0d8373636.jpg)
+![2026年の鎮西寿々歌関連記事の写真](https://mezamashi.ismcdn.jp/mwimgs/6/1/708/img_61f843d3d156652cbcb5b2be6cc60ccf1191425.jpg)
 
-*Photo: [Mezamashi Media, January 6, 2026](https://mezamashi.media/articles/-/241339). This editorial image is not claimed to depict the specific 2009 or 2025 performance. Rights remain with the source; no image file is hosted locally.*
+*Photo: group image from the 2025 紅白 appearance, published by [Mezamashi Media, January 6, 2026](https://mezamashi.media/articles/-/241339). The photograph is not from the 2009 childhood performance. Rights remain with the source; no image file is hosted locally.*
 
 This is not proof that nostalgia caused her popularity; we have no audience attribution data. しかし、2009年と2025年の同じホール、2023年の曲の再演を並べると、単なる懐かしさ以上のものが見える。She did not merely return to the past. **She returned to a familiar space with a different set of companions and choices.** A career can make cultural memory active, not just preserve it.
 
