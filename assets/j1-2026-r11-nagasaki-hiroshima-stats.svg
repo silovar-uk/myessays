@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title description">
+<title id="title">長崎4-0広島の試合内容を数字で見る</title>
+<desc id="description">ボール支配率は長崎33%、広島67%。シュート数は長崎10本、広島15本。枠内シュートは長崎4本、広島2本。最終得点は長崎4、広島0。</desc>
+<rect width="1200" height="660" fill="#f6f2ea"/><rect width="1200" height="10" fill="#c45e45"/>
+<g font-family="Noto Sans JP,Meiryo,Arial,sans-serif" fill="#162d3c">
+<text x="64" y="66" font-size="20" letter-spacing="2" fill="#9d513e">OCT 21, 2026 | 4-0</text>
+<text x="64" y="118" font-size="41" font-weight="800">ボールを持った側が、勝ったわけではない。</text>
+<text x="64" y="154" font-size="19" fill="#526773">第11節　長崎 4-0 広島 ｜ Jリーグ公式スタッツ</text>
+<rect x="64" y="192" width="515" height="386" rx="20" fill="#e2e9ec"/>
+<rect x="621" y="192" width="515" height="386" rx="20" fill="#e2e9ec"/>
+<text x="102" y="238" font-size="26" font-weight="700">Ｖ・ファーレン長崎</text>
+<text x="660" y="238" font-size="26" font-weight="700">サンフレッチェ広島</text>
+<text x="102" y="287" font-size="18" fill="#54636a">ボール支配率</text><text x="102" y="329" font-size="40" font-weight="800">33%</text>
+<rect x="235" y="303" width="290" height="20" rx="10" fill="#bed0d8"/><rect x="235" y="303" width="96" height="20" rx="10" fill="#c45e45"/>
+<text x="660" y="287" font-size="18" fill="#54636a">ボール支配率</text><text x="660" y="329" font-size="40" font-weight="800">67%</text>
+<rect x="793" y="303" width="290" height="20" rx="10" fill="#bed0d8"/><rect x="793" y="303" width="194" height="20" rx="10" fill="#173e55"/>
+<text x="102" y="382" font-size="18" fill="#54636a">シュート</text><text x="102" y="421" font-size="36" font-weight="700">10本</text>
+<text x="660" y="382" font-size="18" fill="#54636a">シュート</text><text x="660" y="421" font-size="36" font-weight="700">15本</text>
+<text x="102" y="473" font-size="18" fill="#54636a">枠内シュート</text><text x="102" y="512" font-size="36" font-weight="700">4本</text>
+<text x="660" y="473" font-size="18" fill="#54636a">枠内シュート</text><text x="660" y="512" font-size="36" font-weight="700">2本</text>
+<text x="102" y="553" font-size="19" font-weight="700" fill="#a14d34">得点 4</text><text x="660" y="553" font-size="19" font-weight="700" fill="#173e55">得点 0</text>
+<text x="64" y="617" font-size="18" font-weight="700">注意：数字は試合全体。退場後を含むため、戦術的な優劣をこれだけで断定できない。</text>
+<text x="64" y="642" font-size="14" fill="#657780">独自図版｜出典：https://www.jleague.jp/match/j1/2026/102115/</text>
+</g></svg>
