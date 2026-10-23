@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 560" role="img" aria-label="2026年ニューヨーク・コミコンの公式日程を対象とした独自集計。総数1515枠のうちサイン会・撮影会762、企業・作品パネル319、ゲーム・カード体験274、その他160。">
+<rect width="1320" height="560" rx="26" fill="#0c1729"/>
+<text x="66" y="72" fill="#9fd7e1" font-family="Arial,'Noto Sans JP',sans-serif" font-size="24" letter-spacing="3">WHAT DOES A CONVENTION REALLY SELL?</text>
+<text x="66" y="137" fill="white" font-family="Arial,'Noto Sans JP',sans-serif" font-weight="700" font-size="42">「見せるイベント」だけでは説明できない</text>
+<text x="66" y="186" fill="#c6d3dd" font-family="Arial,'Noto Sans JP',sans-serif" font-size="22">2026年NYCC・全1,515枠の構成（GEM Partnersによる公式日程の集計）</text>
+<g transform="translate(66,221)">
+<rect width="1188" height="122" rx="12" fill="#263245"/>
+<path d="M12 0H597V122H12Q0 122 0 110V12Q0 0 12 0Z" fill="#f5b75b"/>
+<rect x="597" width="250" height="122" fill="#4cc5ba"/>
+<rect x="847" width="214" height="122" fill="#8176d9"/>
+<path d="M1061 0H1176Q1188 0 1188 12V110Q1188 122 1176 122H1061Z" fill="#46536b"/>
+<g font-family="Arial,'Noto Sans JP',sans-serif" text-anchor="middle">
+<text x="298" y="49" font-weight="700" font-size="32" fill="#102033">762枠</text><text x="298" y="89" font-size="25" fill="#102033">50.3%</text>
+<text x="722" y="49" font-weight="700" font-size="32" fill="#0a2330">319枠</text><text x="722" y="89" font-size="25" fill="#0a2330">21.1%</text>
+<text x="954" y="49" font-weight="700" font-size="32" fill="white">274枠</text><text x="954" y="89" font-size="25" fill="white">18.1%</text>
+<text x="1124" y="49" font-weight="700" font-size="29" fill="white">160</text><text x="1124" y="89" font-size="23" fill="white">10.6%</text>
+</g></g>
+<g font-family="Arial,'Noto Sans JP',sans-serif" font-size="22">
+<rect x="70" y="388" width="21" height="21" rx="4" fill="#f5b75b"/><text x="102" y="407" fill="#e9edf2">サイン会・写真撮影</text>
+<rect x="392" y="388" width="21" height="21" rx="4" fill="#4cc5ba"/><text x="425" y="407" fill="#e9edf2">企業・作品の発表</text>
+<rect x="720" y="388" width="21" height="21" rx="4" fill="#8176d9"/><text x="753" y="407" fill="#e9edf2">ゲーム・カード体験</text>
+<rect x="1040" y="388" width="21" height="21" rx="4" fill="#46536b"/><text x="1073" y="407" fill="#e9edf2">その他</text>
+</g>
+<path d="M68 450H1252" stroke="#354359"/>
+<text x="70" y="488" fill="#aac3d4" font-family="Arial,'Noto Sans JP',sans-serif" font-size="20">注意：これは開催枠数であり、来場者の好み・時間配分・売上構成を表すものではない。</text>
+<text x="70" y="525" fill="#7d97ab" font-family="Arial,'Noto Sans JP',sans-serif" font-size="17">Source: GEM Standard (2026/10/23) ／ 160枠は総数から掲載３分類を差し引いた参考値</text>
+</svg>
