@@ -1,118 +1,135 @@
 ---
 id: "nycc-2026-japan-ip-from-export-to-fandom-infrastructure"
-title: "25万人のコミコン、でも半分は“Meet Someone”だった――From Japanese IP exports to cultural infrastructure"
-subtitle: "NYCC 2026 through Shu-Ha-Ri: fandom, distribution, and the economics of participation"
+title: "25万人のコミコン、半分がMeet & Greet――From exported stories to shared culture"
+subtitle: "NYCC 2026を守・破・離で読む。Why fans meet, how stories travel, and who owns the relationship"
 created: "2026-10-23"
 updated: "2026-10-23"
 type: "リサーチエッセイ"
 status: "完成"
 tags: ["ニューヨーク・コミコン", "日本のコンテンツ", "アニメ", "マンガ", "知的財産", "ファンコミュニティ", "国際展開", "守破離", "イベントビジネス"]
-keywords: ["NYCC 2026", "New York Comic Con", "ReedPop", "GEM Standard", "Anime NYC", "Anime Expo", "MANGA MILLION", "MANGA Plus", "fandom", "IP strategy"]
+keywords: ["NYCC 2026", "New York Comic Con", "ReedPop", "GEM Standard", "Anime NYC", "Anime Expo", "MANGA MILLION", "MANGA Plus", "fandom", "IP strategy", "localization"]
 grow: 5
-abstract: "At NYCC 2026, 762 out of 1,515 scheduled items were autograph or photo opportunities. But this is not a fan survey, and 250,000 attendees is a ticket-based count. 日本作品の存在感を測るとき、知名度だけでなく、発見、交流、購買、そして次の作品への接点を誰が設計するかが重要になる。Primary sources, competing explanations, and practical measurement proposals."
+abstract: "Why do fans line up to meet someone? NYCC 2026の1,515枠のうち762枠はサイン会や撮影会。チケット枚数は実人数ではなく、満員の会場は市場占有率を証明しない。From Japanese IP exports to fan relationships――一次情報と反対仮説から、海外での人気を継続的な行動と流通の設計として読み直す。"
 ---
 
-# 25万人のコミコン、でも半分は“Meet Someone”だった――From Japanese IP exports to cultural infrastructure
+# 25万人のコミコン、半分がMeet & Greet――From exported stories to shared culture
 
-### NYCC 2026 through Shu-Ha-Ri: fandom, distribution, and the economics of participation
+### NYCC 2026を守・破・離で読む。Why fans meet, how stories travel, and who owns the relationship
 
-**Research cutoff: October 23, 2026.** 元記事は[GEM Standardの現地レポート](https://www.gem-standard.com/columns/1947)。This is an English-mix reading edition, built on the same evidence and argument as the Japanese article. **Facts, interpretation, and proposals are kept separate.**
+**Research cutoff: October 23, 2026.** 出発点は[ジェム・スタンダード（GEM Standard）の現地レポート（2026年10月23日）](https://www.gem-standard.com/columns/1947)。数値は主催者・発行者・公的機関と照合し、**確認された事実／本稿の推論／実務上の提案**を区別した。筆者自身による現地取材や個別ファンへの調査は行っていない。
 
-## 1. 25万人のイベントで、why are so many people lining up to meet someone?
+## 序章 / The strange number｜25万人を集めて、なぜ半分が「誰かに会う」枠なのか
 
-A giant pop-culture convention sounds like an endless sequence of trailers and announcements. But the schedule tells a stranger story. GEM Partners counted **1,515 programme slots**, including the professional day before NYCC 2026. Of those, **762 were autograph or photo opportunities**—about **50.3%** of the slots. A convention full of stories, and roughly half the scheduled items involve meeting people. An astonishingly organised way to queue.
+25万人が来る巨大な催しと聞けば、宇宙規模の新作発表や、最新映像がひっきりなしに流れる会場を想像する。ところが2026年10月8〜11日のニューヨーク・コミコン（New York Comic Con）について、ジェムパートナーズ（GEM Partners）が公式日程を集計した数字は少し妙だ。会期前日の業界向け日程を含む**1,515枠のうち、サイン会・写真撮影が762枠**。約50.3％である。作品を上映するより、作品に関わる人に会いに行く予定が数の上では多い。夢のある催しというか、会いたい人が多すぎる。**People are not only watching stories. They are meeting through stories.**
 
-But be precise: **half the programme slots does not mean half the attendees chose those activities**. 実際の参加人数、部屋の大きさ、プログラムの長さは別。The useful insight is about event design, not audience share. Fans are not only purchasing access to content; they are seeking access to people, communities, and shared moments.
+もちろん、**枠数の50％は、来場者の50％がサイン会に参加したという意味ではない**。実施時間、会場の収容人数、実際の参加人数は異なる。だが、企画側が何を用意しているかという設計思想は読み取れる。**A schedule tells us what the organiser wants people to experience.**作品の「中身」だけを並べても、イベントは成立しない。作品をめぐって人と人が接触する、その瞬間そのものが商品になっている。
 
-![NYCC 2026 programme slots: original source-labelled graphic](https://silovar-uk.github.io/myessays/assets/nycc-2026-program-slots.svg)
+![ニューヨーク・コミコン2026のプログラム構成を示す独自図解](https://silovar-uk.github.io/myessays/assets/nycc-2026-program-slots.svg)
 
-*Based on the [GEM Standard programme analysis](https://www.gem-standard.com/columns/1947). The remaining 160 slots are the difference from the reported total, not a separately verified count.*
+*図1：ジェムパートナーズの公表集計をもとに作成。残余の160枠は総数との差分。各類型は催しの枠数であり、来場者数や売上構成ではない。[原データの説明](https://www.gem-standard.com/columns/1947)。*
 
-## 守 / Learn the rules: this is not an anime-only event
+ここから一歩引いて考えてみたい。日本のマンガやアニメがアメリカで「人気になった」とき、私たちは何が起きたと理解しているのだろう。映像が視聴されたことか。グッズが売れたことか。それとも、その作品のために見知らぬ人同士が集まり、新しい時間の使い方を始めたことか。
 
-New York Comic Con（ニューヨーク・コミコン）, organised by ReedPop（リードポップ）, began in 2006. The 2026 event brought together comics, TV, cinema, games, creators and retail. Its organiser reported **more than 250,000 tickets counted as attendance**, **650+ publishers, brands and retailers**, and an **estimated $91 million in local economic impact**. The economic impact figure is not the organiser's revenue or profit. [RX official release](https://rxglobal.com/new-york-comic-con-celebrates-20-years-over-250000-fans-attendance)
+## 守 / Check the premise｜アニメ専門ではない会場だから分かること
 
-Here is a measurement trap. According to [ICv2's confirmation with ReedPop](https://icv2.com/articles/news/view/63671/nycc-2026-photos-part-1), multiple single-day tickets purchased by one person can count more than once, whereas a four-day ticket counts once. **This is neither a unique-person count nor daily turnstile attendance.** 比較する際は同じ単位を使う必要がある。
+ニューヨーク・コミコンは、リードポップ（ReedPop）が2006年に始めた総合ポップカルチャー催事だ。アメリカのコミック出版社、映画、ドラマ、ゲーム、アーティスト、物販などが同居する。前年の2025年も25万人超を報告しているため、2026年の発表を来場者数の急増とは読めない。20周年の2026年、主催者は**25万人超の来場、650超の出版社・ブランド・小売事業者、500人超の作家・画家らの参加、ニューヨーク市への約9,100万ドルの経済効果**を発表した。経済効果は市の観光関係機関による推計であり、主催者自身の売上高でも利益でもない。[主催企業RXの発表（2026年10月）](https://rxglobal.com/new-york-comic-con-celebrates-20-years-over-250000-fans-attendance)
 
-Anime Expo（アニメ・エキスポ）reported **over 422,000 turnstile entries** in 2026. JETRO reported around **172,000 attendees** for Anime NYC（アニメ・ニューヨーク）, with no fully harmonised counting method established here. The numbers should not be ranked as if they measured the same thing. [Anime Expo organiser](https://www.anime-expo.org/2026/07/10/anime-expo-2026-wraps-its-35th-edition-with-attendees-from-over-65-countries-and-over-1400-hours-of-programming/) / [JETRO](https://www.jetro.go.jp/biznews/2026/09/2dff15d5951d2182.html)
+ここでまず、立派すぎる数字に足を取られないようにしたい。米国業界専門誌[アイシーブイツー（ICv2）が主催者に確認した集計方法](https://icv2.com/articles/news/view/63671/nycc-2026-photos-part-1)では、「25万人超」は**販売チケットを基礎とした数え方**である。ある人が木曜と金曜の日別券を買えば2件、4日通し券なら1件として扱われる。異なる人の実人数でも、毎日の入場回数の合計でもない。**Tickets are not the same as unique visitors.**「25万人の人間が一度ずつ入った会場」として想像すると、入口から誤る。
 
-![Cast panel at NYCC 2026 for Blade Runner 2099](https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg/960px-Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg)
+比較対象も同様だ。2026年のロサンゼルスでのアニメ・エキスポ（Anime Expo）は、主催団体が**延べ入場回数42万2,000超**と発表した。ニューヨークのアニメ専門催事、アニメ・ニューヨーク（Anime NYC）は、ジェトロの取材記事で**約17万2,000人**と紹介されている。数える単位が揃わないため、これらを割り算して「どちらの人気が何倍」とすることはできない。[アニメ・エキスポ主催者](https://www.anime-expo.org/2026/07/10/anime-expo-2026-wraps-its-35th-edition-with-attendees-from-over-65-countries-and-over-1400-hours-of-programming/)／[日本貿易振興機構（ジェトロ）](https://www.jetro.go.jp/biznews/2026/09/2dff15d5951d2182.html)
 
-*Not a Japanese-IP panel. This photo illustrates NYCC's mixed-genre setting. Photo: Mandilea16, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), unchanged.*
+![ニューヨーク・コミコン2026の舞台に登壇する海外映像作品「ブレードランナー2099」の出演者たち](https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg/960px-Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg)
 
-This distinction matters. At Anime Expo, Japanese animation is the main attraction. At NYCC, it competes for attention alongside Marvel（マーベル）, DC（ディーシー）and other global entertainment. 日本作品がここで最大会場のプログラムを獲得することには意味がある。ただし、イベント全体の観客が日本作品をどう評価したかまで直接証明するわけではない。
+*2026年のニューヨーク・コミコンにおける「ブレードランナー2099」の登壇風景。日本作品の写真ではなく、この催事が複数の国・ジャンルの作品を扱うことを示す一例。撮影：ウィキメディア投稿者（Mandilea16）、[ウィキメディア・コモンズ](https://commons.wikimedia.org/wiki/File:Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg)、[クリエイティブ・コモンズ表示4.0国際（CC BY 4.0）](https://creativecommons.org/licenses/by/4.0/)。画像は元のまま掲載。*
 
-## 守 / Start with evidence: 3,000 Dragon Ball fans in a main hall
+アニメ専門の会場で日本作品が中心にあるのは、ある意味では当然だ。これに対し、マーベル（Marvel）やディーシー（DC）をはじめ多くの作品が競うニューヨーク・コミコンに日本作品が登場する意味は違う。**すでに日本アニメが好きな人の熱量**ではなく、**別の娯楽と並んだときにも注意を集められるか**という問いを立てられる。ただし、会場に来た人の嗜好構成や購買履歴まで分かるわけではない。催事は市場の縮図ではなく、市場を試す特定の場なのだ。**It is a test site, not a perfect sample of the market.**
 
-Japanese franchises repeatedly took prominent slots at the **Empire Stage**, a hall of roughly 3,000 seats. The official Dragon Ball site confirms that **3,000 fans attended the world-premiere screening** of episode one of Dragon Ball Super: Beerus（『ドラゴンボール超 ビルス』）on October 8, before its Japanese TV premiere. [Official report](https://dragonball-super.com/en/updates/detail.html?id=20261009-01)
+## 守 / Stay with the evidence｜3,000人の熱狂と市場占有率は別
 
-The reversal is fascinating. An international premiere no longer has to wait until Japan has seen the show. New York can become a first-release stage. Still, this one packed panel does not establish US market share, future subscription revenue or national recognition. 現場の熱量と市場の大きさは、関連するが同一ではない。
+それでも、場の大きさは無視できない。日本発の作品は、約3,000席の最大会場「エンパイア・ステージ（Empire Stage）」で連日、主な発表枠に入った。『ドラゴンボール超 ビルス』、『ワンピース（ONE PIECE）』、『ナルト（NARUTO）』などである。中でも『ドラゴンボール超 ビルス』は、**日本での放送開始前に第1話を世界初上映し、公式発表によれば3,000人が参加**した。[GEM Standard](https://www.gem-standard.com/columns/1947)／[ドラゴンボール公式実施報告](https://dragonball-super.com/en/updates/detail.html?id=20261009-01)
 
-Godzilla Minus Zero（『ゴジラ-0.0』）also held a production panel. Its official promotion included film discussion, toys and other merchandise activities. The franchise is not simply selling a ticket to a film; it creates different ways to engage. [Godzilla official announcement](https://godzilla.com/en-gb/blogs/news/godzilla-at-new-york-comic-con-2026-panels-events-and-exclusives)
+この順序は興味深い。日本で作った作品を、まず日本で披露し、後日「海外にも輸出する」という古典的な時間差を逆転させている。ニューヨークは単なる宣伝旅行の目的地ではなく、世界のファンが同じタイミングで物語を迎える発表拠点になりうる。ただし、3,000人の集客を米国全体での人気順位や今後の収益の証明に拡大してはいけない。座席数、登壇者、先行上映という希少性、予約方法などが結果を左右するためだ。**A full room is not market share.**
 
-## 破 / Break the frame: the deeper story is distribution, not applause
+では、どの作品にも高い訴求力があるのか。そうでもない。『ゴジラ-0.0』の制作関係者パネルは、最大会場ではなく約800席の会場だったとGEMは報じている。一方、[ゴジラの公式案内](https://godzilla.com/en-gb/blogs/news/godzilla-at-new-york-comic-con-2026-panels-events-and-exclusives)は作品発表だけでなく、会場の玩具や雑貨など複数の関連商品を紹介した。ひとつの作品の「市場」は、上映、会場での体験、商品など、入口も売上の発生地点もひとつではない。
 
-The article's most strategic detail may be a publisher panel called **Taking Manga Global**. Shueisha（集英社）, Kodansha（講談社）and Square Enix（スクウェア・エニックス）appeared together to discuss direct overseas manga services. These companies still have licensing businesses, but now they also have ways to reach readers directly. [GEM Standard report](https://www.gem-standard.com/columns/1947)
+## 破 / Change the question｜競合する出版社が海外流通を語る意味
 
-Shueisha's centenary initiative **MANGA MILLION（マンガ・ミリオン）** offers about **400 manga titles and one million pages** through multilingual, free, time-limited access. Around **300 titles were being translated for international readers for the first time**, and at least 150 are girls' manga titles. One Piece（『ワンピース』）has material in 100-plus languages, with territorial and title-specific limitations. [Shueisha official project guide](https://www.shueisha.co.jp/100th-guide/)
+ここまでの話なら「日本作品、大人気」で終われる。だが原記事でもっと気になるのは、集英社、講談社、スクウェア・エニックスという、国内では競合にもなる出版社系の担当者が、10月8日の「マンガを世界へ（Taking Manga Global）」という座談会に同席したことだ。各社が紹介したのは、それぞれの**海外向け自社マンガ配信サービス**。作品のライセンスを外国の出版社に渡すだけではなく、自ら読者に届ける経路を持とうとしている。[GEM Standardの現地報告](https://www.gem-standard.com/columns/1947)
 
-A million pages sounds almost absurd. But a million pages is not a million paying readers. **Access is a precondition for demand, not proof of demand.** 作品を読めなかった人に入口をつくる。Then the real questions begin: Did they read? Did they return? Did they pay? Did they discover another title?
+その変化を検証する材料がある。集英社は創業100周年企画「マンガ・ミリオン（MANGA MILLION）」で、**約400作品・100万ページ**を多言語翻訳して期間限定で無料提供。公式発表によると約300作品は初めて海外向けに翻訳され、150作品以上が少女マンガである。『ワンピース』の一部は100超の言語に翻訳される。日本国内では閲覧できる範囲が異なり、言語・作品ごとにも提供状況が違う。[集英社公式案内](https://www.shueisha.co.jp/100th-guide/)／[マンガ・ミリオンの言語案内](https://mangamillion.shueisha.co.jp/en/featured/187)
 
-This is also not a brand-new strategy. **MANGA Plus by SHUEISHA（マンガ・プラス）launched in 2019** with a focus on simultaneous international publication of new chapters. An established licensing model and a publisher-operated digital channel can coexist. [Shueisha background](https://www.shueisha.co.jp/2026saiyo/sp-03/) / [MANGA Plus official overview](https://mangaplus.shueisha.co.jp/web_pages/1120/)
+翻訳作業の大規模さも驚くが、より大きいのは「そもそも読めなかった人」に作品を見つけてもらえる可能性だ。これはまだ**売上ではなく、接触機会の設計**である。無料公開が書籍購入へどの程度つながったかは、公開情報だけでは分からない。100万ページがそのまま100万人のファンを生むわけでもない。つい頭の中で割り算しそうになるが、割る相手が違う。**Free access is a chance to discover, not proof of a sale.**
 
-A useful inference: The competitive question is shifting from *Can we export this title?* to **Who owns the path by which readers discover and revisit it?** これは権利元がすべての取引を直接抱えるべき、という話ではない。It is about understanding the value of each connection.
+もっと長い時間軸では、集英社の「マンガ・プラス（MANGA Plus by SHUEISHA）」が2019年に始まり、日本と海外で新しい話を同時に届ける仕組みを整えてきた。これは2026年に突如現れた動きではない。作品の国際展開において、**国境による時差を小さくし、どの読者がどの作品と出会うかを自社が学べる環境**をつくる方向が続いている。[集英社の公式解説](https://www.shueisha.co.jp/2026saiyo/sp-03/)／[マンガ・プラス公式案内](https://mangaplus.shueisha.co.jp/web_pages/1120/)
 
-## 破 / An abductive hypothesis: fandom is a sequence of actions
+ここで重要なのは「海外の版権ビジネスは終わった」という派手な結論ではない。現地出版社との契約や翻訳・書店流通には今も役割がある。一方で、自社配信は読者との接点を企業が直接持つ選択肢を追加する。つまり変わっているのは輸出の有無より、**作品の存在を知らせ、読ませ、次の行動へ導く権限がどこにあるか**という設計なのだ。**Who owns the path from discovery to return?**
 
-Consider a hypothetical fan. They notice a booth, sample a story, attend a discussion, play a card game, meet another fan, buy a product, and later bring a friend. This sequence might create a stronger relationship than a single isolated sale. But **we have not observed or measured this entire journey** in the source data.
+## 破 / Follow the fan journey｜人数よりも、次の行動が生まれる導線へ
 
-![Hypothesis: discovery, viewing, interaction, participation and return](https://silovar-uk.github.io/myessays/assets/nycc-2026-fan-loop.svg)
+この仮説を現場に戻してみる。イベント会場には、出版社による展示、限定商品の販売、ゲームやカードの体験、作家との交流があった。ジェムパートナーズの調査ではカードやゲームの対戦・体験枠が**274件**、企業・作品の発表枠が**319件**である。ポケモンやガンダム、『ワンピース』といった日本発の作品も、カードを「読む」のでなく「遊ぶ」対象として存在していた。[GEM Standard](https://www.gem-standard.com/columns/1947)
 
-*An original conceptual model. It is **not** an empirically verified customer journey.*
+**本稿の推論**として、価値の生まれ方を少し極端に考えてみる。知らない作品の展示を見る。無料で数話読む。舞台で好きになり、カードで遊び、隣の人と会話する。帰宅後に続きを探し、次の催事には友人を連れてくる。こうした循環が起きるなら、作品は単独の映像・書籍を超え、継続して人を結びつける役割を持つ。しかしこの経路を実際に何人がたどったかは調査されていない。図は**実証結果ではなく検証すべき仮説**だ。**This is a hypothesis, not an observed customer journey.**
 
-The programme count adds texture: GEM reports **319 publisher or title panels** and **274 game / trading-card experience slots**. JETRO's Anime NYC field report separately describes companies gathering fan feedback at booths and experimenting with customer interaction. These observations make a testable business hypothesis plausible, but they do not prove revenue causation. [GEM](https://www.gem-standard.com/columns/1947) / [JETRO](https://www.jetro.go.jp/biznews/2026/09/2dff15d5951d2182.html)
+![日本発コンテンツをめぐる発見から再訪までの仮説モデル](https://silovar-uk.github.io/myessays/assets/nycc-2026-fan-loop.svg)
 
-Counterargument matters. A busy convention floor does not tell us who makes money. ICv2 observed growing **livestream shopping** presence and counted five major platforms represented at NYCC. A rightsholder may win, a local platform may capture most value, or a free consumer may never convert to paid demand. **The winners depend on rights, costs, and customer relationships—not applause alone.** [ICv2 field observation](https://icv2.com/articles/news/view/63671/nycc-2026-photos-part-1)
+*図2：筆者による概念図。行動の順番や因果の実測を示すものではない。*
 
-## 離 / Leave the frame: fans become part of the story
+補助線になるのが、ジェトロによる2026年アニメ・ニューヨークの取材だ。同催事の企業は、グッズ販売だけでなく、ファンからメッセージを集めて反応を確認したと報じられている。紹介された民間調査では、米国のアニメ視聴経験や若年層の自己認識についても数値が示された。ただしそれらは調査会社が会場で公表した結果であり、サンプル設計を本稿では検証していない。[ジェトロ現地報告](https://www.jetro.go.jp/biznews/2026/09/2dff15d5951d2182.html)
 
-Why travel, queue, cosplay, create fan art, or compete with trading cards when you could simply stream a show at home? Because the content becomes social. Watching is one activity; using a story to meet other people is another. 人間は「休みの日に好きな作品のために並ぶ」ことを、時々ご褒美と呼ぶ。不思議やけど、そこに価値がある。
+この事例を通じて、別の考えが浮かぶ。出版社や制作会社にとって催事の重要性は、売上を立てることだけではない。作品をまだ知らない人の反応を見る「観測点」にもなる。言い換えれば、**国外市場の運営能力とは、熱狂を宣伝する能力だけでなく、熱狂の前後で人が何をするかを確かめる能力**なのではないか。
 
-This connects with the concept of **participatory culture（参加型文化）**: audiences also share, remix and interpret cultural works. Not every attendee is a creator. But measuring fandom only as individual viewing can miss community behaviour, fan-to-fan recommendations and repeated engagement.
+## 破 / Test the counterargument｜満員でも収益性は証明されない
 
-Now consider a sports club. A match matters, but so do chants, trips, local identity, a young fan meeting a player and the scarf worn on a train. スポーツとマンガでは権利・試合結果・制作工程が異なる。それでも「観る」だけで終わらない接点を設計する発想は共通する。A fan business might be better understood as a relationship system than as a catalogue of content.
+とはいえ、ここまでの議論には都合のよい飛躍も潜んでいる。大きな会場に日本作品が出た。ファンが並んだ。無料公開の言語数も増えた。だから日本企業が長期的な利益を得ている――という結論は、この資料群からは導けない。制作費、翻訳費、催事出展費、会場物販の粗利、配信の利用継続率、ライセンス料などが不明だからだ。
 
-## 離 / From exported products to shared cultural language
+むしろ2026年の米国業界専門誌[アイシーブイツー（ICv2）の現地観察](https://icv2.com/articles/news/view/63671/nycc-2026-photos-part-1)では、会場での**生配信販売**を扱う事業者が大きな存在感を示していた。観察者は、主要な事業者を5つ数えたと記している。これは会場全体を網羅した確定統計ではないが、消費の主導権を考えるヒントになる。買い手を連れて来たのは出版社なのか、作品なのか、それとも販売と配信の仕組みを握る第三者なのか。
 
-Dragon Ball techniques, Pokémon battles and One Piece adventures can function as small shared languages among fans who have never met. A story remains a commercial product, yet also becomes a way to recognise each other. The interesting future is not simply *Japanese content conquering the US*. It is people from different places using the same fictional world to communicate.
+**対立する可能性**は三つある。日本の作品が強いほど権利元の収益が増える場合。現地の配信・小売・催事運営者の価値の方が増える場合。無料接触は広がるが課金につながらない場合だ。どれか一つを今、断定する材料はない。むしろ、誰が顧客との接点を持ち、再来訪につなげ、費用を回収できるかを見ない限り、「海外で人気」は企業戦略として不十分な言葉なのだ。**Popularity is not the same as profitability.**
 
-Multilingual access makes this possible, but localisation is never frictionless. Humour, legal rights, cultural references and reading habits differ. Translation should enable shared access without pretending all readers are identical. **The goal is not one global audience with the same taste; it is many local audiences finding a common point of entry.**
+## 離 / Beyond the screen｜ファンが作品の世界に参加する
 
-## A practical experiment: measure what happens after the convention
+ここからは連想を少し遠くまで伸ばす。なぜ人はコスプレをし、サインを求め、カードの大会に参加するのか。作品を受け取るだけなら、家の画面で足りる。わざわざ衣装を作り、移動し、行列に並ぶ行為には、受け手が作品世界の一部として振る舞う側面がある。なぜか人類は、好きな作品のためなら長時間の立ち仕事を「余暇」と呼べる。
 
-**Proposal, not a documented result:** Track the discovery channel, content-start rate, permission-based return visits, purchase conversion, repeat engagement, recommendation and cost per retained customer. Do not treat ten visits by one person as ten new people. Do not assume a direct data relationship exists when local distribution partners own it.
+社会学でいう参加型文化（participatory culture）は、この現象を捉える補助線になる。見る人が創作や共有を通じて文化の形成に加わるという考えだ。ただし、サイン会の参加者全員が創作者だということではない。ここでのポイントは、観客を「作品を消費する人数」だけで把握すると、コミュニティーの交流、二次創作、知人への紹介などの活動を見逃すということにある。
 
-A stronger test would link an event and a free-access campaign in one market, compare it with a reasonably matched non-campaign market, and test for incremental behaviour while accounting for online spillovers. 参加者の拍手は大切。しかし継続投資の根拠は、会場を出た後の行動と採算の検証から得るべきだ。
+この発想はスポーツにも接続できる。スポーツクラブが販売するのは、試合中の競技内容だけではない。応援する、仲間と話す、グッズを身に着ける、遠征する、地域の子どもが選手に会う。そこにあるのは「鑑賞」から「参加」へ広がる体験だ。**Fans do things together. That is part of the value.**もちろん試合とマンガは権利構造も競技結果の不確実性も違う。したがってビジネスモデルをそのまま輸入できない。だが、ファンとの接点を複数持つという設計原理は検討できる。
 
-## Ending: the event is not a popularity contest
+## 離 / Shared language｜輸出品から共通言語へ
 
-We started with 762 autograph and photo sessions. The tempting conclusion was simply that fandom is big. The better conclusion is that **the object of value changes when people do things with a story, not just watch it**.
+もし日本の作品が多くの国で共通の話題になれば、国籍を知らない相手とも好きなキャラクターの話ができる。『ワンピース』の物語、ドラゴンボールの技、ポケモンの対戦ルールは、作品を知らない人には何の役にも立たない。一方、知っている者同士にとっては、自己紹介のいくつかを飛ばせる合言葉になる。この意味で、知的財産は商品であると同時に、小さな共通言語でもある。
 
-Japanese works are now prominent at a broad US pop-culture gathering. But their next challenge is larger than export volume: **Can they become a durable infrastructure for discovery, participation and relationships?** その答えは3000席の拍手だけでなく、帰宅後に誰が読み、誰が話し、誰が戻ってくるかに表れる。
+とはいえ、全世界を同じ文化で塗りつぶす話にしてはいけない。翻訳ではユーモアや言葉遊びが失われることもあるし、各地の権利・年齢区分・文化的文脈も異なる。作品が各地で再解釈される余地を残すことこそ、長く使われる共通言語の条件だろう。100以上の言語へ翻訳する試みの凄さは、すべての読者を同じにすることではなく、**これまで出会えなかった読者が、異なる言語のまま同じ物語に入れるようにすること**にある。
+
+## 離 / From reach to return｜ファンとの接点を更新し続ける
+
+では、日本の出版社・制作会社・スポーツクラブがこの仮説を実務で試すなら何をするか。まず、海外事業の目標を「現地イベントで何人を集めたか」だけに置かない。仮に同じ観客が十回戻って来た場合、それを十人の新規客と数えれば成長は誇張される。逆に一人の継続的な行動の価値は見えなくなる。
+
+**提案**として、事業者が自社のデータと権利の範囲で、①最初に知った経路、②無料コンテンツの閲覧・視聴開始率、③本人の同意に基づく再接触率、④購買への転換率、⑤継続・紹介率、⑥接点ごとの収益・費用を追う設計が考えられる。現地小売・配信事業者と協業するなら、取得できない顧客データや権利条件も先に確かめる必要がある。個人情報を多く集めればよいという提案ではない。
+
+検証はさらに厳密にできる。ある都市で催事出展と無料配信の連動施策を実施し、近い条件の非実施都市と比べる。告知の有無、キャンペーン期間、作品ごとの人気差などを補正し、自然増分との差を見る。ただし地域間の人の移動やオンライン拡散があるため、比較だけで因果が自動的に確定するわけではない。「面白そうだからやる」から「続ける価値が確認できたから拡張する」へ進むには、こうした反証可能な設計が要る。
+
+## 終章 / After the applause｜会場を出たあとに残るもの
+
+話は最初の「サイン会・写真撮影762枠」に戻る。記事を読む前なら、たぶん「すごい数のファンが集まるイベントだな」で終わった。だが、この数字が教えるのは観客の大きさだけではなかった。人は物語を見たいだけでなく、誰かと会いたい。何かを作りたい。触れたい。遊びたい。昨日まで知らなかった作品に出会いたい。
+
+ニューヨーク・コミコンという、多数の国・ジャンルの娯楽が競う会場で、日本の作品が何日も看板を担ったことには確かな意味がある。ただ、その次の問いこそ本番だ。**The real test starts after the applause.****日本の作品は、たくさん売れる輸出品にとどまるのか。それとも世界の人が出会い、話し、遊ぶための基盤になっていくのか。** 答えは会場の拍手だけでは決まらない。会場を出たあとの一人ひとりの行動に、これから現れる。
 
 ---
 
-## Research notes / 再検証と限界
+## Research notes｜調査の道筋と次の検証計画
 
-Research sequence: verify counting units → check official releases and publisher evidence → test contrary interpretations → derive a business hypothesis. **Not completed:** attendance and capacity per session, real consumer conversion, revenue split among licence holders, local partners and platforms, and interviews tracking what fans did after attending.
+本稿は、最初に**守：用語と測定方法の確認**（25万人の集計単位、比較催事の定義）を行い、続いて**破：公式発表の再照合と反対仮説**（先行上映、翻訳配信、物販・生配信販売）を調べ、最後に**離：作品を軸にした参加・流通・スポーツとの類推**を検討した。図1は既存データを再計算し、図2は解釈を可視化したものだ。
 
-A ticket-based total is not a count of unique people; schedule slots are not attendance. Published language counts and catalogue availability vary by title and territory. The behavioural loop is an explicitly labelled hypothesis, not measured causality.
+**追加調査の計画**は、①催事の各プログラムについて収容人数・実施時間・実参加数を取得して「枠数」と区別、②日本企業の海外向けサービスの実利用者数・課金率・継続率を公表資料から追跡、③ライセンサー・現地小売・配信事業者の取り分と費用負担を確認、④現地ファンへのインタビューで「なぜ参加したか」と「会場後に何をしたか」を検証、の順だ。これらは**今回実施できていない調査**であり、推測で補ってはいない。
 
-## Sources / 主要出典
+**確認上の限界**：来場人数と延べ入場回数は直接比較できない。GEMの1,515枠は同社の公式日程集計であり、筆者が全枠を再集計した値ではない。集英社の無料公開は期間限定・地域差・作品差がある。参加型文化から事業収益への因果、翻訳から購買への効果、図2の循環は未実証の仮説である。
 
-- [GEM Standard, NYCC 2026 coverage](https://www.gem-standard.com/columns/1947)
-- [RX official NYCC 2026 statement](https://rxglobal.com/new-york-comic-con-celebrates-20-years-over-250000-fans-attendance) / [ICv2 on ticket counts and live selling](https://icv2.com/articles/news/view/63671/nycc-2026-photos-part-1)
-- [Anime Expo 2026 attendance methodology](https://www.anime-expo.org/2026/07/10/anime-expo-2026-wraps-its-35th-edition-with-attendees-from-over-65-countries-and-over-1400-hours-of-programming/) / [JETRO on Anime NYC 2026](https://www.jetro.go.jp/biznews/2026/09/2dff15d5951d2182.html)
-- [Dragon Ball official event report](https://dragonball-super.com/en/updates/detail.html?id=20261009-01) / [Godzilla official event overview](https://godzilla.com/en-gb/blogs/news/godzilla-at-new-york-comic-con-2026-panels-events-and-exclusives)
-- [Shueisha MANGA MILLION official guide](https://www.shueisha.co.jp/100th-guide/) / [MANGA Plus corporate account](https://www.shueisha.co.jp/2026saiyo/sp-03/)
-- [Wikimedia Commons photo credit and licence](https://commons.wikimedia.org/wiki/File:Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg)
+## Sources｜主要な資料・出典
+
+- [ジェム・スタンダード（GEM Standard、2026年10月23日）ニューヨーク・コミコン2026現地報告](https://www.gem-standard.com/columns/1947)
+- [主催企業アールエックス（RX、2026年10月）25万人超とイベント概要](https://rxglobal.com/new-york-comic-con-celebrates-20-years-over-250000-fans-attendance)
+- [米国業界専門誌アイシーブイツー（ICv2、2026年10月20日）集計方法の主催者確認と物販観察](https://icv2.com/articles/news/view/63671/nycc-2026-photos-part-1)
+- [アニメ・エキスポ主催者（2026年7月10日）延べ入場回数](https://www.anime-expo.org/2026/07/10/anime-expo-2026-wraps-its-35th-edition-with-attendees-from-over-65-countries-and-over-1400-hours-of-programming/)／[ジェトロ（2026年9月18日）アニメ・ニューヨークの現地取材](https://www.jetro.go.jp/biznews/2026/09/2dff15d5951d2182.html)
+- [ドラゴンボール公式（2026年10月9日）先行上映と3,000人](https://dragonball-super.com/en/updates/detail.html?id=20261009-01)／[ゴジラ公式（2026年10月6日）イベントと商品](https://godzilla.com/en-gb/blogs/news/godzilla-at-new-york-comic-con-2026-panels-events-and-exclusives)
+- [集英社100周年公式「マンガ・ミリオン」](https://www.shueisha.co.jp/100th-guide/)／[集英社「マンガ・プラス」の経緯](https://www.shueisha.co.jp/2026saiyo/sp-03/)／[「マンガ・プラス」公式説明](https://mangaplus.shueisha.co.jp/web_pages/1120/)
+- [2026年会場写真の出典・利用条件（ウィキメディア・コモンズ）](https://commons.wikimedia.org/wiki/File:Cast_of_Blade_Runner_2099_at_NYCC_2026.jpg)
