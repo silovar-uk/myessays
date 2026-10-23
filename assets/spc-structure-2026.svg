@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 650" role="img" aria-labelledby="t d">
+<title id="t">特別目的会社SPCの基本的な資金・契約関係</title><desc id="d">出資者はSPCに出資し、金融機関は融資し、SPCが契約主体となって利用者から収入を受け、業務委託先に費用を支払う。実際は案件によって異なる。</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#506b82"/></marker><style>text{font-family:Arial,'Noto Sans JP',sans-serif;fill:#1f3144}.ttl{font-size:34px;font-weight:700}.sub{font-size:17px;fill:#697c8d}.label{font-size:23px;font-weight:700}.small{font-size:17px}.min{font-size:15px;fill:#637789}.flow{stroke:#506b82;stroke-width:3;fill:none;marker-end:url(#a)}.dashed{stroke-dasharray:8 6}.box{fill:#fff;stroke:#bbccd8;stroke-width:2;rx:18}.core{fill:#e1f0fa;stroke:#2a6c92;stroke-width:3;rx:22}</style></defs>
+<rect width="1160" height="650" fill="#f6f8fa"/><text x="54" y="66" class="ttl">SPCは「一つの案件」の契約・資金の中心点</text><text x="55" y="101" class="sub">案件ごとに分けるのは、会社の名前ではなく「権利・義務・現金の流れ」</text>
+<rect x="52" y="151" width="285" height="115" class="box"/><text x="195" y="193" class="label" text-anchor="middle">出資企業・投資家</text><text x="195" y="225" class="small" text-anchor="middle">出資／株主権</text>
+<rect x="52" y="347" width="285" height="115" class="box"/><text x="195" y="389" class="label" text-anchor="middle">金融機関</text><text x="195" y="421" class="small" text-anchor="middle">融資／返済・担保</text>
+<rect x="434" y="226" width="293" height="176" class="core"/><text x="581" y="280" class="label" text-anchor="middle">特別目的会社</text><text x="581" y="315" font-size="38" font-weight="800" text-anchor="middle" fill="#275c7f">SPC</text><text x="581" y="350" class="small" text-anchor="middle">特定の案件を引き受ける法人</text><text x="581" y="377" class="min" text-anchor="middle">契約・収支・責任の単位</text>
+<rect x="828" y="151" width="278" height="115" class="box"/><text x="967" y="193" class="label" text-anchor="middle">利用者・取引先</text><text x="967" y="225" class="small" text-anchor="middle">利用料金／サービス</text>
+<rect x="828" y="347" width="278" height="115" class="box"/><text x="967" y="389" class="label" text-anchor="middle">事業パートナー</text><text x="967" y="421" class="small" text-anchor="middle">運営・管理・建設等の業務</text>
+<path d="M337 210 L424 269" class="flow"/><text x="369" y="204" class="min">出資</text>
+<path d="M337 403 L424 363" class="flow"/><text x="353" y="398" class="min">融資</text>
+<path d="M828 219 L738 268" class="flow"/><text x="764" y="208" class="min">収入</text>
+<path d="M738 364 L819 401" class="flow"/><text x="753" y="387" class="min">業務委託・支払</text>
+<path d="M440 289 L352 231" class="flow dashed"/><path d="M445 380 L354 421" class="flow dashed"/><text x="346" y="293" class="min">分配*</text><text x="360" y="445" class="min">返済*</text>
+<rect x="52" y="514" width="1054" height="92" rx="16" fill="#e9edf2"/><text x="76" y="546" font-size="18" font-weight="700">重要：法律上の分離 ≠ 完全なリスク遮断</text><text x="76" y="573" class="small">保証・追加出資義務・担保・支配関係・会計上の連結は個別に確認が必要。</text><text x="76" y="593" class="min">* 分配・返済の順序や可否は契約、税、法規制による。出典：内閣府PFI手引き等に基づき作図</text>
+</svg>
