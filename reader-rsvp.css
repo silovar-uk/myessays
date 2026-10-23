@@ -36,6 +36,9 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-stage[data-state="playing"] .rsvp-foot { opacity: .42; }
 .rsvp-stage[data-state="playing"][data-idle] .rsvp-head,
 .rsvp-stage[data-state="playing"][data-idle] .rsvp-foot { opacity: .1; }
+/* During the first two phrases after H2/H3, preserve the heading breadcrumb.
+   The text position never moves; only the existing small header stays legible. */
+.rsvp-stage[data-state="playing"][data-section-entry] .rsvp-head { opacity: .82; }
 .rsvp-stage[data-state="playing"] .rsvp-head:focus-within,
 .rsvp-stage[data-state="playing"] .rsvp-foot:focus-within { opacity: 1; }
 
