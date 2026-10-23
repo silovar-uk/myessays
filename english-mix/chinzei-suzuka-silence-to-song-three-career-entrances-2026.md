@@ -93,9 +93,13 @@ In that same interview she said idol, modeling, and acting work now influence on
 
 Her career crosses two media environments. The 2009 children's-TV era relied on shared broadcast slots. フルーツジッパー emerged in a world where a short performance clip can circulate independently and connect to concerts or fan communities. The agency itself credits ティックトック（TikTok）with helping 『わたしの一番かわいいところ』gain attention. Same person, different distribution logic.[所属会社の説明](https://asobisystem.com/talent/fruitszipper/)
 
-A 2024 radio reunion with 近藤春菜, whom she had known from 『天才てれびくん』, made the time gap explicit: about fifteen years. For one audience she is the former child TV performer; for another she is the orange member of today's idol group. **A single person can be a different cultural reference point for different generations.**[TOKYO FM](https://news.audee.jp/news/nWQ2DL1Tm4.html)
+2024年のラジオで、『天才てれびくん』時代に共演した近藤春菜と約15年ぶりに再会した。Then came a striking geographical coincidence. On December 31, 2025, she appeared at **NHK紅白歌合戦** with フルーツジッパー, in the same NHK Hall where she had sung 『ダン！ドン！』alone as a new TV performer in 2009. The stage was the same; the meaning of standing there was different. 「会場のほうが、出演者の成長を見守っていたのか」と言いたくなるが、会場には感情がない。2026年1月の本人投稿を報じた記事によると、本人もこのつながりを振り返っている。Her 2023 birthday-show account writes the song name as 『ダンドン』.[TOKYO FM](https://news.audee.jp/news/nWQ2DL1Tm4.html)／[めざましメディア](https://mezamashi.media/articles/-/241339)
 
-We cannot prove that this cross-generational memory caused popularity; we have no audience attribution data. Still, the coexistence of old television memories and new stage experiences suggests a form of value beyond immediate reach. Fans may be following not a finished persona, but a continuing revision of someone they once knew. That is one way cultural memory becomes alive.
+![2026年の鎮西寿々歌関連記事の写真](https://mezamashi.ismcdn.jp/mwimgs/f/a/700mw/img_fa90b96e5473b03afe09f4505ba2f0d8373636.jpg)
+
+*Photo: [Mezamashi Media, January 6, 2026](https://mezamashi.media/articles/-/241339). This editorial image is not claimed to depict the specific 2009 or 2025 performance. Rights remain with the source; no image file is hosted locally.*
+
+This is not proof that nostalgia caused her popularity; we have no audience attribution data. しかし、2009年と2025年の同じホール、2023年の曲の再演を並べると、単なる懐かしさ以上のものが見える。She did not merely return to the past. **She returned to a familiar space with a different set of companions and choices.** A career can make cultural memory active, not just preserve it.
 
 ## 10｜離：芸歴が長いことと、始めるのが遅いことは矛盾しない
 
@@ -126,5 +130,6 @@ We began with a bizarrely specific question: can an idol's name really come from
 - [TOKYO FM, October 20, 2024](https://news.audee.jp/news/nWQ2DL1Tm4.html): her account of joining the group.
 - [B.L.T.web, December 2, 2023](https://bltweb.jp/2023/12/02/weekly_fruitszipper61/): her first-person show report.
 - [Eiga.com, July 2026](https://eiga.com/movie/105899/interview/) / [SCREEN ONLINE](https://screenonline.jp/BIG_ONE_GIRLS/17855225): acting and self-reflection interviews.
+- [Mezamashi Media, January 6, 2026](https://mezamashi.media/articles/-/241339): reports her recollection of singing at NHK Hall in 2009 and returning for the 2025 紅白歌合戦.
 - [Official group updates](https://fruitszipper.asobisystem.com/news/1/): news available in October 2026.
 
