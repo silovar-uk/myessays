@@ -1,7 +1,7 @@
 ---
 id: market-entry-why-pioneers-lose-fourteen-patterns-2026
 title: "先に参入した会社の約半数が負ける。では、新規市場の勝ち方はどこにあるのか"
-subtitle: "14の戦略類型、21事例の比較、成長・成熟・縮小市場の違いを一次資料で調べ直す"
+subtitle: "14の戦略類型、成功と失敗の対比、市場成熟度とスポーツ映像への応用を一次資料で考える"
 created: "2026-10-23"
 updated: "2026-10-23"
 type: "事業リサーチ"
