@@ -17,13 +17,13 @@ abstract: "競走馬に由来する名前、締切前日の応募、苦手だっ
 
 *Researched October 24, 2026. This essay checks primary records, first-person writing, and reported interviews. 「確認した事実」「本人の回想」「筆者の仮説」を区別する。*
 
-競走馬サイレンススズカ。アイドル鎮西寿々歌。二つを並べると、何が起きているのか分からない。 A racetrack and an idol stage meet in one person's name. これはa strange starting point, not a theory of destiny. 競馬場とアイドルのステージをつなぐものは、馬券でも血統でもなく、**ひとりの名前**だった。どうしてこんなことになったのか。調べ始めたら、名前よりもずっと変わったキャリアの構造に出会った。
+競走馬サイレンススズカ。アイドル鎮西寿々歌。二つを並べると、何が起きているのか分からない。 A racetrack and an idol stage meet in one person's name. これは奇妙な出発点だが、not a theory of destiny. 競馬場とアイドルのステージをつなぐものは、馬券でも血統でもなく、**ひとりの名前**だった。どうしてこんなことになったのか。調べ始めたら、名前よりもずっと変わったキャリアの構造に出会った。
 
 ![鎮西寿々歌の所属会社の公式写真](https://asobisystem.com/wp-content/uploads/2022/07/fz_nk_chinzei.jpg)
 
 *Photo: [ASOBISYSTEM official talent page](https://asobisystem.com/talent/chinzeisuzuka/). Historical publicity image, not asserted to be current. The original source URL is embedded.*
 
-**先に結論を言い切らない。 A person can enter the spotlight more than once. そのたびに求められる表現は違う。 ** 彼女がどんな人かを決めつけるのではなく、三度の入口——子ども時代のテレビ、23歳のアイドル活動、27歳の映画単独初主演——を実際の資料からつなぎ、何が変わったのか考えていく。
+**先に結論を言い切らない。** A person can enter the spotlight more than once. そのたびに求められる表現は違う。彼女がどんな人かを決めつけるのではなく、三度の入口——子ども時代のテレビ、23歳のアイドル活動、27歳の映画単独初主演——を実際の資料からつなぎ、何が変わったのか考えていく。
 
 ## 1｜入口：名前の中に競走馬がいる
 
