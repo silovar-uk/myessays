@@ -1,0 +1,35 @@
+name: RSVP section-entry regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - reader-rsvp.js
+      - reader-rsvp.css
+      - tools/test-rsvp-section-entry.mjs
+      - .github/workflows/check-rsvp-section-entry.yml
+  pull_request:
+    paths:
+      - reader-rsvp.js
+      - reader-rsvp.css
+      - tools/test-rsvp-section-entry.mjs
+      - .github/workflows/check-rsvp-section-entry.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chapter-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check JavaScript syntax
+        run: node --check reader-rsvp.js
+      - name: Verify heading-to-body pacing
+        run: node tools/test-rsvp-section-entry.mjs
