@@ -25,9 +25,9 @@ The difference is not an error. **Viewer count, fan preference, and karaoke sing
 
 Then comes a fourth category: cinema. 『映画ちいかわ 人魚の島のひみつ』had generated **15.84 billion yen (158.4億円)** and **10.857 million admissions** by September 20, according to the distributor-side announcement. That made it the highest-grossing 2026 release *as of that announcement*, not necessarily the final annual champion. [Official report](https://www.fujitv.co.jp/fujitv/news/20261053.html). Something that began as a small character manga can become a major theatrical event. How does that happen?
 
-![Official Chiikawa movie promotional image](https://chiikawa-info.jp/p26/ck_movie/fb.jpg)
+![Official Chiikawa movie promotional image](https://mezamashi.media/mwimgs/c/2/1400mw/img_c266769eed1da80ad39cdfffafe105942345869.jpg)
 
-*Source: [official promotional page](https://chiikawa-info.jp/p26/ck_movie/index.html). Copyright remains with the rights holders.*
+*Image: [Mezamashi Media preview](https://mezamashi.media/articles/-/261177). © ナガノ / 2026『映画ちいかわ』製作委員会.*
 
 ## 2｜守：Define the universe before counting it
 
@@ -175,13 +175,13 @@ In DAM's March chart, “lulu.” came first, “AIZO” second, “セレナー
 - **『メダリスト 第2期』** — Opening/theme: 「Cold Night」／ハナ（HANA）; ending: —. Main voice cast: 結束いのり：春瀬なつみ、明浦路司：大塚剛央. [Source](https://www.dkkaraoke.co.jp/news/260410_1.html)
 - **『ダーウィン事変』** — Opening/theme: 「Make Me Wonder」／オフィシャル髭男ディズム（Official髭男dism）; ending: —. Main voice cast: 詳細は公式作品紹介を参照. [Source](https://www.dkkaraoke.co.jp/news/260410_1.html)
 - **『地獄楽 第二期』** — Opening/theme: 「かすかなはな」／キタニタツヤ feat. ベビーメタル（BABYMETAL）; ending: —. Main voice cast: 画眉丸：小林千晃. [Source](https://www.dkkaraoke.co.jp/news/260410_1.html)
-- **『正反対な君と僕』** — Opening/theme: 「メガネを外して」／乃紫; ending: —. Main voice cast: 鈴木：鈴代紗弓、谷：坂田将吾. [Source](https://www.dkkaraoke.co.jp/news/260410_1.html)
+- **『正反対な君と僕』** — Opening/theme: 「メガネを外して」／乃紫; ending: 「ピュア feat. 橋本絵莉子」／パス・タスタ（PAS TASTA）. Main voice cast: 鈴木：鈴代紗弓、谷：坂田将吾. [Source](https://www.dkkaraoke.co.jp/news/260410_1.html)
 - **『とんがり帽子のアトリエ』** — Opening/theme: 「風のアンセム」／イヴ（Eve）feat. suis from ヨルシカ; ending: 「ただ美しい呪い」／ナカムラ・ハク（Nakamura Hak）. Main voice cast: ココ：本村玲奈、キーフリー：花江夏樹、オルーギオ：中村悠一. [Source](https://tongari-anime.com/news/detail/?id=1131423)
 - **『黄泉のツガイ』** — Opening/theme: 「飛ぶ時」／バウンディ（Vaundy）; ending: 「飛ぼうよ」／ヤマ（yama）. Main voice cast: ユル：小野賢章、アサ：宮本侑芽. [Source](https://www.aniplex.co.jp/lineup/yominotsugai/news/detail/?id=69670)
 - **『日本三國』** — Opening/theme: —; ending: —. Main voice cast: 三角青輝：小野賢章、阿佐馬芳経：福山潤、東町小紀：瀬戸麻沙美. [Source](https://www.nipponsangoku.com/)
 - **『無職転生Ⅲ』** — Opening/theme: 「決意の唄」／大原ゆい子; ending: 「祈り、終われば」／中島美嘉. Main voice cast: ルーデウス：内山夕実. [Source](https://license.kadokawa.co.jp/anime/2026summer/entry-30622.html)
 - **『攻殻機動隊 THE GHOST IN THE SHELL』** — Opening/theme: 「GO GHOST」／キングヌー（King Gnu）; ending: 「Blue」／ミレニアム・パレード（MILLENNIUM PARADE）ほか. Main voice cast: 草薙素子：坂本真綾、バトー：安元洋貴、トグサ：中村悠一. [Source](https://www.theghostintheshell-anime.jp/news/article/?id=23870)
-- **『BLEACH 千年血戦篇-禍進譚-』** — Opening/theme: 「I-BULL」／ジョージ（jo0ji）; ending: 「螺旋」／ナイラナ（9Lana）. Main voice cast: 黒崎一護：森田成一、石田雨竜：杉山紀彰. [Source](https://www.oricon.co.jp/anime/2026_summer/)
+- **『BLEACH 千年血戦篇-禍進譚-』** — Opening/theme: 「I-BULL」／ジョージ（jo0ji）; ending: 「螺旋」／クラナ（9Lana）. Main voice cast: 黒崎一護：森田成一、石田雨竜：杉山紀彰. [Source](https://www.oricon.co.jp/anime/2026_summer/)
 - **『透明な夜に駆ける君と、目に見えない恋をした。』** — Opening/theme: —; ending: —. Main voice cast: 空野かける：入野自由、冬月小春：早見沙織. [Source](https://sh-anime.shochiku.co.jp/kakekoi/en/)
 - **『薬屋のひとりごと 第3期』** — Opening/theme: 「雲を抜け風下へ私だけ」／ヨルシカ; ending: —. Main voice cast: 猫猫：悠木碧、壬氏：大塚剛央. [Source](https://kusuriyanohitorigoto.jp/news/2623/)
 - **『アオのハコ Season2』** — Opening/theme: 「あなたの花の色」／aiko; ending: 「blue in」／エルスウェア紀行. Main voice cast: 猪股大喜：千葉翔也、鹿野千夏：上田麗奈. [Source](https://bs.tbs.co.jp/anime/aonohako2/)
@@ -189,7 +189,15 @@ In DAM's March chart, “lulu.” came first, “AIZO” second, “セレナー
 - **『映画ちいかわ 人魚の島のひみつ』** — Opening/theme: 主題歌は作品公式で別途確認; ending: —. Main voice cast: ちいかわ：青木遥、ハチワレ：田中誠人、うさぎ：小澤亜李、セイレーン：鈴木みのり. [Source](https://www.fujitv.co.jp/fujitv/news/20261053.html)
 - **『名探偵コナン ハイウェイの堕天使』** — Opening/theme: 「ラストダンスあなたと」／ミーシャ（MISIA）; ending: 映画主題歌. Main voice cast: 江戸川コナン：高山みなみ、萩原千速：沢城みゆき. [Source](https://www.misia.jp/news/17532)
 
+![Official Witch Hat Atelier key visual](https://tongari-anime.com/main/assets/img/top/kv_3.jpg)
+
+*Image: [Witch Hat Atelier official site](https://tongari-anime.com/), rights reserved by the owners.*
+
 For Witch Hat Atelier, voice actors 本村玲奈 and 花江夏樹 bring ココ and キーフリー to life, while the opening by Eve and ending by Nakamura Hak create additional ways to remember the show. But association is not causation: a successful song does not prove which fans first watched the anime. [Official production announcement](https://tongari-anime.com/news/detail/?id=1131423).
+
+
+
+**A second-pass discovery:** 『とんがり帽子のアトリエ』 actually used three ending songs by Nakamura Hak: 「ただ美しい呪い」, 「夜に浮かぶ」 and 「光り」. A pre-broadcast song announcement is not always the complete record of what audiences heard. [Artist profile](https://avexnet.jp/contents/NAHAK-OFCL-0001) / [September follow-up](https://tvfan.kyodo.co.jp/music/news-music/1525194).
 
 ## 5｜Films live in a different market
 
