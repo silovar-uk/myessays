@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="t d">
+<title id="t">横浜ポルタ：門が先にできた都市の年表</title>
+<desc id="d">1980年ポルタ開業、1985年そごう横浜店開業、2011年横濱三塔の作品、2022年情報表示の導入、2026年の公開防災計画を示す模式的な年表。</desc>
+<rect width="1200" height="600" rx="28" fill="#102b36"/>
+<rect x="38" y="36" width="1124" height="528" rx="22" fill="#f5f2e9"/>
+<text x="88" y="108" font-family="Noto Sans JP, sans-serif" font-size="37" font-weight="700" fill="#102b36">門は、行き先より先にあった。</text>
+<text x="88" y="147" font-family="Noto Sans JP, sans-serif" font-size="20" fill="#47626b">横浜駅東口の地下を、開発史・文化・防災で読む</text>
+<line x1="120" y1="279" x2="1082" y2="279" stroke="#aabec0" stroke-width="8" stroke-linecap="round"/>
+<g font-family="Noto Sans JP, sans-serif">
+<circle cx="146" cy="279" r="21" fill="#cb562d"/><text x="146" y="288" fill="white" font-size="26" text-anchor="middle">1</text>
+<text x="100" y="228" font-size="34" font-weight="700" fill="#102b36">1980</text><text x="92" y="336" font-size="21" font-weight="700" fill="#102b36">ポルタ開業</text><text x="92" y="370" font-size="17" fill="#47626b">東西自由通路も開通</text>
+<circle cx="380" cy="279" r="21" fill="#cb562d"/><text x="380" y="288" fill="white" font-size="26" text-anchor="middle">2</text>
+<text x="330" y="228" font-size="34" font-weight="700" fill="#102b36">1985</text><text x="314" y="336" font-size="21" font-weight="700" fill="#102b36">そごう開店</text><text x="314" y="370" font-size="17" fill="#47626b">５年後に大きな目的地</text>
+<circle cx="615" cy="279" r="21" fill="#336a71"/><text x="615" y="288" fill="white" font-size="26" text-anchor="middle">3</text>
+<text x="566" y="228" font-size="34" font-weight="700" fill="#102b36">2011</text><text x="551" y="336" font-size="21" font-weight="700" fill="#102b36">横濱三塔の作品</text><text x="551" y="370" font-size="17" fill="#47626b">駅前に街の記憶を配置</text>
+<circle cx="848" cy="279" r="21" fill="#336a71"/><text x="848" y="288" fill="white" font-size="26" text-anchor="middle">4</text>
+<text x="798" y="228" font-size="34" font-weight="700" fill="#102b36">2022</text><text x="771" y="336" font-size="21" font-weight="700" fill="#102b36">情報表示30面</text><text x="771" y="370" font-size="17" fill="#47626b">商業案内と防災情報</text>
+<circle cx="1064" cy="279" r="21" fill="#336a71"/><text x="1064" y="288" fill="white" font-size="26" text-anchor="middle">5</text>
+<text x="1012" y="228" font-size="34" font-weight="700" fill="#102b36">2026</text><text x="975" y="336" font-size="21" font-weight="700" fill="#102b36">防災計画公開</text><text x="983" y="370" font-size="17" fill="#47626b">出入口数29</text>
+</g>
+<rect x="86" y="419" width="1028" height="89" rx="14" fill="#dce8e5"/>
+<text x="110" y="452" font-family="Noto Sans JP, sans-serif" font-size="23" font-weight="700" fill="#16353c">買い物の場所　→　人を通す場所　→　都市の安全を支える場所</text>
+<text x="110" y="487" font-family="Noto Sans JP, sans-serif" font-size="17" fill="#47626b">※説明用年表。図中の並びは調査対象の選定であり、各出来事の因果関係を示さない。</text>
+<text x="88" y="542" font-family="Noto Sans JP, sans-serif" font-size="14" fill="#667b82">資料：横浜新都市センター沿革／野口真里作品記録／横浜新都市センター2022年発表／ポルタ2026年防災計画</text>
+</svg>
