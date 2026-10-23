@@ -15,6 +15,13 @@
   const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, figure: 0, skip: 900, end: 2600 };
   const MIN_SHOW_MS = 100;
   const RAMP = [1.5, 1.25, 1.1];
+  // A section heading changes the reader's task from orientation to decoding.
+  // Ease into its first two chunks; timings are UX hypotheses, not empirically
+  // established reading thresholds. Keep these separate from punctuation rests.
+  const SECTION_ENTRY_TEMPO = Object.freeze([
+    { extraMs: 250, minimumMs: 650 },
+    { extraMs: 140, minimumMs: 500 }
+  ]);
   const PHONE_MAX = 820;
   const BUDOUX = 'https://cdn.jsdelivr.net/npm/budoux@0.9.2/module/';
   const KEY_SETTINGS = 'myessays:rsvp';
@@ -238,6 +245,25 @@
     return list;
   }
 
+  // 見出しの直後だけ本文の表示時間を延ばす。新しい章・小見出しで再始動し、
+  // 図やコードを挟むとそこで停止するため、入口の減速を引きずらない。
+  function easeSectionEntry(list) {
+    let nextEntry = -1;
+    for (const item of list) {
+      item.sectionEntry = 0; // retime() is repeatedly called when the speed changes.
+      if (item.type !== 'chunk') {
+        if (item.kind === 'h2' || item.kind === 'h3') nextEntry = 0;
+        else if (item.kind === 'figure' || item.kind === 'skip' || item.kind === 'title' || item.kind === 'end') nextEntry = -1;
+        continue;
+      }
+      if (nextEntry < 0 || nextEntry >= SECTION_ENTRY_TEMPO.length) continue;
+      const tempo = SECTION_ENTRY_TEMPO[nextEntry];
+      item.ms = Math.max(item.ms + tempo.extraMs, tempo.minimumMs);
+      item.sectionEntry = ++nextEntry;
+    }
+    return list;
+  }
+
   // 速さ(字/分)で記事全体の時間を決め、文節ごとの配分は拍で決める
   function retime(list, { speed, pause }) {
     const chunks = list.filter(item => item.type === 'chunk');
@@ -254,6 +280,7 @@
         item.rest = 0;
       }
     }
+    easeSectionEntry(list);
     let remain = 0;
     let before = 0;
     for (let i = list.length - 1; i >= 0; i -= 1) { remain += list[i].ms + list[i].rest; list[i].remain = remain; }
@@ -747,7 +774,11 @@
     return j;
   }
   function sectionTitleAt(i) {
-    for (let j = Math.min(i, items.length - 1); j >= 0; j -= 1) if (items[j].kind === 'h2') return items[j].text;
+    // Keep the most recent heading as a breadcrumb during the first phrases,
+    // including H3 subheadings (the previous implementation only tracked H2).
+    for (let j = Math.min(i, items.length - 1); j >= 0; j -= 1) {
+      if (items[j].kind === 'h2' || items[j].kind === 'h3') return items[j].text;
+    }
     return 'Introduction';
   }
   function nextChunkAfter(at = index) {
@@ -1058,6 +1089,9 @@
 
   function show(item) {
     if (!item) return;
+    // Existing heading breadcrumb stays legible only during the gentle re-entry.
+    if (item.type === 'chunk' && item.sectionEntry) stage.dataset.sectionEntry = String(item.sectionEntry);
+    else delete stage.dataset.sectionEntry;
     if (item.type === 'chunk') {
       stage.dataset.kind = 'chunk';
       els.card.hidden = true;
@@ -1378,6 +1412,6 @@
       capacity, msPerMora: Math.round(msPerMora), elapsedMs: Math.round(activePlayedMs()), settings: { ...settings }
     }),
     items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
-    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, attachOrphanClosing, buildItems, retime, formatElapsed }
+    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, attachOrphanClosing, buildItems, easeSectionEntry, retime, formatElapsed }
   });
 })();
