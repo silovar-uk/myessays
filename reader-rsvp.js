@@ -10,7 +10,7 @@
   const SPEED_MAX = 4000;
   const SPEED_STEP = 50;
   const SPEED_PRESETS = [400, 600, 800, 1000, 1200, 1500, 2000, 2500, 3000, 3500, 4000];
-  const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false };
+  const DEFAULTS = { speed: 600, minChars: 6, size: 2, pause: 2, vertical: false, presentation: 'chunk' };
   const BEATS = { comma: 4, period: 8, paragraph: 12 };
   const CARD_MS = { title: 1800, lead: 900, h2: 1300, h3: 800, figure: 0, skip: 900, end: 2600 };
   const MIN_SHOW_MS = 100;
@@ -26,6 +26,8 @@
   const BUDOUX = 'https://cdn.jsdelivr.net/npm/budoux@0.9.2/module/';
   const KEY_SETTINGS = 'myessays:rsvp';
   const KEY_RESUME = 'myessays:rsvp-resume';
+  const PRESENTATION_MODES = ['chunk', 'scene'];
+  const SCENE_SIZE = 3;
   const REFERENCES = /^(?:[0-9０-９]+[.．、]\s*)?(?:主要)?(?:参考文献|参考資料|引用文献|出典|References|Sources|Bibliography)/i;
   const SKIP = '.code-block, figure, table, .table-wrap, pre, .essay-figure';
   const IGNORE = '[aria-hidden="true"], button, rt, rp, script, style';
@@ -430,7 +432,8 @@
       minChars: MIN_STEPS.includes(saved.minChars) ? saved.minChars : DEFAULTS.minChars,
       size: Number.isInteger(saved.size) ? clamp(saved.size, 0, SIZE_LABELS.length - 1) : DEFAULTS.size,
       pause: Number.isInteger(saved.pause) ? clamp(saved.pause, 0, PAUSE_LABELS.length - 1) : DEFAULTS.pause,
-      vertical: typeof saved.vertical === 'boolean' ? saved.vertical : DEFAULTS.vertical
+      vertical: typeof saved.vertical === 'boolean' ? saved.vertical : DEFAULTS.vertical,
+      presentation: PRESENTATION_MODES.includes(saved.presentation) ? saved.presentation : DEFAULTS.presentation
     };
   }
   function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
@@ -658,7 +661,8 @@
       segButtons('文字の大きさ(+ −)', SIZE_LABELS, i => settings.size === i, i => setSize(i)),
       segButtons('最少文字数([ ])', MIN_STEPS.map(n => n === 1 ? '文節ごと' : `${n}字`), i => settings.minChars === MIN_STEPS[i], i => setMin(MIN_STEPS[i])),
       segButtons('句読点の間(P)', PAUSE_LABELS, i => settings.pause === i, i => setPause(i)),
-      segButtons('向き(V)', ['横', '縦'], i => settings.vertical === (i === 1), i => setVertical(i === 1))
+      segButtons('向き(V)', ['横', '縦'], i => settings.vertical === (i === 1), i => setVertical(i === 1)),
+      segButtons('流し方', ['文節', 'シーン'], i => settings.presentation === PRESENTATION_MODES[i], i => setPresentation(PRESENTATION_MODES[i]))
     ];
     const close = button('rsvp-btn rsvp-sheet-close', '閉じる', '', () => toggleSheet(false));
     els.sheet.append(heading, ...sheetGroups, close);
@@ -676,6 +680,7 @@
       ['+ −', '文字の大きさ'],
       ['[ ]', '最少文字数'],
       ['V', '縦・横'],
+      ['M', '文節・シーンの表示切替'],
       ['P', '句読点の間'],
       ['PageDown / PageUp', '次の章・前の章'],
       ['Home', '記事の最初へ'],
@@ -768,6 +773,22 @@
 
   // ---------- 位置 ----------
   const isChunk = i => items[i]?.type === 'chunk';
+  // One stable group per three consecutive pieces. Never cross sentence,
+  // paragraph, figure or heading boundaries. This preserves resume/seek IDs.
+  function sceneRange(list, at, groupSize = SCENE_SIZE) {
+    const active = list[at];
+    if (active?.type !== 'chunk') return { start: at, end: at + 1 };
+    let start = at;
+    while (start > 0 && list[start - 1]?.type === 'chunk'
+      && list[start - 1].sentence === active.sentence
+      && list[start - 1].unit === active.unit) start -= 1;
+    const groupStart = start + Math.floor((at - start) / groupSize) * groupSize;
+    let end = groupStart;
+    while (end < list.length && end < groupStart + groupSize
+      && list[end]?.type === 'chunk' && list[end].sentence === active.sentence
+      && list[end].unit === active.unit) end += 1;
+    return { start: groupStart, end };
+  }
   function sentenceStart(i) {
     let j = i;
     while (j > 0 && isChunk(j - 1) && items[j - 1].sentence === items[i].sentence) j -= 1;
@@ -1020,6 +1041,25 @@
 
   function renderWord(item) {
     els.word.replaceChildren();
+    els.word.classList.toggle('is-scene', settings.presentation === 'scene');
+    if (settings.presentation === 'scene') {
+      const { start, end } = sceneRange(items, index);
+      const scene = document.createElement('span');
+      scene.className = 'rsvp-scene';
+      for (let i = start; i < end; i += 1) {
+        const piece = document.createElement('span');
+        piece.className = 'rsvp-scene-line';
+        if (i === index) piece.classList.add('is-current');
+        else if (i < index) piece.classList.add('is-read');
+        else piece.classList.add('is-upcoming');
+        // Exact source slices keep punctuation and word spaces unchanged.
+        piece.textContent = items[i].unit.text.slice(items[i].start, items[i].end).trim();
+        if (items[i].bullet) piece.textContent = '・' + piece.textContent;
+        scene.append(piece);
+      }
+      els.word.append(scene);
+      return;
+    }
 
     if (item.rubyReadings?.length) {
       els.word.append(Object.assign(document.createElement('span'), {
@@ -1183,6 +1223,17 @@
   function stepMin(delta) { setMin(MIN_STEPS[clamp(MIN_STEPS.indexOf(settings.minChars) + delta, 0, MIN_STEPS.length - 1)]); }
   function setPause(i) { settings.pause = i; persist(); retimeOnly(); renderMeter(); toast(`句読点の間 ${PAUSE_LABELS[i]}`); if (playing) restart(); }
   function setVertical(on) { settings.vertical = on; persist(); rechunk(on ? '縦' : '横'); }
+  function setPresentation(mode) {
+    if (!PRESENTATION_MODES.includes(mode)) return;
+    settings.presentation = mode;
+    persist();
+    applyLook();
+    if (stage?.open) {
+      show(items[index]);
+      if (playing) restart();
+      toast(mode === 'scene' ? 'シーン表示 · 前後を一緒に読む' : '文節表示');
+    }
+  }
 
   // ---------- 本文との行き来 ----------
   function syncPage(item) {
@@ -1310,6 +1361,7 @@
       case '[': stepMin(-1); break;
       case ']': stepMin(1); break;
       case 'v': case 'V': setVertical(!settings.vertical); break;
+      case 'm': case 'M': setPresentation(settings.presentation === 'chunk' ? 'scene' : 'chunk'); break;
       case 'p': case 'P': setPause((settings.pause + 1) % PAUSE_LABELS.length); break;
       case 'PageDown': jumpSection(1); break;
       case 'PageUp': jumpSection(-1); break;
@@ -1412,6 +1464,6 @@
       capacity, msPerMora: Math.round(msPerMora), elapsedMs: Math.round(activePlayedMs()), settings: { ...settings }
     }),
     items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
-    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, attachOrphanClosing, buildItems, easeSectionEntry, retime, formatElapsed }
+    lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, attachOrphanClosing, buildItems, easeSectionEntry, sceneRange, retime, formatElapsed }
   });
 })();
