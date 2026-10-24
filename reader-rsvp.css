@@ -170,7 +170,7 @@ html.rsvp-open { overflow: hidden; }
 .rsvp-word.is-scene { width: min(100%, 30rem); font-size: calc(var(--rsvp-size) * .75); line-height: 1.5; letter-spacing: .01em; }
 .rsvp-scene { display: flex; flex-direction: column; gap: .34em; width: 100%; text-align: center; }
 .rsvp-scene-line { display: block; min-width: 0; min-height: 1.5em; overflow-wrap: anywhere; transition: color 120ms ease, opacity 120ms ease; }
-.rsvp-scene-line.is-current { color: var(--ink); opacity: 1; font-weight: 650; }
+.rsvp-scene-line.is-current { color: var(--ink); opacity: 1; }
 .rsvp-scene-line.is-read { color: var(--ink-soft, #4f4b45); opacity: .62; }
 .rsvp-scene-line.is-upcoming { color: var(--muted); opacity: .43; }
 .rsvp-stage[data-orientation="vertical"] .rsvp-word.is-scene { max-width: 100%; max-height: 100%; }
