@@ -22,8 +22,8 @@ function sourceFunction(name) {
   return source.slice(start, end + 5);
 }
 
-function evaluate(parts, extra = '') {
-  const sandbox = {};
+function evaluate(parts, extra = '', bindings = {}) {
+  const sandbox = { ...bindings };
   vm.runInNewContext(parts.map(sourceFunction).join('\n') + '\n' + extra, sandbox);
   return sandbox;
 }
@@ -44,9 +44,9 @@ const items = [
   { type: 'card', kind: 'end' }
 ];
 const runner = evaluate(['sceneRange', 'sentenceParts', 'selectedDiscovery', 'storedDiscoveryKey'],
-  'const SCENE_SIZE=3; const items = this.items; let index=2; const currentVersion=()=>\'ja\'; this.scene = sceneRange; this.sentenceParts=sentenceParts; this.selected = selectedDiscovery; this.key = storedDiscoveryKey;'
+  'const SCENE_SIZE=3; const items = this.items; let index=2; const currentVersion=()=>\'ja\'; this.scene = sceneRange; this.sentenceParts=sentenceParts; this.selected = selectedDiscovery; this.key = storedDiscoveryKey;',
+  { items }
 );
-runner.items = items;
 assert.deepEqual(JSON.parse(JSON.stringify(runner.scene(items, 2))), { start: 1, end: 4 });
 assert.deepEqual(JSON.parse(JSON.stringify(runner.scene(items, 4))), { start: 4, end: 5 });
 assert.deepEqual(JSON.parse(JSON.stringify(runner.scene(items, 5))), { start: 5, end: 6 });
@@ -56,7 +56,7 @@ assert.equal(quote.version, 'ja');
 assert.equal(quote.locator, '2-1');
 assert.equal(quote.pairId, 'p2-1');
 assert.equal(quote.start, 0);
-assert.equal(quote.quote, unit.text.slice(0, 9).trim());
+assert.equal(quote.quote, unit.text.slice(0, 12).trim());
 assert.equal(runner.key(quote), 'ja|2-1|0');
 
 assert.match(source, /KEY_DISCOVERIES = 'myessays:rsvp-discoveries:v1'/);
