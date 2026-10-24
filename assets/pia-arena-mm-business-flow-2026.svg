@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="t d">
+<title id="t">アリーナ事業のお金と権利の流れ</title>
+<desc id="d">来場者から主催者へチケット代、主催者から会場運営者へ利用料、会場運営者から地主へ賃借料。チケット代が会場の売上になるわけではない。</desc>
+<rect width="1280" height="560" fill="#f5f3ed"/>
+<text x="66" y="67" font-family="Arial,sans-serif" font-size="35" font-weight="700" fill="#223239">「1万人 × チケット代」は会場の売上ではない</text>
+<text x="67" y="110" font-family="Arial,sans-serif" font-size="20" fill="#607079">会場・興行・チケット流通は役割が異なる。ぴあが複数の役割を担う場合も、収入を混同しない。</text>
+<g font-family="Arial,sans-serif">
+<rect x="65" y="171" width="245" height="160" rx="14" fill="#dcebea"/>
+<rect x="406" y="171" width="245" height="160" rx="14" fill="#e7e7e1"/>
+<rect x="745" y="171" width="245" height="160" rx="14" fill="#f1e3d8"/>
+<text x="91" y="218" font-size="28" font-weight="700" fill="#183b42">来場者</text>
+<text x="91" y="258" font-size="19" fill="#36454a">チケットを購入</text>
+<text x="432" y="218" font-size="28" font-weight="700" fill="#183b42">公演の主催者</text>
+<text x="432" y="258" font-size="19" fill="#36454a">出演・制作・販売を手配</text>
+<text x="771" y="218" font-size="28" font-weight="700" fill="#183b42">会場運営者</text>
+<text x="771" y="258" font-size="19" fill="#36454a">会場・設備・動線を提供</text>
+<line x1="310" y1="246" x2="401" y2="246" stroke="#38636a" stroke-width="4"/><polygon points="401,246 386,237 386,255" fill="#38636a"/>
+<line x1="651" y1="246" x2="741" y2="246" stroke="#38636a" stroke-width="4"/><polygon points="741,246 726,237 726,255" fill="#38636a"/>
+<text x="316" y="218" font-size="17" fill="#30474e">券代</text>
+<text x="657" y="218" font-size="17" fill="#30474e">使用料</text>
+<line x1="868" y1="330" x2="868" y2="390" stroke="#bc7645" stroke-width="4"/><polygon points="868,390 858,375 878,375" fill="#bc7645"/>
+<rect x="665" y="394" width="407" height="105" rx="14" fill="#e7d6c6"/>
+<text x="690" y="436" font-size="27" font-weight="700" fill="#70452e">地主など</text>
+<text x="690" y="468" font-size="19" fill="#70452e">土地等の賃借料（2026年3月期：年6.72億円）</text>
+<rect x="75" y="391" width="460" height="105" rx="14" fill="#fff" stroke="#bac7c7"/>
+<text x="95" y="430" font-size="20" font-weight="700" fill="#23444b">仮に年間150公演なら</text>
+<text x="95" y="465" font-size="25" fill="#23444b">賃借料だけで 1公演あたり約448万円</text>
+<text x="66" y="531" font-size="16" fill="#64737b">模式図：実際の契約構造や内部取引・売上配分を示すものではない。150公演は仮定で、施設の実績ではない。</text>
+</g></svg>
