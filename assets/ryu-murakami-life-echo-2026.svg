@@ -8,14 +8,14 @@
 <rect x="362" y="152" width="275" height="195" rx="15" fill="#263a47" stroke="#58717b"/>
 <rect x="676" y="152" width="276" height="195" rx="15" fill="#263a47" stroke="#58717b"/>
 <text x="70" y="191" fill="#e5ba85" font-size="15">01 / 十代</text>
-<text x="70" y="238" fill="#fff7e9" font-size="27" font-weight="700">まだ知らない世界を読む</text>
-<text x="70" y="282" fill="#bbced3" font-size="18">小説の中の経験は、他人事</text>
+<text x="70" y="238" fill="#fff7e9" font-size="23" font-weight="700">まだ知らない世界</text><text x="70" y="267" fill="#fff7e9" font-size="23" font-weight="700">を読む</text>
+<text x="70" y="312" fill="#bbced3" font-size="18">小説の中の経験は、他人事</text>
 <text x="384" y="191" fill="#e5ba85" font-size="15">02 / 成人後</text>
-<text x="384" y="238" fill="#fff7e9" font-size="27" font-weight="700">現実が本に追いつく</text>
-<text x="384" y="282" fill="#bbced3" font-size="18">痛み・仕事・出会い・病気</text>
+<text x="384" y="238" fill="#fff7e9" font-size="23" font-weight="700">現実が本に</text><text x="384" y="267" fill="#fff7e9" font-size="23" font-weight="700">追いつく</text>
+<text x="384" y="312" fill="#bbced3" font-size="18">痛み・仕事・出会い・病気</text>
 <text x="698" y="191" fill="#e5ba85" font-size="15">03 / その後</text>
-<text x="698" y="238" fill="#fff7e9" font-size="27" font-weight="700">同じ言葉を読み直す</text>
-<text x="698" y="282" fill="#bbced3" font-size="18">意味が、経験によって変わる</text>
+<text x="698" y="238" fill="#fff7e9" font-size="23" font-weight="700">同じ言葉を</text><text x="698" y="267" fill="#fff7e9" font-size="23" font-weight="700">読み直す</text>
+<text x="698" y="312" fill="#bbced3" font-size="18">意味が、経験によって変わる</text>
 <path d="M329 245 H354 M348 237 L356 245 L348 253" stroke="#e5ba85" stroke-width="3" fill="none" stroke-linecap="round"/>
 <path d="M643 245 H668 M662 237 L670 245 L662 253" stroke="#e5ba85" stroke-width="3" fill="none" stroke-linecap="round"/>
 <path d="M825 364 V386 Q825 403 808 403 H174 Q157 403 157 386 V364" fill="none" stroke="#a3c6c2" stroke-width="2.5" stroke-dasharray="7 7"/>
