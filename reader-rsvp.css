@@ -163,3 +163,44 @@ html.rsvp-open { overflow: hidden; }
   .rsvp-fill { background: Highlight; }
   .rsvp-context button[aria-current="true"] { text-decoration-color: Highlight; }
 }
+
+
+/* Flow Reader v2: contiguous three-piece scenes. Stable line boxes avoid visual
+   jumps while the active phrase changes. No full-screen effects or flashes. */
+.rsvp-word.is-scene { width: min(100%, 30rem); font-size: calc(var(--rsvp-size) * .75); line-height: 1.5; letter-spacing: .01em; }
+.rsvp-scene { display: flex; flex-direction: column; gap: .34em; width: 100%; text-align: center; }
+.rsvp-scene-line { display: block; min-width: 0; min-height: 1.5em; overflow-wrap: anywhere; transition: color 120ms ease, opacity 120ms ease; }
+.rsvp-scene-line.is-current { color: var(--ink); opacity: 1; font-weight: 650; }
+.rsvp-scene-line.is-read { color: var(--ink-soft, #4f4b45); opacity: .62; }
+.rsvp-scene-line.is-upcoming { color: var(--muted); opacity: .43; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-word.is-scene { max-width: 100%; max-height: 100%; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-scene { flex-direction: row-reverse; writing-mode: vertical-rl; height: 100%; gap: .65em; align-items: center; }
+.rsvp-stage[data-orientation="vertical"] .rsvp-scene-line { max-height: 100%; min-height: 0; }
+
+/* One-thumb bookmark reuses the existing settings cluster. */
+.rsvp-discover { font-size: 22px; font-family: Georgia, serif; }
+.rsvp-discover.is-saved { color: var(--accent); }
+.rsvp-discover:disabled { opacity: .36; }
+
+/* End card remains readable on short iPhone viewports. */
+.rsvp-card:has(.rsvp-discovery-recap) { max-height: min(58svh, 450px); overflow-y: auto; overscroll-behavior: contain; padding: 4px 2px 8px; }
+.rsvp-discovery-recap { display: grid; gap: 7px; width: min(100%, 30em); }
+.rsvp-discovery-recap-item { display: block; width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-2); color: var(--ink-soft); font: 500 13px/1.5 Georgia, "Yu Mincho", "YuMincho", serif; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.rsvp-discovery-recap-item:focus-visible, .rsvp-discoveries-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Source-linked discoveries live in the existing article, never an overlay. */
+.reader-content > .rsvp-discoveries-panel { margin: 3rem 0 2rem; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.rsvp-discoveries-panel h2 { margin: 0 0 1rem; font: 700 18px/1.5 "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; }
+.rsvp-discoveries-list { display: grid; gap: 10px; }
+.rsvp-discoveries-link { display: block; width: 100%; min-height: 44px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper-2); color: var(--ink); font: 500 15px/1.6 Georgia, "Yu Mincho", "YuMincho", serif; text-align: left; overflow-wrap: anywhere; cursor: pointer; }
+.rsvp-discoveries-link:hover { border-color: var(--accent); }
+
+@media (max-width: 820px) {
+  .rsvp-word.is-scene { font-size: calc(var(--rsvp-size) * .7); width: 100%; }
+  .rsvp-scene { gap: .25em; }
+  .rsvp-tools { gap: 0; }
+  .rsvp-word.is-scene .rsvp-scene-line { text-wrap: pretty; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-scene-line { transition: none; }
+}
