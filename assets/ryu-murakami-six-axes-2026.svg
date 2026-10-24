@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" role="img" aria-label="村上龍の言葉を6つの軸に整理した分析図">
+<rect width="1000" height="640" rx="22" fill="#f7f4ed"/>
+<g font-family="sans-serif">
+<text x="48" y="60" fill="#98572f" font-size="18" letter-spacing="2" font-weight="700">SIX AXES / 思想の見取り図</text>
+<text x="48" y="104" font-size="33" font-weight="700" fill="#1f3037">「生きる主導権」を失わないための六つの働き</text>
+<g fill="#ffffff" stroke="#d7d3c9" stroke-width="2">
+<rect x="48" y="145" width="284" height="150" rx="15"/>
+<rect x="358" y="145" width="284" height="150" rx="15"/>
+<rect x="668" y="145" width="284" height="150" rx="15"/>
+<rect x="48" y="325" width="284" height="150" rx="15"/>
+<rect x="358" y="325" width="284" height="150" rx="15"/>
+<rect x="668" y="325" width="284" height="150" rx="15"/>
+</g>
+<g font-weight="700" font-size="20" fill="#995b37"><text x="68" y="180">01</text><text x="378" y="180">02</text><text x="688" y="180">03</text><text x="68" y="360">04</text><text x="378" y="360">05</text><text x="688" y="360">06</text></g>
+<g font-size="24" fill="#21353e" font-weight="700"><text x="68" y="223">身体を整える</text><text x="378" y="223">美を選び取る</text><text x="688" y="223">欲望を見失わない</text><text x="68" y="403">誇りを内側に持つ</text><text x="378" y="403">未知へ移動する</text><text x="688" y="403">他人から自由になる</text></g>
+<g font-size="18" fill="#60737c"><text x="68" y="262">清潔・注意・自己信頼</text><text x="378" y="262">美・快楽・生命力</text><text x="688" y="262">目標・才能・行動</text><text x="68" y="442">尊厳・無力と無能</text><text x="378" y="442">無知の認識・出会い</text><text x="688" y="442">復讐・承認・自立</text></g>
+<rect x="48" y="506" width="904" height="91" rx="13" fill="#263d46"/>
+<text x="500" y="541" fill="#d2b18e" text-anchor="middle" font-size="17">これは著者の公式体系ではなく、読者に残された言葉から再構成した分析仮説</text>
+<text x="500" y="578" fill="#fffaf1" text-anchor="middle" font-size="23" font-weight="700">強さだけでなく、弱さを知っていることが出発点</text></g>
+</svg>
