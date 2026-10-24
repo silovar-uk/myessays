@@ -26,6 +26,8 @@
   const BUDOUX = 'https://cdn.jsdelivr.net/npm/budoux@0.9.2/module/';
   const KEY_SETTINGS = 'myessays:rsvp';
   const KEY_RESUME = 'myessays:rsvp-resume';
+  const KEY_DISCOVERIES = 'myessays:rsvp-discoveries:v1';
+  const MAX_DISCOVERIES = 24;
   const PRESENTATION_MODES = ['chunk', 'scene'];
   const SCENE_SIZE = 3;
   const REFERENCES = /^(?:[0-9０-９]+[.．、]\s*)?(?:主要)?(?:参考文献|参考資料|引用文献|出典|References|Sources|Bibliography)/i;
@@ -425,6 +427,73 @@
   function writeJSON(key, value) {
     try { value == null ? localStorage.removeItem(key) : localStorage.setItem(key, JSON.stringify(value)); } catch {}
   }
+  // A discovery always points to the original source, not an AI summary.
+  // Store by essay, version and paragraph locator to preserve language identity.
+  function discoveryKey(item, start) {
+    return [currentVersion(), item?.unit?.locator || '', start].join('|');
+  }
+  function discoveriesForEssay(id = essayId()) {
+    if (!id) return [];
+    const all = readJSON(KEY_DISCOVERIES);
+    const value = all && typeof all === 'object' ? all[id] : null;
+    return Array.isArray(value) ? value.filter(d => d && typeof d.quote === 'string') : [];
+  }
+  function storedDiscoveryKey(entry) { return [entry.version, entry.locator, entry.start].join('|'); }
+  function sentenceParts(at) {
+    const item = items[at];
+    if (item?.type !== 'chunk') return null;
+    let start = at;
+    while (start > 0 && items[start - 1]?.type === 'chunk' && items[start - 1].sentence === item.sentence
+      && items[start - 1].unit === item.unit) start -= 1;
+    let end = at;
+    while (end + 1 < items.length && items[end + 1]?.type === 'chunk' && items[end + 1].sentence === item.sentence
+      && items[end + 1].unit === item.unit) end += 1;
+    return { first: items[start], last: items[end] };
+  }
+  function selectedDiscovery() {
+    const parts = sentenceParts(index);
+    if (!parts) return null;
+    const { first, last } = parts;
+    return {
+      version: currentVersion(), locator: first.unit.locator || '',
+      pairId: first.unit.el?.dataset?.pairId || '',
+      start: first.start,
+      quote: first.unit.text.slice(first.start, last.end).replace(/\\s+/g, ' ').trim().slice(0, 200)
+    };
+  }
+  function saveDiscovery() {
+    const entry = selectedDiscovery();
+    if (!entry?.quote) return;
+    const original = readJSON(KEY_DISCOVERIES);
+    const all = original && typeof original === 'object' && !Array.isArray(original) ? original : {};
+    const current = discoveriesForEssay();
+    const key = storedDiscoveryKey(entry);
+    const oldIndex = current.findIndex(d => storedDiscoveryKey(d) === key);
+    if (oldIndex >= 0) {
+      current.splice(oldIndex, 1);
+      toast('発見の保存を解除');
+    } else {
+      current.push({ ...entry, savedAt: new Date().toISOString() });
+      if (current.length > MAX_DISCOVERIES) current.splice(0, current.length - MAX_DISCOVERIES);
+      toast('☆ 発見を保存 · 読後に見返せます');
+    }
+    all[essayId()] = current;
+    writeJSON(KEY_DISCOVERIES, all);
+    refreshDiscoveryAction();
+    renderDiscoveryPanel();
+  }
+  function refreshDiscoveryAction() {
+    if (!els.discover) return;
+    const selected = selectedDiscovery();
+    const saved = selected && discoveriesForEssay().some(d => storedDiscoveryKey(d) === storedDiscoveryKey(selected));
+    const count = discoveriesForEssay().length;
+    els.discover.disabled = !selected;
+    els.discover.textContent = saved ? '★' : '☆';
+    els.discover.classList.toggle('is-saved', Boolean(saved));
+    els.discover.setAttribute('aria-label', saved ? 'この一文の保存を解除' : 'この一文を発見として保存');
+    els.discover.title = selected ? '今の一文を保存・解除' : `保存済み ${count}件 · 本文の表示中に保存できます`;
+    els.discover.setAttribute('aria-pressed', String(Boolean(saved)));
+  }
   function readSettings() {
     const saved = readJSON(KEY_SETTINGS) || {};
     return {
@@ -540,10 +609,11 @@
     els.next = button('rsvp-btn', '', '', () => nextSentence());
     els.transport.append(els.prev, els.toggle, els.next);
 
+    els.discover = button('rsvp-btn rsvp-discover', '☆', 'この一文を保存', saveDiscovery);
     els.tune = button('rsvp-btn', 'Aa', '表示の設定', () => toggleSheet());
     els.tune.setAttribute('aria-expanded', 'false');
     els.helpButton = button('rsvp-btn rsvp-help-button', '?', 'ショートカット(?)', () => toggleHelp());
-    els.tools.append(els.tune, els.helpButton);
+    els.tools.append(els.discover, els.tune, els.helpButton);
 
     buildSpeedPicker();
     buildSheet();
@@ -681,6 +751,7 @@
       ['[ ]', '最少文字数'],
       ['V', '縦・横'],
       ['M', '文節・シーンの表示切替'],
+      ['B', '今の一文を発見として保存・解除'],
       ['P', '句読点の間'],
       ['PageDown / PageUp', '次の章・前の章'],
       ['Home', '記事の最初へ'],
@@ -995,7 +1066,9 @@
     // 1分未満は平均がぶれるので出さない。間(句読点・章の札)を含めた実際の速さを出す
     if (playedMs >= 60000) stats.push(`間を含め平均${Math.round(widthRead / (playedMs / 60000) / 10) * 10}字/分`);
     showCard({ kind: 'end', text: '了', stats: stats.join(' · ') });
-    timer = setTimeout(landAfterReading, CARD_MS.end);
+    // With saved discoveries, leave the recap available until the reader acts.
+    if (discoveriesForEssay().length) clearTimeout(timer);
+    else timer = setTimeout(landAfterReading, CARD_MS.end);
   }
 
   // ---------- 表示 ----------
@@ -1118,7 +1191,19 @@
     } else if (card.kind === 'skip') {
       nodes.push(button('rsvp-card-skip', `▦ ${card.text}があります · 本文で見る`, `${card.text}を本文で見る(Enter)`, () => goToSkip(card)));
     } else if (card.kind === 'end') {
+      const saved = discoveriesForEssay();
       nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-end', textContent: '了' }));
+      if (saved.length) {
+        nodes.push(Object.assign(document.createElement('p'), {
+          className: 'rsvp-card-stats', textContent: `★ ${saved.length}件の発見が残りました`
+        }));
+        const list = document.createElement('div');
+        list.className = 'rsvp-discovery-recap';
+        saved.slice(-3).reverse().forEach(entry => {
+          list.append(button('rsvp-discovery-recap-item', entry.quote, '保存した文章を本文で読む', () => jumpToDiscovery(entry)));
+        });
+        nodes.push(list);
+      }
       if (card.stats) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-stats', textContent: card.stats }));
       nodes.push(button('rsvp-card-after', '読後へ ↓', '読後欄へ移る', landAfterReading));
     } else {
@@ -1141,6 +1226,7 @@
       showCard(item);
     }
     els.section.textContent = sectionTitleAt(index);
+    refreshDiscoveryAction();
     renderMeter();
     renderContext();
   }
@@ -1236,6 +1322,46 @@
   }
 
   // ---------- 本文との行き来 ----------
+  function discoveryTarget(entry) {
+    const readerRoot = root();
+    if (!readerRoot) return null;
+    const blocks = [...readerRoot.querySelectorAll('[data-reading-locator]')];
+    const match = blocks.filter(el => el.dataset.readingLocator === entry.locator);
+    if (match.length) return match[0];
+    return blocks.find(el => el.dataset.pairId && el.dataset.pairId === entry.pairId) || null;
+  }
+  function jumpToDiscovery(entry) {
+    const target = discoveryTarget(entry);
+    if (!target) { toast('本文の対応位置を見つけられません'); return; }
+    if (stage?.open) closeStage();
+    scrollTo({ top: Math.max(0, scrollY + target.getBoundingClientRect().top - railY()), behavior: 'instant' });
+    flash(target);
+    returnFocus();
+  }
+  function renderDiscoveryPanel() {
+    const readerRoot = root();
+    if (!readerRoot || !readerOpen()) return;
+    let panel = readerRoot.querySelector(':scope > .rsvp-discoveries-panel');
+    const saved = discoveriesForEssay();
+    if (!saved.length) { panel?.remove(); return; }
+    const after = readerRoot.querySelector(':scope > .reader-v2-after-reading');
+    if (!after) return;
+    if (!panel) {
+      panel = document.createElement('section');
+      panel.className = 'rsvp-discoveries-panel';
+      panel.setAttribute('aria-label', '流し読みで保存した発見');
+      after.before(panel);
+    }
+    const heading = document.createElement('h2');
+    heading.textContent = `流し読みで見つけたこと · ${saved.length}`;
+    const list = document.createElement('div');
+    list.className = 'rsvp-discoveries-list';
+    saved.slice().reverse().forEach(entry => {
+      const btn = button('rsvp-discoveries-link', entry.quote, '元の文章へ移動', () => jumpToDiscovery(entry));
+      list.append(btn);
+    });
+    panel.replaceChildren(heading, list);
+  }
   function syncPage(item) {
     const block = item.unit?.el;
     if (!block || block === syncedBlock || !block.isConnected) return;
@@ -1252,6 +1378,7 @@
     if (stage?.open) stage.close();
     document.documentElement.classList.remove('rsvp-open');
     attach(); // 速さを変えた後の「約N分」を入口に反映する
+    renderDiscoveryPanel();
   }
 
   function flash(el) {
@@ -1305,8 +1432,10 @@
   function landAfterReading() {
     clearTimeout(timer);
     closeStage();
+    renderDiscoveryPanel();
     const readerRoot = root();
-    const target = readerRoot.querySelector('.reader-resonance') || readerRoot.querySelector(':scope > .reader-v2-after-reading');
+    const target = readerRoot.querySelector(':scope > .rsvp-discoveries-panel')
+      || readerRoot.querySelector('.reader-resonance') || readerRoot.querySelector(':scope > .reader-v2-after-reading');
     if (!target) return;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     target.scrollIntoView({ block: 'center', behavior: reduce ? 'instant' : 'smooth' });
@@ -1362,6 +1491,7 @@
       case ']': stepMin(1); break;
       case 'v': case 'V': setVertical(!settings.vertical); break;
       case 'm': case 'M': setPresentation(settings.presentation === 'chunk' ? 'scene' : 'chunk'); break;
+      case 'b': case 'B': saveDiscovery(); break;
       case 'p': case 'P': setPause((settings.pause + 1) % PAUSE_LABELS.length); break;
       case 'PageDown': jumpSection(1); break;
       case 'PageUp': jumpSection(-1); break;
@@ -1425,6 +1555,7 @@
       intro.addEventListener('click', () => open('top', intro));
       meta.after(intro);
     }
+    renderDiscoveryPanel();
     const time = document.querySelector('#readerContent .reader-rsvp-intro__time');
     if (time) {
       const minutes = estimateMinutes();
@@ -1464,6 +1595,7 @@
       capacity, msPerMora: Math.round(msPerMora), elapsedMs: Math.round(activePlayedMs()), settings: { ...settings }
     }),
     items: () => items.map(item => ({ type: item.type, kind: item.kind, text: item.text, width: item.width, ms: Math.round(item.ms), rest: Math.round(item.rest), pause: item.pause, sentence: item.sentence, locator: item.unit?.locator })),
+    discoveries: () => discoveriesForEssay().map(entry => ({ ...entry })),
     lib: { widthOf, moraeOf, splitSentences, splitWide, mergeChunks, attachOrphanClosing, buildItems, easeSectionEntry, sceneRange, retime, formatElapsed }
   });
 })();
