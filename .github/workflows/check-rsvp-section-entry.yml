@@ -7,6 +7,7 @@ on:
       - reader-rsvp.js
       - reader-rsvp.css
       - tools/test-rsvp-section-entry.mjs
+      - tools/test-rsvp-experience.mjs
       - .github/workflows/check-rsvp-section-entry.yml
   pull_request:
     paths:
@@ -33,3 +34,5 @@ jobs:
         run: node --check reader-rsvp.js
       - name: Verify heading-to-body pacing
         run: node tools/test-rsvp-section-entry.mjs
+      - name: Verify scenes and saved discoveries
+        run: node tools/test-rsvp-experience.mjs
