@@ -204,3 +204,9 @@ html.rsvp-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .rsvp-scene-line { transition: none; }
 }
+
+
+/* Headings announce the next subject without fabricating a question or
+   rephrasing article content. The eyebrow is static, not an attention effect. */
+.rsvp-card-kicker { margin: 0; color: var(--muted); font: 700 11px/1.4 "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif; letter-spacing: .1em; }
+.rsvp-card:has(.rsvp-card-kicker) .rsvp-card-heading { padding-top: 0; border-top: 0; }
