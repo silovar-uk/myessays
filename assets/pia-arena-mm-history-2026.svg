@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="610" viewBox="0 0 1280 610" role="img" aria-labelledby="t d">
+<title id="t">ぴあアリーナMM：会場不足から固定費・まちとの共存へ</title>
+<desc id="d">2016年会場不足、2017年ぴあによる着工、2020年コロナ禍開業、2023年近隣への注意喚起、2026年賃借料開示を示す。下段は施設・事業・都市の三者関係。</desc>
+<rect width="1280" height="610" fill="#f5f3ed"/>
+<text x="68" y="70" fill="#202d36" font-family="Arial,sans-serif" font-size="38" font-weight="700">一つのアリーナ、五つの時点</text>
+<text x="70" y="111" fill="#57646d" font-family="Arial,sans-serif" font-size="19">不足を解くために造った箱が、今度は日々の運営と地域の課題を引き受ける。</text>
+<line x1="110" y1="224" x2="1160" y2="224" stroke="#2c5961" stroke-width="5" />
+<g font-family="Arial,sans-serif">
+<g transform="translate(115,224)"><circle r="14" fill="#2c5961"/><text y="-48" x="-25" font-size="31" fill="#193841" font-weight="700">2016</text><text x="-33" y="48" font-size="21" fill="#23333d">大型会場の</text><text x="-33" y="77" font-size="21" fill="#23333d">改修が重なる</text></g>
+<g transform="translate(372,224)"><circle r="14" fill="#2c5961"/><text y="-48" x="-25" font-size="31" fill="#193841" font-weight="700">2017</text><text x="-42" y="48" font-size="21" fill="#23333d">計画発表・</text><text x="-42" y="77" font-size="21" fill="#23333d">12月着工</text></g>
+<g transform="translate(632,224)"><circle r="14" fill="#ba7242"/><text y="-48" x="-25" font-size="31" fill="#193841" font-weight="700">2020</text><text x="-47" y="48" font-size="21" fill="#23333d">7月10日開業</text><text x="-47" y="77" font-size="21" fill="#23333d">ゆずの映像配信</text></g>
+<g transform="translate(887,224)"><circle r="14" fill="#2c5961"/><text y="-48" x="-25" font-size="31" fill="#193841" font-weight="700">2023</text><text x="-48" y="48" font-size="21" fill="#23333d">滞留・トイレ利用の</text><text x="-48" y="77" font-size="21" fill="#23333d">注意喚起</text></g>
+<g transform="translate(1129,224)"><circle r="14" fill="#ba7242"/><text y="-48" x="-25" font-size="31" fill="#193841" font-weight="700">2026</text><text x="-78" y="48" font-size="21" fill="#23333d">有価証券報告書に</text><text x="-78" y="77" font-size="21" fill="#23333d">年間賃借料6.72億円</text></g>
+<rect x="66" y="358" width="346" height="168" rx="16" fill="#e6eceb"/>
+<rect x="468" y="358" width="346" height="168" rx="16" fill="#e8e6df"/>
+<rect x="870" y="358" width="346" height="168" rx="16" fill="#f0e4d8"/>
+<text x="92" y="404" font-size="27" font-weight="700" fill="#183840">施設</text><text x="92" y="441" font-size="21" fill="#19343d">音響・見やすさ・搬入動線</text><text x="92" y="479" font-size="19" fill="#506068">出演者と来場者の体験</text>
+<text x="492" y="404" font-size="27" font-weight="700" fill="#183840">事業</text><text x="492" y="441" font-size="21" fill="#19343d">会場利用料・飲食・優待席</text><text x="492" y="479" font-size="19" fill="#506068">固定費と稼働日数の管理</text>
+<text x="896" y="404" font-size="27" font-weight="700" fill="#183840">都市</text><text x="896" y="441" font-size="21" fill="#19343d">集客・交通・近隣の生活</text><text x="896" y="479" font-size="19" fill="#506068">地域にも影響が及ぶ</text>
+<text x="66" y="576" font-size="17" fill="#57646d">本稿作成図｜時系列は因果関係の証明ではない。公表資料に基づく。金額は2026年3月期の「土地等」の年間賃借料。</text>
+</g></svg>
