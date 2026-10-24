@@ -458,7 +458,7 @@
       version: currentVersion(), locator: first.unit.locator || '',
       pairId: first.unit.el?.dataset?.pairId || '',
       start: first.start,
-      quote: first.unit.text.slice(first.start, last.end).replace(/\\s+/g, ' ').trim().slice(0, 200)
+      quote: first.unit.text.slice(first.start, last.end).replace(/\s+/g, ' ').trim().slice(0, 200)
     };
   }
   function saveDiscovery() {
@@ -1207,6 +1207,12 @@
       if (card.stats) nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-stats', textContent: card.stats }));
       nodes.push(button('rsvp-card-after', '読後へ ↓', '読後欄へ移る', landAfterReading));
     } else {
+      if (card.kind === 'h2' || card.kind === 'h3') {
+        nodes.push(Object.assign(document.createElement('p'), {
+          className: 'rsvp-card-kicker',
+          textContent: card.kind === 'h2' ? 'NEXT · 次の話題' : '次の小見出し'
+        }));
+      }
       nodes.push(Object.assign(document.createElement('p'), { className: 'rsvp-card-heading', textContent: card.text }));
     }
     els.card.replaceChildren(...nodes);
@@ -1344,6 +1350,8 @@
     let panel = readerRoot.querySelector(':scope > .rsvp-discoveries-panel');
     const saved = discoveriesForEssay();
     if (!saved.length) { panel?.remove(); return; }
+    const signature = JSON.stringify(saved.map(d => [d.version, d.locator, d.start, d.quote]));
+    if (panel?.dataset.discoverySignature === signature) return;
     const after = readerRoot.querySelector(':scope > .reader-v2-after-reading');
     if (!after) return;
     if (!panel) {
@@ -1361,6 +1369,7 @@
       list.append(btn);
     });
     panel.replaceChildren(heading, list);
+    panel.dataset.discoverySignature = signature;
   }
   function syncPage(item) {
     const block = item.unit?.el;
