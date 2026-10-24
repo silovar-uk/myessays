@@ -17,7 +17,7 @@ abstract: "From Miss Shiseido’s 1934 beauty play to modern consultation. A beg
 
 *Research: 2026-10-24. Official materials and desk research; no independent store visit.*
 
-**In 1934, Shiseido staged a beauty play before selling cosmetics.** ** その名は「近代美容劇」。第一期「ミス・シセイドウ」の9人は7か月の研修で美容技術、皮膚科学、服飾、声楽、西洋画法まで学び、観客へ新しい化粧法を披露した。終演後には一人ひとりの相談を受け、「美容処方箋」まで手渡したという。化粧水を売るつもりが、なぜ演劇まで必要だったのか。ここから百貨店の化粧品売場を眺めると、単なる商品の陳列ではない仕組みが見えてくる。[資生堂公式沿革](https://corp.shiseido.com/jp/company/history/index.html)
+**In 1934, Shiseido staged a beauty play before selling cosmetics.** その名は「近代美容劇」。第一期「ミス・シセイドウ」の9人は7か月の研修で美容技術、皮膚科学、服飾、声楽、西洋画法まで学び、観客へ新しい化粧法を披露した。終演後には一人ひとりの相談を受け、「美容処方箋」まで手渡したという。化粧水を売るつもりが、なぜ演劇まで必要だったのか。ここから百貨店の化粧品売場を眺めると、単なる商品の陳列ではない仕組みが見えてくる。[資生堂公式沿革](https://corp.shiseido.com/jp/company/history/index.html)
 
 Fast-forward to October 2026: Sogo Yokohama offers skin analysis, lipstick trials and fragrance discovery. 予約制の化粧相談には約30〜40分の枠もある。芝居から肌測定器まで手段は変わったが、買う前に「どう使うか、何を選ぶか」を学んでもらう発想は続いている。では、その時間の費用は誰が負担し、何を商売として得るのだろう。[そごう横浜店公式催事](https://www.sogo-seibu.jp/yokohama/topics/cosme-beauty-festival-2026-winter)
 
@@ -157,31 +157,31 @@ A beauty counter is also **a small negotiation between a person's values and a c
 
 This is **desk research as of October 24, 2026**; actual counter contracts, profitability and consultation uplift remain unverified. 2018年のそごう横浜店の改装資料と2026年の催事は時点を分けて扱った。消化仕入れの条件、化粧品売場単独の利益率、美容部員の実際の雇用構成、相談の売上への因果効果、購入後の満足や現地の来店行動は未確認である。これらを断定していないことを、記事の限界として明示する。
 
-[日本百貨店協会・2025年の売上](https://www.depart.or.jp/store_sale/2025/) [日本百貨店協会・2025年の売上](https://www.depart.or.jp/store_sale/2025/)
+[日本百貨店協会・2025年の売上](https://www.depart.or.jp/store_sale/2025/)
 
-[日本化粧品工業会・化粧品出荷](https://jcia.org/user/statistics/shipment) [日本化粧品工業会・化粧品出荷](https://jcia.org/user/statistics/shipment)
+[日本化粧品工業会・化粧品出荷](https://jcia.org/user/statistics/shipment)
 
-[三越伊勢丹・百貨店史](https://www.imhds.co.jp/corporate/sustainability/about/spirit.html) [三越伊勢丹・百貨店史](https://www.imhds.co.jp/corporate/sustainability/about/spirit.html)
+[三越伊勢丹・百貨店史](https://www.imhds.co.jp/corporate/sustainability/about/spirit.html)
 
-[資生堂・企業史](https://corp.shiseido.com/jp/company/history/index.html) [資生堂・企業史](https://corp.shiseido.com/jp/company/history/index.html)
+[資生堂・企業史](https://corp.shiseido.com/jp/company/history/index.html)
 
-[資生堂・美容部員史](https://corp.shiseido.com/bc/jp/history/) [資生堂・美容部員史](https://corp.shiseido.com/bc/jp/history/)
+[資生堂・美容部員史](https://corp.shiseido.com/bc/jp/history/)
 
-[中小機構・百貨店取引](https://j-net21.smrj.go.jp/solution/qa/special/Q0926.html) [中小機構・百貨店取引](https://j-net21.smrj.go.jp/solution/qa/special/Q0926.html)
+[中小機構・百貨店取引](https://j-net21.smrj.go.jp/solution/qa/special/Q0926.html)
 
-[髙島屋・公式業績](https://www.takashimaya.co.jp/corp/info/outline/network.html) [髙島屋・公式業績](https://www.takashimaya.co.jp/corp/info/outline/network.html)
+[髙島屋・公式業績](https://www.takashimaya.co.jp/corp/info/outline/network.html)
 
-[公正取引委員会・取引指針](https://www.jftc.go.jp/dk/guideline/unyoukijun/yuetsutekichii.html) [公正取引委員会・取引指針](https://www.jftc.go.jp/dk/guideline/unyoukijun/yuetsutekichii.html)
+[公正取引委員会・取引指針](https://www.jftc.go.jp/dk/guideline/unyoukijun/yuetsutekichii.html)
 
-[消費者庁・優良誤認](https://www.caa.go.jp/policies/policy/representation/fair_labeling/representation_regulation/misleading_representation/) [消費者庁・優良誤認](https://www.caa.go.jp/policies/policy/representation/fair_labeling/representation_regulation/misleading_representation/)
+[消費者庁・優良誤認](https://www.caa.go.jp/policies/policy/representation/fair_labeling/representation_regulation/misleading_representation/)
 
-[国民生活センター・化粧品の危害](https://www.kokusen.go.jp/soudan_topics/data/cosmetic_harm.html) [国民生活センター・化粧品の危害](https://www.kokusen.go.jp/soudan_topics/data/cosmetic_harm.html)
+[国民生活センター・化粧品の危害](https://www.kokusen.go.jp/soudan_topics/data/cosmetic_harm.html)
 
-[東京都・化粧品効能](https://www.tmiph.metro.tokyo.lg.jp/kj_shoku/cosme/cosme2/) [東京都・化粧品効能](https://www.tmiph.metro.tokyo.lg.jp/kj_shoku/cosme/cosme2/)
+[東京都・化粧品効能](https://www.tmiph.metro.tokyo.lg.jp/kj_shoku/cosme/cosme2/)
 
-[そごう横浜店・催事](https://www.sogo-seibu.jp/yokohama/topics/cosme-beauty-festival-2026-winter) [そごう横浜店・催事](https://www.sogo-seibu.jp/yokohama/topics/cosme-beauty-festival-2026-winter)
+[そごう横浜店・催事](https://www.sogo-seibu.jp/yokohama/topics/cosme-beauty-festival-2026-winter)
 
-[そごう横浜店・2018年改装](https://prtimes.jp/main/html/rd/p/000000087.000031382.html) [そごう横浜店・2018年改装](https://prtimes.jp/main/html/rd/p/000000087.000031382.html)
+[そごう横浜店・2018年改装](https://prtimes.jp/main/html/rd/p/000000087.000031382.html)
 
-[資生堂・環境資料](https://corp.shiseido.com/jp/sustainability/env/action3.html) [資生堂・環境資料](https://corp.shiseido.com/jp/sustainability/env/action3.html)
+[資生堂・環境資料](https://corp.shiseido.com/jp/sustainability/env/action3.html)
 
