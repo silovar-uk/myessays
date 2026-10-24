@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="コットンハーバーの下に重なる5つの時代の模式図">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101c2b"/><stop offset="1" stop-color="#20384b"/></linearGradient></defs>
+<rect width="1280" height="720" rx="24" fill="url(#bg)"/>
+<text x="58" y="73" font-family="Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif" font-weight="bold" font-size="38" fill="#ffffff">コットンハーバーを、地名ではなく「地層」として読む</text>
+<text x="60" y="114" font-family="Arial,Meiryo,sans-serif" font-size="20" fill="#b4cedc">同じ一帯に重なる複数の役割。線の長さは期間や面積を表さない。</text>
+<g font-family="Arial,Meiryo,sans-serif">
+<rect x="60" y="150" width="1155" height="82" rx="13" fill="#dcefea"/><text x="83" y="186" font-size="25" font-weight="bold" fill="#173f42">住宅・暮らし</text><text x="320" y="186" font-size="23" fill="#173f42">2004年着工、2006〜2007年頃の4棟竣工</text><text x="320" y="216" font-size="17" fill="#376366">開発時の計画920戸 → 現在の物件資料は926戸</text>
+<rect x="60" y="244" width="1155" height="82" rx="13" fill="#fee6b4"/><text x="83" y="280" font-size="25" font-weight="bold" fill="#543b1b">造船・技術</text><text x="320" y="280" font-size="23" fill="#543b1b">浅野ドック　→　1956年「宗谷」を南極観測船へ改造</text><text x="320" y="310" font-size="17" fill="#79592f">1995年にドック閉鎖。場所の機能が切り替わる</text>
+<rect x="60" y="338" width="1155" height="82" rx="13" fill="#dce5fb"/><text x="83" y="374" font-size="25" font-weight="bold" fill="#1b3665">港湾・流通</text><text x="320" y="374" font-size="23" fill="#1b3665">山内ふ頭、中央卸売市場、倉庫、貨物輸送</text><text x="320" y="404" font-size="17" fill="#466089">現役の物流・産業と新しい住宅が近接する</text>
+<rect x="60" y="432" width="1155" height="82" rx="13" fill="#eeddf7"/><text x="83" y="468" font-size="25" font-weight="bold" fill="#51315e">名前の記憶</text><text x="320" y="468" font-size="23" fill="#51315e">1939年の横浜市資料に「棉花町」</text><text x="320" y="498" font-size="17" fill="#765386">「コットンハーバー」は後年の開発呼称、正式な町名ではない</text>
+<rect x="60" y="526" width="1155" height="82" rx="13" fill="#f9dde0"/><text x="83" y="562" font-size="25" font-weight="bold" fill="#64323e">港の防衛</text><text x="320" y="562" font-size="23" fill="#64323e">1860年に神奈川台場完成。星野町公園に石垣の一部</text><text x="320" y="592" font-size="17" fill="#8c5762">埋立・市街化によって昔の海岸線の姿が見えにくくなった</text>
+</g>
+<text x="60" y="655" font-family="Arial,Meiryo,sans-serif" font-size="21" fill="#ffffff">解釈：表面の名前が「綿」でも、土地の記憶は綿だけでは説明できない。</text>
+<text x="60" y="686" font-family="Arial,Meiryo,sans-serif" font-size="15" fill="#b1cbd8">資料：横浜市／横浜市立図書館／浅野学園／船の科学館／野村不動産／三菱地所ハウスネット（2026年10月24日確認）</text>
+</svg>
