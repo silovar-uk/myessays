@@ -14,6 +14,7 @@ on:
       - reader-rsvp.js
       - reader-rsvp.css
       - tools/test-rsvp-section-entry.mjs
+      - tools/test-rsvp-experience.mjs
       - .github/workflows/check-rsvp-section-entry.yml
   workflow_dispatch:
 
