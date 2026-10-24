@@ -96,6 +96,70 @@ Why fragrance and hair tools on a cosmetics floor? 2018年の改装は、beauty 
 
 Once fragrance and tools enter the map, purchase cycles and use cases diverge: cream, lipstick, perfume, scalp care, durable devices. The department store itself is making an editorial decision about **what counts as beauty**.
 
+## 破｜Reclassifying beauty through nine human wants
+
+Product types like skin care, makeup and fragrance are useful, but they don't explain why so many counters coexist. Instead ask: **what does a person hope will change?** この9分類はbrand positioningのinterpretive modelであり、actual customer motivationsを測定したものではない。One shop entry is assigned a primary promise, though many brands span several groups.
+
+The famous 70-brand figure dates to the **2018 renovation of 1F plus B1F**. A 2019 report split it into **59 cosmetics brands and 11 beauty/service shops**. The named assignments below cover this article's **42 brand/shop entries**, not a verified reconstruction of all seventy. [2018年公式改装発表](https://prtimes.jp/main/html/rd/p/000000087.000031382.html)／[2018年地下1階公式発表](https://prtimes.jp/main/html/rd/p/000000190.000031382.html)／[2019年の59ブランド・11店舗という内訳](https://www.wwdjapan.com/articles/913048?mobile=off)
+
+### Protect: reduce fear of irritation
+
+**Examples:** ACSEINE / FANCL / CLINIQUE / AYURA / CLARINS.
+
+Before beauty comes the wish not to make skin feel worse. These brands provide different reassurance narratives; 'gentle' does not mean guaranteed non-irritating.
+
+### Understand: make sense of my skin
+
+**Examples:** IPSA / est / POLA / SK-II / SHISEIDO.
+
+Analysis, research and ingredients turn vague concerns into a possible explanation. Retail measurements are not medical diagnosis.
+
+### Cultivate: invest in a future self
+
+**Examples:** ALBION / KANEBO / DECORTÉ / LANCÔME / ESTÉE LAUDER.
+
+Habit, routines and signature serums help make beauty a long-term project. Actual outcomes need product-specific evidence.
+
+### Believe: buy an elevated narrative
+
+**Examples:** Clé de Peau Beauté / La Mer / GUERLAIN / GRATiAE.
+
+Heritage and prestige are part of perceived value. High price alone cannot establish superior efficacy.
+
+### Refine: look effortlessly natural
+
+**Examples:** RMK / SUQQU / LUNASOL / THREE.
+
+The paradox: an effortless look can require detailed technical work with texture and light.
+
+### Transform: try another version of me
+
+**Examples:** ADDICTION / NARS / M·A·C / shu uemura / MAKE UP FOR EVER.
+
+Color and artistry allow people to test an identity, not merely correct a perceived flaw.
+
+### Belong: participate in a desired world
+
+**Examples:** CHANEL / DIOR / YSL Beauté / GIVENCHY / JILL STUART Beauty / PAUL & JOE Beauté / TOM FORD BEAUTY / MAISON CHRISTIAN DIOR.
+
+Fashion codes make lipstick or perfume a small entry into a larger symbolic world. Dior and its fragrance-specific counter are counted separately as shop entries.
+
+### Feel: alter mood and memory
+
+**Examples:** L’OCCITANE / JO MALONE LONDON / diptyque / Intermode Fragrance.
+
+Fragrance and body rituals shape a felt atmosphere, where trial and personal preference can matter more than numeric optimization.
+
+### Delegate: borrow skills and tools
+
+**Examples:** Of cosmetics / ReFa. Historical B1 examples: Anastasia / Kesalan Patharan / JYOICHI / Nails Unique.
+
+Devices and professional services sell tools, techniques and another person's time. Eleven B1 shops were reported in 2018–19; current operations are not asserted.
+
+This taxonomy needs its own critical test. Customers do not always shop out of fear; some simply enjoy play, gifting or color. A brand may serve several roles. **This is a hypothesis about customer questions**, not evidence of how all customers actually think.
+
+**Validation plan:** establish a time-specific full roster, record official brand claims, gather unbiased open-ended shopper reasons, compare independent coders' classifications, and analyze product purchases separately from service bookings. If the nine labels fail to explain choice, revise or abandon them.
+
 ## 守から破へ｜42ブランドの背後には、思ったより少ない企業グループがある
 
 Are these 42 independent companies? No. **SHISEIDO, Clé de Peau Beauté, IPSA and NARS** sit in the Shiseido group. **Estée Lauder, Clinique, La Mer, M·A·C, Jo Malone London and Tom Ford Beauty** sit in Estée Lauder Companies. 別のcounterでも同じcorporate portfolioの一部になる。[Shiseido portfolio](https://corp.shiseido.com/jp/brands/)／[ELC portfolio](https://www.elcompanies.com/ja-jp/who-we-are/japan-at-a-glance)
