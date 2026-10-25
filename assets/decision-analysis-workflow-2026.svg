@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+<title id="t">決算分析の実務フロー：問いから意思決定まで</title>
+<desc id="d">目的と問い、比較軸の定義、比較、可視化、要素分解、反証、起承転結、意思決定への八段階。検証で問いを更新する循環を示す。</desc>
+<rect width="1200" height="675" fill="#0b1423" rx="28"/>
+<text x="58" y="70" fill="#ffffff" font-size="39" font-weight="700" font-family="Arial, Meiryo, sans-serif">「グラフを作る」の前に、問いを置く</text>
+<text x="60" y="110" fill="#b9c7da" font-size="22" font-family="Arial, Meiryo, sans-serif">分析は一方通行の作業工程ではなく、問いを更新する検証の循環</text>
+<g font-family="Arial, Meiryo, sans-serif">
+<rect x="60" y="150" width="515" height="95" rx="14" fill="#1d3a5a"/><text x="82" y="189" font-size="28" fill="#82d8ff" font-weight="700">01 目的と問い</text><text x="82" y="222" font-size="19" fill="#ffffff">誰が何を判断するための分析か</text>
+<rect x="625" y="150" width="515" height="95" rx="14" fill="#1d3a5a"/><text x="647" y="189" font-size="28" fill="#82d8ff" font-weight="700">02 定義と比較軸</text><text x="647" y="222" font-size="19" fill="#ffffff">期間・単位・対象範囲をそろえる</text>
+<rect x="60" y="273" width="515" height="95" rx="14" fill="#234c57"/><text x="82" y="312" font-size="28" fill="#9df2cf" font-weight="700">03 比較</text><text x="82" y="345" font-size="19" fill="#ffffff">時系列・競合・計画・内訳の差</text>
+<rect x="625" y="273" width="515" height="95" rx="14" fill="#234c57"/><text x="647" y="312" font-size="28" fill="#9df2cf" font-weight="700">04 可視化</text><text x="647" y="345" font-size="19" fill="#ffffff">図は仮説を暴くために使う</text>
+<rect x="60" y="396" width="515" height="95" rx="14" fill="#43416a"/><text x="82" y="435" font-size="28" fill="#d7c0ff" font-weight="700">05 要素分解</text><text x="82" y="468" font-size="19" fill="#ffffff">客数・客単価・利益・コスト</text>
+<rect x="625" y="396" width="515" height="95" rx="14" fill="#43416a"/><text x="647" y="435" font-size="28" fill="#d7c0ff" font-weight="700">06 反証と再調査</text><text x="647" y="468" font-size="19" fill="#ffffff">都合の悪いデータにも当たる</text>
+<rect x="60" y="519" width="515" height="95" rx="14" fill="#64482f"/><text x="82" y="558" font-size="28" fill="#ffdeaa" font-weight="700">07 起承転結</text><text x="82" y="591" font-size="19" fill="#ffffff">問い→事実→反転→意味</text>
+<rect x="625" y="519" width="515" height="95" rx="14" fill="#64482f"/><text x="647" y="558" font-size="28" fill="#ffdeaa" font-weight="700">08 意思決定</text><text x="647" y="591" font-size="19" fill="#ffffff">次に取る行動と確認指標</text>
+<g fill="#f2b04e"><path d="M586 192l25 7-25 7z"/><path d="M586 315l25 7-25 7z"/><path d="M586 438l25 7-25 7z"/><path d="M586 561l25 7-25 7z"/></g>
+<text x="58" y="650" fill="#99acc5" font-size="18">出典：学習メモをもとにした独自の実務再構成（書籍の公式図式ではない）</text>
+</g></svg>
