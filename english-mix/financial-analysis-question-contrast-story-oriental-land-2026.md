@@ -1,7 +1,7 @@
 ---
 id: "financial-analysis-question-contrast-story-oriental-land-2026"
 title: "Record Sales, Fewer Guests――ディズニーの決算が問いを変えた"
-subtitle: "Compare, Visualize, Decompose, Tell a Story――でも順番だけでは足りない"
+subtitle: "Compare, Visualize, Decompose, Tell a Story――数字に順番を壊される分析"
 created: "2026-10-26"
 updated: "2026-10-26"
 type: "Essay"
@@ -10,144 +10,134 @@ mode: "english-mix"
 tags: ["決算分析", "問い", "論点", "オリエンタルランド", "財務", "データ分析", "コンサルティング", "守破離"]
 keywords: ["compare", "visualize", "decompose", "storytelling", "falsification", "decision-making", "Uneven U"]
 grow: 5
-abstract: "The company set a record for sales, but not for attendance. オリエンタルランドのIR一次情報から、比較・可視化・要素分解・起承転結を検証し、問いと意思決定を軸に八段階の分析手順へ組み替えるEnglish Mix版。売上と利益、客数と客単価、数字の定義を区別する。"
+abstract: "Record sales, fewer guests, and lower profit. オリエンタルランドの一次情報で比較・可視化・要素分解・起承転結を検証し、「問いから意思決定へ」という八段階の実務手順に組み替えるEnglish Mix版。日本語を土台に自然な英語表現を織り込む。"
 ---
 
 # Record Sales, Fewer Guests――ディズニーの決算が問いを変えた
 
-*Research and editorial review: October 26, 2026. This is the English Mix reading mode of the Japanese article, not a separate research project. 企業IRの公開資料に基づく。書籍の全ページ確認・著者への取材は未実施。手順は学習メモからの独自再構成。*
+*2026年10月26日。日本語正本のEnglish Mix版。A reading companion, not a full translation. 一次資料を照合したが、書籍全ページの確認・著者取材はしていない。手順は学習メモを基にした独自の再構成。*
 
-**Fewer guests. Record sales. Lower profit.** オリエンタルランド（Oriental Land）の決算には、三つの言葉が同居している。
+**Fewer guests. Record sales. Lower profit.** 客が減っているのに、売上は過去最高。しかも利益は前年割れ。何をもって「業績が良い」と言えばええんやろう。
 
-In fiscal 2018, Tokyo Disney Resort welcomed around **32.56 million** guests. In fiscal 2025, only **27.53 million**. それでも2025年度の連結売上高は過去最高の**7,045億円**。営業利益は、前年度より減った。売上の数字だけなら成功だが、客数と利益を並べると話が変わる。
+オリエンタルランド（Oriental Land）が運営する東京ディズニーリゾートの入園者数は、2018年度の約**3,256万人**から2025年度には約**2,753万人**へ減少した。それでも連結売上高は**7,045億円**と過去最高だ。The numbers are not contradictory. Our interpretation might be. 数字同士が矛盾しているのではなく、読み手が一つの「成長」に押し込めているのかもしれない。
 
-So which number tells the truth? All of them. The problem is our question, not the figures. 「良い業績」という一言の中に、別々の概念を詰め込みすぎていた。
+![入園者数・客単価・売上高・営業利益を比較した図](https://silovar-uk.github.io/myessays/assets/olc-revenue-attendance-contrast-2026.svg)
 
-![2018 and 2025 attendance, spending per guest, and the 2024–2025 revenue/profit contrast](https://silovar-uk.github.io/myessays/assets/olc-revenue-attendance-contrast-2026.svg)
-
-*Original chart from [official attendance](https://www.olc.co.jp/ja/ir/olc/group05.html), [guest-sales figures](https://www.olc.co.jp/ja/ir/olc/group06.html) and [financial highlights](https://www.olc.co.jp/ja/ir/achievement/highlight.html). Note the definition change for “ticket receipts/attractions and shows” after fiscal 2021.*
+*Original comparison chart using [attendance](https://www.olc.co.jp/ja/ir/olc/group05.html), [sales per guest](https://www.olc.co.jp/ja/ir/olc/group06.html), and [financial results](https://www.olc.co.jp/ja/ir/achievement/highlight.html). 客単価には時期による定義差がある。*
 
 ## 守｜A question is not the same as an issue to resolve
 
-A financial statement summarizes a company's performance, financial position, and cash movements. 損益計算書（income statement）、貸借対照表（balance sheet）、キャッシュ・フロー計算書（cash-flow statement）が出発点になる。しかし、資料が揃っても、目的がなければ数字を眺めるだけだ。
+決算（financial results）は、企業が一定期間に稼いだ売上、支払った費用、残った利益などを明らかにする。損益計算書（income statement）、貸借対照表（balance sheet）、キャッシュ・フロー計算書（cash-flow statement）が代表的な資料だ。しかし資料が揃ったからといって、何を調べるべきかまで決まるわけではない。
 
-Here is the distinction I use in this article. **The question** is the big mystery: “Why did Oriental Land achieve record revenue after COVID-19?” **The issues** are the forks that might change the answer: attendance, spending per guest, hotel revenue, operating costs, and profit. ここでの定義は実務のための整理で、書籍の逐語的な定義ではない。
+**Question** は「なぜコロナ禍後に売上高を更新できたのか」という大きな疑問。**Issues** は「来園者数か、客単価か、ホテル事業か、費用構造か」という、答えを左右する個別の論点だ。問いは好奇心を生み、論点は調査を可能にする。In other words, curiosity needs to become a research plan.
 
-The starting point was 村上茂久（Shigehisa Murakami）の『[「問い」と「論点」の決算分析](https://ndlsearch.ndl.go.jp/books/R100000137-I9784802615594)』。Published by Sosim on October 20, 2026. 学習メモに残った流れは**比較→可視化→要素分解→起承転結**だった。This article tests that sequence rather than treating it as unquestionable doctrine.
-
-A good question creates curiosity. A good set of issues creates an investigation. **The value appears when curiosity becomes a research plan.**
+出発点は村上茂久（Shigehisa Murakami）著『[「問い」と「論点」の決算分析](https://ndlsearch.ndl.go.jp/books/R100000137-I9784802615594)』（ソシム、2026年10月20日刊）。学習メモには **Compare → Visualize → Decompose → Tell a Story** という四つの技法が残った。これを著者の正式な「四段階モデル」と断定するのではなく、自分たちの分析方法として実際に検証する。
 
 ## 守｜Why comparison cannot really come first
 
-A number without a reference point is almost mute. **¥704.5 billion in net sales** tells us little until we compare it with the previous year, a pre-pandemic baseline, a forecast, or a peer. 比較（comparison）は数字に意味を与える。
+売上高7,045億円。それだけ聞いても良いのか悪いのか分かりにくい。比較（comparison）には、前年、コロナ前、企業計画、競合他社という基準点が必要だ。**A number becomes meaningful when we give it a reference point.**
 
-But compared on what basis? An annual figure is not a quarterly figure. Consolidated sales are not theme-park sales. 「客単価」も、計算対象が変われば同じ意味にはならない。Comparing unlike definitions is not analysis; it is decoration.
+ただし、比較の前に確認すべきことがある。年度と四半期、連結と事業別、人数と延べ入場回数、億円と百万円では、対象も単位も違う。A neat table can still be misleading. 見栄えのよい表であっても、同じ指標を比べていなければ意味がない。
 
-So I rebuilt the process into eight stages: **Decision and question → definitions → comparison → visualization → decomposition → falsification → story → action.** 間違いや意外な事実が見つかったら、前の工程へ戻る。この戻り道こそが大切やと思う。
+そこで分析の流れを組み直した。**①目的と問い → ②指標の定義 → ③比較 → ④可視化 → ⑤要素分解 → ⑥反証と再調査 → ⑦起承転結 → ⑧意思決定**。A feedback loop, not a conveyor belt. 途中で前提が崩れたら、前の工程へ戻ることを前提にする。
 
-![Eight-stage analytical workflow from question to decision](https://silovar-uk.github.io/myessays/assets/decision-analysis-workflow-2026.svg)
+![問いから意思決定へ進む八段階の分析手順](https://silovar-uk.github.io/myessays/assets/decision-analysis-workflow-2026.svg)
 
-*Author's operational reconstruction, not an official diagram from the book.*
+*Original workflow diagram. 書籍から転載した図ではなく、学習内容を実務向けに再構成したもの。*
 
 ## 守｜Three roles, one investigation
 
-I divided the work into three imaginary roles. **The skeptic** asks whether “record sales” really means stronger performance and whether the benchmark is fair. **The researcher** checks primary sources instead of relying on headlines. **The architect** decides how the comparison, chart, decomposition, and final decision should fit together.
+今回は頭の中に三人の担当を置く。**The skeptic（前提を疑う担当）**は「最高売上なら成功なのか」「比較する年度は適切か」と問い続ける。**The researcher（調査担当）**は記事の見出しではなく、企業の決算情報に当たる。**The architect（手順担当）**はどの順番で数字を集め、検算し、図解し、意思決定につなげるかを設計する。
 
-The initial hypotheses were simple. Perhaps attendance returned to record highs. Perhaps guests spent more. Perhaps hotel operations expanded. Perhaps revenue growth translated into profit growth. 大切なのは当たりを引くことではなく、どの仮説が数字で否定されるかを確かめること。
+仮説（hypotheses）は四つ。「客数が増えた」「客単価が増えた」「ホテル事業が伸びた」「売上増が利益も押し上げた」。Our goal is not to defend the first guess. 大事なのは仮説を当てることではなく、間違っている可能性を調べることだ。
 
-I therefore collected the annual attendance series, sales per guest, consolidated revenue, segment results, and management's explanations of cost changes. A second pass checked definitions and arithmetic consistency. **A research plan must include ways to prove its own first guess wrong.**
+一次資料として年間入園者数、客単価、連結売上、事業別内訳、営業利益、会社による費用の説明を集めた。Then came a second research pass: checking definitions, accounting scopes, and whether the sums actually match. ここで初めて「比較の準備ができた」と言える。
 
 ## 破｜Comparison one: the audience did not return to its peak
 
-In fiscal 2018, official attendance was **32,558,000**. In fiscal 2025, it was **27,534,000**—around **15.4% lower**. The published net sales per guest, meanwhile, moved from **¥11,815** to **¥18,403**, a headline increase of roughly **55.8%**. [Official attendance](https://www.olc.co.jp/ja/ir/olc/group05.html)／[Official sales per guest](https://www.olc.co.jp/ja/ir/olc/group06.html)
+2018年度の入園者数は**3,255万8,000人**。2025年度は**2,753万4,000人**。About **15.4% fewer visitors**. 一方、会社が公表したゲスト1人当たり売上高は**1万1,815円 → 1万8,403円**で、表面上の増加率は約**55.8％**だ。[公式入園者数](https://www.olc.co.jp/ja/ir/olc/group05.html)／[公式客単価](https://www.olc.co.jp/ja/ir/olc/group06.html)
 
-Be careful: the company changed its disclosed category label and scope from **ticket receipts** through fiscal 2021 to **attractions and shows** from fiscal 2022. したがって、約55.8％を同一定義での純粋な値上げ率とは呼べない。These are published figures, but not perfectly identical measures across time.
+ここに小さくない落とし穴がある。2021年度以前は「チケット収入」、2022年度以降は「アトラクション・ショー収入」という区分が使われている。**Definitions changed.** だから55.8％を、全く同じ条件で測った値上げ率と呼んではいけない。
 
-Even with that caveat, one hypothesis falls: **record attendance did not drive record revenue**. 集客人数では説明しきれない。次は、支出の構造とホテルを含む事業構成に目を向ける必要がある。
+それでも「最高売上になったのは、最高人数が来たからだ」という仮説は否定できる。That hypothesis does not survive the comparison. いま調べるべきなのは人数そのものではなく、**何にお金を払うかという収益の構造**になった。
 
 ## 破｜Comparison two: break the current year into evidence
 
-Compare fiscal 2024 with fiscal 2025, a more consistent pair of reporting years. Consolidated net sales climbed from **¥679.374 billion** to **¥704.539 billion**, up **3.7%**. Attendance was nearly flat, from **27.558 million** to **27.534 million**. Net sales per guest increased from **¥17,833** to **¥18,403**, up **3.2%**. [Financial highlights](https://www.olc.co.jp/en/ir/achievement/highlight.html)／[FY2025 results presentation](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
+今度は定義の揃う直近の**2024年度→2025年度**を比べる。連結売上高は**6,793.74億円→7,045.39億円**、前期比**3.7％増**。入園者数は**2,755万8,000人→2,753万4,000人**でほぼ横ばい。Net sales per guest increased **3.2%**, from **¥17,833 to ¥18,403**. [Official financial highlights](https://www.olc.co.jp/ja/ir/achievement/highlight.html)／[Results presentation](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
 
-What changed within spending per guest? Attractions and shows rose from **¥9,386 to ¥9,608**; merchandise from **¥5,084 to ¥5,227**; food and beverages from **¥3,362 to ¥3,569**. Management cited more paid Premier Access usage, a higher share of premium ticket prices, anniversary merchandise, and reopened food outlets. つまり「値上げしたから」で全部を説明してはいけない。[Official management explanation, page 5](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
+客単価をさらに分ける。アトラクション・ショーが**9,386円→9,608円**、商品が**5,084円→5,227円**、飲食が**3,362円→3,569円**。Company explanations include more Disney Premier Access usage, a higher mix of expensive ticket categories, anniversary goods, and reopened food outlets. 「チケットを値上げした」の一言では、変化を捉えきれない。[公式説明・5ページ](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
 
-Hotels matter too. Theme-park segment sales increased from **¥552.136 billion to ¥568.345 billion**, while hotel sales grew from **¥110.483 billion to ¥119.049 billion**. Fantasy Springs Hotel operated for the full fiscal year, and room rates also rose. [Segment results](https://www.olc.co.jp/en/ir/achievement/segment.html)／[Presentation, page 7](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
+ホテルも別の収益源だ。テーマパーク事業の売上高は**5,521.36億円→5,683.45億円**、ホテル事業は**1,104.83億円→1,190.49億円**。Fantasy Springs Hotel's full-year operation and higher room rates were among the disclosed drivers. 単純な「来園者数×チケット代」では、会社全体の売上を説明できない。[公式セグメント情報](https://www.olc.co.jp/ja/ir/achievement/segment.html)／[ホテル事業の説明・7ページ](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
 
-The deeper point: **Growth is not just about how many people come. It is also about what they buy and which business receives the revenue.** この段階では、売上の仕組みが少し見えるようになる。
+What matters is not only how many people arrive, but what they buy and which segment records the revenue. **成長の中身を知るには、人数・支出・事業構成を別々に見る必要がある。**
 
 ## 破｜Decomposition fails its first test
 
-Now the awkward experiment. I tried the familiar formula:
+ここで、わざと単純な式を試す。**Visitors × sales per guest = theme-park revenue.** 2025年度の**2,753万4,000人 × 1万8,403円**を計算すると、約**5,067億円**になる。ところが決算資料のテーマパーク事業売上高は**5,683億円**。差は約**616億円**だ。
 
-**Attendance × net sales per guest = theme-park revenue.**
+計算は合っているのに、答えが合わない。The formula does not reconcile. 数式がきれいだから正しいのではない。両方の指標の定義と集計対象を確認すべきだ。今回の公開資料から、この差額の厳密な対応関係を完全には確認できていない。勝手に「ホテル分だろう」と説明してはいけない。
 
-For fiscal 2025, **27,534,000 × ¥18,403 ≈ ¥506.7 billion**. But the actual theme-park segment reports around **¥568.3 billion**. A gap of roughly **¥61.6 billion**. 電卓が壊れたわけではない。The categories and scopes behind these disclosures need reconciliation.
+代わりに会社の開示内訳へ戻る。2025年度のテーマパーク事業売上高は、アトラクション・ショー**2,895.47億円**、商品**1,673.15億円**、飲食**983.67億円**、その他**131.15億円**から成る。These reported categories reconcile to the segment total, allowing for rounding. [Official segment disclosure](https://www.olc.co.jp/ja/ir/achievement/segment.html)
 
-We cannot simply label the gap “hotel revenue” or pretend it does not exist. 公開資料だけでは差額の完全な内訳照合ができていない。When a formula does not reconcile, the next task is to inspect numerator, denominator, accounting scope, and rounding—not invent a story.
-
-For reliable decomposition, the segment report offers four concrete categories: **¥289.547 billion** from attractions and shows, **¥167.315 billion** from merchandise, **¥98.367 billion** from food and beverages, and **¥13.115 billion** from other income. The disclosed categories add back to the published segment result, subject to rounding. [Official segment details](https://www.olc.co.jp/en/ir/achievement/segment.html)
-
-**A useful decomposition is one you can reconstruct.** きれいな数式より、「元の数字へ戻れるか」が強い検証基準になる。
+A strong decomposition must be reproducible. **要素分解の目的はもっともらしい式を作ることではなく、開示値に帰ってこられる構造を作ること**だ。
 
 ## 破｜Revenue growth meets its counterargument: lower profit
 
-The narrative seemed complete: spending per guest and hotels lifted sales. Then profit interrupted. In fiscal 2025, operating profit declined from **¥172.111 billion to ¥168.413 billion**, down **2.1%**. Operating margin fell from about **25.3% to 23.9%**. [Official results](https://www.olc.co.jp/en/ir/achievement/highlight.html)
+売上の伸びを説明できたと思ったところで、利益が反論してくる。連結営業利益は**1,721.11億円→1,684.13億円**、前期比**2.1％減**。Operating margin fell from approximately **25.3% to 23.9%**. 売上最高と利益の最高は同じではない。[公式業績](https://www.olc.co.jp/ja/ir/achievement/highlight.html)
 
-The theme-park segment's operating profit fell from around **¥140.4 billion to ¥130.4 billion**. The hotel segment moved the other way, from about **¥30.5 billion to ¥36.9 billion**. Management identified the increased impact of personnel expenses and other expenses at the theme parks at around **¥11.2 billion each**, including maintenance, systems, and taxes among the broader costs. これらは営業利益に対する費用影響であり、単なる「売上から費用を一つ引けば終わり」という計算ではない。[Results presentation, page 6](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
+テーマパークの営業利益は約**1,404億円→1,304億円**へ減った。一方、ホテルの営業利益は約**304億円→368億円**へ増えた。The company reported personnel-cost and miscellaneous-cost increases affecting theme-park operating profit by roughly **¥11.2 billion each**. これは人件費や保守・システム関連費用などの影響を説明する資料で、単純に費用一項目を差し引けば利益の全額が求まるわけではない。[決算説明会・6ページ](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)
 
-Record revenue is a fact. Lower profit is also a fact. Together, they change the question: **Can this growth model sustain its profitability while maintaining the guest experience?** 過去の成長要因の説明から、将来の持続性を判断する論点へ進んだ。
+すると新しい問いが生まれる。**Can the business sustain profitability while maintaining guest experience?** なぜ売上が増えたのか、という過去への問いから、利益を伴う成長を続けられるか、という将来への問いへ進んだ。
 
 ## 破｜The real process is a loop, not a conveyor belt
 
-The four techniques now look different. **Comparison** exposes a gap. **Visualization** makes the pattern visible. **Decomposition** tests mechanisms. **Storytelling** arranges the discovery for a reader. But each technique may send us backward. 異なる指標の定義を見つけたら比較へ戻る。合計が一致しなければ分解へ戻る。営業減益を見つけたら問いを更新する。
+四つの技法をもう一度見る。**Compare** は差を発見する。**Visualize** はその形を見せる。**Decompose** は要因を分ける。**Tell a story** は発見を読み手が理解できる順番へ並べる。でも、一度進んだら戻れないというルールはない。
 
-The missing discipline is **falsification**—actively looking for evidence that challenges the claim. 「客数が増えた」は2018年度比の事実で崩れ、「高単価化なら利益も増える」は営業減益で揺らいだ。Facts do not owe our first hypothesis their loyalty.
+客単価の定義が違えば比較へ戻る。掛け算が合わなければ分解へ戻る。利益が減ったなら問いを変える。**Falsification means actively looking for evidence against your own claim.** 自説に都合の悪い情報へ当たることが、むしろ分析を強くする。
 
-A visualization is not merely a nice slide. **A good chart should be able to embarrass the analyst.** 図を飾りにせず、自分の説明が壊れる場所を探す。
+A good chart should be able to embarrass the analyst. 図は結論をきれいに見せる飾りではなく、**自分の説明が壊れる場所を発見する道具**にもなる。
 
 ## 離｜Storytelling with 起承転結, without fabricating a twist
 
-The Japanese four-part structure—**起承転結（introduction, development, turn, conclusion）**—can organize the result.
+最後は起承転結（introduction, development, turn, conclusion）で伝える。
 
-- **起｜Question**: Why did Oriental Land set a post-pandemic revenue record?
-- **承｜Evidence to establish**: ¥704.5 billion in consolidated sales, roughly 27.53 million visits, ¥18,403 per guest, and increased hotel sales.
-- **転｜The challenge**: Attendance still trails fiscal 2018, and operating profit declined despite record revenue.
-- **結｜Decision-relevant insight**: Assess the mix of guest spending, segment revenue, and costs. Next, test whether profitability is sustainable.
+- **起｜Question**：「なぜオリエンタルランドはコロナ禍後に最高売上を更新したのか」
+- **承｜Evidence**：2025年度売上高7,045億円、入園者数2,753万人、客単価1万8,403円、ホテル事業の増収。
+- **転｜Challenge**：2018年度の入園者数には届いていない。しかも売上過去最高の年度に営業利益は減っている。
+- **結｜Insight**：成長を客数だけで測らず、収益構成と費用構造を調べる。次は利益の持続性を検証する。
 
-The turn must be real. **Surprise is not a license to distort evidence.** 意外な数字がなければ「まだ不明」と書く。Don't invent a revelation merely because the slide deck has four boxes.
+The twist must be evidence, not theater. 「転」は必ず驚かせるための仕掛けではない。最初の説明が不十分だと分かった瞬間を置く。意外なことが分からなかったら、分からなかったと書く。
 
-Eric Hayot's **Uneven U（不均等なＵ字型構成）** offers another insight. Start with a claim, descend to specific evidence, then rise toward something you could not say before. 「売上が伸びた。客単価も伸びた。だから売上は伸びた」では円を描いただけだ。**Sales rose, attendance did not, and profit fell; therefore we need a better definition of growth.** That is intellectual movement. [Publisher's description](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)／[Method explanation](https://www.enago.jp/academy/the-uneven-u/amp/)
+ここではエリック・ハイヨ（Eric Hayot）の**不均等なＵ字型構成（Uneven U）**も役立つ。問題を示し、具体的な数値へ降り、そこから新しい意味へ上がる。**Start with a problem. Touch the evidence. End with a better insight.** 「売上が伸びた→客単価が伸びた→だから売上が伸びた」では何も進まない。しかし「売上は伸びた→客数は戻っていない→利益は減った→何を成長と呼ぶべきか」なら、読後の視点が変わる。[原著出版社](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)／[日本語での手法紹介](https://www.enago.jp/academy/the-uneven-u/amp/)
 
 ## 離｜From a convincing story to a decision
 
-The same financial statements serve different decisions. An investor wants future margins and capital returns. A business developer wants evidence of willingness to pay. A marketer wants to understand spend, satisfaction, and repeat visits. 分析相手が違えば、同じ事実からの優先論点も変わる。
+同じ決算でも、誰に届けるかで論点は変わる。投資家なら利益率や投資回収。事業開発担当なら、どの価値に顧客が追加料金を払うか。マーケティング担当なら、満足度や再来園と顧客支出の関係だ。**The final output is a decision, not merely a clever explanation.**
 
-Here is the eight-step field checklist: **(1) Define the decision. (2) Frame the question and 3–5 issues. (3) Verify units, periods, and scope. (4) Compare different baselines. (5) Draw the right chart. (6) Decompose and challenge the arithmetic. (7) Build an evidence-led 起承転結. (8) Specify an action, an owner, and a metric for revisiting the decision.**
+実務では八つの問いをチェックする。**①誰が何を決める？ ②大きな問いと主要論点は？ ③年度・単位・集計対象は一致する？ ④何と比較する？ ⑤どんな図なら違いが分かる？ ⑥分解した数字は元に戻る？ ⑦反論を含む起承転結になっている？ ⑧次に何をして、何の数字で判断を更新する？**
 
-In a spreadsheet, keep source data, calculations, and charts separate. 指標台帳には定義、算式、単位、期間、出典、担当、更新頻度、注意点を残す。**Reproducibility beats polish.** 同じ分析を翌月もう一度やれることが、実務では効いてくる。
+Keep source data, calculations, and charts separate. 表計算では元データ、計算、グラフを分け、指標名・算式・単位・出典・担当・更新頻度を記録する。**Reproducibility beats polish.** 立派なスライドより、翌月も同じ分析を再現できる仕組みが実務に効く。
 
 ### What remains unknown
 
-The published spending-per-guest figure does not directly reconcile to total theme-park segment sales through multiplication by attendance. The exact bridge requires further definition-level checking. The 2018/2025 spending comparison also contains a measurement change. 公開集計値だけでは、価格変更が満足度や再来園に及ぼした因果効果を推定できない。
+2018年度と2025年度の客単価には定義の変更がある。また「入園者数×客単価」と事業売上高の差額は完全には照合できていない。We also cannot infer the causal effect of pricing on satisfaction or repeat visits from aggregate figures alone. 集計数字があるからといって、原因まで証明したことにはならない。
 
-The next research pass should examine price-band volumes, paid-access adoption, repeat-visit behavior, experience quality, and returns on investment. If the evidence is unavailable, mark it unknown. **Unknown is a valid analytical output, not an embarrassment.**
+次の調査候補は、価格帯別購入数、有償サービスの利用、再来園、満足度、設備投資と資金回収。No data? Say “unknown.” **分からないことを分からないと記録するのも、分析の成果**だ。
 
 ## 結｜A better question is often the real result
 
-I began with a tidy formula for thinking: compare, visualize, decompose, tell a story. ところが実際の数字は、比較の基準を壊し、掛け算の前提を壊し、成長という言葉まで揺さぶった。
+最初に学んだのは「比較して、図解して、分解して、物語にする」という分かりやすい流れだった。でも実データに触れると、比較の前提も数式の前提も何度も組み直すことになった。**The numbers changed the question.** 数字に問いを変えられることが、調査の本当の面白さなのかもしれない。
 
-What remained was a better question: **not simply “Why did revenue grow?” but “Which sources of growth can still create durable profit?”** 決算書は、答えがすでに完成している倉庫ではない。It is a machine for generating the next useful question.
+売上最高なのに客数は最高ではない。売上最高なのに利益は減った。最初は変な話だった。いまは、企業の「成長」を一つの指標に押し込めない理由が見える。**The best analysis does not always end with the first answer. It often ends with a better question.** 
 
 ---
 
-## Sources and verification notes
+## Sources and verification
 
-- [Murakami Shigehisa, book bibliographic record, National Diet Library](https://ndlsearch.ndl.go.jp/books/R100000137-I9784802615594); [published table of contents](https://www.hanmoto.com/bd/isbn/9784802615594). The eight-stage workflow is this article's reconstruction, not a quotation from the author.
-- [Oriental Land: annual attendance](https://www.olc.co.jp/ja/ir/olc/group05.html).
-- [Oriental Land: net sales per guest and definition note](https://www.olc.co.jp/ja/ir/olc/group06.html).
-- [Oriental Land: financial highlights](https://www.olc.co.jp/en/ir/achievement/highlight.html).
-- [Oriental Land: segment revenue and operating profit](https://www.olc.co.jp/en/ir/achievement/segment.html).
-- [Oriental Land FY2025 results presentation, April 28, 2026, pp. 4–7](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf).
-- [Eric Hayot, *The Elements of Academic Style*, Columbia University Press](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007).
+- [村上茂久著『「問い」と「論点」の決算分析』書誌](https://ndlsearch.ndl.go.jp/books/R100000137-I9784802615594)／[公開目次](https://www.hanmoto.com/bd/isbn/9784802615594)。Eight stages are the author's reconstruction in this article, not a formal claim about the book.
+- [OLC・入園者数](https://www.olc.co.jp/ja/ir/olc/group05.html)／[ゲスト1人当たり売上高](https://www.olc.co.jp/ja/ir/olc/group06.html)。
+- [OLC・業績ハイライト](https://www.olc.co.jp/ja/ir/achievement/highlight.html)／[セグメント情報](https://www.olc.co.jp/ja/ir/achievement/segment.html)。
+- [OLC・2026年3月期決算説明資料、2026年4月28日、4〜7ページ](https://www2.jpx.co.jp/disc/46610/140120260428513084.pdf)。
+- [Eric Hayot, *The Elements of Academic Style*, Columbia University Press](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007)。
 
-*Calculation note: Attendance fell 15.4% versus fiscal 2018. The published per-guest series rose 55.8%, with the definition-change caveat. Multiplying FY2025 attendance by disclosed net sales per guest gives approximately ¥506.7 billion, versus ¥568.3 billion in reported theme-park segment revenue. The exact reconciliation is not asserted.*
+*検算：2018→2025年度の入園者は約15.4％減。開示上の客単価は約55.8％増（定義の変更あり）。2025年度の入園者数×客単価は約5,067億円、テーマパーク事業売上高は約5,683億円。差額の厳密な内訳は未検証。*
