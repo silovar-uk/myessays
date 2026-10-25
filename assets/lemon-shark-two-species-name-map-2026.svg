@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 530" role="img" aria-labelledby="t d">
+<title id="t">日本語のレモンザメと英語のLemon sharkの対応関係</title>
+<desc id="d">日本語のレモンザメはNegaprion acutidens、英語のLemon sharkはNegaprion brevirostris。レモンザメ属に属する別の二種である。</desc>
+<rect width="1200" height="530" rx="24" fill="#0b2630"/>
+<text x="60" y="77" font-family="Noto Sans JP,Arial,sans-serif" font-size="40" font-weight="700" fill="#ffffff">「レモンザメ」を翻訳すると、違うサメになる</text>
+<text x="61" y="118" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" fill="#b7d7d9">同じレモンザメ属（Negaprion）。しかし、学名は異なる。</text>
+<rect x="57" y="157" width="500" height="265" rx="20" fill="#f4da83"/>
+<rect x="643" y="157" width="500" height="265" rx="20" fill="#a6d7e5"/>
+<text x="86" y="207" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="700" fill="#4c3d12">日本語の名前</text>
+<text x="86" y="268" font-family="Noto Sans JP,Arial,sans-serif" font-size="39" font-weight="800" fill="#172c30">レモンザメ</text>
+<text x="86" y="317" font-family="Arial,sans-serif" font-size="27" font-style="italic" fill="#172c30">Negaprion acutidens</text>
+<text x="86" y="363" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" fill="#294448">インド太平洋・沖縄周辺にも分布</text>
+<text x="675" y="207" font-family="Noto Sans JP,Arial,sans-serif" font-size="23" font-weight="700" fill="#244c60">英語の一般名</text>
+<text x="675" y="268" font-family="Arial,sans-serif" font-size="40" font-weight="800" fill="#14394d">Lemon shark</text>
+<text x="675" y="317" font-family="Arial,sans-serif" font-size="27" font-style="italic" fill="#14394d">Negaprion brevirostris</text>
+<text x="675" y="363" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" fill="#244c60">大西洋・アメリカ大陸周辺など</text>
+<rect x="559" y="229" width="83" height="116" rx="13" fill="#163e46" stroke="#fbfbf0" stroke-width="2"/>
+<text x="600" y="273" text-anchor="middle" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" font-weight="700" fill="#ffffff">同属</text>
+<text x="600" y="314" text-anchor="middle" font-family="Noto Sans JP,Arial,sans-serif" font-size="22" font-weight="700" fill="#f4da83">別種</text>
+<text x="600" y="475" text-anchor="middle" font-family="Noto Sans JP,Arial,sans-serif" font-size="29" font-weight="700" fill="#ffffff">研究結果を引用するときは、まず学名を確認する。</text>
+</svg>
