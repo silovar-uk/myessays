@@ -30,6 +30,10 @@ abstract: "日本語のレモンザメと英語のlemon sharkは通常別種を�
 
 一方、バハマ諸島などで詳しく研究され、英語で単に「レモンシャーク（Lemon shark）」と呼ばれるのは、**ニシレモンザメ（Negaprion brevirostris）**である。前者は主にインド洋・西太平洋、後者は大西洋とアメリカ大陸側の東太平洋などに分布する。同じレモンザメ属で、体形もよく似ている。しかし、似た名前・近い系統・似た外見は、研究結果を無条件に転用してよい理由にはならない。[分類の出典：フロリダ自然史博物館](https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/sicklefin-lemon-shark/)／[ニシレモンザメの国際自然保護連合評価](https://doi.org/10.2305/IUCN.UK.2021-1.RLTS.T39380A2915472.en)
 
+![レモンザメという名前の対応を学名で区別した図](https://silovar-uk.github.io/myessays/assets/lemon-shark-two-species-name-map-2026.svg)
+
+図：日本語名と英語の一般名の対応。レモンザメ属には近縁の二種があり、どちらの研究なのかは学名で確認する。分類の参照資料：[世界海産生物種登録簿](https://www.marinespecies.org/aphia.php?id=217356&p=taxdetails)／[フロリダ自然史博物館](https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/sicklefin-lemon-shark/)。
+
 見分ける際は体色だけに頼らない。レモンザメは黄色みを帯びた褐色から灰色で、砂地では目立ちにくい色になっている。ずんぐりした胴体、幅広く丸い吻（ふん＝口先）、そして**第1背びれと第2背びれがほぼ同じ大きさ**という特徴が重要だ。多くのメジロザメ科のサメは後方の第2背びれが小さい。もっとも、光や水質によって体色の印象は変わるため、「黄色いからレモンザメ」は同定方法として弱い。[沖縄美ら海水族館](https://churaumi.okinawa/fishbook/00000496/)
 
 **見分け方の確認順**：①まず学名を見る → ②分布海域を見る → ③二つの背びれの大きさを見る → ④ひれの湾曲や吻の形を見る → ⑤色は補助的に使う。これは写真だけで種を断定できるという意味ではない。分類の検証では、名前より先に標本・形態・採集地点をそろえる。
