@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 740" role="img" aria-labelledby="t d">
+<title id="t">オリエンタルランドの数字を比較すると、売上最高と客数最高は違う</title>
+<desc id="d">2018年度と2025年度の入園者数・1人当たり売上を比較し、2024年度と2025年度の連結売上・営業利益の増減を示す。単位と算定範囲は必ず確認する必要がある。</desc>
+<rect width="1180" height="740" rx="24" fill="#f7fafc"/>
+<g font-family="Arial, Meiryo, sans-serif">
+<text x="50" y="67" font-size="38" font-weight="700" fill="#173052">売上最高 ≠ 入園者数最高</text>
+<text x="50" y="105" font-size="21" fill="#61758b">同じ会社の「成長」でも、測る指標を変えると見え方が変わる</text>
+<rect x="48" y="145" width="527" height="283" rx="19" fill="#ffffff" stroke="#dbe3ea"/>
+<text x="77" y="188" font-size="28" font-weight="700" fill="#173052">入園者数（万人）</text>
+<text x="77" y="235" font-size="21" fill="#596b7e">2018年度</text><rect x="230" y="211" width="278" height="37" rx="7" fill="#286eac"/><text x="520" y="239" font-size="23" text-anchor="end" fill="#ffffff" font-weight="700">3,256</text>
+<text x="77" y="300" font-size="21" fill="#596b7e">2025年度</text><rect x="230" y="276" width="235" height="37" rx="7" fill="#72addd"/><text x="451" y="304" font-size="23" text-anchor="end" fill="#173052" font-weight="700">2,753</text>
+<text x="79" y="382" font-size="21" fill="#b34843" font-weight="700">2018年度比 約15％減</text>
+<rect x="605" y="145" width="527" height="283" rx="19" fill="#ffffff" stroke="#dbe3ea"/>
+<text x="634" y="188" font-size="28" font-weight="700" fill="#173052">ゲスト1人当たり売上高（円）</text>
+<text x="634" y="235" font-size="21" fill="#596b7e">2018年度</text><rect x="788" y="211" width="164" height="37" rx="7" fill="#286eac"/><text x="940" y="239" font-size="21" text-anchor="end" fill="#ffffff" font-weight="700">11,815</text>
+<text x="634" y="300" font-size="21" fill="#596b7e">2025年度</text><rect x="788" y="276" width="290" height="37" rx="7" fill="#72addd"/><text x="1062" y="304" font-size="21" text-anchor="end" fill="#173052" font-weight="700">18,403</text>
+<text x="635" y="382" font-size="21" fill="#1a755d" font-weight="700">2018年度比 約56％増</text>
+<rect x="48" y="459" width="1084" height="170" rx="19" fill="#173052"/>
+<text x="78" y="509" font-size="26" fill="#ffffff" font-weight="700">2024年度 → 2025年度（連結）</text>
+<text x="80" y="565" font-size="23" fill="#d7e7f7">売上高</text><text x="240" y="565" font-size="31" fill="#ffffff" font-weight="700">6,794 → 7,045 億円</text><text x="770" y="565" font-size="26" fill="#85e9be">+3.7％</text>
+<text x="80" y="606" font-size="23" fill="#d7e7f7">営業利益</text><text x="240" y="606" font-size="31" fill="#ffffff" font-weight="700">1,721 → 1,684 億円</text><text x="770" y="606" font-size="26" fill="#ffb29e">−2.1％</text>
+<text x="50" y="677" font-size="18" fill="#637588">※2018年度と2025年度は「チケット収入／アトラクション・ショー収入」の定義に差がある。</text>
+<text x="50" y="708" font-size="18" fill="#637588">出典：オリエンタルランド公式 IR。数値は表示用に四捨五入。グラフは独自作成。</text>
+</g></svg>
