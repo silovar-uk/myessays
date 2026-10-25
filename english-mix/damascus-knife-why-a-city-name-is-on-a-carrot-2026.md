@@ -1,7 +1,7 @@
 ---
 id: "damascus-knife-why-a-city-name-is-on-a-carrot-2026"
 title: "包丁に刻まれたシリアの都市名――A City Name on a Kitchen Knife"
-subtitle: "From historical wootz to modern layered blades: what the pattern does and does not tell us"
+subtitle: "古代のウーツ鋼から modern Damascus へ――模様と性能は同じ話なのか"
 created: "2026-10-25"
 updated: "2026-10-25"
 type: "Essay"
@@ -9,160 +9,168 @@ status: "完成"
 tags: ["包丁", "材料科学", "技術史", "守破離", "English Mix"]
 keywords: ["Damascus steel", "wootz", "pattern welding", "cutting core", "edge retention", "heat treatment"]
 grow: 5
-abstract: "Why does a kitchen knife bear the name of a Syrian city? 古典的なウーツ鋼と現代の積層包丁を区別し、製造工程、層数、切れ味、広告の神話まで検証する English Mix 版。"
+abstract: "なぜ台所の包丁にシリアの都市名がつくのか。Historical wootz と modern layered steel を分け、層数、刃先、熱処理、切断試験、広告の神話まで追う日英混合の読書版。"
 ---
 
 # 包丁に刻まれたシリアの都市名――A City Name on a Kitchen Knife
 
-*Researched and edited: October 25, 2026. This is a literature-based investigation, not a hands-on knife test.*
+*調査・編集：2026年10月25日。Published evidence and product specifications were reviewed; no hands-on cutting test was performed.*
 
-There is something slightly ridiculous about this name. A kitchen knife bears the name of Damascus, the capital of Syria, and then spends its day cutting carrots. The blade has beautiful waves that look as if someone stored an ancient river inside the steel. A price tag might proudly say “67 layers” or “101 layers.”
+シリアの首都ダマスカス。その都市名を冠した包丁が、毎日ニンジンを切っている。A city with thousands of years of history, reduced to chopping vegetables. しかも刃には水面のような模様。「101層」と書かれると、どんな超技術なのかと思う。
 
-But here's the problem: **The pattern is on the side of the knife. The cutting happens at its edge.** Are the two connected, or are we confusing a beautiful surface with a useful blade? その疑問から始めると、包丁の歴史と材料科学が意外なところでつながる。
+But the visible pattern is on the side, while cutting happens at the edge. **波模様の数と切れ味は関係するのか。** その小さな疑問から始めると、材料の仕組み、交易の歴史、商品の売り方まで見えてくる。
 
-![Modern Damascus-patterned kitchen knife](https://upload.wikimedia.org/wikipedia/commons/c/c1/Kuechenmesser_damaszener.jpg)
+![現代のダマスカス模様の包丁。Visible layers on the blade face](https://upload.wikimedia.org/wikipedia/commons/c/c1/Kuechenmesser_damaszener.jpg)
 
-*Photo: Kmtextor, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kuechenmesser_damaszener.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). This is a modern knife, not an example of historical wootz.*
+*Photo: Kmtextor, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kuechenmesser_damaszener.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). 古典的ウーツ鋼の写真ではない。*
 
-## 守｜Before Damascus: iron, steel, hardness, and toughness
+## 守｜鉄から始める。Hardness is not toughness
 
-Start with the metal itself. **Iron** is an element; **steel** is an iron-based alloy, often containing carbon and other elements. Carbon content, alloying elements, and heat treatment change what steel can do. 「鉄＝硬い」「硬い＝切れる」では説明できない。
+**鉄（iron）**は元素で、**鋼（steel）**は鉄を主成分として炭素などを含む材料。Its properties depend on composition and processing, not merely on the word “steel.” 同じ鋼でも、何をどのくらい含み、どう加熱して冷却したかで性質が変わる。
 
-**Hardness** means resistance to indentation or permanent deformation. **Toughness** is resistance to fracture and crack growth. A hard cutting edge can hold its shape, but that does not guarantee it will survive every impact. **Quenching（焼入れ）** and **tempering（焼戻し）** alter the internal structure of steel to balance those properties.
+**硬さ（hardness）**は変形への抵抗で、**靱性（toughness）**は割れや亀裂への抵抗。They are not interchangeable. **焼入れ（quenching）**と**焼戻し（tempering）**は、鋼の内部組織を変えて両者の釣り合いを調整する工程だ。
 
-The important change in perspective is simple: a blade is not just a material. **It is a material plus a manufacturing history.** [Knife Steel Nerds, heat treatment and kitchen-knife tests](https://knifesteelnerds.com/2025/03/24/factory-vs-custom-heat-treating-of-knives/)
+この区別によって「硬ければ最強」という説明から抜け出せる。A knife is material **plus** heat treatment, geometry, and finishing. 波模様を見る前に、まず刃の設計を見るべきなのである。[刃角・熱処理の検証](https://knifesteelnerds.com/2025/03/24/factory-vs-custom-heat-treating-of-knives/)
 
-## 守｜One name, two different manufacturing stories
+## 守｜Damascus は一つの製法を意味しない
 
-Historically, Damascus steel often refers to blades associated with **wootz steel**, a high-carbon **crucible steel** made in South Asia and worked into blades elsewhere. Modern knife marketing often uses Damascus for **pattern-welded steel**: different steels joined to produce a visible pattern. In many kitchen knives, the pattern-welded material forms the **cladding**, while a separate steel forms the **cutting core**.
+古典的な**ウーツ鋼（wootz steel）**は、南アジアに由来する**るつぼ鋼（crucible steel）**。By contrast, much of today's Damascus-patterned cutlery uses **pattern-welded steel（模様鍛接鋼）**, in which different steels are joined into a layered structure.
 
-A similar-looking pattern can come from different structures. 「波模様」という共通点だけで技術を分類すると、歴史も性能も混ざってしまう。[The Metropolitan Museum of Art, techniques of decoration](https://www.metmuseum.org/it/essays/techniques-of-decoration-on-arms-and-armor)
+さらに現代の包丁には、模様のある外層で別の**芯材（cutting core）**を挟むものもある。The visible waves may come from the cladding rather than the cutting edge. 同じ模様のように見えても、内部で何が起きているかは違う。[メトロポリタン美術館の技法解説](https://www.metmuseum.org/it/essays/techniques-of-decoration-on-arms-and-armor)
 
-![Concept diagram: wootz, pattern welding, and layered kitchen-knife cladding](https://silovar-uk.github.io/myessays/assets/damascus-knife-structure-2026.svg)
+![古典的ウーツ鋼・模様鍛接鋼・芯材付き積層包丁の違い。An original structural diagram](https://silovar-uk.github.io/myessays/assets/damascus-knife-structure-2026.svg)
 
-*Original schematic, not a microscopic cross-section. Based on The Met, Verhoeven, TOJIRO, and Shun.*
+*独自制作の概念図。Not a microscopic photograph. 参照：The Met、Verhoeven、藤次郎、旬。*
 
-## 守｜Damascus was a famous name, not a guarantee of origin
+## 守｜The famous name travelled farther than the steel
 
-The historical supply chain is the interesting part. The Metropolitan Museum of Art holds wootz steel ingots associated with India, probably from the eighteenth century. 鋼塊は生産地から運ばれ、別の地域の職人が刃物へ加工し、完成品の名声が別の都市と結びついた。
+「ダマスカス」は都市名だが、古い鋼の製造工程が全部その都市にあったとは言えない。The Met preserves historical wootz ingots associated with India. 鋼塊を生産地で作り、交易を通じて別の土地へ運び、現地の刀鍛冶が刃に加工した。
 
-A steel ingot is not yet a sword. Production, trade, forging, and reputation can happen in different places. In other words, “Damascus” on a blade tells us something about a historical reputation; it does not function like a modern country-of-origin label. A global supply chain existed long before anyone called it a global supply chain. [The Met, wootz ingots](https://www.metmuseum.org/art/collection/search/894714) / [The Met, Islamic arms](https://www.metmuseum.org/ja/essays/islamic-arms-and-armor)
+Ingot production, sword making, trade, and reputation are distinct activities. 現代の世界的ブランドを考えるときも、素材の産地と加工地と名声が一致するとは限らない。古代・中世にも同じ分業があったわけだ。
 
-## 守｜The old waves were not simply layers of folded steel
+都市名は**origin label**とは限らず、名声の地理を示す場合がある。The historical dating and naming conventions are not entirely fixed, so we should avoid a single-origin fairy tale.[ウーツ鋼の鋼塊](https://www.metmuseum.org/art/collection/search/894714)／[イスラムの武具](https://www.metmuseum.org/ja/essays/islamic-arms-and-armor)
 
-Here is the technical surprise. In historical wootz, the characteristic pattern is associated with bands of **cementite（セメンタイト、Fe₃C）**, an iron carbide, formed and rearranged within steel. It is not the visible boundary of dozens of separately welded sheets.
+## 守｜The old waves were not stacks of folded sheets
 
-![Watered pattern on an Iranian crucible-steel blade](https://upload.wikimedia.org/wikipedia/commons/2/2c/Watered_pattern_on_sword_blade1.Iran.JPG)
+古典的ウーツ鋼の模様で重要なのは、**セメンタイト（cementite, Fe₃C）**という炭化鉄。Bands of carbide particles can form within the steel and become visible after surface finishing. 別々の金属板を積層した境界線がそのまま見えているわけではない。[1996年の金属組織研究](https://www.sciencedirect.com/science/article/pii/S1044580396000198)
 
-*Photo: Rahil Alipour Ata Abadi, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Watered_pattern_on_sword_blade1.Iran.JPG), [GNU FDL](https://www.gnu.org/licenses/fdl-1.2.html). The historical image is not a modern laminate.*
+![イランの歴史的なるつぼ鋼の水面模様。Historical watered pattern](https://upload.wikimedia.org/wikipedia/commons/2/2c/Watered_pattern_on_sword_blade1.Iran.JPG)
 
-Metallurgist **John D. Verhoeven** and bladesmith **Alfred Pendray** investigated how this structure might be reproduced. Their experiments linked the pattern to trace alloying elements and thermal cycling. One report discusses vanadium at only **0.004% by weight**. Such an extravagant visual effect from such a tiny ingredient is almost unfair. But the meaningful point is that **visible beauty can arise from invisible microstructure**. [Verhoeven (2002)](https://doi.org/10.1002/srin.200200221) / [Verhoeven (2007)](https://www.hefajstos.agh.edu.pl/files/%5B2007%5D%20Pattern%20formation%20in%20wootz%20damascus%20steel%20swords%20and%20blades%20-%20J.%20Verhoeven.pdf)
+*Photo: Rahil Alipour Ata Abadi, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Watered_pattern_on_sword_blade1.Iran.JPG), [GNU FDL](https://www.gnu.org/licenses/fdl-1.2.html). 現代の積層包丁とは別の材料系統。*
 
-The original craft tradition did not necessarily survive intact, but modern reconstructions have matched key features of museum blades. “The tradition was lost” and “science cannot reproduce the material” are different claims.
+ジョン・D・ヴァーホーヴェン（John D. Verhoeven）とアルフレッド・ペンドレー（Alfred Pendray）の再現研究は、微量元素と熱処理の重要性を示した。One study even discusses vanadium at about **0.004% by weight**. 目立つ模様の理由が、ほとんど見えない成分の違いにある。A striking surface can come from an invisible microstructure. [2002年の論文](https://doi.org/10.1002/srin.200200221)／[2007年の報告](https://www.hefajstos.agh.edu.pl/files/%5B2007%5D%20Pattern%20formation%20in%20wootz%20damascus%20steel%20swords%20and%20blades%20-%20J.%20Verhoeven.pdf)
 
-## 守｜Modern layers do not always reach the cutting edge
+The historical craft tradition may have been interrupted. しかし現代の研究者が重要な構造を再現した実績もある。「失われた」と「再現不能」は別の主張なのだ。
 
-Now consider a real product specification. TOJIRO lists one Damascus chef's knife as **37 layers, VG10 cutting core**, with high- and low-carbon stainless outer layers. Shun describes knives with **34 cladding layers on each side** of a VG-MAX core. つまり広告の大きな「層数」より、**what is at the cutting edge?** が先に来る。[TOJIRO specifications](https://www.tojiro-japan.com/products/tojiro-37layered-dp-damascus-steel-chef-knife-210mm/) / [Shun technical explanation](https://shun.kaiusa.com/damascus-tsuchime-san-mai-edge)
+## 守｜“69 layers” does not mean 69 folds
 
-A 69-layer blade can mean 34 outer layers, one center layer, and 34 outer layers again. It does **not** mean that someone folded a knife 69 times. At this point, if you are imagining folding a metal bar like an impossibly ambitious piece of origami, we have left metallurgy.
+現代の製品仕様を見ると、物語が具体化する。藤次郎の一製品は **VG10 37 layers**, with a **VG10 cutting core** and stainless outer layers. 旬（Shun）はVG-MAX芯材の左右に各34層の外層を使う構造を説明する。[藤次郎の仕様](https://www.tojiro-japan.com/products/tojiro-37layered-dp-damascus-steel-chef-knife-210mm/)／[Shunの技法](https://shun.kaiusa.com/damascus-tsuchime-san-mai-edge)
 
-Some pattern-welded blades have layers continuing to the edge. Others use a separate central cutting core. ここを混同すると「ダマスカスだからよく切れるか」という質問そのものが不正確になる。
+A simple calculation: **34 + 1 + 34 = 69 layers**. これは69回折り曲げたという意味ではない。If someone folded steel 69 times, we'd need a separate article about supernatural origami.
 
-## 守｜Cutting performance starts with geometry
+大事なのは層数の多さだけではない。Does the patterned material reach the edge, or is it surrounding a different core? その違いが、模様と切断性能の関係を左右する。
 
-**Edge angle（刃角）**, sharpening, and blade thickness matter enormously. **Initial cutting ability** describes how easily the knife cuts when freshly sharpened. **Edge retention（刃持ち）** describes how cutting ability lasts through use. They are not identical tests.
+## 守｜Edge geometry comes before a glamorous steel name
 
-A 2025 comparison reported a strong relationship between edge geometry and initial cutting performance across multiple kitchen knives. That doesn't prove that steel type never matters. It shows why a material comparison can become meaningless when geometry and sharpening are not controlled. [Knife Steel Nerds (2025)](https://knifesteelnerds.com/2025/03/24/factory-vs-custom-heat-treating-of-knives/)
+切る瞬間、最初に食材に触れるのは刃先。**刃角（edge angle）**、研ぎの精度、刃の厚みが重要になる。**Initial sharpness** and **edge retention（刃持ち）** are not the same measure: one describes the starting cut, the other how performance persists.
 
-And **HRC**, the Rockwell C hardness scale, is not a universal score for knife quality. A higher number has to be considered alongside toughness, corrosion resistance, and ease of sharpening. **There is no best steel without a use case.** 硬いものを割るのか、トマトを薄く切るのかで必要な性質は違う。
+A 2025 knife comparison found a strong relationship between cutting performance and edge geometry. すべての素材差が無意味という話ではない。Rather, steel comparisons become misleading when geometry and sharpening are uncontrolled.[2025年の比較試験](https://knifesteelnerds.com/2025/03/24/factory-vs-custom-heat-treating-of-knives/)
 
-## 破｜“Damascus has no effect” is also too simple
+**ロックウェル硬さCスケール（HRC）**も、単純なランキングではない。Higher hardness can come with other trade-offs. 薄切りに向く刃と、乱暴な扱いに強い刃の評価軸は同じではない。
 
-The tempting skeptical answer is “It's all decoration.” That can be wrong, too. Earlier comparative tests found no general edge-retention benefit for pattern welding. But a **2023 set of experiments** found a particular combination of **1095 steel and nickel** could produce a micro-serrated cutting effect through differential wear. Other combinations behaved differently; toughness trade-offs were also observed. [2018 review](https://knifesteelnerds.com/2018/07/30/five-myths-about-damascus-steel/) / [2023 comparative tests](https://knifesteelnerds.com/2023/07/13/does-damascus-outperform-super-steels-testing-different-combinations/)
+## 破｜“It's all decoration” is not scientifically safe either
 
-This is not permission to claim that every layered kitchen knife cuts better. In some constructions, the layers never form the cutting edge. The genuine scientific answer needs the steel grades, bonding method, heat treatment, geometry, and a controlled test.
+「模様は全部飾り」と決めつけるのも危険だ。Earlier comparisons did not find a general advantage for pattern-welded blades. ところが2023年の実験では、特定の**1095鋼とニッケル**の組み合わせにおいて、異なる摩耗による細かな鋸歯状の効果が確認された。[2018年の整理](https://knifesteelnerds.com/2018/07/30/five-myths-about-damascus-steel/)／[2023年の実験](https://knifesteelnerds.com/2023/07/13/does-damascus-outperform-super-steels-testing-different-combinations/)
 
-There is another twist: carbon may diffuse across layer boundaries during forging, so the simple picture of alternating hard and soft steel bands may not describe the final material. **A visible line is not necessarily a surviving hardness boundary.** [Verhoeven & Clark (1998)](https://www.sciencedirect.com/science/article/abs/pii/S1044580398000357)
+But that is not a universal benefit. Other combinations had different results, and some improvements came with toughness trade-offs. 外層の模様が刃先に達していない包丁へ、この結果をそのまま当てはめることもできない。
 
-## 破｜Ancient nanotubes are not a complete explanation of a legendary sword
+Moreover, carbon can diffuse between layers during forging. A visible boundary does not automatically mean a boundary between hard and soft layers. 「ダマスカスだから切れる」も「ダマスカスだから変わらない」も、構造を見ないままの答えなのである。[炭素拡散の研究](https://www.sciencedirect.com/science/article/abs/pii/S1044580398000357)
 
-A 2006 paper in *Nature* described **carbon nanotubes** and cementite nanostructures in a sample taken from a seventeenth-century Damascus sabre. Carbon nanotubes are tiny tube-shaped structures built from carbon atoms. [Reibold et al. (2006)](https://www.nature.com/articles/444286a)
+## 破｜Ancient nanotubes do not solve every mystery
 
-That is fascinating. But **one observation does not prove that every historical blade contained such structures, or that these structures caused the legendary sharpness**. 「古代にナノ技術があった」と大きく言いたくなるほど、試料数と因果関係の確認が重要になる。History becomes more interesting when we resist turning it into science fiction.
+2006年の『ネイチャー（Nature）』は、17世紀の刀剣の試料から**炭素ナノチューブ（carbon nanotubes）**と微細なセメンタイト構造を報告した。A carbon nanotube is a tiny tube-like arrangement of carbon atoms. [Natureの報告](https://www.nature.com/articles/444286a)
 
-## 破｜A famous Indian iron pillar reveals a problem with the legend
+It makes a sensational headline: “Ancient nanotechnology!” ただし、特定の標本で見つけたことと、すべての古典的ダマスカス鋼に存在したことは違う。Nor does it, by itself, prove why a sword cut so well.
 
-One manufacturer's explainer links the corrosion-resistant **Delhi iron pillar** with Damascus steel. Yet metallurgical research describes the pillar as **wrought iron**, with a low carbon content, not the same high-carbon crucible steel used for historical wootz blades. Corrosion research points to phosphorus and protective surface films as important factors. [Manufacturer's explainer](https://www.zwilling.com/jp/magazine/product-guide-knives/about_damascus.html) / [Materials study (2023)](https://www.sciencedirect.com/science/article/pii/S2666523923000909) / [Corrosion study (2000)](https://www.sciencedirect.com/science/article/pii/S0010938X00000469)
+科学史の面白さは、昔の人を現代の研究者と呼び直すことではない。It's understanding what they could actually control, and what the evidence can still tell us.
 
-Both objects demonstrate sophisticated Indian metalworking. But they are not therefore the same material. 「古代インドのすごい鉄」という共通ラベルを貼るほど、異なる発明の価値を消してしまう。
+## 破｜A famous iron pillar is not a wootz sword
 
-## 破｜A proper test would need more than two tomatoes
+あるメーカーのダマスカス包丁の説明には、錆びにくい**デリーの鉄柱（Delhi iron pillar）**が登場する。But materials research identifies it as **wrought iron（錬鉄）**, not the same high-carbon crucible steel as historical wootz blades.[メーカーの説明](https://www.zwilling.com/jp/magazine/product-guide-knives/about_damascus.html)／[材料研究](https://www.sciencedirect.com/science/article/pii/S2666523923000909)
 
-Imagine testing a patterned knife against a plain knife. A can cut a tomato better than B, but perhaps A has a thinner edge or was sharpened yesterday. That does not isolate the effect of the pattern.
+Its corrosion resistance is studied in connection with phosphorus and protective surface films. これは十分に驚くべき別の技術である。Ancient Indian ironworking was remarkable in more than one way; mixing the achievements together actually obscures that diversity.[腐食に関する研究](https://www.sciencedirect.com/science/article/pii/S0010938X00000469)
 
-A useful experiment would control **core steel, heat treatment, hardness, edge angle, blade thickness, sharpening, cutting medium, and test repetitions**. Measure both first-cut performance and performance after repeated cuts. Ideally, change only the cladding while keeping the core and geometry constant, and separately study constructions with layers extending into the edge.
+## 破｜Two tomatoes are not a controlled experiment
 
-**We have not performed this test.** This article compares primary research and published specifications. An honest thought experiment is better than pretending a kitchen video can identify a metallurgical mechanism.
+仮に模様付き包丁Aが、普通の包丁Bよりトマトをうまく切ったとする。But were the knives equally sharp before the test? Did they have the same edge angle, blade thickness, heat treatment, and core steel?
 
-## 守｜Six questions before buying
+To isolate a variable, we would need **matched geometry, controlled sharpening, comparable hardness, repeated cuts, and measured cutting forces**. 初期の切れ味と、切り続けた後の性能も分ける。外層だけを変えた試作品と、刃先まで層が届く試作品も別に評価したい。
 
-A practical decision can now be organized around six questions:
+**今回その実験は実施していない。** This article is a comparative reading of published studies and product specifications. 机上の設計を実験結果のように見せないことも、調査の品質である。
 
-1. **What is the cutting core?** Does the maker name VG10, VG-MAX, or another steel?
-2. **What is the actual construction?** Is the patterned material cladding or the cutting edge itself? How are the layers counted?
-3. **Does the geometry suit your cooking?** Santoku, gyuto, and petty knives solve different handling problems.
-4. **What are the heat treatment and hardness?** An HRC number is helpful but not a universal quality score.
-5. **Can it be maintained?** Look for sharpening guidance, washing instructions, and repair services.
-6. **What are you paying for?** Cutting performance, design, craftsmanship, finish, origin, and aftercare are separate kinds of value.
+## 守｜Six questions for choosing a knife
 
-美しい模様が好きで買ってもいい。That is a genuine reason. Just don't turn an aesthetic preference into an unsupported laboratory claim.
+買い物に戻ると、確認したいのは六つだ。
 
-## 守｜Wash, dry, sharpen: the maintenance is not mysterious
+1. **芯材（cutting core）**：VG10など、使われる鋼材の名前はあるか。
+2. **積層構造（construction）**：模様は外層か刃先か。How are the layers counted?
+3. **形状（geometry）**：三徳、牛刀、ペティ。Does its length and thickness suit your cooking?
+4. **硬度と熱処理（hardness and heat treatment）**：HRCだけで結論を出していないか。
+5. **手入れ（maintenance）**：洗い方、研ぎ直し、メーカーのサポートは確認できるか。
+6. **価格の意味（what you're paying for）**：性能、加工精度、デザイン、製造地、物語を分けて考えているか。
 
-Wash after use, remove moisture, and store the knife dry. Stainless does not mean impossible to corrode. Follow the specific maker's dishwasher and sharpening instructions. Ordinary edge sharpening is not the same as polishing the whole patterned face of a knife. The latter may alter the visible pattern. [ZWILLING knife care](https://www.zwilling.com/jp/magazine/product-guide-knives/knife-use-care.html) / [Damascus care](https://www.zwilling.com/jp/magazine/product-guide-knives/about_damascus.html)
+Buying a beautiful knife because you love its pattern is a valid choice. 見た目の満足を性能の偽装で正当化する必要はない。
 
-A beautiful knife may be a lovely gift. Just remember: you are also gifting someone a future cleaning routine. たぶん包装紙には書かない方がいい。
+## 守｜A beautiful knife still needs washing and sharpening
 
-## 離｜A knife has tool performance and story performance
+使ったら洗い、水分を拭き取って保管する。**Stainless** means corrosion-resistant, not corrosion-proof. 食洗機の可否は製品によって異なるので、製造元の説明を見る。[洗浄と保管の案内](https://www.zwilling.com/jp/magazine/product-guide-knives/knife-use-care.html)
 
-The research suggests two dimensions of value. **Tool performance** includes cutting ability, edge retention, corrosion resistance, and comfort. **Story performance** includes the pattern, the manufacturing process, the historical associations, and the pleasure of ownership.
+Sharpen the cutting edge when it becomes dull. ただし刃先だけの研ぎと、模様のある側面全体を磨くことは別だ。Aggressive polishing can change the visible finish; ask the maker or a qualified sharpener when unsure.[研ぎ方の説明](https://www.zwilling.com/jp/magazine/product-guide-knives/about_damascus.html)
 
-Neither is fake. Problems start when marketing quietly treats one as proof of the other. A complicated manufacture can be meaningful even if the result does not outperform a simpler knife in every test. 同じ構造は高級時計、カメラ、スポーツ用品にもある。Enjoying craftsmanship does not require inventing a technical advantage.
+プレゼントとしては美しい。You are also gifting someone a future washing routine. そこはメッセージカードには書かなくていい。
 
-## 離｜The name contains more layers than the blade
+## 離｜A product can perform as a tool and as a story
 
-We began with a Syrian city name on a kitchen knife. Now that name reveals multiple histories: South Asian steelmaking, long-distance trade, the making of swords, metallurgical reconstruction, modern laminates, and contemporary product storytelling.
+ここまで調べると、性能には二つの意味がある。**Tool performance** means cutting, durability, corrosion resistance, and comfort. **Story performance** means craftsmanship, visible patterns, historical associations, and the pleasure of ownership.
 
-Next time you see those waves, instead of only asking “How many layers?”, ask **“What actually forms the cutting edge?”** That is a small but useful change in how we look at a beautiful object. 目に見える模様から、目に見えない構造を問い直す。そこから道具の理解が始まる。
+どちらも本物の価値だ。The mistake is to place an unsupported equals sign between them. 「工程が複雑だから、必ず切れる」「高価だから、歴史的に本物」。こうした飛躍では、測定と解釈が混ざる。
 
-## 用語｜A small bilingual glossary
+The same applies to mechanical watches, cameras, and sports equipment. 美しいことと、ある用途で最高の性能を持つことは別の評価軸である。Understanding the difference makes appreciation more precise, not less passionate.
 
-- **ウーツ鋼（wootz steel）**: Historical high-carbon crucible steel connected to classical Damascus blades.
-- **るつぼ鋼（crucible steel）**: Steel produced by heating and melting material in a crucible.
-- **模様鍛接鋼（pattern-welded steel）**: Steel made by joining different steels into a patterned structure.
-- **芯材（cutting core）／外層材（cladding）**: The central material that forms the edge / material covering or supporting the core.
-- **炭化物（carbide）／セメンタイト（cementite）**: Carbon-containing metal compound / iron carbide, Fe₃C.
-- **焼入れ（quenching）／焼戻し（tempering）**: Heat-treatment steps that alter the properties of steel.
-- **刃持ち（edge retention）／靱性（toughness）**: Ability to maintain cutting performance / resistance to cracking and fracture.
+## 離｜The name has more layers than the blade
 
-## 調査記録｜What was checked and what remains unknown
+シリアの都市名が、なぜニンジンを切る包丁にあるのか。It carries several histories at once: South Asian steelmaking, long-distance trade, bladesmithing, modern metallurgical research, layered manufacturing, and contemporary marketing.
 
-Research steps: museum object records for historical definitions; TOJIRO and Shun specifications for layer counts; Verhoeven's metallurgical studies for pattern formation; 2018 and 2023 cutting experiments for performance claims; separate metallurgy research to check the Delhi iron-pillar story; image provenance and licences.
+次に波模様の包丁を見たら「何層だろう」だけで終わらない。Ask instead: **“What actually forms the cutting edge?”** 見えている模様から、見えていない仕組みへ。That is where a decorative object becomes an understandable tool.
 
-Limitations: **no personal cutting trial, metallographic imaging, manufacturer interviews, or universal product ranking**. A matched comparison holding cutting-core material and edge geometry constant would be a meaningful next step.
+## 用語｜Glossary of the essentials
+
+- **ウーツ鋼（wootz steel）**：歴史的な高炭素のるつぼ鋼。Historical high-carbon crucible steel.
+- **るつぼ鋼（crucible steel）**：るつぼ内の加熱・溶融に由来する鋼。Steel made using a crucible.
+- **模様鍛接鋼（pattern-welded steel）**：異種鋼材などを接合して模様を作る技法・材料。Welded layers of different steels.
+- **芯材（cutting core）／外層（cladding）**：切断を担う中心部／周囲の材料。Central cutting steel / outer layers.
+- **炭化物（carbide）／セメンタイト（cementite）**：炭素を含む金属化合物／Fe₃C。Carbon-containing compound / iron carbide.
+- **焼入れ（quenching）／焼戻し（tempering）**：鋼の性質を調整する熱処理。Heat-treatment steps.
+- **刃持ち（edge retention）／靱性（toughness）**：切れ味の維持／割れにくさ。Performance over use / resistance to fracture.
+
+## 調査記録｜Research process and limitations
+
+**実施：** 博物館資料で歴史的分類を確認。藤次郎と旬の仕様で層数と芯材を照合。Verhoeven の研究で炭化物模様を調べ、2018年・2023年の比較実験で「性能差なし」という断定を再点検した。The Delhi iron-pillar claim was cross-checked against metallurgical studies; image authors and licences were checked.
+
+**未実施：** 現物の切断実験、金属組織の撮影、メーカー取材、個別商品のランキング。A useful next step would be repeated testing of matched blades with and without patterned cladding.
 
 ## 主な根拠資料
 
-- [The Met — Pattern welding and Damascus steel](https://www.metmuseum.org/it/essays/techniques-of-decoration-on-arms-and-armor)
-- [The Met — Ten Indian wootz ingots](https://www.metmuseum.org/art/collection/search/894714)
-- [Verhoeven (2002) — Historical Damascus microstructures](https://doi.org/10.1002/srin.200200221)
-- [Verhoeven et al. (1996) — Wootz blade experiments](https://www.sciencedirect.com/science/article/pii/S1044580396000198)
+- [The Met — Pattern welding and historical Damascus](https://www.metmuseum.org/it/essays/techniques-of-decoration-on-arms-and-armor)
+- [The Met — Indian wootz ingots](https://www.metmuseum.org/art/collection/search/894714)
+- [Verhoeven (2002) — Wootz microstructure](https://doi.org/10.1002/srin.200200221)
+- [Verhoeven et al. (1996) — Reconstructed blades](https://www.sciencedirect.com/science/article/pii/S1044580396000198)
 - [Verhoeven & Clark (1998) — Carbon diffusion](https://www.sciencedirect.com/science/article/abs/pii/S1044580398000357)
-- [Reibold et al. (2006) — Carbon nanotubes in a historic blade](https://www.nature.com/articles/444286a)
-- [Knife Steel Nerds (2023) — Comparative performance tests](https://knifesteelnerds.com/2023/07/13/does-damascus-outperform-super-steels-testing-different-combinations/)
+- [Reibold et al. (2006) — Nanostructures in a historic sabre](https://www.nature.com/articles/444286a)
+- [Knife Steel Nerds (2023) — Damascus comparative tests](https://knifesteelnerds.com/2023/07/13/does-damascus-outperform-super-steels-testing-different-combinations/)
 - [Knife Steel Nerds (2025) — Kitchen knife geometry](https://knifesteelnerds.com/2025/03/24/factory-vs-custom-heat-treating-of-knives/)
-- [TOJIRO — VG10 core and 37-layer specifications](https://www.tojiro-japan.com/products/tojiro-37layered-dp-damascus-steel-chef-knife-210mm/)
-- [Shun — Damascus cladding explanation](https://shun.kaiusa.com/damascus-tsuchime-san-mai-edge)
-- [Delhi iron pillar materials study (2023)](https://www.sciencedirect.com/science/article/pii/S2666523923000909)
+- [TOJIRO — VG10 core specifications](https://www.tojiro-japan.com/products/tojiro-37layered-dp-damascus-steel-chef-knife-210mm/)
+- [Shun — Cladding and cutting core](https://shun.kaiusa.com/damascus-tsuchime-san-mai-edge)
+- [Delhi iron pillar — Materials analysis (2023)](https://www.sciencedirect.com/science/article/pii/S2666523923000909)
 
-*English Mix is a companion reading mode, not a fully translated independent article. This version preserves the Japanese article's thesis, evidence, and essential qualifications.*
+*English Mix is a companion reading mode, not a full English translation. 一次根拠、数値、留保は日本語の正本と共通。*
