@@ -31,6 +31,10 @@ Sharks are fish, not marine mammals. They breathe with gills and have largely ca
 
 By contrast, the widely studied **lemon shark, Negaprion brevirostris**, is ニシレモンザメ in Japanese. The two species are related and look alike, but their ranges differ: Indo-Pacific versus Atlantic and the American side of the Pacific. **Similar names are not interchangeable scientific evidence.** [Florida Museum](https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/sicklefin-lemon-shark/) · [IUCN assessment for N. brevirostris](https://doi.org/10.2305/IUCN.UK.2021-1.RLTS.T39380A2915472.en).
 
+![レモンザメという名前の対応を学名で区別した図](https://silovar-uk.github.io/myessays/assets/lemon-shark-two-species-name-map-2026.svg)
+
+Diagram: Japanese and English common names can refer to **different species**. Check the scientific name before using a study. Sources: [WoRMS](https://www.marinespecies.org/aphia.php?id=217356&p=taxdetails) · [Florida Museum](https://www.floridamuseum.ufl.edu/discover-fish/species-profiles/sicklefin-lemon-shark/).
+
 Identification needs more than color. The body is broad, the snout is blunt, and the **two dorsal fins are almost the same size**. In many related sharks, the second dorsal fin is much smaller. 黄色っぽい体色だけでは、水中の光や環境の違いで誤認する。See [Okinawa Churaumi Aquarium](https://churaumi.okinawa/fishbook/00000496/).
 
 **Identification checklist:** 1. Scientific name → 2. Geographic range → 3. Relative size of two dorsal fins → 4. Fin curvature and snout → 5. Color as supporting evidence. A single photo cannot always establish a species identification.
