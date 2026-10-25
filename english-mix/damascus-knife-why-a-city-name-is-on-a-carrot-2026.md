@@ -58,7 +58,7 @@ Ingot production, sword making, trade, and reputation are distinct activities. �
 
 *Photo: Rahil Alipour Ata Abadi, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Watered_pattern_on_sword_blade1.Iran.JPG), [GNU FDL](https://www.gnu.org/licenses/fdl-1.2.html). 現代の積層包丁とは別の材料系統。*
 
-ジョン・D・ヴァーホーヴェン（John D. Verhoeven）とアルフレッド・ペンドレー（Alfred Pendray）の再現研究は、微量元素と熱処理の重要性を示した。One study even discusses vanadium at about **0.004% by weight**. 目立つ模様の理由が、ほとんど見えない成分の違いにある。A striking surface can come from an invisible microstructure. [2002年の論文](https://doi.org/10.1002/srin.200200221)／[2007年の報告](https://www.hefajstos.agh.edu.pl/files/%5B2007%5D%20Pattern%20formation%20in%20wootz%20damascus%20steel%20swords%20and%20blades%20-%20J.%20Verhoeven.pdf)
+ジョン・D・ヴァーホーヴェン（John D. Verhoeven）とアルフレッド・ペンドレー（Alfred Pendray）の再現研究は、微量元素と熱処理の重要性を示した。One study even discusses vanadium at about **0.004% by weight**. 目立つ模様の理由が、ほとんど見えない成分の違いにある。A striking surface can come from an invisible microstructure. [2002年の論文](https://doi.org/10.1002/srin.200200221)／[2007年の報告](https://insa.ndl.gov.in/items/f109e47c-e73a-411e-afec-152a5bd3cb83)
 
 The historical craft tradition may have been interrupted. しかし現代の研究者が重要な構造を再現した実績もある。「失われた」と「再現不能」は別の主張なのだ。
 
