@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-label="歌の呼吸は吸気、制御された呼気、次のフレーズの準備の循環">
+<rect width="1200" height="480" fill="#f5f0e7"/>
+<text x="56" y="72" font-family="Arial,'Noto Sans JP',sans-serif" font-size="36" font-weight="700" fill="#242527">声は出続けない。だから、時間を設計する。</text>
+<text x="58" y="108" font-family="Arial,sans-serif" font-size="15" letter-spacing="2" fill="#66635d">BREATH → VOICE → NEXT PHRASE</text>
+<rect x="55" y="157" width="270" height="185" rx="16" fill="#dae8e5"/>
+<text x="79" y="201" font-family="Arial,'Noto Sans JP',sans-serif" font-size="25" font-weight="700" fill="#194b48">01　吸気</text>
+<text x="79" y="244" font-family="Arial,'Noto Sans JP',sans-serif" font-size="19" fill="#275b57">次の長さを準備する</text>
+<text x="79" y="282" font-family="Arial,sans-serif" font-size="15" fill="#275b57">INHALE / PREPARE</text>
+<path d="M328 248 H412" stroke="#5e615e" stroke-width="4"/><path d="M399 235 L418 248 L399 261" fill="none" stroke="#5e615e" stroke-width="4"/>
+<rect x="423" y="157" width="354" height="185" rx="16" fill="#f4c796"/>
+<text x="449" y="201" font-family="Arial,'Noto Sans JP',sans-serif" font-size="25" font-weight="700" fill="#77420e">02　制御された呼気</text>
+<text x="449" y="244" font-family="Arial,'Noto Sans JP',sans-serif" font-size="19" fill="#77420e">流量・圧力・長さを調整</text>
+<text x="449" y="282" font-family="Arial,sans-serif" font-size="15" fill="#77420e">EXHALE / SING</text>
+<path d="M781 248 H847" stroke="#5e615e" stroke-width="4"/><path d="M834 235 L853 248 L834 261" fill="none" stroke="#5e615e" stroke-width="4"/>
+<rect x="861" y="157" width="280" height="185" rx="16" fill="#e4dfeb"/>
+<text x="887" y="201" font-family="Arial,'Noto Sans JP',sans-serif" font-size="25" font-weight="700" fill="#53446f">03　次の一句</text>
+<text x="887" y="244" font-family="Arial,'Noto Sans JP',sans-serif" font-size="19" fill="#53446f">意味と期待がつながる</text>
+<text x="887" y="282" font-family="Arial,sans-serif" font-size="15" fill="#53446f">PHRASE / EXPECTATION</text>
+<path d="M1022 344 V387 H191 V344" stroke="#9b9a94" stroke-width="2.4" fill="none" stroke-dasharray="7 9"/>
+<text x="600" y="420" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="17" fill="#444">図解：発声生理学をもとにした概念モデル。実測データではない。</text>
+</svg>
