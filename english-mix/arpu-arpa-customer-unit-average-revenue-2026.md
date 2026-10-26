@@ -48,7 +48,7 @@ If MRR is 200万円 and there are 100 paying accounts, ARPA is 2万円/month. MR
 
 ## 守｜この数字は通信の時代を生き、動画・音楽・ソフトウェアへ広がった
 
-One major setting for ARPU was telecommunications. The US Government Accountability Office（米国政府説明責任局、GAO）tracked voice and data ARPU separately. 2000年にはvoiceが月46.01ドル、dataが0.28ドル。2009年にはvoiceが約26ドル台、dataが約19ドル台だった。[GAO historical series](https://www.gao.gov/assets/a308172.html)
+One major setting for ARPU was telecommunications. The US Government Accountability Office（米国政府説明責任局、GAO）tracked voice and data ARPU separately. 2000年にはvoiceが月46.01ドル、dataが0.28ドル。2009年にはvoiceが32.98ドル、dataが12.67ドルだった。[GAO historical series](https://www.gao.gov/assets/a308172.html)
 
 That history does not establish who invented the acronym. 今回、発明者と初出年の一次資料は確認できなかった。ただ、voice-to-data transitionを追うためのper-user revenueが重要だったのは確かだ。The metric followed the business model.
 
