@@ -33,6 +33,10 @@ In November 2025, Sports Business Journal reported 325,000 teams across 40 sport
 
 Video analysis does not always mean AI making tactical judgments. First comes a simple workflow: record, tag events, collect clips, then discuss decisions. **Coding** means assigning labels and timestamps; a **playlist** groups relevant clips. 90分すべてを見るのではなく、問いに対応する場面を取り出す仕組みである。
 
+![Hudl Focus Flex camera on a soccer-field sideline](https://static.hudl.com/craft/blog/_1200xAUTO_crop_center-center_none/hudl-focus-flex-2.jpg)
+
+Photo: Hudl official blog. A Focus Flex camera on the sideline. [Image credit](https://www.hudl.com/blog/top-football-cameras-and-techniques-for-high-quality-analysis)。
+
 Sportscode is a professional tool for coding, multi-angle synchronization and clip sharing. たとえば相手のセットプレーだけを抜き出し、スタッフで見直せる。Its 2026 release notes also describe an AI scripting assistant, but that is not proof of fully automatic tactical judgment. [製品](https://www.hudl.com/en_gb/products/sportscode)／[更新履歴](https://www.wyscout-apps.hudl.com/releases/sportscode)。
 
 ![Hudl Sportscode interface showing coded events and a timeline](https://static.hudl.com/craft/_1200xAUTO_crop_center-center_none/03_HSC_Capture-Mode.png?mtime=20220812125945)
