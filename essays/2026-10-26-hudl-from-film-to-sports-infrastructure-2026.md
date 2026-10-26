@@ -32,6 +32,10 @@ Hudlは2006年、米国ネブラスカ州リンカーンで創業した。創業
 
 映像分析と聞くと、AIが一瞬で戦術を理解するイメージがある。しかし、最初の処理は地道だ。試合を撮影し、パスやシュートが起きた時刻を記録し、必要な場面を切り出し、選手や指導者が見直す。出来事の種類と時刻を付ける作業を「タグ付け（tagging）」や「コーディング（coding）」、切り出した場面の集合を「プレイリスト（playlist）」という。これだけでも試合を90分通して見直す代わりに、関心のある数分を検討できる。
 
+![サッカー場のタッチラインに置かれたHudl Focus Flex自動撮影カメラ](https://static.hudl.com/craft/blog/_1200xAUTO_crop_center-center_none/hudl-focus-flex-2.jpg)
+
+写真：Hudl公式ブログ。タッチラインの自動撮影カメラの設置例。[写真の出典](https://www.hudl.com/blog/top-football-cameras-and-techniques-for-high-quality-analysis)。
+
 Hudl Sportscodeは、このような場面の符号化、複数映像の同期、ライブ分析、プレイリスト共有を行う専門家向けソフトウェアだ。たとえば相手のセットプレーだけを抽出し、味方の守備配置を重ねて検討する。2026年8月の更新情報には、自然言語によるスクリプト作成支援もある。ただし、AI機能の存在と、映像だけで因果関係や戦術の正解を自動推定できることは別である。[Sportscode製品情報](https://www.hudl.com/en_gb/products/sportscode)／[2026年リリースノート](https://www.wyscout-apps.hudl.com/releases/sportscode)。
 
 ![実際のHudl Sportscode操作画面。映像と時間軸のラベルが並ぶ](https://static.hudl.com/craft/_1200xAUTO_crop_center-center_none/03_HSC_Capture-Mode.png?mtime=20220812125945)
