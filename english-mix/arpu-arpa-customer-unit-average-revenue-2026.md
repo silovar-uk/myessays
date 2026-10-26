@@ -128,6 +128,14 @@ Some businesses scale through new accounts, some through user adoption, and othe
 
 The question worth remembering is simple: Who exactly is the one user? 最初に顧客を定義し、それから割る。A tiny metric can expose the whole logic of a business.
 
+## 用語整理｜平均単価の近くに置くと判断しやすい七つの数字
+
+ARPPU means Average Revenue Per Paying User（課金利用者あたり平均売上）. MRR means Monthly Recurring Revenue（月間継続売上）. ARR means Annual Recurring Revenue（年間継続売上）. In a simple fixed-subscription model, ARR is approximately MRR × 12, not the same as realized annual revenue. [ChartMogul metric guide](https://chartmogul.com/saas-metrics/arpa/)
+
+ASP（Average Sale Price：平均初回販売価格）describes new deals, while ARPA includes existing customers. Churn rate（解約率）can refer to customers or revenue lost. CAC（顧客獲得費用）measures acquisition spend. LTV（顧客生涯価値）estimates value over the relationship, and its revenue versus gross-profit basis matters.
+
+A cohort（コホート）is a group sharing a starting condition, such as the month they subscribed. Follow the same cohort to separate customer-mix changes from within-customer behavior. 平均単価の上昇だけではsatisfactionを証明できない。Read pricing, usage, retention, and costs together.
+
 ## 調査記録｜確認した事実、推論、追加検証の境界
 
 FACTS: ChartMogul uses paid subscribers and recurring MRR; Verizon distinguishes billing accounts and connections; Spotify counts Family/Duo sub-accounts; Netflix used revenue per paying membership. すべて公表されたmethodologyから確認した。
