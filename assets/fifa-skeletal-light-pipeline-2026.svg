@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">放送カメラ映像から三次元骨格推定へ</title><desc id="dsc">FIFA骨格追跡競技会の入力情報と、カメラ校正、骨格推定、誤差補正、位置と姿勢の出力を結ぶオリジナルの概念図。</desc>
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0 0L7 3L0 6Z" fill="#50877f"/></marker><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f8f9f6"/><stop offset="1" stop-color="#e9f3f0"/></linearGradient></defs>
+<rect width="1200" height="680" fill="url(#bg)"/>
+<text x="56" y="73" font-size="33" font-weight="700" fill="#193b38" font-family="sans-serif">1台の放送カメラから、三次元の「動く骨格」へ</text>
+<text x="58" y="106" font-size="18" fill="#54716d" font-family="sans-serif">FIFA 骨格追跡・簡易版技術競技会 ／ 概念図（縮尺・結果は模式的）</text>
+<rect x="55" y="143" width="340" height="365" rx="19" fill="#fff" stroke="#c6dad4" stroke-width="2"/>
+<text x="78" y="181" font-family="sans-serif" font-size="25" font-weight="700" fill="#1a4942">① 放送映像＋補助情報</text>
+<rect x="78" y="204" width="294" height="170" rx="10" fill="#237b63"/>
+<g stroke="#b9e9d6" stroke-width="3" fill="none" opacity=".85"><path d="M96 223H352V353H96Z"/><path d="M224 223V353"/><circle cx="224" cy="288" r="25"/><path d="M96 247H151V331H96M352 247H297V331H352"/></g>
+<g stroke="#fafad3" stroke-width="6" stroke-linecap="round"><path d="M181 281l13 -20 23 12 3 37 -21 29"/><path d="M194 261l-20 26M218 273l24 25"/></g><circle cx="194" cy="245" r="10" fill="#fff0ac"/>
+<rect x="79" y="391" width="290" height="84" rx="9" fill="#eef5f1"/>
+<text x="94" y="419" font-family="sans-serif" font-size="16" fill="#234942">選手の囲み枠・識別番号</text><text x="94" y="445" font-family="sans-serif" font-size="16" fill="#234942">レンズ情報・初期のカメラ情報</text>
+<path d="M400 329H446" stroke="#50877f" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="459" y="143" width="295" height="365" rx="19" fill="#fff" stroke="#c6dad4" stroke-width="2"/>
+<text x="481" y="181" font-family="sans-serif" font-size="25" font-weight="700" fill="#1a4942">② 推定と誤差補正</text>
+<g font-family="sans-serif" font-size="18" fill="#214b46">
+<rect x="484" y="208" width="244" height="65" rx="11" fill="#dbe9e5"/><text x="508" y="234" font-weight="700">カメラ校正</text><text x="508" y="257" font-size="15">動くカメラの向きを推定</text>
+<rect x="484" y="288" width="244" height="70" rx="11" fill="#dbe9e5"/><text x="508" y="315" font-weight="700">複数の骨格推定法</text><text x="508" y="339" font-size="15">関節候補を共通形式へ統一</text>
+<rect x="484" y="373" width="244" height="105" rx="11" fill="#c7e0d8"/><text x="508" y="398" font-weight="700">残差補正・組み合わせ</text><text x="508" y="426" font-size="15">全身の位置と相対姿勢を分離</text><text x="508" y="450" font-size="15">会場・カメラ条件も考慮</text></g>
+<path d="M608 273V283" stroke="#50877f" stroke-width="3" marker-end="url(#ar)"/><path d="M608 358V369" stroke="#50877f" stroke-width="3" marker-end="url(#ar)"/>
+<path d="M758 329H804" stroke="#50877f" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="816" y="143" width="327" height="365" rx="19" fill="#fff" stroke="#c6dad4" stroke-width="2"/>
+<text x="838" y="181" font-family="sans-serif" font-size="25" font-weight="700" fill="#1a4942">③ 三次元の出力</text>
+<g transform="translate(918 212)" stroke="#20766d" stroke-linecap="round" stroke-width="6" fill="none"><circle cx="48" cy="21" r="15" stroke="#b78742"/><path d="M48 37V128M48 53L7 82M48 53L89 74M7 82L-7 121M89 74L102 114M48 128L22 177M48 128L75 174M22 177L7 215M75 174L94 211"/></g>
+<g fill="#e6aa45"><circle cx="966" cy="265" r="7"/><circle cx="925" cy="294" r="7"/><circle cx="1007" cy="286" r="7"/><circle cx="966" cy="340" r="7"/><circle cx="940" cy="389" r="7"/><circle cx="993" cy="386" r="7"/></g>
+<text x="845" y="457" font-family="sans-serif" font-size="17" fill="#1e5550">どこにいるか × どう動くか</text>
+<rect x="55" y="539" width="1088" height="99" rx="14" fill="#234e49"/>
+<text x="78" y="579" font-family="sans-serif" font-size="23" font-weight="700" fill="#fff">狙い：専用設備がある試合だけでなく、既存の試合映像も分析データに変える</text>
+<text x="78" y="609" font-family="sans-serif" font-size="16" fill="#d0e8de">注意：競技会では補助データを使用。公式判定への利用認証や実運用上の精度を保証する図ではない。</text>
+<text x="59" y="661" font-family="sans-serif" font-size="14" fill="#647b75">Sources: FIFA Skeletal Tracking Light; Ryuto Fukushima (2026-07-29). Original illustration.</text>
+</svg>
