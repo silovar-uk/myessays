@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-label="同じ文の息継ぎ位置を変えるA B Cの読み分け">
+<rect width="1200" height="500" fill="#f6f3ee"/>
+<text x="58" y="70" font-family="Arial,'Noto Sans JP',sans-serif" font-size="33" font-weight="700" fill="#262728">文字は同じ。息を吸う場所だけ変える。</text>
+<text x="60" y="106" font-family="Arial,sans-serif" font-size="15" fill="#76746e" letter-spacing="2">SAME WORDS · DIFFERENT BREATH</text>
+<g font-family="Arial,'Noto Sans JP',sans-serif">
+<rect x="55" y="141" width="1090" height="93" rx="13" fill="#e5eeeb"/>
+<rect x="55" y="250" width="1090" height="93" rx="13" fill="#f3e5d8"/>
+<rect x="55" y="359" width="1090" height="93" rx="13" fill="#e9e3ef"/>
+<text x="79" y="199" font-size="27" font-weight="700" fill="#277068">A</text>
+<text x="146" y="198" font-size="30" fill="#252525">私はまだ</text><text x="324" y="198" font-size="36" fill="#27877b">│</text><text x="354" y="198" font-size="30" fill="#252525">あなたを待っている</text>
+<text x="848" y="197" font-size="19" fill="#277068">未練をためる</text>
+<text x="79" y="308" font-size="27" font-weight="700" fill="#9e5b28">B</text>
+<text x="146" y="307" font-size="30" fill="#252525">私は</text><text x="251" y="307" font-size="36" fill="#bd7a42">│</text><text x="281" y="307" font-size="30" fill="#252525">まだあなたを待っている</text>
+<text x="848" y="306" font-size="19" fill="#9e5b28">「まだ」を提示</text>
+<text x="79" y="417" font-size="27" font-weight="700" fill="#756194">C</text>
+<text x="146" y="416" font-size="30" fill="#252525">私はまだあなたを</text><text x="475" y="416" font-size="36" fill="#8065a9">│</text><text x="507" y="416" font-size="30" fill="#252525">待っている</text>
+<text x="848" y="415" font-size="19" fill="#756194">動詞を待たせる</text>
+</g>
+<text x="599" y="482" text-anchor="middle" font-family="Arial,'Noto Sans JP',sans-serif" font-size="16" fill="#595959">区切りによる印象は筆者の解釈。心理実験の測定結果ではない。</text>
+</svg>
