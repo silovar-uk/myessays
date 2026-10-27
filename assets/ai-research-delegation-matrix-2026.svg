@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 750" role="img" aria-labelledby="t d">
+<title id="t">AI委任判断の二軸</title><desc id="d">横軸は身につけたい能力との関連、縦軸は誤った場合の影響。低低はAIに委任、低高は人間が先に試す、高低はAIと独立検証、高高は人間が判断してAIで反証</desc>
+<rect width="1180" height="750" fill="#f4f1ea"/>
+<g font-family="Noto Sans JP, Meiryo, sans-serif"><text x="69" y="63" font-size="39" font-weight="bold" fill="#222c39">任せるかどうかは「難易度」だけで決めない</text>
+<text x="71" y="100" font-size="20" fill="#66717c">誤ったときの影響 × 自分が身につけたい能力との関係</text>
+<rect x="173" y="146" width="428" height="231" rx="14" fill="#e4eef3"/><rect x="611" y="146" width="428" height="231" rx="14" fill="#f3dcca"/>
+<rect x="173" y="387" width="428" height="231" rx="14" fill="#d5e9e4"/><rect x="611" y="387" width="428" height="231" rx="14" fill="#eee7d2"/>
+<text x="202" y="209" font-size="25" font-weight="bold" fill="#22465b">AIで処理し、人間が独立検証</text><text x="202" y="260" font-size="23" fill="#3d5e70">重要な金額・契約条件・統計</text><text x="202" y="297" font-size="19" fill="#567283">元資料への追跡を省かない</text>
+<text x="639" y="209" font-size="25" font-weight="bold" fill="#784831">人間が判断し、AIに反証させる</text><text x="639" y="260" font-size="23" fill="#8c5b43">市場定義・戦略・説明責任</text><text x="639" y="297" font-size="19" fill="#9b745c">反対仮説・例外を探す</text>
+<text x="202" y="450" font-size="25" font-weight="bold" fill="#245649">AIに積極的に委任する</text><text x="202" y="501" font-size="23" fill="#3e6b5e">体裁整理・データ転記</text><text x="202" y="538" font-size="19" fill="#608277">適切な確認方法を残す</text>
+<text x="639" y="450" font-size="25" font-weight="bold" fill="#66592c">まず自分で試し、AIで拡張</text><text x="639" y="501" font-size="23" fill="#766b3c">仮説づくり・論点整理の練習</text><text x="639" y="538" font-size="19" fill="#938650">最初の案は捨ててよい</text>
+<text x="70" y="420" transform="rotate(-90 70 420)" text-anchor="middle" font-size="25" fill="#526371" font-weight="bold">誤ったときの影響　高 ↑</text>
+<text x="610" y="674" text-anchor="middle" font-size="26" fill="#526371" font-weight="bold">身につけたい能力との関係 → 高</text>
+<text x="608" y="711" text-anchor="middle" font-size="16" fill="#66717c">本図は提案フレーム。正確性を実測したデータではない。 · 2026 / My Essays</text></g></svg>
