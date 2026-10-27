@@ -64,7 +64,7 @@ After Urawa won the 2007 ACL、監督が西さんへ感謝したと報じられ�
 
 ## 守｜勝負飯は魔法の一皿ではなく、反復できる段取りだった
 
-Famous dishes includepost-match curry、うなぎ、ハンバーグ、銀だら、ペペロンチーノ。Nutrition matters、but familiarity matters too。西さんは定番料理を外した際に選手から不満が出たと話す。**ルーティン（routine）**は慣れた選択肢を提供するためのservice designでもある。
+Famous dishes include post-match curry、うなぎ、ハンバーグ、銀だら、ペペロンチーノ。Nutrition matters、but familiarity matters too。西さんは定番料理を外した際に選手から不満が出たと話す。**ルーティン（routine）**は慣れた選択肢を提供するためのservice designでもある。
 
 Routine is flexible。2022 Qatarではprep constraintsでハンバーグと銀だらの順番を交換した。Interview timingでもspecific daysの表現が異なる。だからmenu orderをuniversal medical protocolにはできない。守るべきはnutrition and comfortのpurposeだ。[JFA大会後取材](https://www.jfa.jp/samuraiblue/worldcup_2022/news/00031351/)
 
