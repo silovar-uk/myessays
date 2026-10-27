@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 530" role="img" aria-labelledby="t d">
+<title id="t">AIリサーチの二つの動き</title><desc id="d">人間が調査設計を行いAIが探索を支援、人間が出典を検証して判断し、逆向きに反証を繰り返す</desc>
+<rect width="1200" height="530" fill="#f4f1ea"/><text x="65" y="70" font-size="39" font-weight="700" fill="#222c39" font-family="Noto Sans JP, Meiryo, sans-serif">「調べ方」を外に捨てないための往復</text>
+<text x="67" y="111" font-size="20" fill="#5c6977" font-family="Noto Sans JP, Meiryo, sans-serif">人間が全作業を担うのではなく、問いと検証責任の所在を可視化する</text>
+<g font-family="Noto Sans JP, Meiryo, sans-serif">
+<rect x="66" y="166" width="317" height="198" rx="19" fill="#173b51"/><text x="92" y="208" fill="#a8d7dd" font-size="20">01 / HUMAN</text><text x="92" y="254" fill="#fff" font-size="33" font-weight="bold">問い・仮説・設計</text><text x="92" y="291" fill="#e4eef0" font-size="18">何を知れば判断できるか？</text><text x="92" y="321" fill="#e4eef0" font-size="18">何を学習したいか？</text>
+<rect x="444" y="166" width="313" height="198" rx="19" fill="#cfebe7"/><text x="470" y="208" fill="#24575a" font-size="20">02 / AI-ASSISTED</text><text x="470" y="254" fill="#163b43" font-size="33" font-weight="bold">探索・整理・比較</text><text x="470" y="291" fill="#315961" font-size="18">資料の収集と候補の提示</text><text x="470" y="321" fill="#315961" font-size="18">別の可能性や反例を探す</text>
+<rect x="818" y="166" width="317" height="198" rx="19" fill="#f4dfbd"/><text x="844" y="208" fill="#88522b" font-size="20">03 / HUMAN + EVIDENCE</text><text x="844" y="254" fill="#59412b" font-size="33" font-weight="bold">検証・判断・説明</text><text x="844" y="291" fill="#6e5943" font-size="18">元の資料を確認する</text><text x="844" y="321" fill="#6e5943" font-size="18">分類と結論の責任を持つ</text>
+<path d="M388 264H437" stroke="#597786" stroke-width="5" stroke-linecap="round"/><path d="M426 253l12 11-12 11" fill="none" stroke="#597786" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M760 264H808" stroke="#597786" stroke-width="5" stroke-linecap="round"/><path d="M797 253l12 11-12 11" fill="none" stroke="#597786" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M968 378V422H230V378" fill="none" stroke="#c07047" stroke-width="4" stroke-dasharray="10 8"/><path d="M220 391l10-14 10 14" fill="none" stroke="#c07047" stroke-width="4" stroke-linejoin="round"/>
+<text x="599" y="457" text-anchor="middle" font-size="23" font-weight="bold" fill="#96532e">反証・再調査で、最初の問いを書き換える</text>
+<text x="602" y="494" text-anchor="middle" font-size="15" fill="#626d74">Editorial concept diagram · 2026 / My Essays</text>
+</g></svg>
