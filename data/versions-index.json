@@ -1591,6 +1591,9 @@
     },
     "gwangan-bridge-road-becomes-city-screen-2026": {
       "en-mix": "english-mix/gwangan-bridge-road-becomes-city-screen-2026.md"
+    },
+    "delayed-charm-late-arriving-liking-2026": {
+      "en-mix": "english-mix/delayed-charm-late-arriving-liking-2026.md"
     }
   },
   "designed-inefficiency-friction-leaves-residue": {
@@ -1607,8 +1610,5 @@
   },
   "real-options-value-of-waiting": {
     "en-mix": "english-mix/real-options-value-of-waiting.md"
-  },
-  "delayed-charm-late-arriving-liking-2026": {
-    "en-mix": "english-mix/delayed-charm-late-arriving-liking-2026.md"
   }
 }
