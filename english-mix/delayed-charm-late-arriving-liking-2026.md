@@ -76,6 +76,20 @@ I propose **three clocks**. これは実証済みの心理学的分類ではな�
 
 Once we separate these, a puzzle dissolves. “I only met them once yesterday, but I like them more today” is not logically strange. 再会なしでも、memory can be interpreted differently. ただし、これがその人の魅力の変化を説明したという実証ではない。
 
+## 破｜『ヘップバーンをフるなら』は、魅力を順位表から連れ出す
+
+On September 19, 2026, 佐藤優樹、宮本佳林、稲場愛香、浅倉樹々 released『ヘップバーンをフるなら』. Lyrics: 山崎あおい. Music and arrangement: 東優太. The credits are confirmed by the [official label](https://up-front-works.jp/release/7707/). ただし、作詞者本人によるタイトルの説明や歌詞全体の物語は、今回十分に確認できていない。What follows is **an independent reading of the title**, not a claim about the lyricist's intention.
+
+The title doesn't simply ask “Who would you fall for?” It asks you to imagine turning down an icon of charm. Audrey Hepburn starred in *Roman Holiday* (1953) and received the Best Actress Oscar at the 1954 ceremony. [Official Academy record](https://www.oscars.org/oscars/ceremonies/1954/O). The [National Portrait Gallery](https://www.npg.org.uk/collections/search/person/mp16884/audrey-hepburn) also recognizes her iconic status in cinema and fashion. あえて「フる」と言うことで、**the possibility of choosing differently even when the public ranking seems settled**が突然現れる。映画スターに対して強気すぎる仮定だ。
+
+Why does this feel strange? Psychologists study the **physical attractiveness stereotype（外見的魅力による印象の偏り）**: people may infer other positive qualities from appearance. Yet a 1991 meta-analysis found the relationship varied across traits. It was stronger for social competence, but near zero for judgments of integrity and concern for others. [Eagly et al. (1991)](https://doi.org/10.1037/0033-2909.110.1.109). 「誰もが魅力的だと思う」と「自分を理解してくれる気がする」は、different kinds of judgmentだ。
+
+But rejecting an icon doesn't necessarily mean finding someone with a higher charm score. Imagine someone who always stands out in photos and another person who quietly cleans up after meetings when nobody is watching. 後者の振る舞いが何度か心に残り、ある日に別の意味を持つかもしれない。The question is no longer **who ranks higher**, but **with whom I want to share my time**. 恋愛にランキング表を持ち込んだ時点で、こちらは何の審査員なのだろう。
+
+This gives delayed charm a new dimension. We may discover not only a different quality in someone, but also a different standard in ourselves. 「目立つ」「分かりやすい」「皆が認める」という物差しが、ある人を理解するにつれて役に立たなくなる。**The ranking didn't reverse; the need for a ranking disappeared.** その意味で曲名は思考実験になる。ただし、作詞者の制作意図を述べているわけではない。
+
+*[Listen via the official release links](https://nex-tone.link/A00227192). 歌詞の転載はせず、確認できた作品情報と曲名のみを手がかりにした。*
+
 ## 離｜写真の「現像」より不思議なのは、同じ写真の意味が後から変わることだ
 
 Memory is not a perfectly frozen video file. A 2021 study found that positively reinterpreting past negative memories could change later recollection and emotional responses. **Memory updating（記憶の更新）** is real in that experimental context. ただし、これは恋愛や対人魅力の直接的な証拠ではない。[Speer et al. (2021)](https://www.nature.com/articles/s41467-021-26906-4)。
@@ -104,20 +118,20 @@ Slow-burn charm may therefore reveal something about **our measurement design**,
 
 Return to the joke remembered while brushing teeth. Did that person's charm suddenly increase at 11 p.m.? Probably not. 一人になり、別の話題を通り過ぎて、ようやくあの小さな発言の意味を置く場所ができたのかもしれない。
 
-“An acquired taste” is a nice phrase, but it leaves out the mechanism. Was it repetition, new evidence from interaction, or a different reading of the same memory? 同じ「後から好き」でも、中身は違う。
+『ヘップバーンをフるなら』という題名は、whose standards are we using to compare people? という問いを加える。“An acquired taste” is a nice phrase, but it leaves out the mechanism. Was it repetition, new evidence from interaction, or a different reading of the same memory? 同じ「後から好き」でも、中身は違う。
 
-Here is the distinction that stays with me: **the time we discover a charm is not necessarily the time it came into existence.** 人の点数を付けているつもりで、実は自分の理解が追いついた瞬間を採点していることがある。
+Here is the distinction that stays with me: **the time we discover a charm is not necessarily the time it came into existence. And sometimes the standard of comparison changes at the moment of discovery.** 人の点数を付けているつもりで、実は自分の理解が追いついた瞬間を採点していることがある。
 
 If my laugh arrives six hours late, the other person was not late.
 
 ## 調査ノート｜どこまで確認できて、何はまだ仮説なのか
 
-**What the studies support.** Repeated exposure can influence liking, with substantial boundary conditions; real conversations involve responsiveness and comfort; the 2007 more-information-leads-to-disliking finding was not consistently replicated in 2025. 音楽の反復鑑賞と記憶の再解釈にも、それぞれ別の研究がある。
+**What the studies support.** The song's official credits are documented by the label, and the attractiveness stereotype has been tested in meta-analysis. Repeated exposure can influence liking, with substantial boundary conditions; real conversations involve responsiveness and comfort; the 2007 more-information-leads-to-disliking finding was not consistently replicated in 2025. 音楽の反復鑑賞と記憶の再解釈にも、それぞれ別の研究がある。
 
-**What this essay proposes.** The three-clock framework—repetition, interaction, reinterpretation—is an interpretive tool, not a single validated theory. 対象と観察者の変化を、日常の一場面だけで厳密に分離することもできない。
+**What this essay proposes.** The song title is used as a thought experiment about public charm and personal choice, not as a verified reading of its full lyrics or authorial intention. The three-clock framework—repetition, interaction, reinterpretation—is an interpretive tool, not a single validated theory. 対象と観察者の変化を、日常の一場面だけで厳密に分離することもできない。
 
 **A deliberately over-serious test.** With consent, record liking and the reasons behind ratings immediately after a first meeting, 24 hours later, and one week later. Compare no further contact, rereading the same information, and a second live conversation. 発言量、応答性、会話時間も分けて記録する。My prediction is that some ratings will move without a new meeting—but that remains untested, and privacy matters.
 
 **On the phrase's origin.** 今回の公開検索では「遅効性のチャーミング」の特定の初出や作者を確認できなかった。This is an independent essay inspired by the phrase, not an attributed quotation.
 
-**Sources.** [Bornstein (1989)](https://doi.org/10.1037/0033-2909.106.2.265)／[Mere exposure meta-analysis (2017)](https://pubmed.ncbi.nlm.nih.gov/28263645/)／[Reis et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21381850/)／[Norton et al. (2007)](https://pubmed.ncbi.nlm.nih.gov/17201545/)／[Horsham et al. (2025)](https://doi.org/10.1098/rsos.250441)／[Repeated listening (2017)](https://doi.org/10.3389/fnins.2017.00147)／[Memory updating (2021)](https://www.nature.com/articles/s41467-021-26906-4)／[Eric Hayot, *The Elements of Academic Style*](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)。
+**Sources.** [Bornstein (1989)](https://doi.org/10.1037/0033-2909.106.2.265)／[Mere exposure meta-analysis (2017)](https://pubmed.ncbi.nlm.nih.gov/28263645/)／[Reis et al. (2011)](https://pubmed.ncbi.nlm.nih.gov/21381850/)／[Norton et al. (2007)](https://pubmed.ncbi.nlm.nih.gov/17201545/)／[Horsham et al. (2025)](https://doi.org/10.1098/rsos.250441)／[Repeated listening (2017)](https://doi.org/10.3389/fnins.2017.00147)／[Memory updating (2021)](https://www.nature.com/articles/s41467-021-26906-4)／[Official song release](https://up-front-works.jp/release/7707/)／[Hepburn’s Academy Award](https://www.oscars.org/oscars/ceremonies/1954/O)／[Physical attractiveness stereotype (1991)](https://doi.org/10.1037/0033-2909.110.1.109)／[Eric Hayot, *The Elements of Academic Style*](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/)。
