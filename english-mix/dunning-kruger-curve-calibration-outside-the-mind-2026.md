@@ -24,6 +24,10 @@ In a meeting about a new market, 最初の十分で「なるほど、全体像�
 
 ## 守｜あの山型の曲線は、もともとの実験結果ではない
 
+![通俗的な山型の曲線と、原著に報告された12対62パーセンタイルの比較図](https://silovar-uk.github.io/myessays/assets/dunning-kruger-2026-01-myth-and-original.svg)
+
+*図1：The mountain is a popular metaphor, not original experimental data. 右の12対62パーセンタイルは、[Kruger & Dunning (1999)](https://pubmed.ncbi.nlm.nih.gov/10626367/)の報告値に基づくoriginal comparison.*
+
 1999年、Justin Kruger と David Dunning は、ユーモア、論理的推論、英文法について四つの研究を発表した。They did not measure a rise and fall of confidence over a learning journey. 測ったのは、actual performance と self-assessment のずれだった。[原著論文](https://doi.org/10.1037/0022-3514.77.6.1121)。
 
 原著の図では、participants were divided into four performance quartiles. 横軸は成績群、縦軸は実際の成績と自己評価。最下位の四分位群は平均で実際には12th percentile 程度なのに、自分を62nd percentile 程度と見積もった。これは a gap between performance and self-perception の話であり、初心者の confidence が一度山型に上がるという話ではない。[図を含む原著](https://gwern.net/doc/psychology/1999-kruger.pdf)。
@@ -40,11 +44,19 @@ Mount Stupid と Valley of Despair は、a metaphor for learning としては使
 
 ## 守｜「自信過剰」という一語には三つの別の現象が隠れている
 
+![自信過剰の三類型：過大評価、相対的な過大配置、過剰な確実視](https://silovar-uk.github.io/myessays/assets/dunning-kruger-2026-02-three-confidences.svg)
+
+*図2：Three kinds of overconfidence。[Moore & Healy (2008)](https://pubmed.ncbi.nlm.nih.gov/18426301/)の分類を基にし、workplace examples は本稿の仮想例。*
+
 Moore と Healy は2008年、overconfidence を三種類に分けた。実際の成果を高く見積もる **overestimation（過大評価）**、他人より上だと思う **overplacement（相対的な過大配置）**、不確実性を小さく見る **overprecision（過剰な確実視）**。[2008年の研究](https://pubmed.ncbi.nlm.nih.gov/18426301/)。
 
 ある提案書を「80点の出来だ」と思うのは overestimation、同僚より優れていると考えるのは overplacement、「この市場規模は almost certainly correct」と思うのは overprecision だ。三つは not interchangeable。自分を初心者だと認めながら、自分が出した一つの数字だけを確信することもできる。
 
 ## 破｜曲線の一部は、心ではなく統計から生まれる
+
+![自己評価のずれに対する心理学的な説明と統計学的な説明の概念図](https://silovar-uk.github.io/myessays/assets/dunning-kruger-2026-03-competing-explanations.svg)
+
+*図3：Observed differences are not the same as identified causes。原著と[statistical critique (2022)](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.840180/full)を対照したconceptual diagramであり、寄与率を測定した図ではない。*
 
 ここで元の図を疑う。実際の成績が extremely low な人を選び、別の imperfect measure である自己評価と比べれば、後者は平均の方へ寄りやすい。これが **regression toward the mean（平均への回帰）**に関係する。二つの指標が完全一致しないことによる差を、すべて psychological bias と呼んでよいのだろうか。
 
@@ -72,6 +84,10 @@ Gignac と Zajenkowski は2020年、929人の intelligence data を、従来の 
 
 ## 離｜測定器は、自分自身を基準にして校正しない
 
+![内部に校正用のおもりと作動機構を持つ精密天びんの写真](https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Sartorius_BP_160_P_3.jpg/960px-Sartorius_BP_160_P_3.jpg)
+
+*Photo 1：Calibration mass and actuator inside a precision balance. 撮影：Gunther Tschuch（PaulT）／[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sartorius_BP_160_P_3.jpg)、[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。Unmodified photo.*
+
 ここで心理学から metrology（計量学）へ飛ぶ。体重計が毎朝2キログラム多く表示しても、その scale だけを見ていては気づきにくい。**Calibration（校正）**では、reference standard と instrument reading の関係を、uncertainty も含めて確かめる。[国際計量用語集](https://jcgm.bipm.org/vim/en/2.39.html)。
 
 This is an analogy, not a result directly tested by Dunning and Kruger. だが構造は似ている。自分で作った分類を「分かりやすいから」と評価する。自分の推計式を looks reasonable だから採用する。The evaluator may share the very same blind spot as the producer. 
@@ -80,6 +96,14 @@ This is an analogy, not a result directly tested by Dunning and Kruger. だが�
 
 ## 離｜天気予報は「自信がある」を点数に変える
 
+![カバーを外した観測用雨量計の写真](https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Weather_station_rain_gauge.JPG/960px-Weather_station_rain_gauge.JPG)
+
+*Photo 2：Weather station rain gauge with its cover removed. 撮影：Michael L. Umbricht／Ladd Observatory／[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Weather_station_rain_gauge.JPG)、[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。Unmodified photo.*
+
+![70パーセントと予報した日に10回中7回雨が降る仮想例の図](https://silovar-uk.github.io/myessays/assets/dunning-kruger-2026-05-probability.svg)
+
+*図4：Hypothetical example of probability calibration. 10 observations alone are not enough to establish calibration. [Brier (1950)](https://doi.org/10.1175/1520-0493%281950%29078%3C0001%3AVOFEIT%3E2.0.CO%3B2)参照。*
+
 もう一人の隣人は weather forecasting。1950年、Glenn Brier は probability forecast を結果と比較する方法を示した。「雨の確率70％」と予測した日を多数集め、その約70％で雨が降れば well calibrated といえる。[1950年の原論文](https://doi.org/10.1175/1520-0493%281950%29078%3C0001%3AVOFEIT%3E2.0.CO%3B2)。
 
 その差を測る一つの道具が **Brier score（ブライアー得点）**。予測確率と二値の結果との差を二乗して平均し、lower is better と評価する。これは性格診断ではなく、recorded forecasts versus outcomes の比較だ。[気象庁の技術資料](https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/outline2022-nwp/pdf/outline2022_all.pdf)。
@@ -87,6 +111,10 @@ This is an analogy, not a result directly tested by Dunning and Kruger. だが�
 企画会議でも『この施策はうまくいく』より、define success and assign a 70% probability の方が、後から確かめられる。目的は責任追及ではなく、is my 70% really 70%? と学ぶことだ。ただし one outcome cannot validate a probability. 十分な件数と比較可能な条件が必要になる。
 
 ## 離｜組織の危険は、自信のある人より「答え合わせが不要な仕事」に潜む
+
+![市場推計の判断を仮説、外部基準、反証、更新の4段階で校正する図](https://silovar-uk.github.io/myessays/assets/dunning-kruger-2026-04-calibration-loop.svg)
+
+*図5：An independent review loop for market sizing. 本稿のoriginal practical hypothesisであり、ダニング＝クルーガー効果の実験で検証された手法ではない。*
 
 Imagine a beautifully formatted market-sizing slide. Numbers add up, labels align, and the chart looks professional. でも count of buyers なのか count of contracts なのか、double counting がないかは見た目から分からない。Author and reviewer may share the same assumptions. 何度見直しても、前提だけは見逃される。
 
