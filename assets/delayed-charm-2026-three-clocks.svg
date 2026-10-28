@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="770" viewBox="0 0 1400 770" role="img" aria-label="遅効性のチャーミング 三つの時計">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#1c243e"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="13" stdDeviation="18" flood-color="#050917" flood-opacity=".35"/></filter></defs>
+<rect width="1400" height="770" fill="url(#bg)"/>
+<circle cx="1230" cy="105" r="230" fill="#61d2ba" opacity=".07"/><circle cx="85" cy="750" r="290" fill="#faac70" opacity=".07"/>
+<text x="72" y="82" fill="#8eddd2" font-size="21" font-family="sans-serif" letter-spacing="3">CONCEPTUAL MODEL / NOT EXPERIMENTAL DATA</text>
+<text x="72" y="150" fill="#f6f8ff" font-size="49" font-weight="700" font-family="sans-serif">「後から好き」を、一つにしない。</text>
+<text x="72" y="198" fill="#bac5df" font-size="25" font-family="sans-serif">同じ時間差でも、増えているものが違う。</text>
+<g filter="url(#shadow)">
+<rect x="66" y="249" width="400" height="385" rx="27" fill="#253147" stroke="#517eaa" stroke-width="2"/>
+<rect x="500" y="249" width="400" height="385" rx="27" fill="#263b3d" stroke="#61bead" stroke-width="2"/>
+<rect x="934" y="249" width="400" height="385" rx="27" fill="#423449" stroke="#d69cc5" stroke-width="2"/>
+</g>
+<g font-family="sans-serif">
+<text x="100" y="309" fill="#91c8ff" font-size="21">CLOCK 01</text><text x="534" y="309" fill="#91ead5" font-size="21">CLOCK 02</text><text x="968" y="309" fill="#f4b1d8" font-size="21">CLOCK 03</text>
+<text x="100" y="371" fill="#fff" font-size="44" font-weight="700">反復</text><text x="534" y="371" fill="#fff" font-size="44" font-weight="700">相互作用</text><text x="968" y="371" fill="#fff" font-size="44" font-weight="700">再解釈</text>
+<text x="100" y="418" fill="#e2e9f5" font-size="24">会う・聴く回数が増える</text><text x="534" y="418" fill="#e2f0ec" font-size="24">応じ方・行動が見えてくる</text><text x="968" y="418" fill="#f7e9f2" font-size="24">同じ出来事の意味が変わる</text>
+</g>
+<path d="M106 504 L414 504" stroke="#6f91b7" stroke-width="5" stroke-linecap="round"/><g fill="#a8d7ff"><circle cx="119" cy="504" r="12"/><circle cx="204" cy="504" r="12"/><circle cx="295" cy="504" r="12"/><circle cx="401" cy="504" r="12"/></g>
+<path d="M540 504 L844 504" stroke="#6fc9b3" stroke-width="5" stroke-linecap="round"/><circle cx="575" cy="504" r="12" fill="#8fedda"/><path d="M632 486 Q672 461 711 486 T791 486" fill="none" stroke="#8fedda" stroke-width="6"/><path d="M785 472 L807 486 L786 498" fill="none" stroke="#8fedda" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M972 504 C1035 460 1079 544 1147 504 S1246 469 1293 504" fill="none" stroke="#e8b2d8" stroke-width="6" stroke-linecap="round"/><circle cx="972" cy="504" r="10" fill="#e8b2d8"/><circle cx="1293" cy="504" r="10" fill="#e8b2d8"/>
+<g font-family="sans-serif" fill="#ced9e9" font-size="24">
+<text x="100" y="566">変わるもの：接触回数</text><text x="534" y="566">変わるもの：関係の情報</text><text x="968" y="566">変わるもの：受け取り方</text>
+</g>
+<rect x="66" y="670" width="1268" height="52" rx="14" fill="#ffffff" opacity=".08"/>
+<text x="88" y="705" fill="#e9effa" font-family="sans-serif" font-size="24">POINT  魅力を発見した時刻 ≠ 魅力が生まれた時刻</text>
+</svg>
