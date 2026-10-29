@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 740" role="img" aria-labelledby="title desc">
+<title id="title">1949年の既存8球団の対立と1950年の2リーグ制</title>
+<desc id="desc">当初の既存8球団が4対4に分かれ、新規7球団を加えてセントラル8球団とパシフィック7球団となった。</desc>
+<rect width="1280" height="740" fill="#f6f3eb"/>
+<text x="64" y="74" font-size="21" font-family="sans-serif" fill="#687278" letter-spacing="4">THE SPLIT / 1949—1950</text>
+<text x="64" y="126" font-size="39" font-family="sans-serif" font-weight="700" fill="#192b35">最初の対立は「地域」ではなく「新規加盟」</text>
+<rect x="64" y="170" width="1152" height="107" rx="15" fill="#26353d"/>
+<text x="93" y="211" font-size="26" font-family="sans-serif" fill="#ffffff" font-weight="700">1949年：既存8球団は「新しい球団をどう迎えるか」で4対4に</text>
+<text x="93" y="248" font-size="19" font-family="sans-serif" fill="#d3dce0">阪神は当初賛成側だったが、のちに反対へ。分立は単純な東西分けではない。</text>
+<path d="M640 279 L640 310 M350 310 L930 310 M350 310 L350 338 M930 310 L930 338" stroke="#71838b" stroke-width="4" fill="none"/>
+<rect x="64" y="340" width="549" height="277" rx="17" fill="#e5efe5" stroke="#8daa8d" stroke-width="2"/>
+<rect x="667" y="340" width="549" height="277" rx="17" fill="#e6eef5" stroke="#90acc4" stroke-width="2"/>
+<text x="92" y="386" font-size="31" fill="#285d3a" font-family="sans-serif" font-weight="700">セントラル（8球団）</text>
+<text x="694" y="386" font-size="31" fill="#225780" font-family="sans-serif" font-weight="700">パシフィック（7球団）</text>
+<text x="92" y="426" font-size="20" fill="#354650" font-family="sans-serif">既存4球団 ／ 新規4球団</text>
+<text x="694" y="426" font-size="20" fill="#354650" font-family="sans-serif">既存4球団 ／ 新規3球団</text>
+<line x1="93" y1="444" x2="583" y2="444" stroke="#a6b9ad"/>
+<line x1="696" y1="444" x2="1186" y2="444" stroke="#a6b8c5"/>
+<text x="93" y="483" font-size="23" fill="#23383b" font-family="sans-serif">既存：巨人・阪神・中日・大陽</text>
+<text x="93" y="526" font-size="23" fill="#23383b" font-family="sans-serif">新規：大洋・広島・西日本・国鉄</text>
+<text x="93" y="579" font-size="17" fill="#59686b" font-family="sans-serif">※大陽ロビンスは1950年に松竹ロビンスへ</text>
+<text x="696" y="483" font-size="23" fill="#23383b" font-family="sans-serif">既存：阪急・南海・東急・大映</text>
+<text x="696" y="526" font-size="23" fill="#23383b" font-family="sans-serif">新規：毎日・西鉄・近鉄</text>
+<text x="696" y="579" font-size="17" fill="#59686b" font-family="sans-serif">※1950年シーズンの発足時点</text>
+<text x="64" y="666" font-size="21" fill="#26353d" font-family="sans-serif" font-weight="700">分立の構造：賛否対立 → 連盟の解体・再編 → 2リーグ15球団で開幕</text>
+<text x="64" y="707" font-size="16" fill="#53636c" font-family="sans-serif">出典：NPBリーグ略史、国立国会図書館レファレンス協同DB、パ・リーグ.com　／　本稿作図</text>
+</svg>
