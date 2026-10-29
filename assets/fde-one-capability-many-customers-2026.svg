@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 650" width="1280" height="650" role="img" aria-labelledby="t d">
+<title id="t">Product Engineering and Forward Deployed Engineering</title>
+<desc id="d">Left: one capability reaches many customers. Right: a deployed engineer integrates multiple capabilities for one customer's workflows and returns learnings to the product.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9faf8"/><stop offset="1" stop-color="#eef2ef"/></linearGradient>
+<linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#175879"/><stop offset="1" stop-color="#10374b"/></linearGradient>
+<linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8793a"/><stop offset="1" stop-color="#ae431e"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="7" stdDeviation="14" flood-color="#213d3b" flood-opacity=".11"/></filter>
+<marker id="arrB" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 1 L11 6 L0 11Z" fill="#4a8ca6"/></marker>
+<marker id="arrO" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 1 L11 6 L0 11Z" fill="#d76e37"/></marker>
+</defs>
+<rect width="1280" height="650" rx="24" fill="url(#bg)"/>
+<text x="56" y="61" font-family="sans-serif" font-size="18" fill="#6f827e" font-weight="700" letter-spacing="2">TWO UNITS OF RESPONSIBILITY</text>
+<text x="56" y="104" font-family="sans-serif" font-size="34" fill="#183c41" font-weight="800">「誰の、何を」作るかで仕事が逆転する</text>
+<rect x="44" y="139" width="574" height="428" rx="19" fill="#fff" filter="url(#shadow)"/>
+<rect x="662" y="139" width="574" height="428" rx="19" fill="#fff" filter="url(#shadow)"/>
+<rect x="44" y="139" width="574" height="9" rx="4" fill="#175879"/>
+<rect x="662" y="139" width="574" height="9" rx="4" fill="#e8793a"/>
+<text x="76" y="192" font-family="sans-serif" font-size="23" font-weight="800" fill="#173b4d">PRODUCT ENGINEER / Dev</text>
+<text x="76" y="221" font-family="sans-serif" font-size="17" fill="#496879">一つの機能 → 多数の顧客</text>
+<rect x="221" y="252" width="212" height="90" rx="15" fill="url(#blue)"/>
+<text x="327" y="290" text-anchor="middle" font-family="sans-serif" font-size="23" font-weight="700" fill="#fff">共通プロダクト</text>
+<text x="327" y="317" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#c9e7eb">One capability</text>
+<path d="M327 343V372M327 372H137V397M327 372V397M327 372H519V397" fill="none" stroke="#4a8ca6" stroke-width="4" stroke-linejoin="round" marker-end="url(#arrB)"/>
+<g font-family="sans-serif" font-size="18" text-anchor="middle" fill="#28495a">
+<rect x="77" y="400" width="120" height="64" rx="12" fill="#e5f2f5"/><text x="137" y="438">顧客 A</text>
+<rect x="267" y="400" width="120" height="64" rx="12" fill="#e5f2f5"/><text x="327" y="438">顧客 B</text>
+<rect x="459" y="400" width="120" height="64" rx="12" fill="#e5f2f5"/><text x="519" y="438">顧客 C</text>
+</g>
+<text x="327" y="520" font-family="sans-serif" font-size="16" text-anchor="middle" fill="#6b817f">製品ロードマップと共通品質が中心</text>
+<text x="694" y="192" font-family="sans-serif" font-size="23" font-weight="800" fill="#a84c25">FORWARD DEPLOYED / Delta</text>
+<text x="694" y="221" font-family="sans-serif" font-size="17" fill="#886651">一つの顧客 → 複数の機能</text>
+<g font-family="sans-serif" font-size="17" font-weight="700" text-anchor="middle">
+<rect x="706" y="256" width="139" height="61" rx="11" fill="#feeee4"/><text x="775" y="293" fill="#ab542c">データ連携</text>
+<rect x="881" y="256" width="139" height="61" rx="11" fill="#feeee4"/><text x="950" y="293" fill="#ab542c">業務アプリ</text>
+<rect x="1056" y="256" width="139" height="61" rx="11" fill="#feeee4"/><text x="1125" y="293" fill="#ab542c">AI・評価</text>
+</g>
+<path d="M775 318V355M950 318V355M1125 318V355M775 355H1125M950 355V380" fill="none" stroke="#d76e37" stroke-width="4" marker-end="url(#arrO)"/>
+<rect x="791" y="385" width="318" height="88" rx="16" fill="url(#orange)"/>
+<text x="950" y="420" font-family="sans-serif" font-size="22" font-weight="800" text-anchor="middle" fill="#fff">特定顧客の業務成果</text>
+<text x="950" y="448" font-family="sans-serif" font-size="15" text-anchor="middle" fill="#ffebdf">One customer's outcome</text>
+<path d="M1108 459C1185 504 1148 526 1068 526H838" fill="none" stroke="#8caaa1" stroke-width="3" stroke-dasharray="7 7"/>
+<text x="945" y="549" font-family="sans-serif" font-size="16" text-anchor="middle" fill="#6b817f">学びを共通プロダクトへ還流する</text>
+<text x="56" y="610" font-family="sans-serif" font-size="15" fill="#6f827e">Source: Palantir Careers (Dev vs Delta) · Conceptual illustration by My Essays · 2026-10-29</text>
+</svg>
