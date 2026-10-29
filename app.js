@@ -278,11 +278,56 @@ async function loadEssays() {
     const index = await response.json();
     if (!Array.isArray(index.essays)) throw new Error('index.jsonの形式が不正です');
 
-    const essays = await Promise.all(index.essays.map(async path => {
-      const essayResponse = await fetch(path, { cache:'no-store' });
-      if (!essayResponse.ok) throw new Error(`${path}を読み込めませんでした`);
-      return normalizeEssay(path, await essayResponse.text());
-    }));
+    // Read deep-linked articles first, without waiting for the full archive.
+    const initialRoute = window.MyEssaysRoute?.parse?.();
+    const requestedId = initialRoute?.type === 'essay' ? initialRoute.articleId : '';
+    const preferredPath = requestedId
+      ? index.essays.find(path => path.endsWith(`-${requestedId}.md`) || path.endsWith(`/${requestedId}.md`))
+      : null;
+    const paths = preferredPath
+      ? [preferredPath, ...index.essays.filter(path => path !== preferredPath)]
+      : index.essays;
+
+    const loadedByPath = new Map();
+    const failedPaths = [];
+    let nextIndex = 0;
+
+    async function loadOne(path) {
+      try {
+        const essayResponse = await fetch(path, { cache: 'no-store' });
+        if (!essayResponse.ok) throw new Error(`${path} (HTTP ${essayResponse.status})`);
+        const essay = normalizeEssay(path, await essayResponse.text());
+        loadedByPath.set(path, essay);
+
+        // Render a deep link as soon as its article arrives.
+        // The reader must not be replaced if the user has navigated elsewhere.
+        if (path === preferredPath) {
+          const currentRoute = window.MyEssaysRoute.parse();
+          if (currentRoute.type === 'essay' && currentRoute.articleId === requestedId) {
+            state.essays = [essay];
+            route();
+          }
+        }
+      } catch (error) {
+        failedPaths.push(path);
+        console.warn('[MyEssays] Essay load failed:', path, error);
+      }
+    }
+
+    async function worker() {
+      while (nextIndex < paths.length) {
+        const path = paths[nextIndex++];
+        await loadOne(path);
+      }
+    }
+
+    // Bound concurrency and allow other articles to load even if one fails.
+    await Promise.all(Array.from({ length: Math.min(16, paths.length) }, () => worker()));
+    const essays = index.essays.map(path => loadedByPath.get(path)).filter(Boolean);
+    if (!essays.length) throw new Error('記事データを取得できませんでした。再読み込みしてください。');
+    if (failedPaths.length) {
+      console.warn(`[MyEssays] Loaded ${essays.length}/${index.essays.length} essays; ${failedPaths.length} unavailable.`);
+    }
 
     state.essays = essays;
     state.tags = new Set(essays.flatMap(e => e.tags || []));
@@ -290,7 +335,14 @@ async function loadEssays() {
     populateFilters();
     setLibraryStatus(LIBRARY_STATUS.READY);
     renderLibrary();
-    route();
+
+    // Avoid resetting the scroll position of an article already being read.
+    const currentRoute = window.MyEssaysRoute.parse();
+    if (currentRoute.type === 'essay' && state.currentEssay?.id === currentRoute.articleId) {
+      window.MyEssaysReaderNavigation?.render();
+    } else {
+      route();
+    }
   } catch (error) {
     console.error(error);
     state.essays = [];
