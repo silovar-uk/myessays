@@ -68,6 +68,10 @@ Some of the most important changes sound boring. Batters cannot step out, and pl
 
 Here, the line between sport and show starts to move. A spectacular defensive play used to be entertainment around the contest; now an unusual catch can also affect the score through the Equalizer rule. Unlike judged performance sports, however, the player still has to record a real baseball out. The format adds an incentive for style without removing the underlying sporting task. The question of who decides which play qualifies still matters.
 
+![2021年のサバンナ・バナナズの整列。2026年の試合ではない](https://commons.wikimedia.org/wiki/Special:FilePath/Savannah_Bananas_line-up%2C_2021-03-27.jpg?width=768)
+
+*写真2｜2021年3月の選手整列。現行リーグの競技写真ではなく、活動初期の記録。撮影：baseballmapper／[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Savannah_Bananas_line-up,_2021-03-27.jpg)、CC0。*
+
 ## 守｜破産寸前の地方球団は、野球より先に「観客が来る理由」を作った
 
 Why invent such unusual rules? To answer that, we need to travel back about a decade.
@@ -246,4 +250,4 @@ The person who caught that ball can now say, perhaps for the first time in their
 15. [The Atlantic：クラウンズの遺産をめぐる批判的検証](https://www.theatlantic.com/magazine/2026/06/savannah-bananas-indianapolis-clowns-baseball-history/686942/)
 16. [Wikimedia Commons：写真1・撮影者baseballmapper、CC0](https://commons.wikimedia.org/wiki/File:Savannah_Bananas_take_to_the_field,_2021-03-27.jpg)
 
-*本文の図1・図2は本稿独自の構造整理であり、主催者が公表した業績図ではない。2026年10月29日時点。*
+*本文の図1・図2は本稿独自の構造整理であり、主催者が公表した業績図ではない。写真1・2は個別のCC0ライセンスを確認した。2026年10月29日時点。*
