@@ -247,4 +247,3 @@ The person who caught that ball can now say, perhaps for the first time in their
 16. [Wikimedia Commons：写真1・撮影者baseballmapper、CC0](https://commons.wikimedia.org/wiki/File:Savannah_Bananas_take_to_the_field,_2021-03-27.jpg)
 
 *本文の図1・図2は本稿独自の構造整理であり、主催者が公表した業績図ではない。2026年10月29日時点。*
-
