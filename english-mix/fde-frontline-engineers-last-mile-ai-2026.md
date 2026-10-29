@@ -52,6 +52,10 @@ Palantir's internal names are unusually cinematic: **Dev** builds the common pro
 
 The word *forward* is not merely macho branding. It declares **where the company expects to learn**.
 
+![Palantir engineers presenting an AI-related demonstration at DevCon](https://www.palantir.com/assets/xrfr7uokpv1b/5lfLhWkcLD9cTsaHtIEOjU/4cc74d616b0569334ac7c6b510247b9e/AI_FDE.jpg?fit=crop&height=394&quality=70&width=700)
+
+*写真1｜Palantirの技術イベントでの発表風景。FDEの顧客現場を撮影したものではない。[Photo source: Palantir](https://www.palantir.com/platforms/aip/agentcamp/)*
+
 ## 守｜FDEの仕事は、議事録より先に「動くもの」を作るところで始まる
 
 OpenAI's Tokyo FDE job description includes discovery, technical scoping, system design, building, and production rollout. It also mentions adoption, measurable workflow impact, and feedback to product and research teams. Production-grade Python or JavaScript coding is expected. [OpenAI Tokyo FDE role](https://openai.com/careers/forward-deployed-engineer-tokyo-tokyo-japan/)
