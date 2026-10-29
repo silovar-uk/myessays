@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="t d">
+<title id="t">SIXPAD HOME GYMからSIXPAD CLUBへの事業の変遷</title><desc id="d">2020年の有料オンラインジムから2024年の会員プラットフォーム、2026年の有料動画終了までの流れ。公式リリースに基づく。</desc>
+<rect width="1200" height="560" rx="24" fill="#101827"/>
+<text x="60" y="72" font-family="sans-serif" font-size="33" font-weight="700" fill="#fff">SIXPADのデジタル戦略は、どこへ移ったか</text>
+<text x="60" y="110" font-family="sans-serif" font-size="19" fill="#AAB6CA">製品＋映像の販売モデル → 製品利用を支える無料の顧客接点</text>
+<line x1="130" y1="222" x2="1085" y2="222" stroke="#55637A" stroke-width="6" stroke-linecap="round"/>
+<g font-family="sans-serif"><circle cx="170" cy="222" r="19" fill="#FFB871"/><circle cx="592" cy="222" r="19" fill="#70D3C1"/><circle cx="1010" cy="222" r="19" fill="#9BB5FF"/>
+<rect x="60" y="269" width="335" height="200" rx="16" fill="#20334A" stroke="#496887"/><rect x="432" y="269" width="335" height="200" rx="16" fill="#20334A" stroke="#496887"/><rect x="806" y="269" width="335" height="200" rx="16" fill="#20334A" stroke="#496887"/>
+<g font-size="26" font-weight="700" fill="#fff"><text x="78" y="190">2020｜HOME GYM</text><text x="452" y="190">2024｜CLUB</text><text x="827" y="190">2026｜無料版へ</text></g>
+<g font-size="20" fill="#F1F5F9"><text x="80" y="315">EMSスーツ＋バイク</text><text x="80" y="350">ライブ・動画配信</text><text x="80" y="385">月額4,180円</text>
+<text x="450" y="315">会員機能を無料化</text><text x="450" y="350">月額990円へ値下げ</text><text x="450" y="385">配信更新頻度を見直し</text>
+<text x="827" y="315">有料動画プラン終了</text><text x="827" y="350">記録・機器連携・延長保証</text><text x="827" y="385">厳選動画はYouTubeへ</text></g>
+<g font-size="16" fill="#BDCCDD"><text x="79" y="438">映像を商品化</text><text x="450" y="438">機器利用者の接点を拡張</text><text x="827" y="438">コンテンツの位置づけ変更</text></g></g>
+<text x="60" y="516" font-family="sans-serif" font-size="16" fill="#AAB6CA">資料：MTG（2020・2024）／SIXPAD CLUB（2026）。事業上の意味づけは本稿の解釈。</text>
+</svg>
