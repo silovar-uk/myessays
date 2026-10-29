@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 730" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">1950年から1958年にかけてのセ・パの球団数変化</title>
+<desc id="dsc">1950年はセ8・パ7、1954年はセ6・パ8、1958年にセ6・パ6になった。</desc>
+<rect width="1280" height="730" fill="#f8f6f1"/>
+<text x="62" y="70" fill="#647179" font-family="sans-serif" font-size="22" letter-spacing="3">THE NUMBER OF TEAMS</text>
+<text x="62" y="127" fill="#21323a" font-family="sans-serif" font-size="38" font-weight="700">「6＋6」は最初から決まっていなかった</text>
+<text x="64" y="176" fill="#31404a" font-family="sans-serif" font-size="22">各バーの長さ＝当該リーグの球団数。1950年代は合併・新設で数が揺れ続けた。</text>
+<rect x="64" y="214" width="25" height="25" fill="#417c57" rx="4"/><text x="100" y="234" fill="#34434b" font-size="21" font-family="sans-serif">セ・リーグ</text>
+<rect x="290" y="214" width="25" height="25" fill="#3474a5" rx="4"/><text x="327" y="234" fill="#34434b" font-size="21" font-family="sans-serif">パ・リーグ</text>
+<g font-family="sans-serif" font-size="23" fill="#34434b">
+<text x="67" y="292">1950</text><text x="67" y="355">1951</text><text x="67" y="418">1953</text><text x="67" y="481">1954</text><text x="67" y="544">1957</text><text x="67" y="607">1958</text>
+</g>
+<g fill="#417c57">
+<rect x="187" y="264" width="368" height="22" rx="4"/><rect x="187" y="327" width="322" height="22" rx="4"/><rect x="187" y="390" width="276" height="22" rx="4"/><rect x="187" y="453" width="276" height="22" rx="4"/><rect x="187" y="516" width="276" height="22" rx="4"/><rect x="187" y="579" width="276" height="22" rx="4"/>
+</g>
+<g fill="#3474a5">
+<rect x="650" y="264" width="322" height="22" rx="4"/><rect x="650" y="327" width="322" height="22" rx="4"/><rect x="650" y="390" width="322" height="22" rx="4"/><rect x="650" y="453" width="368" height="22" rx="4"/><rect x="650" y="516" width="322" height="22" rx="4"/><rect x="650" y="579" width="276" height="22" rx="4"/>
+</g>
+<g font-family="sans-serif" font-size="21" fill="#172d34" font-weight="700">
+<text x="565" y="283">8</text><text x="519" y="346">7</text><text x="473" y="409">6</text><text x="473" y="472">6</text><text x="473" y="535">6</text><text x="473" y="598">6</text>
+<text x="984" y="283">7</text><text x="984" y="346">7</text><text x="984" y="409">7</text><text x="1030" y="472">8</text><text x="984" y="535">7</text><text x="938" y="598">6</text>
+</g>
+<rect x="55" y="568" width="1158" height="55" rx="12" fill="none" stroke="#ca9d54" stroke-width="3"/>
+<text x="65" y="682" fill="#53616b" font-family="sans-serif" font-size="19">出典：野球殿堂博物館『1950年代のプロ野球』掲載の年次データをもとに本稿作図</text>
+</svg>
