@@ -54,6 +54,10 @@ Palantirの社内語も独特だ。製品開発の「Devs」、現場実装の�
 
 ここで最初の違和感が変わる。「前線」は単なる威勢のよい命名ではない。**どの場所で問題を学び、誰が解決責任を持つのか**を、会社の設計思想として示す言葉なのだ。
 
+![Palantirの技術イベントにおけるAI関連の実演風景](https://www.palantir.com/assets/xrfr7uokpv1b/5lfLhWkcLD9cTsaHtIEOjU/4cc74d616b0569334ac7c6b510247b9e/AI_FDE.jpg?fit=crop&height=394&quality=70&width=700)
+
+*写真1｜Palantirの技術イベントでの実演。FDEが顧客先に常駐する様子を撮影した写真ではない。[写真出典：Palantir公式サイト](https://www.palantir.com/platforms/aip/agentcamp/)*
+
 ## 守｜FDEの仕事は、議事録より先に「動くもの」を作るところで始まる
 
 OpenAIの東京勤務FDE求人は、顧客課題の発見、技術的な範囲設定、システム設計、実装、本番稼働までを一気通貫で担当すると明記する。評価されるのも、機能を作った数ではなく、本番採用、業務への定量的影響、そして製品・モデル改善へ戻す評価結果である。必要スキルにはPythonやJavaScriptなどによる本番品質のコード開発が含まれる。[OpenAI東京の求人](https://openai.com/careers/forward-deployed-engineer-tokyo-tokyo-japan/)
