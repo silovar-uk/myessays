@@ -1,0 +1,44 @@
+name: Build Library Catalog
+
+on:
+  push:
+    branches:
+      - main
+      - feat/lazy-library-catalog-20261030
+    paths:
+      - 'essays/**'
+      - 'data/index.json'
+      - 'scripts/build-library-data.mjs'
+      - '.github/workflows/build-library-data.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate catalog and opt-in search index
+        run: node scripts/build-library-data.mjs
+      - name: Validate generated data
+        run: |
+          node --check app.js
+          node --test tests/library-catalog.test.js
+      - name: Publish generated static files into the same branch
+        run: |
+          git add data/catalog.json data/search/
+          if git diff --cached --quiet; then
+            echo 'Catalog is already current.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m '記事カタログと検索索引を更新'
+          git push
