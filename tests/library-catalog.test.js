@@ -18,7 +18,7 @@ test('catalog contains every canonical article exactly once and without article 
     assert.ok(e.metrics && Number.isFinite(e.metrics.minutes));
     assert.equal('body' in e, false, e.id + ' must not ship body in catalog');
     assert.ok(Array.isArray(e.tags));
-    assert.ok(typeof e.searchText === 'string');
+    assert.equal('searchText' in e, false, 'search tokens are derived in browser');
   }
 });
 
