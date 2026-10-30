@@ -18,6 +18,26 @@ async function testViewport(contextOptions, label) {
   await page.goto(base + '/#/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => document.querySelectorAll('.featured-card').length > 0 && !document.querySelector('#libraryLoadState')?.offsetParent, { timeout: 30000 });
   assert.equal(markdownRequests, 0, label + ': list must not request Markdown');
+  // Detect deployment drift when an article is indexed before the generated catalog lands.
+  const consistency = await page.evaluate(async () => {
+    const [index, catalog, search] = await Promise.all([
+      fetch('data/index.json').then(r => r.json()),
+      fetch('data/catalog.json').then(r => r.json()),
+      fetch('data/search/manifest.json').then(r => r.json())
+    ]);
+    return {
+      index: index.essays.length,
+      catalog: catalog.essays.length,
+      search: search.count,
+      rendered: typeof state !== 'undefined' ? state.essays.length : -1,
+      newestIndexedPath: index.essays[0],
+      newestCatalogPath: catalog.essays[0]?.path
+    };
+  });
+  assert.equal(consistency.catalog, consistency.index, label + ': catalog is stale: ' + JSON.stringify(consistency));
+  assert.equal(consistency.search, consistency.index, label + ': search index count drift');
+  assert.equal(consistency.rendered, consistency.index, label + ': visible library count drift');
+  assert.equal(consistency.newestCatalogPath, consistency.newestIndexedPath, label + ': newest essay missing');
   const archiveCount = await page.locator('.archive-row').count();
   assert.ok(archiveCount > 0 && archiveCount <= 12, label + ': only first 12 archive articles');
   assert.ok(await page.locator('.featured-read-cue').count() > 0, label + ': read action visible');
