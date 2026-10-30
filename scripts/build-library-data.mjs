@@ -55,7 +55,6 @@ for (const file of catalogue) {
   const tags = list(meta.tags);
   const keywords = list(meta.keywords);
   const record = { ...meta, tags, keywords, path: file, metrics: metrics(body) };
-  record.searchText = [meta.title, meta.subtitle, meta.abstract, ...tags, ...keywords].filter(Boolean).join(' ').toLowerCase();
   records.push(record);
   // Exactly match the old in-browser text normalization, but only load it on search.
   const plain = body.replace(/[#>*_\x60\[\]()]/g, ' ').replace(/https?:\/\/\S+/g, ' ');
@@ -80,5 +79,5 @@ const shardPaths = [...shards.keys()].sort().map(month => {
   return 'data/search/' + filename;
 });
 fs.writeFileSync(path.join(searchDir, 'manifest.json'), JSON.stringify({ version: 1, count: records.length, shards: shardPaths }, null, 2) + '\n');
-fs.writeFileSync(path.join(root, 'data', 'catalog.json'), JSON.stringify({ version: 1, essays: records }, null, 2) + '\n');
+fs.writeFileSync(path.join(root, 'data', 'catalog.json'), JSON.stringify({ version: 1, essays: records }) + '\n');
 console.log('Generated catalog for ' + records.length + ' essays across ' + shardPaths.length + ' opt-in search shards.');
