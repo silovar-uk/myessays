@@ -99,6 +99,32 @@ const warnings = [];
 const idToCanonical = new Map();
 const indexedSet = new Set(canonicalPaths);
 
+// Explicitly held files are kept under version control but are not published.
+// A hold is narrow: any new unindexed file remains a hard integrity error.
+const holds = JSON.parse(read('data/publication-holds.json'));
+if (holds.version !== 1 || !Array.isArray(holds.canonical) || !Array.isArray(holds.derived)) {
+  errors.push('publication-holds.json has an invalid schema');
+}
+function heldPaths(records, directory) {
+  const seen = new Set();
+  for (const record of records || []) {
+    const file = record?.path;
+    if (typeof file !== 'string' || !file.startsWith(directory + '/') || !file.endsWith('.md') ||
+        !record.reason || typeof record.reason !== 'string') {
+      errors.push('invalid publication hold under ' + directory + ': ' + JSON.stringify(record));
+      continue;
+    }
+    if (seen.has(file)) errors.push('duplicate publication hold: ' + file);
+    seen.add(file);
+    if (!exists(file)) errors.push('publication hold refers to missing file: ' + file);
+    if (indexedSet.has(file)) errors.push('publication hold also appears in canonical index: ' + file);
+  }
+  return seen;
+}
+const heldCanonical = heldPaths(holds.canonical, 'essays');
+const heldDerived = heldPaths(holds.derived, 'english-mix');
+
+
 if (new Set(canonicalPaths).size !== canonicalPaths.length) errors.push('data/index.json contains duplicate paths');
 
 const rows = canonicalPaths.map(file => {
@@ -164,7 +190,10 @@ const rows = canonicalPaths.map(file => {
 });
 
 for (const file of actualCanonicalFiles) {
-  if (!indexedSet.has(file)) errors.push(`unindexed markdown under essays/: ${file}`);
+  if (!indexedSet.has(file)) {
+    if (heldCanonical.has(file)) warnings.push('publication on hold (canonical): ' + file);
+    else errors.push(`unindexed markdown under essays/: ${file}`);
+  }
 }
 
 const canonicalIds = new Set(rows.map(row => row.id).filter(Boolean));
@@ -188,7 +217,10 @@ for (const [id, entry] of Object.entries(versions)) {
 }
 
 for (const file of [...actualEnglishMix, ...actualSpanishMix]) {
-  if (!indexedDerived.has(file)) errors.push(`derived markdown is not in versions-index: ${file}`);
+  if (!indexedDerived.has(file)) {
+    if (heldDerived.has(file)) warnings.push('publication on hold (derived): ' + file);
+    else errors.push(`derived markdown is not in versions-index: ${file}`);
+  }
 }
 
 if (legacySpanishFiles.length) {
@@ -209,6 +241,9 @@ const specDrift = driftChecks
   .filter(([file, detector]) => exists(file) && detector(read(file)))
   .map(([file]) => file);
 
+for (const file of heldDerived) {
+  if (indexedDerived.has(file)) errors.push('publication hold also appears in versions-index: ' + file);
+}
 const legacyCanonicalMixedEn = rows.filter(row => row.legacyMixedEn).map(row => row.path);
 const summary = {
   generatedAt: new Date().toISOString(),
@@ -217,6 +252,7 @@ const summary = {
   englishMixFilesCount: actualEnglishMix.length,
   spanishMixFilesCount: actualSpanishMix.length,
   legacySpanishFilesCount: legacySpanishFiles.length,
+  publicationHoldsCount: heldCanonical.size + heldDerived.size,
   structuredCanonicalCount: rows.filter(row => row.structureSentences > 0).length,
   legacyCanonicalMixedEnCount: legacyCanonicalMixedEn.length,
   errors: errors.length,
@@ -230,6 +266,7 @@ const audit = {
   legacyCanonicalMixedEn,
   errors,
   warnings,
+  publicationHolds: holds,
   articles: rows
 };
 
@@ -248,6 +285,7 @@ function markdownReport(data) {
     `- Español Mix files: ${s.spanishMixFilesCount}`,
     `- Canonical articles with Structure metadata: ${s.structuredCanonicalCount}`,
     `- Legacy canonical *-mixed-en.md entries: ${s.legacyCanonicalMixedEnCount}`,
+    `- Explicit publication holds: ${s.publicationHoldsCount}`,
     `- Integrity errors: ${s.errors}`,
     `- Warnings: ${s.warnings}`,
     `- Known spec-drift files: ${s.specDriftFiles}`,
