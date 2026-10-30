@@ -28,7 +28,7 @@ test('Mobile discovery actions remain one compact row', () => {
 
 test('Density stylesheet cache token is current', () => {
   const html = read('index.html');
-  assert.match(html, /ui-enhancements\.css\?v=20260928-2/);
+  assert.match(html, /ui-enhancements\.css\?v=20261030-lazy-catalog-1/);
 });
 
 test('Latest front-page cards reserve room for a recently revised article', () => {
