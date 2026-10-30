@@ -11,8 +11,7 @@ on:
       - 'data/search/**'
       - 'tools/audit-content.mjs'
       - 'scripts/build-library-data.mjs'
-      - 'tests/data-integrity.test.js'
-      - 'tests/library-catalog.test.js'
+      - 'tests/**'
       - '.github/workflows/library-integrity-qa.yml'
   pull_request:
     paths:
