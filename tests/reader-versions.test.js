@@ -9,6 +9,7 @@ const exists = file => fs.existsSync(path.join(root, file));
 
 const index = JSON.parse(read('data/versions-index.json'));
 const articles = index.articles || {};
+const heldDerived = new Set(JSON.parse(read('data/publication-holds.json')).derived.map(item => item.path));
 
 test('reading versions index only points to existing current derived files', () => {
   assert.equal(index.version, 1);
@@ -25,6 +26,7 @@ test('every English Mix article markdown is migrated exactly once into the share
   const englishMixFiles = fs.readdirSync(path.join(root, 'english-mix'))
     .filter(file => file.endsWith('.md') && file !== 'README.md')
     .map(file => `english-mix/${file}`)
+    .filter(file => !heldDerived.has(file))
     .sort();
   const indexedPaths = Object.values(articles)
     .map(versions => versions['en-mix'])
