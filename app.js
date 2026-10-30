@@ -548,6 +548,7 @@ function renderFeaturedCard(e) {
       <p class="featured-abstract">${escapeHtml(e.abstract || '')}</p>
       <div class="featured-footer">
         <div class="mini-tags">${tagsHtml(e.tags, 5)}</div>
+        <span class="featured-read-cue" aria-hidden="true">読む →</span>
       </div>
     </article>`;
 }
