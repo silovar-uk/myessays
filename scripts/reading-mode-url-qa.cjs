@@ -23,7 +23,11 @@ async function openCase(browser, { id, lang, preferred, expectedVersion, expecte
         && route?.lang === expectedLang
         && window.MyEssaysReaderVersions?.currentVersion?.() === expectedVersion
         && !window.MyEssaysInstantReadingModes?.isTransitioning?.()
-        && !document.getElementById('readerView')?.hidden;
+        && !document.getElementById('readerView')?.hidden
+        // Wait for the actual article and mode controls, not only default runtime state.
+        && (typeof state !== 'undefined' && state.currentEssay?.id === id)
+        && Boolean(document.querySelector('#readerContent .reading-stats'))
+        && Boolean(document.querySelector('#readerModeShell [data-reading-mode-intent="' + expectedVersion + '"][aria-checked="true"]'));
     }, { expectedVersion, expectedLang, id }, { timeout: 10000 });
   } catch (error) {
     const debug = await page.evaluate(requested => ({
