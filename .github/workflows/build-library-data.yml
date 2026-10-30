@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-      - feat/lazy-library-catalog-20261030
     paths:
       - 'essays/**'
       - 'data/index.json'
+      - 'data/publication-holds.json'
       - 'scripts/build-library-data.mjs'
       - 'tests/library-catalog.test.js'
       - 'app.js'
