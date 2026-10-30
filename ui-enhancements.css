@@ -681,3 +681,17 @@
     transition: none;
   }
 }
+
+
+/* Lazy Library: clear read affordances and compact progressive archive. */
+.featured-card { cursor: pointer; }
+.featured-card:hover, .featured-card:focus-visible { outline: 2px solid var(--accent, #735d47); outline-offset: 2px; }
+.featured-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.featured-read-cue { flex: none; white-space: nowrap; font-weight: 700; font-size: .86rem; text-decoration: underline; text-underline-offset: 3px; }
+.archive-more { display: flex; justify-content: center; margin: 24px 0 8px; }
+.archive-more-button { appearance: none; padding: 12px 28px; border: 1px solid currentColor; border-radius: 999px; color: inherit; background: transparent; font: inherit; font-weight: 650; cursor: pointer; }
+.archive-more-button:hover, .archive-more-button:focus-visible { background: var(--surface-muted, rgba(120,120,120,.09)); outline-offset: 3px; }
+.reader-fetch-message { margin: 12vh auto; max-width: 42rem; color: var(--muted, #666); }
+.reader-fetch-error { margin: 12vh auto; max-width: 42rem; }
+.reader-fetch-error button { padding: 10px 20px; border: 1px solid currentColor; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
+@media (max-width: 520px) { .featured-footer { flex-wrap: wrap; } .archive-more-button { min-height: 44px; } }
