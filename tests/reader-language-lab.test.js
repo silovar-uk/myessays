@@ -62,6 +62,6 @@ test('reading mode changes close any transient or pinned language lens', () => {
 test('page cache keys load the subtitle-dock release', () => {
   const html = read('index.html');
 
-  assert.match(html, /reader-language-lab\.css\?v=20260918-2/);
-  assert.match(html, /reader-language-lab\.js\?v=20260918-2/);
+  assert.match(html, /reader-language-lab\.css\?v=20261011-ux1/);
+  assert.match(html, /reader-language-lab\.js\?v=20261011-ux1/);
 });
