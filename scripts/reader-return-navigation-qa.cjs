@@ -14,6 +14,16 @@ const ESSAY_ID = 'confucius-knowing-liking-enjoying';
 
   await page.goto(`${BASE_URL}/#/`, { waitUntil: 'networkidle' });
   await page.waitForSelector('#libraryView:not([hidden])');
+  await page.waitForSelector('#essayGrid .featured-card');
+  // The archive now renders 12 entries at a time. Expand it to reach this old sample.
+  await page.evaluate(id => {
+    for (let count = 0; count < 100; count++) {
+      if (document.querySelector('#essayGrid [data-id="' + id + '"]')) return;
+      const more = document.querySelector('#essayGrid [data-load-more]');
+      if (!more) break;
+      more.click();
+    }
+  }, ESSAY_ID);
   await page.waitForSelector(`#essayGrid [data-id="${ESSAY_ID}"]`);
 
   const sourceCard = page.locator(`#essayGrid [data-id="${ESSAY_ID}"]`);
