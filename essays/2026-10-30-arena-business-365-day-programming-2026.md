@@ -24,7 +24,7 @@ abstract: "アリーナの収益性を決めるのは満席の試合だけでは
 
 ![ロンドンのThe O2で開催されたコンサート](https://commons.wikimedia.org/wiki/Special:FilePath/O2_arena.jpg?width=960)
 
-*写真1｜The O2の客席と公演風景。撮影・ライセンスは[Wikimedia Commonsの原画像ページ](https://commons.wikimedia.org/wiki/File:O2_arena.jpg)を参照（CC BY 2.0）。最新年の公演実績を示す写真ではない。*
+*写真1｜The O2の客席と公演風景。撮影：rp72（2007年）／[Wikimedia Commons原画像](https://commons.wikimedia.org/wiki/File:O2_arena.jpg)／[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)。改変なし。最新年の公演実績を示す写真ではない。*
 
 ## 守｜1. アリーナビジネスとは何を経営することか
 
