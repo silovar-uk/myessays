@@ -24,8 +24,8 @@ const pieces = texts => { let at = 0; return texts.map(text => ({ text, start: a
 
 test('index.html loads the RSVP reader after the reader layers', () => {
   const html = read('index.html');
-  assert.match(html, /reader-rsvp\.css\?v=\d{8}-\d+/);
-  assert.match(html, /reader-rsvp\.js\?v=\d{8}-\d+/);
+  assert.match(html, /reader-rsvp\.css\?v=20261024-discovery-2/);
+  assert.match(html, /reader-rsvp\.js\?v=20261024-discovery-2/);
   assert.ok(html.indexOf('reader-runtime.js') < html.indexOf('reader-rsvp.js'));
 });
 
