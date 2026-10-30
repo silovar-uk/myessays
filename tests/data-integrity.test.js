@@ -35,6 +35,9 @@ const canonicalIndex = JSON.parse(read('data/index.json'));
 const canonicalPaths = canonicalIndex.essays || [];
 const versionsIndex = JSON.parse(read('data/versions-index.json'));
 const versions = versionsIndex.articles || {};
+const holds = JSON.parse(read('data/publication-holds.json'));
+const heldCanonical = new Set(holds.canonical.map(entry => entry.path));
+const heldDerived = new Set(holds.derived.map(entry => entry.path));
 const versionDirectories = {
   'en-mix': 'english-mix',
   'es-mix': 'spanish-mix'
@@ -48,6 +51,23 @@ test('canonical essay index contains unique existing Japanese markdown files', (
     assert.match(file, /^essays\/.+\.md$/, `canonical path must stay under essays/: ${file}`);
     assert.ok(exists(file), `canonical essay is missing: ${file}`);
   });
+});
+
+test('unpublished content is explicitly listed; no unknown orphan files are hidden', () => {
+  assert.equal(holds.version, 1);
+  const actualCanonical = markdownFiles('essays');
+  const indexed = new Set(canonicalPaths);
+  assert.deepEqual(actualCanonical.filter(file => !indexed.has(file)).sort(), [...heldCanonical].sort());
+  const derived = [...markdownFiles('english-mix'), ...markdownFiles('spanish-mix')];
+  for (const [group, paths] of [['canonical', heldCanonical], ['derived', heldDerived]]) {
+    assert.equal(new Set(holds[group].map(e => e.path)).size, holds[group].length, group + ' holds must be unique');
+    for (const { path, reason } of holds[group]) {
+      assert.ok(exists(path), path + ' must exist');
+      assert.ok(typeof reason === 'string' && reason.trim(), path + ' needs reason');
+      assert.ok(!indexed.has(path), path + ' must not be published as canonical');
+      if (group === 'derived') assert.ok(derived.includes(path), path + ' must be derived Markdown');
+    }
+  }
 });
 
 test('canonical article ids are unique and have minimum required metadata', () => {
@@ -110,7 +130,8 @@ test('derived markdown files are indexed exactly once and never enter the canoni
     .flatMap(entries => Object.values(entries || {}))
     .sort();
 
-  assert.deepEqual(indexedDerived, actualDerived, 'derived markdown files and versions-index must match exactly');
+  assert.deepEqual(indexedDerived, actualDerived.filter(file => !heldDerived.has(file)),
+    'derived Markdown must be either indexed or explicitly held');
   actualDerived.forEach(file => {
     assert.equal(canonicalPaths.includes(file), false, `derived file must not be listed in data/index.json: ${file}`);
   });
