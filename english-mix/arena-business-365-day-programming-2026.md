@@ -24,7 +24,7 @@ The question isn't simply, “How can we fill more dates?” It is: **What mix o
 
 ![The O2でのコンサート](https://commons.wikimedia.org/wiki/Special:FilePath/O2_arena.jpg?width=960)
 
-*Photo 1｜The O2. [Image and license details: Wikimedia Commons](https://commons.wikimedia.org/wiki/File:O2_arena.jpg), CC BY 2.0. Historical image, not a photo of the venue's 2025 performance.*
+*Photo 1｜The O2. Photographer: rp72 (2007). [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:O2_arena.jpg) / [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Unmodified historical image, not a photo of the venue's 2025 performance.*
 
 ## 守｜1. アリーナビジネスとは何を経営することか
 
