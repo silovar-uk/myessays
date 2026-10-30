@@ -29,6 +29,76 @@ const els = {
 };
 
 const NOTE_PREFIX = 'myessays:reading-note:';
+const LIBRARY_PAGE_SIZE = 12;
+let visibleArchiveCount = LIBRARY_PAGE_SIZE;
+const essayRequests = new Map();
+const fullTextById = new Map();
+let fullTextSearchTask = null;
+let fullTextSearchStatus = 'idle';
+
+function catalogEssay(record) {
+  const tags = normalizeList(record.tags);
+  const keywords = normalizeList(record.keywords);
+  return {
+    ...record,
+    tags,
+    keywords,
+    searchText: [record.title, record.subtitle, record.abstract, ...tags, ...keywords]
+      .filter(Boolean).join(' ').toLowerCase()
+  };
+}
+
+async function getFullEssay(record) {
+  if (record.body != null) return record;
+  if (!record.path || !/^essays\/[^/]+\.md$/.test(record.path)) throw new Error('本文の保存先が不正です');
+  if (essayRequests.has(record.id)) return essayRequests.get(record.id);
+  const task = (async () => {
+    const response = await fetch(record.path);
+    if (!response.ok) throw new Error('本文を取得できませんでした (HTTP ' + response.status + ')');
+    const full = normalizeEssay(record.path, await response.text());
+    if (full.id !== record.id) throw new Error('記事IDがカタログと一致しません');
+    const index = state.essays.findIndex(e => e.id === record.id);
+    if (index >= 0) state.essays[index] = full;
+    return full;
+  })();
+  essayRequests.set(record.id, task);
+  try { return await task; }
+  catch (error) { essayRequests.delete(record.id); throw error; }
+}
+
+async function ensureFullTextSearch() {
+  if (fullTextSearchTask) return fullTextSearchTask;
+  fullTextSearchStatus = 'loading';
+  renderLibrary();
+  fullTextSearchTask = (async () => {
+    const response = await fetch('data/search/manifest.json');
+    if (!response.ok) throw new Error('全文検索の索引を取得できません');
+    const manifest = await response.json();
+    if (!Array.isArray(manifest.shards)) throw new Error('全文検索の索引が不正です');
+    const batches = await Promise.all(manifest.shards.map(async file => {
+      if (!/^data\/search\/[\w-]+\.json$/.test(file)) throw new Error('検索索引のパスが不正です');
+      const shardResponse = await fetch(file);
+      if (!shardResponse.ok) throw new Error('検索索引の一部を取得できません');
+      const shard = await shardResponse.json();
+      if (!Array.isArray(shard.records)) throw new Error('検索索引のデータ形式が不正です');
+      return shard.records;
+    }));
+    batches.flat().forEach(record => {
+      if (typeof record.id === 'string' && typeof record.text === 'string') fullTextById.set(record.id, record.text);
+    });
+    if (fullTextById.size !== state.essays.length) {
+      throw new Error('検索索引の記事数がカタログと一致しません');
+    }
+    fullTextSearchStatus = 'ready';
+  })().catch(error => {
+    fullTextSearchStatus = 'error';
+    fullTextSearchTask = null;
+    console.error('[MyEssays] Full text search unavailable:', error);
+  }).finally(() => {
+    if (state.libraryStatus === LIBRARY_STATUS.READY) renderLibrary();
+  });
+  return fullTextSearchTask;
+}
 
 function parseFrontMatter(text) {
   const match = text.match(/^---\n([\s\S]*?)\n---\n?/);
@@ -270,6 +340,41 @@ async function loadEssays() {
   els.essayGrid.hidden = false;
   els.essayGrid.innerHTML = renderLibrarySkeleton();
   els.emptyState.hidden = true;
+  try {
+    const response = await fetch('data/catalog.json', { cache: 'no-store' });
+    if (response.status === 404) {
+      // Safe migration path until the first catalog-generation workflow completes.
+      console.warn('[MyEssays] Catalog not published yet; using legacy loader.');
+      return loadEssaysLegacy();
+    }
+    if (!response.ok) throw new Error('記事カタログを取得できませんでした');
+    const catalog = await response.json();
+    if (!Array.isArray(catalog.essays)) throw new Error('記事カタログの形式が不正です');
+    const essays = catalog.essays.map(catalogEssay);
+    if (new Set(essays.map(e => e.id)).size !== essays.length) throw new Error('記事カタログに重複IDがあります');
+    state.essays = essays;
+    state.tags = new Set(essays.flatMap(e => e.tags));
+    visibleArchiveCount = LIBRARY_PAGE_SIZE;
+    resetFilters();
+    populateFilters();
+    setLibraryStatus(LIBRARY_STATUS.READY);
+    renderLibrary();
+    route();
+  } catch (error) {
+    console.error('[MyEssays] Catalog load failed:', error);
+    state.essays = [];
+    state.tags = new Set();
+    els.essayGrid.innerHTML = '';
+    setLibraryStatus(LIBRARY_STATUS.ERROR, { message: '記事一覧の取得に失敗しました。再読み込みをお試しください。', error });
+  }
+}
+
+async function loadEssaysLegacy() {
+  setLibraryStatus(LIBRARY_STATUS.LOADING);
+  els.resultCount.textContent = '';
+  els.essayGrid.hidden = false;
+  els.essayGrid.innerHTML = renderLibrarySkeleton();
+  els.emptyState.hidden = true;
 
   try {
     const response = await fetch('data/index.json', { cache: 'no-store' });
@@ -378,7 +483,7 @@ function filteredEssays() {
   const q = els.searchInput.value.trim().toLowerCase();
   const type = els.typeFilter.value, year = els.yearFilter.value;
   let rows = state.essays.filter(e => {
-    if (q && !e.searchText.includes(q)) return false;
+    if (q && !e.searchText.includes(q) && !(fullTextById.get(e.id) || '').includes(q)) return false;
     if (type && e.type !== type) return false;
     if (year && !String(e.created||'').startsWith(year)) return false;
     if ([...state.activeTags].some(tag => !(e.tags||[]).includes(tag))) return false;
@@ -443,6 +548,7 @@ function renderFeaturedCard(e) {
       <p class="featured-abstract">${escapeHtml(e.abstract || '')}</p>
       <div class="featured-footer">
         <div class="mini-tags">${tagsHtml(e.tags, 5)}</div>
+        <span class="featured-read-cue" aria-hidden="true">読む →</span>
       </div>
     </article>`;
 }
@@ -480,13 +586,14 @@ function renderLibrary() {
   const latestIds = latestEssayIds();
   const featured = rows.filter(e => latestIds.has(e.id));
   const archive = rows.filter(e => !latestIds.has(e.id));
-  els.resultCount.textContent = `${rows.length} / ${state.essays.length} essays`;
+  const searchSuffix = els.searchInput.value.trim() && fullTextSearchStatus === 'loading' ? ' · 本文も検索中…' : els.searchInput.value.trim() && fullTextSearchStatus === 'error' ? ' · 本文検索は一時的に利用できません' : '';
+  els.resultCount.textContent = rows.length + ' / ' + state.essays.length + ' essays' + searchSuffix;
   const empty = rows.length === 0;
   els.essayGrid.hidden = empty;
   els.emptyState.hidden = !empty;
   if (empty) {
     els.emptyState.textContent = hasLibraryFilters()
-      ? '条件に合う論考がありません。検索語や絞り込み条件を変更してみてください。'
+      ? (els.searchInput.value.trim() && fullTextSearchStatus === 'loading' ? '本文も検索しています…' : '条件に合う論考がありません。検索語や絞り込み条件を変更してみてください。')
       : 'まだ論考がありません。';
   }
 
@@ -498,7 +605,7 @@ function renderLibrary() {
   const archiveHtml = archive.length ? `
     <section class="library-section archive-section">
       <div class="section-heading"><strong>Archive</strong><span>${archive.length} essays</span></div>
-      <div class="archive-list">${archive.map(renderArchiveRow).join('')}</div>
+      <div class="archive-list">${archive.slice(0, visibleArchiveCount).map(renderArchiveRow).join('')}</div>${archive.length > visibleArchiveCount ? '<div class="archive-more"><button type="button" class="archive-more-button" data-load-more>さらに12件を見る</button></div>' : ''}
     </section>` : '';
 
   els.essayGrid.innerHTML = featuredHtml + archiveHtml;
@@ -716,26 +823,46 @@ async function route() {
 
   if (currentRoute.type !== 'essay' || !currentRoute.articleId) { showLibrary(); return; }
   window.MyEssaysAozoraBooks?.clearCurrent?.();
-  const essay = state.essays.find(e => e.id === currentRoute.articleId);
-  essay ? showReader(essay) : showLibrary();
+  const record = state.essays.find(e => e.id === currentRoute.articleId);
+  if (!record) { showLibrary(); return; }
+  if (record.body != null) { showReader(record); return; }
+
+  // Read one Markdown file only after a user opens its article (including deep links).
+  if (state.currentEssay) setNoteOpen(false);
+  state.currentEssay = null;
+  els.libraryView.hidden = true;
+  els.readerView.hidden = false;
+  els.readerAside.innerHTML = '';
+  els.readerContent.innerHTML = '<p class="reader-fetch-message" role="status">論考を開いています…</p>';
+  document.title = record.title + ' | My Essays';
+  try {
+    const essay = await getFullEssay(record);
+    const latest = window.MyEssaysRoute.parse();
+    if (sequence !== routeSequence || latest.type !== 'essay' || latest.articleId !== record.id) return;
+    showReader(essay);
+  } catch (error) {
+    console.error('[MyEssays] Article load failed:', error);
+    if (sequence !== routeSequence) return;
+    els.readerContent.innerHTML = '<div class="reader-fetch-error" role="alert"><p>本文を読み込めませんでした。通信状態を確認して、もう一度お試しください。</p><button type="button" data-reader-retry>再試行</button></div>';
+  }
 }
 
 ['input','change'].forEach(eventName => {
-  els.searchInput.addEventListener(eventName, renderLibrary);
-  els.typeFilter.addEventListener(eventName, renderLibrary);
-  els.yearFilter.addEventListener(eventName, renderLibrary);
-  els.sortSelect.addEventListener(eventName, renderLibrary);
+  els.searchInput.addEventListener(eventName, () => { visibleArchiveCount = LIBRARY_PAGE_SIZE; renderLibrary(); if (els.searchInput.value.trim()) ensureFullTextSearch(); });
+  els.typeFilter.addEventListener(eventName, () => { visibleArchiveCount = LIBRARY_PAGE_SIZE; renderLibrary(); });
+  els.yearFilter.addEventListener(eventName, () => { visibleArchiveCount = LIBRARY_PAGE_SIZE; renderLibrary(); });
+  els.sortSelect.addEventListener(eventName, () => { visibleArchiveCount = LIBRARY_PAGE_SIZE; renderLibrary(); });
 });
 
 els.searchToggle.addEventListener('click', () => setSearchOpen(!els.searchControl.classList.contains('is-open')));
 els.filterToggle.addEventListener('click', () => setFilterOpen(els.filterPanel.hidden));
-els.essayGrid.addEventListener('click', e => { const card=e.target.closest('[data-id]'); if(card) openEssay(card.dataset.id); });
+els.essayGrid.addEventListener('click', e => { if (e.target.closest('[data-load-more]')) { visibleArchiveCount += LIBRARY_PAGE_SIZE; renderLibrary(); return; } const card=e.target.closest('[data-id]'); if(card) openEssay(card.dataset.id); });
 els.essayGrid.addEventListener('keydown', e => { const card=e.target.closest('[data-id]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openEssay(card.dataset.id); }});
 els.backButton.addEventListener('click', () => { location.hash = '#/'; });
 els.clearFilters.addEventListener('click', () => {
   els.searchInput.value=''; els.typeFilter.value=''; els.yearFilter.value=''; els.sortSelect.value='created-desc';
   state.activeTags.clear(); document.querySelectorAll('.tag-chip').forEach(b=>b.classList.remove('is-active'));
-  closeToolPanels(); renderLibrary();
+  visibleArchiveCount = LIBRARY_PAGE_SIZE; closeToolPanels(); renderLibrary();
 });
 els.openGuide.addEventListener('click', () => els.guideDialog.showModal());
 els.libraryLoadState.addEventListener('click', event => {
@@ -744,6 +871,7 @@ els.libraryLoadState.addEventListener('click', event => {
   loadEssays();
 });
 
+els.readerContent.addEventListener('click', e => { if (e.target.closest('[data-reader-retry]')) route(); });
 els.noteTab.addEventListener('click', toggleNote);
 els.closeNote.addEventListener('click', () => setNoteOpen(false));
 els.noteTextarea.addEventListener('input', saveCurrentNote);

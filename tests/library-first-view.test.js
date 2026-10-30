@@ -37,7 +37,7 @@ test('Latest front-page cards reserve room for a recently revised article', () =
   assert.match(app, /\.filter\(e => e\.updated && e\.created && String\(e\.updated\) > String\(e\.created\)\)/);
   assert.match(app, /if \(revised\[0\] && String\(revised\[0\]\.updated\) >= newestThreshold\) addUnique\(revised\[0\]\)/);
   assert.match(app, /新着・最近改訂した論考/);
-  assert.match(html, /app\.js\?v=20261014-latest-revisions-1/);
+  assert.match(html, /app\.js\?v=20261030-lazy-catalog-1/);
 });
 
 test('Revised essays return to Archive after newer articles arrive', () => {
