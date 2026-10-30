@@ -64,9 +64,29 @@ for (const file of catalogue) {
   shards.get(month).push({ id, text: searchText });
 }
 
-// Keep canonical listing explicit; detect unregistered files without silently publishing them.
-const unregistered = fs.readdirSync(path.join(root, 'essays')).filter(f => f.endsWith('.md') && !seenPaths.has('essays/' + f));
-if (unregistered.length) console.warn('Unregistered Markdown files:\n' + unregistered.join('\n'));
+// Article files outside the index must be explicitly held, not silently skipped.
+const holds = JSON.parse(read('data/publication-holds.json'));
+const heldCanonical = new Set(holds.canonical.map(item => item.path));
+const heldDerived = new Set(holds.derived.map(item => item.path));
+for (const item of [...holds.canonical, ...holds.derived]) {
+  if (!item.reason || !fs.existsSync(path.join(root, item.path))) {
+    throw new Error('Invalid publication hold: ' + JSON.stringify(item));
+  }
+}
+const unregistered = fs.readdirSync(path.join(root, 'essays'))
+  .filter(f => f.endsWith('.md') && !seenPaths.has('essays/' + f))
+  .map(f => 'essays/' + f);
+const unexpected = unregistered.filter(file => !heldCanonical.has(file));
+const missingHolds = [...heldCanonical].filter(file => !unregistered.includes(file));
+if (unexpected.length || missingHolds.length) {
+  throw new Error('Unregistered Markdown files: ' + JSON.stringify({ unexpected, missingHolds }));
+}
+for (const file of heldDerived) {
+  if (!file.startsWith('english-mix/') && !file.startsWith('spanish-mix/')) {
+    throw new Error('Invalid held derived Markdown path: ' + file);
+  }
+}
+if (unregistered.length) console.warn('Publication held: ' + unregistered.join(', '));
 
 const searchDir = path.join(root, 'data', 'search');
 fs.mkdirSync(searchDir, { recursive: true });

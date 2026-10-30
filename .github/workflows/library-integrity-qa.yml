@@ -1,0 +1,48 @@
+name: Library Integrity QA
+
+on:
+  push:
+    branches: [main, fix/library-audit-content-holds-20261030]
+    paths:
+      - 'data/index.json'
+      - 'data/versions-index.json'
+      - 'data/publication-holds.json'
+      - 'data/catalog.json'
+      - 'data/search/**'
+      - 'tools/audit-content.mjs'
+      - 'scripts/build-library-data.mjs'
+      - 'tests/**'
+      - '.github/workflows/library-integrity-qa.yml'
+  pull_request:
+    paths:
+      - 'data/publication-holds.json'
+      - 'tools/audit-content.mjs'
+      - 'scripts/build-library-data.mjs'
+      - 'tests/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source syntax
+        run: |
+          node --check tools/audit-content.mjs
+          node --check scripts/build-library-data.mjs
+      - name: Verify publication inventory
+        run: node tools/audit-content.mjs --strict > /tmp/myessays-audit.txt
+      - name: Regenerate catalog and validate data
+        run: |
+          node scripts/build-library-data.mjs
+          node --test tests/data-integrity.test.js tests/library-catalog.test.js
+          git diff --exit-code -- data/catalog.json data/search/
+      - name: Run complete static regression suite
+        run: node --test tests/*.test.js

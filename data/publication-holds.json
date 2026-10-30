@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "canonical": [
+    {
+      "path": "essays/2026-10-05-one-layer-outside-five-lenses.md",
+      "reason": "既存の英語交じり版と段落構造が一致せず、読書位置の1対1対応を保証できないため公開を保留"
+    }
+  ],
+  "derived": [
+    {
+      "path": "english-mix/one-layer-outside-five-lenses.md",
+      "reason": "日本語正本との構造整合が未確認のため言語切替対象から除外"
+    }
+  ]
+}
