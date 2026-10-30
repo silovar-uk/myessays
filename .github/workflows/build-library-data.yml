@@ -9,6 +9,8 @@ on:
       - 'essays/**'
       - 'data/index.json'
       - 'scripts/build-library-data.mjs'
+      - 'tests/library-catalog.test.js'
+      - 'app.js'
       - '.github/workflows/build-library-data.yml'
   workflow_dispatch:
 
