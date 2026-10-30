@@ -35,6 +35,17 @@ async function testViewport(contextOptions, label) {
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   assert.ok(overflow <= 4, label + ': unexpected horizontal overflow ' + overflow);
+  if (label === 'desktop') {
+    // This phrase appears only in the MTG article body, not in its metadata.
+    // Search must find it without downloading Markdown for every article.
+    await page.goto(base + '/#/', { waitUntil: 'domcontentloaded' });
+    await page.locator('#searchToggle').click();
+    await page.locator('#searchInput').fill('筋肉は会社員の代理出席者');
+    await page.waitForFunction(() => typeof fullTextSearchStatus !== 'undefined' && fullTextSearchStatus === 'ready');
+    await page.waitForSelector('[data-id="mtg-sixpad-homegym-peloton-brand-platform-2026"]');
+    assert.equal(markdownRequests, 1, 'full-text search must not fetch canonical Markdown');
+    assert.equal(scriptErrors.length, 0, label + ': no runtime errors after search');
+  }
   await context.close();
 }
 
