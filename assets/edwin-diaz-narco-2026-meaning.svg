@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="入場曲ナルコという同じ音から勝利の予兆、選手の識別、過去の記憶という三つの意味が派生する概念図">
+<rect width="1200" height="420" rx="24" fill="#fbf8f1"/>
+<text x="52" y="58" fill="#152c44" font-family="sans-serif" font-weight="bold" font-size="30">トランペットが知らせていたのは、何か？</text>
+<text x="53" y="90" fill="#556678" font-family="sans-serif" font-size="17">音の役割を分けると、同じ曲が六回に流れる理由が見えてくる</text>
+<rect x="455" y="119" width="290" height="84" rx="18" fill="#182c48"/>
+<text x="600" y="155" text-anchor="middle" fill="#f7d88f" font-family="sans-serif" font-size="20" font-weight="bold">同じ入場曲</text><text x="600" y="184" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="24" font-weight="bold">「ナルコ」</text>
+<path d="M600 203 V229 M185 249 V229 H1015 V249 M600 229 V249" stroke="#8195a9" stroke-width="3" fill="none"/>
+<g font-family="sans-serif" text-anchor="middle">
+<rect x="40" y="248" width="290" height="119" rx="17" fill="#dfebf4" stroke="#a4becb"/>
+<text x="185" y="284" fill="#17435f" font-size="24" font-weight="bold">未来｜勝利の予兆</text><text x="185" y="318" fill="#314b60" font-size="17">九回・リード・勝利目前</text><text x="185" y="347" fill="#597082" font-size="15">成績や登板状況で揺らぐ</text>
+<rect x="455" y="248" width="290" height="119" rx="17" fill="#f5e5bf" stroke="#d1ad60"/>
+<text x="600" y="284" fill="#6f4b13" font-size="24" font-weight="bold">現在｜本人の識別</text><text x="600" y="318" fill="#665331" font-size="17">「ディアスが来た」</text><text x="600" y="347" fill="#8c734c" font-size="15">六回でも別球団でも成立</text>
+<rect x="870" y="248" width="290" height="119" rx="17" fill="#e4e7f6" stroke="#b0b6d8"/>
+<text x="1015" y="284" fill="#41467b" font-size="24" font-weight="bold">過去｜観客の記憶</text><text x="1015" y="318" fill="#51577e" font-size="17">熱狂した球場の思い出</text><text x="1015" y="347" fill="#777ca1" font-size="15">場所や人によって変わる</text>
+</g><text x="53" y="403" fill="#6d7782" font-size="13" font-family="sans-serif">※意味の分類は仮説。数値的な効果や実際の観客心理を測った図ではない。</text>
+</svg>
