@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350" role="img" aria-label="ナルコの入場曲が2018年の本人の選曲、2020年の復帰、2022年の球場の儀式、2026年の移籍先での識別記号へ変化した年表">
+<rect width="1200" height="350" rx="24" fill="#101c31"/>
+<text x="48" y="62" fill="#f8fafc" font-family="sans-serif" font-size="29" font-weight="bold">同じ音が、違う意味になる</text>
+<text x="49" y="97" fill="#b1bdd0" font-family="sans-serif" font-size="16">2018 → 2020 → 2022 → 2026｜公式記事の出来事から作成した解釈図</text>
+<path d="M104 178 H1091" stroke="#5b708c" stroke-width="5" stroke-linecap="round"/>
+<g font-family="sans-serif" text-anchor="middle">
+<circle cx="135" cy="178" r="14" fill="#f5ca68"/><text x="135" y="154" fill="#f5ca68" font-size="24" font-weight="bold">2018</text><text x="135" y="223" fill="#fff" font-size="24" font-weight="bold">選んだ音</text><text x="135" y="254" fill="#a9b7c9" font-size="16">トランペットが珍しい</text>
+<circle cx="442" cy="178" r="14" fill="#f5ca68"/><text x="442" y="154" fill="#f5ca68" font-size="24" font-weight="bold">2020</text><text x="442" y="223" fill="#fff" font-size="24" font-weight="bold">戻した音</text><text x="442" y="254" fill="#a9b7c9" font-size="16">無観客で復活</text>
+<circle cx="750" cy="178" r="14" fill="#f5ca68"/><text x="750" y="154" fill="#f5ca68" font-size="24" font-weight="bold">2022</text><text x="750" y="223" fill="#fff" font-size="24" font-weight="bold">共有した音</text><text x="750" y="254" fill="#a9b7c9" font-size="16">観客・演出・投球が連動</text>
+<circle cx="1050" cy="178" r="14" fill="#f5ca68"/><text x="1050" y="154" fill="#f5ca68" font-size="24" font-weight="bold">2026</text><text x="1050" y="223" fill="#fff" font-size="24" font-weight="bold">運ばれた音</text><text x="1050" y="254" fill="#a9b7c9" font-size="16">移籍・六回・新しい記憶</text>
+</g><text x="48" y="323" fill="#93a8c5" font-family="sans-serif" font-size="14">※矢印は価値の増減を示さない／出典：MLB公式記事（本文にリンク）</text>
+</svg>
