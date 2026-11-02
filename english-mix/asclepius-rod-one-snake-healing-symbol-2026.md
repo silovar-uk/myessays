@@ -19,6 +19,10 @@ Why is there a snake on a medical symbol? 医療の印なのに、そこに描�
 
 The short answer is simple. **アスクレピオスの杖（Rod of Asclepius）には通常1匹の蛇が巻きつき、翼はない。** It comes from Asclepius, the ancient Greek god of healing. 一方、**ヘルメスの杖（caduceus／カドゥケウス）には通常2匹の蛇がいて、翼も描かれる。** They have different origins. ただし「one is right, the other is wrong」と言い切るだけでは、なぜ2匹の印も医療界に広がったのかが分からない。[世界保健機関](https://www.who.int/about/policies/publishing/logo)／[英国エディンバラ王立内科医協会](https://www.rcpe.ac.uk/heritage/college-symbolism-snake)
 
+![古代の医療の神アスクレピオスの彫像。そばには蛇の巻きついた杖がある](https://upload.wikimedia.org/wikipedia/commons/0/09/Ancient_Greece_Marble_Statue_of_Asclepius%2C_c._160_AD_Roman_Copy_of_4th_C._BC_Greek_Original%2C_from_Sanctuary_of_Asclepius_at_Epidauros.jpg)
+
+*写真：アスクレピオスの彫像。蛇の巻きついた杖が、神の姿を見分ける手がかりになる。[写真出典・再利用条件（Wikimedia Commons）](https://commons.wikimedia.org/wiki/File:Ancient_Greece_Marble_Statue_of_Asclepius,_c._160_AD_Roman_Copy_of_4th_C._BC_Greek_Original,_from_Sanctuary_of_Asclepius_at_Epidauros.jpg)。*
+
 ## 1｜A symbol is not a tool：道具と象徴は違う
 
 A thermometer measures temperature. 体温計は体温を測る道具。A bandage covers a wound. 包帯は傷を守る道具。But a symbol does not cure anyone. 蛇のマークを見ても、それだけで病気は治らない。**Symbol（シンボル／象徴）**とは、ある形から、別の意味を読み取るための共通の約束だ。If people recognize the image, they recognize a role. 見る人が「医療に関係する」と理解できれば、目印として機能する。
@@ -32,6 +36,10 @@ Asclepius was a healing god in ancient Greece. アスクレピオス（Asclepius
 In one famous story, Apollo is his father. 父は神アポロン（Apollo）。アスクレピオスは治療を学び、死者さえ蘇らせたと語られる。Then Zeus kills him with a thunderbolt. ゼウス（Zeus）は人間が死の限界を越えることを恐れ、雷で彼を打ったという。The story is not just about a powerful doctor. そこには「人間は生と死の境界を越えられるのか」という問いもある。[世界保健機関](https://www.who.int/about/policies/publishing/logo)／[オックスフォード古典学事典](https://academic.oup.com/edited-volume/61673/chapter-abstract/548526290?login=false)
 
 Some ancient stories treated Asclepius as a healer before he became a god. 古い文献では医療にかかわる人物としても描かれ、のちに神としての信仰が広がった。ただし「実在の医師だった」と確定したわけではない。His image changed as people placed their hopes in healing. 信仰の対象となった人物像が、数千年を経て専門職の印に残った。[米国国立医学図書館](https://www.nlm.nih.gov/hmd/topics/greek-medicine/index.html)
+
+![ギリシャ・エピダウロスのアスクレピオス聖域に残るアバトン（夢の治癒儀礼に関わる建物）の遺構](https://upload.wikimedia.org/wikipedia/commons/0/01/The_stoa_of_Abaton_or_Enkoimeterion_at_the_Sanctuary_of_Asclepius_in_Epidaurus.jpg)
+
+*写真：エピダウロスのアバトン（エンコイメーテリオン）の遺構。現代の病院とは異なるが、病む人が滞在する場所でもあった。[写真出典・撮影者・ライセンス（Wikimedia Commons）](https://commons.wikimedia.org/wiki/File:The_stoa_of_Abaton_or_Enkoimeterion_at_the_Sanctuary_of_Asclepius_in_Epidaurus.jpg)。*
 
 ## 3｜A sanctuary that cared for the sick：古代の治療施設
 
@@ -49,10 +57,6 @@ But snakes also inspire fear. 蛇は再生だけを意味するわけではな�
 
 And why a staff? 杖については、各地を歩いた医師の歩行杖とみなす説明もある。But that is not the only interpretation. アスクレピオスが蛇とともに描かれるようになり、やがて杖に蛇が巻きつく図像が定着したという説明がある。Symbols change over time. シンボルも、最初から完成されたデザインではなかった。[カロリンスカ研究所](https://ki.se/en/about-ki/history-and-cultural-heritage/medical-history-and-heritage/the-history-of-karolinska-institutet/symbolism-of-the-ki-seal)
 
-![アスクレピオスの彫像と1匹の蛇](https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Statue_of_Asclepius_from_Epidauros_%282nd_cent._A.D.%29_at_the_National_Archaeological_Museum_of_Athens_on_27_March_2018.jpg/500px-Statue_of_Asclepius_from_Epidauros_%282nd_cent._A.D.%29_at_the_National_Archaeological_Museum_of_Athens_on_27_March_2018.jpg)
-
-*Photo: George E. Koronaios / [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Statue_of_Asclepius_from_Epidauros_(2nd_cent._A.D.)_at_the_National_Archaeological_Museum_of_Athens_on_27_March_2018.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
-
 ## 5｜A surprising theory, but weak evidence：メジナ虫説
 
 Here is a strange theory. 実は蛇ではなく、**メジナ虫（Guinea worm／Dracunculus medinensis）**を表していたという説がある。This parasite can be removed by slowly winding it around a small stick. 細長い寄生虫を細い棒に巻き取る伝統的な処置があり、図案に似ているからだ。[科学博物館グループ](https://blog.sciencemuseumgroup.org.uk/the-symbols-of-medicine/)
@@ -67,6 +71,16 @@ The **Hippocratic Oath（ヒポクラテスの誓い）** is an ancient text abo
 
 Not every modern doctor takes the ancient oath word for word. しかも、よく知られた「First, do no harm（まず害をなすな）」という言葉が、そのまま原文に書かれているわけでもない。The question survives beyond the wording. それでも患者を害さず、判断に責任を持つという課題は残る。
 
+### Visual guide｜1匹の杖と2匹の杖
+
+| ⚕ Rod of Asclepius（アスクレピオスの杖） | ☤ Caduceus（ヘルメスの杖） |
+|:---:|:---:|
+| **1 snake（蛇1匹）** | **2 snakes（蛇2匹）** |
+| **No wings（翼なし）** | **Usually wings（翼あり）** |
+| Healing god（治癒の神） | Messenger god（使者の神） |
+
+*Look at the snakes first. まず蛇の数を見て、次に翼を確認しよう。記号は簡略図であり、すべての歴史的な図案を再現したものではない。[米国国立医学図書館](https://www.nlm.nih.gov/hmd/topics/greek-medicine/Caduceus_snake_detail_2415079R-sm.html?imgid=5)。*
+
 ## 7｜One snake or two?：2本の杖を見分ける
 
 **One snake, no wings: Rod of Asclepius.** 蛇1匹、翼なしがアスクレピオスの杖。**Two snakes, often wings: caduceus.** 蛇2匹、しばしば翼ありがヘルメスの杖（カドゥケウス）だ。Hermes was a messenger god associated with travel and commerce. ヘルメス（Hermes）は神々の使者で、旅行や商業にも結びつく。[科学博物館グループ](https://blog.sciencemuseumgroup.org.uk/the-symbols-of-medicine/)
@@ -74,6 +88,18 @@ Not every modern doctor takes the ancient oath word for word. しかも、よく
 Why did people mix them up? 近代に医療出版業者や米国陸軍が2匹の杖を用い、その印も医療界へ広がった。The US Army says it used the caduceus to express a non-combatant role. 米国陸軍医療部門は、戦うのではなく医療に従事する役割を示す意味があったと説明している。一方、医学史研究者は、古代の医療の象徴として誤って扱われた点を批判する。[米国陸軍医療部門](https://achh.army.mil/history/tools-faq/)／[医学史論文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9582002/)
 
 Both perspectives matter. **Historical origin（歴史的な出自）**と**institutional meaning（組織が与えた意味）**は、いつも一致するわけではない。The image can be historically inaccurate and still become familiar. だからこそ「間違いが定着する仕組み」を調べる必要がある。
+
+### Timeline｜古代から現代へ
+
+| 時期 | What changed?（何が変わったか） |
+|---|---|
+| 古代ギリシャ | Healing cult：アスクレピオス信仰と蛇の図像 |
+| 紀元前4世紀ごろ | Epidaurus：聖域が大規模な治療拠点へ |
+| 1851年・1902年 | U.S. Army：米軍医療関連の制服などに2匹の杖を採用 |
+| 1948年 | WHO：1匹の蛇を持つ杖を紋章へ |
+| 現代 | One symbol, multiple histories：二つの図案が医療の場に共存 |
+
+*図：代表的な出来事のみを抜粋。図案が誕生した年表ではなく、受容の歴史を示す。[ユネスコ](https://whc.unesco.org/en/list/491/)／[米国陸軍](https://achh.army.mil/history/tools-faq/)／[世界保健機関](https://www.who.int/about/policies/publishing/logo)。*
 
 ## 8｜Where do we see it today?：世界保健機関と救急車
 
