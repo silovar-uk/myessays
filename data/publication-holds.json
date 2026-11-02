@@ -4,6 +4,14 @@
     {
       "path": "essays/2026-10-05-one-layer-outside-five-lenses.md",
       "reason": "既存の英語交じり版と段落構造が一致せず、読書位置の1対1対応を保証できないため公開を保留"
+    },
+    {
+      "path": "essays/2026-11-02-six-vocabularies-history-relations-information-shuhari-20261102-bilingual.md",
+      "reason": "2026-11-02時点で索引未登録のため公開保留。原本・派生版の位置づけと登録方式を確認後に解除する"
+    },
+    {
+      "path": "essays/2026-11-02-six-vocabularies-history-relations-information-shuhari-20261102.md",
+      "reason": "2026-11-02時点で索引未登録のため公開保留。原本・派生版の位置づけと登録方式を確認後に解除する"
     }
   ],
   "derived": [
