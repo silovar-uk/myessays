@@ -26,6 +26,10 @@ A good presentation needs a clear message. しかし経営層向けの資料で�
 
 「スポーツ映像市場の概要」はtopic（テーマ）、「市場は拡大する」はclaim（主張）だ。しかし本当のdecisionが「来期、実証実験へ投資するか」なら、市場規模だけでは決められない。共通する顧客課題、導入主体、映像の権利、費用を確かめる必要がある。**Topic → Claim → Decision criteria** と具体化すると、調査対象そのものが変わる。
 
+![判断を進む・追加調査・見送るに分け、条件と行動を示す図解](https://raw.githubusercontent.com/silovar-uk/myessays/main/assets/slide-skill-20261102-0900-decision-branch-first-decision-flow.svg "図1｜判断分岐を先に設計すると、調べるべき根拠が決まる。説明用の模式図。")
+
+**How to read this visual：** 最初にdecisionを定めると、Go／Investigate／Stopのそれぞれで必要なevidenceとnext actionが違うことが分かる。
+
 ## 破｜5分で作る4手順
 
 1. **Write the decision.** 「来期、リーグ共通の映像分析基盤の実証を始めるか」と、誰が何を決めるのかを一つの問いにする。
@@ -38,6 +42,10 @@ A good presentation needs a clear message. しかし経営層向けの資料で�
 **Before：** 「スポーツ映像市場の事業機会」という見出しの下に、TAM、競合、技術、顧客、リーグ接点、XRを同じ強さで配置する。Lots of information, but no clear decision. 読み手は何を承認すればよいか分からない。
 
 **After：** 「リーグ共通の映像分析基盤は、需要の共通性と導入主体の確認を経て実証判断する（仮説）」と書く。左にGo／Investigate／Stopの条件、中央にverified／unverified evidence、右に担当とnext actionを置く。**TAMは市場上限の参考へ移し、判断を変える証拠を中央に残す。** これは説明用の仮説であり、実際のSHAPE Sportsの投資方針ではない。
+
+![スポーツ映像市場の情報を列挙したスライドと、判断条件・根拠・次の行動で構造化したスライドの比較図](https://raw.githubusercontent.com/silovar-uk/myessays/main/assets/slide-skill-20261102-0900-decision-branch-first-before-after.svg "図2｜情報の羅列から、判断条件・根拠・次の行動を備えるページへ。説明用の模式図。")
+
+**What changes：** Six topics do not equal a decision. 6項目をすべて捨てるのではなく、decisionを変える情報を本文に残し、残りをappendix（補足資料）に移す。
 
 ## 離｜図を選ぶより、判断の型を選ぶ
 
