@@ -19,6 +19,10 @@ abstract: "1匹の蛇が巻きつくアスクレピオスの杖は、なぜ医�
 
 先に答えを短く記す。**アスクレピオスの杖（Rod of Asclepius）とは、通常は翼のない杖に1匹の蛇が巻きつく、古代ギリシャの治療の神に由来する図像**である。世界保健機関（WHO）の紋章にも使われる。蛇が2匹、しばしば翼も付いている「ヘルメスの杖（カドゥケウス／caduceus）」とは歴史的な出自が違う。ただし、「1匹が正解、2匹は全部誤り」で歴史が終わるわけではない。異なる道を通って現代の医療界に入った二つの印を、順に見ていこう。[世界保健機関の説明](https://www.who.int/about/policies/publishing/logo)／[英国エディンバラ王立内科医協会](https://www.rcpe.ac.uk/heritage/college-symbolism-snake)
 
+![古代の医療の神アスクレピオスの彫像。そばには蛇の巻きついた杖がある](https://upload.wikimedia.org/wikipedia/commons/0/09/Ancient_Greece_Marble_Statue_of_Asclepius%2C_c._160_AD_Roman_Copy_of_4th_C._BC_Greek_Original%2C_from_Sanctuary_of_Asclepius_at_Epidauros.jpg)
+
+*写真：アスクレピオスの彫像。蛇の巻きついた杖が、神の姿を見分ける手がかりになる。[写真出典・再利用条件（Wikimedia Commons）](https://commons.wikimedia.org/wiki/File:Ancient_Greece_Marble_Statue_of_Asclepius,_c._160_AD_Roman_Copy_of_4th_C._BC_Greek_Original,_from_Sanctuary_of_Asclepius_at_Epidauros.jpg)。*
+
 ## 1｜そもそも「象徴」とは何か――絵は医療そのものではない
 
 この杖の意味を考える前に、道具と象徴を分けたい。体温計は体温を測り、包帯は傷を覆う。つまり、仕事を直接助ける道具だ。対して、蛇の描かれたマークを見ても病気は治らない。それでも救急車や医療団体の紋章に印が付いていると、見る人はそこに「医療に関係する」という意味を読み取る。**象徴（シンボル）とは、目に見える形によって、その形そのものにはない意味を共有する仕組み**なのである。
@@ -32,6 +36,10 @@ abstract: "1匹の蛇が巻きつくアスクレピオスの杖は、なぜ医�
 有名な伝承では、アスクレピオスは神アポロン（Apollo）の息子で、賢者ケイロン（Chiron）から治療を学び、死者さえ蘇らせるほどの力を得た。あまりの能力に、最高神ゼウス（Zeus）が人間の生死の秩序を守ろうとして雷で彼を打ったという。この結末は一見すると、優れた医師が罰せられた理不尽な話である。しかし、神話の関心が「どんな病気でも治せるか」ではなく、「人は死という限界を越えてよいのか」にも向いていたと考えると、単なる超人的な名医の物語ではなくなる。[世界保健機関](https://www.who.int/about/policies/publishing/logo)／[オックスフォード古典学事典](https://academic.oup.com/edited-volume/61673/chapter-abstract/548526290?login=false)
 
 アスクレピオスが最初から神として描かれたわけでもない。古い叙事詩『イリアス』には彼と息子たちが現れ、時代とともに治癒の神としての崇拝が広がったと説明される。ただし「実在の医師だった」という説を確定した歴史的事実として扱うことはできない。**物語の人物像が、医療を頼りたい人々の信仰を集め、のちに専門職の象徴になった**。その変化こそ、この杖の重要な歴史である。[米国国立医学図書館](https://www.nlm.nih.gov/hmd/topics/greek-medicine/index.html)／[医学史研究](https://journals.ufs.ac.za/index.php/at/article/view/2089?articlesBySameAuthorPage=2)
+
+![ギリシャ・エピダウロスのアスクレピオス聖域に残るアバトン（夢の治癒儀礼に関わる建物）の遺構](https://upload.wikimedia.org/wikipedia/commons/0/01/The_stoa_of_Abaton_or_Enkoimeterion_at_the_Sanctuary_of_Asclepius_in_Epidaurus.jpg)
+
+*写真：エピダウロスのアバトン（エンコイメーテリオン）の遺構。現代の病院とは異なるが、病む人が滞在する場所でもあった。[写真出典・撮影者・ライセンス（Wikimedia Commons）](https://commons.wikimedia.org/wiki/File:The_stoa_of_Abaton_or_Enkoimeterion_at_the_Sanctuary_of_Asclepius_in_Epidaurus.jpg)。*
 
 ## 3｜古代の病院は、神殿でもあった
 
@@ -49,10 +57,6 @@ abstract: "1匹の蛇が巻きつくアスクレピオスの杖は、なぜ医�
 
 では杖は何なのか。古代の図像でアスクレピオスは、杖を手にする年配の男性として表現されることが多い。医師が各地を歩くための**歩行杖**という説明もあるが、すべてをそれ一つで説明できるわけではない。蛇と杖がそれぞれ別のものとして描かれ、次第に一体になっていったという研究機関の説明もある。つまり、この印は「最初から完璧に完成したロゴ」ではなく、長い時間をかけて形が定まった図像なのである。[スウェーデンのカロリンスカ研究所](https://ki.se/en/about-ki/history-and-cultural-heritage/medical-history-and-heritage/the-history-of-karolinska-institutet/symbolism-of-the-ki-seal)／[科学博物館グループ](https://blog.sciencemuseumgroup.org.uk/the-symbols-of-medicine/)
 
-![蛇が巻きつく杖を携えるアスクレピオスの彫像](https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Statue_of_Asclepius_from_Epidauros_%282nd_cent._A.D.%29_at_the_National_Archaeological_Museum_of_Athens_on_27_March_2018.jpg/500px-Statue_of_Asclepius_from_Epidauros_%282nd_cent._A.D.%29_at_the_National_Archaeological_Museum_of_Athens_on_27_March_2018.jpg)
-
-*図：エピダウロス出土のアスクレピオス像をもとにした紀元2世紀のローマ時代の彫像。アテネ国立考古学博物館所蔵。写真：George E. Koronaios、[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Statue_of_Asclepius_from_Epidauros_(2nd_cent._A.D.)_at_the_National_Archaeological_Museum_of_Athens_on_27_March_2018.jpg)、[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。画像は縮小表示のみ。*
-
 ## 5｜「本当は蛇ではなく寄生虫」説を、なぜ断定しないのか
 
 ここで奇妙な説が登場する。蛇のように見えるものは、もともと**メジナ虫（ギニアワーム／Dracunculus medinensis）**ではないか、という説だ。メジナ虫は人間に寄生する細長い虫で、皮膚から出てきた虫を細い棒へ少しずつ巻き取る伝統的な処置が知られている。たしかに「棒に細長い生物が巻きつく」という形は、あのマークに似ている。古代の医療技術が後世に図案化されたとしたら、たいへん鮮やかな説明になる。[科学博物館グループ](https://blog.sciencemuseumgroup.org.uk/the-symbols-of-medicine/)／[世界医師会サイト掲載の歴史解説](https://www.wma.net/fr/jdn_15nl_finalversionforwma_11apr20191-2/)
@@ -66,6 +70,16 @@ abstract: "1匹の蛇が巻きつくアスクレピオスの杖は、なぜ医�
 有名な**ヒポクラテスの誓い（Hippocratic Oath）**は、医療者に求められる倫理、つまり患者をどう扱い、何をしてはいけないかを定める古代の誓約文だ。その冒頭は、医療の神としてのアポロン、アスクレピオス、健康の女神ヒュギエイア（Hygieia）、万能の治療薬に由来する名でも知られるパナケイア（Panacea）らに誓う形になっている。観察に基づく治療を重視した伝統と、神々を証人とする言葉が、同じ医学文化に共存していたのである。[米国国立医学図書館による誓いの訳](https://www.nlm.nih.gov/hmd/topics/greek-medicine/index.html)
 
 現代では、その原文をすべての医師がそのまま宣誓しているわけではない。また「まず害をなすな」という有名な表現が原文にそのまま書かれている、という理解も正確ではない。重要なのは、昔の医学を「全部迷信」、今の医学を「全部科学」と線で切らないことだ。医療の方法は変化しても、**不安な人を預かる専門職が自らの行為に制限を設ける必要**は残る。杖はその歴史を読み解く入口にもなる。[米国国立医学図書館](https://www.nlm.nih.gov/hmd/topics/greek-medicine/index.html)／[医療倫理研究](https://pmc.ncbi.nlm.nih.gov/articles/PMC9297488/)
+
+### 図解｜ひと目でわかる「2本の杖」
+
+| ⚕ アスクレピオスの杖 | ☤ ヘルメスの杖（カドゥケウス） |
+|:---:|:---:|
+| **蛇は1匹** | **蛇は2匹** |
+| **翼はない** | **翼が付くことが多い** |
+| **由来：医療・治癒の神** | **由来：使者・旅・商業の神** |
+
+*図：古代の典型的な図案の比較。記号は形を簡略化したもので、現代の組織が採用する全種類のロゴを分類できるわけではない。[米国国立医学図書館の図像解説](https://www.nlm.nih.gov/hmd/topics/greek-medicine/Caduceus_snake_detail_2415079R-sm.html?imgid=5)。*
 
 ## 7｜いちばん間違えやすい2本の杖
 
@@ -86,6 +100,18 @@ abstract: "1匹の蛇が巻きつくアスクレピオスの杖は、なぜ医�
 ここには注意したい対立がある。医学史の論文は、神話上の意味が違うのだから「医療の象徴として使うのは誤用だ」と批判する。一方、米国陸軍医療部門の公式説明は、カドゥケウスに**非戦闘員**、つまり戦闘ではなく医療などを担う者の役割を示す意味があったと説明し、現在も両方の印を用途によって使い分けている。後者は軍自身による制度史の説明であり、起源をめぐる学術的な論争が解消したという意味ではない。それでも「全員が蛇の数を数え間違えただけ」とする説明より、制度と用途の違いを考えられる。[米国陸軍医療部門](https://achh.army.mil/history/tools-faq/)／[医学誌の批判](https://pmc.ncbi.nlm.nih.gov/articles/PMC9582002/)
 
 この違いは案外大きい。**図像の歴史上の意味と、組織が後から与えた意味は一致するとは限らない**。古代の神話に照らせば間違っていても、長年の使用によって別の意味が定着することがある。ロゴの意味を調べるなら、図案の出典だけでなく、採用した組織、時代、当時の意図まで見る必要があるのだ。
+
+### 図解｜医療の象徴はどう受け継がれたか
+
+| 時代 | 象徴をめぐる出来事 | 読み取れる変化 |
+|---|---|---|
+| 古代ギリシャ | アスクレピオス信仰と蛇の図像 | 治癒への祈り |
+| 紀元前4世紀ごろ | エピダウロスの聖域が発展 | 治療の場と信仰の結びつき |
+| 1851年・1902年 | 米軍の医療関係者が2匹の蛇の杖を採用 | 別系統の印が医療組織へ |
+| 1948年 | 世界保健機関が1匹の蛇の杖を紋章に使用 | 国際的な医療の象徴へ |
+| 現代 | 2つの図案がさまざまな場所で使われる | 歴史的な由来と慣用の共存 |
+
+*図：象徴の変遷を理解するための主要な出来事。各図案そのものの成立年代を表すものではない。[ユネスコ](https://whc.unesco.org/en/list/491/)／[米国陸軍](https://achh.army.mil/history/tools-faq/)／[世界保健機関](https://www.who.int/about/policies/publishing/logo)。*
 
 ## 9｜世界保健機関と救急車――いま、どこで見られる？
 
