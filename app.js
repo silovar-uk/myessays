@@ -152,7 +152,10 @@ function inlineMarkdown(text='') {
 function safeImageSource(value='') {
   const source = String(value).trim();
   if (/^https:\/\//i.test(source)) return source;
-  if (/^(?:\.\.?\/)?assets\/[A-Za-z0-9_./-]+$/i.test(source)) return source;
+  if (/^(?:\.\.?\/)?assets\/[A-Za-z0-9_./-]+$/i.test(source)) {
+    const normalize = typeof window !== 'undefined' ? window.MyEssaysMarkdown?.resolveImageSource : null;
+    return typeof normalize === 'function' ? normalize(source) : source;
+  }
   return '';
 }
 
