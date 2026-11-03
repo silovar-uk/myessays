@@ -46,7 +46,7 @@ Three concepts matter. Production control tracks plans, progress, and capacity. 
 
 This is an original decision model, not a reconstruction of the actual exercise. After detection, the team checks safety and scope, decides on shutdown, isolation, or fallback operation, and then verifies quality before restarting. A narrow focus on recovery speed can overlook quality assurance.
 
-![図解：異常検知から再開までの判断は直線ではない](assets/factory-ot-incident-decision-20261103.svg)
+![図解：異常検知から再開までの判断は直線ではない](../assets/factory-ot-incident-decision-20261103.svg)
 
 *Original conceptual diagram; source: author's analysis based on IPA guidance. Not an actual exercise record.*
 
@@ -54,7 +54,7 @@ This is an original decision model, not a reconstruction of the actual exercise.
 
 Assume a production line A → B → C. If B stops, work-in-process may accumulate before B while C may run short of input. This is a hypothetical example, not a participating factory's actual process. Recovery planning must consider inventory, alternative machines, outsourcing, and delivery commitments.
 
-![図解：工程の依存関係が損失の大きさを変える](assets/factory-ot-process-dependency-20261103.svg)
+![図解：工程の依存関係が損失の大きさを変える](../assets/factory-ot-process-dependency-20261103.svg)
 
 *Original conceptual diagram; source: author's analysis based on IPA guidance. Not an actual exercise record.*
 
