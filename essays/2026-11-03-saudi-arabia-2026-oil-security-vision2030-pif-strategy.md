@@ -28,7 +28,7 @@ relation: ""
 
 情勢を理解するには、軍事ニュースだけを追っても足りない。最初の調査では、①国の統治制度、②石油と財政、③2030年に向けた改革、④地域の安全保障、⑤人々の権利と働き方、という五つの観点を分けた。その結果、サウジは単なる産油国というより、**国が最大級の資金提供者・事業発注者・安全保障の担い手を兼ねる国**だと捉え直せる。だから国家経営の成果も、一つの成長率だけでは測れない。
 
-![サウジアラビアの首都リヤドの街並み。2022年撮影](https://commons.wikimedia.org/wiki/Special:FilePath/Riyadh_skyline.jpg?width=960)
+![サウジアラビアの首都リヤドの街並み。2022年撮影](https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Riyadh_skyline.jpg/1280px-Riyadh_skyline.jpg)
 
 写真は2022年の首都リヤドであり、2026年の情勢を写したものではない。撮影：Thesadcactus／[ウィキメディア・コモンズの原画像](https://commons.wikimedia.org/wiki/File:Riyadh_skyline.jpg)／[クリエイティブ・コモンズ 表示・継承4.0](https://creativecommons.org/licenses/by-sa/4.0/)。改変なし。高層建築の姿は投資の規模を示すが、そこから生じる利益や人々の生活改善までは映らない。
 
