@@ -28,7 +28,7 @@ One number makes the trade-off visible. サウジ財務省の2027年予算事前
 
 One headline cannot explain an entire country. 最初のリサーチでは、①政治制度、②石油と予算、③改革、④security（安全保障）、⑤労働と権利を分けて確認した。するとサウジは、政府が資金提供者・発注者・安全保障の担い手を兼ねる特殊な構造として見えてくる。This changes the measurement problem. 経済成長率だけでは成果を判定できない。
 
-![サウジアラビアの首都リヤドの街並み。2022年撮影](https://commons.wikimedia.org/wiki/Special:FilePath/Riyadh_skyline.jpg?width=960)
+![サウジアラビアの首都リヤドの街並み。2022年撮影](https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Riyadh_skyline.jpg/1280px-Riyadh_skyline.jpg)
 
 This is Riyadh in 2022, not a photo of the 2026 conflict. 撮影：Thesadcactus／[原画像](https://commons.wikimedia.org/wiki/File:Riyadh_skyline.jpg)／[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)。改変なし。The skyline shows buildings, not returns. 建設の規模と生活改善・投資回収は別の問題である。
 
