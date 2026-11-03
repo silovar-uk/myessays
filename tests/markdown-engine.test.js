@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 const root = path.join(__dirname, '..');
 const indexHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -34,4 +35,38 @@ test('Node.js article keeps language-labelled fenced code as authoring input', (
   assert.match(nodeEssay, /```js/);
   assert.match(nodeEssay, /```bash/);
   assert.doesNotMatch(engine, /paragraph\.push\(line\.trim\(\)\)/);
+});
+
+test('local Markdown image URLs stay inside the site prefix', () => {
+  const context = {
+    window: {},
+    document: {
+      baseURI: 'https://silovar-uk.github.io/myessays/',
+      querySelector: () => ({ src: 'https://silovar-uk.github.io/myessays/markdown-engine.js?v=test' })
+    },
+    URL
+  };
+  vm.runInNewContext(engine, context);
+  const resolve = context.window.MyEssaysMarkdown.resolveImageSource;
+  assert.equal(resolve('../assets/diagram.svg'), 'https://silovar-uk.github.io/myessays/assets/diagram.svg');
+  assert.equal(resolve('./assets/diagram.svg'), 'https://silovar-uk.github.io/myessays/assets/diagram.svg');
+  assert.equal(resolve('assets/diagram.svg'), 'https://silovar-uk.github.io/myessays/assets/diagram.svg');
+  assert.equal(resolve('../assets/../../escape.svg'), '');
+  assert.equal(resolve('javascript:alert(1)'), '');
+});
+
+test('factory incident article image references exist and resolve to the deployment prefix', () => {
+  const files = [
+    'essays/2026-11-03-shindanshi-news-20261103-1300-factory-ot-incident-drill.md',
+    'english-mix/shindanshi-news-20261103-1300-factory-ot-incident-drill.md'
+  ];
+  for (const file of files) {
+    const markdown = fs.readFileSync(path.join(root, file), 'utf8');
+    const imagePaths = [...markdown.matchAll(/!\[[^\]]*\]\(([^\s)]+)/g)].map(match => match[1]);
+    assert.equal(imagePaths.length, 2, file + ': expected two diagrams');
+    for (const imagePath of imagePaths) {
+      const assetPath = imagePath.replace(/^(?:\.\.?\/)?assets\//, 'assets/');
+      assert.ok(fs.existsSync(path.join(root, assetPath)), file + ': missing ' + assetPath);
+    }
+  }
 });
