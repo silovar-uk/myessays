@@ -42,6 +42,7 @@ test('local Markdown image URLs stay inside the site prefix', () => {
     window: {},
     document: {
       baseURI: 'https://silovar-uk.github.io/myessays/',
+      addEventListener: () => {},
       querySelector: () => ({ src: 'https://silovar-uk.github.io/myessays/markdown-engine.js?v=test' })
     },
     URL
