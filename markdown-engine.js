@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const ENGINE_VERSION = '2026.08.16.2';
+  const ENGINE_VERSION = '2026.11.03.1';
   const legacyRender = typeof window.renderMarkdown === 'function' ? window.renderMarkdown : null;
 
   function escapeHtml(value = '') {
@@ -33,6 +33,26 @@
     if (/^(?:\.\.?\/)?assets\/[A-Za-z0-9_./-]+(?:[?#].*)?$/i.test(source)) return true;
     if (/^\/myessays\/assets\/[A-Za-z0-9_./-]+(?:[?#].*)?$/i.test(source)) return true;
     return false;
+  }
+
+  // Fetched Markdown is rendered inside index.html, so ../assets would
+  // otherwise escape the /myessays/ deployment prefix.
+  function resolveImageSource(value = '') {
+    const source = String(value).trim();
+    if (!safeImageSource(source)) return '';
+    if (!/^(?:\.\.?\/)?assets\//i.test(source)) return source;
+
+    const assetPath = source.replace(/^(?:\.\.?\/)?assets\//i, 'assets/');
+    const segments = assetPath.split(/[?#]/, 1)[0].split('/');
+    if (segments.some(segment => !segment || segment === '.' || segment === '..')) return '';
+
+    try {
+      const script = document.querySelector('script[src*="markdown-engine.js"]');
+      const baseUrl = new URL('.', script?.src || document.baseURI);
+      return new URL(assetPath, baseUrl).href;
+    } catch {
+      return '';
+    }
   }
 
   function collectFootnotes(markdown) {
@@ -176,10 +196,12 @@
   function enhanceImages(root) {
     root.querySelectorAll('img').forEach(image => {
       const source = image.getAttribute('src') || '';
-      if (!safeImageSource(source)) {
+      const resolved = resolveImageSource(source);
+      if (!resolved) {
         image.replaceWith(document.createTextNode(image.alt || ''));
         return;
       }
+      image.setAttribute('src', resolved);
       image.loading = 'lazy';
       image.decoding = 'async';
     });
@@ -339,6 +361,7 @@
   window.MyEssaysMarkdown = {
     version: ENGINE_VERSION,
     render,
+    resolveImageSource,
     enhanceHtml,
     legacyRender
   };
