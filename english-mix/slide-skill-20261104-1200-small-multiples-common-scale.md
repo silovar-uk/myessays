@@ -1,0 +1,58 @@
+---
+id: "slide-skill-20261104-1200-small-multiples-common-scale"
+title: "複数市場の変化は同じ目盛りで並べる｜スモールマルチプル"
+subtitle: "独立したグラフの目盛りを統一し、規模差を見失わない"
+created: "2026-11-04"
+updated: "2026-11-04"
+type: "Guide"
+status: "完成"
+tags: ["スライド制作", "図解", "グラフ", "比較"]
+keywords: ["スモールマルチプル", "共通尺度", "比較グラフ"]
+grow: 3
+abstract: "2026年11月4日12時のレイアウト教材。複数の会場・市場を小さなグラフで比較するとき、軸をそろえないと規模や変化の解釈が歪む。架空データのBefore→After、PowerPointでの制作手順、別案、失敗例と60秒課題を示す。"
+---
+
+# 複数市場の変化は同じ目盛りで並べる｜スモールマルチプル
+
+**2026-11-04 12:00 JST｜学習ID 2026-11-04/1200｜レイアウト・図解｜3〜5分**
+
+## 今日の結論
+
+**Use a common scale（共通尺度）when comparing small charts.** Small multiples（同じ形式の小図を並べる手法）は、違いを一目で捉えるためのもの。軸が違うと見た目の傾きや長さを比較できない。
+
+## 守｜比較できる条件を先にそろえる
+
+会場A・B・Cのmonthly attendance（月間来場者数）を並べるとき、各図の縦軸が異なると、実際の規模差が隠れる。Common scale（共通尺度）とは、すべての図で最小値・最大値・単位を統一すること。特に棒の長さで量を示す場合は、原則としてゼロを起点にする。折れ線は小さな変化を示すために範囲を狭める場合もあるが、比較上の意図を明示する。
+
+## Before→After｜3会場を同じ物差しで見る
+
+Sample data（架空データ）はAが80→90千人、Bが30→45千人、Cが10→20千人。Beforeは会場ごとに目盛りが違い、すべて同じ程度に伸びたように見える。Afterは0〜100千人の共通尺度で並べ、規模差を保ったまま変化を示す。増加率も必要ならAは12.5%、Bは50%、Cは100%と別ラベルにする。**Absolute volume（絶対数）とgrowth rate（増加率）は別の問い**である。
+
+![架空の3会場の変化を、異なる目盛りと共通目盛りで比較した独自図解](https://raw.githubusercontent.com/silovar-uk/myessays/main/assets/slide-skill-20261104-1200-small-multiples-common-scale.svg)
+
+*図：左は尺度が異なるため比較に不向き。右は共通尺度で規模差を可視化。数値はすべて架空。*
+
+## 破｜4ステップでレイアウトを作る
+
+1. **Decision question（判断の問い）を決める。**「最大の会場はどこか」なら絶対数、「伸びが速いのはどこか」なら増加率を優先する。
+2. **Unit and period（単位と期間）を統一する。** 来場者数は千人、対象期間は4月と5月、対象範囲は同一条件にする。
+3. **Duplicate small charts（小図を複製）する。** Windows版PowerPointでは［挿入］→［グラフ］で作成し、データを編集する。軸の最大・最小値を各グラフで統一し、同じサイズで整列する。
+4. **Add direct labels（直接ラベル）を付ける。** 各図に会場名・値・単位を置き、必要なら増加率を併記する。最後に縮小表示で読めるか確認する。
+
+## 離｜向かない情報と別案
+
+**Good fit（向く）：** 同じ指標を多数の地域・顧客群・時点で比較する場合。**Poor fit（向かない）：** 2系列だけで細かな数値を正確に読む場合は表、構成比なら積み上げ棒、項目間の相関なら散布図が適切。会場間の規模差が大きすぎて小さい会場の変化が消えるなら、絶対数の図と増加率の図を分ける。共通尺度を守ること自体が目的ではなく、判断の問いに合うことが目的だ。
+
+## 失敗例｜見た目をそろえて軸だけ違う
+
+**Failure（失敗）：** 小図を複製してから自動軸設定のまま値だけ変える。**Fix（回避）：** 軸の範囲、ゼロ起点、単位、期間を図の下に明記する。視覚的な整列と比較条件の統一を別々に確認する。
+
+## 60秒課題｜同じ物差しに直す
+
+「店舗A：売上100→110万円」「店舗B：20→30万円」を2つの棒グラフで描くなら、軸をどうするか。**Answer（解答）：** 絶対額を比較するなら両方0〜120万円など共通範囲にする。成長率の比較が目的ならAは10%、Bは50%と率を別に示す。
+
+## 参考資料・Simple English
+
+参考：[Microsoft公式｜PowerPointでグラフを作る](https://support.microsoft.com/en-us/accessibility/powerpoint/use-a-screen-reader-to-create-charts-in-powerpoint)／[Microsoft公式｜アクセシビリティと表・図](https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities)／[SlideLand｜公開図解の研究](https://www.slideland.tech/)。図は独自制作であり公開作例の転載ではない。
+
+**Simple English: Use the same scale for a fair comparison.** ／ **日本語：公平に比較するなら、同じ目盛りを使おう。**
