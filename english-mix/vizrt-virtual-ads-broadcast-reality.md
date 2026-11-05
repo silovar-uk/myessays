@@ -110,7 +110,7 @@ Who competes with Vizrt? The answer depends on what the customer is buying. 顧�
 - **Virtual advertising（仮想広告）：** 配信地域や条件に応じた広告枠を作る。
 - **Live production infrastructure（生放送制作基盤）：** CGの制作・描画・制御・映像合成などを支える。
 
-For ad replacement, TGI Sport / Supponor and uniqFEED are possible comparison targets. 放送用CGの制作基盤ではロス・ビデオ（Ross Video）などが比較候補になる。This is a functional map, not a verified ranking of products.
+For ad replacement, TGI Sport / Supponor and uniqFEED are possible comparison targets. 放送用CGの制作基盤ではロス・ビデオ（Ross Video）などが比較候補になる。This is a functional map, not a verified ranking of products. [TGI Sport technology](https://tgisport.com/services/tech/)／[Ross Video graphics](https://www.rossvideo.com/products/graphics-and-virtual/xpression/)
 
 A broadcaster may buy the system to reduce production friction. A rights holder may buy it to create revenue. 同じ技術を評価するにも、損益計算書のどこを変えるかは異なる。**Define the buyer's problem before defining the market.** 技術名だけでは競争優位は測れない。
 
