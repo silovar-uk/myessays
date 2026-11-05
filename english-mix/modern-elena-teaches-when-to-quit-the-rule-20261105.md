@@ -32,7 +32,7 @@ I reread the transcript as a decision sequence, not a move list. 主力の中攻
 
 Knowing a hundred moves does not mean knowing when to use one. 少数の技でも、結果を見てreselectできれば戦える。The lesson teaches a sequence of attention: which signals should matter next.
 
-Psychology calls「もしXならY」an implementation intention（実行意図）。ゴルヴィッツァー（Peter M. Gollwitzer）とシーラン（Paschal Sheeran）の[2006年の統合分析](https://doi.org/10.1016/S0065-2601(06)38002-1)は94件の独立検証でd＝0.65を報告した。This is general goal-achievement evidence, not an experiment on Elena players.
+Psychology calls「もしXならY」an implementation intention（実行意図）。ゴルヴィッツァー（Peter M. Gollwitzer）とシーラン（Paschal Sheeran）の[2006年の統合分析](https://doi.org/10.1016/S0065-2601%2806%2938002-1)は94件の独立検証でd＝0.65を報告した。This is general goal-achievement evidence, not an experiment on Elena players.
 
 But an if–then rule works only if the cue is identified correctly. 条件を誤読すれば、a tidy routine can produce confident mistakes. So the next question is how learners notice that a rule no longer fits.
 
@@ -99,7 +99,7 @@ Return to the tutorial. The instructor gives us an entrance and also points towa
 
 - [Original ACQUA tutorial](https://www.youtube.com/watch?v=jqFhyP1FBzc)／[timestamp notes](https://acqua-souken.com/v/jqFhyP1FBzc/)
 - [Official Capcom Elena material](https://steamcommunity.com/games/1364780/announcements/detail/534348484694770027)
-- [Gollwitzer & Sheeran（2006）, implementation intentions](https://doi.org/10.1016/S0065-2601(06)38002-1)／[2025 planning review](https://doi.org/10.1146/annurev-psych-021524-110536)
+- [Gollwitzer & Sheeran（2006）, implementation intentions](https://doi.org/10.1016/S0065-2601%2806%2938002-1)／[2025 planning review](https://doi.org/10.1146/annurev-psych-021524-110536)
 - [Schwartz et al.（2012）, overzealous transfer](https://eric.ed.gov/?id=EJ974017)／[Schwartz（2025）, adaptive learner](https://doi.org/10.1080/00461520.2024.2397389)
 - [AHRQ checklist comparison](https://www.ahrq.gov/diagnostic-safety/resources/issue-briefs/dxchecklists-3.html)／[AHRQ conclusion](https://www.ahrq.gov/diagnostic-safety/resources/issue-briefs/dxchecklists-6.html)
 - [Eric Hayot / エリック・ハイヨ『The Elements of Academic Style』](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168014/)：Uneven U（非対称のU字）を段落と記事全体の展開に参照。
