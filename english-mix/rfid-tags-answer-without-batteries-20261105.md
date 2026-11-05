@@ -16,7 +16,7 @@ abstract: "電池のない値札は、どうしてリーダーに返事ができ
 
 *2026年11月5日｜守破離リサーチ／事実・解釈・仮説を区別した技術・事業論考*
 
-A clothing tag answers back.こちらから話しかけた覚えもないのに、棚卸しの機械に向かって「私はこの商品です」と名乗る。No battery, either.値札の労働環境が心配になるが、仕組みを調べると、もっと妙な話だった。**値札は自分から声を出しているわけではない。**
+A clothing tag answers back. こちらから話しかけた覚えもないのに、棚卸しの機械に向かって「私はこの商品です」と名乗る。No battery, either. 値札の労働環境が心配になるが、仕組みを調べると、もっと妙な話だった。**値札は自分から声を出しているわけではない。**
 
 This is RFID（電波による個体識別）の話である。製品に付いた小さなICとアンテナが、読み取り機から届いた電波を利用して識別情報を返す。バーコードのように見える位置へ1点ずつ向けなくても、複数の商品を読み取れる場合がある。[GS1：RFIDの仕組み](https://support.gs1.org/support/solutions/articles/43000734380-how-does-an-rfid-system-work-)／[GS1：バーコードとEPCの違い](https://support.gs1.org/support/solutions/articles/43000734209-how-are-gs1-databar-and-epc-the-same-and-how-are-they-different-)
 
@@ -32,35 +32,35 @@ A passive tag usually has neither a battery nor its own radio transmitter.リー
 
 *写真：Boevaya mashina、2019年。デカトロンのTシャツの縫い込みラベルを分解した実物。[元画像と利用条件](https://commons.wikimedia.org/wiki/File:RFID_tag_in_textile_label_disassembled.jpg)（CC BY-SA 4.0、改変なし）。*
 
-Look closely: a metal antenna hides inside the fabric.秘密基地のような大型装置ではなく、商品の一部として縫い込める薄い部品だ。ただし、タグが返すのは識別子であって、商品名、価格、持ち主の人生まで知っているわけではない。そうした情報は、通常、別のデータベースと照合する。[GS1 Japan：EPCとSGTIN](https://www.gs1jp.org/standard/epc/about_epc.html)
+Look closely: a metal antenna hides inside the fabric. 秘密基地のような大型装置ではなく、商品の一部として縫い込める薄い部品だ。ただし、タグが返すのは識別子であって、商品名、価格、持ち主の人生まで知っているわけではない。そうした情報は、通常、別のデータベースと照合する。[GS1 Japan：EPCとSGTIN](https://www.gs1jp.org/standard/epc/about_epc.html)
 
-The first job of RFID is identification: giving a physical object an individual name.名前が分かった後、その名前をどの記録へ結び付けるかは別の設計問題になる。
+The first job of RFID is identification: giving a physical object an individual name. 名前が分かった後、その名前をどの記録へ結び付けるかは別の設計問題になる。
 
 ## 守②｜スポーツ用品店とマラソン大会は、同じ仕組みを別の目的で使っている
 
-Decathlon is a concrete case of item-level RFID in sports retail.同社の公開資料によれば、2008年にフランスで試験を始め、2019年1月までに全商品へRFIDタグを付ける体制を整えた。製造、倉庫、店舗の検品・棚卸し・会計へと、読み取りの場を拡張している。[デカトロン公式：RFIDの導入史](https://www.decathlon-united.media/media/decathlon-united-rfid-en)
+Decathlon is a concrete case of item-level RFID in sports retail. 同社の公開資料によれば、2008年にフランスで試験を始め、2019年1月までに全商品へRFIDタグを付ける体制を整えた。製造、倉庫、店舗の検品・棚卸し・会計へと、読み取りの場を拡張している。[デカトロン公式：RFIDの導入史](https://www.decathlon-united.media/media/decathlon-united-rfid-en)
 
 ![RFIDリーダーとアンテナの実機写真](https://commons.wikimedia.org/wiki/Special:FilePath/TransCore_RFID_reader_and_antenna.jpg)
 
 *写真：z22、2014年。交通用RFIDリーダー・アンテナの実機。デカトロンの店舗設備ではない。[元画像と利用条件](https://commons.wikimedia.org/wiki/File:TransCore_RFID_reader_and_antenna.jpg)（CC BY-SA 3.0、改変なし）。*
 
-Now, shift the scene.マラソン大会では、ゼッケンに付いたタグとコース上の計測マットを組み合わせ、競技者が計測地点を通過した時刻を記録する。MYLAPSはこの方式をパッシブUHFタグを利用するBibTagシステムとして提供し、製品資料では検知率99.8%超を掲げる。ただし、これは提供会社の製品仕様上の数値であり、どの大会・条件でも同率を保証する意味ではない。[MYLAPS公式：ランニング計測](https://mylaps.com/active-sports/sports/running/?noredirect=en-US)
+Now, shift the scene. マラソン大会では、ゼッケンに付いたタグとコース上の計測マットを組み合わせ、競技者が計測地点を通過した時刻を記録する。MYLAPSはこの方式をパッシブUHFタグを利用するBibTagシステムとして提供し、製品資料では検知率99.8%超を掲げる。ただし、これは提供会社の製品仕様上の数値であり、どの大会・条件でも同率を保証する意味ではない。[MYLAPS公式：ランニング計測](https://mylaps.com/active-sports/sports/running/?noredirect=en-US)
 
-Both systems read an individual ID, but**商品管理で知りたいのは在庫の状態、レースで知りたいのは通過の時刻**である。同じ電波技術でも、業務が求める出来事は異なる。ここを見落とすと「RFIDがあれば何でも追跡できる」という、ずいぶん元気な誤解が生まれる。
+Both systems read an individual ID. ただし、**商品管理で知りたいのは在庫の状態、レースで知りたいのは通過の時刻**である。同じ電波技術でも、業務が求める出来事は異なる。ここを見落とすと「RFIDがあれば何でも追跡できる」という、ずいぶん元気な誤解が生まれる。
 
-Now for a market reality check.RAIN Allianceによると、主要タグ用ICメーカー4社の2025年出荷数は**427億個**。2024年の記録的水準からは減少した。This is neither revenue nor the total number of active tags.市場の伸びを語るときは、何を数えているのかを先に確かめる必要がある。[RAIN Alliance：2025年出荷実績（2026年4月公表）](https://therainalliance.org/rain-alliance-reports-42-7-billion-tag-chip-shipments-in-2025/)
+Now for a market reality check. RAIN Allianceによると、主要タグ用ICメーカー4社の2025年出荷数は**427億個**。2024年の記録的水準からは減少した。This is neither revenue nor the total number of active tags.市場の伸びを語るときは、何を数えているのかを先に確かめる必要がある。[RAIN Alliance：2025年出荷実績（2026年4月公表）](https://therainalliance.org/rain-alliance-reports-42-7-billion-tag-chip-shipments-in-2025/)
 
 ## 守③｜読み取り記録は「目撃情報」であって、現在地や本人の意図ではない
 
-Imagine a stadium warehouse: a reader detects radio unit A at 9 a.m.分かったのは、その地点の読み取り条件下でIDが検知されたことだ。午前11時にも同じ場所にあるか、誰が使ったか、持ち出しが適法だったかまでは、その記録だけでは分からない。
+Imagine a stadium warehouse: a reader detects radio unit A at 9 a.m. 分かったのは、その地点の読み取り条件下でIDが検知されたことだ。午前11時にも同じ場所にあるか、誰が使ったか、持ち出しが適法だったかまでは、その記録だけでは分からない。
 
-GS1が定めるEPCIS（電子商品コード情報サービス）は、現実世界の出来事を共有するための標準である。主な情報は、**何を（What）、いつ（When）、どこで（Where）、どんな業務文脈で（Why）**の4つ。Here, Why means business context, not personal motivation（人間の心理）ではなく、入荷・出荷などの業務上の意味を指す。[GS1 Japan：EPCISの考え方](https://www.gs1jp.org/standard/epcis/)
+GS1が定めるEPCIS（電子商品コード情報サービス）は、現実世界の出来事を共有するための標準である。主な情報は、**何を（What）、いつ（When）、どこで（Where）、どんな業務文脈で（Why）**の4つ。Here, Why means business context, not a person's inner motivation. 入荷・出荷など、業務上何が起きたかを説明する言葉である。[GS1 Japan：EPCISの考え方](https://www.gs1jp.org/standard/epcis/)
 
 ![RFIDの個体IDから業務イベント、意思決定までの過程](https://raw.githubusercontent.com/silovar-uk/myessays/main/assets/rfid-identification-event-decision-20261105.svg)
 
 *筆者作成。RFIDの読み取り、イベント情報への変換、業務上の判断を区別する概念図。*
 
-Real-world reading has physical edge cases.水分はUHF帯の電波を吸収し、金属は反射やアンテナ特性の変化を起こす。専用タグや配置の工夫で改善できるが、すべての環境で読み漏れが消えるわけではない。[GS1：金属と水の影響](https://support.gs1.org/support/solutions/articles/43000734154-does-rfid-work-around-metal-and-water-)
+Real-world reading has physical edge cases. 水分はUHF帯の電波を吸収し、金属は反射やアンテナ特性の変化を起こす。専用タグや配置の工夫で改善できるが、すべての環境で読み漏れが消えるわけではない。[GS1：金属と水の影響](https://support.gs1.org/support/solutions/articles/43000734154-does-rfid-work-around-metal-and-water-)
 
 One more trap:**読み取れなかったことは、そこに存在しないことの証明ではない**という点だ。これは在庫にも競技者にも効いてくる。RFIDの導入を考えるなら、検知そのものの精度に加え、読み漏れ、重複検知、誤った照合を業務側でどう扱うかまで設計する必要がある。
 
@@ -70,9 +70,9 @@ From here, we move from verified cases to interpretation and hypotheses（未検
 
 Imagine tracking stadium equipment.従来は担当者が台帳と現物を照合する。RFIDを導入すると、一括読み取りで照合工程を短縮できる可能性がある。ただし、誰かのバッグに残った無線機、金属ケースで読めない機材、IDだけが残った破損タグがあれば、作業は終わらない。つまり商品の「見える化」以上に、**例外を処理する仕組み**が重要になる。
 
-When estimating ROI（投資対効果）, 年間便益を「削減できた照合作業時間の価値＋減らせた紛失・再調達費＋回避できた欠品損失」と分け、タグ・リーダー・システム・保守・運用変更の総費用を引いて考える。項目は検証の枠組みであり、便益を実証した数値ではない。実測前に「効率化率30%」などと置いてしまうと、数字が先に結論を作ってしまう。
+ROI（投資対効果）を試算するとき、年間便益を「削減できた照合作業時間の価値＋減らせた紛失・再調達費＋回避できた欠品損失」と分け、タグ・リーダー・システム・保守・運用変更の総費用を引いて考える。項目は検証の枠組みであり、便益を実証した数値ではない。実測前に「効率化率30%」などと置いてしまうと、数字が先に結論を作ってしまう。
 
-This is a proposed shift: from selling tags to reducing unresolved work on the ground.最初に数えるべきなのはタグの個数ではなく、現場で発生している探索・照合・差し戻しの回数だ。
+This is a proposed shift: from selling tags to reducing unresolved work on the ground. 最初に数えるべきなのはタグの個数ではなく、現場で発生している探索・照合・差し戻しの回数だ。
 
 ## 破②｜スマートフォンへの搭載は前進しているが、一般普及を既成事実にしてはいけない
 
@@ -88,15 +88,15 @@ Consider one practical business hypothesis.大会参加者がゴールした瞬�
 
 The clock time at a timing mat may differ from the time a runner passes a camera.撮影地点の位置、時計の同期、競技者の速度、映像中の遮蔽、参加者IDの対応関係を扱わなければ、間違った映像を本人へ配信しかねない。**RFIDは顔認識の代用品ではなく、検索範囲を絞る手掛かり**として使うのが自然だろう。
 
-Potential business models include 参加者向けの写真・動画販売、大会主催者向けの運営分析、計測事業者向けの映像照合機能が考えられる。ただし、顧客が追加料金を払うか、撮影・利用許諾が得られるか、どの精度まで許容されるかは未検証だ。実証では「何人中何人を正しい候補へ絞れたか」と「本人確認を含む人手作業が何分減ったか」を別々に測る必要がある。
+Possible services include（考えられるサービスは）参加者向けの写真・動画販売、大会主催者向けの運営分析、計測事業者向けの映像照合機能だ。ただし、顧客が追加料金を払うか、撮影・利用許諾が得られるか、どの精度まで許容されるかは未検証だ。実証では「何人中何人を正しい候補へ絞れたか」と「本人確認を含む人手作業が何分減ったか」を別々に測る必要がある。
 
 ## 離①｜RFIDから見えるのは「同じ商品」と「この1個」が違うという思想だ
 
-Picture three identical jerseys: same size, color, and model.販売管理では同一商品として扱えても、返品・修理・譲渡の履歴は3枚で違う。GS1のSGTINは、商品種別を表すGTINに個別のシリアル番号を加え、同種の商品を1個ずつ区別できる識別子である。識別子はRFID以外の方法でも扱える。[GS1 Japan：SGTINの説明](https://www.gs1jp.org/standard/epc/about_epc.html)
+Picture three identical jerseys: same size, color, and model. 販売管理では同一商品として扱えても、返品・修理・譲渡の履歴は3枚で違う。GS1のSGTINは、商品種別を表すGTINに個別のシリアル番号を加え、同種の商品を1個ずつ区別できる識別子である。識別子はRFID以外の方法でも扱える。[GS1 Japan：SGTINの説明](https://www.gs1jp.org/standard/epc/about_epc.html)
 
 This suggests an individual history for every physical item.製造、入庫、販売、修理、回収などの出来事を、同じ個体IDへ接続する。スポーツ用品であれば、交換履歴の確認や中古流通での情報照合などが候補になる。ただし、それらが実際にどこまで記録・共有されるかは制度と企業の設計次第で、RFIDタグ単独では実現しない。
 
-A longer product history also raises a harder question: privacy.商品IDが購入者IDと結び付けば、モノの記録が人の行動記録へ変わる。来場者のリストバンドを追えば便利になる場面もあるが、「便利だから集める」では取得目的の説明にならない。技術によって観測できることと、観測してよいことを分ける必要がある。
+A longer product history also raises a harder question: privacy. 商品IDが購入者IDと結び付けば、モノの記録が人の行動記録へ変わる。来場者のリストバンドを追えば便利になる場面もあるが、「便利だから集める」では取得目的の説明にならない。技術によって観測できることと、観測してよいことを分ける必要がある。
 
 ## 離②｜「誰がどこにいるか」を知りたいとき、RFIDを使わない判断も正しい
 
@@ -106,33 +106,33 @@ Start technology selection with the observation question.個別のQRコードで
 
 *筆者作成。用途別の概念比較。実際の導入では読取距離、設置条件、費用、個人情報の扱いを別途検証する。*
 
-The surprise: researching RFID can reveal when not to use RFID.それは調査の失敗ではない。技術の性能から考え始めると「できること」の一覧になるが、現場の問いから始めると「どこまで必要か」の判断になる。むしろ後者の方が、事業化の議論には役立つ。
+The surprise: researching RFID can reveal when not to use RFID. それは調査の失敗ではない。技術の性能から考え始めると「できること」の一覧になるが、現場の問いから始めると「どこまで必要か」の判断になる。むしろ後者の方が、事業化の議論には役立つ。
 
 ## 検証と限界｜再リサーチで、便利な物語を三つ修正した
 
 At first glance, 「RFIDならモノを追跡できる」「市場は右肩上がり」「スマホ対応で一気に普及する」と書きたくなる。しかし一次情報へ戻ると、いずれも条件を加えない限り言い過ぎだった。RFIDの通常の読み取りは観測地点でのイベントであり、無条件の連続位置追跡ではない。2025年のタグ用IC出荷は前年より減った。企業向けプロセッサの発表は、消費者向け端末の普及を証明しない。[GS1](https://support.gs1.org/support/solutions/articles/43000734380-how-does-an-rfid-system-work-)／[RAIN Alliance](https://therainalliance.org/rain-alliance-reports-42-7-billion-tag-chip-shipments-in-2025/)／[Qualcomm](https://www.qualcomm.com/news/releases/2025/08/qualcomm-launches-world-s-first-enterprise-mobile-processor-with)
 
-The second research pass checked デカトロンの公式導入史、MYLAPSの製品説明、GS1のイベントデータ標準である。3資料を並べると、実際に導入されている用途は「大量の商品」「通過時刻」「業務イベント」と異なるが、共通しているのはIDを意思決定に必要な出来事へ変換する仕事だと分かる。これは事例を横断した筆者の解釈であり、各社が同じ事業戦略を採っているという主張ではない。
+The second research pass checked Decathlon's adoption history, MYLAPS product documents, and GS1's EPCIS standard.3資料を並べると、実際に導入されている用途は「大量の商品」「通過時刻」「業務イベント」と異なるが、共通しているのはIDを意思決定に必要な出来事へ変換する仕事だと分かる。これは事例を横断した筆者の解釈であり、各社が同じ事業戦略を採っているという主張ではない。
 
 This article is desk research based on public sources; 現場への取材、実機試験、顧客ヒアリングは行っていない。RFIDによる映像販売の利益率や需要、特定会場での読取率を確認したものでもない。読者が活用する際は、技術仕様と顧客課題の両面を独立して検証する必要がある。
 
 ## 実務への接続｜まず4週間で「読む価値」を測る
 
-The proposed proof of concept（小規模実証）は、小さく始める。**第1週**は対象を一つだけ決める。例えば無線機30台の返却管理や、マラソンの特定通過地点と写真の照合だ。現行手順、担当者、所要時間、紛失や誤照合の頻度を記録する。ここでは「困っている」という感想だけでなく、何回、何分、いくらを確認する。
+Start with a small proof of concept（実証実験）。巨大なシステム構築から始めない。**第1週**は対象を一つだけ決める。例えば無線機30台の返却管理や、マラソンの特定通過地点と写真の照合だ。現行手順、担当者、所要時間、紛失や誤照合の頻度を記録する。ここでは「困っている」という感想だけでなく、何回、何分、いくらを確認する。
 
 **第2週**は小規模なタグ・リーダーの配置試験を行い、水・金属・向き・密集による読み漏れと誤検知を測る。**第3週**は読み取りデータを業務イベントへ変換し、例外時の手作業を含む運用を試す。**第4週**に従来方式と比較し、処理時間、照合精度、再処理件数、運用費用、利用者負担を評価する。期間と対象台数は提案上の仮置きであり、必要な試験期間は現場条件で変わる。
 
-The success criterion is not 'the tag was read,' but 「現場の損失が、導入・維持費を上回る程度に減った」こととする。費用や精度が合わなければQRコードや既存システムの改善へ切り替える。技術導入そのものを成功基準にしないことが、実証を事業判断へつなげる。
+Success means reducing real-world losses enough to outweigh deployment and maintenance costs, not merely reading a tag. これを実証の合格条件とする。費用や精度が合わなければQRコードや既存システムの改善へ切り替える。技術導入そのものを成功基準にしないことが、実証を事業判断へつなげる。
 
 ## 再利用プロンプト｜次の技術も同じ深さで調べる
 
 > 対象技術について、①原理と限界を一次資料で確認し、②既存の導入企業・実際の業務・計測可能な成果を分け、③代替技術との比較を行う。次に、事実と未検証の仮説を区別して、スポーツ・エンタメ領域での事業機会を3案作る。各案について顧客の現行業務、未解決の損失、導入条件、必要なデータ、誤検知や権利の例外、検証指標を示す。初回調査でできた主張を疑う再リサーチを行い、間違いがあれば修正する。最後に「その技術を使わない方がよい条件」を必ず明示する。専門用語は初出で説明し、図解と出典リンクを付ける。
 
-The goal is not to maximize novelty.調べて分かった原理をいったん疑い、別の技術へ乗り換える可能性まで残すことだ。新規事業の調査では、最初の仮説を捨てられる設計も成果になる。
+The goal is not to maximize novelty. 調べて分かった原理をいったん疑い、別の技術へ乗り換える可能性まで残すことだ。新規事業の調査では、最初の仮説を捨てられる設計も成果になる。
 
 ## 結語｜電池のない値札が教えるのは、モノにも「目撃証言」があるということだ
 
-Back to the original puzzle.電池のない値札は、電波を受けて識別子を返す。しかし、それだけでは自分が売れたか、捨てられたか、大切に使われたかを知らない。知っているのは、受け取った電波に対して返した小さな信号だけだ。
+Back to the original puzzle. 電池のない値札は、電波を受けて識別子を返す。しかし、それだけでは自分が売れたか、捨てられたか、大切に使われたかを知らない。知っているのは、受け取った電波に対して返した小さな信号だけだ。
 
 When we attach time, place, and business meaning to that signal, モノの「目撃証言」が積み上がる。だからRFIDの本当の競争は、タグがどれだけ遠くから読めるかだけでは終わらない。**その証言から何を判断でき、どこから先は判断してはいけないかを設計する仕事**が残る。値札は無口だった。しゃべりすぎていたのは、むしろこちらの期待の方だった。
 
