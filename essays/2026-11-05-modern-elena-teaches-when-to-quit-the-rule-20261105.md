@@ -24,7 +24,7 @@ abstract: "初心者向けモダンエレナ講座の最後に、講師が自分
 
 ![『ストリートファイター6』エレナの公式キャラクターデザイン](https://clan.akamai.steamstatic.com/images/42954094/75d90d931526a1258c57bf04830ad3d9dd290e46.jpg)
 
-*画像：カプコンが[公式発表（Steam）](https://steamcommunity.com/games/1364780/announcements/detail/534348484694770027)に掲載したエレナの設定画。©CAPCOM。ゲーム内の現行性能を示す図ではない。*
+*画像：カプコンが[公式発表（ゲーム配信サービス「スチーム（Steam）」）](https://steamcommunity.com/games/1364780/announcements/detail/534348484694770027)に掲載したエレナの設定画。©CAPCOM。ゲーム内の現行性能を示す図ではない。*
 
 ## 1｜リサーチ：技のリストではなく、観察の順番を教えていた
 
@@ -32,7 +32,7 @@ abstract: "初心者向けモダンエレナ講座の最後に、講師が自分
 
 技を100個知っていても、試合中にどれを使うか判断できなければ役に立たない。少数の技でも、結果を見て選び直せれば攻防が成立する。教えているのは操作だけではない。相手が発した情報のうち、どれを次の判断に使えばよいかという「観測の順番」である。
 
-心理学には「実行意図（implementation intention）」という概念がある。あらかじめ「状況Xになったら行動Yをする」と決めておく方法で、ゴルヴィッツァー（Peter M. Gollwitzer）とシーラン（Paschal Sheeran）の2006年の統合分析は94件の独立検証で目標達成に対する効果量d＝0.65を報告した。[原論文](https://doi.org/10.1016/S0065-2601(06)38002-1)。これはゲーム講座の効果を直接測った数字ではないが、初心者に条件と行動を組で渡すことの意味を考える手掛かりになる。
+心理学には「実行意図（implementation intention）」という概念がある。あらかじめ「状況Xになったら行動Yをする」と決めておく方法で、ゴルヴィッツァー（Peter M. Gollwitzer）とシーラン（Paschal Sheeran）の2006年の統合分析は94件の独立検証で目標達成に対する効果量d＝0.65を報告した。[原論文](https://doi.org/10.1016/S0065-2601%2806%2938002-1)。これはゲーム講座の効果を直接測った数字ではないが、初心者に条件と行動を組で渡すことの意味を考える手掛かりになる。
 
 ただし、条件付きの行動が便利なのは、条件を正しく見分けられる場合に限られる。相手の動きを誤読したり、以前は有効だった連係が通用しなくなったりしたら、整理された手順ほど自信を持って失敗を繰り返す可能性がある。次に必要なのは、手順の効能だけでなく「手順が崩れた兆候」を調べることだった。
 
@@ -99,7 +99,7 @@ Aは最初の場面にしか判断が書かれていない。Bは防御の変化
 
 - [原動画：アクア「初心者向けモダンエレナ使い方講座」](https://www.youtube.com/watch?v=jqFhyP1FBzc)／[講師の時刻別ノート](https://acqua-souken.com/v/jqFhyP1FBzc/)
 - [カプコン公式：エレナ紹介](https://steamcommunity.com/games/1364780/announcements/detail/534348484694770027)
-- [Gollwitzer & Sheeran（2006）：実行意図の統合分析](https://doi.org/10.1016/S0065-2601(06)38002-1)／[2025年の計画心理学総説](https://doi.org/10.1146/annurev-psych-021524-110536)
-- [Schwartzら（2012）：過剰な転用](https://eric.ed.gov/?id=EJ974017)／[Schwartz（2025）：適応的な学習](https://doi.org/10.1080/00461520.2024.2397389)
-- [AHRQ：確認表の比較](https://www.ahrq.gov/diagnostic-safety/resources/issue-briefs/dxchecklists-3.html)／[AHRQ：研究の限界と結論](https://www.ahrq.gov/diagnostic-safety/resources/issue-briefs/dxchecklists-6.html)
-- [エリック・ハイヨ（Eric Hayot）『The Elements of Academic Style』](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168014/)：非対称のU字（Uneven U）を段落と記事全体の展開に参照。
+- [ゴルヴィッツァーとシーラン（2006）：実行意図の統合分析](https://doi.org/10.1016/S0065-2601%2806%2938002-1)／[2025年の計画心理学総説](https://doi.org/10.1146/annurev-psych-021524-110536)
+- [シュワルツら（2012）：過剰な転用](https://eric.ed.gov/?id=EJ974017)／[シュワルツ（2025）：適応的な学習](https://doi.org/10.1080/00461520.2024.2397389)
+- [米国医療研究品質庁：確認表の比較](https://www.ahrq.gov/diagnostic-safety/resources/issue-briefs/dxchecklists-3.html)／[米国医療研究品質庁：研究の限界と結論](https://www.ahrq.gov/diagnostic-safety/resources/issue-briefs/dxchecklists-6.html)
+- [エリック・ハイヨ（Eric Hayot）『学術的文章のスタイルを構成する要素（The Elements of Academic Style）』](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168014/)：非対称のU字（Uneven U）を段落と記事全体の展開に参照。
