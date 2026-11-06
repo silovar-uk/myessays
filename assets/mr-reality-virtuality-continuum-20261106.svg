@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 290" role="img" aria-labelledby="t d">
+<title id="t">現実と仮想の連続体</title><desc id="d">左の現実環境から右の仮想環境へ移るにつれ、拡張現実と拡張仮想があり、その両方を含む複合現実領域を示す。</desc>
+<rect width="960" height="290" rx="22" fill="#f5f7fb"/><text x="46" y="44" fill="#183154" font-size="24" font-weight="700" font-family="sans-serif">現実と仮想は、4つの独立した箱ではない</text>
+<text x="46" y="72" fill="#56657a" font-size="15" font-family="sans-serif">Milgram &amp; Kishino（1994）の現実・仮想連続体をもとにした概念図</text>
+<defs><linearGradient id="g"><stop stop-color="#14a99b"/><stop offset="0.5" stop-color="#3e83b5"/><stop offset="1" stop-color="#7456b3"/></linearGradient></defs>
+<rect x="70" y="133" width="820" height="30" rx="15" fill="url(#g)"/><path d="M890 148l-14 -12v24z" fill="#f5f7fb"/>
+<g fill="#183154" font-family="sans-serif" text-anchor="middle" font-size="19" font-weight="700"><text x="96" y="115">現実環境</text><text x="330" y="115">AR</text><text x="630" y="115">AV</text><text x="849" y="115">仮想環境</text></g>
+<g fill="#5d6a7b" font-family="sans-serif" text-anchor="middle" font-size="15"><text x="330" y="194">現実に仮想を追加</text><text x="630" y="194">仮想に現実を追加</text></g>
+<path d="M235 203v17h490v-17" fill="none" stroke="#183154" stroke-width="3" stroke-linejoin="round"/><text x="480" y="250" font-family="sans-serif" fill="#183154" text-anchor="middle" font-size="22" font-weight="700">MR（複合現実）</text>
+<text x="480" y="274" font-family="sans-serif" fill="#59697d" text-anchor="middle" font-size="13">AR／AVはMRの一部。厳密な境界は用途・文脈で変わる。</text>
+</svg>
