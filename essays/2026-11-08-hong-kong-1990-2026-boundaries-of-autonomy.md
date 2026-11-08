@@ -6,6 +6,8 @@ created: "2026-11-08"
 updated: "2026-11-08"
 type: "Essay"
 status: "完成"
+series: "香港を知る――制度・食卓・地形"
+seriesOrder: 1
 tags: ["香港", "現代史", "中国", "一国二制度", "政治", "社会", "文化"]
 keywords: ["Hong Kong", "Basic Law", "One Country Two Systems", "2019 protests", "national security", "Cantonese"]
 grow: 4
