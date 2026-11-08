@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-label="目的、論点、仮説、検証、作業、判断基準、更新履歴、責任と期限をつなぐ管理図">
+<rect width="1200" height="690" rx="28" fill="#f8fafc"/>
+<text x="62" y="76" fill="#0f172a" font-family="sans-serif" font-size="38" font-weight="700">作業表の横に「なぜ変えるか」を残す</text>
+<text x="62" y="114" fill="#64748b" font-family="sans-serif" font-size="21">論点管理 × 作業管理 × 判断の引き継ぎ</text>
+<rect x="64" y="153" width="1072" height="121" rx="17" fill="#e0f2fe"/>
+<rect x="80" y="168" width="86" height="43" rx="11" fill="#0369a1"/><text x="101" y="197" fill="white" font-size="19" font-family="sans-serif">決める</text>
+<text x="200" y="202" font-family="sans-serif" font-size="27" font-weight="700" fill="#0c4a6e">1 目的　　2 論点　　3 仮説</text>
+<text x="201" y="244" font-family="sans-serif" font-size="19" fill="#0369a1">最終判断に必要な問いと、現在の仮の答え</text>
+<path d="M600 275 V310" stroke="#64748b" stroke-width="4"/><path d="M590 301 L600 314 L610 301" fill="none" stroke="#64748b" stroke-width="4"/>
+<rect x="64" y="320" width="1072" height="121" rx="17" fill="#dcfce7"/>
+<rect x="80" y="335" width="86" height="43" rx="11" fill="#166534"/><text x="101" y="364" fill="white" font-size="19" font-family="sans-serif">確かめる</text>
+<text x="200" y="370" font-family="sans-serif" font-size="27" font-weight="700" fill="#14532d">4 検証　　5 作業　　6 判断基準</text>
+<text x="201" y="412" font-family="sans-serif" font-size="19" fill="#166534">誰が何を調べ、どの結果なら次の行動を変えるか</text>
+<path d="M600 442 V477" stroke="#64748b" stroke-width="4"/><path d="M590 468 L600 481 L610 468" fill="none" stroke="#64748b" stroke-width="4"/>
+<rect x="64" y="487" width="1072" height="121" rx="17" fill="#ffedd5"/>
+<rect x="80" y="502" width="86" height="43" rx="11" fill="#9a3412"/><text x="101" y="531" fill="white" font-size="19" font-family="sans-serif">引き継ぐ</text>
+<text x="200" y="537" font-family="sans-serif" font-size="27" font-weight="700" fill="#7c2d12">7 更新履歴　　8 責任と期限</text>
+<text x="201" y="579" font-family="sans-serif" font-size="19" fill="#9a3412">何が分かって方針が変わり、誰がいつ決めるか</text>
+<text x="68" y="653" fill="#475569" font-family="sans-serif" font-size="19">提案図｜変更は失敗の記録ではなく、学習の記録にもなる。</text>
+</svg>
