@@ -56,7 +56,7 @@ Three possible forms of memory emerge: **place, relationships, and judgment**. �
 
 ## 破｜もっともらしい説明に、わざと別の説明をぶつける
 
-**Collective learning is not the same as causal proof.** 2019年には新しい法案、衝突の拡大、技術環境の変化があった。An alternative explanation might emphasize the new political threat rather than experience gained in 2014. Another might focus on digital communication. 研究上も、2019年の戦術の進化とその限界が検討されている。[ケンブリッジ大学出版局・抗議戦術研究](https://www.cambridge.org/core/journals/china-quarterly/article/evolution-of-protest-repertoires-in-hong-kong-violent-tactics-in-the-antiextradition-bill-protests-in-2019/E59AC952FD5D818DB65F8043D4824A5F)。
+Abduction（仮説的推論） means looking for a plausible explanation of observed facts, not proving it correct.[スタンフォード哲学百科事典](https://plato.stanford.edu/entries/abduction/)。 **Collective learning is not the same as causal proof.** 2019年には新しい法案、衝突の拡大、技術環境の変化があった。An alternative explanation might emphasize the new political threat rather than experience gained in 2014. Another might focus on digital communication. 研究上も、2019年の戦術の進化とその限界が検討されている。[ケンブリッジ大学出版局・抗議戦術研究](https://www.cambridge.org/core/journals/china-quarterly/article/evolution-of-protest-repertoires-in-hong-kong-violent-tactics-in-the-antiextradition-bill-protests-in-2019/E59AC952FD5D818DB65F8043D4824A5F)。
 
 空・雨・傘で点検しよう。**空（observation）**：2014年の長期占拠、2019年の異なる動員、二つの運動のつながりを示す研究がある。**雨（inference）**：2014年の経験が2019年の動員を支えた可能性がある。**傘（next test）**：活動の時系列、公開されている団体記録、匿名化された調査を突き合わせ、別の説明と比較する。We have not conducted interviews or tracked individual participants. 政治的リスクがある状況で、本人の安全に関わる個人追跡を軽々しく求めるべきではない。
 
