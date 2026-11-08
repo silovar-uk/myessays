@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+<title id="title">MIXIのスポーツ関連事業を「顧客接点・価値・収益の例」で比較する独自の構造図</title>
+<desc id="desc">3列はクラブ、アリーナ、観戦店舗との接点。左は千葉ジェッツ・FC東京、中央はLaLa arena TOKYO-BAY、右はFansta。互いの直接的な収益連携を表す矢印は描いていない。</desc>
+<rect width="1280" height="640" fill="#f7f9fc"/>
+<text x="54" y="69" font-family="system-ui,'Noto Sans JP',sans-serif" font-size="34" font-weight="700" fill="#142439">同じ「スポーツ事業」でも、価値を届ける接点は異なる</text>
+<text x="54" y="111" font-family="system-ui,'Noto Sans JP',sans-serif" font-size="20" fill="#506174">MIXI GROUP統合報告書2025の掲載内容から抽出した3列の比較観点</text>
+<g font-family="system-ui,'Noto Sans JP',sans-serif">
+<rect x="50" y="153" width="370" height="383" rx="18" fill="white" stroke="#d9e2ee" stroke-width="2"/>
+<rect x="50" y="153" width="370" height="72" rx="18" fill="#dbeafe"/>
+<rect x="50" y="204" width="370" height="21" fill="#dbeafe"/>
+<text x="74" y="201" font-size="26" font-weight="700" fill="#164274">1. クラブ・試合</text>
+<text x="74" y="265" font-size="22" font-weight="700" fill="#192d45">千葉ジェッツ／FC東京</text>
+<text x="74" y="311" font-size="18" fill="#536579">主な接点</text>
+<text x="74" y="343" font-size="21" font-weight="600" fill="#172b45">ファン・スポンサー</text>
+<line x1="74" y1="362" x2="396" y2="362" stroke="#d9e2ee"/>
+<text x="74" y="396" font-size="18" fill="#536579">提供する価値</text>
+<text x="74" y="428" font-size="21" font-weight="600" fill="#172b45">試合体験・チーム運営</text>
+<line x1="74" y1="447" x2="396" y2="447" stroke="#d9e2ee"/>
+<text x="74" y="478" font-size="18" fill="#536579">収益の例</text>
+<text x="74" y="509" font-size="18" font-weight="600" fill="#172b45">協賛・チケット・物販等</text>
+<rect x="455" y="153" width="370" height="383" rx="18" fill="white" stroke="#d9e2ee" stroke-width="2"/>
+<rect x="455" y="153" width="370" height="72" rx="18" fill="#d4f3ee"/>
+<rect x="455" y="204" width="370" height="21" fill="#d4f3ee"/>
+<text x="479" y="201" font-size="26" font-weight="700" fill="#176457">2. 観戦・興行の場</text>
+<text x="479" y="265" font-size="22" font-weight="700" fill="#192d45">LaLa arena TOKYO-BAY</text>
+<text x="479" y="311" font-size="18" fill="#536579">主な接点</text>
+<text x="479" y="343" font-size="21" font-weight="600" fill="#172b45">興行主・施設利用者</text>
+<line x1="479" y1="362" x2="801" y2="362" stroke="#d9e2ee"/>
+<text x="479" y="396" font-size="18" fill="#536579">提供する価値</text>
+<text x="479" y="428" font-size="21" font-weight="600" fill="#172b45">イベントを開催する空間</text>
+<line x1="479" y1="447" x2="801" y2="447" stroke="#d9e2ee"/>
+<text x="479" y="478" font-size="18" fill="#536579">収益の例</text>
+<text x="479" y="509" font-size="18" font-weight="600" fill="#172b45">施設の利用料</text>
+<rect x="860" y="153" width="370" height="383" rx="18" fill="white" stroke="#d9e2ee" stroke-width="2"/>
+<rect x="860" y="153" width="370" height="72" rx="18" fill="#feecd4"/>
+<rect x="860" y="204" width="370" height="21" fill="#feecd4"/>
+<text x="884" y="201" font-size="26" font-weight="700" fill="#8c4a0e">3. 店舗での観戦</text>
+<text x="884" y="265" font-size="24" font-weight="700" fill="#192d45">Fansta</text>
+<text x="884" y="311" font-size="18" fill="#536579">主な接点</text>
+<text x="884" y="343" font-size="21" font-weight="600" fill="#172b45">飲食店・観戦ユーザー</text>
+<line x1="884" y1="362" x2="1206" y2="362" stroke="#d9e2ee"/>
+<text x="884" y="396" font-size="18" fill="#536579">提供する価値</text>
+<text x="884" y="428" font-size="20" font-weight="600" fill="#172b45">観戦可能な店舗への案内</text>
+<line x1="884" y1="447" x2="1206" y2="447" stroke="#d9e2ee"/>
+<text x="884" y="478" font-size="18" fill="#536579">収益の例</text>
+<text x="884" y="509" font-size="18" font-weight="600" fill="#172b45">月額利用料・送客料</text>
+<rect x="50" y="555" width="1180" height="55" rx="10" fill="#e9eef5"/>
+<text x="67" y="588" font-size="18" font-weight="600" fill="#293f55">注意：3列は別々の事業構造の比較。列間の直接的な収益連携を示すものではない。</text>
+</g></svg>
