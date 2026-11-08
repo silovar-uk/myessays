@@ -68,6 +68,8 @@ In July 2025 the U.S. Department of Justice announced allegations about a Univer
 
 The practical lesson is not 'big firms are bad.' Rather, efficiency and competition are separate evaluation criteria. **A bundled service can be convenient and still weaken the buyer's alternatives.** 大規模な外注を評価するなら、価格だけでなく入札の競争性も確認する必要がある。
 
+A second, separate case also matters. In 2024 the DOJ alleged that Legends exercised unlawful operational control before closing its acquisition of ASM Global. A **December 2024 civil judgment** required **$3.5 million in penalties** and antitrust compliance measures. This is different from the 2025 arena-bidding agreement. The conduct is commonly called **gun-jumping（買収完了前の先走った統合）**: rival businesses must remain independent until legally allowed to merge. [DOJ's 2024 case documents](https://www.justice.gov/atr/case/us-v-legends-hospitality-parent-holdings-llc).
+
 ## 5. 離｜Hotels, trading houses and business-process outsourcing
 
 Hotels separate **property ownership** from brand management and daily operations. Legends similarly creates value without necessarily owning each stadium. ただし、イベント開催日は限定され、ホテルと需要変動の形は異なる。
