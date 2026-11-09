@@ -33,7 +33,7 @@ abstract: "広東語の六声を1から6まで言える料理名「番茄醬牛�
 
 ![広東語の実測音高の軌跡。六種類の発音の時間的変化を示す](https://upload.wikimedia.org/wikipedia/commons/0/02/Cantonese_tones.svg)
 
-図2：実際の発話で観察される声の高さの軌跡の一例。出典：[ウィキメディア・コモンズ「Cantonese tones.svg」](https://commons.wikimedia.org/wiki/File:Cantonese_tones.svg)、作者Saurmandal、[表示―継承4.0国際（CC BY-SA 4.0）](https://creativecommons.org/licenses/by-sa/4.0/)。画像は改変せず外部の原本を参照。図1の教育用模式図とは異なる。
+図2：実際の発話で観察される声の高さの軌跡の一例。出典：[ウィキメディア・コモンズ「Cantonese tones.svg」](https://commons.wikimedia.org/wiki/File:Cantonese_tones.svg)、作者（登録名：Saurmandal）、[表示―継承4.0国際（CC BY-SA 4.0）](https://creativecommons.org/licenses/by-sa/4.0/)。画像は改変せず外部の原本を参照。図1の教育用模式図とは異なる。
 
 動画がこの論文を参照した証拠は見つかっていない。ここは断定しない。それでも、同じ料理名が口頭の入門講座にも学術論文にも現れるのは、偶然の面白さだけでは終わらない。発音教材がなぜ「意味のある一続きの言葉」を必要とするのか、調べる価値がある。
 
@@ -112,6 +112,6 @@ abstract: "広東語の六声を1から6まで言える料理名「番茄醬牛�
 5. [ペギー・モク／アルバート・リー（Peggy Mok / Albert Lee）「広東語・英語二言語児による語彙声調の習得」（2018年、PDF）](https://ling.cuhk.edu.hk/people/peggy/Mok%26Lee_2018_JCL.pdf) — 六声の音高値と入声音節。
 6. [プラート（Praat）公式サイト](https://www.fon.hum.uva.nl/praat/) — 音声分析ソフトの説明。
 7. [エリック・ハイヨ（Eric Hayot）『学術文体の要素』（The Elements of Academic Style）](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168014/) — 抽象と具体を往復し、段落末で認識を進める「不均等なU字構造（Uneven U）」を文章の編集方針として参照。
-8. [ウィキメディア・コモンズの声調曲線の図](https://commons.wikimedia.org/wiki/File:Cantonese_tones.svg) — 図2、Saurmandal、表示―継承4.0国際。
+8. [ウィキメディア・コモンズの声調曲線の図](https://commons.wikimedia.org/wiki/File:Cantonese_tones.svg) — 図2、作者（登録名：Saurmandal）、表示―継承4.0国際。
 
 調査基準日：2026年11月10日。音高の数字は一般的な代表値であり、個人差や文脈による変化を排除するものではない。料理名の動画と論文の間に直接の引用関係があったかは未確認。本文の練習実験は提案であり、実施結果ではない。
