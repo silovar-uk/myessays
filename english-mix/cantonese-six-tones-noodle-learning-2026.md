@@ -27,7 +27,7 @@ What does it mean to *learn* a sound? 「その音を一度真似できた」と
 - 茄：ke2 — 第2声
 - 醬：zoeng3 — 第3声
 - 牛：ngau4 — 第4声
-- 腩：nam5 — 第5声
+- 腩：naam5 — 第5声
 - 麵：min6 — 第6声
 
 この練習表現は、[和泉素行氏の動画](https://www.youtube.com/watch?v=xNxm8tZilkI)に登場する。だが、もっと奇妙な発見がある。香港教育大学の張凌（Zhang Ling）が2019年に発表した[声調教育の論文（PDF、52ページ）](https://ijcle.eduhk.hk/uploads/issues/376/IJCLE_No.5_Jun19_03.pdf#page=8)にも、まったく同じ料理名が学習用の一例として載っている。An unlikely meeting of noodles and phonetics. ただし、動画と論文に直接の参照関係があるかは未確認である。
