@@ -127,7 +127,7 @@ abstract: "1937年創立の文学座を、著名俳優や名作の年表では�
 - [文学座「アトリエとは」](https://www.bungakuza.com/about_us/atelier1.html) — アトリエの開設、上演作、実験の系譜。
 - [文学座附属演劇研究所](https://www.bungakuza.com/newinstitute/aboutus.html) ／ [2027年度の募集方針](https://www.bungakuza.com/newinstitute/67ki.html) — 研究所の歴史と制度変更。
 - [文学座「組織」](https://www.bungakuza.com/guide.html) ／ [文学座支持会](https://www.bungakuza.com/supporters.html) — 事業機能と会員制度。
-- [国際交流基金「文学座Women」前編](https://performingarts.jpf.go.jp/article/74791/) ／ [後編](https://performingarts.jpf.go.jp/article/76780/) — 演出家への取材と、新劇という分類の受け止め方。
+- [国際交流基金「文学座の女性演出家（文学座Women）」前編](https://performingarts.jpf.go.jp/article/74791/) ／ [後編](https://performingarts.jpf.go.jp/article/76780/) — 演出家への取材と、新劇という分類の受け止め方。
 - [日本大百科全書等「文学座」](https://kotobank.jp/word/%E6%96%87%E5%AD%A6%E5%BA%A7-128323) — 1963年の分裂を含む演劇史の概要。関係者の動機の断定には別の史料照合が必要。
 - [2021年資金調達](https://readyfor.jp/projects/bungakuza) ／ [終了報告](https://readyfor.jp/projects/bungakuza/accomplish_report) — 支援額、人数、資金使途。
 - [『みつ豆』公式案内](https://www.bungakuza.com/mitsumame/index.html) — 90周年記念公演、料金、出演・制作情報。
