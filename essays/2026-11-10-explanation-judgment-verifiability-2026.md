@@ -112,7 +112,7 @@ abstract: "人は仕組みを理解したつもりでも、説明を求められ
 - [チーら（1989）「自己説明――学生は例題からどのように学ぶか」](https://doi.org/10.1207/s15516709cog1302_1)
 - [ビスラら（2018）「自己説明を促す介入の統合分析」](https://eric.ed.gov/?id=EJ1186664)
 - [誤答への自己説明と学習（2024）](https://doi.org/10.1016/j.cedpsych.2024.102326)
-- [リプトン（1993）「対照的説明と因果的三角測量」](https://www.cambridge.org/core/journals/philosophy-of-science/article/abs/contrastive-explanation-and-causal-triangulation/2386BABD2D795F273E0F4EC1D2ECBD5E)
+- [リプトン（1991）「対照的説明と因果的三角測量」](https://www.cambridge.org/core/journals/philosophy-of-science/article/abs/contrastive-explanation-and-causal-triangulation/2386BABD2D795F273E0F4EC1D2ECBD5E)
 - [クラーク、ブレナン（1991）「コミュニケーションにおける共通基盤の形成」](https://www.cs.cmu.edu/~illah/CLASSDOCS/Clark91.pdf)
 - [米国医療研究品質庁「教え返し法」](https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/teachback.html)
 - [フォック、ウェルド（2024）「検証可能性を求めて――人工知能の説明と人間の判断」](https://doi.org/10.1002/aaai.12182)
