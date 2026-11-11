@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 650" role="img" aria-label="アリーナ建設意思決定の八つのゲート">
+<rect width="1100" height="650" rx="22" fill="#f6f4ed"/><g font-family="Arial,'Noto Sans JP','Yu Gothic',sans-serif"><text x="49" y="57" font-size="32" fill="#1c2c33" font-weight="700">アリーナ建設｜8つの意思決定ゲート</text><text x="49" y="87" font-size="18" fill="#63717a">「建てられるか」ではなく、「次へ進んでよいか」を判断する</text>
+<rect x="48" y="122" width="486" height="100" rx="13" fill="#e4ece9"/><text x="65" y="156" font-size="17" font-weight="700" fill="#0d6e61">01｜目的</text><text x="65" y="187" font-size="21" fill="#1e3136">何の不足を解決するのか</text>
+<rect x="566" y="122" width="486" height="100" rx="13" fill="#e4ece9"/><text x="583" y="156" font-size="17" font-weight="700" fill="#0d6e61">02｜市場</text><text x="583" y="187" font-size="21" fill="#1e3136">誰が何日、いくら払うのか</text>
+<rect x="48" y="243" width="486" height="100" rx="13" fill="#e8e8f0"/><text x="65" y="277" font-size="17" font-weight="700" fill="#5c5799">03｜仕様</text><text x="65" y="308" font-size="21" fill="#1e3136">規格と商品性を両立できるか</text>
+<rect x="566" y="243" width="486" height="100" rx="13" fill="#e8e8f0"/><text x="583" y="277" font-size="17" font-weight="700" fill="#5c5799">04｜立地</text><text x="583" y="308" font-size="21" fill="#1e3136">輸送・近隣負担を処理できるか</text>
+<rect x="48" y="364" width="486" height="100" rx="13" fill="#eee4d6"/><text x="65" y="398" font-size="17" font-weight="700" fill="#976529">05｜権利</text><text x="65" y="429" font-size="21" fill="#1e3136">収入・投資・リスクは誰のものか</text>
+<rect x="566" y="364" width="486" height="100" rx="13" fill="#eee4d6"/><text x="583" y="398" font-size="17" font-weight="700" fill="#976529">06｜資金</text><text x="583" y="429" font-size="21" fill="#1e3136">下振れ時にも資金が尽きないか</text>
+<rect x="48" y="485" width="486" height="100" rx="13" fill="#e1eaf1"/><text x="65" y="519" font-size="17" font-weight="700" fill="#3a668d">07｜公共性</text><text x="65" y="550" font-size="21" fill="#1e3136">他案より社会的に望ましいか</text>
+<rect x="566" y="485" width="486" height="100" rx="13" fill="#e1eaf1"/><text x="583" y="519" font-size="17" font-weight="700" fill="#3a668d">08｜実行</text><text x="583" y="550" font-size="21" fill="#1e3136">開業・更新・撤退まで実行可能か</text>
+<text x="49" y="623" font-size="16" fill="#63717a">各ゲートで「通過／修正して再検証／停止」を選ぶ。新築以外も比較対象に含める。</text></g></svg>
