@@ -12,262 +12,335 @@ grow: 5
 abstract: "Before building a new indoor arena, we should ask what problem it solves, who will book events, who earns the revenue, and who pays the costs. 日本のＢリーグ新制度、船橋・神戸・東京の事業構造、英国の開業トラブルを比較し、50の論点を8つの判断ゲートへまとめる。A clear business case needs more than a beautiful rendering and thousands of seats."
 ---
 
+
 # いまアリーナを建てるなら、何から疑うべきか
-### Before We Build the Arena — fifty questions and eight decision gates
+### Before We Build the Arena — fifty questions, eight decisions
 
-**Research and editing: November 11, 2026.** 日本語正本に基づく英語混じり版。The focus is the indoor multipurpose arena, not football or baseball stadiums. Published facts, interpretations, scenarios and proposals are kept separate.
+**調査・編集：2026年11月11日。** 対象は主に屋内の多目的アリーナであり、サッカー専用スタジアムや野球場とは分けて考える。本稿では一次資料の事実、そこからの解釈、検証すべき仮説、実務提案を区別する。
 
-### 要旨｜The first decision is not the seat count
+### 要旨｜建設費を積み上げる前に、意思決定の順番を変えたい
 
-A new arena project often starts with a rendering and a capacity target. 「1万人収容」「大型スクリーン」「街の新しい顔」。But these are design decisions, not proof of demand. 誰が予約し、いくら払い、どの法人が利益を受け取り、将来の修繕を誰が引き受けるか。その問いを飛ばすと、建築の完成と事業の完成が混同される。This essay expands the problem into fifty questions, then reduces it to eight practical decision gates.
+「新しいアリーナを造ろう」。この一言が出ると、席数、完成予想図、建設費が並び始める。しかし本来その前に、既存施設で何が足りず、誰がどの興行を持ち込み、どの契約で誰に利益が残り、何年後の修繕を誰が負担するかを確認する必要がある。リーグ基準への適合は競技の事業条件だが、施設投資の採算を保証しない。都市ににぎわいが生まれることと、運営会社が黒字になることも別だ。本稿は問題を横に広げたうえで、建設を進める・修正する・止めるための八つの判断条件へまとめる。
 
 ## 0｜The empty Wednesday that never appears in a rendering
 
-A presentation shows a packed arena, bright screens and a cheering crowd. 完成予想図は美しい。しかし、予約が入っていない水曜日はどこに描かれているのだろう。The quiet days still require staff, utilities, maintenance and financing. A venue needs to make money beyond its most photogenic event.
+The empty Wednesday matters because a building is not a business by itself. A rendering shows maximum excitement, while an investment decision must describe ordinary days, cancellations, repairs, staffing and debt. Those are not small footnotes to the project. They are conditions that determine whether a venue can stay open for decades.
 
-The British indoor arena Co-op Live（コープ・ライブ）in Manchester offers a real warning. 開業予定公演は2024年に延期・中止が相次ぎ、空調設備の一部が落下する問題なども起こった。Its first official concert took place on May 14, 2024, after several setbacks. [Sky News, May 2024](https://news.sky.com/story/manchesters-co-op-live-arena-finally-opens-after-weeks-of-cancellations-and-setbacks-13135966). The lesson is not that modern arenas cannot work. **Construction completion and operational readiness are different milestones.** 図面どおりに建てることと、安全にチケットを売れる状態になることは同じではない。
+建設計画の会議で最も目立つ数字は「1万人収容」かもしれない。1万人いれば、すごい興行ができそうだ。しかし会議室の壁に張られた完成予想図には、開催されない水曜日も、イベントを翌朝までに撤去する人件費も、20年後の空調更新も描かれていない。
+
+A useful distinction is operational readiness versus construction completion. Manchester's Co-op Live is a cautionary example: finishing the physical building does not automatically mean that technical systems, staff and promoters are ready to welcome an audience safely. A test event should be treated as evidence, not as a ceremony.
+
+屋内アリーナは、満員の夜をつくる装置であると同時に、その夜の前後に何百もの細かな仕事が発生する工場でもある。大切なのは「箱を造るか」ではなく、**どんな興行を何回つくり、どこまでを自分の収益として回収し、誰が長く責任を持つか**という問いだ。
+
+英国マンチェスターの「コープ・ライブ（Co-op Live）」では、2024年の開業予定公演が相次いで延期・中止された。空調設備の一部が落下する問題などが発生し、正式な初公演は5月14日になった。これは建設そのものが完成したかだけで、営業開始の可否を判断できないことを示している。安全、設備、スタッフ、興行主、観客のすべてがそろわなければ、数万人分の座席は売り物にならない。[英国スカイニュース（2024年5月）](https://news.sky.com/story/manchesters-co-op-live-arena-finally-opens-after-weeks-of-cancellations-and-setbacks-13135966)。
 
 ## 1｜守：Arena is not stadium — 建物の分類は事業の分類でもある
 
-An arena usually supports indoor court sports, concerts, combat sports and events. バスケやバレーを行う床が、別の日にはステージになる。A stadium is centered on a large field for football, baseball or athletics. 屋根付き野球場まで「屋内だからアリーナ」と呼ぶのは適切ではない。
+A roof is a physical feature, not a business model. The practical difference between an indoor arena and a field stadium is what can be staged, how quickly the room can be converted, and which customers pay for that flexibility. An arena must sell time, configuration and services, not just seats.
 
-Why does this distinction matter? A natural-grass stadium and a multipurpose indoor arena face different technical and commercial constraints. アリーナには床転換、音響・防音、吊り設備、ライブ興行の予約、設営と撤去がある。In both businesses, the spectator is a customer. But the event promoter is also a customer who chooses and pays for a venue. 施設の売り先が二重になっているのである。
+アリーナは、バスケットボールやバレーボールなどのコート競技と、コンサート・格闘技・イベントを想定した、主に屋内の集客施設だ。中央の床や客席構成を催事に応じて変えられる場合が多い。一方、スタジアムはサッカー・野球・陸上競技などの大きな競技フィールドを中心にする。屋根のある野球ドームを、屋内だからアリーナに分類するのは適切ではない。
+
+Two markets meet inside the same building. Spectators buy admission to an event, but promoters buy a venue in which that event can succeed. If either side has insufficient demand, the plan may fail. This is why a club's attendance data alone cannot prove the viability of a full multipurpose arena.
+
+なぜ分ける必要があるのか。天然芝を保護しながら試合を開催する事業と、バスケットボールの床を撤去して照明・音響を組み、翌日はライブを開催する事業では、設備・人員・興行営業・稼働率の意味が違うからだ。
+
+アリーナの「主催者」には少なくとも二種類がある。競技を行うクラブと、公演を企画・販売する音楽等の興行主である。アリーナの所有者、運営会社、クラブ、興行主は同じ組織とは限らない。観客は建物の顧客であり、**興行主もまた、会場という商品を買う顧客**なのだ。
 
 ## 2｜守：From public gymnasium to urban entertainment business
 
-Historically, many public gymnasiums were designed for community sports, education and competitions. その公共目的はいまも重要だ。Recent arena projects add professional leagues, concerts, premium hospitality, private real estate and district development.
+Policy can accelerate investment, yet a new policy does not remove commercial risk. The Japanese reform agenda expands the arena's role into the surrounding district, while the B.LEAGUE's new requirements create concrete conditions for professional basketball clubs. These are important drivers, but they answer different questions.
 
-Japan's policy discussion moved through stadium-and-arena reform from 2016, the [2025 reform guidebook](https://www.mext.go.jp/sports/b_menu/sports/mcatetop02/list/detail/1411943_00021.htm), and the [2026 sports-complex guidebook](https://www.meti.go.jp/policy/servicepolicy/sports_complex/index.html). A sports complex, in this policy usage, is an area where sports facilities connect with infrastructure, commercial functions and local city management. 「単体の体育館」から「街との接点」へと論点が広がった。ただし、複合開発すれば必ず儲かるという証明ではない。
+かつての公共体育館は、市民の運動機会、大会、学校・地域利用を重視して整備されてきた。そうした公共目的は今も残る。現在のアリーナ議論で新しいのは、プロ興行、音楽ライブ、法人向け接待席、商業施設、都市開発を同時に求める計画が増えている点だ。
 
-The B.LEAGUE reform also changes the discussion. 2026-27シーズンから、ＢリーグはＢプレミアなどの新体系へ移行した。Its [home-arena inspection rules](https://www.bleague.jp/files/user/about/pdf/r-38.pdf) include a 5,000-seat requirement for the B.PREMIER category and provisions related to suites and lounges. 適用時期、特例、その他の審査条件も確認が必要で、5,000席を全施設に一般化してはいけない。[League overview](https://www.bleague.jp/new-bleague/).
+政策上の流れは、2016年のスタジアム・アリーナ改革に関する官民の検討、2025年の[「スタジアム・アリーナ改革ガイドブック」第3版](https://www.mext.go.jp/sports/b_menu/sports/mcatetop02/list/detail/1411943_00021.htm)、2026年の[「スポーツコンプレックスガイドブック」](https://www.meti.go.jp/policy/servicepolicy/sports_complex/index.html)へ続く。ここでいう「スポーツコンプレックス」とは、スポーツ施設だけでなく交通・商業・公共空間など周辺エリアを一体で考える概念だ。政府が推奨する考え方であって、すべての計画で複合開発が最適と実証されたわけではない。
 
-Here is the critical distinction. **A licensing requirement tells you what you must provide; it does not tell you what the local market will buy.** リーグ基準と投資採算は別の審査なのだ。
+Eligibility and profitability are not the same test. An arena may satisfy the relevant league inspection rules and still be too expensive for the local market. Equally, a venue with strong concert demand may not fit the club's technical or scheduling needs. Good planning treats both as constraints, not as automatic justifications.
+
+バスケットボールでは、Ｂリーグが2026-27シーズンから「Ｂプレミア（B.PREMIER）」などの新たなリーグ体系へ移行した。審査には競技成績とは別に、入場者数、クラブ売上、アリーナなどの条件がある。公式[ホームアリーナ検査要項](https://www.bleague.jp/files/user/about/pdf/r-38.pdf)には、Ｂプレミア向けの入場可能数5,000席以上など、施設仕様について具体的な規定が置かれている。ただし、検査時期や特例、ほかの条件を確認せず「日本のアリーナはすべて5,000席必要」と一般化してはいけない。[Ｂリーグの制度概要](https://www.bleague.jp/new-bleague/)。
+
+さらに検査要項には、スイートと呼ぶ個室型の特別席や、飲食・談話スペースを伴うラウンジ、専用動線などの条件がある。客席を増やすだけではなく、どんな顧客体験・収益商品を設計するかまで問われる。ただし、**リーグ基準は必要な仕様の一部であり、建設規模が地域市場に合っていることの証明ではない**。
 
 ## 3｜守：First prove the need to build
 
-Before saying "We need a new arena," identify the actual problem. 既存施設の老朽化か。リーグ基準への不適合か。コンサート会場の不足か。それとも都市開発の核が欲しいのか。Each problem calls for different alternatives.
+Before choosing a design, define the counterfactual: what happens if we do not build? Renovation, shared use, smaller capacity or a phased project may solve the underlying problem with a different risk profile. A comparison is meaningful only when all options pursue the same objective.
 
-Renovating an existing gymnasium may solve a safety problem. 施設基準の一部が不足しているなら、改修や別会場の確保が候補になり得る。Concert demand requires evidence from promoters and competing venues. An urban redevelopment goal may be better served by transport or public-space improvements.
+新築が議論される理由は少なくとも四つに分けられる。①既存施設が老朽化し、安全性や法令への対応が必要、②クラブのリーグ基準を満たせない、③音楽・スポーツ等の開催需要が既存会場に収まらない、④都市開発の核として集客拠点をつくりたい、である。
 
-This is a counterfactual question: what would happen without the project? 「建てる／建てない」ではなく、改修、共同利用、規模縮小、段階的整備も比較する。**A convincing business case must beat its alternatives, not merely sound exciting.**
+The most costly assumption may be the one that is never challenged. When "new construction" silently becomes the only option, the project starts optimizing an answer instead of testing the question. A feasibility study should make it legitimate to conclude that the best facility is the one we do not build.
+
+この四つは異なる問題だ。老朽化なら改修で解決できるかもしれない。リーグ基準なら既存施設の一部改修や別のホーム会場の確保が候補になる。音楽興行の不足なら、興行主の開催意思と競合会場の空き状況を確かめたい。都市再生が目的なら、アリーナではなく駅前広場や住宅、既存商業の改善がより効果的な可能性もある。
+
+経営でいう**反実仮想**とは、計画を実施しなかった場合に何が起こるかという比較対象だ。「新築案」と「何もしない案」だけでなく、「既存改修」「規模縮小」「段階的建設」「共同利用」を並べる。新築の絵だけを先に描くと、いちばん重要な選択肢を会議から消してしまう。
 
 ## 4｜守：Event days are not the same as profitable days
 
-An arena operator can earn facility rent, naming-rights income, advertising, hospitality, food-service shares and other revenue. しかし、チケット売上は興行主やクラブ側に帰属することがあり、運営会社が全額を受け取るとは限らない。The contracts determine the cash flow.
+A booked date is not necessarily a profitable date. An arena's event calendar is also a production schedule: load-in, setup, show, cleaning and load-out all consume capacity. The relevant output is not merely the number of colored squares on the calendar, but the contribution each sequence leaves after variable expenses.
 
-Contribution margin（限界利益・貢献利益）means revenue from a given event minus the variable costs it creates, such as security, cleaning, power and setup. その余剰で年間固定費や長期更新費などを賄う必要がある。
+売上は、施設利用料、広告・命名権、特別席、飲食、駐車場、物販関連収入などから生まれる。ただしチケット売上は興行主に帰属することもあり、どの収益を誰が受け取るかは契約による。
 
-One show can block more than one calendar day. 前日の設営、当日の本番、翌日の撤去が必要なら、three occupied days might produce only one event. Basketball-to-concert conversion requires people, time and equipment. だから「稼働日が多い」という説明だけでは、採算を判断できない。
+施設を運営する側が重要視したいのは**限界利益（貢献利益）**だ。ある催事の施設側売上から、その催事で増える警備・清掃・電力・設営などの変動費を差し引いた金額をいう。そこから年間の固定費や設備更新等も賄わなければならない。
 
-The design choices are concrete: rigging capacity（吊り設備の許容荷重）, loading access（機材搬入動線）, sound isolation（防音）, sightlines（客席からの見え方）, electricity, dressing rooms and evacuation routes. All of them cost money. 最先端の設備を全部導入する前に、どの興行主がその機能を必要とするかを確かめたい。
+Technical flexibility has a price. Rigging, acoustics and conversion equipment can open new markets, but only when promoters value those capabilities enough to pay for them. There is no universal best specification. The right specification depends on which events are realistically obtainable and how much incremental income they create.
+
+イベント日だけでなく、その前後も数える。公演の前日に設営、翌日に撤去が必要なら、1公演で複数日分の日程を占める可能性がある。バスケットボールとライブの転換にも人員と時間が必要だ。年間200日「予定が入っている」としても、売上を生む開催日が何日で、準備・撤去に何日使うのかは別の問題である。
+
+興行主が求める条件も具体的だ。ステージ照明等を吊るす**吊り荷重**、搬入車両の動線、音響と防音、客席からの見え方、控室、電力、設営時間、安全性。これらは後から簡単に増設できない場合がある。他方、需要が証明されないまま最高性能を全部付けると、施設はすばらしくても投資は苦しくなる。
 
 ## 5｜守：Three Japanese arenas, three different ownership maps
 
-![Four connected but distinct arena businesses](https://silovar-uk.github.io/myessays/assets/arena-decision-architecture-2026/value-chain.svg)
+![アリーナ事業の価値と収益の流れを四つに分けた概念図](https://silovar-uk.github.io/myessays/assets/arena-decision-architecture-2026/value-chain.svg)
 
-Consider three real Japanese arenas.
+Ownership structures influence behavior because each organization faces a different payoff. The club may want attractive game dates; the venue operator wants profitable bookings; the building owner wants long-term asset returns; the city wants broader public outcomes. These goals overlap, but they are not automatically aligned.
 
-**LaLa arena TOKYO-BAY（ららアリーナ 東京ベイ）** opened in 2024 as a large indoor multipurpose venue developed through a Mitsui Fudosan–MIXI partnership. 施設保有を担う合弁会社と運営管理会社は別法人である。Its design team highlights sightline and acoustic analysis, rigging capacity and vibration control. The arena is also intended to work with nearby commercial facilities. [Mitsui Fudosan](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/), [Shimizu design](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html), [Yamashita PMC](https://www.ypmc.co.jp/info/news/20394/).
+日本の新しいアリーナ三つを並べると、事業を一社で全部やるとは限らないことが分かる。
 
-**GLION ARENA KOBE（ジーライオンアリーナ神戸）** opened in April 2025. 公表資料では、土地は神戸市、建物はＮＴＴ都市開発、運営はワン・ブライト・コウベが担う。[Facility announcement](https://www.totteikobe.jp/news/article/5780).
+**船橋・ららアリーナ 東京ベイ（LaLa arena TOKYO-BAY）**。2024年に完成した約1万人規模の施設で、三井不動産とミクシィ（MIXI）の共同事業。施設保有のための合弁会社「TOKYO-BAYアリーナ」と、施設運営の「TOKYO-BAYアリーナマネジメント」は別の法人である。駅、周辺商業、クラブ興行の連携が構想に組み込まれている。設計側は視線・音響解析、吊り荷重、防振などを重視したと説明している。[三井不動産（2024年）](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/)、[清水建設の設計解説](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html)、[山下ＰＭＣの事業体制](https://www.ypmc.co.jp/info/news/20394/)。
 
-**TOYOTA ARENA TOKYO（トヨタアリーナ東京）** opened in 2025. The Toyota corporate release identifies Toyota Motor as landowner, Toyota Fudosan as building owner, and Toyota Alvark Tokyo as operator. 土地・建物・運営の三つが分かれたモデルである。[Toyota corporate announcement](https://global.toyota/en/newsroom/corporate/43284677.html).
+The examples from Funabashi, Kobe and Tokyo show why an organizational map is essential. The three projects are not evidence that one ownership structure outperforms the others. They demonstrate that "arena revenue" is ambiguous until we name the company, the contracts and the rights being discussed.
 
-These facts do not rank profitability. ただし、アリーナの「売上」や「投資」を議論する際、法人を特定しないことがいかに危険か分かる。A full arena can create revenue for the promoter, the club, the operator and nearby businesses in different proportions. **Value creation and value capture are not identical.**
+**神戸・ジーライオンアリーナ神戸（GLION ARENA KOBE）**。2025年4月開業の約1万人規模。公表資料上は**土地所有者が神戸市、建物所有者がＮＴＴ都市開発、運営会社がワン・ブライト・コウベ（One Bright KOBE）**である。民設民営のプロジェクトであっても土地・建物・運営者は一致しない。[運営エリアの施設概要（2025年）](https://www.totteikobe.jp/news/article/5780)。
+
+**東京・トヨタアリーナ東京（TOYOTA ARENA TOKYO）**。2025年開業の約1万人規模で、トヨタ自動車の公式発表では、土地所有者がトヨタ自動車、建物所有者がトヨタ不動産、運営者がトヨタアルバルク東京である。[トヨタ自動車の施設概要（2025年）](https://global.toyota/en/newsroom/corporate/43284677.html)。
+
+この比較は、どれが儲かっているかを証明するものではない。示しているのは、契約と所有構造の多様性だ。施設への来場が増えても、家賃が増える人、チケットが売れる人、広告を販売する人、修繕を負担する人は異なる。**「アリーナの売上」という言葉は、主体を特定しないと危険**なのである。
 
 ## 6｜破：A 130-event calendar can still lose money
 
-Let us build a deliberately simplified scenario. 以下は架空の試算であり、実在施設の決算・予測ではない。
+ここで少しやりすぎる計算をしてみる。すべて説明のための仮定であり、上記三施設の実績でも業界平均でもない。
 
-- Court sports: 45 event days × ¥3 million event contribution = ¥135 million.
-- Concerts: 60 days × ¥5 million = ¥300 million.
-- Other events: 25 days × ¥2 million = ¥50 million.
-- Total: **130 event days and ¥485 million contribution**.
-- Annual fixed operating costs: assume ¥400 million.
-- Remaining operating contribution: **¥85 million** before fully accounting for the building investment, financing and other obligations.
+Scenario analysis is useful precisely because its assumptions are visible. The example uses 130 event days, but changing one major category alters the remaining contribution from positive to negative. It does not prove any named arena is unprofitable; it shows where the model is sensitive and what evidence matters.
 
-Now reduce the concert schedule from 60 to 30 days. 音楽興行の貢献利益は1億5,000万円減り、同じ固定費なら**6,500万円のマイナス**になる。In this example, event contribution already includes relevant food, premium and related event revenue after variable costs; do not add them again.
+- バスケットボール等45日 × 1日当たり施設側限界利益300万円 ＝ 1億3,500万円
+- 音楽ライブ60日 × 同500万円 ＝ 3億円
+- その他催事25日 × 同200万円 ＝ 5,000万円
+- 合計：**130開催日・年間限界利益4億8,500万円**
+- 施設運営の年間固定費：4億円と仮定
+- 差し引き：**8,500万円**。ただし、建設投資や借入返済などを十分に考慮した最終的な投資収益ではない。
 
-Why is this exercise useful? It shows the sensitivity of the plan to one uncertain product category. 130日を予約表に書けることと、60日のライブを実際に売れることは違う。
+次に、音楽ライブの実施日数が60日から30日に減ったとする。ライブ由来の限界利益が1億5,000万円減るため、同じ固定費なら差し引きは**6,500万円のマイナス**になる。ここでは法人営業、飲食売上等を各催事の限界利益に含むと仮定しており、重ねて足し直してはいない。
 
-A lender asks yet another question: will the cash flow repay the debt? 施設運営で残るお金と、建設投資への返済可能額を混同できない。An attractive schedule is not a bankable contract.
+Financial viability demands a second level of analysis. Even when an operator covers its annual fixed costs, the owner still needs to recover construction investment, service debt and fund future replacement. Operating contribution, accounting profit and cash available for debt repayment must never be treated as interchangeable numbers.
+
+この仮定からも、稼働率より重要な問いが見える。「ライブ60日を誰が予約してくれるのか」「料金と費用の根拠は何か」「競合会場から興行を移すだけではないか」。建物の能力と市場の需要のあいだには、契約という橋が必要だ。
+
+融資する側の論点も異なる。営業上の黒字見込みがあっても、建設費を返済できるとは限らない。建設投資（資本的支出）、運営費、金利、更新費を分け、毎年の現金収支と借入返済余力を見なければならない。**満員の図を描くのと、返済できる契約を組むのは別の仕事**だ。
 
 ## 7｜破：Interest is not a booking — 興行主の「使いたい」は売上ではない
 
-Market research can be dangerously polite. 「こんな最新アリーナがあったら使いますか」と聞けば、positive feedback is likely. But interest does not equal a paid reservation.
+Customer enthusiasm is a weak form of evidence. A promoter who says "I would love to use it" is not the same as one who offers dates, a price range and a real booking commitment. Forecasts should distinguish casual interest, detailed negotiations, provisional reservations and executed contracts.
 
-What matters is a promoter's actual event route, dates, configuration, required technical specifications, fee level and willingness to commit. 周辺アリーナや劇場で空き日があるのか、同じツアーが別都市へ移るのかも調べる。
+市場調査で「最新アリーナがあったら使いたいですか」と聞けば、好意的な答えは得やすい。しかし「使いたい」と「年間○日、施設使用料○円で契約する」は違う。
 
-Evidence comes in different strengths: informal interest, discussions about specific dates, written indications, provisional bookings and signed contracts. これらを同じ確度で売上計画へ足し込んではいけない。**The best demand forecast follows customer decisions, not the beauty of the rendering.**
+The arena may be a new place, but its customers already make choices among other venues. Touring routes, freight logistics, competitor availability and the size of the region shape what can actually be sold. The best demand study follows these decisions rather than assuming the building creates its own audience.
+
+調べるべきは、プロクラブのホーム開催日・優先予約権・練習利用、音楽プロモーターのツアー経路、他会場の予約競合、地域の人口・所得・交通圏、企業イベントの需要と支払意思である。スポーツと音楽の観客は同一とは限らず、事業者が持つ興行誘致能力も無視できない。
+
+検証方法として、少なくとも主要な興行主への具体的な意向聴取、候補日程の照合、価格条件の提示、覚書や仮予約など確度の違う証拠を段階別に集めるべきだ。まだ契約前の「関心あり」を確定売上として資金計画に入れない。需要予測は資料の数字より、**誰がどの条件で実際に買うのか**から精度が上がる。
 
 ## 8｜破：A premium building can still be the wrong investment
 
-Arenas need structure, retractable seating, sound systems, large screens, air conditioning, hospitality areas and backstage spaces. さらに土地条件、建設人件費、資材高、金利、近隣対策がある。Cost overruns are not solved by calling every feature "essential."
+There are two ways to waste capital. One is underbuilding a venue that cannot attract the events used in the revenue forecast. The other is overbuilding a venue with sophisticated systems that customers rarely pay to use. The solution is to distinguish irreversible structural choices from equipment that can be upgraded later.
 
-Separate design features into three groups. First, non-negotiable safety, accessibility and league conditions. Second, commercially justified features that specific customers will pay for. Third, future upgrades where flexibility matters more than current maximum performance. 変えにくい構造へ投資し、更新しやすい設備に余白を残すという考え方だ。
+アリーナの建設費を押し上げるのは、躯体だけではない。可動客席、放送・映像設備、大型ビジョン、音響、防音、吊り設備、非常電源、飲食厨房、特別席、空調、搬入路、周辺の交通・外構も重要だ。立地の地盤や土壌、法令、資材・人件費、工期、金利によって条件が変わる。
 
-Co-op Live is a reminder that an opening date is an operational commitment. 竣工、消防・安全対応、スタッフ訓練、試験公演、興行主の条件確認は別々に検証すべきもの。**Do not let the marketing calendar become the safety test.**
+Opening risk deserves its own investment decision. Permits, technical commissioning, fire safety, staff training and promoter acceptance are separate gates. The Co-op Live incident illustrates the consequences of an incomplete transition from construction to operations, not a universal prediction for every new arena.
+
+そこで性能を三群に分類したい。**必須条件**は法令・安全・リーグ・基本興行の要求、**需要によって採否が変わる条件**は大型ライブ設備や特別席等、**将来拡張する条件**は技術変化に備えた空間や配線経路など。何でも最新仕様にするのではなく、後から変えられない部分へ重点投資し、更新できる設備は柔軟性を残す。
+
+コープ・ライブの開業混乱は、設備を導入すれば終わりではないことも教える。工事の完了、消防・安全確認、スタッフの訓練、リハーサル、予約済み公演の実施条件にはそれぞれ別の合格基準がある。開業日を広報してから安全体制を整えるのは、カレンダーと現場の順番が逆になっている。
 
 ## 9｜破：Three different scorecards for public and private value
 
-The venue operator's profitability is one scorecard. 土地・建物への投資回収が二つ目。The net benefit to local residents is a third. Attendance cannot substitute for all three.
+A strong business case requires multiple scorecards. The operator's margin, the property owner's investment return, and the residents' net benefit are different questions. A popular event may create sales for nearby businesses without producing the cash flow needed to finance the venue itself.
 
-Visitors may spend money in nearby restaurants without increasing the operator's revenue. 地域内の既存娯楽からの支出移転なら純増効果は小さい可能性がある。Conversely, a public venue can generate access, safety or civic benefits even if it does not earn a commercial profit. ただし公益性があっても、ほかの公共事業との費用対効果比較は必要だ。
+アリーナ事業には少なくとも三つの成績表がある。**施設運営の収支**、**土地・建物への投資回収**、**地域と住民の純便益**だ。年間来場者数は三つのいずれにも直接置き換えられない。
 
-A research review by Bradbury, Coates and Humphreys raises doubts about the economic-development effects used to justify many US sports-venue subsidies. [Study, published in a 2024 journal issue](https://doi.org/10.1002/pam.22534). 主な対象は米国のスタジアムで、日本の屋内アリーナに直接同じ結果が出ると証明した研究ではない。The transferable lesson is methodological: do not mistake gross spending for net public benefit.
+例えば、周辺飲食店が売上を増やしても、施設運営会社には収益が入らないことがある。地域内の映画館等から消費が移っただけなら、地域経済の純増は小さい可能性もある。一方、企業として赤字の公共施設でも、市民の運動機会や防災機能など別の公益があれば存在意義を説明し得る。だが、その場合は他の事業との比較が必要になる。
 
-Ask what would have happened without the arena. その土地、その公費、その観客、その企業のお金はどこへ向かったのか。**Good evaluation includes the costs and alternatives absent from the celebration photos.**
+Public value also has opportunity cost. Money spent here cannot be spent elsewhere at the same time. The US stadium-subsidy literature is useful as a warning about optimistic economic-impact claims, but it is not direct proof that Japanese indoor arenas fail. The proper method is to compare credible alternatives using evidence appropriate to each city.
+
+ブラッドベリー、コーツ、ハンフリーズらの米国プロスポーツ施設への公的補助を扱った研究総説は、地域経済開発効果の大きさに慎重な見解を示している。これは主として米国のスタジアムを対象とする研究であり、日本の屋内アリーナの効果を直接否定する証拠ではない。むしろ、推計された「経済波及効果」を、税収や利益、公共投資の費用対効果と混同しないための警告として読む。[研究総説（2024年刊）](https://doi.org/10.1002/pam.22534)。
+
+本当に必要なのは「アリーナがなかった場合、観客や企業はどこで消費し、税金は何に使われたか」という比較だ。盛り上がりの写真を疑うのではなく、**写真に写らない費用と、写らなかった代替案**を加える。
 
 ## 10｜離：An arena is part theater, part hotel, part factory
 
-An arena resembles a theater because its programming determines demand. ホテルに似るのは、その日の空席・空き日程を翌日に在庫として持ち越せない点。It resembles a factory because setup, conversion, cleaning and safety procedures restrict production capacity. 不動産に似るのは、返済・賃料・更新費が数十年の時間軸で動くことだ。
+The most useful analogy is not a single industry but a combination. The theater teaches programming, the hotel teaches perishable capacity, the factory teaches setup time, and real estate teaches long-term financing. An arena inherits all four tensions in one physical asset.
 
-It is also part of the city. 来場者の流れは鉄道、周辺の店、住民の騒音負担へ広がる。しかし駅や空港と違い、イベント日に需要が偏りやすい。The analogy is useful only when we keep that difference in mind.
+ここからは他業種との類推である。劇場に似ているのは、主催者が持ち込む演目によって売れる日が決まる点。ホテルに似ているのは、今日の空いている客席や日程を明日に持ち越して売れない点。工場に似ているのは、床転換・搬入・清掃という生産準備が能力を制約する点。不動産に似ているのは、長期の借入・賃料・更新が短期の催事収入と別の時間軸で動く点だ。
 
-Seen this way, the arena is a shared platform for promoters, teams, operators, owners and the city. 建物の性能だけではなく、予約、権利、費用、リスクを調整するルールが競争力になるのではないか。
+A venue can generate value for people who never enter the building, and costs for people who never buy a ticket. That makes governance part of the product. Contracts, neighborhood agreements and transport planning can matter just as much as the quality of the seats when the project is evaluated over its whole life.
+
+都市計画に似ているのは、会場の外へ出た人の流れが、交通、飲食、宿泊、騒音、住民の暮らしにつながること。ただし駅や空港と違い、アリーナ需要はイベント日に偏る。だから、単に来場者を増やせば周辺が自然に豊かになるとも言えない。
+
+この類推をつなぐと、アリーナは「建物」である前に、複数の事業者が限られた時間・空間・権利を調整する**共通基盤**として見えてくる。経営上の勝負は、施設仕様の高さだけでなく、興行主を集め、収益を分け、設備を維持し、住民と共存するルールの良し悪しにも宿る。
 
 ## 11｜離：Will operating capability matter more than ownership?
 
-This is a testable hypothesis, not a prediction presented as fact. As more arenas are built, new screens and beautiful seats may become less distinctive. 興行主との関係、ライブ誘致、床転換の速さ、接客、データ活用、長期保全の能力が収益格差を広げる可能性がある。
+One possible future is a market in which operational skill becomes the scarce resource. Several arenas may offer impressive screens and similar capacities, while the best teams win bookings through promoter relationships, efficient conversions and reliable service. This remains a hypothesis that needs data.
 
-There is also a counter-hypothesis. More arenas might expand touring routes and create demand in cities that previously lacked suitable venues. 供給増加＝共倒れとは限らない。
+ここからは**推論・将来仮説**だ。国内でアリーナの新設が進めば、近隣の施設同士で音楽ツアーや企業催事を獲得する競争が強まる可能性がある。最新ビジョンや客席だけでは差別化しにくくなれば、営業網、興行主との関係、転換の速さ、データ、接客、コスト管理といった運営能力が収益差を生むのではないか。
 
-How would we tell? Track concert tours, regional booking competition, non-sport event days, event-level contribution margins, maintenance costs and contract renewals. 推論を、比較可能なデータに分解することから始めたい。
+There is also a credible alternative story: better venues may expand the live-entertainment market and make previously neglected cities viable stops on touring routes. To distinguish the stories, track event origin, cancellations, revenues, margins and changes in nearby venues. A prediction is useful only when it can be proved wrong.
+
+反対の可能性もある。アリーナが増えることで、これまで開催されなかった都市に興行が巡回し、需要自体が拡大するかもしれない。したがって「供給が増えれば必ず共倒れ」とも言えない。
+
+検証したいのは、全国の同規模施設の興行日数、同一ツアーの訪問都市、平日利用、イベント単位の利益、競合会場との予約争奪、改修費と契約更新率である。予測を断言するより、反証できるデータを先に決めたい。
 
 ## 12｜50 questions before the first shovel
 
-The following is a deliberately wide issue map. **It is a research inventory, not a claim that all questions are equally urgent.** 案件によって重要度は違う。最初は論点を広く見つけ、あとで絞り込む。
+ここまでの話を、意図的に「散らかったまま」の調査リストへ広げる。ある企画の答えが他の企画の前提を変えるため、最初からきれいな一列にしすぎない方がよい。
 
-**Purpose and alternatives**
-1. Is the problem aging infrastructure, club growth or urban decline? 何の不足か。
-2. Could we renovate, share or phase the project? 新築以外はないか。
-3. Who sets priorities between civic sports and professional events? 誰が優先順位を決めるか。
-4. What happens without building? 非実施案の価値は何か。
+**目的・代替案**
+1. 解きたい課題は施設不足か、クラブの収益力か、都市の空洞化か。
+2. 新築以外に改修・共同利用・段階的整備はないか。
+3. 市民スポーツとプロ興行の優先順位を誰が決めるか。
+4. 建設しなかった場合の便益と費用は何か。
 
-**Demand and competition**
-5. How will population, income and travel time change? 商圏はどう変わるか。
-6. What evidence supports the club's attendance and event dates? クラブ需要の根拠は何か。
-7. What will promoters actually book, and at what price? 具体的な購入意思はあるか。
-8. Which nearby arenas, theaters and exhibition halls compete? 競合は誰か。
-9. Is demand genuinely new or moved from another venue? 純増か移転か。
+**市場・競争**
+5. 商圏の人口・所得・交通圏はどう変わるか。
+6. ホームクラブが確保できる日数と観客数の根拠は何か。
+7. 興行主は何日、どの条件で予約する意思があるか。
+8. 近隣アリーナ、劇場、展示場とどこで競合するか。
+9. 競合と取り合う需要か、新たに生まれる需要か。
 
-**Products and pricing**
-10. How many seats can be sold for each event layout? 催事ごとの販売席数は何席か。
-11. Who will pay for suites and lounges? 特別席の顧客は誰か。
-12. Who sells sponsorship, food and naming rights? 付帯収益の販売者は誰か。
-13. Do local corporate and national sponsors need different products? 法人向け商品を分けるか。
-14. Will visitors spend more time or money in the district? 滞在の変化はあるか。
+The fifty questions below intentionally resist an early summary. At the start of a project, it is better to notice overlooked constraints than to force every concern into one tidy diagram. These questions are an inventory from which the team should select the material issues for its particular decision.
 
-**Architecture and construction**
-15. Do basketball and concert sightlines both work? 双方の見え方は良いか。
-16. Are rigging, power, acoustics and loading sufficient? 技術条件は足りるか。
-17. How many days are lost to setup and changeovers? 転換に何日必要か。
-18. Is accessibility, sanitation, crowd safety and evacuation adequate? 安全・福祉面はどうか。
-19. What are cost, site and schedule contingencies? 地盤・資材・遅延に余裕はあるか。
-20. Can future upgrades be made without major reconstruction? 更新余地はあるか。
+**商品・価格**
+10. バスケ、ライブ、催事で販売可能な席数はどう違うか。
+11. 特別席・ラウンジに誰がいくら払うか。
+12. 命名権・広告・飲食を誰が販売するか。
+13. 地元企業向け商品と全国スポンサー向け商品は違うか。
+14. 来場者の滞在時間や会場外消費は変わるか。
 
-**Operations and rights**
-21. Who owns land, building and operating rights? 権利は誰が持つか。
-22. Who gets priority dates, and who can cancel? 優先予約権はどうなるか。
-23. Who controls tickets, concessions, media and customer data? 収益とデータの帰属は。
-24. Which activities are in-house and which outsourced? 内製と外注の境界は。
-25. Is revenue overly dependent on one club or promoter? 集中リスクは高いか。
+**設計・建設**
+15. コートの見え方とステージの見え方は両立するか。
+16. 吊り荷重、電力、音響、防振、搬入が興行に足りるか。
+17. 設営・撤去・床転換の日数は何日か。
+18. バリアフリー、トイレ、避難、警備に十分か。
+19. 建設費・地盤・資材高・工程遅延をどう見積もるか。
+20. 将来の設備更新と改造の余地を確保できるか。
 
-**Economics and finance**
-26. What is the contribution margin by event type? 催事別の限界利益はいくらか。
-27. How does busy time differ from profitable time? 稼働と利益は違うか。
-28. Who funds construction: equity, debt or public money? 調達先は。
-29. Who pays rent, interest and future maintenance? 修繕と金融費用は誰の負担か。
-30. What happens with 30% less demand? 下振れ試算は。
-31. What if debt covenants are breached? 融資契約違反ならどうするか。
+**運営・権利**
+21. 土地所有者、建物所有者、運営者、クラブは誰か。
+22. 興行の優先予約日とキャンセル条件は何か。
+23. チケット、飲食、広告、映像、顧客データの権利は誰にあるか。
+24. 清掃、警備、飲食、興行営業を自営するか外注するか。
+25. 特定のクラブや興行主に過度に依存していないか。
 
-**City and public value**
-32. Can trains and walkways process post-event peaks? 退場混雑は扱えるか。
-33. Who bears noise, light, trash and congestion? 住民負担は誰が処理するか。
-34. Does the district gain net business or just relocate spending? 商業の純増はあるか。
-35. Are benefits distributed differently across residents and visitors? 利益分配は公平か。
-36. Who guarantees public access and affordable use? 市民利用をどう守るか。
-37. How does this compare with other uses of public funds? 代替公共投資と比べたか。
+**収支・資金**
+26. 催事別の売上と変動費はいくらか。
+27. 日程上の稼働率と利益貢献はどう違うか。
+28. 建設費の財源は出資・融資・公費のどれか。
+29. 家賃、金利、減価償却、修繕、更新は誰が負担するか。
+30. 需要が3割下振れしたら現金は何年もつか。
+31. 融資条件に抵触した場合どうするか。
 
-**Safety, sustainability and technology**
-38. Can evacuation, security and crowd procedures be tested? 安全検証は可能か。
-39. What is the opening-readiness test? 開業判定の基準は。
-40. What will electricity, insulation and carbon policies cost? 環境対応の費用は。
-41. Who operates emergency shelter functions, if planned? 災害時の責任は。
-42. How are customer data collected and shared lawfully? データ管理は適切か。
+Breadth is useful for discovery, not for endless discussion. A question becomes actionable when we can name its owner, the evidence required, the threshold for moving forward and the consequences of being wrong. The next section turns this wide issue map into a sequence of decisions.
 
-**Organization and implementation**
-43. Can the client evaluate its own design and contracts? 発注者に評価能力はあるか。
-44. Is the future operator involved before construction? 運営者は設計段階からいるか。
-45. Who makes decisions and who can stop the project? 最終責任者は誰か。
-46. How are contract changes, inflation and delay managed? 変更管理は。
-47. What metrics are reviewed every month? 改善の仕組みは。
-48. What happens when the lease or operating agreement ends? 契約終了時は。
-49. Can the project shrink, change use or renegotiate if needed? 撤退・転用条件は。
-50. Can we explain success from each stakeholder's perspective? 誰にとっての成功か。
+**都市・公共性**
+32. 終演後の鉄道・バス・歩道のピーク需要に耐えるか。
+33. 騒音、光、混雑、ゴミを誰が引き受けるか。
+34. 周辺商業と競合せず、回遊を生み出せるか。
+35. 地元住民と遠征客に異なる効果があるか。
+36. 住民の利用機会や料金は誰が保証するか。
+37. 公費の代替用途と比較して優先すべきか。
+
+**安全・環境・技術**
+38. 消防・避難・群集安全とテロ対策は実装できるか。
+39. 開業前の試験運用は何をもって合格とするか。
+40. 電力、脱炭素、断熱、水利用の長期費用はどうなるか。
+41. 災害時の避難拠点として誰が運用するか。
+42. 顧客データの取得・共有・利用目的は適切か。
+
+**組織・実行**
+43. 発注者側に設計・契約を評価する人材がいるか。
+44. 開業後の経営責任者は開発段階から参加しているか。
+45. 重要な意思決定の責任者と拒否権者は誰か。
+46. 契約変更、物価上昇、開業延期の対応手順は何か。
+47. 開業後に何を毎月測り、誰が改善するか。
+48. 保有・運営の契約が終了する際、設備はどう引き継ぐか。
+49. 事業が不振なら縮小・転用・再交渉できるか。
+50. 最終的に「誰にとって成功だったか」を説明できるか。
+
+この50項目はすべて同じ重要度ではない。調査を始めるための**問いの母集団**であり、案件の目的・段階に応じて優先順位をつける必要がある。
 
 ## 13｜Eight decision gates: reduce the complexity without hiding it
 
-![Eight decision gates for an arena investment](https://silovar-uk.github.io/myessays/assets/arena-decision-architecture-2026/eight-gates.svg)
+![アリーナ建設の八つの意思決定ゲート](https://silovar-uk.github.io/myessays/assets/arena-decision-architecture-2026/eight-gates.svg)
 
-The fifty questions are useful for discovery, but decision-makers need stopping rules. 以下は筆者の実務提案であり、公的制度が定めた公式審査フローではない。
+建設可否の判断には「良さそうなアイデアを全部盛る」より、後戻りしにくい意思決定に入る前に何を証明すべきかを定める方が役立つ。以下は公的基準そのものではなく、今回の調査から組み立てた**実務提案**である。
 
-**Gate 1 — Purpose and alternatives.** 本当に解きたい問題と、新築より良い選択肢の有無を示せるか。
+**第1ゲート：目的と代替案**――解決すべき課題、受益者、改修・共同利用との比較を一枚で説明できるか。できなければ施設規模の議論を止める。
 
-**Gate 2 — Demand and willingness to buy.** クラブ使用日と興行主の開催意思を、価格・条件とともに確認できるか。
+A decision gate is not another meeting about the same presentation. It is a test of whether the project has enough evidence to commit more money or narrow its options. Each gate should produce a clear outcome: proceed, revise and retest, or stop.
 
-**Gate 3 — Technical and product fit.** League requirements, event configurations and upgrade flexibility all need to work. リーグ適合と商売の成立を混同しない。
+**第2ゲート：市場と購入意思**――クラブの使用日程と興行主の具体的な関心、競合施設と価格帯を裏付けられるか。空欄を「いつかライブで埋まる」で埋めない。
 
-**Gate 4 — Site and community.** 交通、回遊、騒音、住民利用を説明できるか。
+**第3ゲート：規格と商品性**――リーグ基準、安全、バスケ・ライブ双方の客席と設備、更新余地を設計できるか。最高性能ではなく、需要と費用の釣り合いを見る。
 
-**Gate 5 — Rights and risk.** Ownership, operating income, booking rights and liabilities need a clear map. 契約の帰属を可視化する。
+**第4ゲート：立地と都市**――交通処理、近隣負担、回遊、市民利用を説明できるか。施設内部の満足度だけで立地を決めない。
 
-**Gate 6 — Finance and downside.** 建設・借入・更新を含む現金収支が、下振れ時にも耐えるか。
+**第5ゲート：権利・責任・契約**――土地・建物・運営・興行・広告・データの権利と、修繕・災害・契約終了の責任を地図にできるか。
 
-**Gate 7 — Net public value.** 施設採算と公共便益を区別し、代替案と比較する。
+This architecture is a proposal, not a government licensing framework. Its advantage is that it creates a legitimate route to say "not yet" or "no" before design and construction commitments become difficult to reverse. Responsible optimism needs an exit condition.
 
-**Gate 8 — Opening, renewal and exit.** 開業判定、安全、修繕、転用・撤退条件を誰が運用するか。
+**第6ゲート：資金と下振れ耐性**――建設費、金利、運営、更新を含む現金収支を検証したか。イベント数の下振れや開業遅延があっても資金が尽きないか。
 
-At every gate, choose **proceed, revise and retest, or stop**. The ability to stop an attractive project is not pessimism; it is part of good capital allocation. 新築の期待が高まるほど、中止判断に必要な根拠を事前に設計しておきたい。
+**第7ゲート：公共的な費用対効果**――施設会社の採算と、地域に生まれる純増、住民の便益・負担を分けて比較したか。税金を使うなら代替事業とも比べる。
+
+**第8ゲート：実行・開業・撤退**――責任者、検査、訓練、開業判定、開業後の監視、更新・転用・撤退を決めたか。
+
+各ゲートでの判定は**「通過／修正して再検証／停止」**の三択とする。アリーナ建設の構想段階では、企画書を厚くすること以上に、「止める根拠」を合法的かつ合理的に提示できる仕組みが重要になる。
 
 ## 14｜The first ten working days of a real assignment
 
-A consulting team should not begin with a glossy masterplan. 最初の5営業日で、既存施設の制約、クラブ需要、公共目的、競合会場、現有データの欠落を整理する。Separate actual results from assumptions.
+The first two weeks should reduce uncertainty, not produce a polished final design. Build the map of stakeholders and rights, obtain the strongest available demand signals, and calculate what happens when the most optimistic event assumptions fail.
 
-In the next five working days, conduct exploratory interviews with promoters, map ownership and revenue rights, build a rough downside cash-flow model, and compare renovation or smaller alternatives. 数字が足りなければ、何を追加で調べるべきかを成果物として示す。
+ここで現場の作業へ落とす。**第1〜第5営業日**には、既存施設の不満・不足・利用制約、クラブの現行・将来需要、自治体の公共目的、主要な競合施設を整理する。財務情報は実績と推計を別シートに置く。
 
-The first deliverable should be an investment decision memo: the problem, likely paying customers, revenue-rights map, five biggest risks, and explicit criteria for proceeding or stopping. 施設の完成予想図はその後でよい。The order matters because an early visual can silently turn one option into the only option.
+A good first deliverable is a short investment decision memo: the problem, the viable alternatives, who will pay, who will receive revenue, the largest risks, and the evidence still missing. If the missing information is decisive, that is a substantive finding rather than a failure to complete the analysis.
+
+**第6〜第10営業日**には、興行主への仮説ヒアリング、施設所有者とクラブの収益権整理、ラフな設備費と現金収支の下振れ計算、代替案比較を進める。「この建設計画を進めてよいか」を決めるための不足データ一覧を作る。
+
+最初の成果物は分厚い完成予想図ではない。①解くべき問題、②主要な顧客と契約見込み、③権利と費用の帰属、④リスク上位五つ、⑤継続・修正・中止の判断条件をまとめた**投資判断メモ**だ。データが足りなければ、その不足そのものを結論にする。
 
 ## 15｜The empty Wednesday is where the business case begins
 
-The arena rendering is always full. でも、何も予約されていない水曜日の方が、計画の本質を見せてくれるかもしれない。Who will fill that day? What will they pay? What must the operator spend? Who will maintain the building in twenty years?
+The original question sounded architectural: how large should the arena be, and what should it look like? The research leads to a harder question: what long-term promises are we prepared to make about demand, contracts, maintenance and public benefit?
 
-At the beginning, the project looked like an architectural question: how do we build a 10,000-seat arena? 調べ終えると、それだけではなかった。**Building an arena means making long-term promises about demand, rights, costs and public value.** その約束を検証してから、ようやく設計図を描くべきなのだ。
+完成予想図には、いつも満員のアリーナが描かれている。でも、まだ予約の入っていない水曜日の客席は、もう少し正直だ。誰がその日に何を開催するのか、どんな費用で、どの会社に収益が残るのか。その答えがなければ、建物は完成しても事業は完成していない。
+
+An empty Wednesday does not mean the arena is worthless. It simply reveals the gap between a celebrated event and a sustainable institution. The first job is to make that gap measurable before asking architects, operators and residents to live with the answer.
+
+調べ始める前は、アリーナ建設とは「1万人が入る建物をどう造るか」という問題に見えた。今は違う。**アリーナ建設とは、将来の需要、権利、費用、公共性について、数十年単位の約束を先に結ぶこと**である。いい建物を建てることがゴールなのではない。その約束に根拠があるかどうかが、最初の意思決定なのだ。
 
 ## Useful terms / 用語集
 
-- **Feasibility study（事業可能性調査）**：市場、技術、財務、規制から事業の成立条件を調べる。
-- **Market size（市場規模）**：顧客が購入し得る需要。座席数とは違う。
-- **Booking（興行誘致）**：主催者を招き、条件と日程を合意する仕事。
-- **Contribution margin（限界利益・貢献利益）**：売上から変動費を引いた利益。
-- **CAPEX（建設投資などの資本的支出）**／**OPEX（運営費）**：投資費用と日常の運営費。
-- **Life-cycle cost（生涯費用）**：建設から運営・更新・解体までを通じた費用。
-- **PPP（官民連携）**／**PFI（民間資金等活用事業）**：公共と民間の役割分担と、関連する制度。
-- **Concession（公共施設等運営権方式）**：公共が所有権を保ちつつ運営権を民間に設定する仕組み。
-- **Value capture（価値の獲得）**：新たに生まれた価値を誰が収入として得られるか。
-- **Counterfactual（反実仮想）**：事業を実施しなかった場合と比較する考え方。
-- **Present value（現在価値）**：将来のお金を時間価値を考慮して現在の価値へ換算したもの。
+- **事業可能性調査（フィージビリティ・スタディ、feasibility study）**：市場・設備・収支・規制を調べ、事業を実行できるか検証する調査。
+- **市場規模（market size）**：顧客が購入し得る需要の大きさ。施設席数と同じではない。
+- **興行誘致（ブッキング、booking）**：イベント主催者へ営業し、会場での開催日程・条件を確保すること。
+- **限界利益・貢献利益（contribution margin）**：催事ごとの売上から、その催事に伴う変動費を引いた金額。
+- **建設投資（CAPEX）**：建物・設備に使う資本的な支出。
+- **運営費（OPEX）**：警備・清掃・光熱費など通常運営で使う費用。
+- **生涯費用（ライフサイクルコスト、life-cycle cost）**：建設から運営、更新、解体等までを含む費用。
+- **官民連携（PPP）／民間資金等活用事業（PFI）**：公共と民間が事業を分担する枠組み／その具体的な制度の一つ。
+- **公共施設等運営権（コンセッション、concession）**：公共側が所有する施設の運営権を民間に設定する仕組み。
+- **価値の獲得（バリュー・キャプチャー、value capture）**：生み出された価値のうち、どの主体が収入として得るかという問題。
+- **反実仮想（counterfactual）**：投資・施策がなかった場合の状態を推定して比較すること。
+- **現在価値（present value）**：将来の収入・支出を時間価値を考慮して現在時点の価値へ換算したもの。
 
 ## Sources and limits / 出典と注意
 
-1. [B.LEAGUE reform and licensing](https://www.bleague.jp/new-bleague/)
-2. [B.PREMIER 2026-27 home-arena inspection rules](https://www.bleague.jp/files/user/about/pdf/r-38.pdf)
-3. [Japan Sports Agency, Arena Reform Guidebook, third edition (2025)](https://www.mext.go.jp/sports/b_menu/sports/mcatetop02/list/detail/1411943_00021.htm)
-4. [METI, Sports Complex Guidebook (2026)](https://www.meti.go.jp/policy/servicepolicy/sports_complex/index.html)
-5. [Mitsui Fudosan, LaLa arena announcement (2024)](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/) / [Shimizu design notes](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html) / [Yamashita PMC](https://www.ypmc.co.jp/info/news/20394/)
-6. [GLION ARENA KOBE project details (2025)](https://www.totteikobe.jp/news/article/5780)
-7. [Toyota's arena ownership and operation details (2025)](https://global.toyota/en/newsroom/corporate/43284677.html)
-8. [Sky News, Co-op Live opening troubles (2024)](https://news.sky.com/story/manchesters-co-op-live-arena-finally-opens-after-weeks-of-cancellations-and-setbacks-13135966)
-9. [Bradbury, Coates and Humphreys, US sports-venue subsidy review (2024 issue)](https://doi.org/10.1002/pam.22534)
+1. [Ｂリーグ「Ｂ.革新」制度概要](https://www.bleague.jp/new-bleague/)――2026-27シーズンからのリーグ体系・参入審査の基礎。
+2. [Ｂリーグ「ホームアリーナ検査要項〔2026-27シーズン Ｂプレミア用〕」](https://www.bleague.jp/files/user/about/pdf/r-38.pdf)――座席、スイート、ラウンジ等の施設基準。検査時期・適用条件に注意。
+3. [スポーツ庁「スタジアム・アリーナ改革ガイドブック第3版」（2025年）](https://www.mext.go.jp/sports/b_menu/sports/mcatetop02/list/detail/1411943_00021.htm)――構想・計画・運営等の検討手順。
+4. [経済産業省「スポーツコンプレックスの推進」（2026年）](https://www.meti.go.jp/policy/servicepolicy/sports_complex/index.html)――施設と周辺のまちづくりの連携。
+5. [三井不動産「ららアリーナ 東京ベイ竣工」（2024年）](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/)／[清水建設「設計事例」](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html)／[山下ＰＭＣ「施設の保有主体」](https://www.ypmc.co.jp/info/news/20394/)――船橋の事業モデル・施設仕様。
+6. [ジーライオンアリーナ神戸・施設概要（2025年）](https://www.totteikobe.jp/news/article/5780)――土地、建物、運営の役割分担。
+7. [トヨタ自動車「トヨタアリーナ東京開業関連発表」（2025年）](https://global.toyota/en/newsroom/corporate/43284677.html)――東京の土地・建物・運営主体。
+8. [英国スカイニュース「コープ・ライブの開業延期」（2024年）](https://news.sky.com/story/manchesters-co-op-live-arena-finally-opens-after-weeks-of-cancellations-and-setbacks-13135966)――開業時の不具合を報じた資料。
+9. [ブラッドベリー、コーツ、ハンフリーズ「プロスポーツ施設への公的政策の研究総説」（2024年刊）](https://doi.org/10.1002/pam.22534)――主に米国スタジアムへの補助政策を批判的に検討。日本の屋内アリーナへの直接適用は避ける。
 
-**Qualifications:** The 130-event cash-flow model is hypothetical, not financial reporting for any of the named arenas. 個々のアリーナの全契約条件と投資回収実績はここで確認できた公表資料だけでは確定できない。The US research focuses mainly on stadium subsidies, not causal proof about every Japanese indoor arena. Future competition and operating advantage remain hypotheses, not established facts.
+**確認上の注意：** 数値の仮定計算は架空であり、国内三施設の決算実績を示していない。公表された収容規模は配置・用途により変わり得る。個々の契約の全条件、事業者の詳細収益、長期投資回収は上記の公開資料だけで確定できない。将来のアリーナ間競争や運営能力の優位は、反証を必要とする筆者の仮説である。
+
