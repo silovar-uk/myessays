@@ -44,6 +44,8 @@ abstract: "「忠臣蔵」は事件の当時の名前ではなかった。1701�
 
 資料によって討ち入りが「12月14日」「12月15日」と書かれるのは、**14日の夜から15日の未明にまたがる**ため。いずれも当時の旧暦であり、現代の暦の12月14日と同じ日ではない。切腹したのが47人でなく46人なのは、参加者の一人、寺坂吉右衛門が討ち入り後に一行から離れたためだが、離脱の経緯には諸説ある。[出典：赤穂市年表](https://www.city.ako.lg.jp/kensetsu/kankou/samurai/nenpyo2.html)／[日本芸術文化振興会](https://www2.ntj.jac.go.jp/dglib/contents/learn/edc21/haikei/jidai1/ji1a.html)
 
+寺坂は、討ち入りの仲間でただ一人の**足軽（あしがる）**、すなわちほかの仲間より低い身分に属した。コロンビア大学の歴史研究者ヘンリー・D・スミス二世は、寺坂がいたのか、なぜ離れたのか、そもそも「義士」と呼べるのかをめぐる長年の論争を追っている。ここから見えるのは、単なる人数の食い違いではない。**同じことをしても、身分が低い人には「忠義の資格」があるのかと問い直されてきた**という、物語のもう一つの不公平だ。ただし、寺坂離脱の真相は学界でも確定していない。[出典：ヘンリー・D・スミス二世「The Trouble with Terasaka」（2004年）](https://nichibun.repo.nii.ac.jp/record/252/files/IJ1601.pdf)
+
 ここで、早くも「全員が一緒に討ち入り、全員が潔く死んだ」という完成されたイメージから、史実が少しだけはみ出す。最後まで行動をともにした人と、途中で離れた人がいる。そもそも旧臣の全員が討ち入りに参加したわけでもない。一つの組織が失われたとき、人々が全員同じ決断をすることなど、現実にはまずない。四十七という揃いのよい数の向こうには、参加しなかった人や生き延びた人の選択もあった。
 
 ## 守｜原因を調べたら、最初の事件の動機が分からなかった
@@ -176,4 +178,5 @@ abstract: "「忠臣蔵」は事件の当時の名前ではなかった。1701�
 9. [農林水産省「黄金堤」](https://www.maff.go.jp/j/nousin/sekkei/museum/m_kakuti/27_kogane/index.html) — 吉良の地元で伝わる治水の伝承。
 10. [東京都公文書館「1873年の仇討ち禁止に関する太政官布告」](https://www.archives.metro.tokyo.lg.jp/detailLink?cls=collection_04&pkey=636612) — 私的復讐を禁じる近代法制。
 11. [兵庫県立美術館・ネットミュージアム兵庫文学館「忠臣蔵館」](https://www.artm.pref.hyogo.jp/bungaku/kikaku/chushingura/) — 近代以降の受容と国家的な意味づけ。
-12. [エリック・ハイヨ『The Elements of Academic Style』コロンビア大学出版局](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/) — 抽象度を上下させる構成法「Uneven U」の参照。本文の推論は筆者自身のもの。
+12. [ヘンリー・D・スミス二世「The Trouble with Terasaka」（2004年）](https://nichibun.repo.nii.ac.jp/record/252/files/IJ1601.pdf) — 47人目の寺坂の身分と後世の評価をめぐる研究。
+13. [エリック・ハイヨ『The Elements of Academic Style』コロンビア大学出版局](https://cup.columbia.edu/book/the-elements-of-academic-style/9780231168007/) — 抽象度を上下させる構成法「Uneven U」の参照。本文の推論は筆者自身のもの。
