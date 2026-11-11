@@ -94,7 +94,7 @@ Ownership structures influence behavior because each organization faces a differ
 
 日本の新しいアリーナ三つを並べると、事業を一社で全部やるとは限らないことが分かる。
 
-**船橋・ららアリーナ 東京ベイ（LaLa arena TOKYO-BAY）**。2024年に完成した約1万人規模の施設で、三井不動産とミクシィ（MIXI）の共同事業。施設保有のための合弁会社「TOKYO-BAYアリーナ」と、施設運営の「TOKYO-BAYアリーナマネジメント」は別の法人である。駅、周辺商業、クラブ興行の連携が構想に組み込まれている。設計側は視線・音響解析、吊り荷重、防振などを重視したと説明している。[三井不動産（2024年）](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/)、[清水建設の設計解説](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html)、[山下ＰＭＣの事業体制](https://www.ypmc.co.jp/info/news/20394/)。
+**船橋・ららアリーナ 東京ベイ（LaLa arena TOKYO-BAY）**。2024年に完成した約1万人規模の施設で、三井不動産とミクシィ（MIXI）の共同事業。施設保有会社（株式会社TOKYO-BAYアリーナ）と施設運営会社（株式会社TOKYO-BAYアリーナマネジメント）は別の法人である。駅、周辺商業、クラブ興行の連携が構想に組み込まれている。設計側は視線・音響解析、吊り荷重、防振などを重視したと説明している。[三井不動産（2024年）](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/)、[清水建設の設計解説](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html)、[山下ＰＭＣの事業体制](https://www.ypmc.co.jp/info/news/20394/)。
 
 The examples from Funabashi, Kobe and Tokyo show why an organizational map is essential. The three projects are not evidence that one ownership structure outperforms the others. They demonstrate that "arena revenue" is ambiguous until we name the company, the contracts and the rights being discussed.
 
