@@ -71,7 +71,7 @@ abstract: "アリーナ建設計画を前にすると、最初に収容人数と
 
 日本の新しいアリーナ三つを並べると、事業を一社で全部やるとは限らないことが分かる。
 
-**船橋・ららアリーナ 東京ベイ（LaLa arena TOKYO-BAY）**。2024年に完成した約1万人規模の施設で、三井不動産とミクシィ（MIXI）の共同事業。施設保有のための合弁会社「TOKYO-BAYアリーナ」と、施設運営の「TOKYO-BAYアリーナマネジメント」は別の法人である。駅、周辺商業、クラブ興行の連携が構想に組み込まれている。設計側は視線・音響解析、吊り荷重、防振などを重視したと説明している。[三井不動産（2024年）](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/)、[清水建設の設計解説](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html)、[山下ＰＭＣの事業体制](https://www.ypmc.co.jp/info/news/20394/)。
+**船橋・ららアリーナ 東京ベイ（LaLa arena TOKYO-BAY）**。2024年に完成した約1万人規模の施設で、三井不動産とミクシィ（MIXI）の共同事業。施設保有会社（株式会社TOKYO-BAYアリーナ）と施設運営会社（株式会社TOKYO-BAYアリーナマネジメント）は別の法人である。駅、周辺商業、クラブ興行の連携が構想に組み込まれている。設計側は視線・音響解析、吊り荷重、防振などを重視したと説明している。[三井不動産（2024年）](https://www.mitsuifudosan.co.jp/corporate/news/2024/0408/)、[清水建設の設計解説](https://www.shimz.co.jp/shimzdesign/works/2024lalaarena.html)、[山下ＰＭＣの事業体制](https://www.ypmc.co.jp/info/news/20394/)。
 
 **神戸・ジーライオンアリーナ神戸（GLION ARENA KOBE）**。2025年4月開業の約1万人規模。公表資料上は**土地所有者が神戸市、建物所有者がＮＴＴ都市開発、運営会社がワン・ブライト・コウベ（One Bright KOBE）**である。民設民営のプロジェクトであっても土地・建物・運営者は一致しない。[運営エリアの施設概要（2025年）](https://www.totteikobe.jp/news/article/5780)。
 
