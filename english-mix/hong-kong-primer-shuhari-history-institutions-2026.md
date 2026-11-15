@@ -52,7 +52,7 @@ Before colonial rule, 香港には漁業や交易の暮らしがあった。19�
 - **1941–1945** — Japanese occupation interrupted British rule.
 - **1 July 1997** — Sovereignty was transferred to China.
 
-A common misunderstanding is that all Hong Kong was leased for 99 years. 実際に期限付きだったのは新界。香港島と九龍南部の法的経緯は異なる。But the three territories functioned as one city, so negotiating only the New Territories was not a practical solution.[英国議会の背景資料](https://commonslibrary.parliament.uk/research-briefings/cbp-9682/)
+A common misunderstanding is that all Hong Kong was leased for 99 years. 実際に期限付きだったのは新界。香港島と九龍南部の法的経緯は異なる。But the three territories functioned as one city, so negotiating only the New Territories was not a practical solution.[英国議会の背景資料](https://commonslibrary.parliament.uk/research-briefings/CBP-8616/)
 
 ![香港の歴史と制度転換を示す年表](https://silovar-uk.github.io/myessays/assets/hong-kong-primer-2026/history.svg)
 
