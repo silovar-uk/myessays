@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="450" viewBox="0 0 1000 450" role="img" aria-label="中国という一つの国の中に中国本土と香港特別行政区の異なる制度がある概念図">
+<rect width="1000" height="450" fill="#f4f8fb"/>
+<text x="54" y="66" font-family="sans-serif" font-size="33" font-weight="700" fill="#123047">一つの国家、異なる制度</text>
+<rect x="54" y="102" width="892" height="294" rx="25" fill="#ffffff" stroke="#c6d5dd" stroke-width="3"/>
+<rect x="90" y="133" width="820" height="68" rx="13" fill="#173e54"/>
+<text x="500" y="178" text-anchor="middle" font-family="sans-serif" font-size="29" fill="#ffffff" font-weight="700">中華人民共和国（主権）</text>
+<path d="M500 204 V241 M302 241 H698 M302 241 V263 M698 241 V263" stroke="#638498" stroke-width="4" fill="none"/>
+<rect x="111" y="264" width="379" height="101" rx="14" fill="#edf2f5" stroke="#c6d5dd"/>
+<rect x="510" y="264" width="379" height="101" rx="14" fill="#e4f4f5" stroke="#99c6c9"/>
+<text x="300" y="308" text-anchor="middle" font-family="sans-serif" font-size="27" fill="#173e54" font-weight="700">中国本土</text>
+<text x="300" y="341" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#425968">本土の行政・司法制度</text>
+<text x="698" y="308" text-anchor="middle" font-family="sans-serif" font-size="27" fill="#173e54" font-weight="700">香港特別行政区</text>
+<text x="698" y="341" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#425968">独自の通貨・司法・出入境管理</text>
+<text x="54" y="426" font-family="sans-serif" font-size="18" fill="#435866">注：香港の自治は独立ではない。外交・防衛は中央政府の権限。</text>
+</svg>
