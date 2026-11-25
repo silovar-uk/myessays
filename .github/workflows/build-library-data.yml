@@ -51,7 +51,7 @@ jobs:
             node scripts/build-library-data.mjs
             node --check app.js
             node --test tests/data-integrity.test.js tests/library-catalog.test.js
-            git add data/catalog.json data/search/
+            git add data/catalog.json data/search/ share/
 
             if git diff --cached --quiet; then
               echo 'Catalog matches the latest main commit.'
