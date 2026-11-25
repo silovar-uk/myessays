@@ -787,6 +787,26 @@ function showReader(essay, { preserveScroll = false } = {}) {
   loadCurrentNote();
   document.title = `${essay.title} | My Essays`;
   updateShareMetadata(essay);
+  // The share address has static Open Graph metadata, even for crawlers without JS.
+  if (!essay.__aozoraBook && /^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(essay.id)) {
+    const lang = essay.__readingVersion === 'en-mix' ? 'en' : essay.__readingVersion === 'es-mix' ? 'es' : 'ja';
+    const filename = essay.id + (lang === 'ja' ? '' : '.' + lang) + '.html';
+    const address = new URL('share/' + filename, new URL('./', location.href)).href;
+    const stats = els.readerContent.querySelector('.reading-stats');
+    if (stats) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'ghost-button';
+      button.textContent = '共有リンクをコピー';
+      button.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(address);
+          button.textContent = 'コピーしました';
+        } catch { window.prompt('共有用URLをコピーしてください', address); }
+      });
+      stats.append(button);
+    }
+  }
   if (!preserveScroll) window.scrollTo(0,0);
 
   // Reader navigation used to rely only on a MutationObserver. Mobile Safari
