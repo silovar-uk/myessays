@@ -786,6 +786,7 @@ function showReader(essay, { preserveScroll = false } = {}) {
   }));
   loadCurrentNote();
   document.title = `${essay.title} | My Essays`;
+  updateShareMetadata(essay);
   if (!preserveScroll) window.scrollTo(0,0);
 
   // Reader navigation used to rely only on a MutationObserver. Mobile Safari
@@ -796,6 +797,25 @@ function showReader(essay, { preserveScroll = false } = {}) {
   document.dispatchEvent(new CustomEvent('myessays:reader-rendered'));
 }
 
+// Publish the current article's metadata to browser-based sharing tools.
+function updateShareMetadata(essay = null) {
+  const title = essay?.title || 'My Essays';
+  const description = essay?.abstract || essay?.subtitle || (essay ? '' : '論文・エッセイ・レビューの個人アーカイブ。');
+  const set = (attribute, key, value) => {
+    let el = document.head.querySelector('meta[' + attribute + '="' + key + '"]');
+    if (!el) { el = document.createElement('meta'); el.setAttribute(attribute, key); document.head.append(el); }
+    el.setAttribute('content', String(value || ''));
+  };
+  set('name','description',description);
+  set('property','og:title',title);
+  set('property','og:description',description);
+  set('property','og:type',essay ? 'article' : 'website');
+  set('property','og:url',location.href);
+  set('name','twitter:card','summary');
+  set('name','twitter:title',title);
+  set('name','twitter:description',description);
+}
+
 function showLibrary() {
   if (state.currentEssay) setNoteOpen(false);
   hideQuoteMenu();
@@ -804,6 +824,7 @@ function showLibrary() {
   els.readerView.hidden = true;
   els.libraryView.hidden = false;
   document.title = 'My Essays';
+  updateShareMetadata();
 }
 
 let routeSequence = 0;
