@@ -1,6 +1,9 @@
 {
   "version": 1,
   "articles": {
+    "clustering-impossibility-what-classification-sacrifices-2026": {
+      "en-mix": "english-mix/clustering-impossibility-what-classification-sacrifices-2026.md"
+    },
     "own-your-choices-not-every-outcome-2026": {
       "en-mix": "english-mix/own-your-choices-not-every-outcome-2026.md"
     },
@@ -2072,5 +2075,8 @@
   },
   "real-options-value-of-waiting": {
     "en-mix": "english-mix/real-options-value-of-waiting.md"
+  },
+  "clustering-impossibility-what-classification-sacrifices-2026": {
+    "en-mix": "english-mix/clustering-impossibility-what-classification-sacrifices-2026.md"
   }
 }
